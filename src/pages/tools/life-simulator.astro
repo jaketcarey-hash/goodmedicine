@@ -1,0 +1,11 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import LifeSimulator from '../../components/LifeSimulator.svelte';
+---
+<Shell title="Life Change Simulator" branch="path">
+  <PageHeader title="Life Change Simulator" subtitle="Thinking about a big change? See how it affects your finances before you decide." branch="path" backHref="/path" backLabel="Path" />
+  <section class="px-5 pb-10">
+    <LifeSimulator client:load />
+  </section>
+</Shell>

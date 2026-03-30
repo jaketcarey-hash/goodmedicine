@@ -1,0 +1,11 @@
+---
+import Shell from '../layouts/Shell.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import AskAI from '../components/AskAI.svelte';
+---
+<Shell title="Get AI Help" branch="home">
+  <PageHeader title="Get AI Help" subtitle="Get personalized answers from Claude AI — free and private." branch="home" backHref="/" backLabel="Home" />
+  <section class="px-5 pb-10">
+    <AskAI client:load />
+  </section>
+</Shell>

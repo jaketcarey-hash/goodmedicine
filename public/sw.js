@@ -4,7 +4,7 @@
  * serve from cache, update in background.
  */
 
-const CACHE_NAME = 'gm-v2';
+const CACHE_NAME = 'gm-v3';
 
 // These get populated at build time or manually
 const PRECACHE_URLS = [
@@ -17,8 +17,13 @@ const PRECACHE_URLS = [
   '/money/debt',
   '/money/investing',
   '/money/taxes',
+  '/money/budget-tool',
+  '/money/savings-tracker',
+  '/money/net-worth',
+  '/money/debt-planner',
   '/rights',
   '/rights/section-87',
+  '/rights/section-87-checker',
   '/rights/nihb',
   '/rights/treaty-payments',
   '/rights/education-funding',
@@ -31,15 +36,17 @@ const PRECACHE_URLS = [
   '/path/raising-family',
   '/path/supporting-elders',
   '/path/giving-back',
-  '/money/budget-tool',
-  '/money/savings-tracker',
-  '/rights/section-87-checker',
   '/self',
   '/self/benefits',
   '/self/stress',
   '/self/confidence',
   '/self/conversations',
   '/learn',
+  '/calendar',
+  '/glossary',
+  '/ask-ai',
+  '/tools/life-simulator',
+  '/tools/tax-estimator',
   '/favicon.svg',
   '/manifest.json',
 ];

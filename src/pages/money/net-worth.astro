@@ -1,0 +1,19 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import NetWorthTracker from '../../components/NetWorthTracker.svelte';
+---
+
+<Shell title="Net Worth Tracker" branch="money">
+  <PageHeader
+    title="Net Worth Tracker"
+    subtitle="Everything you own minus everything you owe. Track it monthly."
+    branch="money"
+    backHref="/money"
+    backLabel="Money"
+  />
+
+  <section class="px-5 pb-10">
+    <NetWorthTracker client:load />
+  </section>
+</Shell>

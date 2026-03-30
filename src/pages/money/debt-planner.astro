@@ -1,0 +1,19 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import DebtPayoff from '../../components/DebtPayoff.svelte';
+---
+
+<Shell title="Debt Payoff Planner" branch="money">
+  <PageHeader
+    title="Debt Payoff Planner"
+    subtitle="See exactly when you'll be debt-free — and how to get there faster."
+    branch="money"
+    backHref="/money"
+    backLabel="Money"
+  />
+
+  <section class="px-5 pb-10">
+    <DebtPayoff client:load />
+  </section>
+</Shell>

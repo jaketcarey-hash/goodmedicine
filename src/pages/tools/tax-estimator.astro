@@ -1,0 +1,19 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import TaxEstimator from '../../components/TaxEstimator.svelte';
+---
+
+<Shell title="Tax Estimator" branch="money">
+  <PageHeader
+    title="Tax Estimator"
+    subtitle="See what you'll owe — or what you'll get back."
+    branch="money"
+    backHref="/money"
+    backLabel="Money"
+  />
+
+  <section class="px-5 pb-10">
+    <TaxEstimator client:load />
+  </section>
+</Shell>

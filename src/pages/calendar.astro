@@ -1,0 +1,11 @@
+---
+import Shell from '../layouts/Shell.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import FinancialCalendar from '../components/FinancialCalendar.svelte';
+---
+<Shell title="Financial Calendar" branch="home">
+  <PageHeader title="Financial Calendar" subtitle="Your personalized guide to what matters for your money, month by month." branch="home" backHref="/" backLabel="Home" />
+  <section class="px-5 pb-10">
+    <FinancialCalendar client:load />
+  </section>
+</Shell>

@@ -1,0 +1,11 @@
+---
+import Shell from '../layouts/Shell.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import Glossary from '../components/Glossary.svelte';
+---
+<Shell title="Glossary" branch="home">
+  <PageHeader title="Glossary" subtitle="Every financial term explained in plain language." branch="home" backHref="/" backLabel="Home" />
+  <section class="px-5 pb-10">
+    <Glossary client:load />
+  </section>
+</Shell>
