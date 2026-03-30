@@ -1,0 +1,202 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Building a Life"
+  subtitle="Renting, saving, partnering up. The big moves that shape your financial foundation."
+  branch="path"
+  backHref="/path"
+  backLabel="Path"
+  readTime="9 min"
+>
+
+  <p>
+    At some point, the basics click into place — you have income, you have a routine,
+    and you start thinking bigger. A place of your own. Maybe a partner. Maybe a home.
+    This is the stage where your financial decisions start compounding, for better or worse.
+  </p>
+
+  <h2>Renting: what to know</h2>
+
+  <p>
+    For most people, renting is the first big financial commitment. It's also where a lot
+    of people get caught off guard. Here's what actually matters:
+  </p>
+
+  <ul>
+    <li><strong>Spend no more than 30% of your net income on rent</strong> — this is the general guideline. In expensive cities it's hard to hit, but it's the target to aim for</li>
+    <li><strong>Budget for move-in costs</strong> — first month's rent plus a security deposit (usually half a month's rent, depending on your province). Some places also charge for parking, storage, or utilities on top of rent</li>
+    <li><strong>Read the lease</strong> — all of it. Know what's included, what the notice period is, and what happens if you need to leave early</li>
+    <li><strong>Document everything</strong> — take photos of the unit when you move in. Every scuff, every mark. This protects your deposit when you leave</li>
+  </ul>
+
+  <h3>Tenant rights</h3>
+
+  <p>
+    Every province has a residential tenancy act that protects you. These aren't suggestions —
+    they're law. Key protections in most provinces:
+  </p>
+
+  <ul>
+    <li>Your landlord can't raise rent whenever they want — increases are typically limited to once per year and often capped at a percentage set by the province</li>
+    <li>You can't be evicted without proper notice and a valid legal reason</li>
+    <li>Your landlord must maintain the unit in a livable condition — heat, plumbing, electrical, pest control</li>
+    <li>Your security deposit must be returned (minus legitimate deductions) within a set timeframe after you move out</li>
+  </ul>
+
+  <div class="callout callout-warning">
+    <strong>Renting on reserve is different</strong>
+    <p>
+      Provincial tenancy laws generally don't apply on reserve. Housing on reserve is
+      governed by band housing policies and the Indian Act. If you're renting on reserve,
+      your rights and obligations are determined by your band's policies, which vary widely.
+      Ask your housing department for the specifics.
+    </p>
+  </div>
+
+  <ExpandableSection client:idle title="Red flags when apartment hunting">
+    <div class="space-y-3 text-sm">
+      <p><strong>Cash-only landlords</strong> — if they refuse to give you a receipt or want everything in cash, that's a warning sign. You want a paper trail.</p>
+      <p><strong>Pressure to sign immediately</strong> — "someone else is looking at it" is the oldest trick. A good landlord will give you time to read the lease.</p>
+      <p><strong>No written lease</strong> — verbal agreements are technically valid in most provinces, but they're nearly impossible to enforce. Always get it in writing.</p>
+      <p><strong>Asking for deposits beyond what's legal</strong> — some landlords ask for "key deposits," "pet deposits," or multiple months upfront. Know your province's rules on what they can and can't collect.</p>
+      <p><strong>Discrimination</strong> — it's illegal for a landlord to refuse you housing based on race, Indigenous status, source of income, family status, or other protected grounds. If it happens, your provincial human rights commission can help.</p>
+    </div>
+  </ExpandableSection>
+
+  <h2>Saving for a home</h2>
+
+  <p>
+    Homeownership is one of the biggest wealth-building tools available — but the path
+    to it looks different depending on whether you're buying on or off reserve.
+  </p>
+
+  <h3>Off-reserve homeownership</h3>
+
+  <p>
+    The process is the same as for any Canadian buyer. You need a down payment, a
+    mortgage, and a property. The government has created some tools specifically
+    to help first-time buyers:
+  </p>
+
+  <ul>
+    <li><strong>FHSA (First Home Savings Account)</strong> — a newer account that combines the best features of an RRSP and TFSA. Contributions are tax-deductible (up to $8,000/year, $40,000 lifetime), and withdrawals for a qualifying home purchase are tax-free. If your income is tax-exempt, the deduction doesn't help you — but the tax-free growth and withdrawal still make it useful</li>
+    <li><strong>RRSP Home Buyers' Plan</strong> — you can withdraw up to $60,000 from your RRSP tax-free for a first home purchase. You have to repay it over 15 years</li>
+    <li><strong>CMHC programs</strong> — the Canada Mortgage and Housing Corporation offers mortgage insurance (which lets you buy with as little as 5% down) and various first-time buyer incentives. Check current programs as they change frequently</li>
+  </ul>
+
+  <ExpandableSection client:idle title="What does a down payment actually look like?">
+    <div class="space-y-3 text-sm">
+      <p>For a $400,000 home (a realistic starting point in many parts of Canada outside major cities):</p>
+      <ul>
+        <li><strong>5% down:</strong> $20,000 — the minimum for a CMHC-insured mortgage. You'll pay mortgage insurance premiums on top of this</li>
+        <li><strong>10% down:</strong> $40,000 — reduces your insurance premium</li>
+        <li><strong>20% down:</strong> $80,000 — no mortgage insurance required, lowest monthly payments</li>
+      </ul>
+      <p>On top of the down payment, budget for closing costs: land transfer tax, legal fees, home inspection, and moving costs. This typically runs 1.5-4% of the purchase price.</p>
+      <p>If $20,000 feels impossible right now, that's okay. Start with $50 or $100 a month into an FHSA or TFSA. The habit matters more than the amount.</p>
+    </div>
+  </ExpandableSection>
+
+  <h3>On-reserve housing</h3>
+
+  <p>
+    This is where it gets complicated, and it's important to be honest about the
+    challenges. Land on reserve is held by the Crown and can't be used as collateral
+    for a conventional mortgage. That creates real barriers:
+  </p>
+
+  <ul>
+    <li><strong>Band housing</strong> — many communities allocate housing through band programs. Wait lists can be long, and housing stock is often limited or aging</li>
+    <li><strong>Ministerial Loan Guarantees</strong> — the federal government can guarantee loans for on-reserve housing, allowing banks to lend. Your band council needs to support the application</li>
+    <li><strong>Section 10 housing loans</strong> — some bands with land management authority under the First Nations Land Management Act have created their own property interest systems that allow mortgage-like lending</li>
+    <li><strong>CMHC on-reserve programs</strong> — CMHC has specific programs for on-reserve housing construction and renovation. These flow through the band, not individuals</li>
+  </ul>
+
+  <div class="callout callout-info">
+    <strong>It's not a failure of individual planning</strong>
+    <p>
+      If homeownership on reserve feels impossibly complicated, that's because the system
+      is genuinely difficult — not because you're missing something. The Indian Act
+      framework for reserve land was not designed with individual homeownership in mind.
+      Many communities are working to change this, and new models are emerging. In the
+      meantime, focus on what you can control: saving, building credit, and staying
+      informed about your band's housing plans.
+    </p>
+  </div>
+
+  <h2>Partnerships and shared finances</h2>
+
+  <p>
+    When you build a life with someone, money becomes a shared conversation whether you
+    want it to be or not. There's no single right way to handle it, but there are some
+    important things to talk about early.
+  </p>
+
+  <ul>
+    <li><strong>The money conversation</strong> — talk about debts, income, spending habits, and goals before you merge anything. This isn't romantic, but it prevents a lot of conflict later</li>
+    <li><strong>Joint vs separate</strong> — some couples pool everything, some keep things separate, most land somewhere in between. A common approach: one joint account for shared expenses (rent, groceries, utilities), individual accounts for personal spending</li>
+    <li><strong>Proportional contributions</strong> — if one person earns significantly more, splitting expenses 50/50 can create resentment. Contributing proportionally to income often feels more fair</li>
+    <li><strong>Family obligations</strong> — in many Indigenous families, supporting parents, siblings, or extended family is a given. This is a value, not a problem. But it needs to be part of the financial conversation with your partner so there are no surprises</li>
+  </ul>
+
+  <h2>Common-law and marriage</h2>
+
+  <p>
+    In Canada, the legal and financial implications differ depending on whether you're
+    married, common-law, or neither. This matters more than people think.
+  </p>
+
+  <ExpandableSection client:idle title="Financial implications of common-law vs marriage">
+    <div class="space-y-3 text-sm">
+      <p><strong>For tax purposes:</strong> the CRA considers you common-law after 12 months of living together (or immediately if you have a child together). This affects your tax credits, benefit eligibility, and GST/HST credit amounts.</p>
+      <p><strong>For property:</strong> marriage and common-law have very different rules depending on your province. In most provinces, married couples have automatic rights to divide family property. Common-law couples often don't have the same protections.</p>
+      <p><strong>On reserve:</strong> family property on reserve has historically fallen into a legal gap. The Family Homes on Reserves and Matrimonial Interests or Rights Act (2013) provides some protections for the family home on reserve during relationship breakdown — but it's complex. If you own or live in a home on reserve and your relationship ends, seek legal advice early.</p>
+      <p><strong>Support obligations:</strong> both married and common-law partners can have spousal support obligations after separation. The length of the relationship and financial circumstances determine this.</p>
+    </div>
+  </ExpandableSection>
+
+  <div class="callout callout-tip">
+    <strong>Update your beneficiaries</strong>
+    <p>
+      When you partner up, review who's listed as the beneficiary on your bank accounts,
+      TFSA, RRSP, life insurance, and workplace pension. Many people still have a parent
+      or sibling listed from when they first opened the account. Make sure it reflects
+      your current wishes.
+    </p>
+  </div>
+
+  <h2>Insurance basics</h2>
+
+  <p>
+    Insurance feels like a waste of money until the moment you need it. Here's what's
+    worth considering at this stage of life:
+  </p>
+
+  <ul>
+    <li><strong>Tenant insurance (renter's insurance)</strong> — covers your belongings if they're stolen, damaged, or destroyed. Typically $20-40/month. Your landlord's insurance covers the building, not your stuff</li>
+    <li><strong>Auto insurance</strong> — required if you own a vehicle. Rates vary wildly by province, age, and driving history. Shop around annually</li>
+    <li><strong>Life insurance</strong> — becomes important when someone depends on your income. If you have a partner, a mortgage, or children, term life insurance is straightforward and affordable when you're young</li>
+    <li><strong>Disability insurance</strong> — protects your income if you can't work due to illness or injury. Your employer may offer this. If not, consider it — your ability to earn income is your most valuable asset</li>
+  </ul>
+
+  <p>
+    As a Status Indian, NIHB covers many health costs, but it doesn't cover everything
+    and it doesn't replace income if you can't work. Think of insurance as protecting the
+    things NIHB doesn't — your income, your belongings, and your family's financial
+    stability.
+  </p>
+
+  <div class="callout callout-info">
+    <strong>One step at a time</strong>
+    <p>
+      You don't need all of this figured out today. Building a life is exactly that —
+      building. Start with what's in front of you. Rent a decent place, save what you
+      can, have honest conversations with the people you're building with. The rest
+      comes in stages.
+    </p>
+  </div>
+
+</Article>

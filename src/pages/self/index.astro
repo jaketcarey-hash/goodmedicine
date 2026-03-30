@@ -1,0 +1,19 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import WellnessHub from '../../components/WellnessHub.svelte';
+---
+
+<Shell title="Knowing Yourself" branch="self">
+  <PageHeader
+    title="Knowing Yourself"
+    subtitle="Financial wellness is part of whole-person wellness. This is your private space."
+    branch="self"
+    backHref="/"
+    backLabel="Home"
+  />
+
+  <section class="px-5 pb-10">
+    <WellnessHub client:load />
+  </section>
+</Shell>

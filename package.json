@@ -1,0 +1,30 @@
+{
+  "name": "goodmedicine",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^8.0.4",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.1",
+    "idb": "^8.0.3",
+    "svelte": "^5.55.1",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "workbox-precaching": "^7.4.0",
+    "workbox-routing": "^7.4.0",
+    "workbox-strategies": "^7.4.0"
+  },
+  "devDependencies": {
+    "vite-plugin-pwa": "^1.2.0",
+    "workbox-build": "^7.4.0"
+  }
+}

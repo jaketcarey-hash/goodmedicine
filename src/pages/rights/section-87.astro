@@ -1,0 +1,195 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Section 87 Tax Exemption"
+  subtitle="What's exempt, what's not, and how to make sure you're not paying taxes you don't owe."
+  branch="rights"
+  backHref="/rights"
+  backLabel="Rights"
+  readTime="8 min"
+>
+
+  <p>
+    Section 87 of the Indian Act says that the personal property of a Status Indian or a band,
+    situated on a reserve, is exempt from taxation. That one sentence has shaped decades of
+    financial decisions — and decades of confusion.
+  </p>
+
+  <p>
+    Here's what it actually means for your money.
+  </p>
+
+  <h2>The basics</h2>
+
+  <p>
+    If you have Status (registered under the Indian Act), certain income and property can be
+    tax-exempt. The key question is always: <strong>is the property "situated on a reserve"?</strong>
+  </p>
+
+  <p>
+    For physical things (a house on reserve, a car kept on reserve), this is straightforward.
+    For income and investments, it gets more nuanced.
+  </p>
+
+  <div class="callout callout-info">
+    <strong>What "situated on a reserve" means for money</strong>
+    <p>
+      Money isn't physical — it doesn't sit in one place. So the courts developed a
+      "connecting factors" test to figure out where income is considered to be situated.
+      This comes from the Supreme Court's decision in <em>Williams v. Canada</em>.
+    </p>
+  </div>
+
+  <h2>Employment income</h2>
+
+  <p>
+    Whether your employment income is exempt depends on several connecting factors. The
+    most important ones:
+  </p>
+
+  <ul>
+    <li><strong>Where you do the work</strong> — duties performed on reserve lean toward exempt</li>
+    <li><strong>Where your employer is located</strong> — an employer based on reserve matters</li>
+    <li><strong>Who benefits from the work</strong> — work that serves reserve residents weighs in your favour</li>
+    <li><strong>Where you live</strong> — residence on reserve is one factor (but not the only one)</li>
+  </ul>
+
+  <ExpandableSection client:idle title="Common scenarios">
+    <div class="space-y-4 text-sm">
+      <div class="example">
+        <p class="example-label">Scenario 1</p>
+        <p><strong>You live on reserve and work for the band office on reserve.</strong></p>
+        <p>Likely fully exempt. All connecting factors point to reserve.</p>
+      </div>
+
+      <div class="example">
+        <p class="example-label">Scenario 2</p>
+        <p><strong>You live on reserve but commute to work in the city for a private company.</strong></p>
+        <p>Likely not exempt. Your duties are off reserve and your employer isn't connected to a reserve. Living on reserve alone usually isn't enough.</p>
+      </div>
+
+      <div class="example">
+        <p class="example-label">Scenario 3</p>
+        <p><strong>You work for an Indigenous organization based on reserve, but you work from a city office.</strong></p>
+        <p>This is the grey zone. Some of the connecting factors point to reserve (employer location, benefiting reserve residents), others don't (where you perform the work). It depends on the specific facts.</p>
+      </div>
+
+      <div class="example">
+        <p class="example-label">Scenario 4</p>
+        <p><strong>You're a teacher at an on-reserve school.</strong></p>
+        <p>Typically exempt. The work is performed on reserve, the employer is on reserve, and the work benefits reserve residents directly.</p>
+      </div>
+    </div>
+  </ExpandableSection>
+
+  <div class="callout callout-tip">
+    <strong>The T4 tells part of the story</strong>
+    <p>
+      If your employer considers your income exempt, your T4 slip will show the income in
+      Box 71 (Indian exempt employment income). But just because an employer puts it there
+      doesn't guarantee CRA will agree. And just because they don't put it there doesn't
+      mean you can't claim it. Know your own situation.
+    </p>
+  </div>
+
+  <h2>Investment income</h2>
+
+  <p>
+    This is where many people lose money they shouldn't. Investment income — interest,
+    dividends, capital gains — is <strong>generally not exempt</strong> unless the investment
+    itself is situated on reserve.
+  </p>
+
+  <p>
+    Most banks, brokerages, and mutual fund companies are located off reserve. Even if
+    you're Status and live on reserve, your RRSP at a major bank is typically not
+    considered situated on reserve.
+  </p>
+
+  <ExpandableSection client:idle title="What about specific account types?">
+    <div class="space-y-4 text-sm">
+      <div class="example">
+        <p class="example-label">TFSA</p>
+        <p>Good news: TFSA growth is <strong>already tax-free for everyone</strong>. You don't need Section 87 for this. A TFSA is often the single most powerful savings tool regardless of your status.</p>
+      </div>
+
+      <div class="example">
+        <p class="example-label">RRSP</p>
+        <p>If your income is already tax-exempt, an RRSP gives you <strong>no additional benefit</strong> — you can't deduct what you already don't owe. Worse: when you withdraw in retirement, it becomes taxable. If your income is exempt now, an RRSP could actually cost you.</p>
+      </div>
+
+      <div class="example">
+        <p class="example-label">FHSA (First Home Savings Account)</p>
+        <p>If your income is tax-exempt, the deduction doesn't help. But the growth is tax-free, similar to a TFSA. Whether this account makes sense depends on your specific situation.</p>
+      </div>
+
+      <div class="example">
+        <p class="example-label">Peace Hills Trust / On-Reserve Financial Institutions</p>
+        <p>Deposits held at financial institutions located on reserve have a stronger argument for exemption. Interest earned on these deposits may be exempt. This is one area where choosing where you bank can make a tax difference.</p>
+      </div>
+    </div>
+  </ExpandableSection>
+
+  <div class="callout callout-warning">
+    <strong>Watch out for bad advice</strong>
+    <p>
+      Some advisors don't understand Section 87 and will recommend RRSPs to everyone. If
+      your employment income is already exempt, maxing out an RRSP could mean paying tax
+      on money that was previously tax-free. Always ask: "How does this interact with my
+      Section 87 status?"
+    </p>
+  </div>
+
+  <h2>Government benefits</h2>
+
+  <p>
+    Common benefits and how Section 87 applies:
+  </p>
+
+  <ul>
+    <li><strong>EI and social assistance</strong> — generally exempt if you live on reserve</li>
+    <li><strong>CPP and OAS</strong> — depends on your residence when you receive it. Living on reserve at the time of receipt may make these exempt</li>
+    <li><strong>Canada Child Benefit</strong> — this is already non-taxable for everyone</li>
+    <li><strong>GST/HST credit</strong> — already non-taxable, but filing your return is required to receive it</li>
+  </ul>
+
+  <div class="callout callout-important">
+    <strong>File your taxes even if your income is exempt</strong>
+    <p>
+      Many benefits (GST credit, CCB, GIS) are calculated from your tax return. If you
+      don't file, you won't receive them. You can file and report exempt income — you
+      won't owe tax on it, but you'll qualify for the benefits you're entitled to.
+    </p>
+  </div>
+
+  <h2>Practical steps</h2>
+
+  <ol>
+    <li><strong>Know your connecting factors.</strong> Where do you work? Where is your employer? Who does your work serve? Where do you live? These answers determine your exemption.</li>
+    <li><strong>File your taxes every year.</strong> Report exempt income properly. Use Form T90 if needed. Claim the benefits you're entitled to.</li>
+    <li><strong>Think twice before buying RRSPs.</strong> If your income is exempt, a TFSA is almost always the better choice.</li>
+    <li><strong>Ask the right question.</strong> When any financial professional recommends something, ask: "How does this work with Section 87?"</li>
+    <li><strong>Keep records.</strong> If CRA questions your exemption, you'll need to show the connecting factors. Keep pay stubs, employment contracts, and anything that shows where your duties are performed.</li>
+  </ol>
+
+  <h2>Going deeper</h2>
+
+  <p>
+    Section 87 is one piece of a bigger picture. Understanding your tax status is a form
+    of financial sovereignty — it means you know what you owe, what you don't, and nobody
+    can take what isn't theirs.
+  </p>
+
+  <div class="callout callout-info">
+    <strong>Want to talk to someone?</strong>
+    <p>
+      If your tax situation is complex, look for an accountant or tax preparer who has
+      experience with Section 87. AFOA Canada maintains resources for finding qualified
+      professionals. Many band offices also offer tax clinic referrals during tax season.
+    </p>
+  </div>
+
+</Article>

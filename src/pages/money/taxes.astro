@@ -1,0 +1,213 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Taxes and Filing"
+  subtitle="Why filing matters even when your income is exempt — and how to do it without stress."
+  branch="money"
+  backHref="/money"
+  backLabel="Money"
+  readTime="7 min"
+>
+
+  <p>
+    Here's the thing about taxes that trips a lot of people up: even if you
+    don't owe anything, filing a return unlocks money that's owed to you.
+    The GST/HST credit, Canada Child Benefit, provincial benefits — none
+    of these show up unless you file.
+  </p>
+
+  <p>
+    Filing isn't about paying the government. For many Indigenous people, it's
+    about collecting what you're entitled to.
+  </p>
+
+  <h2>Why you should file (even with exempt income)</h2>
+
+  <p>
+    If your employment income is earned on reserve and exempt under Section 87,
+    you may not owe federal or provincial income tax. But filing a return is
+    still the only way to access:
+  </p>
+
+  <ul>
+    <li><strong>GST/HST credit</strong> — up to $519/year for a single person (2024), paid quarterly</li>
+    <li><strong>Canada Child Benefit (CCB)</strong> — up to $7,787 per child under 6 and $6,570 per child aged 6-17 (2024). This is significant money</li>
+    <li><strong>Canada Workers Benefit</strong> — refundable tax credit for low-income workers</li>
+    <li><strong>Provincial credits</strong> — climate action payments, sales tax credits, rental credits (varies by province)</li>
+    <li><strong>RRSP and TFSA contribution room</strong> — CRA calculates your RRSP room from your filed return</li>
+    <li><strong>GIS and OAS supplements</strong> — for elders, filing is required to receive the Guaranteed Income Supplement</li>
+  </ul>
+
+  <div class="callout callout-important">
+    <strong>Unfiled returns = uncollected money</strong>
+    <p>
+      A single parent with two young children who doesn't file could be leaving
+      $12,000-15,000 per year on the table between the CCB and GST credit
+      alone. If you haven't filed in several years, you can file up to 10
+      years back and collect retroactive payments.
+    </p>
+  </div>
+
+  <h2>Section 87 and the T90 form</h2>
+
+  <p>
+    Section 87 of the Indian Act exempts certain income from taxation when it's
+    earned on reserve or connected to reserve. The most common situation:
+    employment income earned by a Status Indian working for an employer
+    situated on reserve.
+  </p>
+
+  <p>
+    When your income is exempt, it gets reported differently:
+  </p>
+
+  <ul>
+    <li>Your employer should issue a <strong>T4 with exempt income in Box 71</strong> (Indian exempt employment income)</li>
+    <li>You report this income on the <strong>T90 form</strong> (Income Exempt from Tax under the Indian Act)</li>
+    <li>The T90 amount appears on your return but is not taxed — it shows CRA your total income for benefit calculations without creating a tax bill</li>
+  </ul>
+
+  <ExpandableSection client:idle title="When is income exempt under Section 87?">
+    <div class="space-y-3 text-sm">
+      <p>
+        The rules around Section 87 exemption aren't always straightforward.
+        The key connecting factors include:
+      </p>
+      <p>
+        <strong>Employment income:</strong> Generally exempt if you're a Status
+        Indian, working for an employer located on reserve, and the duties are
+        performed on reserve. There are also guidelines (the "Guideline 2" and
+        "Guideline 4" tests from CRA) that can make off-reserve income exempt
+        in certain situations — for example, if the employer is resident on
+        reserve and the duties benefit reserve residents.
+      </p>
+      <p>
+        <strong>Self-employment income:</strong> May be exempt if the business
+        is located on reserve and the income is earned on reserve. More
+        complex — worth getting advice.
+      </p>
+      <p>
+        <strong>Investment income:</strong> Interest on deposits held at
+        on-reserve financial institutions (like Peace Hills Trust branches
+        on reserve) has a stronger exemption argument. Investment income from
+        off-reserve institutions is generally taxable.
+      </p>
+      <p>
+        If you're unsure whether your income qualifies, a tax professional
+        familiar with Section 87 is worth the consultation.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <div class="callout callout-warning">
+    <strong>Not all income is automatically exempt</strong>
+    <p>
+      Working off-reserve for a non-Indigenous employer generally means your
+      income is fully taxable, even if you're a Status Indian. The exemption
+      depends on connecting factors between the income, the employer, and the
+      reserve — not just your status. Getting this wrong can lead to unexpected
+      tax bills or reassessments.
+    </p>
+  </div>
+
+  <h2>Filing for the first time</h2>
+
+  <p>
+    If you've never filed before, it's simpler than you think. Here's the
+    walkthrough:
+  </p>
+
+  <ol>
+    <li><strong>Gather your documents:</strong> T4 (employment income), T5 (investment income if any), T4A (benefits, scholarships), any receipts for deductions. If your income is exempt, make sure you have the T4 showing Box 71</li>
+    <li><strong>Get your CRA account set up:</strong> Go to My CRA Account online. You'll need your SIN and some personal info. If you've never filed, you may need to call CRA to set up access</li>
+    <li><strong>Use free tax software:</strong> Wealthsimple Tax (online, free), StudioTax, or TurboTax Free all work. They walk you through each step</li>
+    <li><strong>Enter your information:</strong> The software asks questions in plain language. For exempt income, look for the T90 section or "Indian exempt income"</li>
+    <li><strong>File electronically:</strong> NETFILE lets you submit directly to CRA. You'll get your assessment in about two weeks</li>
+  </ol>
+
+  <ExpandableSection client:idle title="Filing multiple years at once">
+    <div class="space-y-3 text-sm">
+      <p>
+        If you haven't filed in several years, you can catch up. CRA accepts
+        returns going back up to 10 years. File them in order, starting with
+        the oldest year.
+      </p>
+      <p>
+        <strong>Gathering old documents:</strong> If you don't have your old
+        T4s, your employer may have copies. CRA also has records — once you
+        have My CRA Account access, you can see tax slips they've received
+        on your behalf.
+      </p>
+      <p>
+        <strong>Retroactive benefits:</strong> Once CRA processes your late
+        returns, they'll calculate any benefits you were owed and issue
+        retroactive payments. This can be a substantial lump sum — sometimes
+        thousands of dollars.
+      </p>
+      <p>
+        <strong>No penalties if you don't owe:</strong> Late filing penalties
+        only apply if you owe tax. If your income was exempt or below the
+        basic personal amount, there's no penalty for filing late — just
+        uncollected benefits.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>Free tax clinics</h2>
+
+  <p>
+    Every year, the CRA's Community Volunteer Income Tax Program (CVITP) runs
+    free tax clinics across the country. Volunteers prepare and file returns
+    at no cost for people with modest income and simple tax situations.
+  </p>
+
+  <ul>
+    <li>Available in person and virtually (phone or video)</li>
+    <li>Many Indigenous organizations and Friendship Centres host clinics</li>
+    <li>Volunteers are trained on Section 87 and T90 filing</li>
+    <li>No cost, no judgement, no sales pitch</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <strong>Finding a clinic near you</strong>
+    <p>
+      Search "free tax clinic" on the CRA website or call 1-800-959-8281.
+      Your band office or local Friendship Centre can often point you to the
+      nearest one. Clinics typically run from March through April, but some
+      operate year-round.
+    </p>
+  </div>
+
+  <h2>What happens if you don't file</h2>
+
+  <p>
+    If you owe tax and don't file, CRA charges penalties and interest. But even
+    if you don't owe tax, not filing means:
+  </p>
+
+  <ul>
+    <li><strong>Benefits stop</strong> — CRA suspends GST credit and CCB payments if you don't file. They resume once you catch up, but you'll have a gap</li>
+    <li><strong>No RRSP room calculated</strong> — CRA uses your filed return to determine RRSP contribution room</li>
+    <li><strong>GIS interruption</strong> — elders relying on the Guaranteed Income Supplement must file annually to keep receiving it</li>
+    <li><strong>Potential CRA contact</strong> — if CRA has records showing you earned income (from T4s your employer filed), they may eventually assess you themselves, and that assessment is rarely in your favour</li>
+  </ul>
+
+  <h2>Getting started</h2>
+
+  <ol>
+    <li><strong>If you've never filed:</strong> Start with the most recent tax year. Gather your T4 and use free software or visit a tax clinic</li>
+    <li><strong>If you're behind several years:</strong> File the oldest year first and work forward. Check with a tax clinic for help catching up</li>
+    <li><strong>If you've been filing but skipping the T90:</strong> You may be missing benefit calculations. Consider refiling to include exempt income</li>
+    <li><strong>Set a reminder for next year:</strong> Tax season opens in February. File early, get your refund and benefits early</li>
+  </ol>
+
+  <p>
+    Filing takes an hour or two once you have your documents. The return on
+    that time — hundreds or thousands of dollars in benefits — makes it one
+    of the highest-value things you can do for your finances each year.
+  </p>
+
+</Article>

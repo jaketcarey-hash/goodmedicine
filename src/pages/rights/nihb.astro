@@ -1,0 +1,128 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Non-Insured Health Benefits"
+  subtitle="Dental, vision, prescriptions, medical travel — what NIHB covers and how to use it."
+  branch="rights"
+  backHref="/rights"
+  backLabel="Rights"
+  readTime="6 min"
+>
+
+  <p>
+    The Non-Insured Health Benefits (NIHB) program covers health-related services
+    and products that aren't covered by provincial health insurance or private insurance.
+    If you're a registered Status Indian or recognized Inuit, you're eligible.
+  </p>
+
+  <p>
+    The problem isn't that the benefits don't exist — it's that many people don't know
+    what's covered, or find the process frustrating enough to give up.
+  </p>
+
+  <h2>What's covered</h2>
+
+  <p>
+    NIHB covers a wide range. Here's what most people use:
+  </p>
+
+  <ul>
+    <li><strong>Dental care</strong> — exams, cleanings, fillings, extractions, dentures, orthodontics (with prior approval)</li>
+    <li><strong>Vision care</strong> — eye exams every two years, prescription glasses (frames + lenses)</li>
+    <li><strong>Prescription drugs</strong> — most medications with a valid prescription</li>
+    <li><strong>Mental health counselling</strong> — sessions with approved providers, including traditional healers in some regions</li>
+    <li><strong>Medical transportation</strong> — travel to medical appointments when services aren't available locally</li>
+    <li><strong>Medical supplies and equipment</strong> — wheelchairs, hearing aids, prosthetics, diabetic supplies</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <strong>Your Status card is your benefits card</strong>
+    <p>
+      For most services, you just need to present your Status card. The provider
+      bills NIHB directly. No claim forms, no up-front payment for most things.
+    </p>
+  </div>
+
+  <h2>How to use it</h2>
+
+  <ExpandableSection client:idle title="At the dentist">
+    <p class="text-sm">
+      Call ahead and ask if they accept NIHB / First Nations clients. Most dental offices
+      do, but some don't. When you arrive, present your Status card. The dental office
+      submits the claim for you. For major work (crowns, root canals, orthodontics),
+      the dentist will need to submit a predetermination — basically asking NIHB for
+      approval before proceeding.
+    </p>
+  </ExpandableSection>
+
+  <ExpandableSection client:idle title="At the pharmacy">
+    <p class="text-sm">
+      Present your Status card with your prescription. The pharmacist checks NIHB
+      coverage on the spot. Most common medications are covered. If a medication isn't
+      on the formulary, your doctor can request a special authorization.
+    </p>
+  </ExpandableSection>
+
+  <ExpandableSection client:idle title="For mental health">
+    <p class="text-sm">
+      NIHB covers counselling with licensed providers — psychologists, clinical social
+      workers, and in some cases traditional healers. You may need a referral for some
+      providers. The program typically covers 22 hours of counselling per year, with
+      more available if clinically justified. Some regions have direct-access programs
+      that don't require a referral.
+    </p>
+  </ExpandableSection>
+
+  <ExpandableSection client:idle title="For medical travel">
+    <p class="text-sm">
+      If the medical service you need isn't available in your community, NIHB can cover
+      travel costs. This includes gas or mileage, meals, accommodation, and sometimes
+      a medical escort. You'll usually need to arrange this through your band's health
+      centre or NIHB regional office <strong>before</strong> you travel. Keep all receipts.
+    </p>
+  </ExpandableSection>
+
+  <h2>Common frustrations (and what to do)</h2>
+
+  <div class="callout callout-warning">
+    <strong>"My claim was denied"</strong>
+    <p>
+      Denials happen, and they're not always final. You have the right to appeal. Contact
+      your NIHB regional office and ask for a review. Your health centre or band office
+      can often help with the appeal process. Don't just accept a denial — many are
+      overturned on review.
+    </p>
+  </div>
+
+  <ul>
+    <li><strong>"I can't find a provider who takes NIHB"</strong> — call the NIHB information line (1-800-580-0950) and ask for a list of providers in your area</li>
+    <li><strong>"They said I need prior approval"</strong> — this is normal for expensive services. Your provider submits the request. Follow up if you don't hear back within 2 weeks</li>
+    <li><strong>"I paid out of pocket"</strong> — keep your receipts. You can submit a claim for reimbursement within one year of the service date</li>
+  </ul>
+
+  <h2>What NIHB doesn't cover</h2>
+
+  <p>
+    A few things to know:
+  </p>
+
+  <ul>
+    <li>Cosmetic procedures (teeth whitening, cosmetic surgery)</li>
+    <li>Services already covered by provincial health insurance</li>
+    <li>Services covered by private insurance you have through work — NIHB is the payer of <strong>last resort</strong>, meaning other insurance pays first</li>
+  </ul>
+
+  <div class="callout callout-info">
+    <strong>NIHB + workplace insurance</strong>
+    <p>
+      If you have private insurance through your employer, submit claims there first.
+      NIHB will pick up what's left — the co-pay, the amount over your private plan's
+      limit, or things your private plan doesn't cover at all. This is called
+      coordination of benefits, and it means you can often get full coverage.
+    </p>
+  </div>
+
+</Article>

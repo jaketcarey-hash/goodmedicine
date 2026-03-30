@@ -1,0 +1,124 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Banking Basics"
+  subtitle="Opening an account, choosing a bank, understanding fees — and what to know about on-reserve banking."
+  branch="money"
+  backHref="/money"
+  backLabel="Money"
+  readTime="5 min"
+>
+
+  <p>
+    Having a bank account isn't just convenient — it's the foundation for almost
+    everything else: direct deposit, saving, building credit, accessing benefits.
+    If you don't have one yet, or if you're not sure you have the right one,
+    here's what you need to know.
+  </p>
+
+  <h2>Opening your first account</h2>
+
+  <p>
+    In Canada, banks are required to open a basic account for you even if you have
+    no credit history, no job, or very little money. This is a legal right.
+  </p>
+
+  <p>You need two pieces of ID. Common combinations:</p>
+
+  <ul>
+    <li>Status card + provincial ID (driver's licence or provincial ID card)</li>
+    <li>Status card + birth certificate</li>
+    <li>Provincial health card + another government ID</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <strong>Your Status card counts as government-issued photo ID</strong>
+    <p>
+      The Secure Certificate of Indian Status (the newer card) is accepted everywhere.
+      If you have an older style card, some institutions may ask for a second piece of
+      photo ID. If a bank refuses your Status card, ask to speak with a manager — they
+      are required to accept it.
+    </p>
+  </div>
+
+  <h2>Choosing the right account</h2>
+
+  <p>
+    The main things to compare:
+  </p>
+
+  <ul>
+    <li><strong>Monthly fee</strong> — some accounts have no fee, others charge $4-16/month. Many waive the fee if you keep a minimum balance</li>
+    <li><strong>Number of transactions</strong> — some plans limit how many debit transactions you get per month. Going over means extra fees</li>
+    <li><strong>E-transfer</strong> — most plans include unlimited e-transfers now, but check</li>
+    <li><strong>ATM access</strong> — if you're in a remote community, check which bank has ATMs nearby or which ones reimburse ATM fees</li>
+  </ul>
+
+  <ExpandableSection client:idle title="Banks vs. credit unions vs. Peace Hills Trust">
+    <div class="space-y-3 text-sm">
+      <p>
+        <strong>Big banks</strong> (RBC, TD, BMO, Scotiabank, CIBC) have the widest ATM
+        networks and most branches. They also tend to have the highest fees. Online banks
+        like Tangerine and Simplii (owned by Scotiabank and CIBC respectively) offer no-fee
+        accounts but no physical branches.
+      </p>
+      <p>
+        <strong>Credit unions</strong> operate on a membership model and often have lower
+        fees. In some provinces, they have better branch coverage in smaller communities.
+        Deposits are insured by provincial deposit insurers, similar to CDIC for banks.
+      </p>
+      <p>
+        <strong>Peace Hills Trust</strong> is the only Indigenous-owned trust company in
+        Canada (owned by the Samson Cree Nation). They have branches in Alberta, BC, and
+        Saskatchewan. Banking with them can also have Section 87 implications — deposits
+        at an on-reserve financial institution may have stronger tax exemption arguments
+        for interest income.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>On-reserve banking challenges</h2>
+
+  <p>
+    If you live on reserve, you might deal with:
+  </p>
+
+  <ul>
+    <li><strong>No nearby branches</strong> — the nearest bank could be a long drive away</li>
+    <li><strong>Limited ATM access</strong> — some reserves have band-operated ATMs, but fees can be high</li>
+    <li><strong>Connectivity issues</strong> — online and mobile banking require internet, which is inconsistent in some communities</li>
+  </ul>
+
+  <div class="callout callout-info">
+    <strong>Mobile banking works offline (sort of)</strong>
+    <p>
+      Most banking apps let you check your balance and recent transactions even with a
+      weak signal, because they cache your last known data. You'll need connectivity to
+      send e-transfers or pay bills, but checking your balance doesn't require much
+      bandwidth.
+    </p>
+  </div>
+
+  <h2>Avoiding common fee traps</h2>
+
+  <ul>
+    <li><strong>Overdraft fees</strong> — decline overdraft protection if you don't want to risk $5 fees every time you go below zero</li>
+    <li><strong>Non-network ATM fees</strong> — using another bank's ATM can cost $3-5 per withdrawal. Stick to your bank's ATMs or use cash-back at stores</li>
+    <li><strong>Paper statement fees</strong> — some banks charge $2-3/month for paper statements. Switch to e-statements if you can</li>
+    <li><strong>Cheque-cashing services</strong> — avoid these if possible. They take 2-10% of your cheque as a fee. A bank account with direct deposit eliminates this entirely</li>
+  </ul>
+
+  <h2>Getting started</h2>
+
+  <ol>
+    <li>Gather two pieces of ID (Status card + one other)</li>
+    <li>Visit a branch or apply online — many banks let you open an account on your phone now</li>
+    <li>Ask for a <strong>no-fee or low-fee chequing account</strong> — don't let them upsell you</li>
+    <li>Set up direct deposit for any regular income (employment, benefits, band distributions)</li>
+    <li>Download the bank's app and enable notifications so you always know your balance</li>
+  </ol>
+
+</Article>

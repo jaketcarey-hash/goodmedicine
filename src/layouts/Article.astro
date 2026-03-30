@@ -1,0 +1,136 @@
+---
+import Shell from './Shell.astro';
+import PageHeader from '../components/PageHeader.svelte';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  branch: 'money' | 'rights' | 'path' | 'self';
+  backHref: string;
+  backLabel: string;
+  readTime?: string;
+}
+
+const { title, subtitle, branch, backHref, backLabel, readTime } = Astro.props;
+---
+
+<Shell title={title} branch={branch}>
+  <PageHeader
+    title={title}
+    subtitle={subtitle}
+    branch={branch}
+    backHref={backHref}
+    backLabel={backLabel}
+  />
+
+  {readTime && (
+    <div class="px-5 -mt-2 mb-4">
+      <span class="text-xs text-text-muted">{readTime} read</span>
+    </div>
+  )}
+
+  <article class="px-5 pb-12 prose-gm">
+    <slot />
+  </article>
+</Shell>
+
+<style is:global>
+  /* Article typography — warm, readable, generous */
+  .prose-gm {
+    font-size: var(--text-base);
+    line-height: 1.75;
+    color: var(--color-text-primary);
+  }
+
+  .prose-gm h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .prose-gm h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-gm p {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-gm ul, .prose-gm ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .prose-gm li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-gm strong {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  /* Callout boxes */
+  .prose-gm .callout {
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: var(--text-sm);
+    line-height: 1.65;
+  }
+
+  .prose-gm .callout-info {
+    background-color: var(--color-water-50);
+    border-left: 3px solid var(--color-water-400);
+  }
+
+  .prose-gm .callout-tip {
+    background-color: var(--color-sage-50);
+    border-left: 3px solid var(--color-sage-400);
+  }
+
+  .prose-gm .callout-warning {
+    background-color: var(--color-clay-50);
+    border-left: 3px solid var(--color-clay-400);
+  }
+
+  .prose-gm .callout-important {
+    background-color: var(--color-berry-50);
+    border-left: 3px solid var(--color-berry-400);
+  }
+
+  .prose-gm .callout p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prose-gm .callout strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Example boxes */
+  .prose-gm .example {
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-warm);
+    border: 1px solid var(--color-stone-200);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: var(--text-sm);
+  }
+
+  .prose-gm .example-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+</style>

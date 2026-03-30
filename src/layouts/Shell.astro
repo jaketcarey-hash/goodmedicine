@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import BottomNav from '../components/BottomNav.svelte';
+import OfflineBanner from '../components/OfflineBanner.svelte';
+
+interface Props {
+  title?: string;
+  description?: string;
+  branch?: 'money' | 'rights' | 'path' | 'self' | 'home';
+}
+
+const {
+  title = 'Good Medicine',
+  description = 'Free financial wellness for First Nations communities',
+  branch = 'home',
+} = Astro.props;
+
+const fullTitle = title === 'Good Medicine' ? title : `${title} — Good Medicine`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#faf8f5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <title>{fullTitle}</title>
+
+    <!-- Fonts: Outfit (display) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+
+  <body class="bg-surface text-text-primary pb-[var(--nav-height)]" data-branch={branch}>
+    <OfflineBanner client:load />
+    <main
+      class="mx-auto max-w-lg min-h-[calc(100dvh-var(--nav-height))]"
+      id="main-content"
+    >
+      <slot />
+    </main>
+
+    <BottomNav client:load activeBranch={branch} />
+
+    <!-- Service worker registration -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

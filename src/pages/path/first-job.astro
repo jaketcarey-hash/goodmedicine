@@ -1,0 +1,221 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Starting Work"
+  subtitle="Your first paycheque, your first deductions, your first real taste of building something. Here's how to make it count."
+  branch="path"
+  backHref="/path"
+  backLabel="Path"
+  readTime="8 min"
+>
+
+  <p>
+    Getting your first real job is a milestone. Whether you're working for your band,
+    a business in town, or a company in the city, there's a lot happening on that
+    first pay stub that nobody explains. Let's fix that.
+  </p>
+
+  <h2>Your first paycheque, decoded</h2>
+
+  <p>
+    The number on your job offer and the number on your paycheque are not the same.
+    That's not a mistake — it's deductions. Here's what's coming off the top:
+  </p>
+
+  <ul>
+    <li><strong>Income tax</strong> — federal and provincial. Your employer withholds this based on what they estimate you'll owe for the year</li>
+    <li><strong>CPP (Canada Pension Plan)</strong> — mandatory contributions that build your future pension. You pay half, your employer pays the other half</li>
+    <li><strong>EI (Employment Insurance)</strong> — in case you lose your job. Again, you and your employer both contribute</li>
+    <li><strong>Union dues</strong> — if your workplace is unionized, these come off automatically</li>
+    <li><strong>Benefits premiums</strong> — if your employer offers health and dental, your share of the cost may come off each pay</li>
+  </ul>
+
+  <p>
+    Your <strong>gross pay</strong> is the full amount before deductions. Your <strong>net pay</strong>
+    (or take-home pay) is what actually lands in your bank account. For most people, net pay is
+    roughly 70-80% of gross. Plan your budget around net, not gross.
+  </p>
+
+  <ExpandableSection client:idle title="Sample paycheque breakdown">
+    <div class="space-y-3 text-sm">
+      <p>Say you're earning $20/hour, working 40 hours a week. Your biweekly gross pay is $1,600. Here's roughly what happens to it:</p>
+      <ul>
+        <li><strong>Federal tax:</strong> ~$120</li>
+        <li><strong>Provincial tax:</strong> ~$60</li>
+        <li><strong>CPP:</strong> ~$85</li>
+        <li><strong>EI:</strong> ~$25</li>
+      </ul>
+      <p><strong>Take-home:</strong> ~$1,310. That's about 82% of gross. The exact numbers depend on your province and your TD1 form, but the pattern is consistent — expect roughly a fifth of your pay to go to deductions.</p>
+    </div>
+  </ExpandableSection>
+
+  <h2>Section 87 and where you work</h2>
+
+  <p>
+    This is where it gets specific to you. Under Section 87 of the Indian Act, employment
+    income earned by a Status Indian on reserve is exempt from federal and provincial income
+    tax. That changes your paycheque significantly.
+  </p>
+
+  <ul>
+    <li><strong>Working on reserve</strong> — your employment income is generally tax-exempt. You'll still pay CPP and EI, but no income tax deductions. Your take-home is noticeably higher</li>
+    <li><strong>Working off reserve</strong> — your income is taxable like everyone else's. Section 87 doesn't apply when the work is performed off reserve</li>
+    <li><strong>Grey areas</strong> — if your employer is on reserve but you work off reserve (or vice versa), connecting factors determine your tax status. The CRA looks at where the work is done, where the employer is, where you live, and the nature of the work</li>
+  </ul>
+
+  <div class="callout callout-important">
+    <strong>Don't assume — confirm</strong>
+    <p>
+      Tax exemption isn't automatic. Your employer needs to know your status, and you need
+      to fill out a TD1-IN form (the Indian Act exemption form) so they don't withhold
+      income tax unnecessarily. If they withhold tax when they shouldn't, you'll get it back
+      when you file — but that's your money sitting with the government for months.
+    </p>
+  </div>
+
+  <h2>Band employment</h2>
+
+  <p>
+    Working for your band or a band-owned enterprise is one of the most common first jobs
+    in many communities. A few things to know:
+  </p>
+
+  <ul>
+    <li><strong>Tax treatment</strong> — band employment income earned on reserve is tax-exempt. This is straightforward and well-established</li>
+    <li><strong>Benefits</strong> — band employers often offer benefits packages. Understand what's included and how it overlaps with your NIHB coverage (more on that below)</li>
+    <li><strong>Pension</strong> — some bands offer pension plans. If they match your contributions, that's free money. Contribute at least enough to get the full match</li>
+    <li><strong>Career growth</strong> — band employment can be a strong career path, but opportunities depend on community size. Think about where you want to be in five years and whether the path exists</li>
+  </ul>
+
+  <h2>Workplace benefits</h2>
+
+  <p>
+    Benefits are part of your compensation — sometimes a very valuable part. Here's what
+    to look for and how it connects to what you already have.
+  </p>
+
+  <h3>Health and dental</h3>
+
+  <p>
+    If your employer offers health and dental benefits, they typically cover things like
+    prescription drugs, dental work, vision care, and paramedical services (physiotherapy,
+    massage, counselling). As a Status Indian, you also have NIHB (Non-Insured Health
+    Benefits) through ISC.
+  </p>
+
+  <p>
+    These two systems work together. Employer benefits are usually considered primary — you
+    submit there first. Whatever isn't covered, you can submit to NIHB as secondary. This
+    means you often end up with better total coverage than your coworkers.
+  </p>
+
+  <ExpandableSection client:idle title="How to coordinate employer benefits with NIHB">
+    <div class="space-y-3 text-sm">
+      <p><strong>Step 1:</strong> Submit the claim to your employer's benefits plan first. They'll pay their portion.</p>
+      <p><strong>Step 2:</strong> Take the explanation of benefits (EOB) statement showing what was and wasn't covered.</p>
+      <p><strong>Step 3:</strong> Submit the remainder to NIHB with the EOB. They'll often cover the gap.</p>
+      <p><strong>Example:</strong> A $200 dental cleaning. Your employer plan covers 80% ($160). You submit the remaining $40 to NIHB, and they cover it. Total out of pocket: $0.</p>
+      <p>Not everything overlaps perfectly — NIHB has its own formulary and rules — but coordinating the two gets you the best coverage possible.</p>
+    </div>
+  </ExpandableSection>
+
+  <h3>Pension matching</h3>
+
+  <p>
+    If your employer offers pension matching or RRSP/DPSP matching, this is the single
+    best financial move available to you. They're literally giving you extra money.
+  </p>
+
+  <p>
+    A common structure: your employer matches your contributions dollar-for-dollar up to 5%
+    of your salary. If you earn $50,000 and contribute 5% ($2,500), your employer adds
+    another $2,500. That's a guaranteed 100% return before any investment growth.
+  </p>
+
+  <div class="callout callout-tip">
+    <strong>Always get the full match</strong>
+    <p>
+      If money is tight, contribute at least enough to get the full employer match.
+      Anything less is leaving free money on the table. You can increase your contributions
+      later as your income grows.
+    </p>
+  </div>
+
+  <h2>Filing taxes with employment income</h2>
+
+  <p>
+    Whether your income is taxable or exempt, filing a tax return is important. Here's why
+    and how:
+  </p>
+
+  <ul>
+    <li><strong>If your income is taxable (off reserve)</strong> — you'll receive a T4 from your employer by the end of February. This shows your income and deductions. File by April 30</li>
+    <li><strong>If your income is tax-exempt (on reserve)</strong> — you'll receive a T4 showing your income in box 71 (tax-exempt income). You still file a return, but no tax is owed on that amount</li>
+    <li><strong>Either way, filing unlocks benefits</strong> — GST/HST credit, provincial benefits, and building the contribution room for RRSPs (if your income is taxable) or TFSA (which isn't affected by income type)</li>
+  </ul>
+
+  <div class="callout callout-info">
+    <strong>The TFSA advantage for tax-exempt earners</strong>
+    <p>
+      If your employment income is tax-exempt under Section 87, RRSPs lose some of their
+      appeal because you don't get a tax deduction on contributions. A TFSA, however,
+      works beautifully — your money grows tax-free regardless of your income's tax status.
+      Prioritize TFSA contributions if your income is exempt.
+    </p>
+  </div>
+
+  <h2>Negotiating pay</h2>
+
+  <p>
+    This feels uncomfortable for a lot of people. It shouldn't. Asking for fair pay is not
+    greedy — it's a basic part of employment. Here are some practical realities:
+  </p>
+
+  <ul>
+    <li><strong>Know the range</strong> — look up comparable roles on job sites (Indeed, Job Bank, LinkedIn). You need a number rooted in reality, not a guess</li>
+    <li><strong>Factor in tax status</strong> — if the job is on reserve and your income is tax-exempt, your take-home on a $50,000 salary is significantly more than someone earning $50,000 off reserve. Keep this in mind when comparing</li>
+    <li><strong>Benefits matter</strong> — a lower salary with strong benefits (health, dental, pension matching) can be worth more than a higher salary with nothing</li>
+    <li><strong>Ask at the right time</strong> — when you receive the offer (not during the interview), and at annual reviews. Come prepared with what you've accomplished</li>
+  </ul>
+
+  <ExpandableSection client:idle title="What to say when negotiating">
+    <div class="space-y-3 text-sm">
+      <p>You don't need a script, but you do need confidence and facts. Something like:</p>
+      <p><em>"Thanks for the offer. I'm really excited about this role. Based on my research into comparable positions, I was hoping we could discuss the salary. I'm looking for something in the range of [X to Y]. Is there flexibility there?"</em></p>
+      <p>If they say no, ask about other levers: signing bonus, extra vacation days, professional development funding, flexible hours, or an earlier salary review date.</p>
+      <p>The worst they can say is no. They won't pull the offer because you asked.</p>
+    </div>
+  </ExpandableSection>
+
+  <h2>On-reserve vs off-reserve employment</h2>
+
+  <p>
+    This isn't just a tax question — it's a life question. Both paths have real
+    trade-offs, and neither is inherently better.
+  </p>
+
+  <ul>
+    <li><strong>On reserve</strong> — tax-exempt income, closer to family and community, potentially lower cost of living. But job options may be limited, and career advancement depends on community size</li>
+    <li><strong>Off reserve</strong> — broader job market, more career paths, higher salaries in some fields. But your income is fully taxable, cost of living is usually higher, and you're away from your community</li>
+    <li><strong>Remote work</strong> — increasingly an option that can give you the best of both. If you're living on reserve and working remotely for an off-reserve employer, the tax treatment depends on connecting factors. Get clarity on this before assuming</li>
+  </ul>
+
+  <p>
+    There's no wrong answer. Some people stay close to home. Some leave and come back.
+    Some build a life somewhere new. The financial picture is different in each case,
+    and it's worth understanding those differences so you're making an informed choice.
+  </p>
+
+  <div class="callout callout-tip">
+    <strong>Your first job isn't your last job</strong>
+    <p>
+      Don't put too much pressure on getting it perfect. The most important things are:
+      show up, learn, build skills, and start understanding how money works in the real
+      world. Everything else builds from there.
+    </p>
+  </div>
+
+</Article>

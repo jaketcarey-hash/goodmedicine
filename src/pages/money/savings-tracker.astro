@@ -1,0 +1,19 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import SavingsTracker from '../../components/SavingsTracker.svelte';
+---
+
+<Shell title="Savings Tracker" branch="money">
+  <PageHeader
+    title="Savings Tracker"
+    subtitle="Set a goal, watch it grow. Every deposit counts."
+    branch="money"
+    backHref="/money"
+    backLabel="Money"
+  />
+
+  <section class="px-5 pb-10">
+    <SavingsTracker client:load />
+  </section>
+</Shell>

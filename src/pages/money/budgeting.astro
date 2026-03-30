@@ -1,0 +1,226 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Budgeting That Works"
+  subtitle="Simple approaches to knowing what comes in and goes out. No spreadsheets required."
+  branch="money"
+  backHref="/money"
+  backLabel="Money"
+  readTime="6 min"
+>
+
+  <p>
+    A budget is just a plan for your money. It doesn't need to be complicated,
+    and it definitely doesn't need a spreadsheet. The best budget is the one you
+    actually use — even if it's a sticky note on the fridge.
+  </p>
+
+  <h2>Start with what you know</h2>
+
+  <p>
+    Before picking a method, spend one month just noticing. Check your bank
+    account at the end of each week and look at where the money went. No
+    judgement, no changes — just awareness. That's the foundation.
+  </p>
+
+  <p>You only need to know two numbers:</p>
+
+  <ul>
+    <li><strong>What comes in</strong> — paycheques, benefits, band distributions, per-cap payments, seasonal work income, child tax benefit</li>
+    <li><strong>What goes out</strong> — rent or housing costs, food, transportation, phone, utilities, everything else</li>
+  </ul>
+
+  <p>
+    If what comes in is more than what goes out, you have room to save or pay
+    down debt. If it's the other way around, you know something needs to shift.
+    That's it. That's the starting point.
+  </p>
+
+  <h2>The 50/30/20 rule (simplified)</h2>
+
+  <p>
+    This is one of the simplest frameworks. Take your total income after any
+    deductions and split it roughly:
+  </p>
+
+  <ul>
+    <li><strong>50% — needs</strong> — housing, food, utilities, transportation, insurance, minimum debt payments</li>
+    <li><strong>30% — wants</strong> — eating out, entertainment, new clothes, hobbies, gifts</li>
+    <li><strong>20% — future</strong> — savings, extra debt payments, emergency fund</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <strong>These are guidelines, not rules</strong>
+    <p>
+      If your housing costs alone eat up 50% of your income, that's not a
+      personal failure — that's a housing problem. Adjust the percentages to
+      fit your reality. Even 80/10/10 is better than no plan at all.
+    </p>
+  </div>
+
+  <ExpandableSection client:idle title="What this looks like on $2,400/month">
+    <div class="space-y-3 text-sm">
+      <p>
+        Take-home pay: $2,400/month.
+      </p>
+      <p>
+        <strong>Needs (50% = $1,200):</strong> Rent $600, groceries $350,
+        phone $60, transportation $100, utilities $90.
+      </p>
+      <p>
+        <strong>Wants (30% = $720):</strong> Eating out, entertainment,
+        personal spending, gifts, hobbies.
+      </p>
+      <p>
+        <strong>Future (20% = $480):</strong> $200 to emergency fund, $150
+        extra on debt, $130 to TFSA.
+      </p>
+      <p>
+        Some months you'll nail it. Some months everything goes sideways.
+        The point isn't perfection — it's direction.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>The envelope method</h2>
+
+  <p>
+    This is the oldest budgeting method and it still works. When you get paid,
+    divide the cash (physically or digitally) into categories. When an envelope
+    is empty, that category is done for the month.
+  </p>
+
+  <ol>
+    <li>Decide on your categories — groceries, gas, personal spending, etc.</li>
+    <li>When you get paid, put the budgeted amount into each envelope</li>
+    <li>Spend only from the right envelope</li>
+    <li>When it's empty, you wait until next payday</li>
+  </ol>
+
+  <p>
+    You don't need actual envelopes. Separate savings accounts work the same
+    way — most banks let you create multiple savings accounts for free and name
+    them whatever you want.
+  </p>
+
+  <ExpandableSection client:idle title="Digital envelope options">
+    <div class="space-y-3 text-sm">
+      <p>
+        <strong>Multiple savings accounts:</strong> Most banks let you open
+        several savings accounts at no cost. Name them "Groceries," "Fun Money,"
+        "Car Repair," whatever makes sense. Transfer money into each one on
+        payday.
+      </p>
+      <p>
+        <strong>KOHO or STACK:</strong> Prepaid Visa cards that let you load a
+        set amount and spend only what's there. No credit check needed. Can be
+        useful if you want a hard spending limit.
+      </p>
+      <p>
+        <strong>The jar method:</strong> If you're in a community with limited
+        banking access, physical jars or envelopes at home still work. The
+        principle is the same — separate your money by purpose.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>Handling irregular income</h2>
+
+  <p>
+    Standard budgeting advice assumes a steady paycheque every two weeks. That's
+    not reality for a lot of people — especially in communities where work is
+    seasonal, where per-capita distributions come quarterly, or where income
+    shifts month to month.
+  </p>
+
+  <div class="callout callout-info">
+    <strong>Irregular income is normal</strong>
+    <p>
+      Fishing seasons, forestry work, construction, band employment with
+      variable hours, per-cap distributions — if your income changes month to
+      month, you're not doing anything wrong. You just need a slightly different
+      approach.
+    </p>
+  </div>
+
+  <p>The key moves with irregular income:</p>
+
+  <ul>
+    <li><strong>Budget on your lowest month</strong> — figure out the minimum you can count on and build your base budget around that number</li>
+    <li><strong>Treat windfalls as bonus, not baseline</strong> — when a bigger month comes (tax refund, per-cap payment, good season), put the extra toward your emergency fund or debt before anything else</li>
+    <li><strong>Build a buffer account</strong> — aim to have one month's expenses sitting in a separate account. When income is high, fill the buffer. When income is low, draw from it</li>
+    <li><strong>Pay yourself a "salary"</strong> — if income is very uneven, deposit everything into one account and transfer yourself a fixed amount weekly or biweekly</li>
+  </ul>
+
+  <ExpandableSection client:idle title="Scenario: seasonal fishery income">
+    <div class="space-y-3 text-sm">
+      <p>
+        Say you earn $28,000/year but most of it comes between May and October.
+        During those months, you might bring in $4,000-5,000/month. November
+        through April, maybe $500-1,000 from odd jobs.
+      </p>
+      <p>
+        <strong>Step 1:</strong> Set your base monthly budget at $1,800 (your
+        real cost of living).
+      </p>
+      <p>
+        <strong>Step 2:</strong> During earning season, pay yourself $1,800/month
+        and bank the rest.
+      </p>
+      <p>
+        <strong>Step 3:</strong> By October, you should have $10,000+ banked.
+        That covers you through the off-season at $1,800/month.
+      </p>
+      <p>
+        It takes discipline, but after one full cycle you'll have the pattern
+        down. The buffer account makes all the difference.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>Per-capita distributions</h2>
+
+  <p>
+    If your nation distributes resource revenue or settlement funds, these
+    payments can be a real opportunity — or they can disappear fast. There's
+    often social pressure to share immediately or spend quickly.
+  </p>
+
+  <p>A simple framework for per-cap payments:</p>
+
+  <ul>
+    <li><strong>Immediate needs first</strong> — catch up on any bills, fill the fridge, handle anything urgent</li>
+    <li><strong>Buffer second</strong> — put something into your emergency fund, even if it's small</li>
+    <li><strong>Future third</strong> — TFSA contribution, debt payment, something that moves you forward</li>
+    <li><strong>Enjoy the rest</strong> — guilt-free, because you've already taken care of the important stuff</li>
+  </ul>
+
+  <h2>When budgeting feels impossible</h2>
+
+  <p>
+    Sometimes there genuinely isn't enough money. No budgeting trick fixes a
+    shortfall when income is too low and costs are too high. If that's where
+    you are, the priority shifts from budgeting to accessing every benefit
+    and support available to you.
+  </p>
+
+  <ul>
+    <li><strong>File your taxes</strong> — even if your income is exempt under Section 87, filing unlocks the GST/HST credit, Canada Child Benefit, and other payments</li>
+    <li><strong>Check provincial benefits</strong> — most provinces have additional credits for low-income residents</li>
+    <li><strong>Ask your band office</strong> — many nations have emergency assistance, food programs, or utility support</li>
+    <li><strong>Food banks and community kitchens</strong> — no shame in using them. They exist for exactly this</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <strong>The best budget is the one you use</strong>
+    <p>
+      Don't let perfect be the enemy of good. If all you do is check your
+      bank balance every Friday and make sure you're not going backwards,
+      that's a budget. You can refine it over time.
+    </p>
+  </div>
+
+</Article>

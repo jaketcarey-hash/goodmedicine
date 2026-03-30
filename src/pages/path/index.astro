@@ -1,0 +1,73 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import TopicCard from '../../components/TopicCard.svelte';
+---
+
+<Shell title="Knowing Your Path" branch="path">
+  <PageHeader
+    title="Knowing Your Path"
+    subtitle="Every stage of life brings different financial decisions. Find where you are."
+    branch="path"
+    backHref="/"
+    backLabel="Home"
+  />
+
+  <section class="px-5 pb-10">
+    <div class="flex flex-col gap-2.5">
+      <TopicCard
+        client:idle
+        href="/path/leaving-home"
+        title="Leaving Home"
+        description="Heading to school or the city? Banking, budgeting, and navigating a new financial world."
+        branch="path"
+        readTime="6 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/path/first-job"
+        title="Starting Work"
+        description="Your first paycheque, workplace benefits, tax filing, and building financial foundations early."
+        branch="path"
+        readTime="5 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/path/building-life"
+        title="Building a Life"
+        description="Renting, buying, partnerships, and the financial decisions that come with putting down roots."
+        branch="path"
+        readTime="7 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/path/raising-family"
+        title="Raising a Family"
+        description="Child benefits, education savings, family budgeting, and teaching kids about money."
+        branch="path"
+        readTime="6 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/path/supporting-elders"
+        title="Supporting Elders"
+        description="Helping parents and grandparents with benefits, pensions, and financial care."
+        branch="path"
+        readTime="5 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/path/giving-back"
+        title="Giving Back"
+        description="Community economic development, starting a business, and building wealth that serves everyone."
+        branch="path"
+        readTime="6 min"
+      />
+    </div>
+  </section>
+</Shell>

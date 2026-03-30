@@ -1,0 +1,257 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+---
+
+<Article
+  title="Investing 101"
+  subtitle="What stocks, bonds, and funds actually are — and how to start with as little as $50."
+  branch="money"
+  backHref="/money"
+  backLabel="Money"
+  readTime="7 min"
+>
+
+  <p>
+    Investing is not gambling. It's not only for wealthy people. And it's not
+    as complicated as the financial industry wants you to believe. At its core,
+    investing is putting money to work so it grows over time — instead of
+    sitting in an account slowly losing value to inflation.
+  </p>
+
+  <p>
+    If you can set up a pre-authorized payment of $50 a month, you can invest.
+  </p>
+
+  <h2>Why it matters</h2>
+
+  <p>
+    A savings account earning 1-2% interest doesn't keep up with inflation
+    (the rising cost of everything). Over 20 years, money sitting in a savings
+    account actually loses purchasing power. Investing is how you stay ahead.
+  </p>
+
+  <ExpandableSection client:idle title="The cost of waiting: $50/month over time">
+    <div class="space-y-3 text-sm">
+      <p>Assume a balanced portfolio averaging 6% annual return:</p>
+      <p>
+        <strong>Start at age 25, invest $50/month until age 65:</strong><br>
+        Total contributed: $24,000<br>
+        Portfolio value: approximately $99,000
+      </p>
+      <p>
+        <strong>Start at age 35, invest $50/month until age 65:</strong><br>
+        Total contributed: $18,000<br>
+        Portfolio value: approximately $50,000
+      </p>
+      <p>
+        Ten years of waiting cost nearly $49,000 — even though you only
+        contributed $6,000 less. That's compounding: your money earns returns,
+        and those returns earn returns. Time is the most powerful variable.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>The building blocks</h2>
+
+  <h3>Stocks</h3>
+
+  <p>
+    When you buy a stock, you own a tiny piece of a company. If the company
+    does well, your piece becomes worth more. Some companies also pay you a
+    share of their profits (dividends) just for owning the stock.
+  </p>
+
+  <p>
+    Stocks go up and down — sometimes a lot. Over short periods, they're
+    unpredictable. Over long periods (10+ years), the overall stock market
+    has always gone up.
+  </p>
+
+  <h3>Bonds</h3>
+
+  <p>
+    When you buy a bond, you're lending money to a government or company.
+    They pay you interest on a set schedule and return your money at the end
+    of the term. Bonds are more stable than stocks but grow more slowly.
+  </p>
+
+  <h3>Mutual funds and ETFs</h3>
+
+  <p>
+    Instead of buying individual stocks or bonds, you can buy a fund that
+    holds hundreds or thousands of them. One purchase gives you instant
+    diversification — you're not betting on any single company.
+  </p>
+
+  <ul>
+    <li><strong>Mutual funds</strong> — managed by a professional who picks the investments. Higher fees (often 1-2.5% per year)</li>
+    <li><strong>ETFs (Exchange-Traded Funds)</strong> — typically track an index (like the entire Canadian or U.S. stock market). Much lower fees (often 0.05-0.25% per year)</li>
+    <li><strong>Index funds</strong> — a type of mutual fund or ETF that simply tracks a market index. No one is picking stocks — it just owns everything in the index. Lowest fees, and they consistently outperform most actively managed funds over time</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <strong>Fees matter more than you think</strong>
+    <p>
+      A 2% annual fee doesn't sound like much, but over 30 years it can eat
+      up a third of your returns. A portfolio earning 6% with a 2% fee nets
+      you 4%. The same portfolio with a 0.2% fee nets you 5.8%. On $50/month
+      over 30 years, that difference is tens of thousands of dollars. Low-cost
+      index funds exist for exactly this reason.
+    </p>
+  </div>
+
+  <h2>The simplest path: index funds</h2>
+
+  <p>
+    If you want to invest and don't want to think about it much, a single
+    all-in-one index fund is the most sensible starting point. These funds hold
+    a mix of stocks and bonds from around the world in one package.
+  </p>
+
+  <p>Common all-in-one options in Canada:</p>
+
+  <ul>
+    <li><strong>VBAL / XBAL</strong> — balanced (60% stocks, 40% bonds), moderate risk</li>
+    <li><strong>VGRO / XGRO</strong> — growth (80% stocks, 20% bonds), more risk, higher expected return</li>
+    <li><strong>VEQT / XEQT</strong> — all equity (100% stocks), highest risk, highest expected return over the long run</li>
+  </ul>
+
+  <p>
+    You buy one fund and you own thousands of companies across dozens of
+    countries. Fees are around 0.20-0.25% per year. Set up automatic purchases
+    and let time do the work.
+  </p>
+
+  <ExpandableSection client:idle title="Which one should I pick?">
+    <div class="space-y-3 text-sm">
+      <p>
+        It depends on your timeline and comfort with ups and downs:
+      </p>
+      <p>
+        <strong>VBAL/XBAL</strong> — good if you might need the money in 5-10
+        years, or if big drops in value would make you sell in a panic. Smoother
+        ride, moderate growth.
+      </p>
+      <p>
+        <strong>VGRO/XGRO</strong> — good if you won't need the money for 10+
+        years and can handle seeing your balance drop 20-30% in a bad year
+        without selling.
+      </p>
+      <p>
+        <strong>VEQT/XEQT</strong> — good if you have 15+ years, a high
+        tolerance for volatility, and want maximum long-term growth.
+      </p>
+      <p>
+        All three have historically produced positive returns over any 10+ year
+        period. The key is picking one you'll stick with when markets drop —
+        because they will drop, and that's normal.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>How to start with $50</h2>
+
+  <ol>
+    <li><strong>Open a TFSA</strong> at an online brokerage (Wealthsimple is the easiest; Questrade is another good option)</li>
+    <li><strong>Set up automatic deposits</strong> — $50 on payday, or whatever you can manage</li>
+    <li><strong>Buy one all-in-one ETF</strong> — Wealthsimple even lets you set up automatic purchases</li>
+    <li><strong>Don't check it every day</strong> — seriously. Set it up and look at it once a quarter at most</li>
+  </ol>
+
+  <div class="callout callout-info">
+    <strong>Wealthsimple has no minimums and no commissions</strong>
+    <p>
+      You can buy $50 of an ETF with no trading fees. Fractional shares mean
+      you don't need to afford a full share — you can buy $50 worth of
+      anything. The barrier to entry is effectively zero.
+    </p>
+  </div>
+
+  <h2>Investing and seven-generation thinking</h2>
+
+  <p>
+    In many Indigenous traditions, decisions are weighed against their impact
+    seven generations forward. Investing is one of the most direct ways to act
+    on that principle with money.
+  </p>
+
+  <p>
+    A TFSA growing for 30 years isn't just for your retirement. It's the down
+    payment on a grandchild's home. It's the seed money for a community
+    business. It's the proof that wealth can be built and kept within
+    Indigenous families and nations — on our own terms.
+  </p>
+
+  <div class="callout callout-info">
+    <strong>Community wealth is built one household at a time</strong>
+    <p>
+      When Indigenous families build investment portfolios, the impact extends
+      beyond individual finances. It reduces dependence on external systems,
+      strengthens community economic sovereignty, and creates options that
+      didn't exist before. Every $50 contribution is a small act of
+      self-determination.
+    </p>
+  </div>
+
+  <h2>Common fears (addressed honestly)</h2>
+
+  <ExpandableSection client:idle title="What if the market crashes?">
+    <div class="space-y-3 text-sm">
+      <p>
+        Markets crash. It's happened before and it will happen again. In 2008,
+        the stock market dropped about 50%. In 2020, it dropped 35% in a month.
+        Both times, it recovered — and went on to new highs.
+      </p>
+      <p>
+        If you're investing for 10+ years, crashes are actually opportunities.
+        Your automatic $50 purchases buy more shares when prices are low. When
+        prices recover, those shares are worth more. This is called
+        dollar-cost averaging, and it works precisely because markets go down
+        sometimes.
+      </p>
+      <p>
+        The only people who lose in a crash are those who sell during it. If
+        you hold steady, history is on your side.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <ExpandableSection client:idle title="Is investing just for rich people?">
+    <div class="space-y-3 text-sm">
+      <p>
+        It used to be. Minimum investments of $25,000-$50,000 were normal.
+        Brokers charged $30 per trade. The system was designed to exclude
+        regular people.
+      </p>
+      <p>
+        That's changed. Wealthsimple has no minimums. Questrade lets you start
+        with $250. Fractional shares mean $10 can buy you a piece of the
+        market. Trading commissions at many platforms are zero.
+      </p>
+      <p>
+        Investing $50/month won't make you rich overnight. But over 20-30
+        years, it builds something real. The myth that investing is only for
+        the wealthy is one of the reasons wealth stays concentrated. Breaking
+        that cycle starts with $50 and an open account.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>Getting started</h2>
+
+  <ol>
+    <li>Open a TFSA at an online brokerage (takes 10-15 minutes)</li>
+    <li>Set up automatic contributions on payday</li>
+    <li>Buy one all-in-one ETF that matches your timeline</li>
+    <li>Leave it alone and let compounding work</li>
+    <li>Increase your contributions whenever you can</li>
+  </ol>
+
+  <p>
+    You don't need to understand everything about markets to start investing.
+    You just need to start. The learning comes with time, and the growth comes
+    with patience.
+  </p>
+
+</Article>

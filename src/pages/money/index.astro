@@ -1,0 +1,113 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import TopicCard from '../../components/TopicCard.svelte';
+---
+
+<Shell title="Knowing Your Money" branch="money">
+  <PageHeader
+    title="Knowing Your Money"
+    subtitle="Practical tools for everyday financial decisions. Start broad, go as deep as you need."
+    branch="money"
+    backHref="/"
+    backLabel="Home"
+  />
+
+  <!-- Interactive tools -->
+  <section class="px-5 pb-6">
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Tools</h2>
+    <div class="flex flex-col gap-2.5">
+      <a href="/money/budget-tool" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-clay-50 to-clay-100 border border-clay-200 hover:border-clay-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 rounded-lg bg-clay-500 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M9 21V9" />
+          </svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm">Budget Snapshot</p>
+          <p class="text-xs text-text-muted">See your money picture — income, expenses, what's left</p>
+        </div>
+      </a>
+      <a href="/money/savings-tracker" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-sage-50 to-sage-100 border border-sage-200 hover:border-sage-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 rounded-lg bg-sage-500 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+          </svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm">Savings Goals</p>
+          <p class="text-xs text-text-muted">Set goals, track progress, celebrate every deposit</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Articles -->
+  <section class="px-5 pb-10">
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Learn</h2>
+    <div class="flex flex-col gap-2.5">
+      <TopicCard
+        client:idle
+        href="/money/banking"
+        title="Banking Basics"
+        description="Opening an account, choosing a bank, understanding fees — and what to know about on-reserve banking."
+        branch="money"
+        readTime="5 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/money/budgeting"
+        title="Budgeting That Works"
+        description="Simple approaches to tracking what comes in and what goes out — without spreadsheets or stress."
+        branch="money"
+        readTime="4 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/money/saving"
+        title="Saving and Growing"
+        description="TFSAs, FHSAs, RRSPs — what each one does, which ones matter most, and how to start small."
+        branch="money"
+        readTime="6 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/money/credit"
+        title="Understanding Credit"
+        description="What credit scores actually mean, how to build credit, and how to repair it if things went sideways."
+        branch="money"
+        readTime="5 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/money/debt"
+        title="Dealing with Debt"
+        description="Strategies for managing debt without shame. What to tackle first, what to negotiate, when to ask for help."
+        branch="money"
+        readTime="5 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/money/investing"
+        title="Investing 101"
+        description="What investing actually is, how it works, and why starting small and early matters more than being perfect."
+        branch="money"
+        readTime="7 min"
+      />
+
+      <TopicCard
+        client:idle
+        href="/money/taxes"
+        title="Taxes and Filing"
+        description="When and how to file, what deductions exist, and how Section 87 interacts with your tax return."
+        branch="money"
+        readTime="6 min"
+      />
+    </div>
+  </section>
+</Shell>
