@@ -87,8 +87,8 @@
         </svg>
       </div>
       <div class="flex-1">
-        <p class="font-medium text-sm">Financial Stress</p>
-        <p class="text-xs text-text-muted">Recognizing it, naming it, working through it</p>
+        <p class="font-medium text-sm">Financial Trauma</p>
+        <p class="text-xs text-text-muted">Understanding where it comes from, naming it, and beginning to heal</p>
       </div>
     </a>
 

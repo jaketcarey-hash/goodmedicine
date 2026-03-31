@@ -42,10 +42,10 @@ import TopicCard from '../../components/TopicCard.svelte';
     </div>
   </section>
 
-  <!-- Articles -->
+  <!-- Articles grouped by category -->
   <section class="px-5 pb-10">
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Learn</h2>
-    <div class="flex flex-col gap-2.5">
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Taxation</h2>
+    <div class="flex flex-col gap-2.5 mb-6">
       <TopicCard
         client:idle
         href="/rights/section-87"
@@ -54,7 +54,10 @@ import TopicCard from '../../components/TopicCard.svelte';
         branch="rights"
         readTime="8 min"
       />
+    </div>
 
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Health</h2>
+    <div class="flex flex-col gap-2.5 mb-6">
       <TopicCard
         client:idle
         href="/rights/nihb"
@@ -66,20 +69,23 @@ import TopicCard from '../../components/TopicCard.svelte';
 
       <TopicCard
         client:idle
+        href="/rights/jordans-principle"
+        title="Jordan's Principle"
+        description="Services for First Nations children — what's covered, how to apply, and how to appeal if denied."
+        branch="rights"
+        readTime="8 min"
+      />
+    </div>
+
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Community Wealth</h2>
+    <div class="flex flex-col gap-2.5 mb-6">
+      <TopicCard
+        client:idle
         href="/rights/treaty-payments"
         title="Treaty Payments"
         description="What treaty payments are, how modern treaties work, and what resource revenue sharing means for you."
         branch="rights"
         readTime="7 min"
-      />
-
-      <TopicCard
-        client:idle
-        href="/rights/education-funding"
-        title="Education Funding"
-        description="Band funding, PSSSP, Indspire, provincial programs — how to pay for post-secondary and what to know."
-        branch="rights"
-        readTime="9 min"
       />
 
       <TopicCard
@@ -90,14 +96,17 @@ import TopicCard from '../../components/TopicCard.svelte';
         branch="rights"
         readTime="10 min"
       />
+    </div>
 
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Education</h2>
+    <div class="flex flex-col gap-2.5">
       <TopicCard
         client:idle
-        href="/rights/jordans-principle"
-        title="Jordan's Principle"
-        description="Services for First Nations children — what's covered, how to apply, and how to appeal if denied."
+        href="/rights/education-funding"
+        title="Education Funding"
+        description="Band funding, PSSSP, Indspire, provincial programs — how to pay for post-secondary and what to know."
         branch="rights"
-        readTime="8 min"
+        readTime="9 min"
       />
     </div>
   </section>
