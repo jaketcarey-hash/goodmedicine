@@ -1,0 +1,18 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import SettlementSimulator from '../../components/SettlementSimulator.svelte';
+---
+
+<Shell title="Settlement Simulator" branch="money">
+  <PageHeader
+    title="Settlement Simulator"
+    subtitle="Your nation just received a settlement. How you manage it today shapes the next seven generations."
+    branch="money"
+    backHref="/money/seven-generations"
+    backLabel="Seven Generations"
+  />
+  <section class="px-5 pb-10">
+    <SettlementSimulator client:load />
+  </section>
+</Shell>
