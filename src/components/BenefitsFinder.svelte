@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fly, fade, slide } from 'svelte/transition';
+  import { STORAGE_KEYS } from '../lib/storage-keys';
 
   // ── State ──────────────────────────────────────────────────
   let step = $state(0);
@@ -340,7 +341,7 @@
       results: getResults(),
     };
     try {
-      localStorage.setItem('gm-benefits-results', JSON.stringify(data));
+      localStorage.setItem(STORAGE_KEYS.BENEFITS_RESULTS, JSON.stringify(data));
       saved = true;
     } catch {
       // silently fail if storage unavailable
@@ -350,7 +351,7 @@
   // ── Check for saved results on mount ───────────────────────
   $effect(() => {
     try {
-      const stored = localStorage.getItem('gm-benefits-results');
+      const stored = localStorage.getItem(STORAGE_KEYS.BENEFITS_RESULTS);
       if (stored) {
         // We don't auto-load — user starts fresh each time
         // but we note that they have saved results

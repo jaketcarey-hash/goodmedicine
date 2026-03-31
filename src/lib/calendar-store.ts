@@ -3,6 +3,8 @@
  * No server, no tracking, no accounts. Just you.
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface CalendarProfile {
   treatyArea: string | null;
   province: string | null;
@@ -33,7 +35,7 @@ export interface CalendarEvent {
   priority: 'high' | 'medium' | 'low';
 }
 
-const PROFILE_KEY = 'gm_calendar_profile';
+const PROFILE_KEY = STORAGE_KEYS.CALENDAR_PROFILE;
 
 const DEFAULT_PROFILE: CalendarProfile = {
   treatyArea: null,

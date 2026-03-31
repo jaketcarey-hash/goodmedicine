@@ -1,0 +1,38 @@
+---
+import Shell from '../layouts/Shell.astro';
+---
+
+<Shell title="Page not found" branch="home">
+  <section class="px-5 pt-16 pb-12 text-center min-h-[60dvh] flex flex-col items-center justify-center">
+    <div class="w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center mx-auto mb-6">
+      <svg class="w-8 h-8 text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
+        <line x1="9" y1="9" x2="9.01" y2="9" />
+        <line x1="15" y1="9" x2="15.01" y2="9" />
+      </svg>
+    </div>
+
+    <h1 class="text-3xl font-bold tracking-tight mb-3">Page not found</h1>
+    <p class="text-text-secondary leading-relaxed max-w-xs mx-auto mb-8">
+      The page you're looking for doesn't exist or may have moved.
+    </p>
+
+    <div class="flex flex-col gap-3 w-full max-w-xs">
+      <a
+        href="/"
+        class="block py-3 px-5 rounded-xl bg-stone-900 text-white text-sm font-semibold text-center
+          hover:bg-stone-800 active:scale-[0.98] transition-all duration-[var(--duration-normal)]"
+      >
+        Go home
+      </a>
+      <a
+        href="/glossary"
+        class="block py-3 px-5 rounded-xl border-2 border-stone-200 text-sm font-semibold text-text-secondary text-center
+          hover:border-stone-300 transition-all duration-[var(--duration-normal)]"
+      >
+        Search the glossary
+      </a>
+    </div>
+  </section>
+</Shell>

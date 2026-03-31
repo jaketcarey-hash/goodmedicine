@@ -4,52 +4,10 @@
  * serve from cache, update in background.
  */
 
-const CACHE_NAME = 'gm-v3';
+const CACHE_NAME = 'gm-v4';
 
-// These get populated at build time or manually
-const PRECACHE_URLS = [
-  '/',
-  '/money',
-  '/money/banking',
-  '/money/budgeting',
-  '/money/saving',
-  '/money/credit',
-  '/money/debt',
-  '/money/investing',
-  '/money/taxes',
-  '/money/budget-tool',
-  '/money/savings-tracker',
-  '/money/net-worth',
-  '/money/debt-planner',
-  '/rights',
-  '/rights/section-87',
-  '/rights/section-87-checker',
-  '/rights/nihb',
-  '/rights/treaty-payments',
-  '/rights/education-funding',
-  '/rights/band-finances',
-  '/rights/jordans-principle',
-  '/path',
-  '/path/leaving-home',
-  '/path/first-job',
-  '/path/building-life',
-  '/path/raising-family',
-  '/path/supporting-elders',
-  '/path/giving-back',
-  '/self',
-  '/self/benefits',
-  '/self/stress',
-  '/self/confidence',
-  '/self/conversations',
-  '/learn',
-  '/calendar',
-  '/glossary',
-  '/ask-ai',
-  '/tools/life-simulator',
-  '/tools/tax-estimator',
-  '/favicon.svg',
-  '/manifest.json',
-];
+// Auto-generated at build time by scripts/generate-sw.js
+const PRECACHE_URLS = ['__PRECACHE_URLS__'];
 
 // Install: precache all content
 self.addEventListener('install', (event) => {

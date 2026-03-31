@@ -3,6 +3,8 @@
  * No server, no tracking, no accounts. Just you.
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface IncomeItem {
   id: string;
   label: string;
@@ -36,7 +38,7 @@ export interface BudgetEntry {
   expenses: ExpenseItem[];
 }
 
-const STORAGE_KEY = 'gm_budgets';
+const STORAGE_KEY = STORAGE_KEYS.BUDGET_DATA;
 
 function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);

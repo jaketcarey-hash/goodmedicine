@@ -55,13 +55,20 @@ const fullTitle = title === 'Good Medicine' ? title : `${title} — Good Medicin
 
     <BottomNav client:load activeBranch={branch} />
 
-    <!-- Service worker registration -->
+    <!-- Service worker registration + global error handling -->
     <script is:inline>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
       }
+      window.addEventListener('error', function(e) {
+        if (e.message && e.message.includes('ResizeObserver')) return;
+        console.error('Good Medicine error:', e.message);
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('Good Medicine error:', e.reason);
+      });
     </script>
   </body>
 </html>

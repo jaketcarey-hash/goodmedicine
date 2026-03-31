@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fly, fade, slide } from 'svelte/transition';
+  import { STORAGE_KEYS } from '../lib/storage-keys';
 
   // ---- State ----
   let step = $state(0);
@@ -286,7 +287,7 @@
       projections,
       savedAt: new Date().toISOString(),
     };
-    localStorage.setItem('gm-distribution-plan', JSON.stringify(planData));
+    localStorage.setItem(STORAGE_KEYS.DISTRIBUTION_PLAN, JSON.stringify(planData));
     saved = true;
     setTimeout(() => { saved = false; }, 3000);
   }

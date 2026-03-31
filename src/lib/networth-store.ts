@@ -3,6 +3,8 @@
  * Track what you own vs what you owe over time.
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface NetWorthItem {
   label: string;
   amount: number;
@@ -21,8 +23,8 @@ export interface NetWorthWorkingState {
   debts: NetWorthItem[];
 }
 
-const SNAPSHOTS_KEY = 'gm_networth_snapshots';
-const WORKING_KEY = 'gm_networth_working';
+const SNAPSHOTS_KEY = STORAGE_KEYS.NETWORTH_SNAPSHOTS;
+const WORKING_KEY = STORAGE_KEYS.NETWORTH_WORKING;
 
 function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);

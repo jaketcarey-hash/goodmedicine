@@ -3,6 +3,8 @@
  * No server, no tracking, no accounts. Your pace, your path.
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface LearningProgress {
   completedArticles: string[];
   activePath: string | null;
@@ -10,7 +12,7 @@ export interface LearningProgress {
   knowledgeChecks: Record<string, boolean>;
 }
 
-const STORAGE_KEY = 'gm_learning';
+const STORAGE_KEY = STORAGE_KEYS.LEARNING_PROGRESS;
 
 function getProgress(): LearningProgress {
   if (typeof window === 'undefined') {

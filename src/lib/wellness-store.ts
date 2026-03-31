@@ -3,6 +3,8 @@
  * No server, no tracking, no accounts. Just you.
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface CheckInEntry {
   id: string;
   timestamp: string;
@@ -12,7 +14,7 @@ export interface CheckInEntry {
   gratitude: string; // one thing
 }
 
-const STORAGE_KEY = 'gm_checkins';
+const STORAGE_KEY = STORAGE_KEYS.WELLNESS_CHECKINS;
 
 function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);

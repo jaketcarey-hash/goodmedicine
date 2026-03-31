@@ -3,6 +3,8 @@
  * No server, no tracking, no accounts. Just you.
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface SavingsDeposit {
   date: string;
   amount: number;
@@ -18,7 +20,7 @@ export interface SavingsGoal {
   category: 'emergency' | 'education' | 'housing' | 'vehicle' | 'family' | 'travel' | 'custom';
 }
 
-const STORAGE_KEY = 'gm_savings';
+const STORAGE_KEY = STORAGE_KEYS.SAVINGS_GOALS;
 
 function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);

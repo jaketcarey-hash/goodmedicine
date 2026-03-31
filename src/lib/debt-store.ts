@@ -3,6 +3,8 @@
  * See exactly when you'll be debt-free.
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface Debt {
   id: string;
   name: string;
@@ -26,7 +28,7 @@ export interface PayoffMonth {
   debtsPaidOff: string[];
 }
 
-const STORAGE_KEY = 'gm_debt_plan';
+const STORAGE_KEY = STORAGE_KEYS.DEBT_PLAN;
 
 function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);

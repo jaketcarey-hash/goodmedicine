@@ -1,7 +1,8 @@
 <script lang="ts">
   import { fly, fade } from 'svelte/transition';
+  import { STORAGE_KEYS } from '../lib/storage-keys';
 
-  const STORAGE_KEY = 'gm_section87_result';
+  const STORAGE_KEY = STORAGE_KEYS.SECTION87_RESULT;
   const TOTAL_STEPS = 5;
 
   type WorkLocation = 'on-reserve' | 'off-reserve' | 'mixed';
