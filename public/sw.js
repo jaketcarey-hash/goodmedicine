@@ -1,5 +1,5 @@
 /**
- * Good Medicine — Service Worker
+ * Strong Fire — Service Worker
  * Offline-first strategy: precache everything at install,
  * serve from cache, update in background.
  */

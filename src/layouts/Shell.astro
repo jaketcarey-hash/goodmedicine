@@ -10,12 +10,12 @@ interface Props {
 }
 
 const {
-  title = 'Good Medicine',
+  title = 'Strong Fire',
   description = 'Free financial wellness for First Nations communities',
   branch = 'home',
 } = Astro.props;
 
-const fullTitle = title === 'Good Medicine' ? title : `${title} — Good Medicine`;
+const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
 ---
 
 <!doctype html>
@@ -64,10 +64,10 @@ const fullTitle = title === 'Good Medicine' ? title : `${title} — Good Medicin
       }
       window.addEventListener('error', function(e) {
         if (e.message && e.message.includes('ResizeObserver')) return;
-        console.error('Good Medicine error:', e.message);
+        console.error('Strong Fire error:', e.message);
       });
       window.addEventListener('unhandledrejection', function(e) {
-        console.error('Good Medicine error:', e.reason);
+        console.error('Strong Fire error:', e.reason);
       });
     </script>
   </body>
