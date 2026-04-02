@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import BottomNav from '../components/BottomNav.svelte';
 import OfflineBanner from '../components/OfflineBanner.svelte';
+import WelcomeFlow from '../components/WelcomeFlow.svelte';
 
 interface Props {
   title?: string;
@@ -30,14 +31,6 @@ const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
 
     <title>{fullTitle}</title>
 
-    <!-- Fonts: Outfit (display) + Inter (body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
     <!-- PWA manifest -->
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -45,7 +38,11 @@ const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
   </head>
 
   <body class="bg-surface text-text-primary pb-[var(--nav-height)]" data-branch={branch}>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-stone-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm">
+      Skip to content
+    </a>
     <OfflineBanner client:load />
+    <WelcomeFlow client:load />
     <main
       class="mx-auto max-w-lg min-h-[calc(100dvh-var(--nav-height))]"
       id="main-content"
@@ -54,6 +51,22 @@ const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
     </main>
 
     <BottomNav client:load activeBranch={branch} />
+
+    <!-- Breadcrumb: save last visited page -->
+    <script is:inline>
+      (function() {
+        try {
+          var path = window.location.pathname;
+          var skip = ['/', '/settings'];
+          if (skip.indexOf(path) === -1) {
+            var titleEl = document.querySelector('title');
+            var pageTitle = titleEl ? titleEl.textContent.replace(/ — Strong Fire$/, '') : path;
+            var data = JSON.stringify({ path: path, title: pageTitle, timestamp: new Date().toISOString() });
+            localStorage.setItem('gm_last_visited', data);
+          }
+        } catch(e) {}
+      })();
+    </script>
 
     <!-- Service worker registration + global error handling -->
     <script is:inline>

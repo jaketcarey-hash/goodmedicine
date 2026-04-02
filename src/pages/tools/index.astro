@@ -1,0 +1,255 @@
+---
+import Shell from '../../layouts/Shell.astro';
+---
+
+<Shell title="Tools" branch="home">
+  <section class="px-5 pt-10 pb-6">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold tracking-tight leading-[1.1] mb-3">Tools</h1>
+      <p class="text-text-secondary leading-relaxed max-w-sm">
+        Calculators, planners, and interactive guides — all free, all private, all offline.
+      </p>
+    </div>
+
+    <!-- Your Money -->
+    <div class="mb-8">
+      <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Your Money</h2>
+      <div class="flex flex-col gap-2">
+        <a href="/money/budget-tool" class="tool-card tool-card--clay">
+          <div class="tool-card__icon bg-clay-100 text-clay-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Budget Snapshot</p>
+            <p class="text-xs text-text-muted mt-0.5">Track what comes in and what goes out</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/money/savings-tracker" class="tool-card tool-card--clay">
+          <div class="tool-card__icon bg-clay-100 text-clay-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M19 5L5 19M5 5v14h14" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Savings Goals</p>
+            <p class="text-xs text-text-muted mt-0.5">Set goals and track every deposit</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/money/net-worth" class="tool-card tool-card--clay">
+          <div class="tool-card__icon bg-clay-100 text-clay-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.66 0-3 1-3 2.25S10.34 12.5 12 12.5s3 1 3 2.25S13.66 16 12 16c-1 0-2-.5-2.5-1.5" /><path d="M12 6.5v1.5m0 8v1.5" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Net Worth Tracker</p>
+            <p class="text-xs text-text-muted mt-0.5">Assets minus debts, tracked monthly</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/money/debt-planner" class="tool-card tool-card--clay">
+          <div class="tool-card__icon bg-clay-100 text-clay-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 16v3a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h2" /><rect x="8" y="2" width="12" height="10" rx="2" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Debt Payoff Planner</p>
+            <p class="text-xs text-text-muted mt-0.5">See when you'll be debt-free</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/tools/distribution-planner" class="tool-card tool-card--clay">
+          <div class="tool-card__icon bg-clay-100 text-clay-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 2v20M2 12h20" /><circle cx="12" cy="12" r="4" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Distribution Planner</p>
+            <p class="text-xs text-text-muted mt-0.5">Got a per-cap? Make a plan in 2 minutes</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Your Rights -->
+    <div class="mb-8">
+      <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Your Rights</h2>
+      <div class="flex flex-col gap-2">
+        <a href="/rights/section-87-checker" class="tool-card tool-card--water">
+          <div class="tool-card__icon bg-water-100 text-water-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Section 87 Checker</p>
+            <p class="text-xs text-text-muted mt-0.5">Find out if your income is tax-exempt</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/self/benefits" class="tool-card tool-card--water">
+          <div class="tool-card__icon bg-water-100 text-water-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Benefits Finder</p>
+            <p class="text-xs text-text-muted mt-0.5">Discover every benefit you might qualify for</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/tools/tax-estimator" class="tool-card tool-card--water">
+          <div class="tool-card__icon bg-water-100 text-water-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="4" y="2" width="16" height="20" rx="2" /><path d="M8 6h8M8 10h8M8 14h5" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Tax Estimator</p>
+            <p class="text-xs text-text-muted mt-0.5">See what you'll owe or get back</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Your Path -->
+    <div class="mb-8">
+      <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Your Path</h2>
+      <div class="flex flex-col gap-2">
+        <a href="/tools/life-simulator" class="tool-card tool-card--sage">
+          <div class="tool-card__icon bg-sage-100 text-sage-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 01-3.46 0" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Life Change Simulator</p>
+            <p class="text-xs text-text-muted mt-0.5">How a big decision affects your finances</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/tools/settlement-simulator" class="tool-card tool-card--sage">
+          <div class="tool-card__icon bg-sage-100 text-sage-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 3c-1.5 3-4 5.5-4 9a4 4 0 008 0c0-3.5-2.5-6-4-9z" /><path d="M12 16v5" /><path d="M9 21h6" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Settlement Simulator</p>
+            <p class="text-xs text-text-muted mt-0.5">Model seven generations of community wealth</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Learn and Reflect -->
+    <div class="mb-4">
+      <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Learn and Reflect</h2>
+      <div class="flex flex-col gap-2">
+        <a href="/calendar" class="tool-card tool-card--berry">
+          <div class="tool-card__icon bg-berry-100 text-berry-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Financial Calendar</p>
+            <p class="text-xs text-text-muted mt-0.5">What matters for your money this month</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/learn" class="tool-card tool-card--berry">
+          <div class="tool-card__icon bg-berry-100 text-berry-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Learning Paths</p>
+            <p class="text-xs text-text-muted mt-0.5">Structured journeys through financial knowledge</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/self" class="tool-card tool-card--berry">
+          <div class="tool-card__icon bg-berry-100 text-berry-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 21a9 9 0 110-18 9 9 0 010 18z" /><path d="M12 3v18" /><path d="M3 12h18" /><circle cx="12" cy="12" r="3" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Wellness Check-in</p>
+            <p class="text-xs text-text-muted mt-0.5">A private daily reflection on your money wellness</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/glossary" class="tool-card tool-card--berry">
+          <div class="tool-card__icon bg-berry-100 text-berry-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Glossary</p>
+            <p class="text-xs text-text-muted mt-0.5">Every financial term in plain language</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+
+        <a href="/ask-ai" class="tool-card tool-card--berry">
+          <div class="tool-card__icon bg-berry-100 text-berry-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight">Get AI Help</p>
+            <p class="text-xs text-text-muted mt-0.5">Build prompts for Claude to get personalized answers</p>
+          </div>
+          <svg class="tool-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Shell>
+
+<style>
+  .tool-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-stone-200);
+    border-left-width: 3px;
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tool-card:hover {
+    border-color: var(--color-stone-300);
+    box-shadow: 0 1px 2px rgba(35, 30, 23, 0.06);
+  }
+
+  .tool-card:active {
+    transform: scale(0.98);
+  }
+
+  .tool-card--clay  { border-left-color: var(--color-clay-400); }
+  .tool-card--water  { border-left-color: var(--color-water-400); }
+  .tool-card--sage   { border-left-color: var(--color-sage-400); }
+  .tool-card--berry  { border-left-color: var(--color-berry-400); }
+
+  .tool-card__icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tool-card__arrow {
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-stone-300);
+    flex-shrink: 0;
+    transition: color 250ms;
+  }
+
+  .tool-card:hover .tool-card__arrow {
+    color: var(--color-stone-500);
+  }
+</style>

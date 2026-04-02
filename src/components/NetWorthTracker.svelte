@@ -84,6 +84,28 @@
     lastNetWorth !== null ? netWorth - lastNetWorth : null,
   );
 
+  // ---- Delete confirmation ----
+  let confirmingDelete = $state<string | null>(null);
+  let confirmingDeleteTimer = $state<ReturnType<typeof setTimeout> | null>(null);
+
+  function requestDelete(key: string, onConfirm: () => void) {
+    if (confirmingDelete === key) {
+      // Second tap — execute
+      if (confirmingDeleteTimer) clearTimeout(confirmingDeleteTimer);
+      confirmingDelete = null;
+      confirmingDeleteTimer = null;
+      onConfirm();
+    } else {
+      // First tap — enter confirming state
+      if (confirmingDeleteTimer) clearTimeout(confirmingDeleteTimer);
+      confirmingDelete = key;
+      confirmingDeleteTimer = setTimeout(() => {
+        confirmingDelete = null;
+        confirmingDeleteTimer = null;
+      }, 3000);
+    }
+  }
+
   // ---- Handlers ----
   function addAsset() {
     const amount = parseFloat(newAssetAmount);
@@ -96,7 +118,9 @@
   }
 
   function removeAsset(index: number) {
-    assets = assets.filter((_, i) => i !== index);
+    requestDelete(`asset-${index}`, () => {
+      assets = assets.filter((_, i) => i !== index);
+    });
   }
 
   function addDebt() {
@@ -110,7 +134,9 @@
   }
 
   function removeDebt(index: number) {
-    debts = debts.filter((_, i) => i !== index);
+    requestDelete(`debt-${index}`, () => {
+      debts = debts.filter((_, i) => i !== index);
+    });
   }
 
   function takeSnapshot() {
@@ -120,8 +146,10 @@
   }
 
   function handleDeleteSnapshot(id: string) {
-    deleteSnapshot(id);
-    snapshots = getSnapshots();
+    requestDelete(`snapshot-${id}`, () => {
+      deleteSnapshot(id);
+      snapshots = getSnapshots();
+    });
   }
 
   function getCategoryLabel(value: string, type: 'asset' | 'debt'): string {
@@ -230,15 +258,26 @@
               <p class="text-xs text-text-muted">{getCategoryLabel(item.category, 'asset')}</p>
             </div>
             <p class="text-sm font-semibold text-sage-600 whitespace-nowrap">${fmt(item.amount)}</p>
-            <button
-              onclick={() => removeAsset(index)}
-              class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
-              aria-label="Remove {item.label}"
-            >
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            </button>
+            {#if confirmingDelete === `asset-${index}`}
+              <button
+                onclick={() => removeAsset(index)}
+                class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-berry-500 text-white
+                  active:scale-95 transition-all cursor-pointer"
+                aria-label="Confirm remove {item.label}"
+              >
+                Tap again to delete
+              </button>
+            {:else}
+              <button
+                onclick={() => removeAsset(index)}
+                class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+                aria-label="Remove {item.label}"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            {/if}
           </div>
         {/each}
       </div>
@@ -338,15 +377,26 @@
               <p class="text-xs text-text-muted">{getCategoryLabel(item.category, 'debt')}</p>
             </div>
             <p class="text-sm font-semibold text-berry-600 whitespace-nowrap">${fmt(item.amount)}</p>
-            <button
-              onclick={() => removeDebt(index)}
-              class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
-              aria-label="Remove {item.label}"
-            >
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            </button>
+            {#if confirmingDelete === `debt-${index}`}
+              <button
+                onclick={() => removeDebt(index)}
+                class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-berry-500 text-white
+                  active:scale-95 transition-all cursor-pointer"
+                aria-label="Confirm remove {item.label}"
+              >
+                Tap again to delete
+              </button>
+            {:else}
+              <button
+                onclick={() => removeDebt(index)}
+                class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+                aria-label="Remove {item.label}"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            {/if}
           </div>
         {/each}
       </div>
@@ -467,15 +517,26 @@
                   <span class="text-sm font-semibold {nw >= 0 ? 'text-sage-600' : 'text-berry-600'}">
                     {nw < 0 ? '-' : ''}${fmt(nw)}
                   </span>
-                  <button
-                    onclick={() => handleDeleteSnapshot(snapshot.id)}
-                    class="p-1 rounded text-stone-400 hover:text-berry-500 transition-colors cursor-pointer"
-                    aria-label="Delete snapshot from {formatDate(snapshot.date)}"
-                  >
-                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 6L6 18M6 6l12 12" />
-                    </svg>
-                  </button>
+                  {#if confirmingDelete === `snapshot-${snapshot.id}`}
+                    <button
+                      onclick={() => handleDeleteSnapshot(snapshot.id)}
+                      class="px-2 py-1 rounded text-[10px] font-semibold bg-berry-500 text-white
+                        active:scale-95 transition-all cursor-pointer"
+                      aria-label="Confirm delete snapshot from {formatDate(snapshot.date)}"
+                    >
+                      Tap to confirm
+                    </button>
+                  {:else}
+                    <button
+                      onclick={() => handleDeleteSnapshot(snapshot.id)}
+                      class="p-1 rounded text-stone-400 hover:text-berry-500 transition-colors cursor-pointer"
+                      aria-label="Delete snapshot from {formatDate(snapshot.date)}"
+                    >
+                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                      </svg>
+                    </button>
+                  {/if}
                 </div>
               </div>
               <div class="h-2.5 bg-stone-100 rounded-full overflow-hidden">

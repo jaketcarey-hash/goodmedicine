@@ -154,7 +154,14 @@
   let newExpenseLabel = $state('');
   let newExpenseAmount = $state('');
   let newExpenseCategory = $state<ExpenseItem['category']>('housing');
+  let newExpenseFrequency = $state<'monthly' | 'biweekly' | 'weekly'>('monthly');
   let showExpenseForm = $state(false);
+
+  const expenseFrequencyLabels: Record<'monthly' | 'biweekly' | 'weekly', string> = {
+    monthly: 'Monthly',
+    biweekly: 'Every 2 weeks',
+    weekly: 'Weekly',
+  };
 
   function addExpense() {
     const amount = parseFloat(newExpenseAmount);
@@ -165,12 +172,14 @@
         id: generateId(),
         label: newExpenseLabel.trim(),
         amount,
+        frequency: newExpenseFrequency,
         category: newExpenseCategory,
       },
     ];
     newExpenseLabel = '';
     newExpenseAmount = '';
     newExpenseCategory = 'housing';
+    newExpenseFrequency = 'monthly';
     showExpenseForm = false;
   }
 
@@ -316,6 +325,21 @@
       </p>
     </div>
   </div>
+
+  <!-- Empty state welcome -->
+  {#if budget.income.length === 0 && budget.expenses.length === 0}
+    <div class="rounded-2xl bg-surface-card border border-stone-200 p-6 text-center" in:fade={{ duration: 200 }}>
+      <div class="w-14 h-14 rounded-full bg-sage-50 flex items-center justify-center mx-auto mb-4">
+        <svg class="w-7 h-7 text-sage-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+        </svg>
+      </div>
+      <p class="text-lg font-semibold mb-2">See where your money goes</p>
+      <p class="text-sm text-text-secondary leading-relaxed">
+        Start by adding what comes in each month — employment, band distributions, benefits, or anything else.
+      </p>
+    </div>
+  {/if}
 
   <!-- Insights -->
   {#if insights.length > 0}
@@ -500,7 +524,13 @@
           >
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium truncate">{item.label}</p>
-              <p class="text-xs text-text-muted">{expenseCategories[item.category]}</p>
+              <p class="text-xs text-text-muted">
+                {expenseCategories[item.category]}
+                {#if item.frequency && item.frequency !== 'monthly'}
+                  · {expenseFrequencyLabels[item.frequency]}
+                  · ${fmt(toMonthly(item.amount, item.frequency))}/mo
+                {/if}
+              </p>
             </div>
             <p class="text-sm font-semibold text-stone-700 whitespace-nowrap">${fmt(item.amount)}</p>
             <button
@@ -552,6 +582,20 @@
             />
           </div>
           <div>
+            <label for="expense-frequency" class="block text-xs font-medium text-text-muted mb-1">How often?</label>
+            <select
+              id="expense-frequency"
+              bind:value={newExpenseFrequency}
+              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
+                focus:border-clay-300 focus:ring-1 focus:ring-clay-200
+                focus:outline-none transition-colors cursor-pointer"
+            >
+              {#each Object.entries(expenseFrequencyLabels) as [value, label]}
+                <option {value}>{label}</option>
+              {/each}
+            </select>
+          </div>
+          <div class="col-span-2">
             <label for="expense-category" class="block text-xs font-medium text-text-muted mb-1">Category</label>
             <select
               id="expense-category"

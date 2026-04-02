@@ -53,10 +53,39 @@
     if (step > 0) step--;
   }
 
+  // Next-step suggestions based on selected areas
+  let suggestions = $derived(buildSuggestions(areas));
+
+  function buildSuggestions(selectedAreas: string[]): { label: string; href: string }[] {
+    const results: { label: string; href: string }[] = [];
+    const set = new Set(selectedAreas);
+
+    if (set.has('Bills & expenses') || set.has('Debt')) {
+      results.push({ label: 'Build a budget', href: '/money/budget-tool' });
+      results.push({ label: 'Make a debt plan', href: '/money/debt-planner' });
+    }
+    if (set.has('Benefits & rights')) {
+      results.push({ label: 'Find your benefits', href: '/self/benefits' });
+    }
+    if (set.has('General stress')) {
+      results.push({ label: 'Read about financial stress', href: '/self/financial-stress' });
+    }
+    if (set.has('Saving')) {
+      results.push({ label: 'Track your savings', href: '/money/savings-tracker' });
+    }
+
+    // Deduplicate by href
+    const seen = new Set<string>();
+    return results.filter((r) => {
+      if (seen.has(r.href)) return false;
+      seen.add(r.href);
+      return true;
+    });
+  }
+
   function finish() {
     saveCheckIn({ feeling, areas, reflection, gratitude });
     step = 4;
-    setTimeout(onComplete, 2000);
   }
 
   function canProceed(): boolean {
@@ -165,7 +194,43 @@
           </svg>
         </div>
         <p class="text-xl font-semibold mb-1">Noted.</p>
-        <p class="text-sm text-text-secondary">Thanks for checking in with yourself today.</p>
+        <p class="text-sm text-text-secondary mb-5">Thanks for checking in with yourself today.</p>
+
+        <!-- Next-step suggestions -->
+        {#if suggestions.length > 0}
+          <div class="space-y-2 mb-5">
+            <p class="text-xs text-text-muted">Based on what's on your mind:</p>
+            {#each suggestions as suggestion}
+              <a
+                href={suggestion.href}
+                class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-left
+                  bg-surface-warm border border-stone-200 text-text-secondary
+                  hover:border-stone-300 hover:bg-stone-100 transition-colors"
+              >
+                {suggestion.label}
+              </a>
+            {/each}
+          </div>
+        {:else}
+          <div class="mb-5">
+            <a
+              href="/"
+              class="inline-block px-4 py-2.5 rounded-xl text-sm font-medium
+                bg-surface-warm border border-stone-200 text-text-secondary
+                hover:border-stone-300 hover:bg-stone-100 transition-colors"
+            >
+              Explore the app
+            </a>
+          </div>
+        {/if}
+
+        <button
+          onclick={onComplete}
+          class="px-6 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
+            hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+        >
+          Done
+        </button>
       </div>
     {/if}
 

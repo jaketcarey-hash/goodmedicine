@@ -1,0 +1,31 @@
+---
+import Shell from '../layouts/Shell.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import DataManager from '../components/DataManager.svelte';
+---
+
+<Shell title="Settings" branch="home">
+  <PageHeader
+    title="Settings"
+    subtitle="Your data, your control."
+    branch="home"
+    backHref="/"
+    backLabel="Home"
+  />
+
+  <section class="px-5 pb-8">
+    <DataManager client:load />
+  </section>
+
+  <section class="px-5 pb-12">
+    <div class="rounded-xl bg-stone-100 p-4">
+      <p class="text-sm text-text-secondary leading-relaxed">
+        All your data lives on this device. Strong Fire never sends anything to a server.
+        You can download a backup anytime, restore it on another device, or clear everything.
+      </p>
+      <a href="/disclaimer" class="inline-block mt-3 text-sm text-text-muted hover:text-stone-600 hover:underline transition-colors">
+        Disclaimer &rarr;
+      </a>
+    </div>
+  </section>
+</Shell>

@@ -96,8 +96,25 @@
     showAddForm = false;
   }
 
+  let confirmingDeleteId = $state<string | null>(null);
+  let confirmingDeleteTimer = $state<ReturnType<typeof setTimeout> | null>(null);
+
   function removeDebt(id: string) {
-    plan.debts = plan.debts.filter((d) => d.id !== id);
+    if (confirmingDeleteId === id) {
+      // Second tap — actually delete
+      if (confirmingDeleteTimer) clearTimeout(confirmingDeleteTimer);
+      confirmingDeleteId = null;
+      confirmingDeleteTimer = null;
+      plan.debts = plan.debts.filter((d) => d.id !== id);
+    } else {
+      // First tap — enter confirming state
+      if (confirmingDeleteTimer) clearTimeout(confirmingDeleteTimer);
+      confirmingDeleteId = id;
+      confirmingDeleteTimer = setTimeout(() => {
+        confirmingDeleteId = null;
+        confirmingDeleteTimer = null;
+      }, 3000);
+    }
   }
 
   function setStrategy(s: 'avalanche' | 'snowball') {
@@ -309,16 +326,27 @@
             </div>
 
             <div class="px-4 pb-3 flex justify-end">
-              <button
-                onclick={() => removeDebt(debt.id)}
-                class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
-                aria-label="Remove {debt.name}"
-              >
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="3 6 5 6 21 6" />
-                  <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-                </svg>
-              </button>
+              {#if confirmingDeleteId === debt.id}
+                <button
+                  onclick={() => removeDebt(debt.id)}
+                  class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-berry-500 text-white
+                    active:scale-95 transition-all cursor-pointer"
+                  aria-label="Confirm remove {debt.name}"
+                >
+                  Tap again to delete
+                </button>
+              {:else}
+                <button
+                  onclick={() => removeDebt(debt.id)}
+                  class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+                  aria-label="Remove {debt.name}"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6" />
+                    <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                  </svg>
+                </button>
+              {/if}
             </div>
           </div>
         {/each}

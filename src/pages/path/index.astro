@@ -13,7 +13,48 @@ import TopicCard from '../../components/TopicCard.svelte';
     backLabel="Home"
   />
 
+  <!-- Interactive tools -->
+  <section class="px-5 pb-6">
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Tools</h2>
+    <div class="flex flex-col gap-2.5">
+      <a href="/tools/life-simulator" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-berry-50 to-berry-100 border border-berry-200 hover:border-berry-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 rounded-lg bg-berry-500 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm">Life Simulator</p>
+          <p class="text-xs text-text-muted">See how a big decision affects your finances before you make it</p>
+        </div>
+      </a>
+      <a href="/money/budget-tool" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-clay-50 to-clay-100 border border-clay-200 hover:border-clay-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 rounded-lg bg-clay-500 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M9 21V9" />
+          </svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm">Budget Tool</p>
+          <p class="text-xs text-text-muted">See your money picture</p>
+        </div>
+      </a>
+      <a href="/tools/distribution-planner" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-clay-50 to-sage-50 border border-clay-200 hover:border-clay-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-clay-500 to-clay-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+          </svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm">Distribution Planner</p>
+          <p class="text-xs text-text-muted">Got a per-cap? Make a plan in 2 minutes</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <section class="px-5 pb-10">
+    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Guides</h2>
     <div class="flex flex-col gap-2.5">
       <TopicCard
         client:idle

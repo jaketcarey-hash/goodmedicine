@@ -17,6 +17,7 @@ export interface ExpenseItem {
   id: string;
   label: string;
   amount: number;
+  frequency?: 'monthly' | 'biweekly' | 'weekly';
   category:
     | 'housing'
     | 'food'
@@ -113,9 +114,9 @@ export function getMonthlyIncome(budget: BudgetEntry): number {
   return budget.income.reduce((sum, item) => sum + toMonthly(item.amount, item.frequency), 0);
 }
 
-/** Get total monthly expenses for a budget. */
+/** Get total monthly expenses for a budget (normalized across frequencies). */
 export function getMonthlyExpenses(budget: BudgetEntry): number {
-  return budget.expenses.reduce((sum, item) => sum + item.amount, 0);
+  return budget.expenses.reduce((sum, item) => sum + toMonthly(item.amount, item.frequency ?? 'monthly'), 0);
 }
 
 /** Copy a previous month's budget structure into a new month. */
