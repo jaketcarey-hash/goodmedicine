@@ -21,4 +21,5 @@ export const STORAGE_KEYS = {
   WELCOME_COMPLETE: 'gm_welcome_complete',
   WELCOME_INTERESTS: 'gm_welcome_interests',
   LAST_VISITED: 'gm_last_visited',
+  MOMENTS_PROGRESS: 'gm_moments_progress',
 } as const;

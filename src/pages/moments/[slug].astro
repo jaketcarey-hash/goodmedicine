@@ -1,0 +1,174 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import MomentPromptBlock from '../../components/MomentPromptBlock.svelte';
+import MomentCallBlock from '../../components/MomentCallBlock.svelte';
+import { MOMENTS, getMoment } from '../../lib/moments-data';
+import { STORAGE_KEYS } from '../../lib/storage-keys';
+
+export function getStaticPaths() {
+  return MOMENTS.filter((m) => m.published).map((m) => ({
+    params: { slug: m.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const moment = getMoment(slug!);
+
+if (!moment || !moment.published) {
+  return Astro.redirect('/moments');
+}
+
+const storageKey = STORAGE_KEYS.MOMENTS_PROGRESS;
+---
+
+<Shell title={moment.title} branch="home">
+  <article class="px-5 pt-10 pb-12 moment-prose">
+    <!-- Back link -->
+    <a
+      href="/moments"
+      class="inline-flex items-center gap-1 text-sm text-text-muted hover:text-stone-700 transition-colors mb-6"
+    >
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+      Moments
+    </a>
+
+    <!-- Title -->
+    <h1 class="text-3xl font-bold tracking-tight leading-[1.1] mb-6">
+      {moment.title}
+    </h1>
+
+    <!-- Opening paragraph -->
+    {moment.opening && (
+      <p class="moment-opening">{moment.opening}</p>
+    )}
+
+    <!-- Prose sections -->
+    {moment.sections?.map((section) => (
+      <section class="mt-10">
+        {section.heading && (
+          <h2 class="moment-heading">{section.heading}</h2>
+        )}
+        {section.paragraphs.map((p) => (
+          <p>{p}</p>
+        ))}
+      </section>
+    ))}
+
+    <!-- Prompts -->
+    {moment.prompts && moment.prompts.length > 0 && (
+      <section class="mt-12 space-y-4">
+        {moment.prompts.map((prompt) => (
+          <MomentPromptBlock
+            client:load
+            momentSlug={moment.slug}
+            promptId={prompt.id}
+            title={prompt.title}
+            body={prompt.body}
+            why={prompt.why}
+          />
+        ))}
+      </section>
+    )}
+
+    <!-- Calls -->
+    {moment.calls && moment.calls.length > 0 && (
+      <section class="mt-12">
+        <h2 class="moment-heading">Calls, when you’re ready</h2>
+        <div class="space-y-3 mt-4">
+          {moment.calls.map((call) => (
+            <MomentCallBlock
+              client:load
+              momentSlug={moment.slug}
+              callId={call.id}
+              label={call.label}
+              number={call.number}
+              numberHref={call.numberHref}
+              script={call.script}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Watch for -->
+    {moment.watchFor && moment.watchFor.length > 0 && (
+      <section class="mt-12">
+        <h2 class="moment-heading">A few things to watch for</h2>
+        <div class="mt-4 space-y-3">
+          {moment.watchFor.map((item) => (
+            <div class="rounded-xl bg-clay-50 border-l-[3px] border-clay-400 px-4 py-3">
+              <p class="text-sm text-stone-700 leading-relaxed m-0">{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Closing note -->
+    {moment.closingNote && (
+      <section class="mt-12 pt-6 border-t border-stone-100">
+        <p class="text-sm text-text-muted italic text-center">
+          {moment.closingNote}
+        </p>
+      </section>
+    )}
+  </article>
+
+  <!-- Quiet persistence: mark this moment as opened -->
+  <script is:inline define:vars={{ slug: moment.slug, storageKey }}>
+    try {
+      const raw = localStorage.getItem(storageKey);
+      const map = raw ? JSON.parse(raw) : {};
+      const now = new Date().toISOString();
+      if (!map[slug]) {
+        map[slug] = {
+          slug,
+          firstOpened: now,
+          lastOpened: now,
+          sectionsRead: [],
+          promptsCopied: [],
+          callsTapped: [],
+        };
+      } else {
+        map[slug].lastOpened = now;
+      }
+      localStorage.setItem(storageKey, JSON.stringify(map));
+    } catch (e) {}
+  </script>
+</Shell>
+
+<style is:global>
+  .moment-prose {
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--color-text-primary);
+  }
+
+  .moment-prose p {
+    margin-bottom: 1.25rem;
+  }
+
+  .moment-prose .moment-opening {
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .moment-prose .moment-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .moment-prose section > p:last-child {
+    margin-bottom: 0;
+  }
+</style>

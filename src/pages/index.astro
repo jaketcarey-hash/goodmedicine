@@ -39,6 +39,27 @@ import ContinueCard from '../components/ContinueCard.svelte';
       <p class="text-sm text-text-muted mt-1">A private reflection — just for you.</p>
     </a>
 
+    <!-- Moments — quiet entry -->
+    <a
+      href="/moments"
+      class="group block rounded-2xl bg-surface-warm border border-stone-200 p-5 mb-4
+        hover:border-stone-300 hover:shadow-sm
+        transition-all duration-[var(--duration-normal)] active:scale-[0.98]"
+    >
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 2" />
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-base font-semibold leading-snug">When you’re in the middle of something</p>
+          <p class="text-sm text-text-muted mt-1 leading-relaxed">A place to come when life changes.</p>
+        </div>
+      </div>
+    </a>
+
     <!-- Continue where you left off -->
     <div class="mb-4">
       <ContinueCard client:load />

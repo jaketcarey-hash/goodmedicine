@@ -1,0 +1,52 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import MomentCard from '../../components/MomentCard.svelte';
+import { MOMENTS } from '../../lib/moments-data';
+---
+
+<Shell title="Moments" branch="moments">
+  <!-- Header -->
+  <section class="px-5 pt-10 pb-4">
+    <a
+      href="/"
+      class="inline-flex items-center gap-1 text-sm text-text-muted hover:text-stone-700 transition-colors mb-4"
+    >
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+      Home
+    </a>
+
+    <h1 class="text-3xl font-bold tracking-tight leading-[1.1] mb-3">
+      When you’re in the<br />middle of something
+    </h1>
+    <p class="text-text-secondary leading-relaxed max-w-sm">
+      These are places to come when life shifts. Each one meets you where you are — with the few things that matter, and no pressure to do any of it today.
+    </p>
+  </section>
+
+  <!-- Moments grid -->
+  <section class="px-5 pb-8">
+    <div class="flex flex-col gap-3">
+      {MOMENTS.map((m) => (
+        <MomentCard
+          client:load
+          slug={m.slug}
+          cardPrompt={m.cardPrompt}
+          cardHint={m.cardHint}
+          tone={m.tone}
+          published={m.published}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Gentle footer -->
+  <section class="px-5 pb-12">
+    <div class="rounded-xl bg-stone-100 p-5">
+      <p class="text-sm text-text-secondary leading-relaxed">
+        More are being written. One at a time, with care. If there’s a moment you’d like to see here, keep using the app — the next ones are shaped by what people actually need.
+      </p>
+    </div>
+  </section>
+</Shell>

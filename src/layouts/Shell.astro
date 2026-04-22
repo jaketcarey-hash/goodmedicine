@@ -2,12 +2,11 @@
 import '../styles/global.css';
 import BottomNav from '../components/BottomNav.svelte';
 import OfflineBanner from '../components/OfflineBanner.svelte';
-import WelcomeFlow from '../components/WelcomeFlow.svelte';
 
 interface Props {
   title?: string;
   description?: string;
-  branch?: 'money' | 'rights' | 'path' | 'self' | 'home';
+  branch?: 'money' | 'rights' | 'path' | 'self' | 'home' | 'moments';
 }
 
 const {
@@ -42,7 +41,6 @@ const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
       Skip to content
     </a>
     <OfflineBanner client:load />
-    <WelcomeFlow client:load />
     <main
       class="mx-auto max-w-lg min-h-[calc(100dvh-var(--nav-height))]"
       id="main-content"
