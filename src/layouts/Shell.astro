@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import BottomNav from '../components/BottomNav.svelte';
 import OfflineBanner from '../components/OfflineBanner.svelte';
+import GlossarySheet from '../components/GlossarySheet.astro';
 
 interface Props {
   title?: string;
@@ -49,6 +50,7 @@ const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
     </main>
 
     <BottomNav client:load activeBranch={branch} />
+    <GlossarySheet />
 
     <!-- Breadcrumb: save last visited page -->
     <script is:inline>
