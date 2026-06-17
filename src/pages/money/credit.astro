@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -206,5 +207,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       maintain excellent credit. Keep it simple.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/money/debt', title: 'Getting Out of Debt', description: 'If a balance got away from you, here is how to clear it' },
+      { href: '/money/debt-planner', title: 'Debt Payoff Planner', description: 'See exactly when you can be debt-free' },
+      { href: '/money/banking', title: 'Banking Basics', description: 'The account and tools that make paying on time automatic' },
+    ]}
+  />
 
 </Article>

@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -352,5 +353,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       <a href="/resources">Resources</a> page for more.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="rights"
+    links={[
+      { href: '/rights/treaty-payments', title: 'Treaty Payments', description: 'How treaty and settlement funds flow to nations and members' },
+      { href: '/money/seven-generations', title: 'Seven Generations', description: 'The long-term thinking behind community trust funds' },
+      { href: '/path/giving-back', title: 'Giving Back', description: 'Take an active role in your community\'s economic future' },
+    ]}
+  />
 
 </Article>

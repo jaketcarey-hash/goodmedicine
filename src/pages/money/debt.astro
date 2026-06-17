@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -247,5 +248,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
     forward. The fact that you're reading this means you're already taking it
     seriously.
   </p>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/money/debt-planner', title: 'Debt Payoff Planner', description: 'Map your debts and see your debt-free date' },
+      { href: '/money/budgeting', title: 'Budgeting', description: 'Free up room in your budget to pay debt down faster' },
+      { href: '/money/credit', title: 'Understanding Credit', description: 'Rebuild your credit once the balances are clear' },
+    ]}
+  />
 
 </Article>

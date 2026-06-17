@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -199,5 +200,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       comes in stages.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="path"
+    links={[
+      { href: '/money/saving', title: 'Saving', description: 'Build the emergency fund that steadies everything else' },
+      { href: '/self/conversations', title: 'Money Conversations', description: 'Talk money honestly with the people you build a life with' },
+      { href: '/path/raising-family', title: 'Raising a Family', description: 'Planning for the next stage when family enters the picture' },
+    ]}
+  />
 
 </Article>

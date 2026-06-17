@@ -1,6 +1,6 @@
-# Good Medicine
+# Strong Fire
 
-Free financial wellness PWA for First Nations communities. 46 pages, fully offline, zero data collection.
+Free financial wellness PWA for First Nations communities. ~50 pages, 15 interactive tools, fully offline, zero data collection. Lives at strongfire.ca. (Repo is still named `goodmedicine` from the original working title.)
 
 ## Stack
 - **Astro 6** — static site generator, zero JS by default
@@ -71,5 +71,8 @@ Free financial wellness PWA for First Nations communities. 46 pages, fully offli
 - `npm run build` — build static output to dist/ and generate service worker precache
 - `npx astro preview` — preview built site
 
+## Cross-Linking
+- `src/components/RelatedLinks.astro` — branch-coloured "Where to next" footer for article pages. Pass `branch` and a `links` array of `{ href, title, description }`. Use it to give articles a forward path instead of dead-ending at the back button.
+
 ## Community Feedback Cycle
-Content is being tested with community members and refined based on their input. The current review date for all content is March 2026. When updating content, update the `lastUpdated` prop on the affected article pages and the review date in the disclaimer.
+Content is being tested with community members and refined based on their input. The current review date for updated content is June 2026. When updating content, update the `lastUpdated` prop on the affected article pages and the review date in the disclaimer.

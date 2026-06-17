@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -121,5 +122,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
     <li>Set up direct deposit for any regular income (employment, benefits, band distributions)</li>
     <li>Download the bank's app and enable notifications so you always know your balance</li>
   </ol>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/money/budgeting', title: 'Budgeting', description: 'Once the account is open, build a plan for what flows through it' },
+      { href: '/money/budget-tool', title: 'Budget Tool', description: 'Map your income and spending in a few minutes' },
+      { href: '/money/saving', title: 'Saving', description: 'Open a second account and start putting money aside' },
+    ]}
+  />
 
 </Article>

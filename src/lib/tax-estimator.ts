@@ -1,18 +1,18 @@
 /**
- * Canadian tax estimator — 2025 rates.
+ * Canadian tax estimator — 2026 rates.
  * These are estimates only. Not tax advice.
  */
 
-// ---- Federal brackets (2025) ----
+// ---- Federal brackets (2026) ----
 const FEDERAL_BRACKETS: [number, number][] = [
-  [57_375, 0.15],
-  [57_375, 0.205],   // 57,375 to 114,750
-  [43_718, 0.26],    // 114,750 to 158,468
-  [61_532, 0.29],    // 158,468 to 220,000
-  [Infinity, 0.33],  // above 220,000
+  [58_523, 0.14],
+  [58_522, 0.205],   // 58,523 to 117,045
+  [64_395, 0.26],    // 117,045 to 181,440
+  [77_042, 0.29],    // 181,440 to 258,482
+  [Infinity, 0.33],  // above 258,482
 ];
 
-const FEDERAL_BASIC_PERSONAL = 16_129;
+const FEDERAL_BASIC_PERSONAL = 16_452;
 
 // ---- Provincial first-bracket rates and basic personal amounts ----
 interface ProvincialInfo {
@@ -22,31 +22,31 @@ interface ProvincialInfo {
 }
 
 export const PROVINCES: Record<string, ProvincialInfo> = {
-  BC: { label: 'British Columbia', rate: 0.0506, basicPersonal: 12_580 },
-  AB: { label: 'Alberta', rate: 0.10, basicPersonal: 21_885 },
-  SK: { label: 'Saskatchewan', rate: 0.105, basicPersonal: 18_491 },
+  BC: { label: 'British Columbia', rate: 0.056, basicPersonal: 13_216 },
+  AB: { label: 'Alberta', rate: 0.10, basicPersonal: 22_769 },
+  SK: { label: 'Saskatchewan', rate: 0.105, basicPersonal: 20_381 },
   MB: { label: 'Manitoba', rate: 0.108, basicPersonal: 15_780 },
-  ON: { label: 'Ontario', rate: 0.0505, basicPersonal: 11_865 },
-  QC: { label: 'Quebec', rate: 0.14, basicPersonal: 18_056 },
-  NB: { label: 'New Brunswick', rate: 0.094, basicPersonal: 13_044 },
-  NS: { label: 'Nova Scotia', rate: 0.0879, basicPersonal: 11_481 },
-  PE: { label: 'Prince Edward Island', rate: 0.0965, basicPersonal: 13_500 },
-  NL: { label: 'Newfoundland & Labrador', rate: 0.087, basicPersonal: 10_818 },
-  YT: { label: 'Yukon', rate: 0.064, basicPersonal: 16_129 },
-  NT: { label: 'Northwest Territories', rate: 0.059, basicPersonal: 16_593 },
-  NU: { label: 'Nunavut', rate: 0.04, basicPersonal: 18_767 },
+  ON: { label: 'Ontario', rate: 0.0505, basicPersonal: 12_989 },
+  QC: { label: 'Quebec', rate: 0.14, basicPersonal: 18_952 },
+  NB: { label: 'New Brunswick', rate: 0.094, basicPersonal: 13_664 },
+  NS: { label: 'Nova Scotia', rate: 0.0879, basicPersonal: 11_932 },
+  PE: { label: 'Prince Edward Island', rate: 0.0965, basicPersonal: 15_000 },
+  NL: { label: 'Newfoundland & Labrador', rate: 0.087, basicPersonal: 11_188 },
+  YT: { label: 'Yukon', rate: 0.064, basicPersonal: 16_452 },
+  NT: { label: 'Northwest Territories', rate: 0.059, basicPersonal: 18_198 },
+  NU: { label: 'Nunavut', rate: 0.04, basicPersonal: 19_659 },
 };
 
-// ---- CPP / EI (2025) ----
+// ---- CPP / EI (2026) ----
 const CPP_RATE = 0.0595;
 const CPP_EXEMPTION = 3_500;
-const CPP_MAX_PENSIONABLE = 68_500;
+const CPP_MAX_PENSIONABLE = 74_600;
 
 const EI_RATE = 0.0163;
-const EI_MAX_INSURABLE = 65_700;
+const EI_MAX_INSURABLE = 68_900;
 
-// ---- GST credit rough estimate (single adult, 2025) ----
-const GST_CREDIT_SINGLE = 519;
+// ---- GST credit rough estimate (single adult, July 2025–June 2026) ----
+const GST_CREDIT_SINGLE = 533;
 
 // ---- Calculation functions ----
 

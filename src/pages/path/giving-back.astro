@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -202,5 +203,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       <a href="/resources">Resources</a> page for more.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="path"
+    links={[
+      { href: '/money/seven-generations', title: 'Seven Generations', description: 'The philosophy behind giving forward to those who come after' },
+      { href: '/rights/band-finances', title: 'Band Finances', description: 'How community money is governed and put to work' },
+      { href: '/money/investing', title: 'Investing', description: 'Grow what you have so you have more to give' },
+    ]}
+  />
 
 </Article>

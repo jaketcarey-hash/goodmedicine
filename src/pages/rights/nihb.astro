@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -10,7 +11,7 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   backHref="/rights"
   backLabel="Rights"
   readTime="6 min"
-  lastUpdated="March 2026"
+  lastUpdated="June 2026"
 >
 
   <p>
@@ -125,5 +126,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       coordination of benefits, and it means you can often get full coverage.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="rights"
+    links={[
+      { href: '/self/benefits', title: 'Benefits Finder', description: 'See everything you may be entitled to, NIHB and beyond' },
+      { href: '/rights/jordans-principle', title: "Jordan's Principle", description: 'Funding for First Nations children that NIHB may not cover' },
+      { href: '/rights/section-87', title: 'Section 87', description: 'Your tax exemption and what it means for your income' },
+    ]}
+  />
 
 </Article>

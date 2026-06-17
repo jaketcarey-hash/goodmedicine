@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -190,5 +191,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       one skilled professional at a time.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="path"
+    links={[
+      { href: '/money/investing', title: 'Investing', description: 'Put a growing income to work for the long term' },
+      { href: '/self/confidence', title: 'Money Confidence', description: 'Carry that same confidence into your financial decisions' },
+      { href: '/path/giving-back', title: 'Giving Back', description: 'Turn your skills and network into community impact' },
+    ]}
+  />
 
 </Article>

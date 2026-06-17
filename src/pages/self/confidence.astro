@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -114,5 +115,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       financial professional will make you feel heard, not judged.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="self"
+    links={[
+      { href: '/self/conversations', title: 'Money Conversations', description: 'Turn new confidence into honest talks with the people around you' },
+      { href: '/self/stress', title: 'Financial Stress', description: 'Where shame comes from, and tools to ease the weight' },
+      { href: '/money/budgeting', title: 'Budgeting', description: 'A concrete first step that builds confidence fast' },
+    ]}
+  />
 
 </Article>

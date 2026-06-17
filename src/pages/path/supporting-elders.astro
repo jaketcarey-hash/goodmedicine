@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -227,5 +228,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       are the ones who also care for themselves.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="path"
+    links={[
+      { href: '/self/benefits', title: 'Benefits Finder', description: "See every benefit your elder — and you — may be entitled to" },
+      { href: '/rights/nihb', title: 'Non-Insured Health Benefits', description: 'Coverage for dental, vision, medication, and medical travel' },
+      { href: '/self/stress', title: 'Financial Stress', description: 'Caregiving is heavy — tools for the strain it carries' },
+    ]}
+  />
 
 </Article>

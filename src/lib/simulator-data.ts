@@ -1,7 +1,7 @@
 /* ============================================================
    Life Change Simulator — Cost of Living Data & Tax Helpers
    Canadian cities, federal/provincial tax brackets, CPP/EI.
-   All figures are 2025 estimates for illustration only.
+   All figures are 2026 estimates for illustration only.
    ============================================================ */
 
 export interface CityData {
@@ -65,21 +65,21 @@ export function estimateMonthlyCosts(city: CityData): number {
   return city.rent + city.groceries + city.transit + city.utilities + city.phone;
 }
 
-// ---- Federal tax brackets (2025) ----
+// ---- Federal tax brackets (2026) ----
 
 const federalBrackets = [
-  { limit: 57_375,  rate: 0.15 },
-  { limit: 114_750, rate: 0.205 },
-  { limit: 158_468, rate: 0.26 },
-  { limit: 220_000, rate: 0.29 },
+  { limit: 58_523,  rate: 0.14 },
+  { limit: 117_045, rate: 0.205 },
+  { limit: 181_440, rate: 0.26 },
+  { limit: 258_482, rate: 0.29 },
   { limit: Infinity, rate: 0.33 },
 ];
 
-const federalPersonalAmount = 16_129;
+const federalPersonalAmount = 16_452;
 
 // Simplified provincial rates (first bracket only — estimation)
 const provincialRates: Record<string, number> = {
-  BC: 0.0506,
+  BC: 0.056,
   AB: 0.10,
   SK: 0.105,
   MB: 0.108,
@@ -149,11 +149,11 @@ export function estimateAnnualProvincialTax(annualIncome: number, province: stri
 // ---- CPP & EI ----
 
 const CPP_RATE = 0.0595;
-const CPP_MAX_PENSIONABLE = 71_300;
+const CPP_MAX_PENSIONABLE = 74_600;
 const CPP_EXEMPTION = 3_500;
 
 const EI_RATE = 0.0163;
-const EI_MAX_INSURABLE = 65_700;
+const EI_MAX_INSURABLE = 68_900;
 
 /**
  * Estimate annual CPP and EI contributions.

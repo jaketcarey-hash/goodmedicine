@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -462,5 +463,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   <p>
     Seven generations. Build for them.
   </p>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/money/investing', title: 'Investing', description: 'The practical first steps toward long-term growth' },
+      { href: '/path/raising-family', title: 'Raising a Family', description: 'Building for your children, RESPs, and what to pass on' },
+      { href: '/path/giving-back', title: 'Giving Back', description: 'Extending seven-generation thinking to your community' },
+    ]}
+  />
 
 </Article>

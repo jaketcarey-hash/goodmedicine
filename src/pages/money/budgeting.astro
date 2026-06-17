@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -223,5 +224,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       that's a budget. You can refine it over time.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/money/budget-tool', title: 'Budget Tool', description: 'Put this into practice — track what comes in and goes out' },
+      { href: '/money/saving', title: 'Saving', description: 'Turn the room in your budget into money set aside' },
+      { href: '/money/debt', title: 'Getting Out of Debt', description: 'If payments are eating your budget, here is a way out' },
+    ]}
+  />
 
 </Article>

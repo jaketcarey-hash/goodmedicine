@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -10,7 +11,7 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   backHref="/path"
   backLabel="Path"
   readTime="9 min"
-  lastUpdated="March 2026"
+  lastUpdated="June 2026"
 >
 
   <p>
@@ -46,12 +47,12 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
 
   <ExpandableSection client:idle title="How much is the CCB worth?">
     <div class="space-y-3 text-sm">
-      <p>For the 2025-2026 benefit year, the maximum annual CCB is:</p>
+      <p>For the 2026-2027 benefit year, the maximum annual CCB is:</p>
       <ul>
-        <li><strong>Under 6:</strong> $7,787 per child ($648.91/month)</li>
-        <li><strong>Ages 6-17:</strong> $6,570 per child ($547.50/month)</li>
+        <li><strong>Under 6:</strong> $8,157 per child ($679.75/month)</li>
+        <li><strong>Ages 6-17:</strong> $6,883 per child ($573.58/month)</li>
       </ul>
-      <p>The amount decreases as family net income rises above roughly $36,500. But even middle-income families receive significant amounts.</p>
+      <p>The amount decreases as family net income rises above roughly $37,500. But even middle-income families receive significant amounts.</p>
       <p>If your income is tax-exempt under Section 87, it's reported on your return but often results in zero net income for benefit calculation purposes — which means you may qualify for the maximum CCB. This is one of the most valuable intersections of Section 87 and the benefit system.</p>
     </div>
   </ExpandableSection>
@@ -203,5 +204,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       benefits for the rest of their lives. Make it normal, not scary.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="path"
+    links={[
+      { href: '/self/benefits', title: 'Benefits Finder', description: 'Confirm the CCB, CLB, and other family benefits you qualify for' },
+      { href: '/money/saving', title: 'Saving and Growing', description: 'How RESPs, TFSAs, and the CESG match actually work' },
+      { href: '/rights/education-funding', title: 'Education Funding', description: 'Post-secondary support when your kids are ready' },
+    ]}
+  />
 
 </Article>

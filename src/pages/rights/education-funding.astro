@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -327,5 +328,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       your school's Indigenous student services centre.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="rights"
+    links={[
+      { href: '/path/leaving-home', title: 'Leaving Home for School', description: 'Budgeting, credit, and taxes once you arrive on campus' },
+      { href: '/money/budgeting', title: 'Budgeting', description: 'Make funding stretch across a full school year' },
+      { href: '/path/first-job', title: 'Your First Job', description: 'Turn the credential into income after graduation' },
+    ]}
+  />
 
 </Article>

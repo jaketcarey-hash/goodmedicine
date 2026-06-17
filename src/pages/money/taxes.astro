@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -10,7 +11,7 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   backHref="/money"
   backLabel="Money"
   readTime="7 min"
-  lastUpdated="March 2026"
+  lastUpdated="June 2026"
 >
 
   <p>
@@ -34,8 +35,8 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   </p>
 
   <ul>
-    <li><strong>GST/HST credit</strong> — up to $519/year for a single person (2024), paid quarterly</li>
-    <li><strong>Canada Child Benefit (CCB)</strong> — up to $7,787 per child under 6 and $6,570 per child aged 6-17 (2024). This is significant money</li>
+    <li><strong>GST/HST credit</strong> — up to $533/year for a single person (2025-2026), paid quarterly</li>
+    <li><strong>Canada Child Benefit (CCB)</strong> — up to $8,157 per child under 6 and $6,883 per child aged 6-17 (2026-2027 benefit year). This is significant money</li>
     <li><strong>Canada Workers Benefit</strong> — refundable tax credit for low-income workers</li>
     <li><strong>Provincial credits</strong> — climate action payments, sales tax credits, rental credits (varies by province)</li>
     <li><strong>RRSP and TFSA contribution room</strong> — CRA calculates your RRSP room from your filed return</li>
@@ -210,5 +211,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
     that time — hundreds or thousands of dollars in benefits — makes it one
     of the highest-value things you can do for your finances each year.
   </p>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/rights/section-87', title: 'Section 87 explained', description: 'When your income is tax-exempt — and how the connecting factors work' },
+      { href: '/tools/tax-estimator', title: 'Tax Estimator', description: 'See what you might owe or get back, with a Section 87 toggle' },
+      { href: '/self/benefits', title: 'Benefits Finder', description: 'Filing unlocks these — find every benefit you may qualify for' },
+    ]}
+  />
 
 </Article>

@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -10,7 +11,7 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   backHref="/money"
   backLabel="Money"
   readTime="7 min"
-  lastUpdated="March 2026"
+  lastUpdated="June 2026"
 >
 
   <p>
@@ -36,7 +37,7 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   </p>
 
   <ul>
-    <li><strong>Contribution limit:</strong> $7,000/year (2024-2025), and unused room accumulates. If you turned 18 in 2009 or earlier and never contributed, you have over $95,000 of room</li>
+    <li><strong>Contribution limit:</strong> $7,000/year (the 2026 limit, unchanged since 2024), and unused room accumulates. If you turned 18 in 2009 or earlier and never contributed, you have around $109,000 of room</li>
     <li><strong>Withdrawals:</strong> Tax-free, anytime, for any reason</li>
     <li><strong>What you can hold inside it:</strong> Cash, GICs, mutual funds, ETFs, stocks, bonds — it's not just a savings account</li>
   </ul>
@@ -234,5 +235,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
     habit. Money that's growing is money that's working for your future — and
     for your family's future.
   </p>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/money/savings-tracker', title: 'Savings Goals', description: 'Set a goal and track every deposit — start with $25' },
+      { href: '/money/investing', title: 'Investing 101', description: 'What to hold inside a TFSA or RESP so it actually grows' },
+      { href: '/money/seven-generations', title: 'Seven Generations', description: 'Long-term wealth, the way your community has always thought about it' },
+    ]}
+  />
 
 </Article>

@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -524,5 +525,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
     You just need to start. The learning comes with time, and the growth comes
     with patience.
   </p>
+
+  <RelatedLinks
+    branch="money"
+    links={[
+      { href: '/money/saving', title: 'Saving', description: 'Build the emergency fund that comes before investing' },
+      { href: '/money/seven-generations', title: 'Seven Generations', description: 'Why patient, long-term investing builds lasting wealth' },
+      { href: '/money/savings-tracker', title: 'Savings Tracker', description: 'Set a goal and watch your contributions add up' },
+    ]}
+  />
 
 </Article>

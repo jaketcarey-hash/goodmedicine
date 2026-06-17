@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -200,5 +201,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       equipment) have been the basis for successful claims and settlements.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="rights"
+    links={[
+      { href: '/rights/section-87', title: 'Section 87', description: 'How tax exemption applies to treaty and per-capita payments' },
+      { href: '/rights/band-finances', title: 'Band Finances', description: 'How settlement and trust funds are governed and distributed' },
+      { href: '/money/seven-generations', title: 'Seven Generations', description: 'Stewarding a distribution so it lasts beyond one payment' },
+    ]}
+  />
 
 </Article>

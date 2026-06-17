@@ -1,0 +1,53 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import CarryCard from '../../../components/CarryCard.svelte';
+import { CARRY_CARDS } from '../../../lib/carry-cards-data';
+---
+
+<Shell title="Carry Cards" branch="rights">
+  <!-- Header -->
+  <section class="px-5 pt-10 pb-4">
+    <a
+      href="/rights"
+      class="inline-flex items-center gap-1 text-sm text-text-muted hover:text-stone-700 transition-colors mb-4"
+    >
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+      Rights
+    </a>
+
+    <h1 class="text-3xl font-bold tracking-tight leading-[1.1] mb-3">Carry Cards</h1>
+    <p class="text-text-secondary leading-relaxed max-w-sm">
+      Quick cards for the moment you're standing at the counter — the pharmacy, the dentist, the bank.
+      The front is the answer. Open one for what to say, what to bring, and who to call. Works offline.
+    </p>
+  </section>
+
+  <!-- Cards -->
+  <section class="px-5 pb-8">
+    <div class="flex flex-col gap-3">
+      {CARRY_CARDS.map((c) => (
+        <CarryCard
+          client:load
+          slug={c.slug}
+          title={c.title}
+          setting={c.setting}
+          answer={c.answer}
+          accent={c.accent}
+          published={c.published}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Footer note -->
+  <section class="px-5 pb-12">
+    <div class="rounded-xl bg-stone-100 p-5">
+      <p class="text-sm text-text-secondary leading-relaxed">
+        Each card is a plain-language summary of what's already in the Rights and Money sections —
+        kept short so you can read it on the spot. For the full picture, every card links back to the article it came from.
+      </p>
+    </div>
+  </section>
+</Shell>

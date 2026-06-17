@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -10,8 +11,20 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
   backHref="/rights"
   backLabel="Rights"
   readTime="8 min"
-  lastUpdated="March 2026"
+  lastUpdated="June 2026"
 >
+
+  <div class="callout callout-warning">
+    <strong>Education, not advice</strong>
+    <p>
+      This page explains Section 87 in plain language so you can understand the landscape
+      and ask better questions with confidence. The information is current as of 2026.
+      Because every situation turns on its own facts, this page is general education and
+      has not been reviewed by a tax professional — so before you act on any specific claim
+      here, confirm it with a qualified tax advisor who has Indigenous tax experience. AFOA
+      Canada (afoa.ca) and many band offices can refer you to one.
+    </p>
+  </div>
 
   <p>
     Section 87 of the Indian Act says that the personal property of a Status Indian or a band,
@@ -150,7 +163,7 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
 
       <div class="example">
         <p class="example-label">RRSP</p>
-        <p>If your income is already tax-exempt, an RRSP gives you <strong>no additional benefit</strong> — you can't deduct what you already don't owe. Worse: when you withdraw in retirement, it becomes taxable. If your income is exempt now, an RRSP could actually cost you.</p>
+        <p>If your income is already tax-exempt, an RRSP contribution may offer little benefit — there's no tax to defer, and withdrawals in retirement are generally taxable. For many people with exempt income, a TFSA is the better fit. This is worth running the numbers on with a tax advisor before contributing.</p>
       </div>
 
       <div class="example">
@@ -160,32 +173,35 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
 
       <div class="example">
         <p class="example-label">Peace Hills Trust / On-Reserve Financial Institutions</p>
-        <p>Deposits held at financial institutions located on reserve have a stronger argument for exemption. Interest earned on these deposits may be exempt. This is one area where choosing where you bank can make a tax difference.</p>
+        <p>Deposits held at financial institutions located on reserve have historically had a stronger argument for exemption, and this has been tested in Canadian courts (see <em>Bastien</em>, <em>Recalma</em>, <em>Dubé</em>). The outcome depends heavily on the specific facts — where the institution is situated, the nature of the deposit, and the connecting factors. Before relying on this strategy for meaningful amounts, get advice from a tax professional familiar with Section 87 investment income.</p>
       </div>
     </div>
   </ExpandableSection>
 
   <div class="callout callout-warning">
-    <strong>Watch out for bad advice</strong>
+    <strong>Ask the right question</strong>
     <p>
-      Some advisors don't understand Section 87 and will recommend RRSPs to everyone. If
-      your employment income is already exempt, maxing out an RRSP could mean paying tax
-      on money that was previously tax-free. Always ask: "How does this interact with my
-      Section 87 status?"
+      Not every advisor is familiar with Section 87. If someone recommends an RRSP and
+      your employment income is exempt, make sure you understand how the two interact
+      before contributing. The simple question that opens it up: "How does this work
+      with my Section 87 status?"
     </p>
   </div>
 
   <h2>Government benefits</h2>
 
   <p>
-    Common benefits and how Section 87 applies:
+    Common benefits and how Section 87 may apply. These rules are nuanced — the summaries
+    below are a starting point, not a final answer.
   </p>
 
   <ul>
-    <li><strong>EI and social assistance</strong> — generally exempt if you live on reserve</li>
-    <li><strong>CPP and OAS</strong> — depends on your residence when you receive it. Living on reserve at the time of receipt may make these exempt</li>
-    <li><strong>Canada Child Benefit</strong> — this is already non-taxable for everyone</li>
-    <li><strong>GST/HST credit</strong> — already non-taxable, but filing your return is required to receive it</li>
+    <li><strong>EI (Employment Insurance)</strong> — whether EI benefits are exempt generally follows the tax treatment of the employment that generated them. If the underlying work was exempt, EI based on that work may be exempt too. Residence alone usually isn't enough.</li>
+    <li><strong>Social assistance</strong> — assistance received while living on reserve is typically exempt.</li>
+    <li><strong>CPP</strong> — whether CPP benefits are exempt generally tracks whether the underlying contributions came from exempt employment, not just current residence.</li>
+    <li><strong>OAS</strong> — has its own rules tied to Canadian residence. Section 87 treatment depends on the specific facts; confirm with a tax professional.</li>
+    <li><strong>Canada Child Benefit</strong> — already non-taxable for everyone.</li>
+    <li><strong>GST/HST credit</strong> — already non-taxable, but filing your return is required to receive it.</li>
   </ul>
 
   <div class="callout callout-important">
@@ -206,6 +222,15 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
     <li><strong>Ask the right question.</strong> When any financial professional recommends something, ask: "How does this work with Section 87?"</li>
     <li><strong>Keep records.</strong> If CRA questions your exemption, you'll need to show the connecting factors. Keep pay stubs, employment contracts, and anything that shows where your duties are performed.</li>
   </ol>
+
+  <RelatedLinks
+    branch="rights"
+    links={[
+      { href: '/rights/section-87-checker', title: 'Section 87 Checker', description: 'Answer a few questions to see if your income likely qualifies' },
+      { href: '/money/taxes', title: 'Taxes and Filing', description: 'Why filing still matters when your income is exempt' },
+      { href: '/tools/tax-estimator', title: 'Tax Estimator', description: 'Model your take-home pay with the exemption applied' },
+    ]}
+  />
 
   <h2>Going deeper</h2>
 

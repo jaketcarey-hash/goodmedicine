@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -240,5 +241,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       Your band's health or social services coordinator can also help you navigate the process.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="rights"
+    links={[
+      { href: '/rights/nihb', title: 'Non-Insured Health Benefits', description: 'Health coverage that works alongside Jordan\'s Principle' },
+      { href: '/self/benefits', title: 'Benefits Finder', description: 'See every benefit your child and family may be entitled to' },
+      { href: '/path/raising-family', title: 'Raising a Family', description: 'Planning for children, from RESPs to everyday costs' },
+    ]}
+  />
 
 </Article>

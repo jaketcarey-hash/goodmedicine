@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -130,5 +131,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
     The conversations you have about money today shape the financial confidence of
     the next generation. That's worth the discomfort.
   </p>
+
+  <RelatedLinks
+    branch="self"
+    links={[
+      { href: '/self/confidence', title: 'Money Confidence', description: 'Build the footing that makes hard conversations easier' },
+      { href: '/path/raising-family', title: 'Raising a Family', description: 'Pass financial confidence on to the next generation' },
+      { href: '/money/banking', title: 'Banking Basics', description: 'Know your options before you talk to a bank' },
+    ]}
+  />
 
 </Article>

@@ -1,6 +1,7 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 ---
 
 <Article
@@ -131,5 +132,14 @@ import ExpandableSection from '../../components/ExpandableSection.svelte';
       20 minutes. Bring your T4s, tuition receipts, and Status card number.
     </p>
   </div>
+
+  <RelatedLinks
+    branch="path"
+    links={[
+      { href: '/rights/education-funding', title: 'Education Funding', description: 'Band support, Indspire, and student aid for school' },
+      { href: '/money/budgeting', title: 'Budgeting', description: 'Stretch limited income across rent, food, and school' },
+      { href: '/money/credit', title: 'Understanding Credit', description: 'Use a first credit card without getting burned' },
+    ]}
+  />
 
 </Article>
