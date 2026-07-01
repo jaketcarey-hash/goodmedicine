@@ -1,430 +1,279 @@
-# Content Review — June 2026
+# Content Review — July 2026
 
-**Date of review:** June 1, 2026  
-**Supersedes:** May 2026 review (all prior findings remain unresolved)  
-**Reviewer:** Automated content audit  
-**Scope:** All article pages, tax/benefit data, cost-of-living data, glossary, hardcoded dates  
-**App content last reviewed:** March 2026 (per disclaimer)  
-**Next review due:** December 2026, or immediately following CRA's 2027 rate announcement
+**Date of review:** July 1, 2026
+**Supersedes:** June 2026 review (status of all prior findings tracked below)
+**Reviewer:** Automated content audit
+**Scope:** All `.astro` pages under `src/pages/`, `src/lib/tax-estimator.ts`, `src/lib/simulator-data.ts`, `src/components/BenefitsFinder.svelte`, `src/lib/glossary-data.ts`, `src/lib/calendar-events.ts`, `src/lib/settlement-math.ts`
 
 ---
 
 ## Summary
 
-A May 2026 review identified twelve issues. None have been resolved. This review confirms
-all prior findings remain outstanding and adds one new item of elevated urgency: the
-**CCB and GST credit benefit year resets on July 1, 2026** — 30 days from today. Once that
-happens, displayed amounts will be a full benefit year behind and users approaching the
-Benefits Finder ahead of the July payment cycle will see incorrect figures.
+Two new critical errors were introduced in the tax calculation logic during the June update
+cycle. The federal first-bracket rate is coded as **14%** in both calculation files — the
+actual Canadian rate is **15%** and always has been. Additionally, the third and fourth
+federal bracket thresholds are significantly too high (by ~$18K and ~$38K respectively),
+causing the Tax Estimator and Life Simulator to understate federal income tax for moderate-
+to-high earners.
 
-The single most actionable data issue remains the **CPP max pensionable inconsistency**
-between the two tax libraries: `simulator-data.ts` uses the correct 2026 value ($71,300)
-while `tax-estimator.ts` still uses the 2025 value ($68,500), causing the two tools to
-produce different CPP deductions for identical income. This is a one-line fix.
+Today (July 1) also marks the start of the **2026–2027 CCB and GST credit benefit year**.
+`BenefitsFinder.svelte` was not updated before the reset and now shows CCB amounts that
+are a full year behind. The article pages (`taxes.astro`, `raising-family.astro`) were
+updated, creating a visible inconsistency between tools.
+
+**Fixes from the June review:** CPP_MAX_PENSIONABLE is now consistent across both files
+($74,600). The TFSA lifetime room figure was corrected ($109,000). The GST credit was
+updated from $519 to $533. Several article pages were updated to June 2026. The disclaimer
+review date was updated. Prior item 2 (app name) was a false alarm — "Strong Fire" is
+correct.
 
 ---
 
 ## CRITICAL — Wrong or Internally Inconsistent Information
 
-### 1. CPP max pensionable earnings inconsistency between tax libraries
+### 1. Federal first-bracket rate is 14% in both tax files — should be 15%
 
-**Files:**
-- `src/lib/tax-estimator.ts:43` — `CPP_MAX_PENSIONABLE = 68_500` (2025 value — wrong)
-- `src/lib/simulator-data.ts:152` — `CPP_MAX_PENSIONABLE = 71_300` (2026 value — correct)
+**Files:** `src/lib/tax-estimator.ts:8`, `src/lib/simulator-data.ts:71`
 
-**What's wrong:** The Tax Estimator and Life Simulator compute CPP contributions using
-different maximum pensionable earnings ceilings. `simulator-data.ts` was updated to the
-2026 YMPE ($71,300) but `tax-estimator.ts` was not. A user earning $75,000 will see
-different CPP deductions in each tool — a direct internal contradiction.
+Both files set the first federal bracket rate to `0.14` (14%). The actual Canadian federal
+first-bracket rate is **15%** and has been 15% since 2015. This is not a rounding issue.
 
-The Tax Estimator undercalculates CPP by approximately $141/year for anyone earning above
-$68,500 (difference of $2,800 × 5.95%).
+**Impact:** The estimator understates federal tax by approximately **$435/year** for a
+person earning $60,000. Users may plan their finances assuming more take-home pay than they
+will actually receive.
 
-**Fix:** `src/lib/tax-estimator.ts` line 43:
+**Fix:**
 ```ts
-const CPP_MAX_PENSIONABLE = 71_300;  // 2026 YMPE — update each fall when CRA announces
+// tax-estimator.ts line 8
+[58_523, 0.15],   // was 0.14
+
+// simulator-data.ts line 71
+{ limit: 58_523, rate: 0.15 },   // was 0.14
 ```
-This is a one-line change.
 
 ---
 
-### 2. App name in disclaimer does not match the app
+### 2. Federal 26% and 29% bracket ceilings are significantly too high
 
-**File:** `src/pages/disclaimer.astro:11`
+**Files:** `src/lib/tax-estimator.ts:10–11`, `src/lib/simulator-data.ts:73–74`
 
-The disclaimer reads "Strong Fire provides general educational information..." The
-codebase, repository, and CLAUDE.md all refer to this project as **Good Medicine**. Users
-reading the disclaimer see a name that does not appear anywhere else in the interface.
-Either the disclaimer was copied from a prior project or the app was renamed without
-updating the disclaimer. Whichever it is, they need to match.
+The current code and the reference brackets provided for this review:
 
-**Fix:** Confirm the correct name and update the disclaimer. If "Good Medicine" is
-correct: change "Strong Fire" to "Good Medicine" at disclaimer line 11.
+| Bracket | Code (current) | Expected (~2026 indexed) | Difference |
+|---|---|---|---|
+| 26% ceiling | $181,440 | ~$162,800 | +$18,640 too high |
+| 29% ceiling | $258,482 | ~$225,940 | +$32,542 too high |
+
+The 2025 actual thresholds were $158,519 and $220,000. At ~2.7% indexation for 2026,
+the expected values are approximately $162,800 and $225,940. The code's values are far
+outside what indexation can explain and do not match the reference brackets provided.
+
+**Impact:** Anyone earning between ~$163K and $181K is taxed at 26% instead of 29%.
+Anyone earning between ~$226K and $258K is taxed at 29% instead of 33%. These users see
+meaningfully understated tax bills.
+
+**Fix:** Verify the correct 2026 thresholds from the CRA T1 General guide or the CRA
+indexed amounts table and update both files. The first two bracket widths ($58,523 and
+$58,522) appear correctly indexed.
 
 ---
 
 ## IMPORTANT — Outdated Amounts or Rates
 
-### 3. CCB benefit year resets July 1 — data will be a full year stale in 30 days
+### 3. CCB amounts in BenefitsFinder.svelte are one benefit year behind — as of today
 
-**Priority elevated from previous review. The July 2026 CCB/GST reset is 30 days away.**
+**File:** `src/components/BenefitsFinder.svelte:203–204, 291`
 
-**Files with stale CCB amounts:**
-- `src/components/BenefitsFinder.svelte:204` — "$7,787 per child per year (under 6) or $6,570 (ages 6 to 17)"
-- `src/pages/money/taxes.astro:38` — "$7,787 per child under 6 and $6,570 per child aged 6-17 (2024)"
-- `src/pages/path/raising-family.astro:49–53` — labeled "2025-2026 benefit year" but shows 2024-2025 figures
-- `src/lib/tax-estimator.ts` urgent callout in BenefitsFinder uses these same figures
+Today is July 1, 2026: the first day of the 2026–2027 CCB benefit year. The component
+still shows:
+- Under 6: **$7,787/year** (2025–2026 value)
+- Ages 6–17: **$6,570/year** (2025–2026 value)
 
-The $7,787 and $6,570 figures are 2024–2025 benefit year values. The confirmed
-2025–2026 values are:
+The current 2026–2027 amounts, already correct in `taxes.astro` and `raising-family.astro`:
+- Under 6: **$8,157/year** ($679.75/month)
+- Ages 6–17: **$6,883/year** ($573.58/month)
 
-| Age group | 2024–2025 (current in app) | 2025–2026 (correct now) | Monthly (2025–2026) |
-|---|---|---|---|
-| Under 6 | $7,787/year | $7,997/year | $666.42 |
-| Ages 6–17 | $6,570/year | $6,748/year | $562.33 |
+The inconsistency is now visible to any user who reads both the article pages and the
+Benefits Finder in the same session.
 
-Note that `raising-family.astro` explicitly labels these as "2025-2026" amounts while
-showing the 2024-2025 figures — the label and the numbers are directly contradictory.
-
-After July 1, 2026, the 2026–2027 amounts will apply and the gap will widen further.
-Verify 2026–2027 amounts on the CRA benefits payment page before July 1.
-
-**Fix:**
-1. Update `raising-family.astro` to show confirmed 2025–2026 amounts ($7,997 / $6,748)
-   and correct the year label to "2025–2026."
-2. Update `BenefitsFinder.svelte` with current amounts. Remove or update the urgent
-   callout "$12,000 to $15,000 per year" — this estimate should be recalculated based
-   on actual current CCB maximums (a single parent with two children under 6 at maximum
-   CCB would receive ~$15,994/year in 2025–2026, so the range remains approximately valid
-   but the floor should be updated to reflect current maximums).
-3. Update `taxes.astro` — remove the "(2024)" label and use current benefit year figures.
+**Fix:** Update both `value` strings and the description text referencing "$7,787" in
+`BenefitsFinder.svelte`. The urgent callout "estimated $12,000 to $15,000 per year" for
+a single parent who hasn't filed remains approximately valid (two children under 6 at
+$8,157 = $16,314/year maximum), but the lower bound of the range should be recalculated.
 
 ---
 
-### 4. All federal tax thresholds and BPA labeled 2025 — now in 2026 tax year
+### 4. GST/HST credit amount is now the expired 2025–2026 value
 
-**Files:** `src/lib/tax-estimator.ts`, `src/lib/simulator-data.ts`
+**Files:** `src/lib/tax-estimator.ts:48–49`, `src/pages/money/taxes.astro:38`
 
-Both files carry 2025 federal tax values. The current tax year is 2026. CRA indexes
-brackets and personal amounts annually; the 2026 values are indexed from 2025 by the
-CRA's published indexation factor (verify with the 2026 T1 General guide or CRA
-Indexation Adjustment table).
-
-| Value | 2025 (in app) | Direction for 2026 | File | Line |
-|---|---|---|---|---|
-| Federal basic personal amount | $16,129 | Higher (~2–3%) | both | tax: 15, sim: 78 |
-| First bracket ceiling | $57,375 | Higher | both | tax: 8, sim: 72 |
-| Second bracket ceiling | $114,750 | Higher | both | tax: 9, sim: 73 |
-| Third bracket ceiling | $158,468 | Higher | both | tax: 10, sim: 74 |
-| Fourth bracket ceiling | $220,000 | Higher | both | tax: 11, sim: 75 |
-| EI max insurable earnings | $65,700 | Higher | both | tax: 46, sim: 157 |
-| GST credit (single) | $519 | Higher | tax-estimator only | 49 |
-
-Provincial basic personal amounts (tax-estimator.ts lines 25–38) are also 2025 values
-and should be updated in tandem.
-
-**Fix:** Update both files with 2026 CRA-published values. Update file header comments
-from "2025 rates"/"2025 estimates" to "2026 rates"/"2026 estimates."
-
----
-
-### 5. EI premium rate is 1.63% — 2025 employee rate was 1.64%
-
-**Files:** `src/lib/tax-estimator.ts:45`, `src/lib/simulator-data.ts:154`
-
-Both files use `EI_RATE = 0.0163`. The 2025 employee EI premium rate set by the
-Employment Insurance Commission was **1.64%**, not 1.63%. This is a minor error
-present in both tools. When updating to 2026 values, verify the 2026 EI rate at the
-same time (it changes annually).
-
-**Fix:** Update both files: `const EI_RATE = 0.0164;` — and verify the 2026 rate
-when updating all 2026 values.
-
----
-
-### 6. OAS and GIS amounts are stale — quarterly-adjusted benefits
-
-**Files:** `src/pages/path/supporting-elders.astro:50–58`, `src/components/BenefitsFinder.svelte:242–253`
-
-The app shows:
-- OAS (age 65–74): ~$727/month
-- OAS (age 75+): ~$800/month
-- GIS (single): up to ~$1,065/month
-
-OAS and GIS are adjusted quarterly. These figures were approximately correct in early 2025
-and may have drifted. Verify current quarterly amounts at the Service Canada payment
-amounts page before updating to avoid chasing a moving target. If values have changed by
-more than $20, update and add "(approximate — adjusted quarterly)" qualification.
-
-**Fix:** Check current quarterly rates on Service Canada. Update if off by more than $20.
-Consider adding a note: "OAS and GIS amounts are adjusted quarterly — verify current
-rates at Service Canada."
-
----
-
-### 7. CPP maximums in supporting-elders.astro are outdated
-
-**File:** `src/pages/path/supporting-elders.astro:41–42`
-
-```
-The average CPP payment is around $815/month...Maximum is about $1,365/month
+`tax-estimator.ts` reads:
+```ts
+// ---- GST credit rough estimate (single adult, July 2025–June 2026) ----
+const GST_CREDIT_SINGLE = 533;
 ```
 
-The 2025 maximum CPP retirement pension at 65 was approximately $1,433/month.
-The "average" figure also changes annually. The "$1,365" figure is at least one year
-behind, and the CPP maximum has been rising due to the CPP enhancement that began
-phasing in from 2019.
+`taxes.astro` line 38 reads: *"up to $533/year for a single person (2025-2026)"*
 
-**Fix:** Update CPP maximum to current year value from Service Canada. Note that the
-CPP2 second additional enhancement (see item 15 below) means future retirees will
-receive more than current maximums.
+Both explicitly label these as the 2025–2026 amounts, which ended yesterday. The
+2026–2027 GST/HST credit base amounts should be confirmed from the CRA July 2026 benefit
+notice and both files updated. Based on CPI indexation, the new single-adult amount is
+likely in the $547–$555 range.
 
 ---
 
-### 8. EI maximum weekly benefit is stale
+### 5. EI maximum weekly benefit is the 2024 figure
 
 **File:** `src/components/BenefitsFinder.svelte:278`
 
-"Up to 55% of previous earnings, to an estimated maximum of $668 per week"
+Shows: `"to an estimated maximum of $668 per week"`
 
-The 2025 EI maximum was $695/week (55% × $65,700 / 52). For 2026, with an updated
-maximum insurable earnings ceiling, the weekly maximum will be higher. Confirm from
-the 2026 EI rate notice.
-
-**Fix:** Update to current year's EI maximum weekly benefit.
+$668/week was the 2024 EI maximum. With 2026 maximum insurable earnings of $68,900 at a
+55% benefit rate, the 2026 weekly maximum is approximately **$729/week**. (The 2025
+maximum was $695/week.) This is carried from the June review — not yet fixed.
 
 ---
 
-### 9. GST/HST credit amount labeled "(2024)" in taxes.astro
+### 6. EI premium rate is 1.63% — 2025 rate was 1.64%
 
-**File:** `src/pages/money/taxes.astro:37`
+**Files:** `src/lib/tax-estimator.ts:45`, `src/lib/simulator-data.ts:154`
 
-"GST/HST credit — up to $519/year for a single person (2024), paid quarterly"
-
-The 2025–2026 base amount for a single adult is approximately $533 (indexed from $519).
-The "(2024)" label means users see a figure explicitly described as two years old on a
-page marked as reviewed in March 2026. The GST credit single amount in `tax-estimator.ts`
-(line 49: `GST_CREDIT_SINGLE = 519`) also needs updating.
-
-The range in `BenefitsFinder.svelte` ("estimated $300 to $500 per year") starts below
-the base amount even for 2024. Update to "$519 to $650+ per year depending on family
-size and income."
-
-**Fix:** Update `taxes.astro` line 37 to current benefit year amount and remove "(2024)"
-tag. Update `GST_CREDIT_SINGLE` in `tax-estimator.ts` to 2026 value.
+Both files: `const EI_RATE = 0.0163`. The 2025 employee EI rate was **1.64%**, not 1.63%.
+The 2026 rate should be confirmed from the EI premium rate notice and updated in both files
+at the same time as the bracket corrections above. Carried from June review.
 
 ---
 
-### 10. TFSA accumulated room figure is understated by $14,000
+### 7. OAS and GIS monthly amounts need quarterly verification
 
-**File:** `src/pages/money/saving.astro:39`
+**File:** `src/components/BenefitsFinder.svelte:243, 253`
 
-"If you turned 18 in 2009 or earlier and never contributed, you have over $95,000 of room"
+Shows: GIS **$1,065/month** (single), OAS **$727/month**. These are CPI-adjusted each
+quarter. As of July 1, 2026 a new quarter begins. Verify both figures against the
+Service Canada Q3 2026 (July–September) payment rates and update if they have changed by
+more than $10. Carried from June review.
 
-As of January 1, 2026, the cumulative room is $109,000:
+---
 
-| Period | Annual limit | Subtotal |
+### 8. City cost-of-living data may be stale — verify against CMHC data
+
+**File:** `src/lib/simulator-data.ts:34–52`
+
+The June review identified this as needing verification. The file header was updated to
+"2026 estimates" but the underlying rent figures appear unchanged (Vancouver $2,400,
+Toronto $2,300, Halifax $1,600). If these reflect October 2024 or earlier CMHC data,
+some markets may have shifted by 5–15%. Verify using the most recent CMHC Rental Market
+Report and update figures that have drifted by more than 10% from the current survey.
+
+---
+
+### 9. CPP maximums in supporting-elders.astro — not verified this cycle
+
+**File:** `src/pages/path/supporting-elders.astro` (CPP maximum retirement pension)
+
+The June review flagged average/maximum CPP figures as outdated ($1,365 maximum cited
+when 2025 maximum was ~$1,433). This was not confirmed as fixed. The 2026 CPP maximum
+would be slightly higher. Verify and update. Also note: CPP2 contributions for earnings
+above the YMPE (see Recommendation A below) are not reflected in this page.
+
+---
+
+### 10. NIHB mental health session limit — verify annually
+
+**File:** `src/pages/rights/nihb.astro`
+
+The June review noted that the "22 hours of counselling per year" figure needs annual
+verification against ISC NIHB policy, which is subject to regional variation. Not
+confirmed as checked this cycle. Carry forward.
+
+---
+
+## MINOR — Stale Labels, Cosmetic
+
+### 11. FHSA "newer (launched 2023)" phrasing is now three years dated
+
+**File:** `src/pages/money/saving.astro:80`
+
+*"The First Home Savings Account is newer (launched 2023)"* — carried from June review.
+Consider removing the launch year parenthetical.
+
+### 12. Article pages with lastUpdated="March 2026" — not yet overdue
+
+Pages with `lastUpdated="March 2026"` (19 pages) are 4 months old today. None exceed the
+6-month threshold. **Flag for review in September 2026** when these pages will be at the
+6-month mark.
+
+### 13. Disclaimer review date should be updated after above fixes are applied
+
+**File:** `src/pages/disclaimer.astro`
+
+Currently reads: *"Content was last reviewed June 2026."* Update to "July 2026" once
+the corrections in this cycle are applied.
+
+### 14. settlement-math.ts CURRENT_YEAR — correct now, flag for January 2027
+
+**File:** `src/lib/settlement-math.ts:27`
+
+`const CURRENT_YEAR = 2026;` — correct today. Add a reminder to update on January 1, 2027.
+
+---
+
+## Status of All June 2026 Review Findings
+
+| # | Finding | Status |
 |---|---|---|
-| 2009–2012 | $5,000 | $20,000 |
-| 2013–2014 | $5,500 | $11,000 |
-| 2015 | $10,000 | $10,000 |
-| 2016–2018 | $5,500 | $16,500 |
-| 2019–2022 | $6,000 | $24,000 |
-| 2023 | $6,500 | $6,500 |
-| 2024–2026 | $7,000 | $21,000 |
-| **Total** | | **$109,000** |
-
-The "$95,000" figure was accurate circa 2023. Understating available room may discourage
-people from opening accounts or making contributions they are entitled to make.
-
-On the same line: `"$7,000/year (2024-2025)"` — the 2026 limit is also $7,000. Update
-to "(2024–2026)" or "currently $7,000/year — confirmed by CRA each fall."
-
-**Fix:** Change "$95,000" to "$109,000." Update year range for the annual limit.
-
----
-
-### 11. Cost-of-living data labeled as 2025 estimates
-
-**File:** `src/lib/simulator-data.ts:4` and city data block (lines 34–52)
-
-City rent data is labeled "2025 estimates" and is now one year stale. Vancouver ($2,400),
-Toronto ($2,300), and Halifax ($1,600) are the most volatile markets. For the Life
-Simulator, errors larger than ~15% from current market rates would materially mislead
-users making relocation decisions.
-
-**Fix:** Update city rent figures using the CMHC Rental Market Report (October 2025
-edition or most recent). Update file header from "2025 estimates" to "2026 estimates."
-The northern city data (Whitehorse $1,400, Yellowknife $1,600) should also be verified —
-these markets have limited public data but costs are generally rising.
-
----
-
-### 12. NIHB mental health session limit needs verification
-
-**File:** `src/pages/rights/nihb.astro` (expandable section "For mental health")
-
-"The program typically covers 22 hours of counselling per year, with more available
-if clinically justified."
-
-The NIHB mental health benefit limits are subject to regional variation and have been
-under periodic review. The 22-hour figure needs to be verified against the current ISC
-NIHB national benefits policy before the next review cycle.
-
-**Fix:** Confirm current NIHB mental health session allowance with ISC documentation.
-If changed, update. Add a note: "Coverage limits vary by region — confirm with your
-regional NIHB office."
-
----
-
-## MINOR — Stale Labels, Cosmetic Issues
-
-### 13. File header comments say 2025 in both tax data files and TaxEstimator UI
-
-**Files and lines:**
-- `src/lib/tax-estimator.ts:2` — "Canadian tax estimator — 2025 rates."
-- `src/lib/simulator-data.ts:4` — "All figures are 2025 estimates for illustration only."
-- `src/components/TaxEstimator.svelte:356` — "rough estimates based on 2025 federal and provincial rates."
-
-Update all three at the same time as the underlying rate values (items 3 and 4 above).
-
----
-
-### 14. All 24 article pages show lastUpdated="March 2026"
-
-Today is June 1, 2026. All pages fall within the 6-month threshold (September 2025
-cutoff). No pages are overdue — but pages whose content is changed in this review
-cycle should have `lastUpdated` updated to "June 2026."
-
-Pages requiring content changes (and therefore a date update):
-- `src/pages/money/taxes.astro`
-- `src/pages/money/saving.astro`
-- `src/pages/path/raising-family.astro`
-- `src/pages/path/supporting-elders.astro`
-
----
-
-### 15. Disclaimer review date is still March 2026
-
-**File:** `src/pages/disclaimer.astro:56`
-
-"Content was last reviewed March 2026."
-
-**Fix:** Update to June 2026 after completing this review cycle.
-
----
-
-### 16. FHSA "newer (launched 2023)" phrasing is now dated
-
-**File:** `src/pages/money/saving.astro:79`
-
-"The First Home Savings Account is newer (launched 2023)"
-
-By mid-2026, the FHSA has three years of history. The phrasing makes the page feel
-like it was written at launch. Consider: "The First Home Savings Account combines the
-best features of TFSAs and RRSPs." (removing the launch year parenthetical).
-
----
-
-### 17. Illustrative paycheque in first-job.astro has no year reference
-
-**File:** `src/pages/path/first-job.astro` (expandable section, approximately lines 46–52)
-
-The sample paycheque breakdown ($20/hour with CPP ~$85 biweekly, EI ~$25) is clearly
-illustrative and in a collapsible section. CPP/EI rates drift annually. No immediate
-action needed, but consider adding "(approximate — based on ~2026 rates)" to stay within
-15% of accuracy as rates evolve.
-
----
-
-## Glossary — Status After Full Review
-
-No critical issues. Prior review confirmed:
-
-- **Capital gains (50% inclusion rate):** Correct. The 2024 budget proposal to increase
-  the inclusion rate was not legislated and has been withdrawn. 50% remains accurate.
-- **Home Buyers' Plan ($60,000 limit):** Correct — updated from $35,000 in April 2024.
-- **FHSA ($40,000 lifetime / $8,000/year):** Correct.
-- **RDSP (up to $4,500/year in government contributions):** Correct.
-- **Canada Learning Bond (up to $2,000):** Correct.
-- **CCB description:** No specific dollar amounts cited — no update needed.
-- **Down payment (5% for homes under $500,000):** Correct. Down payment rules unchanged.
+| 1 | CPP_MAX_PENSIONABLE inconsistency between files | **FIXED** — both files now use $74,600 |
+| 2 | App name in disclaimer ("Strong Fire" flagged as wrong) | **FALSE ALARM** — "Strong Fire" is the correct app name; repo is named goodmedicine from old working title |
+| 3 | CCB amounts stale (2024–2025 values in multiple files) | **PARTIALLY FIXED** — article pages updated to 2026–2027; BenefitsFinder.svelte still stale (now July 2026 critical) |
+| 4 | Federal tax thresholds labeled 2025 | **PARTIALLY FIXED** — brackets updated but first-bracket rate changed to 14% (wrong!) and bracket 3/4 limits are incorrect (see new CRITICAL items 1–2) |
+| 5 | EI rate 0.0163 (should be 0.0164) | **NOT FIXED** — still 0.0163 in both files |
+| 6 | OAS/GIS amounts need quarterly verification | **NOT VERIFIED** — carry forward |
+| 7 | CPP maximums in supporting-elders.astro | **NOT CONFIRMED FIXED** — carry forward |
+| 8 | EI max weekly benefit $668 (2024 value) | **NOT FIXED** — still $668 in BenefitsFinder |
+| 9 | GST credit labeled (2024) at $519 | **PARTIALLY FIXED** — updated to $533 labeled 2025–2026; needs 2026–2027 update now |
+| 10 | TFSA lifetime room understated at $95,000 | **FIXED** — now correctly shows $109,000 |
+| 11 | City cost-of-living data labeled 2025 | **PARTIALLY FIXED** — file header updated; underlying data not verified |
+| 12 | NIHB mental health session limit | **NOT VERIFIED** — carry forward |
+| 13 | File header comments say 2025 | **FIXED** — headers updated to 2026 |
+| 14 | Article pages lastUpdated — pages needing content updates | **FIXED** — taxes.astro, saving.astro, raising-family.astro, nihb.astro, section-87.astro updated to June 2026 |
+| 15 | Disclaimer review date (March 2026) | **FIXED** — now says June 2026 |
+| 16 | FHSA "newer (launched 2023)" language | **NOT FIXED** — minor, carry forward |
+| 17 | Illustrative paycheque amounts | **NO ACTION TAKEN** — low priority, carry forward |
 
 ---
 
 ## Recommendations — New Content
 
-### A. CPP2 (Second Additional Enhancement) — missing entirely
+### A. CPP2 (Second Additional Enhancement) — still not in any tool or article page
 
-Since 2024, workers contribute an additional 4% on earnings between the YMPE ($71,300
-in 2026) and the Year's Additional Maximum Pensionable Earnings (YAMPE, approximately
-$81,900 in 2025). This CPP2 contribution is not reflected in either tax tool and is not
-mentioned in any article page.
+Since 2024, workers contribute an additional 4% on earnings between the YMPE ($74,600 in
+2026) and the Year's Additional Maximum Pensionable Earnings (YAMPE, approximately
+$81,900 in 2025; verify 2026 YAMPE). CPP2 is not reflected in either tax tool. Workers
+earning above the YMPE ceiling may see larger CPP deductions than the estimator predicts.
 
-Workers earning above the YMPE may not understand why their CPP deductions are larger
-than expected. The `/money/taxes` and `/path/first-job` pages should acknowledge CPP2
-exists. The Tax Estimator should include CPP2 in its calculation engine once 2026 rates
-are confirmed (this requires a new `CPP2_RATE`, `CPP2_YAMPE` constant and an additional
-calculation branch in `tax-estimator.ts` and `simulator-data.ts`).
+The Tax Estimator should add a CPP2 calculation branch. The `/money/taxes` and
+`/path/first-job` pages should explain CPP2 exists. Carried from June recommendations.
 
-### B. Canada Dental Care Plan (CDCP)
+### B. Canada Dental Care Plan (CDCP) — still missing
 
-The federal Canada Dental Care Plan covers Canadians without employer dental benefits
-earning under $90,000/year. By 2026, most eligible adults are enrolled. This program
-significantly overlaps with the NIHB audience: Status First Nations are covered by NIHB
-(which remains primary), but their non-Status family members may benefit from CDCP.
+The CDCP covers Canadians without employer dental benefits earning under $90,000/year. By
+mid-2026, most eligible adults are enrolled. A callout on `/rights/nihb` explaining the
+CDCP/NIHB relationship would help families where some members have Status (covered by
+NIHB) and others do not (potentially eligible for CDCP). Carried from June.
 
-A callout on `/rights/nihb` explaining the CDCP/NIHB relationship would serve families
-where some members have Status and others do not. A brief entry in the glossary under
-"Canadian Programs" is also warranted.
+### C. Canada Carbon Rebate — still missing from Benefits Finder
 
-### C. Canada Carbon Rebate
+Quarterly payments for residents of provinces under the federal carbon backstop.
+Requires only a filed tax return. Eligible amounts range from roughly $200–$450/year per
+adult depending on province. Not mentioned in `/money/taxes` or the Benefits Finder.
+Carried from June.
 
-The Canada Carbon Rebate (formerly Climate Action Incentive Payment) provides quarterly
-payments to residents of provinces covered by the federal carbon pricing backstop. It
-requires only a filed tax return. For eligible provinces (AB, SK, MB, ON, and others
-at various dates), payments range from roughly $200 to $450/year per adult. Neither
-`/money/taxes` nor `/self/benefits` mention this payment. It should be added to both
-the taxes page and the Benefits Finder.
+### D. RDSP dedicated article page
 
-### D. CCB July Reset — Improve Editorial Clarity
-
-The CCB and GST credit benefit years reset on July 1 based on the previous year's
-return. The `/money/taxes` article page explains that filing is required but does not
-explain the timing clearly: filing before April 30 determines what you receive from
-July. The July calendar event in `calendar-events.ts` captures this, but the article
-pages should make the connection explicit so users understand why April 30 has a
-direct consequence on their July-onward payments.
-
-### E. RDSP — Dedicated Article Page
-
-The RDSP appears in the glossary and briefly in `saving.astro` but has no dedicated
-page. For First Nations people with disabilities (and their families), the RDSP is one
-of the most generous savings vehicles in Canada: government contributions of up to
-$4,500/year with no personal matching required at low incomes. A dedicated page at
-`/money/savings` or under `/self/` would serve this audience well and is notably absent.
-
----
-
-## Files Reviewed
-
-| File | Status | Issues found |
-|---|---|---|
-| `src/pages/money/taxes.astro` | Needs update | Items 3, 9 |
-| `src/pages/money/saving.astro` | Needs update | Item 10 |
-| `src/pages/path/raising-family.astro` | Needs update | Item 3 |
-| `src/pages/path/supporting-elders.astro` | Needs update | Items 6, 7 |
-| `src/pages/rights/nihb.astro` | Verify required | Item 12 |
-| `src/lib/tax-estimator.ts` | Needs update | Items 1, 4, 5, 9 |
-| `src/lib/simulator-data.ts` | Needs update | Items 4, 5, 11 |
-| `src/components/TaxEstimator.svelte` | Minor label | Item 13 |
-| `src/components/BenefitsFinder.svelte` | Needs update | Items 3, 6, 8, 9 |
-| `src/pages/disclaimer.astro` | Needs update | Items 2, 15 |
-| `src/pages/path/first-job.astro` | Minor | Item 17 |
-| `src/lib/settlement-math.ts` | Clean | `CURRENT_YEAR = 2026` is correct |
-| `src/lib/calendar-events.ts` | Clean | Evergreen content, no date-specific issues |
-| `src/lib/glossary-data.ts` | Clean | All amounts and rates verified correct |
-| All other article pages | Clean | lastUpdated within 6-month threshold |
+The RDSP appears only in the glossary and briefly in `saving.astro`. For First Nations
+people with disabilities, the RDSP is among the most generous savings tools in Canada —
+government contributions up to $4,500/year with no personal matching at low incomes. A
+dedicated page would serve this audience. Carried from June.
 
 ---
 
@@ -432,13 +281,14 @@ $4,500/year with no personal matching required at low incomes. A dedicated page 
 
 Ordered by urgency and impact:
 
-1. **[Do now]** Fix CPP_MAX_PENSIONABLE in `tax-estimator.ts` (one-line fix — item 1)
-2. **[Before July 1]** Update CCB amounts across BenefitsFinder, taxes.astro, raising-family.astro (item 3)
-3. **[Before July 1]** Update GST credit amount and remove "(2024)" label in taxes.astro (item 9)
-4. **[Before July 1]** Update EI max weekly benefit in BenefitsFinder (item 8)
-5. **[This cycle]** Fix app name in disclaimer (item 2)
-6. **[This cycle]** Update OAS/GIS amounts after verifying current quarterly rates (item 6)
-7. **[This cycle]** Update CPP maximum in supporting-elders.astro (item 7)
-8. **[This cycle]** Update TFSA room to $109,000 and year label in saving.astro (item 10)
-9. **[Fall, when CRA publishes 2026 rates]** Update all federal brackets, BPA, EI rate across both tax files (items 4, 5)
-10. **[Fall]** Update city cost-of-living data from CMHC Rental Market Report (item 11)
+1. **[Immediate]** Fix federal first-bracket rate in `tax-estimator.ts` and `simulator-data.ts` (14% → 15%)
+2. **[Immediate]** Fix federal 26% and 29% bracket thresholds in both files — verify against CRA 2026 T1 guide
+3. **[This week]** Update CCB amounts in `BenefitsFinder.svelte` to 2026–2027 values ($8,157 / $6,883)
+4. **[This week]** Confirm and update GST/HST credit 2026–2027 single-adult amount in `tax-estimator.ts` and `taxes.astro`
+5. **[This week]** Update EI max weekly benefit in `BenefitsFinder.svelte` ($668 → verify current value, likely ~$729)
+6. **[This month]** Verify and update OAS/GIS quarterly amounts for Q3 2026
+7. **[This month]** Fix EI premium rate (0.0163 → 0.0164, then verify 2026 rate)
+8. **[This month]** Verify city rent data against CMHC and update figures that have drifted >10%
+9. **[This month]** Verify CPP maximums in `supporting-elders.astro`
+10. **[September]** Review all 19 article pages with `lastUpdated="March 2026"` — they will hit 6 months
+11. **[September]** Update disclaimer review date to "July 2026" after items 1–4 are complete
