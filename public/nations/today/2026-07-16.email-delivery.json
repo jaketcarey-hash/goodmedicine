@@ -1,0 +1,12 @@
+{
+  "date": "2026-07-16",
+  "reason": "Resent after Gmail rendered the standalone browser HTML less cleanly than the local file.",
+  "subject": "The Nations This Morning — Thursday, July 16 — clean email version",
+  "to": "jaketcarey@gmail.com",
+  "sent": true,
+  "gmailMessageId": "19f6cb78c0bd5fc7",
+  "gmailThreadId": "19f6cb78c0bd5fc7",
+  "html": "/Users/jakecarey/jakexclaude/nations-brief/v1/today/2026-07-16.email.html",
+  "renderer": "/Users/jakecarey/jakexclaude/nations-brief/v1/render_email.py",
+  "notes": "Email version uses table layout and inline styles, avoiding CSS variables, clamp(), media-query-dependent layout, flexbox, box shadows and multi-column source lists."
+}

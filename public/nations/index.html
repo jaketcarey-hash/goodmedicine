@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nations This Morning Archive</title>
+  <style>
+    :root {
+      --ink: #18201d;
+      --muted: #66706b;
+      --paper: #fffdf8;
+      --canvas: #ede9df;
+      --cedar: #873f2b;
+      --cedar-dark: #4f241a;
+      --forest: #1f5b4d;
+      --line: #ddd6c8;
+      --soft-red: #f7ece7;
+      --soft-gold: #f7f0e0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .shell {
+      width: min(1020px, calc(100% - 28px));
+      margin: 24px auto 50px;
+      background: var(--paper);
+      border: 1px solid #d6cfc1;
+      box-shadow: 0 18px 50px rgba(43, 37, 28, .12);
+    }
+    header {
+      padding: 42px 48px 34px;
+      border-top: 7px solid var(--cedar);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(135deg, #fffdf8 0%, #fbf7ee 100%);
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 800px;
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 54px;
+      line-height: .98;
+      font-weight: 500;
+      letter-spacing: -.025em;
+    }
+    .intro {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: #48514d;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    main { padding: 34px 48px 46px; }
+    .latest {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: end;
+      padding: 26px;
+      background: var(--soft-red);
+      border-left: 5px solid var(--cedar);
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 31px;
+      line-height: 1.12;
+      font-weight: 500;
+    }
+    .headline {
+      color: #48514d;
+      font-style: italic;
+    }
+    p { margin: 0 0 12px; font-size: 14px; line-height: 1.65; }
+    .button {
+      display: inline-block;
+      padding: 11px 15px;
+      background: var(--forest);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      gap: 32px;
+      margin-top: 36px;
+      align-items: start;
+    }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 17px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    .edition {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+    .edition:first-of-type { border-top: 0; padding-top: 0; }
+    time {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--forest);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      line-height: 1.28;
+    }
+    h3 a { color: var(--ink); text-decoration-color: #b8c7bf; text-underline-offset: 3px; }
+    .edition-meta {
+      min-width: 92px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .edition-meta span { display: block; }
+    .resources {
+      padding: 20px;
+      background: var(--soft-gold);
+      border: 1px solid #ddc79b;
+    }
+    .resource {
+      display: block;
+      padding: 13px 0;
+      border-top: 1px solid #ddc79b;
+      text-decoration: none;
+    }
+    .resource:first-of-type { border-top: 0; padding-top: 0; }
+    .resource strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--cedar-dark);
+      font-size: 14px;
+    }
+    .resource span {
+      display: block;
+      color: #5c5548;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    footer {
+      padding: 18px 48px 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 740px) {
+      .shell { width: 100%; margin: 0; border-left: 0; border-right: 0; }
+      header, main, footer { padding-left: 22px; padding-right: 22px; }
+      h1 { font-size: 42px; }
+      .latest, .grid, .edition { grid-template-columns: 1fr; }
+      .edition-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <p class="eyebrow">The Nations This Morning</p>
+      <h1>Archive</h1>
+      <p class="intro">A running library of weekday public-source Indigenous economic intelligence briefs, with the 2026 YTD dossier kept beside the daily editions.</p>
+    </header>
+    <main>
+      
+        <section class="latest">
+          <div>
+            <p class="eyebrow">Latest Edition</p>
+            <h2>Thursday, July 16, 2026</h2>
+            <p class="headline">The live economic question is not whether major projects move. It is who has authority to say yes, no, or not yet.</p>
+            <p>The strongest signal in the past 24 hours came from Ottawa, where First Nations chiefs narrowed the Assembly of First Nations' role on major projects to national advocacy and insisted that Canada deal directly with affected rights and title holders. That turns the federal major-projects push from a permitting story into a governance and capital-allocation story.</p>
+          </div>
+          <a class="button" href="archive/2026-07-16.html">Read edition</a>
+        </section>
+        
+      <div class="grid">
+        <section>
+          <div class="section-label">Editions</div>
+          
+        <article class="edition">
+          <div>
+            <time>Thursday, July 16, 2026</time>
+            <h3><a href="archive/2026-07-16.html">Chiefs draw a boundary around the AFN's role in major-project talks</a></h3>
+            <p>The live economic question is not whether major projects move. It is who has authority to say yes, no, or not yet.</p>
+          </div>
+          <div class="edition-meta">
+            <span>2 sections</span>
+            <span>10 sources</span>
+          </div>
+        </article>
+        
+        </section>
+        <aside class="resources">
+          <div class="section-label">YTD</div>
+          <a class="resource" href="ytd-2026/report.html"><strong>YTD Dossier</strong><span>Long-form 2026 Indigenous economic intelligence report.</span></a>
+<a class="resource" href="ytd-2026/output/pdf/2026-ytd-indigenous-economic-intelligence.pdf"><strong>Printable PDF</strong><span>PDF version of the full YTD package.</span></a>
+<a class="resource" href="ytd-2026/event-ledger.md"><strong>Event Ledger</strong><span>Human-readable ledger of material developments.</span></a>
+<a class="resource" href="ytd-2026/watchlist.md"><strong>Watchlist</strong><span>Monitoring companion for unresolved catalysts.</span></a>
+        </aside>
+      </div>
+    </main>
+    <footer>Generated July 16, 2026 from verified local archive files. Standalone web pages preserve the polished browser version; email-safe files remain separate.</footer>
+  </div>
+</body>
+</html>

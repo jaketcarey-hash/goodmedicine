@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A verified record and structural analysis of Indigenous economic developments in Canada from January 1 through July 15, 2026, with deeper coverage of British Columbia and First Nations.">
+  <title>2026 YTD Indigenous Economic Intelligence</title>
+  <style>
+    :root {
+      --paper: #f7f1e5;
+      --paper-deep: #efe4d2;
+      --ink: #2b2925;
+      --muted: #676157;
+      --cedar: #9e3d2f;
+      --cedar-dark: #743026;
+      --forest: #28473a;
+      --gold: #b48a45;
+      --line: #cdbda7;
+      --white: #fffdf8;
+      --high: #35644e;
+      --medium: #9b702c;
+      --low: #a43e31;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.67;
+    }
+    a { color: var(--cedar-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover, a:focus { color: var(--forest); }
+    .sans, nav, .eyebrow, .meta, table, .tag, .status, .sources, .note { font-family: Arial, Helvetica, sans-serif; }
+    .masthead {
+      background: var(--forest);
+      color: var(--white);
+      border-bottom: 7px solid var(--cedar);
+      padding: 74px 24px 58px;
+    }
+    .masthead-inner, main, .footer-inner { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow { color: #ead7b7; font-size: .78rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
+    h1 { max-width: 920px; margin: 14px 0 18px; font-size: clamp(2.6rem, 7vw, 5.7rem); line-height: .98; letter-spacing: -.04em; font-weight: 500; }
+    .deck { max-width: 850px; margin: 0; color: #f1eadc; font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.48; }
+    .meta { display: flex; gap: 18px 28px; flex-wrap: wrap; margin-top: 32px; color: #cfddcf; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; }
+    .one-sentence { background: var(--cedar); color: var(--white); }
+    .one-sentence-inner { width: min(1000px, calc(100% - 40px)); margin: 0 auto; padding: 34px 0 38px; }
+    .one-sentence h2 { margin: 0 0 8px; color: #f2d6c7; border: 0; font: 700 .75rem/1.3 Arial, Helvetica, sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+    .one-sentence p { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.42; }
+    nav { position: sticky; top: 0; z-index: 20; overflow-x: auto; white-space: nowrap; background: rgba(247, 241, 229, .97); border-bottom: 1px solid var(--line); }
+    nav .nav-inner { width: min(var(--max), calc(100% - 24px)); margin: 0 auto; display: flex; gap: 0; }
+    nav a { display: inline-block; padding: 13px 14px 12px; color: var(--ink); font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; }
+    nav a:hover, nav a:focus { background: var(--paper-deep); color: var(--cedar); }
+    main { padding: 58px 0 90px; }
+    section { scroll-margin-top: 60px; margin: 0 0 80px; }
+    .section-label { margin-bottom: 8px; color: var(--cedar); font: 700 .75rem/1.2 Arial, Helvetica, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { margin: 0 0 28px; padding-bottom: 13px; color: var(--forest); border-bottom: 2px solid var(--forest); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.08; letter-spacing: -.025em; font-weight: 500; }
+    h3 { margin: 34px 0 13px; color: var(--cedar-dark); font-size: 1.55rem; line-height: 1.2; }
+    h4 { margin: 25px 0 8px; color: var(--forest); font-size: 1.12rem; }
+    p { max-width: 820px; margin: 0 0 19px; }
+    .lede { max-width: 900px; color: #3b3832; font-size: 1.25rem; line-height: 1.55; }
+    .note { max-width: 900px; margin: 24px 0; padding: 17px 20px; background: var(--paper-deep); border-left: 4px solid var(--gold); color: #4b463e; font-size: .89rem; line-height: 1.55; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 22px; }
+    .card { grid-column: span 6; padding: 24px; background: rgba(255, 253, 248, .7); border-top: 4px solid var(--cedar); border-bottom: 1px solid var(--line); }
+    .card h3 { margin-top: 0; }
+    .card p:last-child { margin-bottom: 0; }
+    .ranked { list-style: none; margin: 0; padding: 0; counter-reset: turn; }
+    .ranked > li { counter-increment: turn; display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 18px; padding: 26px 0; border-top: 1px solid var(--line); }
+    .ranked > li::before { content: counter(turn, decimal-leading-zero); color: var(--cedar); font: 700 2.25rem/1 Arial, Helvetica, sans-serif; }
+    .ranked h3 { margin: 0 0 8px; }
+    .ranked p { margin-bottom: 10px; }
+    .status { display: inline-block; margin-right: 6px; padding: 3px 7px; border: 1px solid currentColor; color: var(--forest); font-size: .67rem; font-weight: 700; letter-spacing: .04em; line-height: 1.2; text-transform: uppercase; }
+    .status.announced { color: var(--medium); }
+    .status.contested { color: var(--low); }
+    .timeline { position: relative; margin-left: 16px; padding-left: 42px; border-left: 2px solid var(--gold); }
+    .month { margin: 0 0 42px; position: relative; }
+    .month::before { content: ""; position: absolute; left: -50px; top: 9px; width: 14px; height: 14px; background: var(--cedar); border: 4px solid var(--paper); }
+    .month h3 { margin: 0 0 16px; color: var(--forest); font-size: 1.8rem; }
+    .month ul { margin: 0; padding-left: 20px; }
+    .month li { margin-bottom: 12px; }
+    .table-wrap { margin: 26px 0; overflow-x: auto; border-top: 3px solid var(--forest); }
+    table { width: 100%; min-width: 850px; border-collapse: collapse; background: rgba(255, 253, 248, .55); font-size: .79rem; line-height: 1.45; }
+    th { padding: 12px 11px; background: var(--forest); color: var(--white); text-align: left; vertical-align: bottom; letter-spacing: .035em; text-transform: uppercase; }
+    td { padding: 12px 11px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:nth-child(even) td { background: rgba(239, 228, 210, .45); }
+    .yes { color: var(--high); font-weight: 700; }
+    .no { color: var(--low); font-weight: 700; }
+    .partial { color: var(--medium); font-weight: 700; }
+    .dossier { margin: 32px 0; padding: 28px; background: var(--white); border-left: 6px solid var(--forest); box-shadow: 0 10px 28px rgba(57, 49, 38, .08); }
+    .dossier h3 { margin-top: 0; }
+    .dossier-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px 26px; }
+    .dossier-grid div { padding-top: 11px; border-top: 1px solid var(--line); }
+    .dossier-grid b { display: block; margin-bottom: 4px; color: var(--forest); font: 700 .72rem/1.3 Arial, Helvetica, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+    .matrix th:first-child, .matrix td:first-child { position: sticky; left: 0; background: var(--paper-deep); min-width: 160px; }
+    .source-list { columns: 2 360px; column-gap: 42px; margin: 0; padding-left: 25px; }
+    .source-list li { break-inside: avoid; margin: 0 0 12px; padding-left: 4px; font-family: Arial, Helvetica, sans-serif; font-size: .74rem; line-height: 1.45; }
+    .footer { padding: 36px 0 50px; background: var(--forest); color: #dce3dc; border-top: 7px solid var(--cedar); }
+    .footer p { margin: 0; font: .77rem/1.55 Arial, Helvetica, sans-serif; }
+    @media (max-width: 760px) {
+      body { font-size: 17px; }
+      .masthead { padding: 52px 20px 40px; }
+      main { width: min(100% - 28px, var(--max)); padding-top: 42px; }
+      section { margin-bottom: 62px; }
+      .card { grid-column: 1 / -1; padding: 20px 16px; }
+      .ranked > li { grid-template-columns: 50px minmax(0, 1fr); gap: 10px; }
+      .ranked > li::before { font-size: 1.55rem; }
+      .timeline { margin-left: 3px; padding-left: 28px; }
+      .month::before { left: -36px; }
+      .dossier { padding: 22px 17px; }
+      .dossier-grid { grid-template-columns: 1fr; }
+      .source-list { columns: 1; }
+      .table-wrap::before {
+        content: "Swipe table horizontally";
+        position: sticky;
+        left: 0;
+        display: block;
+        width: max-content;
+        padding: 8px 10px;
+        color: var(--muted);
+        background: var(--paper-deep);
+        font: 700 .68rem/1.2 Arial, Helvetica, sans-serif;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+    }
+    @media print {
+      nav { display: none; }
+      body { background: white; font-size: 11pt; }
+      .masthead { padding: 44px 0; }
+      main { width: 100%; padding: 36px 0; }
+      section { position: relative; isolation: isolate; break-before: page; margin-bottom: 30px; }
+      section:first-child { break-before: auto; }
+      .section-label, h2, h3 { position: relative; z-index: 1; break-inside: avoid; break-after: avoid; }
+      .dossier, .card { break-inside: avoid; box-shadow: none; }
+      .table-wrap { overflow: visible; }
+      .table-wrap::before { display: none; }
+      table { min-width: 0; font-size: 7.2pt; line-height: 1.3; }
+      th, td { padding: 5px 4px; }
+      .matrix th:first-child, .matrix td:first-child { position: static; min-width: 0; }
+      a { color: inherit; text-decoration: none; }
+      .source-list { columns: 2; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="eyebrow">Private intelligence dossier</div>
+      <h1>2026 YTD Indigenous Economic Intelligence</h1>
+      <p class="deck">A verified record of capital, ownership, rights, policy, major projects, stewardship, and economic governance in Canada, with deliberate depth on British Columbia and First Nations.</p>
+      <div class="meta">
+        <span>January 1 to July 15, 2026</span>
+        <span>42 material developments</span>
+        <span>Prepared for Jake Carey</span>
+        <span>Private research only</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="one-sentence">
+    <div class="one-sentence-inner">
+      <h2>2026 in one sentence</h2>
+      <p>Canada built more usable machinery for Indigenous capital and jurisdiction, but the year's real progress came from the smaller set of assets, laws, agreements, and court outcomes that actually closed or took effect, not from the billion-dollar options and project ambitions that dominated attention.</p>
+    </div>
+  </div>
+
+  <nav aria-label="Report sections">
+    <div class="nav-inner">
+      <a href="#synthesis">Synthesis</a>
+      <a href="#turning-points">Top 10</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#themes">Themes</a>
+      <a href="#bc">British Columbia</a>
+      <a href="#capital-map">Capital map</a>
+      <a href="#real">Announced vs real</a>
+      <a href="#perspectives">Perspectives</a>
+      <a href="#dossiers">Dossiers</a>
+      <a href="#method">Method</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="synthesis">
+      <div class="section-label">Executive synthesis</div>
+      <h2>The architecture became visible</h2>
+      <p class="lede">The first half of 2026 did not produce one decisive break. It produced a stack: pooled capital, government guarantees, tax jurisdiction, consent-based approvals, treaty implementation, commercial acquisitions, and stewardship agreements began to interact as parts of an economic system.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Capital moved from scarcity to selection</h3>
+          <p>FNFA issued $1.285 billion across two 2026 bonds and reported cumulative issuance above $5 billion. Federal and provincial guarantees supported transmission, wind, and nuclear financing, while B.C. opened a $1-billion guarantee program. Access is widening, but the hard question has changed from “can capital be raised?” to “which risk should a Nation own, at what price, and under whose governance?” <a href="#src-12">[12]</a> <a href="#src-13">[13]</a> <a href="#src-31">[31]</a></p>
+        </article>
+        <article class="card">
+          <h3>Consent became operational, then contested</h3>
+          <p>Eskay Creek showed that a Declaration Act consent agreement can produce a permit pathway. Gitxaała showed that the Act's legal effect remains unsettled enough to reach the Supreme Court. KSM showed that consultation failure can erase a material project milestone even when the court does not decide the regulator's substantive project case. <a href="#src-2">[2]</a> <a href="#src-24">[24]</a> <a href="#src-39">[39]</a></p>
+        </article>
+        <article class="card">
+          <h3>Ownership quality diverged sharply</h3>
+          <p>Operating transmission, hospitality, gaming, food-processing, and commercial-real-estate assets actually changed hands. By contrast, the LNG Canada Phase 2 interest was an option, the west coast pipeline had no final route or proponent, and Darlington's Nations were financed to “eventually own.” The distinction is not semantic. It is the difference between present control and future possibility. <a href="#src-10">[10]</a> <a href="#src-35">[35]</a> <a href="#src-47">[47]</a></p>
+        </article>
+        <article class="card">
+          <h3>Fiscal jurisdiction advanced, implementation lagged</h3>
+          <p>The FACT regime became law, giving First Nations a new opt-in tax instrument. Yet no verified list of collecting Nations was found by July 15. The Auditor General's review of the new fiscal relationship reached the broader conclusion: longer terms and flexibility matter, but government still could not demonstrate outcomes or fulfil several co-developed commitments. <a href="#src-14">[14]</a> <a href="#src-25">[25]</a></p>
+        </article>
+        <article class="card">
+          <h3>Legal certainty was not one-directional</h3>
+          <p>Nuchatlaht strengthened a territorial approach to Aboriginal title. Wolastoqey left a New Brunswick remedy ruling intact without creating a national Supreme Court precedent. K’ómoks advanced toward treaty effect while Kitselas paused amid neighbouring-Nation concerns. Rights recognition increased leverage and precision, but also made it harder for governments and proponents to treat one agreement as regional certainty. <a href="#src-20">[20]</a> <a href="#src-33">[33]</a> <a href="#src-29">[29]</a></p>
+        </article>
+        <article class="card">
+          <h3>Stewardship became an economic sector</h3>
+          <p>The $283-million Treaty 8 restoration agreements, the proposed Mia-yaltwa Ha'lidzogm hoon marine area, and new land-planning pauses connect rights, ecological repair, employment, procurement, and regulatory certainty. Their success will depend on multi-year funding, Nation control of work and data, and credible measures of ecological and economic outcomes. <a href="#src-23">[23]</a> <a href="#src-28">[28]</a> <a href="#src-50">[50]</a></p>
+        </article>
+      </div>
+
+      <h3>What changed</h3>
+      <p>More transactions now have a repeatable capital stack: a Nation-owned vehicle, contracted or regulated cash flow, senior debt, and a public guarantee or Indigenous equity loan. The strongest examples are Chatham-to-Lakeshore, East-West Tie, and Rose Valley Wind. They are not identical, but they show a recognizable path from rights-holder relationship to investable ownership. <a href="#src-10">[10]</a> <a href="#src-31">[31]</a> <a href="#src-34">[34]</a></p>
+
+      <p>Rights and jurisdiction also moved from background conditions to explicit transaction variables. Consent agreements, title declarations, treaty statutes, tax laws, and interim tenure pauses now influence schedule, cost of capital, route selection, and asset value. This does not make rights a commercial instrument. It means commercial analysis that ignores them is incomplete.</p>
+
+      <h3>What did not change</h3>
+      <p>Conventional finance remains harder to access for many Indigenous businesses, especially where land cannot serve as conventional collateral, communities are remote, or transaction size is too small for major-project programs. The Bank of Canada's 2026 survey found Indigenous firms were less reliant on conventional lenders and continued to report distance and collateral barriers. <a href="#src-46">[46]</a></p>
+
+      <p>Public disclosure also remains weakest where it matters most for judging wealth creation: purchase price, leverage, covenants, expected distributions, reserve policy, governance rights, and downside protection. Private terms are legitimate, but they make the public record much better at counting announced dollars than evaluating net benefit.</p>
+
+      <h3>Why this matters for advisory judgement</h3>
+      <p>The emerging opportunity set is no longer adequately described as “Indigenous participation.” It includes governments exercising jurisdiction, economic-development corporations acquiring operating companies, borrowing members issuing through a pooled authority, trusts allocating settlement capital, and Nation consortia taking project risk. Each requires a different governance, liquidity, fiduciary, and portfolio lens.</p>
+
+      <p>For investors and lenders, the central question is not whether Indigenous ownership de-risks a project in the abstract. The question is whether the relevant rights holders negotiated the project, whether governance aligns risk and reward, whether cash flows can service debt without compromising community priorities, and whether the project remains resilient when costs, law, or commodity conditions change.</p>
+
+      <div class="note"><strong>Evidence discipline:</strong> “Not found” in this report means no sufficiently reliable public evidence was located by July 15, 2026. It does not mean an event did not happen. Private transactions, Nation-only communications, paywalled records, and thin regional coverage limit the record.</div>
+    </section>
+
+    <section id="turning-points">
+      <div class="section-label">Ranked by consequence, not attention</div>
+      <h2>The ten turning points</h2>
+      <ol class="ranked">
+        <li>
+          <div>
+            <h3>The capital stack became repeatable</h3>
+            <p>Two FNFA issues, federal guarantees, Ontario guarantees, and CIB Indigenous equity loans created several ways to separate project credit from a Nation's unconstrained balance sheet. The consequence is a larger investable universe and a greater need for independent underwriting.</p>
+            <span class="status">executed capital</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Gitxaała put the Declaration Act before the Supreme Court</h3>
+            <p>The Court's eventual interpretation will reach well beyond mineral claims. It will influence how B.C. statutes are read, how government sequences consultation and law reform, and how proponents price legal certainty.</p>
+            <span class="status contested">live litigation</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Eskay Creek made consent a permitting mechanism</h3>
+            <p>The first project authorized under a section 7 consent agreement offers a real implementation case. Its importance will rise or fall with how conditions, monitoring, benefits, and adaptive decisions work through construction and operations.</p>
+            <span class="status">approved</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>FACT became law</h3>
+            <p>The First Nations Goods and Services Tax Act adds a narrow but real own-source revenue tool. Its consequence will be measured by community laws, net revenue, administrative fit, and whether the regime expands rather than merely rearranges existing fiscal space.</p>
+            <span class="status">legally effective</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Nuchatlaht reset the evidence for territorial title</h3>
+            <p>The B.C. Court of Appeal rejected a site-by-site approach and declared title over the full claim area. The decision strengthens legal leverage in land, forestry, and infrastructure decisions while leaving practical implementation to negotiation and governance.</p>
+            <span class="status">judgment</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Operating assets changed hands</h3>
+            <p>River Rock, the Nanaimo Marriott, Connect Centre, Hardy Buoys, and transmission stakes are economically different, but together they show diversification beyond minority interests in proposed resource projects. The missing public data are leverage, cash yield, and distribution policy.</p>
+            <span class="status">transactions closed</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>B.C. opened a $1-billion guarantee program</h3>
+            <p>The program can make many more equity transactions financeable. Its importance is prospective until the first deals close, and its quality will depend on project selection, transparency, advisory access, and discipline around contingent provincial risk.</p>
+            <span class="status announced">program live, zero verified closes</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Treaty 8 restoration became long-duration economic infrastructure</h3>
+            <p>Ten-year funding is long enough to support careers, local businesses, data systems, and institutional capacity. This is a stronger economic mechanism than episodic project grants, provided Nations control the work and outcomes are measured honestly.</p>
+            <span class="status">agreement signed</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Baffinland exposed northern concentration risk</h3>
+            <p>Creditor protection at Mary River made visible how much employment, revenue, supplier activity, and community planning can depend on one operator. Inuit organizations are active parties in the restructuring, but the court process constrains the available choices.</p>
+            <span class="status contested">restructuring</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Procurement's headline number failed its integrity test</h3>
+            <p>Reported federal spend exceeded the target, yet the Procurement Ombud found weak verification and accountability. The turning point is not the scandal. It is the shift from measuring contract face value to asking who controlled delivery, retained margin, employed people, and built durable capacity.</p>
+            <span class="status contested">systemic review</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="timeline">
+      <div class="section-label">Chronology</div>
+      <h2>January through July</h2>
+      <p class="lede">The sequence matters. Capital-market scale arrived before many of the year's largest project options, while legal and treaty developments repeatedly changed the conditions under which those options could become real.</p>
+      <div class="timeline">
+        <div class="month">
+          <h3>January</h3>
+          <ul>
+            <li><strong>January 16:</strong> Canada announced unused-spectrum access intended to support rural, remote, and Indigenous connectivity. It opened a regulatory door, not a network. <a href="#src-1">[1]</a></li>
+            <li><strong>January 26:</strong> Eskay Creek received core B.C. and federal approvals with Tahltan consent under the first section 7 project agreement. <a href="#src-2">[2]</a></li>
+            <li><strong>January 27:</strong> Wiikwemkoong acquired Edmonton's Connect Centre for a reported $65 million, adding a closed urban commercial-property asset to the record. <a href="#src-5">[5]</a></li>
+          </ul>
+        </div>
+        <div class="month">
+          <h3>February</h3>
+          <ul>
+            <li><strong>February 12:</strong> Bill C-21 introduced the Red River Métis treaty-implementation bill. It remained at second reading by the cutoff. <a href="#src-7">[7]</a></li>
+            <li><strong>February 19:</strong> Canada and five A-Tlegay member Nations signed a 20-year fisheries reconciliation agreement. <a href="#src-8">[8]</a></li>
+            <li><strong>February 20:</strong> Musqueam and Canada signed rights-recognition, stewardship, and fisheries agreements. <a href="#src-9">[9]</a></li>
+            <li><strong>February 27:</strong> Ontario Superior Court upheld $3.6 billion of Robinson-Superior Treaty compensation while criticizing elements of Crown engagement. <a href="#src-6">[6]</a></li>
+            <li><strong>February 28:</strong> Kitsaki and March signed a definitive agreement for a 51-per-cent Indigenous-owned engineering partnership. Operating launch remained to be confirmed. <a href="#src-11">[11]</a></li>
+          </ul>
+        </div>
+        <div class="month">
+          <h3>March</h3>
+          <ul>
+            <li><strong>March 7:</strong> Mississaugas of the Credit closed a $183.4-million Rouge River Valley Tract settlement with Canada and Ontario. <a href="#src-15">[15]</a></li>
+            <li><strong>March 10:</strong> The second federal Indigenous loan guarantee supported two Nations in the now 50-per-cent First Nation-owned Chatham-to-Lakeshore line. <a href="#src-10">[10]</a></li>
+            <li><strong>March 17-19:</strong> Snuneymuxw completed full ownership of the Nanaimo Marriott, and Hardy Buoys transitioned to Indigenous ownership. <a href="#src-16">[16]</a> <a href="#src-17">[17]</a></li>
+            <li><strong>March 26:</strong> FNFA closed a $485-million issue; FACT received Royal Assent; and the Procurement Ombud published a systemic review of Indigenous procurement integrity. <a href="#src-12">[12]</a> <a href="#src-14">[14]</a> <a href="#src-18">[18]</a></li>
+            <li><strong>March 30:</strong> The Canadian Human Rights Tribunal approved the $8.5-billion Ontario First Nations child-and-family-services reform agreement. <a href="#src-19">[19]</a></li>
+          </ul>
+        </div>
+        <div class="month">
+          <h3>April</h3>
+          <ul>
+            <li><strong>April 2:</strong> Nuchatlaht won a declaration of title over its full claim area from the B.C. Court of Appeal. <a href="#src-20">[20]</a></li>
+            <li><strong>April 9:</strong> The CRTC opened consultation on an Indigenous stream of the Broadband Fund. <a href="#src-21">[21]</a></li>
+            <li><strong>April 15:</strong> B.C. introduced Kitselas treaty legislation. Passage was later deferred amid neighbouring-Nation concerns. <a href="#src-22">[22]</a></li>
+            <li><strong>April 20:</strong> B.C. withdrew proposed Declaration Act amendments after sustained First Nations opposition. The underlying legal dispute continued. <a href="#src-24">[24]</a></li>
+            <li><strong>April 24:</strong> Canada reconfigured the $4-billion urban, rural, and northern Indigenous housing commitment around Build Canada Homes and distinctions-based agreements. <a href="#src-26">[26]</a></li>
+          </ul>
+        </div>
+        <div class="month">
+          <h3>May</h3>
+          <ul>
+            <li><strong>May 1:</strong> B.C. and seven Treaty 8 First Nations signed $283 million of 10-year restoration agreements. <a href="#src-23">[23]</a></li>
+            <li><strong>May 4:</strong> The Auditor General found that Canada could not demonstrate the results of new fiscal initiatives with First Nations. <a href="#src-25">[25]</a></li>
+            <li><strong>May 7:</strong> NACCA and Alto signed an MOU intended to connect Indigenous Financial Institutions, businesses, and workers to high-speed rail opportunities. No equity or procurement award followed by the cutoff. <a href="#src-73">[73]</a></li>
+            <li><strong>May 15:</strong> Baffinland entered CCAA protection, exposing employment, IIBA, and royalty risk around Mary River. <a href="#src-27">[27]</a></li>
+            <li><strong>May 21-22:</strong> The Supreme Court granted Gitxaała leave, and six Nations with Canada announced the Mia-yaltwa Ha'lidzogm hoon marine-conservation framework. <a href="#src-24">[24]</a> <a href="#src-28">[28]</a></li>
+            <li><strong>May 28:</strong> K’ómoks treaty legislation received B.C. Royal Assent; the Supreme Court denied leave in Wolastoqey. One moved treaty implementation forward, while the other left a provincial title-remedy ruling intact without resolving the national question. <a href="#src-29">[29]</a> <a href="#src-33">[33]</a></li>
+            <li><strong>May 29:</strong> Six First Nations increased their East-West Tie ownership from 3.5 per cent to 20 per cent with an Ontario guarantee of up to $75 million. <a href="#src-34">[34]</a></li>
+          </ul>
+        </div>
+        <div class="month">
+          <h3>June</h3>
+          <ul>
+            <li><strong>June 4:</strong> FNFA closed a record $800-million issue and reported cumulative issuance above $5 billion. <a href="#src-13">[13]</a></li>
+            <li><strong>June 5-9:</strong> Apitipi announced a proposed Indigenous-led junior miner; KSM's substantially-started determination was quashed; and Ksi Lisims signed three benefit agreements while remaining pre-FID. <a href="#src-37">[37]</a> <a href="#src-39">[39]</a> <a href="#src-40">[40]</a></li>
+            <li><strong>June 15-16:</strong> Rose Valley Wind reached financial close; River Rock changed hands; and B.C.'s $1-billion equity-financing program opened. <a href="#src-31">[31]</a> <a href="#src-35">[35]</a> <a href="#src-36">[36]</a></li>
+            <li><strong>June 22-24:</strong> Canada committed $21.6 million to Sayisi Dene clean energy, announced the largest federal Indigenous guarantee for Darlington, and advanced Grays Bay through review and conditional preconstruction support. <a href="#src-38">[38]</a> <a href="#src-41">[41]</a> <a href="#src-43">[43]</a></li>
+          </ul>
+        </div>
+        <div class="month">
+          <h3>July 1-15</h3>
+          <ul>
+            <li><strong>July 2:</strong> Canada and Alberta advanced a southern B.C. oil-pipeline proposal before route, proponent, financing, consent, or ownership terms existed. <a href="#src-47">[47]</a></li>
+            <li><strong>July 6:</strong> B.C. and First Nations opened conservation planning across about 127,000 hectares with a three-year mineral-tenure pause. <a href="#src-50">[50]</a></li>
+            <li><strong>July 14:</strong> Five First Nation development organizations secured an option for up to a $1-billion majority interest in an LNG Canada Phase 2 storage asset. The expansion and transaction remained conditional. <a href="#src-52">[52]</a></li>
+            <li><strong>July 14-15:</strong> The AFN Annual General Assembly was still underway at the cutoff. Outcomes after July 15 are outside this report. <a href="#src-55">[55]</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="themes">
+      <div class="section-label">Thematic chapters</div>
+      <h2>How the system is changing</h2>
+
+      <h3>1. Capital formation: from a single guarantee to a financing ecosystem</h3>
+      <p>The capital story is larger than the federal Indigenous Loan Guarantee Program. FNFA supplies pooled, secured borrowing for qualifying First Nations. CIB combines project loans with Indigenous equity loans. Federal and provincial programs guarantee acquisition debt. Private banks and institutional lenders provide senior capital around contracted or regulated cash flow. These layers can lower financing costs without requiring a Nation to fund the entire equity cheque from liquid wealth.</p>
+
+      <p>The most durable 2026 transactions share four features: identifiable cash flow, a ring-fenced vehicle, contracted or regulated revenue, and a closed financing package. Chatham-to-Lakeshore and East-West Tie are operating transmission assets. Rose Valley has a power-purchase agreement and reached financial close. Darlington is much larger, but its construction and future ownership make its risk profile fundamentally different. <a href="#src-10">[10]</a> <a href="#src-31">[31]</a> <a href="#src-34">[34]</a> <a href="#src-41">[41]</a></p>
+
+      <p>Loan guarantees do not eliminate the equity requirement. They substitute public credit for part of the Nation's financing constraint. The debt still requires repayment, and guarantee claims can create political and fiscal consequences. A good transaction therefore needs downside cases, debt-service coverage, reserve policy, governance rights, liquidity analysis, and an explicit rule for distributions versus reinvestment.</p>
+
+      <p>FNFA's scale is structurally important because it is not a one-project program. Its June materials reported 195 First Nations in the borrowing pool, 16 debentures, $5.15 billion issued, and member draws around $5.2 billion. FNFA's jobs and output estimates are issuer estimates based on Statistics Canada multipliers. They are useful context, not audited realized outcomes. <a href="#src-13">[13]</a></p>
+
+      <h3>2. Major projects: ownership does not erase project risk</h3>
+      <p>2026 produced a hierarchy of project positions. At the strongest end were closed interests in operating transmission and financed wind. In the middle were approved or financed projects still facing construction, such as Eskay Creek and Darlington. At the weakest end were options, MOUs, and proposals with no FID, including LNG Canada Phase 2 and the west coast pipeline.</p>
+
+      <p>Ksi Lisims sits between categories. The Nisga'a partnership and private benefit agreements are meaningful. The withdrawal of litigation reduces one source of friction. Yet a final investment decision, financing, pipeline execution, power supply, and complete risk allocation were still absent. Yellowhead Institute's critique is valuable not because it settles whether the project is good or bad, but because it forces ownership analysis to include construction, environmental, pipeline, and inter-Nation risk. <a href="#src-40">[40]</a> <a href="#src-42">[42]</a></p>
+
+      <p>The same discipline applies to Indigenous-led issuers. Apitipi's proposed junior miner could shift control of exploration strategy, but junior mining remains exposed to geology, dilution, liquidity, and repeated capital raises. Indigenous control changes governance and potential upside. It does not change ore-body probability. <a href="#src-37">[37]</a></p>
+
+      <p>Rail remained at an earlier stage. NACCA and Alto's May MOU puts more than 50 Indigenous Financial Institutions into the proposed Toronto-to-Québec City high-speed rail project's participation framework. That may improve business finance, procurement, and workforce access, but no Indigenous ownership, construction contract, or procurement award had been identified by July 15. <a href="#src-73">[73]</a></p>
+
+      <h3>3. Fiscal institutions: more authority, incomplete proof</h3>
+      <p>The First Nations Fiscal Management Act institutions continue to do different jobs. FMB certifies and supports financial governance. FNFA pools borrowing. FNTC supports tax jurisdiction. Their value is cumulative: governance standards make revenues financeable; pooled issuance lowers market-access friction; tax authority can create recurring own-source revenue.</p>
+
+      <p>FACT extended this architecture, but narrowly. It allows an opt-in five-per-cent tax on selected goods on reserve or settlement land. It can be applied to a subset of products, but it interacts with existing federal GST-sharing arrangements. The correct 2026 description is “legislated capacity,” not “new tax revenue.” <a href="#src-14">[14]</a></p>
+
+      <p>A proposed FNFMA amendment would allow FNFA to lend to wholly Indigenous-owned special-purpose vehicles where a federal or provincial guarantee supports the loan. Consultation closed May 15. As of July 15, the amendment was not law. If enacted, it could connect FNFA's market access to major-project vehicles while requiring careful protection of the pooled-credit system. <a href="#src-45">[45]</a></p>
+
+      <p>The Auditor General's report is the counterweight. Predictable grants and reduced reporting can support self-determination, but ISC had not demonstrated results and had not fulfilled two commitments in the co-developed fiscal relationship. The lesson is not to restore intrusive reporting. It is to design Nation-relevant outcomes, fund capacity, and collect enough evidence to know whether flexibility is working. <a href="#src-25">[25]</a></p>
+
+      <h3>4. Settlements, trusts, and wealth governance</h3>
+      <p>Robinson-Superior and Rouge River moved large compensation amounts into the 2026 record. The legal story is only the first half. Once capital arrives, the questions become constitutional and fiduciary at the Nation level: who owns the capital, who decides, what is held for future generations, what is liquid, how distributions are approved, and how investment policy respects community law and priorities.</p>
+
+      <p>Public visibility falls sharply after settlement. The Rouge River announcement confirmed $183.4 million and member approval, but not the resulting trust or investment design. The Robinson-Superior decision confirmed the Crown's $3.6-billion determination, while allocation, payment, costs, and community governance remained live. <a href="#src-6">[6]</a> <a href="#src-15">[15]</a></p>
+
+      <p>NATOA's 2026 Indigenous Trust and Investment Conference agenda emphasized fiduciary duty, governance, responsible investing, and intergenerational decisions. That is directionally useful but not a public transaction database. No defensible national figure for new 2026 Indigenous trust assets was found, and private mandates should not be inferred from conference activity. <a href="#src-56">[56]</a></p>
+
+      <h3>5. Entrepreneurship, procurement, housing, and community infrastructure</h3>
+      <p>Closed operating-company and property acquisitions matter because they create management work, supplier relationships, and potentially controllable cash flow. Hardy Buoys, the Nanaimo Marriott, River Rock, and Connect Centre diversify away from a single project-development cycle. The public record cannot yet show whether they were purchased at attractive prices or how much leverage sits behind them.</p>
+
+      <p>Procurement remains the bridge between ownership and local capacity, but the federal system failed an integrity test. The Ombud found no central policy, missed mandatory pre-award audits on contracts above $2 million, inconsistent identity and control verification, and little monitoring of who actually delivered work. The reported $1.24 billion and 6.1 per cent for 2023-24 therefore cannot be read as verified retained Indigenous benefit. <a href="#src-18">[18]</a></p>
+
+      <p>At the enterprise-finance level, NACCA reports more than 50 Indigenous Financial Institutions, over 55,000 loans, $3.6 billion in financing, and a 97-per-cent repayment rate. Those are organizational cumulative figures, not 2026 flow data, but they explain why smaller businesses require a different policy lens than billion-dollar project equity. <a href="#src-44">[44]</a></p>
+
+      <p>Housing illustrates the announcement-to-delivery problem. Canada's $4-billion reconfiguration is material, but the useful measures are binding agreements, homes started, homes completed, operating support, and who governs allocation. A funding envelope cannot be counted as housing stock. <a href="#src-26">[26]</a></p>
+
+      <h3>6. Rights, title, treaties, and regulatory decisions</h3>
+      <p>Nuchatlaht, Gitxaała, KSM, Wolastoqey, K’ómoks, and Kitselas do not point in one direction. They clarify different parts of the system. Nuchatlaht concerns evidence and the territorial character of title. Gitxaała concerns the force of B.C.'s Declaration Act. KSM concerns consultation with an evolving claimant. Wolastoqey concerns remedies involving private land. The treaty files concern how negotiated self-government interacts with neighbouring rights holders.</p>
+
+      <p>The investor consequence is not generic “uncertainty.” It is a requirement for better issue definition. Which Nation holds or claims rights? What decision is before which government? Is there a consent agreement, consultation process, treaty mechanism, or court order? Which milestone is legally effective? General reconciliation language is not due diligence.</p>
+
+      <p>Federal proposals to accelerate major-project review added another unresolved layer. First Nations leadership criticized the consultation and potential compression of rights processes. As of July 15, consultation had been extended and legislation was targeted for the fall. The reforms were not law. <a href="#src-49">[49]</a></p>
+
+      <h3>7. Conservation finance and land-based economies</h3>
+      <p>Stewardship became more legible as an economic mechanism. Treaty 8 restoration combines long-duration public funding with Nation-led plans, procurement, training, and ecological work. Mia-yaltwa Ha'lidzogm hoon connects an IPCA concept to federal marine-conservation machinery. Mineral-tenure pauses create decision space for land-use planning.</p>
+
+      <p>These models should not be evaluated only as avoided extraction. They can create stable careers, guardianship, monitoring systems, tourism, fisheries governance, restoration contracting, cultural land-management work, and data authority. They can also improve project certainty by deciding where development should and should not occur before capital is committed.</p>
+
+      <p>The main weakness is recurring finance. Canada's March nature strategy proposed more than $230 million and a new Arctic Guardians stream, but programs and planning frameworks require durable operating arrangements after initial announcements. <a href="#src-48">[48]</a></p>
+
+      <h3>8. Inuit, Métis, northern, and Arctic economies</h3>
+      <p>The northern record is defined by scale and concentration. Grays Bay could become Inuit-owned trade and mineral infrastructure, but it remains in assessment and depends on traffic, capital, and operating economics. Mary River is operating, but CCAA shows the vulnerability of jobs and agreement revenues to one company's balance sheet.</p>
+
+      <p>CanNor announced about $13 million across Nunavut infrastructure and economic projects, including Grays Bay work, Inuit-owned Kivalliq Hydro-Fibre development, and marine technology. Agnico Eagle's board-approved $3.3-billion Hope Bay plan, with an Inuit-owned wind component, adds potential mining depth. These are important, but they do not remove high logistics costs, small labour markets, housing constraints, and reliance on public infrastructure. <a href="#src-43">[43]</a> <a href="#src-54">[54]</a></p>
+
+      <p>For Métis economic governance, Bill C-21 is the central 2026 federal file. Its significance lies in treaty implementation and jurisdiction, while Assembly of Manitoba Chiefs opposition shows why distinctions and overlapping rights must be addressed directly. The correct status is second-reading legislation, not recognized operative treaty government under the proposed Act. <a href="#src-7">[7]</a></p>
+    </section>
+
+    <section id="bc">
+      <div class="section-label">British Columbia deep dive</div>
+      <h2>Where capital, consent, title, and project urgency collide</h2>
+      <p class="lede">B.C. is not simply Canada's busiest regional file. It is the jurisdiction where Indigenous economic architecture is being tested simultaneously through consent agreements, modern treaties, title litigation, project equity, benefit agreements, conservation planning, and provincial guarantees.</p>
+
+      <h3>The central B.C. tension</h3>
+      <p>The Province wants faster project decisions and more First Nation ownership. First Nations want economic authority without weakening rights or being forced to choose between equity and consent. These goals can align, but only when governments sequence consultation, land-use planning, and financing before a project's political timetable hardens.</p>
+
+      <p>Eskay Creek is the strongest positive implementation case. The Tahltan consent agreement was integrated into authorization, not offered after approval as a participation benefit. KSM is the counter-case: a substantial-start milestone was quashed because consultation with Tsetsaut Skii km Lax Ha was inadequate. Both involve northwestern B.C. mining, yet their legal pathways and Nation relationships differ. <a href="#src-2">[2]</a> <a href="#src-39">[39]</a></p>
+
+      <h3>DRIPA: political retreat, judicial escalation</h3>
+      <p>B.C.'s short-lived proposal to amend or suspend parts of its Declaration Act met immediate opposition and was withdrawn on April 20. That did not restore legal clarity. On May 21, the Supreme Court granted leave in Gitxaała, moving the interpretation of the Act into a national appellate forum. <a href="#src-24">[24]</a></p>
+
+      <p>For project analysis, the key issue is whether the Act is an immediately enforceable consistency standard, a framework for ongoing law reform, or some combination. The Court's answer will affect mineral claims and potentially broader statutory decisions. Until then, B.C. faces the practical task of implementing consultation in the mineral-tenure system while litigating the governing statute.</p>
+
+      <h3>Treaties: one ratified, one paused</h3>
+      <p>K’ómoks obtained provincial Royal Assent and a detailed package of land, capital, fisheries, and recurring implementation funding. It was not yet effective because federal ratification remained. Kitselas reached introduction but paused after Haisla, Lax Kw'alaams, Gitxaała, and others raised concerns about overlapping rights and Crown implementation. <a href="#src-29">[29]</a> <a href="#src-22">[22]</a></p>
+
+      <p>The practical lesson is that treaty certainty is relational, not only statutory. A treaty can create clear jurisdiction for the signatory while leaving disputes about how the Crown addressed neighbouring Nations. Those disputes can affect infrastructure, land transactions, and major-project decisions within the same region.</p>
+
+      <h3>North coast LNG: three different realities</h3>
+      <p>LNG Canada Phase 1 is operational infrastructure. The Phase 2 MNT storage-tank option is a conditional pathway to ownership if expansion is sanctioned. Ksi Lisims is a separate proposed project with Nisga'a partnership, private benefit agreements, and no FID. Reporting them under one “Indigenous LNG ownership” headline collapses different assets, counterparties, stages, and risks.</p>
+
+      <p>The MNT option's build-own-leaseback structure could be attractive if the lease is creditworthy, construction risk is contained, debt is matched to contracted revenue, and residual-value exposure is manageable. None of those terms were public by July 15. The $1-billion figure is a ceiling on a prospective investment, not capital deployed. <a href="#src-52">[52]</a></p>
+
+      <p>Ksi Lisims has a different problem set: greenfield LNG, power supply, PRGT pipeline execution, market contracting, capital cost, and relationships among Nations along the corridor. Benefit agreements and litigation withdrawals are real changes. They do not answer the investment case. <a href="#src-40">[40]</a></p>
+
+      <h3>The southern pipeline arrived before its facts</h3>
+      <p>The July proposal for a one-million-barrel-per-day Alberta-to-Roberts-Bank pipeline entered federal major-project machinery without a final route, designated proponent, regulatory application, financing plan, or Indigenous ownership group. Government references to possible 10-per-cent Indigenous equity should therefore be treated as an invitation to structure, not a transaction. <a href="#src-47">[47]</a></p>
+
+      <p>Tsawwassen First Nation and B.C. First Nations leadership emphasized that corridor and marine consultation could not be replaced by an equity offer. This is the most important early indicator. The project will be shaped by specific Nations, route alternatives, marine effects, and legal duties, not by a generalized claim of Indigenous participation.</p>
+
+      <h3>B.C.'s ownership program needs its first proof point</h3>
+      <p>The First Nations Equity Financing Program is large enough to alter project negotiations. A guarantee range of $5 million to $400 million can support meaningful stakes, and the 20-per-cent-of-project-cost guideline limits some concentration. Yet the program's credibility will be earned deal by deal through pricing, independent advice, disclosure, and measured outcomes. <a href="#src-36">[36]</a></p>
+
+      <p>By the cutoff, no closed guarantee was found. It is therefore incorrect to count the $1 billion as Indigenous investment or project capital. It is contingent provincial capacity reserved for future transactions.</p>
+
+      <h3>Commercial ownership is already more diversified</h3>
+      <p>Snuneymuxw's Marriott and its majority partnership with Musqueam at River Rock place material operating assets under First Nation ownership. Hardy Buoys adds food processing and business succession. These transactions may be strategically valuable because management, employment, and supplier decisions can be more controllable than in passive minority project stakes. <a href="#src-16">[16]</a> <a href="#src-17">[17]</a> <a href="#src-35">[35]</a></p>
+
+      <p>The missing evidence is financial. Private purchase prices and leverage prevent an external reader from distinguishing a strong strategic acquisition from an expensive one. For advisory work, the correct posture is respectful curiosity about governance and cash-flow design, not an assumption that ownership alone guarantees community benefit.</p>
+
+      <h3>Stewardship is part of B.C.'s project architecture</h3>
+      <p>Treaty 8 restoration, Mia-yaltwa Ha'lidzogm hoon, the July conservation-planning areas, and northwest land-use work are not peripheral environmental stories. They determine which economic uses are legitimate, where cumulative effects have reached legal limits, and which new sectors can support jobs and own-source revenue.</p>
+
+      <p>For proponents, early Nation-led land planning can be more valuable than accelerated review after capital is committed. For Nations, durable stewardship finance can support jurisdiction and careers without requiring every economic strategy to depend on extraction.</p>
+
+      <div class="note"><strong>B.C. judgement:</strong> The province has more economic tools than it did six months ago, but less room for generalized project narratives. The quality of consent, inter-Nation process, and transaction governance will determine whether its new guarantee capacity accelerates durable ownership or simply finances larger exposure.</div>
+    </section>
+
+    <section id="capital-map">
+      <div class="section-label">Capital and ownership map</div>
+      <h2>What moved, through which mechanism</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Development</th><th>Amount</th><th>Mechanism</th><th>Ownership position</th><th>Stage at July 15</th><th>What is still missing</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>FNFA March issue</td><td>$485M</td><td>Pooled bond</td><td>Member borrowing, not project equity</td><td class="yes">Closed</td><td>Project-level use and realized outcomes</td></tr>
+            <tr><td>FNFA June issue</td><td>$800M</td><td>Pooled bond</td><td>Member borrowing, not project equity</td><td class="yes">Closed</td><td>Allocation, draws, and revenue-producing share</td></tr>
+            <tr><td>Chatham-to-Lakeshore</td><td>Not public</td><td>Federal guarantee and acquisition debt</td><td>Five Nations collectively 50%</td><td class="yes">Financed and owned</td><td>Valuation, debt terms, and distribution policy</td></tr>
+            <tr><td>East-West Tie</td><td>Up to $75M guarantee</td><td>Ontario guarantee and private debt</td><td>Six Nations increased from 3.5% to 20%</td><td class="yes">Financed and owned</td><td>Acquisition valuation and debt-service coverage</td></tr>
+            <tr><td>Rose Valley Wind</td><td>$164.4M CIB package</td><td>Project loan and Indigenous equity loan</td><td>10-Nation corporation has majority</td><td class="yes">Financial close</td><td>Construction completion and final economics</td></tr>
+            <tr><td>Darlington new nuclear</td><td>About $715M</td><td>Federal and Ontario guarantees</td><td>Future significant minority</td><td class="partial">Financed to eventually own</td><td>Exact percentage, close, cost-overrun allocation</td></tr>
+            <tr><td>B.C. equity program</td><td>$1B capacity</td><td>Provincial guarantees</td><td>No asset yet</td><td class="partial">Program open</td><td>First approved and closed transaction</td></tr>
+            <tr><td>LNG Canada Phase 2 MNT</td><td>Up to $1B</td><td>Option and proposed leaseback</td><td>Potential majority in storage SPV</td><td class="no">Conditional option</td><td>Phase 2 FID, finance, lease, and close</td></tr>
+            <tr><td>West coast pipeline</td><td>No project cost; possible 10% discussed</td><td>Proposal and possible guarantee</td><td>No ownership vehicle</td><td class="no">Early proposal</td><td>Route, proponent, consent, finance, application</td></tr>
+            <tr><td>Wiikwemkoong Connect Centre</td><td>About $65M</td><td>Direct acquisition</td><td>Nation-owned urban property</td><td class="yes">Closed</td><td>Leverage and return metrics</td></tr>
+            <tr><td>Snuneymuxw Marriott</td><td>Not public</td><td>Direct acquisition</td><td>Full Nation ownership</td><td class="yes">Closed</td><td>Price, leverage, management economics</td></tr>
+            <tr><td>River Rock</td><td>Not public</td><td>Partnership acquisition</td><td>Snuneymuxw-majority with Musqueam</td><td class="yes">Closed</td><td>Price, leverage, governance, social-risk policy</td></tr>
+            <tr><td>Hardy Buoys</td><td>Not public</td><td>Business succession acquisition</td><td>Indigenous ownership</td><td class="yes">Closed</td><td>Ultimate ownership vehicle and operating performance</td></tr>
+            <tr><td>Rouge River settlement</td><td>$183.4M</td><td>Cash compensation</td><td>Nation capital</td><td class="yes">Approved and signed</td><td>Trust, investment, and distribution governance</td></tr>
+            <tr><td>Robinson-Superior</td><td>$3.6B plus costs</td><td>Treaty compensation</td><td>Beneficiary-Nation capital after implementation</td><td class="partial">Amount upheld</td><td>Payment, allocation, governance, any appeal</td></tr>
+            <tr><td>Treaty 8 restoration</td><td>$283M over 10 years</td><td>Long-term public funding</td><td>Nation-led plans and delivery</td><td class="yes">Agreements signed</td><td>Allocation, procurement, ecological and job outcomes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Amounts are not additive. They mix bond issuance, guarantees, project loans, purchase prices, compensation, and program capacity. Adding them would create a meaningless “Indigenous capital” total and double-count several flows.</p>
+    </section>
+
+    <section id="real">
+      <div class="section-label">Announced versus real</div>
+      <h2>The execution test</h2>
+      <p class="lede">A development counts as real here only to the extent that the relevant legal, financial, or operating step occurred. This is a stage test, not a judgement on the merits.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Claim in circulation</th><th>Verified reality</th><th>Correct description</th><th>Proof still required</th></tr></thead>
+          <tbody>
+            <tr><td>“Five Nations will invest $1B in LNG Canada.”</td><td>An option for up to $1B in a Phase 2 storage SPV was announced.</td><td class="partial">Conditional option</td><td>Expansion FID, lease, financing, governance, and close</td></tr>
+            <tr><td>“Indigenous partners will own 10% of the new west coast pipeline.”</td><td>Officials discussed potential ownership. No route, proponent, vehicle, or agreement existed.</td><td class="no">Announced ambition</td><td>Rights-holder process, definitive structure, and finance</td></tr>
+            <tr><td>“Seven First Nations own part of Darlington new nuclear.”</td><td>About $715M of financing and guarantees supports an eventual significant minority interest.</td><td class="partial">Financed pathway to future ownership</td><td>Registered or contractual ownership close and percentage</td></tr>
+            <tr><td>“B.C. invested $1B in First Nation projects.”</td><td>B.C. opened $1B of guarantee capacity.</td><td class="partial">Program capacity</td><td>Approved guarantees and closed transactions</td></tr>
+            <tr><td>“Ksi Lisims is now de-risked.”</td><td>Three benefit agreements were signed and two court challenges withdrawn.</td><td class="partial">Relationship and litigation progress</td><td>FID, full financing, pipeline, power, and construction sanction</td></tr>
+            <tr><td>“K’ómoks treaty is in force.”</td><td>B.C. legislation received Royal Assent.</td><td class="partial">Provincially ratified, not yet effective</td><td>Federal legislation and agreed effective date</td></tr>
+            <tr><td>“Kitselas treaty passed.”</td><td>Bill introduced; passage deferred.</td><td class="no">Legislation pending</td><td>Overlap discussions and legislative passage</td></tr>
+            <tr><td>“FACT created new First Nation tax revenue.”</td><td>Federal enabling law came into force.</td><td class="partial">Legislated tax capacity</td><td>First Nation laws, administration, collection, net revenue</td></tr>
+            <tr><td>“Federal Indigenous procurement exceeded 5%.”</td><td>Government reported 6.1%, but the Ombud found material control and verification failures.</td><td class="partial">Target reported, benefit not verified</td><td>Control, delivery, retained margin, jobs, and audit evidence</td></tr>
+            <tr><td>“FNFA drove more than $5B of new 2026 investment.”</td><td>FNFA crossed $5B of cumulative issuance and member draws; $1.285B of bonds closed in 2026.</td><td class="yes">Cumulative platform scale plus 2026 issuance</td><td>Do not double-count issuance and draws</td></tr>
+            <tr><td>“Rose Valley is Indigenous-owned.”</td><td>A 10-Nation corporation has majority ownership and financing reached close.</td><td class="yes">Executed project finance</td><td>Construction, operation, and realized distributions</td></tr>
+            <tr><td>“River Rock changed hands.”</td><td>Musqueam and a Snuneymuxw-majority partnership completed the transaction.</td><td class="yes">Closed acquisition</td><td>Private price and leverage remain unknown</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="perspectives">
+      <div class="section-label">Ideas and narrative layer</div>
+      <h2>Where interpretations conflict</h2>
+      <p class="lede">These are perspectives, not consensus findings. Each is useful when it sharpens a different risk or possibility; none should substitute for project documents, law, or Nation-specific positions.</p>
+      <div class="table-wrap">
+        <table class="matrix">
+          <thead><tr><th>Voice or institution</th><th>Core 2026 or standing thesis</th><th>What it explains well</th><th>Where caution is needed</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Khelsilem</strong></td><td>“Reconciliation panic” mistakes the operation of established rights and negotiation tools for disorder. Consent can create durable certainty by changing who participates in decisions.</td><td>The political economy of rights, title, shared governance, and public anxiety in B.C.</td><td>Consent can de-risk a relationship, but it does not by itself settle project economics or all inter-Nation interests. <a href="#src-57">[57]</a></td></tr>
+            <tr><td><strong>Indigenomics Institute</strong></td><td>The Indigenous economy should be understood as a designed, growing economic space, with a long-standing $100-billion benchmark and focus on Indigenous leadership in markets.</td><td>Moves the frame from program spending to economic agency, procurement, ownership, and institutional design.</td><td>The $100-billion figure is a mobilizing benchmark, not a current audited national GDP measure. A 2026 IMPACT forum was held, but no new independently verified national-size estimate was located. <a href="#src-58">[58]</a></td></tr>
+            <tr><td><strong>Yellowhead Institute</strong></td><td>LNG ownership can bury construction, environmental, pipeline, and inter-Nation burdens inside celebrated equity structures.</td><td>Forces analysis of downside, guarantees, cost overruns, and who carries project risk.</td><td>Its critique is interpretive and project-specific. Definitive transaction documents are still required to judge net risk and reward. <a href="#src-42">[42]</a></td></tr>
+            <tr><td><strong>Russell Diabo</strong></td><td>Economic strategy should begin with self-determination, land and resource restitution, valuation of rights, and independent legal and data capacity.</td><td>Explains why ownership offers can be inadequate if jurisdiction and land questions are excluded.</td><td>No clearly dated 2026 essay was located in the public review. This is a standing framework, not a claim that he endorsed or opposed each 2026 file. <a href="#src-59">[59]</a></td></tr>
+            <tr><td><strong>Indigenous Energy Monitor</strong></td><td>Indigenous project ownership has reached national scale, with the public 2026 page reporting 546 projects and $283 billion of disclosed project value.</td><td>Shows breadth and sector concentration, especially power and utilities.</td><td>The figures are publisher-compiled and not an audited measure of Indigenous equity value. Full methodology was gated, and no form was submitted. Project value is not Indigenous ownership value. <a href="#src-60">[60]</a></td></tr>
+            <tr><td><strong>Canada Energy Regulator</strong></td><td>Operating pipelines with Indigenous stakes can fit guarantee financing because their cash flows are more mature; LNG positions are generally earlier and riskier.</td><td>Useful distinction between brownfield and greenfield ownership risk.</td><td>Regulated or contracted cash flow still requires acquisition-price and leverage analysis. <a href="#src-61">[61]</a></td></tr>
+            <tr><td><strong>Governments and proponents</strong></td><td>Equity ownership can align interests, share benefits, and accelerate major projects.</td><td>Identifies a practical capital mechanism and recognizes rights holders as owners.</td><td>Equity cannot replace consultation or consent, and headline percentages reveal little about leverage, governance, or downside.</td></tr>
+            <tr><td><strong>First Nations leadership critics</strong></td><td>Fast-track laws and project announcements can compress consultation and use ownership language before rights-holder processes occur.</td><td>Explains why proposed pipeline and major-project reforms met immediate resistance.</td><td>First Nations positions differ by Nation, territory, project, and mandate. Opposition by one body is not a universal view. <a href="#src-49">[49]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="dossiers">
+      <div class="section-label">Ongoing-story dossiers</div>
+      <h2>What deserves continued attention</h2>
+
+      <article class="dossier">
+        <h3>Gitxaała and the legal force of B.C.'s Declaration Act</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>B.C. withdrew proposed amendments after First Nations opposition. The Supreme Court then granted leave in the Province's appeal of Gitxaała.</div>
+          <div><b>Current status</b>Live Supreme Court appeal. Appellant materials were due August 17, followed by respondent and intervention filings.</div>
+          <div><b>Central unresolved question</b>Does the Declaration Act immediately constrain inconsistent provincial laws and decisions, or operate mainly through prospective law reform?</div>
+          <div><b>Next catalyst</b>Factums from August through November 2026, then the hearing date.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>A clear Supreme Court test and concrete mineral-tenure implementation would confirm legal direction. Continued ad hoc political fixes would weaken certainty.</div>
+          <div><b>Why Jake should watch</b>The answer affects project timelines, valuation, consultation risk, and B.C.'s credibility with both Nations and investors.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>West coast oil pipeline proposal</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>Canada and Alberta advanced a one-million-barrel-per-day concept to the south B.C. coast and discussed possible Indigenous equity.</div>
+          <div><b>Current status</b>No final route, proponent, application, finance, consent process, or ownership vehicle.</div>
+          <div><b>Central unresolved question</b>Can any route secure rights-holder support and commercial economics while meeting marine, climate, and regulatory requirements?</div>
+          <div><b>Next catalyst</b>Potential national-interest decision by October 1, plus route and proponent disclosure.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>A Nation-led corridor process, credible shipper commitments, and a financeable regulatory case would strengthen it. Route-first politics and generic equity language would weaken it.</div>
+          <div><b>Why Jake should watch</b>It will test whether Canada's new project machinery treats Indigenous ownership as governance or as a late-stage financing label.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>Ksi Lisims LNG</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>Three benefit agreements were announced and two Nations withdrew federal challenges. The project retained government major-project support.</div>
+          <div><b>Current status</b>Pre-FID. Private agreement terms, full financing, power, and pipeline execution remained unresolved.</div>
+          <div><b>Central unresolved question</b>Can the partnership reach an acceptable risk-adjusted FID without moving disproportionate greenfield risk onto Indigenous participants?</div>
+          <div><b>Next catalyst</b>Targeted 2026 FID, definitive project finance, and PRGT execution plan.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>Long-term contracts, capped Indigenous exposure, completion support, and transparent governance strengthen it. Escalating cost and opaque debt weaken it.</div>
+          <div><b>Why Jake should watch</b>It is the clearest test of whether Indigenous-led project sponsorship can coexist with rigorous greenfield underwriting.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>LNG Canada Phase 2 MNT option</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>Five First Nation development organizations secured an option for a majority interest in a storage-tank vehicle, potentially up to $1 billion.</div>
+          <div><b>Current status</b>Conditional option only. Phase 2 had no FID, and financing and leaseback terms were not public.</div>
+          <div><b>Central unresolved question</b>Can the storage asset be isolated into a long-duration, creditworthy lease with construction and residual risks that the Nations can prudently carry?</div>
+          <div><b>Next catalyst</b>Phase 2 FID targeted for late 2026, then definitive documents.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>A strong parent-supported lease, fixed-price construction, conservative leverage, and governance rights would confirm. Merchant or residual exposure would weaken.</div>
+          <div><b>Why Jake should watch</b>The structure could become a high-quality infrastructure allocation or a large leveraged exposure. The documents will decide which.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>KSM substantial-start reconsideration</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>The court quashed B.C.'s substantial-start determination for inadequate consultation with Tsetsaut Skii km Lax Ha.</div>
+          <div><b>Current status</b>Reconsultation and reconsideration required. The court did not finally decide whether the substantive determination was reasonable.</div>
+          <div><b>Central unresolved question</b>Can the Province cure consultation and reissue the milestone without changing the outcome or project schedule?</div>
+          <div><b>Next catalyst</b>Court-directed submissions, renewed consultation, and a new provincial decision.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>A documented, responsive process and reasoned decision would strengthen durability. Treating consultation as a procedural replay would weaken it.</div>
+          <div><b>Why Jake should watch</b>The case is a practical measure of consultation quality for long-duration, high-capital projects with evolving claims.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>Baffinland and Mary River</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>Baffinland entered CCAA protection with more than $1 billion of debt while keeping Mary River operating under interim financing.</div>
+          <div><b>Current status</b>Court-supervised restructuring. QIA and NTI were active to protect Inuit jobs, agreements, and claims.</div>
+          <div><b>Central unresolved question</b>Can a recapitalization or buyer preserve viable operations while honouring Inuit agreements and environmental obligations?</div>
+          <div><b>Next catalyst</b>Restructuring milestones and the September 22-24 annual project review forum.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>Binding treatment of IIBA obligations, credible capital, and sustainable mine plans strengthen continuity. Cost-cutting through Inuit commitments or unmanaged closure risk weakens it.</div>
+          <div><b>Why Jake should watch</b>It is a concentrated case study in creditor law, Inuit economic rights, employment, and ecological trade-offs.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>Grays Bay Road and Port</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>The Inuit-owned project advanced into impact review and received up to $50 million of conditional preconstruction support.</div>
+          <div><b>Current status</b>Assessment, not approval. Construction finance and a full operating model were absent.</div>
+          <div><b>Central unresolved question</b>Will mine traffic and strategic public value support the capital and long-term operating cost of a remote road and port?</div>
+          <div><b>Next catalyst</b>August technical review, fall community meetings, and possible early-2027 NIRB recommendation.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>Committed users, credible capital-cost estimates, Inuit governance, and an operating plan strengthen it. Sponsor-dependent traffic and permanent subsidy ambiguity weaken it.</div>
+          <div><b>Why Jake should watch</b>It joins Arctic sovereignty, critical minerals, infrastructure finance, and Inuit ownership in one file.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>K’ómoks and Kitselas treaty implementation</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>K’ómoks secured B.C. Royal Assent. Kitselas legislation was introduced and deferred amid neighbouring-Nation concerns.</div>
+          <div><b>Current status</b>Neither treaty was effective at the cutoff. K’ómoks awaited federal ratification; Kitselas awaited renewed legislative and inter-Nation work.</div>
+          <div><b>Central unresolved question</b>Can the Crowns implement treaty certainty for signatories while honouring neighbouring rights and overlap processes?</div>
+          <div><b>Next catalyst</b>Federal K’ómoks legislation and fall B.C. action on Kitselas.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>Transparent overlap protocols and coordinated implementation strengthen certainty. Litigation or unilateral implementation weakens it.</div>
+          <div><b>Why Jake should watch</b>These files will shape land, tax, fisheries, and development decisions on Vancouver Island and the north coast.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>FACT and the new fiscal relationship</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>FACT became law while the Auditor General found incomplete implementation and weak outcome evidence in the broader fiscal relationship.</div>
+          <div><b>Current status</b>Federal enabling law exists. Community adoption and revenue evidence were not found.</div>
+          <div><b>Central unresolved question</b>Can new authority create meaningful net revenue and autonomy without offloading responsibilities or recreating administrative burden?</div>
+          <div><b>Next catalyst</b>First Nation FACT laws, collection agreements, and ISC's audit-response milestones.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>Net new recurring revenue and Nation-defined outcome evidence strengthen it. No uptake or substitution for existing transfers weakens it.</div>
+          <div><b>Why Jake should watch</b>Own-source revenue and predictable transfers determine borrowing capacity, investment policy, and fiscal resilience.</div>
+        </div>
+      </article>
+
+      <article class="dossier">
+        <h3>Federal Indigenous procurement reform</h3>
+        <div class="dossier-grid">
+          <div><b>What happened</b>The Procurement Ombud found fragmented policy, verification gaps, missed audits, and weak delivery monitoring.</div>
+          <div><b>Current status</b>Government and CCIB acknowledged reform needs; a complete operating control system was not demonstrated.</div>
+          <div><b>Central unresolved question</b>Can Canada verify Indigenous control and benefit without excluding legitimate partnerships or overburdening smaller suppliers?</div>
+          <div><b>Next catalyst</b>Registry, audit, subcontracting, and outcome-measure changes in 2026-27 procurement.</div>
+          <div><b>Evidence that would confirm or weaken the thesis</b>Control tests, pre-award audits, retained-margin data, and repeat Indigenous prime contractors strengthen credibility. Continued face-value counting weakens it.</div>
+          <div><b>Why Jake should watch</b>Procurement is one of the few scalable routes from project spending to operating-company capacity and community employment.</div>
+        </div>
+      </article>
+    </section>
+
+    <section id="method">
+      <div class="section-label">Methodology, limitations, and confidence</div>
+      <h2>How the record was built</h2>
+      <h3>Method</h3>
+      <p>The research window ran from January 1 through July 15, 2026. Searches were structured by month, province or territory, sector, economic mechanism, and legal stage. Existing Nations Brief materials were used as leads and design reference, never as proof.</p>
+
+      <p>Facts were prioritized from Nation and Indigenous-organization statements, court decisions, legislation, regulators, government records, official corporate disclosures, and financing institutions. Strong Indigenous and independent journalism was used to verify and contextualize. Commentary, speeches, newsletters, and thought leadership were kept in a separate interpretation layer.</p>
+
+      <p>Every ledger item records date, significance, parties, geography, theme, amount, mechanism, stage, sources, competing perspective, status, catalyst, confidence, and unresolved questions. Stage controls the language. A proposal cannot be described as ownership; a guarantee cannot be described as investment deployed; Royal Assent cannot be described as implementation outcomes.</p>
+
+      <h3>Confidence</h3>
+      <p><strong>High</strong> means the core event and stage are supported by authoritative primary evidence, usually with an official legal, government, Nation, financing, or corporate source. <strong>Medium</strong> means the event is credible but a material term, independent confirmation, or closing evidence is missing. No low-confidence item was included in the final 42-event ledger.</p>
+
+      <h3>Source gaps</h3>
+      <ul>
+        <li><strong>Private transaction economics:</strong> purchase prices, debt, covenants, valuation, distributions, and partnership rights were often undisclosed.</li>
+        <li><strong>Trust and asset-management mandates:</strong> public 2026 data were too thin to estimate new trust assets, mandates, allocation, or manager flows.</li>
+        <li><strong>Atlantic Canada, Quebec, Yukon, and Northwest Territories:</strong> fewer material developments met the verification threshold. This is a coverage limitation, not evidence of lower activity.</li>
+        <li><strong>Local and Nation-only communications:</strong> social posts, newsletters, member portals, and community radio can contain material updates that are difficult to search or archive.</li>
+        <li><strong>Paywalled sources:</strong> paywalled reporting was used only where the accessible record was sufficient and was not allowed to carry a material claim alone.</li>
+        <li><strong>Programs versus outcomes:</strong> housing, procurement, broadband, Guardians, and fiscal programs publish envelopes more readily than completions or retained community benefit.</li>
+        <li><strong>Indigenous ownership data:</strong> public datasets often report total project value, not Indigenous equity value, debt, cash invested, or distributions.</li>
+      </ul>
+
+      <h3>What this report does not claim</h3>
+      <p>It is not an exhaustive census of every Indigenous business event in Canada. It does not infer a single Indigenous view. It does not treat First Nations, Inuit, and Métis as interchangeable. It does not offer legal, tax, investment, or client advice. It is a private intelligence dossier intended to improve questions, judgement, and monitoring.</p>
+
+      <h3>Language validation</h3>
+      <p>The report was checked against the existing Indigenous-facing language rules. It names specific Nations and organizations where the source record permits, distinguishes rights holders from broad third-party language, preserves allegations and legal posture, avoids generalized claims of consensus, and treats settlement capital as compensation for a legal or historic claim.</p>
+    </section>
+
+    <section id="sources" class="sources">
+      <div class="section-label">Full source list</div>
+      <h2>Sources</h2>
+      <p class="note">Links were last reviewed for this dossier on July 15, 2026. Primary sources are preferred; analysis and journalism are labelled by publisher context.</p>
+      <ol class="source-list">
+        <li id="src-1"><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/01/government-of-canada-taking-action-to-provide-greater-access-to-unused-spectrum-supporting-connectivity-in-rural-remote-and-indigenous-communities.html">ISED, unused-spectrum access framework</a>, January 16, 2026.</li>
+        <li id="src-2"><a href="https://news.gov.bc.ca/releases/2026ENV0003-000074">B.C., Eskay Creek environmental assessment certificate</a>, January 26, 2026.</li>
+        <li id="src-3"><a href="https://iaac-aeic.gc.ca/050/evaluations/document/166264">Impact Assessment Agency, Eskay Creek updated decision statement</a>.</li>
+        <li id="src-4"><a href="https://skeenagoldsilver.com/news-release/skeena-gold-silver-secures-environmental-assessment-certificate-and-federal-impact-assessment-approval-for-eskay-creek/">Skeena Gold + Silver, Eskay Creek approvals</a>.</li>
+        <li id="src-5"><a href="https://anishinabeknews.ca/2026/01/wiikwemkoong-buys-edmonton-commercial-property-for-65-million/">Anishinabek News, Wiikwemkoong Connect Centre acquisition</a>.</li>
+        <li id="src-6"><a href="https://rrib.ca/files/5017/7222/3628/Red_Rock_First_Nation_v._Canada_Attorney_General_2026_ONSC_1169__Decision_on_Motion_for_Constitutional_Compliance_February_27_2026.docx.pdf">Red Rock First Nation v. Canada, 2026 ONSC 1169</a>.</li>
+        <li id="src-7"><a href="https://www.parl.ca/legisinfo/en/bill/45-1/c-21">Parliament of Canada, Bill C-21 status</a>.</li>
+        <li id="src-8"><a href="https://www.canada.ca/en/fisheries-oceans/news/2026/02/government-of-canada-and-the-a-tlegay-member-nations-sign-milestone-reconciliation-agreement-for-fisheries-resources.html">Canada and A-Tlegay fisheries reconciliation agreement</a>.</li>
+        <li id="src-9"><a href="https://www.canada.ca/en/crown-indigenous-relations-northern-affairs/news/2026/02/musqueam-and-canada-sign-historic-agreements-recognizing-rights-stewardship-and-fisheries.html">Musqueam and Canada agreements</a>.</li>
+        <li id="src-10"><a href="https://www.canada.ca/en/department-finance/news/2026/03/government-supports-equity-purchase-of-hydro-one-line-to-advance-indigenous-economic-participation.html">Finance Canada, Chatham-to-Lakeshore guarantee</a>.</li>
+        <li id="src-11"><a href="https://www.marchconsulting.com/2026/02/28/kitsaki-and-march-enter-definitive-agreement-to-form-indigenous-owned-engineering-firm/">Kitsaki and March proposed engineering partnership</a>.</li>
+        <li id="src-12"><a href="https://fnfa.ca/en/fnfa-secures-485-million/">FNFA, $485-million issue</a>, March 26, 2026.</li>
+        <li id="src-13"><a href="https://fnfa.ca/en/record-setting-800m-fnfa-bond-drives-community-investment-past-5b/">FNFA, record $800-million issue</a>, June 4, 2026.</li>
+        <li id="src-14"><a href="https://laws-lois.justice.gc.ca/eng/acts/F-11.7/FullText.html?txthl=acts">First Nations Goods and Services Tax Act</a>.</li>
+        <li id="src-15"><a href="https://www.canada.ca/en/crown-indigenous-relations-northern-affairs/news/2026/03/mississaugas-of-the-credit-canada-and-ontario-celebrate-final-settlement-of-rouge-river-valley-tract-claim.html">Rouge River Valley Tract Claim settlement</a>, March 7, 2026.</li>
+        <li id="src-16"><a href="https://nanaimobulletin.com/2026/03/17/snuneymuxw-first-nation-acquires-full-ownership-of-courtyard-by-marriott-nanaimo/">Snuneymuxw Marriott acquisition</a>.</li>
+        <li id="src-17"><a href="https://www.nedc.info/hardy-buoys-smoked-fish-transitions-to-indigenous-ownership-in-port-hardy/">Hardy Buoys ownership transition</a>.</li>
+        <li id="src-18"><a href="https://opo-boa.gc.ca/praapp-prorev/2026/epa-ppr-03-2026-eng.html">Procurement Ombud, Indigenous procurement practice review</a>.</li>
+        <li id="src-19"><a href="https://www.canada.ca/en/indigenous-services-canada/news/2026/03/canadian-human-rights-tribunal-approves-historic-agreement-to-reform-ontario-first-nations-child-and-family-services.html">CHRT approval of Ontario First Nations child-and-family-services reform</a>.</li>
+        <li id="src-20"><a href="https://www.canlii.org/en/bc/bcca/doc/2026/2026bcca137/2026bcca137.html">The Nuchatlaht v. British Columbia, 2026 BCCA 137</a>.</li>
+        <li id="src-21"><a href="https://crtc.gc.ca/eng/archive/2026/2026-47.htm">CRTC 2026-47, Indigenous Broadband Fund stream consultation</a>.</li>
+        <li id="src-22"><a href="https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026PREM0019-000416.htm">B.C., Kitselas Treaty Act introduction</a>.</li>
+        <li id="src-23"><a href="https://news.gov.bc.ca/releases/2026ECS0011-000494">B.C. and Treaty 8 First Nations restoration agreements</a>.</li>
+        <li id="src-24"><a href="https://www.scc-csc.ca/cases-dossiers/search-recherche/42200/">Supreme Court of Canada docket 42200, Gitxaała</a>.</li>
+        <li id="src-25"><a href="https://www.canada.ca/en/auditor-general/our-work/audit-reports/auditor-general-202605-new-fiscal-initiatives-with-first-nations.html?wbdisable=true">Auditor General, New Fiscal Initiatives with First Nations</a>.</li>
+        <li id="src-26"><a href="https://www.canada.ca/en/housing-infrastructure-communities/news/2026/04/delivering-on-funding-for-urban-rural-and-northern-indigenous-housing.html">Canada, urban, rural, and northern Indigenous housing funding</a>.</li>
+        <li id="src-27"><a href="https://cfcanada.fticonsulting.com/baffinland/">FTI Consulting, Baffinland CCAA monitor materials</a>.</li>
+        <li id="src-28"><a href="https://www.canada.ca/en/parks-canada/news/2026/05/mia-yaltwa-halidzogm-hoon-a-collaborative-approach-to-marine-protection-announced-for-the-central-coast-of-british-columbia.html">Mia-yaltwa Ha'lidzogm hoon marine-conservation announcement</a>.</li>
+        <li id="src-29"><a href="https://komoks.ca/press-release-komoks-welcomes-passage-of-komoks-treaty-act-in-bc-legislature/">K’ómoks, B.C. treaty legislation Royal Assent</a>.</li>
+        <li id="src-30"><a href="https://bctreaty.ca/komoks-first-nation/">B.C. Treaty Commission, K’ómoks treaty overview</a>.</li>
+        <li id="src-31"><a href="https://cib-bic.ca/en/medias/articles/advancing-wind-energy-infrastructure-and-indigenous-ownership-in-saskatchewan/">Canada Infrastructure Bank, Rose Valley Wind financial close</a>.</li>
+        <li id="src-32"><a href="https://www.qia.ca/qia-and-nti-respond-to-baffinland-iron-mines-entering-creditor-protection/">QIA and NTI response to Baffinland CCAA</a>.</li>
+        <li id="src-33"><a href="https://www.scc-csc.ca/cases-dossiers/search-recherche/42204/">Supreme Court of Canada docket 42204, Wolastoqey leave application</a>.</li>
+        <li id="src-34"><a href="https://news.ontario.ca/en/release/1007524/ontario-supporting-increased-first-nations-ownership-in-east-west-tie-transmission-line">Ontario, East-West Tie ownership increase</a>.</li>
+        <li id="src-35"><a href="https://www.musqueam.bc.ca/musqueam-indian-band-and-musqueam-capital-corp-complete-river-rock-casino-resort-transaction/">Musqueam and Snuneymuxw River Rock closing</a>.</li>
+        <li id="src-36"><a href="https://www2.gov.bc.ca/gov/content/employment-business/economic-development/indigenous-economic-development-resources/first-nations-equity-financing-program">B.C. First Nations Equity Financing Program</a>.</li>
+        <li id="src-37"><a href="https://www.newswire.ca/news-releases/solid-gold-resources-corp-announces-transaction-with-apitipi-anicinapek-nation-to-launch-one-of-canada-s-first-indigenous-led-junior-mining-companies-on-treaty-9-lands-824057231.html">Solid Gold and Apitipi proposed transaction</a>.</li>
+        <li id="src-38"><a href="https://www.canada.ca/en/natural-resources-canada/news/2026/06/government-of-canada-invests-216-million-in-first-of-its-kind-clean-energy-project-in-manitoba.html">Canada, Sayisi Dene clean-energy investment</a>.</li>
+        <li id="src-39"><a href="https://www.newswire.ca/news-releases/legal-win-for-tsetsaut-skii-km-lax-ha-nation-b-c-supreme-court-strikes-down-substantial-start-determination-for-ksm-mine-and-orders-proper-consultation-quashing-led-to-justice-not-ruling-on-ssd-reasonableness-846724457.html">Tsetsaut Skii km Lax Ha statement on KSM judgment</a>.</li>
+        <li id="src-40"><a href="https://www.ksilisimslng.com/news">Ksi Lisims LNG project news</a>.</li>
+        <li id="src-41"><a href="https://www.canada.ca/en/department-finance/news/2026/06/government-announces-largest-indigenous-loan-guarantee-in-canadian-history-to-support-darlington-new-nuclear-project.html">Finance Canada, Darlington Indigenous loan guarantee</a>.</li>
+        <li id="src-42"><a href="https://yellowheadinstitute.org/report/buried-burdens-the-true-costs-of-liquified-natural-gas-lng-ownership/">Yellowhead Institute, Buried Burdens</a>.</li>
+        <li id="src-43"><a href="https://www.canada.ca/en/privy-council/major-projects-office/projects/national/grays-bay.html">Major Projects Office, Grays Bay Road and Port</a>.</li>
+        <li id="src-44"><a href="https://nacca.ca/">National Aboriginal Capital Corporations Association, public portfolio statistics</a>.</li>
+        <li id="src-45"><a href="https://fnfa.ca/en/spv/">FNFA, proposed special-purpose-vehicle amendments</a>.</li>
+        <li id="src-46"><a href="https://www.bankofcanada.ca/2026/06/sparks-at-bank-article-2026-16/">Bank of Canada, financing experiences of Indigenous-owned firms</a>.</li>
+        <li id="src-47"><a href="https://www.canada.ca/en/privy-council/major-projects-office/projects/national/west.html">Major Projects Office, west coast pipeline proposal</a>.</li>
+        <li id="src-48"><a href="https://www.pm.gc.ca/en/news/news-releases/2026/03/31/prime-minister-carney-launches-new-nature-strategy-protect-canadas">Canada's 2026 nature strategy and Guardians expansion</a>.</li>
+        <li id="src-49"><a href="https://www.ubcic.bc.ca/ubcic_rejects_proposed_major_projects_reforms">UBCIC response to proposed federal major-project reforms</a>.</li>
+        <li id="src-50"><a href="https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026WLRS0032-000798.htm">B.C., First Nation conservation-planning areas and mineral-tenure pause</a>.</li>
+        <li id="src-51"><a href="https://news.gov.bc.ca/releases/2026WLRS0031-000781">B.C., northwest land-use planning and proposed Sacred Headwaters area</a>.</li>
+        <li id="src-52"><a href="https://www.newswire.ca/news-releases/landmark-indigenous-equity-option-creates-potential-for-one-of-canada-s-largest-indigenous-ownership-stakes-in-energy-infrastructure-at-lng-canada-808661298.html">MNT option for LNG Canada Phase 2 storage asset</a>.</li>
+        <li id="src-53"><a href="https://www.canada.ca/en/northern-economic-development/news/2026/04/backgrounder-cannor-invests-in-projects-to-strengthen-nunavuts-economy-infrastructure-and-arctic-security.html">CanNor, Nunavut infrastructure and economic-development projects</a>.</li>
+        <li id="src-54"><a href="https://nunatsiaq.com/stories/article/agnico-eagles-3-3b-hope-bay-mine-moving-ahead/">Nunatsiaq News, Agnico Eagle Hope Bay investment decision</a>.</li>
+        <li id="src-55"><a href="https://afn.ca/events/annual-general-assembly-2026/">Assembly of First Nations, 2026 Annual General Assembly</a>.</li>
+        <li id="src-56"><a href="https://natoa.ca/wp-content/uploads/2026/02/NATOA_RRI2026_AGENDA_85x11_05022026.pdf">NATOA, 2026 Indigenous Trust and Investment Conference agenda</a>.</li>
+        <li id="src-57"><a href="https://macleans.ca/politics/canadas-reconciliation-panic/">Khelsilem, “Canada's Reconciliation Panic,” Maclean's</a>, March 20, 2026.</li>
+        <li id="src-58"><a href="https://www.businesswire.com/news/home/20260511349051/en/The-Indigenomics-Institute-Hosts-its-2nd-Annual-IMPACT-Forum">Indigenomics Institute, 2026 IMPACT Forum announcement</a>.</li>
+        <li id="src-59"><a href="https://www.russdiabo.com/vision">Russell Diabo, standing vision and framework</a>.</li>
+        <li id="src-60"><a href="https://www.indigenousenergymonitor.ca/stateofindigenousownership2026">Indigenous Energy Monitor, State of Indigenous Ownership 2026 public page</a>.</li>
+        <li id="src-61"><a href="https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/market-snapshots/2026/market-snapshot-growing-indigenous-ownership-in-canadian-pipelines-and-lng-facilities.html?=undefined&amp;wbdisable=true">Canada Energy Regulator, Indigenous pipeline and LNG ownership</a>.</li>
+        <li id="src-62"><a href="https://www.canada.ca/en/crown-indigenous-relations-northern-affairs/news/2026/02/canada-introduces-bill-for-self-government-treaty-with-the-manitoba-metis-federation.html">Canada, Red River Métis treaty bill announcement</a>.</li>
+        <li id="src-63"><a href="https://manitobachiefs.com/press_releases/amc-calls-on-the-protection-of-first-nations-treaty-rights-and-jurisdiction-before-advancing-bill-c-21-an-act-to-give-effect-to-the-red-river-metis-self-government-recognition-and-implementation/">Assembly of Manitoba Chiefs response to Bill C-21</a>.</li>
+        <li id="src-64"><a href="https://www.qia.ca/qia-and-baffinland-announce-mary-river-project-annual-project-review-forum-2/">QIA and Baffinland, 2026 Mary River annual project review forum</a>.</li>
+        <li id="src-65"><a href="https://nunatsiaq.com/stories/article/mini-celebration-before-lengthy-review-process-for-grays-bay-project/">Nunatsiaq News, Grays Bay review process</a>.</li>
+        <li id="src-66"><a href="https://jfklaw.ca/musqueams-rights-recognition-agreement-separating-fact-from-fiction/">JFK Law, Musqueam agreement legal context</a>.</li>
+        <li id="src-67"><a href="https://jfklaw.ca/bc-court-of-appeal-confirms-aboriginal-title-to-entire-claim-area-in-the-nuchatlaht-v-british-columbia-2026-bcca-137/">JFK Law, Nuchatlaht case analysis</a>.</li>
+        <li id="src-68"><a href="https://gowlingwlg.com/en/insights-resources/articles/2026/how-evolving-indigenous-claims-can-unsettle-major-projects">Gowling WLG, KSM and evolving Indigenous claims</a>.</li>
+        <li id="src-69"><a href="https://www.torys.com/our-latest-thinking/publications/2026/05/scc-declines-to-hear-wolastoqey-nation-appeal?sc_lang=en">Torys, Wolastoqey leave-denial analysis</a>.</li>
+        <li id="src-70"><a href="https://www.globenewswire.com/news-release/2026/03/31/3266134/0/en/Statement-CCIB-Response-to-the-Office-of-the-Procurement-Ombud-s-Procurement-Practice-Review-of-Contracts-Awarded-to-Indigenous-Businesses-Report.html">CCIB response to Procurement Ombud review</a>.</li>
+        <li id="src-71"><a href="https://fnfmb.com/sites/default/files/2026-04/2026-04-01_two_decades_fma_leadership_driving_economic_reconciliation.pdf">FMB, two decades of Fiscal Management Act institutions</a>.</li>
+        <li id="src-72"><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/03/minister-valdez-announces-federal-funding-to-boost-indigenous-tourism.html">Canada, 2026 Indigenous tourism funding</a>.</li>
+        <li id="src-73"><a href="https://www.altotrain.ca/en/news/nacca-and-alto-sign-mou-support-indigenous-economic-participation-canadas-high-speed-rail">NACCA and Alto, Indigenous economic-participation MOU for high-speed rail</a>, May 7, 2026.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Prepared solely for Jake Carey's private research and advisory judgement. Coverage ends July 15, 2026. Legal, tax, investment, and client-advice determinations require separate professional analysis.</p>
+    </div>
+  </footer>
+</body>
+</html>

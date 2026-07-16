@@ -1,0 +1,133 @@
+{
+  "run": {
+    "date": "2026-07-16",
+    "day": "Thursday",
+    "timezone": "America/Vancouver",
+    "coverageWindow": "2026-07-15 00:00 PDT through 2026-07-16 morning PDT, with older items used only as carried-forward B.C. ledger context",
+    "lastRun": "never",
+    "priorEditionChecked": "/Users/jakecarey/Documents/Codex/2026-07-15/i-wa/outputs/the-nations-this-morning-pilot-2026-07-15.html",
+    "archiveChecked": "/Users/jakecarey/jakexclaude/nations-brief/v1/today",
+    "publicInformationOnly": true
+  },
+  "tierChecks": [
+    {
+      "tier": "A",
+      "contract": "Daily full scan of new items",
+      "sourcesChecked": 18,
+      "newItemsFound": 16,
+      "itemsOpenedOrAssessed": 13,
+      "includedInEdition": 5,
+      "notes": "APTN, Indigenous Watchdog and First Peoples Law carried the live national signal. Nunatsiaq, Ha-Shilth-Sa, CCIB, FNFA, FNFMB, FNMPC, Indigenous Clean Energy, FNTC and NACCA were checked for new economic or legal items. NationTalk/IBF pages showed no July 15-16 economic items in accessible page content. BCAFN page was blocked by verification interstitial."
+    },
+    {
+      "tier": "B",
+      "contract": "Daily change detection",
+      "sourcesChecked": 2,
+      "newItemsFound": 1,
+      "itemsOpenedOrAssessed": 1,
+      "includedInEdition": 0,
+      "notes": "First Peoples Law Report July 8-14 was used as discovery only. No Friday long-form rotation performed because today is Thursday."
+    },
+    {
+      "tier": "C",
+      "contract": "Interpretive newsletters/Substacks for discovery only",
+      "sourcesChecked": 0,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "Skipped for publication foundation because the live public-source signal was available from Indigenous-led newsroom and institutional sources."
+    },
+    {
+      "tier": "D",
+      "contract": "Regional/community journalism change detection",
+      "sourcesChecked": 2,
+      "newItemsFound": 2,
+      "itemsOpenedOrAssessed": 2,
+      "includedInEdition": 0,
+      "notes": "Ha-Shilth-Sa had July 15 local/environment items but no verified economic, ownership, capital, procurement or regulatory development for placement. Nunatsiaq showed July 16 Inuit/northern public-service items, but none cleared the economic-materiality bar for this edition."
+    },
+    {
+      "tier": "E",
+      "contract": "Friday long-form rotation",
+      "sourcesChecked": 0,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "Not due on Thursday."
+    },
+    {
+      "tier": "Gmail",
+      "contract": "Search label 'Nations Brief Sources' since prior run",
+      "sourcesChecked": 1,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "Label exists with 17 total messages and 11 unread. Search for label:\"Nations Brief Sources\" after:2026/7/15 -in:spam -in:trash returned no emails."
+    }
+  ],
+  "candidateLedger": [
+    {
+      "candidate": "AFN chiefs limit AFN role on major-project negotiations",
+      "status": "included",
+      "verification": "APTN article plus AFN event/institutional context",
+      "sourceIds": [1, 2, 3]
+    },
+    {
+      "candidate": "Federal ministers address AGA on economy, natural resources, public safety and services",
+      "status": "included",
+      "verification": "The Canadian Press carried by APTN, with AFN event context",
+      "sourceIds": [2, 3]
+    },
+    {
+      "candidate": "Bill C-37 First Nations Clean Water Act criticism",
+      "status": "included",
+      "verification": "APTN reporting from AGA; First Peoples Law used as discovery",
+      "sourceIds": [4, 9]
+    },
+    {
+      "candidate": "Loving Justice plan vs Canada's child-welfare reform plan",
+      "status": "included",
+      "verification": "APTN reporting from AGA",
+      "sourceIds": [5]
+    },
+    {
+      "candidate": "Five First Nations sign $1-billion equity deal for LNG Canada storage tank",
+      "status": "excluded",
+      "verification": "Discovered through Indigenous Watchdog/Globe headline but no accessible primary, company, Nation or independent source could be confirmed during the run",
+      "sourceIds": [10]
+    },
+    {
+      "candidate": "Tsleil-Waututh Nation judicial review of Burrard Inlet dredging permits",
+      "status": "carried_forward_still_watching",
+      "verification": "APTN/Canadian Press article; outside 24-hour publication window",
+      "sourceIds": [6]
+    },
+    {
+      "candidate": "B.C. approval of Mount Polley tailings-dam height increase",
+      "status": "carried_forward_still_watching",
+      "verification": "APTN/Canadian Press article; outside 24-hour publication window",
+      "sourceIds": [7]
+    },
+    {
+      "candidate": "Three proposed Indigenous-led conservation areas in B.C.",
+      "status": "carried_forward_still_watching",
+      "verification": "The Tyee article with B.C. government source link; outside 24-hour publication window",
+      "sourceIds": [8]
+    }
+  ],
+  "sourceFailuresAndGaps": [
+    "BCAFN economic-development newsletter page returned a verification interstitial and could not be scanned directly.",
+    "Some NationTalk search queries returned no usable current-index results; accessible IBF page content was stale to June 30 for economic items.",
+    "The LNG Canada equity headline was treated as discovery only and excluded because the material transaction claim could not be verified against an accessible primary or independent report.",
+    "The local v1 archive had no prior dated editions, so the July 15 pilot was used only for style and anti-duplication context."
+  ],
+  "qualityGates": {
+    "twoSourceVerificationForConsequentialClaims": "Applied where possible; single-source APTN/Canadian Press items are labelled reported unless supported by institutional context.",
+    "distinctionsBasedLanguage": "Preserved First Nations-specific framing; Inuit and Métis not generalized into First Nations claims.",
+    "completedVsProposed": "No proposal was described as completed; B.C. project files described as live or proposed where applicable.",
+    "bodySourceChips": "None in HTML body; numbered references placed at bottom.",
+    "dateIntegrity": "Every included article date checked; older B.C. items explicitly marked as ledger context rather than new developments."
+    ,
+    "visualIntegrity": "HTML parser, source-reference and responsive CSS structure checks passed. Screenshot-based browser inspection was attempted but blocked by the app browser's local file URL policy."
+  }
+}
