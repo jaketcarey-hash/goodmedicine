@@ -1,0 +1,144 @@
+{
+  "run": {
+    "date": "2026-07-17",
+    "day": "Friday",
+    "timezone": "America/Vancouver",
+    "coverageWindow": "2026-07-16 morning PDT through 2026-07-17 morning PDT, with older items used only as carried-forward ledger context",
+    "lastRun": "2026-07-16T15:45:57.109Z",
+    "priorEditionChecked": "/Users/jakecarey/jakexclaude/nations-brief/v1/today/2026-07-16.json",
+    "archiveChecked": "/Users/jakecarey/jakexclaude/nations-brief/v1/today",
+    "publicInformationOnly": true,
+    "gmailQuery": "label:\"Nations Brief Sources\" after:2026/7/16 -in:spam -in:trash"
+  },
+  "tierChecks": [
+    {
+      "tier": "A",
+      "contract": "Daily full scan of new items",
+      "sourcesChecked": 18,
+      "newItemsFound": 14,
+      "itemsOpenedOrAssessed": 12,
+      "includedInEdition": 4,
+      "notes": "APTN, B.C. government releases, AFN, NationTalk search paths, IBF, CCIB, FNFA, FNFMB, FNMPC, Indigenous Clean Energy, Indigenous Energy Monitor, FNTC, NACCA, Nunatsiaq, Ha-Shilth-Sa, Indigenous Watchdog and First Peoples Law were checked for new items. The strongest fresh signals were the Simpcw-Yellowhead consent agreement, Gitanmaax cannabis agreement, AFN ministerial/major-project follow-up and the wildfire emergency-resolution file."
+    },
+    {
+      "tier": "B",
+      "contract": "Daily change detection plus Friday deeper rotation",
+      "sourcesChecked": 10,
+      "newItemsFound": 1,
+      "itemsOpenedOrAssessed": 1,
+      "includedInEdition": 0,
+      "notes": "First Peoples Law's July 8-14 report remained the latest visible legal roundup and was used only as discovery. Yellowhead Institute, RRII, Tallgrass/IIPWG, Indigenous Finance Collective, Raven, AFOA/JAM, NATOA, Indigenomics, Tulo, FNIGC, ILI, OKT and Osler were checked for fresh long-form or legal material; no Friday item added a structural insight beyond the live Simpcw agreement."
+    },
+    {
+      "tier": "C",
+      "contract": "Interpretive newsletters/Substacks for discovery only",
+      "sourcesChecked": 6,
+      "newItemsFound": 1,
+      "itemsOpenedOrAssessed": 1,
+      "includedInEdition": 0,
+      "notes": "Substack/commentary sources were checked lightly for B.C. and major-project narrative changes. No material claim was founded on commentary."
+    },
+    {
+      "tier": "D",
+      "contract": "Regional/community journalism change detection",
+      "sourcesChecked": 6,
+      "newItemsFound": 3,
+      "itemsOpenedOrAssessed": 3,
+      "includedInEdition": 0,
+      "notes": "Ha-Shilth-Sa, IndigiNews, Anishinabek News, The Eastern Door, Nation Magazine and Cabin Radio were checked for regional material. No new regional article cleared the economic-materiality bar after verification, though wildfire reporting was picked up through APTN and Canadian Press."
+    },
+    {
+      "tier": "E",
+      "contract": "Friday long-form rotation",
+      "sourcesChecked": 4,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "Native Nations Institute, Harvard Project on Indigenous Governance and Development, First Nations Development Institute and NDN Collective were change-checked. No new material was used in today's edition."
+    },
+    {
+      "tier": "Gmail",
+      "contract": "Search label 'Nations Brief Sources' since prior run",
+      "sourcesChecked": 1,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "Gmail search returned no messages for label:\"Nations Brief Sources\" after:2026/7/16 -in:spam -in:trash."
+    }
+  ],
+  "candidateLedger": [
+    {
+      "candidate": "B.C. and Simpcw consent-based assessment agreement for Yellowhead copper mine",
+      "status": "included",
+      "verification": "B.C. government release plus company project disclosure; framed as process agreement, not approval",
+      "sourceIds": [1, 2]
+    },
+    {
+      "candidate": "B.C. and Gitanmaax Band section 119 cannabis agreement",
+      "status": "included",
+      "verification": "B.C. government release plus New Relationship Trust Gitksannabis program story",
+      "sourceIds": [3, 4]
+    },
+    {
+      "candidate": "AFN final-day ministerial exchange on major projects and consultation",
+      "status": "included",
+      "verification": "APTN reporting plus AFN AGA primary event context; final resolution package not yet public",
+      "sourceIds": [5, 6, 7]
+    },
+    {
+      "candidate": "Namaygoosisagagun wildfire emergency resolution and evacuation support gap",
+      "status": "included",
+      "verification": "APTN reporting from AFN plus Canadian Press/Ontario evacuation-support reporting",
+      "sourceIds": [8, 9]
+    },
+    {
+      "candidate": "LNG Canada Phase 2 storage-tank equity option",
+      "status": "carried_forward_still_watching",
+      "verification": "Known July 14 file from pilot/source registry; no material July 16-17 change found",
+      "sourceIds": []
+    },
+    {
+      "candidate": "Tsleil-Waututh Nation Burrard Inlet dredging challenge",
+      "status": "carried_forward_still_watching",
+      "verification": "APTN/Canadian Press article; no material new filing found in window",
+      "sourceIds": [10]
+    },
+    {
+      "candidate": "B.C. Mount Polley tailings-dam height approval over Xat'sull First Nation concerns",
+      "status": "carried_forward_still_watching",
+      "verification": "APTN/Canadian Press article; no material new permit step found in window",
+      "sourceIds": [11]
+    },
+    {
+      "candidate": "Qat'muk, Skagit Headwaters and Raush Valley Indigenous-led conservation areas",
+      "status": "carried_forward_still_watching",
+      "verification": "The Tyee article with B.C. source link; no material new planning step found in window",
+      "sourceIds": [12]
+    },
+    {
+      "candidate": "Métis National Council leadership summit item",
+      "status": "excluded",
+      "verification": "Discovered in broad search; did not clear economic-materiality bar for today's brief",
+      "sourceIds": []
+    },
+    {
+      "candidate": "Nunavut/Inuit public-service and regional items",
+      "status": "excluded",
+      "verification": "Nunatsiaq/Nunavut scan produced no Inuit economic, ownership, capital, procurement or regulatory item that cleared the 24-hour bar",
+      "sourceIds": []
+    }
+  ],
+  "sourceFailuresAndGaps": [
+    "Some NationTalk and BCAFN pages were not reliably accessible through direct fetch/search and were recorded as coverage gaps rather than used as source foundations.",
+    "The final AFN resolution package was not public during the run, so AFN items were framed through APTN reporting plus event context and labelled reported where appropriate.",
+    "No fresh Inuit or Métis economic item cleared both materiality and verification standards in the window.",
+    "Friday Tier E long-form sources produced no new structural item; The Long Current was omitted rather than filled."
+  ],
+  "qualityGates": {
+    "twoSourceVerificationForConsequentialClaims": "Applied to Simpcw, Gitanmaax, AFN and wildfire items using primary/government, company, institutional or independent reporting. AFN and wildfire items remain reported where primary documents were incomplete or administrative status details came from reporting.",
+    "distinctionsBasedLanguage": "First Nations-specific items were not generalized to Inuit or Métis. The absence of Inuit/Métis placements is disclosed in Still Watching.",
+    "completedVsProposed": "Yellowhead is described as a proposed mine and the agreement as a process/assessment agreement, not approval. Cannabis agreement is described as a signed agreement, with economics undisclosed.",
+    "bodySourceChips": "None intended; numbered references are used and full descriptive source list is placed at the bottom.",
+    "dateIntegrity": "Included fresh items are July 16-17, 2026. Older B.C. items are explicitly ledger context."
+  }
+}

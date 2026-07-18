@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nations This Morning — Friday, July 17, 2026</title>
+  <style>
+    :root {
+      --ink: #18201d;
+      --muted: #66706b;
+      --paper: #fffdf8;
+      --canvas: #ede9df;
+      --cedar: #873f2b;
+      --cedar-dark: #4f241a;
+      --forest: #1f5b4d;
+      --gold: #bc8b35;
+      --line: #ddd6c8;
+      --soft-gold: #f7f0e0;
+      --soft-red: #f7ece7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--forest); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .shell {
+      width: min(760px, calc(100% - 24px));
+      margin: 24px auto 48px;
+      background: var(--paper);
+      border: 1px solid #d6cfc1;
+      box-shadow: 0 18px 50px rgba(43, 37, 28, .12);
+    }
+    .masthead {
+      padding: 38px 46px 30px;
+      border-top: 7px solid var(--cedar);
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 92% 10%, rgba(188,139,53,.16), transparent 28%), linear-gradient(135deg, #fffdf8 0%, #fbf7ee 100%);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.03em;
+    }
+    .strap {
+      max-width: 600px;
+      margin: 18px 0 0;
+      color: #48514d;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .through-line {
+      padding: 24px 46px;
+      color: #f7f3ea;
+      background: var(--cedar-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      line-height: 1.42;
+    }
+    .through-line strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #d7b96d;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    main { padding: 10px 46px 44px; }
+    .section { padding-top: 32px; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    h2 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 29px;
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -.015em;
+    }
+    h3 { margin: 0 0 7px; font-size: 17px; line-height: 1.35; }
+    p { margin: 0 0 13px; font-size: 14px; line-height: 1.72; }
+    .lead {
+      padding: 26px;
+      border-left: 5px solid var(--cedar);
+      background: var(--soft-red);
+    }
+    .pill {
+      display: inline-block;
+      margin: 0 0 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .source-mark { white-space: nowrap; }
+    .source-mark a {
+      color: var(--cedar);
+      font-size: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      vertical-align: super;
+    }
+    .signal {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid #ddc79b;
+      background: var(--soft-gold);
+    }
+    .signal strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #73551c;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .signal p { margin: 0; font-size: 13px; line-height: 1.6; }
+    .item { padding: 18px 0; border-top: 1px solid var(--line); }
+    .item:first-of-type { border-top: 0; padding-top: 0; }
+    .kicker {
+      margin-bottom: 8px;
+      color: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .why, .detail {
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: #4f5954;
+      font-style: italic;
+    }
+    .detail { margin-top: 6px; padding-top: 0; border-top: 0; font-style: normal; }
+    .watch { margin: 0; padding-left: 18px; }
+    .watch li { margin: 0 0 10px; font-size: 13px; line-height: 1.62; }
+    .sources {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 2px solid var(--ink);
+    }
+    .sources-intro {
+      max-width: 620px;
+      margin: -3px 0 17px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .source-list { margin: 0; padding-left: 22px; columns: 2; column-gap: 34px; }
+    .source-list li {
+      break-inside: avoid;
+      margin: 0 0 12px;
+      padding-left: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .source-list a { color: var(--ink); font-weight: 700; text-decoration-color: #acbcb4; }
+    .source-list span { display: block; margin-top: 2px; }
+    footer {
+      padding: 24px 46px 30px;
+      border-top: 1px solid var(--line);
+      color: #777c78;
+      background: #f7f3ea;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    footer strong { color: var(--ink); }
+    @media (max-width: 620px) {
+      .shell { width: 100%; margin: 0; border: 0; }
+      .masthead, main, footer { padding-left: 24px; padding-right: 24px; }
+      .through-line { padding: 22px 24px; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+<div style="max-width:760px;margin:18px auto 0;padding:0 12px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;font-size:12px;line-height:1.5;"><a href="/nations" style="color:#1f5b4d;font-weight:700;text-decoration-thickness:1px;text-underline-offset:2px;">&larr; Nations archive</a></div>
+  <article class="shell">
+    <header class="masthead">
+      <p class="eyebrow">Public-source intelligence brief</p>
+      <h1>The Nations<br>This Morning</h1>
+      <p class="strap">Yesterday's national argument over consent now has a B.C. project file attached to it.</p>
+      <div class="meta">
+        <span>Friday, July 17, 2026</span>
+        <span>About five minutes</span>
+        <span>5 developments</span>
+        <span>Primary-source verified</span>
+      </div>
+    </header>
+    <div class="through-line">
+      <strong>Today&apos;s through-line</strong>
+      The economic signal moved from Ottawa's AFN floor to B.C.'s project-review machinery. Chiefs spent the week saying national advocacy cannot replace affected First Nations' authority; one day later, B.C. and Simpcw signed a consent-based assessment agreement for the proposed Yellowhead copper mine.
+    </div>
+    <main>
+      
+      <section class="section">
+        <div class="section-label">The One Thing</div>
+        
+        <div class="lead">
+          <span class="pill">confirmed</span>
+          <h2>B.C. and Simpcw turn consent into the operating question for Yellowhead <span class="source-mark"><a href="#source-1">[1]</a> <a href="#source-2">[2]</a></span></h2>
+          <p>B.C. and Simpcw signed a government-to-government agreement for the environmental assessment of Trekor Metals' proposed Yellowhead copper mine in Simpcwul'ecw, about 150 kilometres northeast of Kamloops. The province says the agreement gives Simpcw and the Environmental Assessment Office a shared process for carrying out their separate assessments.</p>
+<p>This is not project approval. B.C.'s release says both Simpcw consent and a provincial environmental assessment certificate are needed before the mine can proceed. The mine is still at the early process-planning stage, with detailed technical reviews, engagement and recommendations ahead.</p>
+<p>The numbers explain why the file matters economically: B.C. cites Trekor's estimate of more than $2 billion in investment, a 25-year mine life, about 525 direct jobs and roughly 2,445 total jobs. The governance structure is the harder signal. If the agreement works, the business case and the consent architecture move together instead of being treated as parallel exercises.</p>
+          <div class="signal">
+            <strong>What remains unknown</strong>
+            <p>The agreement does not settle whether Simpcw will consent to the mine. The release does not disclose benefit, revenue-sharing, procurement or equity terms. The assessment still has to define information requirements, technical-review scope and final decision timing.</p>
+          </div>
+        </div>
+    
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Capital &amp; Ownership</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>Gitanmaax Band gets a cannabis-sector agreement with B.C. <span class="source-mark"><a href="#source-3">[3]</a> <a href="#source-4">[4]</a></span></h3>
+            <p>B.C. and Gitanmaax Band are finalizing an agreement under section 119 of the Cannabis Control and Licensing Act. The province says the agreement gives Gitanmaax flexibility to participate in the cannabis sector through retail, production and value-added activity, and separately points to Gitksannabis as an Indigenous Cannabis Business Fund-supported Nation-owned store.</p>
+            <p class="why"><strong>Why it matters economically:</strong> The agreement is small beside a mine, but it is the same economic pattern at a different scale: regulated-sector participation negotiated government-to-government rather than treated only as ordinary licensing. For a Nation-owned retail business, jurisdictional clarity can matter as much as start-up capital.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The public release does not provide store economics, revenue expectations or the exact operating conditions under the agreement.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Implementation details and any further Gitanmaax licensing or production approvals.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Policy, Rights &amp; Regulation</div>
+        
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>Ministers leave the AFN with the major-project question unresolved <span class="source-mark"><a href="#source-5">[5]</a> <a href="#source-6">[6]</a> <a href="#source-7">[7]</a></span></h3>
+            <p>On the final day of the Assembly of First Nations annual general assembly, APTN reported that chiefs pressed federal ministers on consultation, affordable capital and major projects. Natural Resources Minister Tim Hodgson framed the federal approach around First Nations-led institutions, loan guarantees and equity ownership, while National Chief Cindy Woodhouse Nepinak closed the assembly by saying Canada cannot use the Major Projects Office as a way around direct talks with First Nations.</p>
+            <p class="why"><strong>Why it matters economically:</strong> The federal policy pitch is about speed and capital formation. The pushback is about authority, timelines, environmental information and who speaks for affected rights holders. Those are not soft process issues; they are the conditions that decide whether infrastructure finance is bankable or litigious.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The final public resolution package was not yet posted during the scan, and Ottawa has not named the first tranche of Major Projects Office files.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Posted AFN resolutions, federal Major Projects Office project selection, and the October First Ministers meeting.</p>
+          </article>
+            
+
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>Wildfire response turns into a fiscal-capacity file for northern First Nations <span class="source-mark"><a href="#source-8">[8]</a> <a href="#source-9">[9]</a></span></h3>
+            <p>APTN reported that chiefs passed an emergency resolution after fires destroyed most of Namaygoosisagagun Ojibway Nation's community site in northwestern Ontario. The report said the community is part of Collins First Nation and lacks separate official federal recognition, leaving questions about federal funding for evacuation and rebuilding. Separate Canadian Press reporting said Ontario had asked Ottawa for immediate help with evacuations as smoke and fire conditions worsened in northern communities.</p>
+            <p class="why"><strong>Why it matters economically:</strong> Disaster response is infrastructure policy under pressure: aircraft, housing, roads, emergency communications and rebuild funding all turn on who has legal recognition and which government writes the cheque. For remote First Nations, that can convert a climate event into a long-run capital and governance problem.</p>
+            <p class="detail"><strong>What remains unknown:</strong> Whether Canada will recognize Namaygoosisagagun's emergency needs directly, and what rebuild funding will be available if the community remains administratively tied to Collins First Nation.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Federal and Ontario disaster-assistance decisions, plus any evacuation or rebuild update from the affected First Nations.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Closer to Home -- British Columbia</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>B.C. produced two fresh agreements; the older project-risk files did not materially move <span class="source-mark"><a href="#source-1">[1]</a> <a href="#source-3">[3]</a> <a href="#source-10">[10]</a> <a href="#source-11">[11]</a> <a href="#source-12">[12]</a></span></h3>
+            <p>The B.C. scan found two new public agreements in the window: Simpcw on Yellowhead assessment and Gitanmaax on cannabis-sector participation. No material new filing was found on Tsleil-Waututh Nation's Burrard Inlet dredging challenge, B.C.'s Mount Polley tailings-dam approval over Xat'sull First Nation concerns, or the proposed Indigenous-led conservation areas at Qat'muk, the Skagit Headwaters and the Raush Valley.</p>
+            <p class="why"><strong>Why it matters economically:</strong> The two new agreements point to negotiated jurisdiction; the unresolved files point to project-risk ledgers where consultation, permitting and land-use planning still have to prove durable. B.C. is not quiet. The economic signal is split between new agreements and old unresolved risk.</p>
+            <p class="detail"><strong>What remains unknown:</strong> Court schedules, permit-amendment timing and fall conservation engagement remain outstanding.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Yellowhead assessment documents, Gitanmaax implementation details, Burrard judicial-review filings, Mount Polley permit steps and fall conservation planning.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">What Happens Next</div>
+        <ul class="watch"><li>Yellowhead: watch for the assessment process order, technical-review scope and any Simpcw statement on consent criteria.</li>
+<li>AFN and Ottawa: watch for the final AGA resolution package and the first named Major Projects Office files.</li>
+<li>Gitanmaax: watch whether the cannabis agreement produces additional retail, production or value-added approvals.</li>
+<li>Northern Ontario: watch whether federal emergency and rebuild funding is directed to Namaygoosisagagun despite its current administrative status.</li>
+<li>B.C. ledger: keep Burrard dredging, Mount Polley and the Qat'muk, Skagit Headwaters and Raush Valley conservation files open until a filing, permit or planning milestone changes.</li></ul>
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Still Watching</div>
+        <ul class="watch"><li>This edition's material developments are First Nations-specific. Inuit and Métis sources were scanned, but no Inuit or Métis economic item cleared the 24-hour materiality and verification bar.</li>
+<li>The LNG Canada Phase 2 storage-tank equity option remains a real but unresolved transaction file; it was not repeated because no new financing, final-investment-decision or lease-economics disclosure appeared in today's window.</li>
+<li>The federal clean-water and child-welfare files remain fiscal-design questions after the AFN assembly, but no new public document materially changed either file today.</li>
+<li>Friday's long-form rotation found no new Tier E research strong enough to justify a Long Current section.</li></ul>
+      </section>
+    
+      <section class="sources" aria-labelledby="sources-heading">
+        
+      <section class="section">
+        <div class="section-label">Sources</div>
+        <p class="sources-intro">All material claims in this edition were traced to primary documents, Indigenous-led reporting, public records or credible independent reporting. Links open the underlying source.</p><ol class="source-list"><li id="source-1"><a href="https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026ENV0029-000836.htm">Government of British Columbia -- B.C., Simpcw sign consent agreement for proposed Yellowhead copper mine</a><span>2026-07-16 · Provincial government release</span></li><li id="source-2"><a href="https://trekormetals.com/properties/yellowhead-project/">Trekor Metals -- Yellowhead Project</a><span>accessed 2026-07-17 · Company project disclosure</span></li><li id="source-3"><a href="https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026PSSG0059-000839.htm">Government of British Columbia -- Supporting Gitanmaax, B.C.'s economic growth with cannabis agreement</a><span>2026-07-17 · Provincial government release</span></li><li id="source-4"><a href="https://newrelationshiptrust.ca/gitksannabis-indigenous-cannabis/">New Relationship Trust -- The Gitksannabis Story</a><span>accessed 2026-07-17 · Indigenous institutional program story</span></li><li id="source-5"><a href="https://www.aptnnews.ca/featured/chiefs-grill-federal-ministers-on-consultation-major-projects-on-final-day-of-assembly/">APTN News -- Chiefs grill federal ministers on consultation and major projects</a><span>2026-07-17 · Indigenous-led newsroom</span></li><li id="source-6"><a href="https://www.aptnnews.ca/national-news/national-chief-says-afn-stronger-than-ever-as-chiefs-head-home-from-ottawa/">APTN News -- National Chief says AFN stronger than ever as chiefs head home</a><span>2026-07-17 · Indigenous-led newsroom</span></li><li id="source-7"><a href="https://afn.ca/events/annual-general-assembly-2026/">Assembly of First Nations -- 2026 Annual General Assembly</a><span>accessed 2026-07-17 · First Nations institution</span></li><li id="source-8"><a href="https://www.aptnnews.ca/national-news/wildfire-ravaged-community-gets-resolution-at-afn-assembly/">APTN News -- Wildfire ravaged community gets resolution at AFN assembly</a><span>2026-07-17 · Indigenous-led newsroom</span></li><li id="source-9"><a href="https://toronto.citynews.ca/2026/07/16/ontario-asks-feds-for-help-with-wildfire-evacuations-smoke-blankets-northern-cities/">The Canadian Press / CityNews -- Ontario asks Ottawa for wildfire evacuation help</a><span>2026-07-16 · Independent wire reporting</span></li><li id="source-10"><a href="https://www.aptnnews.ca/national-news/b-c-first-nation-challenges-dredging-plan-to-accommodate-larger-tankers-in-vancouver/">APTN News / The Canadian Press -- Tsleil-Waututh Nation challenges Burrard Inlet dredging plan</a><span>2026-07-09 · Newswire carried by Indigenous-led newsroom</span></li><li id="source-11"><a href="https://www.aptnnews.ca/national-news/b-c-government-approves-higher-mount-polley-tailings-dam-12-years-after-disaster/">APTN News / The Canadian Press -- B.C. approves higher Mount Polley tailings dam</a><span>2026-07-10 · Newswire carried by Indigenous-led newsroom</span></li><li id="source-12"><a href="https://thetyee.ca/News/2026/07/08/BC-Plans-Indigenous-Led-Conservation/">The Tyee -- B.C. announces plans for three Indigenous-led conservation areas</a><span>2026-07-08 · Independent reporting with provincial-source link</span></li><li id="source-13"><a href="https://www.firstpeopleslaw.com/aboriginal-law-report/a5846786e50a4d2e7e7e491e140bdbb3">First Peoples Law Report -- July 8-14, 2026</a><span>2026-07-14 · Specialist legal newsletter used for discovery</span></li><li id="source-14"><a href="https://www.indigenouswatchdog.org/">Indigenous Watchdog -- Featured updates</a><span>accessed 2026-07-17 · Aggregator used for discovery</span></li></ol>
+      </section>
+    
+      </section>
+    </main>
+    <footer>
+      <strong>The Nations This Morning</strong> is a public-source intelligence brief. Completed transactions are separated from proposals, options and active legal or regulatory files. First Nations, Métis and Inuit are distinct peoples; the brief names the specific Nation or organization wherever the source allows. Rendered 2026-07-18 08:28 UTC.
+    </footer>
+  </article>
+</body>
+</html>
