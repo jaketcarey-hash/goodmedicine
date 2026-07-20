@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nations This Morning — Monday, July 20, 2026</title>
+  <style>
+    :root {
+      --ink: #18201d;
+      --muted: #66706b;
+      --paper: #fffdf8;
+      --canvas: #ede9df;
+      --cedar: #873f2b;
+      --cedar-dark: #4f241a;
+      --forest: #1f5b4d;
+      --gold: #bc8b35;
+      --line: #ddd6c8;
+      --soft-gold: #f7f0e0;
+      --soft-red: #f7ece7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--forest); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .shell {
+      width: min(760px, calc(100% - 24px));
+      margin: 24px auto 48px;
+      background: var(--paper);
+      border: 1px solid #d6cfc1;
+      box-shadow: 0 18px 50px rgba(43, 37, 28, .12);
+    }
+    .masthead {
+      padding: 38px 46px 30px;
+      border-top: 7px solid var(--cedar);
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 92% 10%, rgba(188,139,53,.16), transparent 28%), linear-gradient(135deg, #fffdf8 0%, #fbf7ee 100%);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.03em;
+    }
+    .strap {
+      max-width: 600px;
+      margin: 18px 0 0;
+      color: #48514d;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .through-line {
+      padding: 24px 46px;
+      color: #f7f3ea;
+      background: var(--cedar-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      line-height: 1.42;
+    }
+    .through-line strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #d7b96d;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    main { padding: 10px 46px 44px; }
+    .section { padding-top: 32px; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    h2 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 29px;
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -.015em;
+    }
+    h3 { margin: 0 0 7px; font-size: 17px; line-height: 1.35; }
+    p { margin: 0 0 13px; font-size: 14px; line-height: 1.72; }
+    .lead {
+      padding: 26px;
+      border-left: 5px solid var(--cedar);
+      background: var(--soft-red);
+    }
+    .pill {
+      display: inline-block;
+      margin: 0 0 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .source-mark { white-space: nowrap; }
+    .source-mark a {
+      color: var(--cedar);
+      font-size: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      vertical-align: super;
+    }
+    .signal {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid #ddc79b;
+      background: var(--soft-gold);
+    }
+    .signal strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #73551c;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .signal p { margin: 0; font-size: 13px; line-height: 1.6; }
+    .item { padding: 18px 0; border-top: 1px solid var(--line); }
+    .item:first-of-type { border-top: 0; padding-top: 0; }
+    .kicker {
+      margin-bottom: 8px;
+      color: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .why, .detail {
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: #4f5954;
+      font-style: italic;
+    }
+    .detail { margin-top: 6px; padding-top: 0; border-top: 0; font-style: normal; }
+    .watch { margin: 0; padding-left: 18px; }
+    .watch li { margin: 0 0 10px; font-size: 13px; line-height: 1.62; }
+    .sources {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 2px solid var(--ink);
+    }
+    .sources-intro {
+      max-width: 620px;
+      margin: -3px 0 17px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .source-list { margin: 0; padding-left: 22px; columns: 2; column-gap: 34px; }
+    .source-list li {
+      break-inside: avoid;
+      margin: 0 0 12px;
+      padding-left: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .source-list a { color: var(--ink); font-weight: 700; text-decoration-color: #acbcb4; }
+    .source-list span { display: block; margin-top: 2px; }
+    footer {
+      padding: 24px 46px 30px;
+      border-top: 1px solid var(--line);
+      color: #777c78;
+      background: #f7f3ea;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    footer strong { color: var(--ink); }
+    @media (max-width: 620px) {
+      .shell { width: 100%; margin: 0; border: 0; }
+      .masthead, main, footer { padding-left: 24px; padding-right: 24px; }
+      .through-line { padding: 22px 24px; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+<div style="max-width:760px;margin:18px auto 0;padding:0 12px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;font-size:12px;line-height:1.5;"><a href="/nations" style="color:#1f5b4d;font-weight:700;text-decoration-thickness:1px;text-underline-offset:2px;">&larr; Nations archive</a></div>
+  <article class="shell">
+    <header class="masthead">
+      <p class="eyebrow">Public-source intelligence brief</p>
+      <h1>The Nations<br>This Morning</h1>
+      <p class="strap">Ottawa named a port expansion as a national priority; Tsawwassen First Nation answered by naming the conditions.</p>
+      <div class="meta">
+        <span>Monday, July 20, 2026</span>
+        <span>About five minutes</span>
+        <span>5 developments</span>
+        <span>Primary-source verified</span>
+      </div>
+    </header>
+    <div class="through-line">
+      <strong>Today&apos;s through-line</strong>
+      The weekend did not produce a flood of new Indigenous economic files. It produced one hard test: Roberts Bank Terminal 2 is now being treated as a national export-capacity file, while Tsawwassen First Nation is reminding governments and proponents that consent, compensation, employment and the environmental record still sit in front of the economics.
+    </div>
+    <main>
+      
+      <section class="section">
+        <div class="section-label">The One Thing</div>
+        
+        <div class="lead">
+          <span class="pill">confirmed</span>
+          <h2>Roberts Bank enters the fast-track conversation, with Tsawwassen setting conditions <span class="source-mark"><a href="#source-1">[1]</a> <a href="#source-2">[2]</a></span></h2>
+          <p>Canada announced a Port of Vancouver Gateway Strategy on July 16 and identified Roberts Bank Terminal 2 as the first port project for review by the new Major Projects Office. The federal release says the strategy is meant to expand trade capacity through the gateway and double non-U.S. exports over the next decade.</p>
+<p>Tsawwassen First Nation responded the same day. Its statement says the Nation has signed agreements with the Vancouver Fraser Port Authority and Global Container Terminals, but also says those agreements are not unconditional support for the project. Tsawwassen says its participation is tied to mitigation of environmental impacts, employment and business opportunities, compensation for impacts to treaty rights and continued involvement in project decisions.</p>
+<p>That makes the economic file more precise. RBT2 is not only a port-capacity story or a permitting-speed story. It is a treaty-rights, compensation and local-benefit test inside one of Canada's most important export corridors.</p>
+          <div class="signal">
+            <strong>What remains unknown</strong>
+            <p>The federal release does not say when the Major Projects Office review will finish or whether the project will be put on any formal fast-track list. Tsawwassen First Nation's response does not disclose the economics of its agreements with the port authority or Global Container Terminals. It remains unclear how Ottawa will reconcile export-speed targets with the conditions named by Tsawwassen First Nation and other affected rights holders.</p>
+          </div>
+        </div>
+    
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Policy, Rights &amp; Regulation</div>
+        
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>Treaty No. 6 and Quebec First Nations push Alberta separation into the rights-risk ledger <span class="source-mark"><a href="#source-3">[3]</a> <a href="#source-4">[4]</a></span></h3>
+            <p>APTN reported that Quebec First Nations joined Treaty No. 6 and other Alberta First Nations organizations in condemning Premier Danielle Smith's referendum legislation and Alberta-separation rhetoric. The Confederacy of Treaty No. 6 First Nations had already said chiefs passed an emergency resolution at the AFN annual general assembly opposing any Alberta separatist movement and asserting that treaty rights were made with the Crown, not a province acting alone.</p>
+            <p class="why"><strong>Why it matters economically:</strong> The direct economic issue is not a referendum date. It is uncertainty around land, resources, jurisdiction, Crown obligations and project approvals in a province central to Canada's energy and infrastructure economy. Treaty organizations are putting governments and proponents on notice that constitutional politics cannot be separated from the rights framework that major projects depend on.</p>
+            <p class="detail"><strong>What remains unknown:</strong> No formal separation referendum has been called, and the final AFN resolution package was not visible during today's scan.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch for the posted AFN resolution package, Alberta's referendum-regulation process and any formal response from Canada or Alberta to treaty-rights concerns.</p>
+          </article>
+            
+
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>Ontario wildfire response becomes an emergency-infrastructure file <span class="source-mark"><a href="#source-5">[5]</a> <a href="#source-6">[6]</a> <a href="#source-7">[7]</a></span></h3>
+            <p>Canadian Press reporting carried by CityNews said Ontario is expanding use of Alert Ready so local authorities, including First Nations chiefs, can issue urgent public-safety alerts during emergencies. Separate weekend reporting described the evacuation of Namaygoosisagagun First Nation after wildfire destroyed most of the community site, while Public Safety Canada said Ottawa had approved Ontario's request for federal assistance for the 2026 wildfire season.</p>
+            <p class="why"><strong>Why it matters economically:</strong> Emergency alerts, aircraft, housing, communications, roads and rebuild funding are public infrastructure under pressure. For remote First Nations, wildfire response can quickly become a capital-capacity file: the fiscal question is who funds evacuation, where people live afterward and how rebuilding is governed.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The public record does not yet settle rebuild funding for Namaygoosisagagun, the division of federal-provincial costs, or whether local alert authority will be matched by communications infrastructure in the highest-risk communities.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch federal and Ontario disaster-assistance decisions, community rebuild updates and whether Alert Ready use changes evacuation timing for northern First Nations.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Closer to Home -- British Columbia</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>B.C.'s fresh signal is RBT2; older project-risk files stayed open <span class="source-mark"><a href="#source-1">[1]</a> <a href="#source-2">[2]</a> <a href="#source-8">[8]</a> <a href="#source-9">[9]</a> <a href="#source-10">[10]</a> <a href="#source-11">[11]</a></span></h3>
+            <p>The B.C. scan found one material new project signal: Roberts Bank Terminal 2 being pulled into Ottawa's Port of Vancouver Gateway Strategy and Major Projects Office review, with Tsawwassen First Nation's response setting clear conditions around environmental mitigation, jobs, business opportunities and treaty-rights impacts. No material new public filing was found on the Simpcw-Yellowhead assessment agreement, the B.C.-Gitanmaax cannabis agreement, Tsleil-Waututh Nation's Burrard Inlet dredging challenge or B.C.'s Mount Polley tailings-dam approval over Xat'sull First Nation concerns.</p>
+            <p class="why"><strong>Why it matters economically:</strong> B.C.'s economic signal remains split between new agreements and unresolved risk ledgers. RBT2 raises national-trade stakes; Yellowhead, Gitanmaax, Burrard and Mount Polley remain live tests of whether consent, benefit, regulatory durability and project economics can move together.</p>
+            <p class="detail"><strong>What remains unknown:</strong> Court schedules, permit steps, agreement implementation and Major Projects Office process details remain outstanding.</p>
+            <p class="detail"><strong>Next catalyst:</strong> RBT2 review details, Yellowhead assessment documents, Gitanmaax implementation, Burrard judicial-review filings and Mount Polley permit steps.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">The Long Current</div>
+        
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>B.C. First Nations are looking at nuclear, but the model is still Ontario's <span class="source-mark"><a href="#source-12">[12]</a> <a href="#source-13">[13]</a> <a href="#source-14">[14]</a></span></h3>
+            <p>Global News reported that a delegation of B.C. First Nations travelled to Ontario to learn more about nuclear energy and small modular reactors. The fresh B.C. item is exploratory, not a project proposal or financing. The verified model in the background remains Ontario's Darlington New Nuclear Project, where the province has described up to $1 billion of loan guarantees to support an equity opportunity for Williams Treaties First Nations and the federal Major Projects Office lists Darlington as one of its named projects.</p>
+            <p class="why"><strong>Why it matters economically:</strong> Nuclear is moving from an abstract energy-transition debate into an Indigenous ownership and capital-access question. For B.C., the immediate signal is not that a project exists; it is that some First Nations are studying whether Ontario's equity-and-loan-guarantee structure can travel to another grid and another rights landscape.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The public reporting does not identify a B.C. host project, ownership proposal, regulatory path or participating Nations' final positions.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch whether any B.C. Nation, utility, regulator or project proponent publishes a formal nuclear or SMR study, partnership or policy position.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">What Happens Next</div>
+        <ul class="watch"><li>RBT2: watch for the Major Projects Office process, any formal review timeline and updated accommodation commitments tied to Tsawwassen First Nation's conditions.</li>
+<li>Alberta referendum file: watch for the AFN resolution package, Alberta's referendum rules and any Crown response to Treaty No. 6 concerns.</li>
+<li>Wildfires: watch whether evacuation authority and federal assistance translate into rebuild funding, communications capacity and long-term housing plans.</li>
+<li>B.C. ledger: keep Yellowhead, Gitanmaax, Burrard and Mount Polley open until a filing, permit, agreement detail or court step materially changes the file.</li>
+<li>Nuclear: watch whether exploratory visits become a named B.C. project, policy process or Indigenous equity proposal.</li></ul>
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Still Watching</div>
+        <ul class="watch"><li>This edition's material developments are First Nations-specific. Inuit and Métis sources were scanned, but no Inuit or Métis economic item cleared the weekend materiality and verification bar.</li>
+<li>The LNG Canada Phase 2 storage-tank equity option remains unresolved; no new financing, final-investment-decision or lease-economics disclosure appeared in today's scan.</li>
+<li>The federal clean-water and child-welfare fiscal-design files remain open after the AFN assembly, but no new public document materially changed either file over the weekend.</li>
+<li>First Peoples Law's July 8-14 report remained the latest visible legal roundup during the scan; no new court decision was elevated into today's brief.</li></ul>
+      </section>
+    
+      <section class="sources" aria-labelledby="sources-heading">
+        
+      <section class="section">
+        <div class="section-label">Sources</div>
+        <p class="sources-intro">All material claims in this edition were traced to primary documents, Indigenous-led reporting, public records or credible independent reporting. Links open the underlying source.</p><ol class="source-list"><li id="source-1"><a href="https://www.canada.ca/en/one-canadian-economy/news/2026/07/canada-to-diversify-trade-and-double-exports-through-the-port-of-vancouver-gateway-strategy.html">Government of Canada -- Canada to diversify trade and double exports through the Port of Vancouver Gateway Strategy</a><span>2026-07-16 · Federal government release</span></li><li id="source-2"><a href="https://tsawwassenfirstnation.com/tfn-responds-to-federal-announcement-on-the-port-of-vancouver-gateway-strategy/">Tsawwassen First Nation -- TFN responds to federal announcement on the Port of Vancouver Gateway Strategy</a><span>2026-07-16 · First Nation statement</span></li><li id="source-3"><a href="https://www.aptnnews.ca/national-news/quebec-first-nations-join-alberta-groups-condemning-premier-over-referendum/">APTN News -- Quebec First Nations join Alberta groups condemning premier over referendum</a><span>2026-07-18 · Indigenous-led newsroom</span></li><li id="source-4"><a href="https://treatysix.org/chiefs-pass-emergency-resolution-opposing-alberta-separation/">Confederacy of Treaty No. 6 First Nations -- Chiefs pass emergency resolution opposing Alberta separation</a><span>2026-07-17 · First Nations treaty organization</span></li><li id="source-5"><a href="https://toronto.citynews.ca/2026/07/19/how-one-ontario-first-nation-escaped-a-raging-wildfire-that-burned-down-their-community/">CityNews / The Canadian Press -- How one Ontario First Nation escaped a raging wildfire that burned down their community</a><span>2026-07-19 · Independent wire reporting</span></li><li id="source-6"><a href="https://toronto.citynews.ca/2026/07/19/ontario-government-expands-emergency-message-system/">CityNews / The Canadian Press -- Ontario expands emergency message system</a><span>2026-07-19 · Independent wire reporting</span></li><li id="source-7"><a href="https://www.canada.ca/en/public-safety-canada/news/2026/07/government-of-canada-approves-ontario-request-for-federal-assistance-during-2026-wildfire-season.html">Public Safety Canada -- Government of Canada approves Ontario request for federal assistance during 2026 wildfire season</a><span>2026-07-16 · Federal government release</span></li><li id="source-8"><a href="https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026ENV0029-000836.htm">Government of British Columbia -- B.C., Simpcw sign consent agreement for proposed Yellowhead copper mine</a><span>2026-07-16 · Provincial government release</span></li><li id="source-9"><a href="https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026PSSG0059-000839.htm">Government of British Columbia -- Supporting Gitanmaax, B.C.'s economic growth with cannabis agreement</a><span>2026-07-17 · Provincial government release</span></li><li id="source-10"><a href="https://www.aptnnews.ca/national-news/b-c-first-nation-challenges-dredging-plan-to-accommodate-larger-tankers-in-vancouver/">APTN News / The Canadian Press -- Tsleil-Waututh Nation challenges Burrard Inlet dredging plan</a><span>2026-07-09 · Newswire carried by Indigenous-led newsroom</span></li><li id="source-11"><a href="https://www.aptnnews.ca/national-news/b-c-government-approves-higher-mount-polley-tailings-dam-12-years-after-disaster/">APTN News / The Canadian Press -- B.C. approves higher Mount Polley tailings dam</a><span>2026-07-10 · Newswire carried by Indigenous-led newsroom</span></li><li id="source-12"><a href="https://globalnews.ca/news/11300933/bc-first-nations-exploring-nuclear-energy/">Global News -- B.C. First Nations exploring nuclear energy</a><span>2026-07-18 · Independent broadcast reporting</span></li><li id="source-13"><a href="https://news.ontario.ca/en/release/1006157/ontario-announces-indigenous-equity-loan-guarantees-for-darlington-new-nuclear-project">Government of Ontario -- Ontario announces Indigenous equity loan guarantees for Darlington New Nuclear Project</a><span>2026-06-24 · Provincial government release</span></li><li id="source-14"><a href="https://www.canada.ca/en/privy-council/major-projects-office/projects/darlington-new-nuclear-project.html">Major Projects Office -- Darlington New Nuclear Project</a><span>accessed 2026-07-20 · Federal project record</span></li><li id="source-15"><a href="https://www.firstpeopleslaw.com/aboriginal-law-report/a5846786e50a4d2e7e7e491e140bdbb3">First Peoples Law Report -- July 8-14, 2026</a><span>2026-07-14 · Specialist legal newsletter used for discovery</span></li><li id="source-16"><a href="https://www.indigenouswatchdog.org/">Indigenous Watchdog -- Featured updates</a><span>accessed 2026-07-20 · Aggregator used for discovery</span></li></ol>
+      </section>
+    
+      </section>
+    </main>
+    <footer>
+      <strong>The Nations This Morning</strong> is a public-source intelligence brief. Completed transactions are separated from proposals, options and active legal or regulatory files. First Nations, Métis and Inuit are distinct peoples; the brief names the specific Nation or organization wherever the source allows. Rendered 2026-07-20 16:40 UTC.
+    </footer>
+  </article>
+</body>
+</html>

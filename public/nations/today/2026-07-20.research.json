@@ -1,0 +1,170 @@
+{
+  "run": {
+    "date": "2026-07-20",
+    "day": "Monday",
+    "timezone": "America/Vancouver",
+    "localRunStarted": "2026-07-20 09:30 PDT",
+    "coverageWindow": "2026-07-17 morning PDT through 2026-07-20 morning PDT, with weekend discovery because the run is Monday",
+    "lastRun": "2026-07-17T15:36:31.963Z",
+    "priorEditionChecked": "/Users/jakecarey/jakexclaude/nations-brief/v1/today/2026-07-17.json",
+    "archiveChecked": "/Users/jakecarey/jakexclaude/nations-brief/v1/today and /Users/jakecarey/jakexclaude/nations-brief/v1/archive",
+    "publicInformationOnly": true,
+    "gmailQuery": "label:\"Nations Brief Sources\" after:2026/7/17 -in:spam -in:trash",
+    "editionStyleReference": "/Users/jakecarey/Documents/Codex/2026-07-15/i-wa/outputs/the-nations-this-morning-pilot-2026-07-15.html",
+    "sourceRegistry": "/Users/jakecarey/Documents/Codex/2026-07-15/i-wa/outputs/indigenous-economic-intelligence-source-registry.md"
+  },
+  "tierChecks": [
+    {
+      "tier": "A",
+      "contract": "Daily full scan of new items",
+      "sourcesChecked": 18,
+      "newItemsFound": 11,
+      "itemsOpenedOrAssessed": 10,
+      "includedInEdition": 4,
+      "notes": "APTN, NationTalk/BC NationTalk search paths, Indigenous Business & Finance Today, CCIB, FNFA, FNFMB, FNMPC, Indigenous Energy Monitor, Indigenous Clean Energy, BCAFN economic-development path, Indigenous Tourism BC, First Peoples Law, Nunatsiaq, Indigenous Watchdog, Ha-Shilth-Sa, FNTC and NACCA were checked through direct opens or targeted search. The included fresh signals were RBT2/Major Projects Office plus Tsawwassen First Nation's response, Treaty No. 6/APTN referendum-rights reporting, Ontario wildfire/Alert Ready reporting, and B.C. First Nations nuclear exploration."
+    },
+    {
+      "tier": "B",
+      "contract": "Daily change detection across long-range analysis and specialist newsletters",
+      "sourcesChecked": 13,
+      "newItemsFound": 1,
+      "itemsOpenedOrAssessed": 1,
+      "includedInEdition": 0,
+      "notes": "Yellowhead Institute, JFK Law, RRII, Tallgrass/IIPWG, FNTAA, Indigenous Finance Collective, Raven, AFOA/JAM, NATOA, Indigenomics, Tulo, FNIGC, ILI, OKT and Osler were change-checked. First Peoples Law's July 8-14 report remained the latest visible legal roundup and was retained only as discovery/ledger context."
+    },
+    {
+      "tier": "C",
+      "contract": "Substacks and interpretive newsletters for discovery only",
+      "sourcesChecked": 7,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "Nuanced, Adam Olsen, MEDIA INDIGENA, Indigenous Insider, Lotusland, Indigenous Wire and Indigenomics in ACTION were change-checked through public search paths. No material claim in the edition relies on commentary or Substack sources."
+    },
+    {
+      "tier": "D",
+      "contract": "Regional and community journalism change detection",
+      "sourcesChecked": 7,
+      "newItemsFound": 3,
+      "itemsOpenedOrAssessed": 3,
+      "includedInEdition": 0,
+      "notes": "Anishinabek News, Eagle Feather News, The Eastern Door, Nation Magazine, Cabin Radio, Ku'ku'kwes News and Ha-Shilth-Sa/IndigiNews regional paths were checked. Regional material either did not clear the economic-materiality bar or was superseded by stronger primary/independent sources."
+    },
+    {
+      "tier": "E",
+      "contract": "Friday long-form rotation only unless event-driven",
+      "sourcesChecked": 0,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "No Friday Tier E deep-read rotation was required on this Monday run. Long Current was included only because the live B.C. nuclear exploration item connected to an active Indigenous equity-and-loan-guarantee structure in Ontario."
+    },
+    {
+      "tier": "Gmail",
+      "contract": "Search label 'Nations Brief Sources' since prior run",
+      "sourcesChecked": 1,
+      "newItemsFound": 0,
+      "itemsOpenedOrAssessed": 0,
+      "includedInEdition": 0,
+      "notes": "Gmail search returned no messages for label:\"Nations Brief Sources\" after:2026/7/17 -in:spam -in:trash."
+    }
+  ],
+  "candidateLedger": [
+    {
+      "candidate": "Roberts Bank Terminal 2 named in Canada's Port of Vancouver Gateway Strategy and Major Projects Office review path",
+      "status": "included",
+      "verification": "Federal government release plus Tsawwassen First Nation statement. Framed as review/strategy and conditional Nation response, not project approval.",
+      "sourceIds": [
+        1,
+        2
+      ]
+    },
+    {
+      "candidate": "Treaty No. 6 emergency resolution and Quebec First Nations condemnation of Alberta referendum/separation rhetoric",
+      "status": "included",
+      "verification": "Treaty organization statement plus APTN reporting; AFN final resolution package not yet visible, so item is labelled reported.",
+      "sourceIds": [
+        3,
+        4
+      ]
+    },
+    {
+      "candidate": "Ontario wildfire evacuation, Alert Ready expansion and federal assistance",
+      "status": "included",
+      "verification": "Canadian Press reporting through CityNews plus Public Safety Canada federal-assistance release. Community-specific rebuild/funding details remain unknown.",
+      "sourceIds": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "candidate": "B.C. First Nations exploration of nuclear energy and SMRs",
+      "status": "included",
+      "verification": "Global News reporting for the B.C. exploratory visit; Ontario government release and Major Projects Office record for the Darlington Indigenous equity/loan-guarantee model. Framed as exploration, not a B.C. project.",
+      "sourceIds": [
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "candidate": "Simpcw-Yellowhead consent-based assessment agreement",
+      "status": "carried_forward_still_watching",
+      "verification": "Included July 17; no material new assessment filing or consent update found in weekend scan.",
+      "sourceIds": [
+        8
+      ]
+    },
+    {
+      "candidate": "B.C.-Gitanmaax Band cannabis agreement",
+      "status": "carried_forward_still_watching",
+      "verification": "Included July 17; no material new implementation, licensing, production or economics disclosure found in weekend scan.",
+      "sourceIds": [
+        9
+      ]
+    },
+    {
+      "candidate": "Tsleil-Waututh Nation Burrard Inlet dredging challenge",
+      "status": "carried_forward_still_watching",
+      "verification": "No new court filing or public project update found in weekend scan.",
+      "sourceIds": [
+        10
+      ]
+    },
+    {
+      "candidate": "Mount Polley tailings-dam approval over Xat'sull First Nation concerns",
+      "status": "carried_forward_still_watching",
+      "verification": "No new permit step or public response found in weekend scan.",
+      "sourceIds": [
+        11
+      ]
+    },
+    {
+      "candidate": "Baffinland/Mary River creditor-protection file",
+      "status": "excluded",
+      "verification": "Checked as Inuit/northern economic file; no new July 17-20 court, monitor, Qikiqtani Inuit Association or company development found strong enough to update the ledger.",
+      "sourceIds": []
+    },
+    {
+      "candidate": "LNG Canada Phase 2 storage-tank equity option",
+      "status": "carried_forward_still_watching",
+      "verification": "No new financing, FID, lease-economics or Nation/company disclosure appeared in the weekend scan.",
+      "sourceIds": []
+    }
+  ],
+  "sourceFailuresAndGaps": [
+    "NationTalk and BC NationTalk were not reliably fetchable through direct open paths; targeted search paths were used and the limitation is recorded rather than using NationTalk as source foundation.",
+    "The final AFN 2026 annual general assembly resolution package was not visible during the scan, so the Alberta referendum item is framed through Treaty No. 6 and APTN and labelled reported.",
+    "Some Global News article/video text was available only through search/open metadata. The B.C. nuclear item is therefore limited to the exploratory visit and is verified structurally against Ontario primary records, not framed as a B.C. transaction.",
+    "No fresh Inuit or Métis economic, ownership, capital, procurement, fiscal-powers or regulatory item cleared both materiality and verification in the weekend window."
+  ],
+  "qualityGates": {
+    "twoSourceVerificationForConsequentialClaims": "Applied to RBT2, referendum-rights, wildfire and nuclear items through primary statements, government releases and independent reporting. Items with incomplete primary records are labelled reported.",
+    "distinctionsBasedLanguage": "First Nations-specific developments are not generalized to Inuit or Métis. The absence of Inuit/Métis placements is disclosed in Still Watching.",
+    "completedVsProposed": "RBT2 is described as a review/strategy file, not a completed approval. B.C. nuclear is described as exploratory, not a project. Darlington is used only as an Ontario model with published loan-guarantee/equity information.",
+    "bodySourceChips": "None intended; numbered references are used and full descriptive source list is placed at the bottom.",
+    "dateIntegrity": "Fresh included items are July 16-19, 2026 and are included because the Monday run covers the weekend since the prior July 17 run. Older sources are explicitly ledger or structural context.",
+    "priorEditionDeduplication": "July 17 items were not repeated as news unless they had new context. Yellowhead, Gitanmaax, Burrard and Mount Polley appear only in the B.C. ledger with no material-change claim."
+  }
+}

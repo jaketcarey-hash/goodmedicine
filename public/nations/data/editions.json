@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-07-20",
+    "dateLong": "Monday, July 20, 2026",
+    "title": "The Nations This Morning",
+    "headline": "Ottawa named a port expansion as a national priority; Tsawwassen First Nation answered by naming the conditions.",
+    "throughLine": "The weekend did not produce a flood of new Indigenous economic files. It produced one hard test: Roberts Bank Terminal 2 is now being treated as a national export-capacity file, while Tsawwassen First Nation is reminding governments and proponents that consent, compensation, employment and the environmental record still sit in front of the economics.",
+    "oneThing": "Roberts Bank enters the fast-track conversation, with Tsawwassen setting conditions",
+    "sections": [
+      "Policy, Rights & Regulation",
+      "Policy, Rights & Regulation",
+      "Closer to Home -- British Columbia",
+      "The Long Current"
+    ],
+    "sourceCount": 16,
+    "editionUrl": "archive/2026-07-20.html",
+    "standaloneSource": "today/2026-07-20.html",
+    "emailUrl": "today/2026-07-20.email.html",
+    "jsonUrl": "today/2026-07-20.json",
+    "researchUrl": "today/2026-07-20.research.json",
+    "deliveryUrl": null,
+    "emailDeliveryUrl": null,
+    "publicUrl": "/nations/archive/2026-07-20",
+    "archiveRoot": "/nations/"
+  },
+  {
     "date": "2026-07-17",
     "dateLong": "Friday, July 17, 2026",
     "title": "The Nations This Morning",
@@ -19,7 +43,7 @@
     "jsonUrl": "today/2026-07-17.json",
     "researchUrl": "today/2026-07-17.research.json",
     "deliveryUrl": null,
-    "emailDeliveryUrl": null,
+    "emailDeliveryUrl": "today/2026-07-17.email-delivery.json",
     "publicUrl": "/nations/archive/2026-07-17",
     "archiveRoot": "/nations/"
   },
