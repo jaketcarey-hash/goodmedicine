@@ -1,6 +1,8 @@
 [
   {
     "date": "2026-07-20",
+    "stem": "2026-07-20",
+    "cadence": "daily",
     "dateLong": "Monday, July 20, 2026",
     "title": "The Nations This Morning",
     "headline": "Ottawa named a port expansion as a national priority; Tsawwassen First Nation answered by naming the conditions.",
@@ -25,6 +27,8 @@
   },
   {
     "date": "2026-07-17",
+    "stem": "2026-07-17",
+    "cadence": "daily",
     "dateLong": "Friday, July 17, 2026",
     "title": "The Nations This Morning",
     "headline": "Yesterday's national argument over consent now has a B.C. project file attached to it.",
@@ -43,12 +47,14 @@
     "jsonUrl": "today/2026-07-17.json",
     "researchUrl": "today/2026-07-17.research.json",
     "deliveryUrl": null,
-    "emailDeliveryUrl": "today/2026-07-17.email-delivery.json",
+    "emailDeliveryUrl": null,
     "publicUrl": "/nations/archive/2026-07-17",
     "archiveRoot": "/nations/"
   },
   {
     "date": "2026-07-16",
+    "stem": "2026-07-16",
+    "cadence": "daily",
     "dateLong": "Thursday, July 16, 2026",
     "title": "The Nations This Morning",
     "headline": "The live economic question is not whether major projects move. It is who has authority to say yes, no, or not yet.",
@@ -66,9 +72,36 @@
     "emailUrl": "today/2026-07-16.email.html",
     "jsonUrl": "today/2026-07-16.json",
     "researchUrl": "today/2026-07-16.research.json",
-    "deliveryUrl": "today/2026-07-16.delivery.json",
-    "emailDeliveryUrl": "today/2026-07-16.email-delivery.json",
+    "deliveryUrl": null,
+    "emailDeliveryUrl": null,
     "publicUrl": "/nations/archive/2026-07-16",
+    "archiveRoot": "/nations/"
+  },
+  {
+    "date": "2026-07-15",
+    "stem": "2026-07-15-weekly",
+    "cadence": "weekly",
+    "dateLong": "Week ending July 15, 2026",
+    "title": "The Nations This Week",
+    "headline": "Fire in the northwest, resolve in Ottawa, and ownership at a scale not seen before",
+    "throughLine": "Members of Namaygoosisagagun First Nation \u2014 also known as Collins First Nation, a community of 30 to 40 people in northwestern Ontario \u2014 evacuated by personal boats and vehicles on the night of Monday, July 13 as a fast-moving wildfire reached the edge of the community. Trees directly beside houses were burning as people left. Chief Helen Paavola said the Nation is awaiting the Ministry of Natural Resources' aerial assessment and is preparing to receive official confirmation that the community 'was completely devastated by this forest fire.'",
+    "oneThing": "Namaygoosisagagun First Nation flees by boat as a wildfire reaches the community's edge",
+    "sections": [
+      "Economic Sovereignty",
+      "Land, Water & Rights",
+      "Governance & Policy",
+      "Closer to Home",
+      "The Sweep"
+    ],
+    "sourceCount": 16,
+    "editionUrl": "archive/2026-07-15-weekly.html",
+    "standaloneSource": "today/2026-07-15-weekly.html",
+    "emailUrl": null,
+    "jsonUrl": "today/2026-07-15-weekly.json",
+    "researchUrl": null,
+    "deliveryUrl": null,
+    "emailDeliveryUrl": null,
+    "publicUrl": "/nations/archive/2026-07-15-weekly",
     "archiveRoot": "/nations/"
   }
 ]
