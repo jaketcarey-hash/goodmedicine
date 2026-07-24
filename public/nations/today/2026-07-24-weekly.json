@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "headline": "A wildfire erases a fly-in community as chiefs draw a national line on fast-tracked projects"
+  },
+  "oneThing": {
+    "headline": "Wildfire destroys Namaygoosisagagun First Nation as evacuations sweep northwestern Ontario",
+    "status": "confirmed",
+    "paragraphs": [
+      "On July 13, a fast-moving wildfire swept into Namaygoosisagagun (Collins) First Nation, a fly-in community roughly 125 miles north of Thunder Bay, forcing about two dozen residents to flee across Collins Lake by boat with only minutes' notice. More than 30 homes, the school, the administration office and cultural camps were destroyed. Chief Helen Paavola and Anishinabek Nation Grand Council Chief Linda Debassige confirmed everyone made it out safely.",
+      "The loss landed inside a wildfire season already stretching First Nations thin. Eabametoong First Nation evacuated more than 940 members to Niagara Falls, Gull Bay First Nation moved to a mandatory order after fires closed two highways, and First Nations made up the overwhelming majority of Ontario's evacuated communities this month. Ontario's 2026-27 budget cut planned firefighting funding to $150 million, a 44 percent reduction from what was spent the year before.",
+      "The Assembly of First Nations tabled an emergency resolution demanding federal support and a rebuilding commitment for Namaygoosisagagun, and by July 22 was publicly describing Ottawa's response as inadequate. Ontario Regional Chief Abram Benedict said jurisdictional disputes and administrative delays \"put lives at risk.\" Indigenous Services Minister Mandy Gull-Masty has spoken with both chiefs, though Ottawa said it was still too early to detail what support would follow."
+    ],
+    "sources": [
+      {
+        "label": "ICT News",
+        "url": "https://ictnews.org/news/northern-first-nation-razed-by-wildfire/"
+      },
+      {
+        "label": "NetNewsLedger / CBC News / National Observer",
+        "url": "https://www.netnewsledger.com/2026/07/16/eabametoong-declares-state-of-emergency/"
+      }
+    ]
+  },
+  "econ": [
+    {
+      "headline": "Five First Nations sign option for up to $1-billion equity stake in LNG Canada expansion",
+      "what": "The Gitga'at First Nation, Gitxaała Nation, Haisla Nation, Kitselas First Nation and Kitsumkalum formed MNT Investments LP, which received an option to invest up to $1 billion for majority ownership of a special-purpose entity that would buy and lease back the storage tank planned for LNG Canada's proposed Phase 2 expansion in Kitimat -- the largest tank of its kind in Canada. The deal depends on the joint-venture partners approving Phase 2, with a final investment decision targeted for the end of 2026.",
+      "why": "It would rank among the largest Indigenous ownership positions in major Canadian infrastructure, and shows five Nations pooling capacity to take a billion-dollar equity stake together rather than negotiating individually.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "Rigzone",
+          "url": "https://www.rigzone.com/news/first_nations_to_invest_in_lng_canada-20-jul-2026-184168-article/"
+        }
+      ]
+    },
+    {
+      "headline": "Haisla-led Cedar LNG clears a capacity expansion and hits construction milestones",
+      "what": "B.C.'s Environmental Assessment Office approved a 25 percent increase in Cedar LNG's authorized production capacity, from 3 million to 3.75 million tonnes a year, without added emissions since the facility draws power from BC Hydro. Separately, the $4-billion project -- a partnership between Haisla Nation and Pembina Pipeline Corp., and described as the world's first Indigenous majority-owned LNG development -- completed the final weld on its pipeline connection to Coastal GasLink, and its floating vessel, megúgu, is now more than half built. Startup remains targeted for late 2028.",
+      "why": "Cedar LNG is the proof point that Indigenous-majority ownership of a multi-billion-dollar energy project is executable, not just theoretical, and its progress is becoming the reference case other Nations point to as they negotiate their own equity stakes.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "Journal of Commerce / ConstructConnect",
+          "url": "https://canada.constructconnect.com/joc/news/infrastructure/2026/07/megaproject-progress-4b-cedar-lng-project-reaches-key-construction-milestones"
+        }
+      ]
+    },
+    {
+      "headline": "Inuit-owned Arctic Fresh Projects wins $35.6-million federal housing contract in Iqaluit",
+      "what": "Arctic Fresh Projects Inc., an Inuit-owned company founded in 2017 by Rhoda Angutimarik-Recinos of Igloolik, was awarded a $35.6-million federal contract to build a 23-unit federal-employee housing complex on Nikku Lane in Iqaluit, replacing three deteriorated single-family homes. The project falls under an Inuit Benefits Plan and Canada's Buy Canadian policy, will use predominantly Canadian steel, aluminum and lumber, and is expected to be Nunavut's first LEED Gold building, targeted for completion in December 2028 and 55 to 60 jobs.",
+      "why": "It's a concrete example of federal procurement and Buy Canadian rules channelling northern infrastructure spending toward Inuit-owned capacity -- though the units are reserved for federal staff and won't count toward Nunavut's separate commitment of 750 new homes for residents.",
+      "status": "reported",
+      "sources": [
+        {
+          "label": "Nunatsiaq News",
+          "url": "https://nunatsiaq.com/stories/article/arctic-fresh-projects-awarded-35-6m-contract-for-iqaluit-multiplex/"
+        },
+        {
+          "label": "Nunavut News",
+          "url": "https://nunavutnews.com/2026/07/21/arctic-fresh-gets-35-6-million-from-feds-to-build-23-staff-housing-units-in-iqaluit/"
+        }
+      ]
+    }
+  ],
+  "land": [
+    {
+      "headline": "Landowner appeals ruling that blocked reopening of the Cowichan Aboriginal title case",
+      "what": "Montrose Properties, which owns warehouses on Richmond, B.C. land subject to the Cowichan Tribes' Aboriginal title claim, is appealing a June 29 ruling that refused to add it as a party to the case after the 513-day trial concluded. Justice Barbara Young found that rejoining the case after trial would be an abuse of process.",
+      "why": "It's another appeal layered onto Young's unprecedented August 2025 finding that Aboriginal title can coexist with private fee-simple ownership in Richmond -- with the Crown, City of Richmond, Cowichan Tribes and now this landowner all appealing on different grounds, pointing toward an eventual Supreme Court of Canada test.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "Vancouver Island Free Daily",
+          "url": "https://vancouverislandfreedaily.com/2026/07/21/montrose-appealing-court-ruling-that-declined-to-add-company-to-cowichan-case/"
+        }
+      ]
+    },
+    {
+      "headline": "Athabasca Chipewyan First Nation sues Ottawa over treaty annuity frozen at $5 since 1899",
+      "what": "Athabasca Chipewyan First Nation, led by Chief Allan Adam, has filed a lawsuit arguing the $5 annual treaty annuity paid to its members under Treaty 8 -- unchanged since the treaty was signed in 1899 -- must be increased to reflect present-day value.",
+      "why": "The claim draws on the Supreme Court's 2024 Restoule decision, which found the Crown has a mandatory duty to increase treaty annuities when economically feasible and produced a $10-billion settlement for 21 Anishinaabe nations -- this appears to be among the first attempts to extend that precedent to the numbered treaties covering the Prairies and North.",
+      "status": "reported",
+      "sources": [
+        {
+          "label": "Turtle Island News",
+          "url": "https://theturtleislandnews.com/index.php/2026/07/16/alberta-first-nation-sues-ottawa-over-5-treaty-annuity-argues-amount-stuck-in-1899/"
+        }
+      ]
+    },
+    {
+      "headline": "Attawapiskat First Nation sues Canada and Ontario over diesel contamination blocking reserve addition",
+      "what": "Attawapiskat First Nation is seeking $200 million from Canada and Ontario over decades of diesel spills that contaminated the \"Core of Community\" -- provincial land holding the school, hospital, daycare and power generation site -- and is now blocking the land's addition to reserve. Chief Sylvia Koostachin-Metatawabin said she reached a point where \"enough is enough\" after Canada, having agreed to a January 2025 remediation plan, declined to fund its share.",
+      "why": "It adds an additions-to-reserve dimension to a growing line of First Nations environmental contamination litigation, and tests whether unremediated Crown-land contamination can effectively stall a community's own reserve-addition claim.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "The Narwhal",
+          "url": "https://thenarwhal.ca/ontario-attawapiskat-diesel-contamination/"
+        }
+      ]
+    },
+    {
+      "headline": "AFN chief tells premiers pipeline fast-tracking cannot bypass First Nations consent",
+      "what": "AFN National Chief Cindy Woodhouse Nepinak told premiers at the Council of the Federation meeting in Charlottetown on July 22 that the October 26 First Ministers Meeting must address fast-tracking legislation, pipeline development and First Nations' Free, Prior and Informed Consent together. It followed weeks of chiefs in Ontario, Alberta and B.C. saying they were not consulted before pipeline announcements, including the proposed Northern Shield Energy Corridor and a separate West Coast oil pipeline.",
+      "why": "It signals First Nations leadership is drawing the same line provincially that AFN drew nationally days earlier -- that economic growth cannot proceed at the expense of treaty rights and the Crown's duty to consult.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "Assembly of First Nations (press release)",
+          "url": "https://afn.ca/all-news/press-releases/national-chief-meets-with-premiers-to-discuss-the-canadian-economy-climate-change-and-october-first-ministers-meeting/"
+        }
+      ]
+    }
+  ],
+  "governance": [
+    {
+      "headline": "AFN chiefs unanimously vote to oppose Carney government's major-projects reforms",
+      "what": "At the Assembly of First Nations' annual general assembly in Ottawa on July 15, chiefs unanimously passed a resolution opposing the Carney government's planned overhaul of major-project approvals -- tied to Bill C-5, the One Canadian Economy Act -- if it weakens environmental protections, oversight, consultation or free, prior and informed consent. National Chief Cindy Woodhouse Nepinak said a compressed timeline \"subordinates the honour of the Crown to commercial imperatives,\" and that Ottawa \"can't put a deadline on First Nations rights.\"",
+      "why": "It sets the terms First Nations will hold Ottawa to ahead of the October 26 First Ministers Meeting, and signals organized, national-scale resistance to any project pushed through on a compressed timeline without full consent.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "CBC News Indigenous",
+          "url": "https://www.cbc.ca/news/indigenous/afn-major-projects-resolutions-9.7270957"
+        }
+      ]
+    },
+    {
+      "headline": "Chiefs vote to limit AFN's own role to advocacy on major projects",
+      "what": "Chiefs also passed an amended resolution stating the AFN's role \"is limited to national advocacy and coordination\" and that it cannot act as national negotiator or coordinator for project-specific approvals -- leaving individual Nations to decide their own representation at the October First Ministers meeting rather than treating AFN as a stand-in.",
+      "why": "It draws a boundary ahead of that meeting: any federal or provincial major-projects push has to engage individual Nations directly, not the national assembly on their behalf.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "APTN News",
+          "url": "https://www.aptnnews.ca/national-news/chiefs-tell-afn-it-cannot-negotiate-on-major-projects-on-their-behalf-in-amended-aga-resolution/"
+        },
+        {
+          "label": "CP24 / CTV News",
+          "url": "https://www.cp24.com/news/canada/2026/07/15/chiefs-warn-theyll-fight-any-assault-on-first-nations-rights-in-major-projects-push/"
+        }
+      ]
+    },
+    {
+      "headline": "AFN passes emergency resolution on Treaty rights amid Alberta separatism",
+      "what": "On the assembly's final day, chiefs passed an emergency resolution affirming that \"no province has the legal authority to alter, diminish, or extinguish Treaty Rights or the constitutional relationship between First Nations and the Crown.\" It was brought forward by Sunchild First Nation and Confederacy of Treaty No. 6 First Nations Grand Chief Joey Pete, alongside Cree Nation of Nemaska proxy Chief Matthew Coon Come, following a July 13 meeting between Alberta and Quebec chiefs. It calls on governments to uphold the honour of the Crown, implement UNDRIP, and proceed only with free, prior and informed consent on any process affecting First Nations.",
+      "why": "It formalizes First Nations' position that provincial secession cannot proceed without their consent, inserting Treaty and constitutional rights directly into the Alberta separatism debate as referendum efforts advance.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "APTN News",
+          "url": "https://www.aptnnews.ca/national-news/chiefs-at-afn-assembly-united-in-opposition-to-alberta-separatists-afn-assembly/"
+        }
+      ]
+    },
+    {
+      "headline": "AFN calls for criminalizing residential school denialism after Senate rejects amendment",
+      "what": "Chiefs passed an emergency resolution calling on Canada to amend Bill C-9 or introduce stand-alone legislation criminalizing the public denial, condoning or minimization of Indian residential schools as hate speech, and to create a complaints commission on denialism and hate speech directed at Survivors and their families. It followed the Senate's 32-41 rejection of an amendment by Senator Nancy Karetak-Lindell that would have added residential school denialism to Bill C-9's hate-speech provisions, despite the amendment passing the Senate Human Rights Committee with broad support.",
+      "why": "It keeps pressure on Ottawa to close what AFN leadership called a legislative gap, with the federal government yet to say whether it will act through Bill C-9 or separate legislation.",
+      "status": "confirmed",
+      "sources": [
+        {
+          "label": "CBC Indigenous",
+          "url": "https://www.cbc.ca/news/indigenous/afn-aga-resolution-residential-school-denialism-9.7271197"
+        }
+      ]
+    }
+  ],
+  "home": [
+    {
+      "headline": "Lyackson First Nation says it was shut out of Ottawa-B.C. pipeline deal affecting the Salish Sea",
+      "text": "Hereditary Chief Shana Thomas of the Lyackson First Nation said there had not been a single conversation with her Nation before Ottawa and B.C. announced an infrastructure package pairing a proposed Alberta-to-B.C. oil pipeline with a new delivery terminal on Tsawwassen First Nation treaty lands near Roberts Bank. \"We're tired of hearing about it after the fact,\" she said.",
+      "why": "It's a live test of the duty to consult on a project running through B.C.'s South Coast and Salish Sea -- waters shared by dozens of B.C. Nations, including those downstream in the Fraser Canyon watershed.",
+      "sources": [
+        {
+          "label": "CBC News",
+          "url": "https://www.cbc.ca/news/canada/british-columbia/first-nations-west-coast-oil-pipeline-duty-to-consult-9.7274390"
+        }
+      ]
+    },
+    {
+      "headline": "Simpcw First Nation and B.C. sign consent agreement on Yellowhead Copper mine near Kamloops",
+      "text": "The Province and Simpcw First Nation signed a consent-based decision-making agreement for the proposed Yellowhead Copper Project, roughly 150 km northeast of Kamloops in Simpcwul'ecw. The B.C. Environmental Assessment Office and Simpcw will run coordinated but separate assessments, and both a Simpcw consent decision and a provincial certificate will be required before the mine can proceed.",
+      "why": "It's a working example of DRIPA's consent-based model applied to a major Interior B.C. mining project, in territory adjacent to Nlaka'pamux and Secwépemc lands along the Thompson-Fraser corridor -- a template other Interior Nations are watching.",
+      "sources": [
+        {
+          "label": "BC Gov News",
+          "url": "https://news.gov.bc.ca/releases/2026ENV0029-000836"
+        }
+      ]
+    },
+    {
+      "headline": "Ka:'yu:'k't'h'/Che:k'tles7et'h' members find MP Aaron Gunn for a 'tough conversation' in Kyuquot",
+      "text": "During an unannounced visit to Kyuquot, Conservative MP Aaron Gunn was tracked down by Ka:'yu:'k't'h'/Che:k'tles7et'h' First Nations members Kevin Jules and his brother Brandon Smith, who pressed him on the cultural devastation of residential schools and the potlatch ban, and explained their Nation's status as a treaty nation under the Maa-nulth Final Agreement. Jules described the exchange as respectful but tense.",
+      "why": "A grassroots, unscripted conversation on the west coast of Vancouver Island shows how reconciliation dialogue plays out community by community, outside formal political channels.",
+      "sources": [
+        {
+          "label": "Ha-Shilth-Sa",
+          "url": "https://hashilthsa.com/news/2026-07-22/kayukthchektles7eth-members-track-down-aaron-gunn-tough-conversation-during-mps"
+        }
+      ]
+    }
+  ],
+  "sweep": [
+    {
+      "domain": "Health & education",
+      "items": [
+        {
+          "line": "Six Nations Elected Council approved a consolidated health funding agreement with Ontario's Ministry of Health, merging multiple provincial agreements into one transfer-payment arrangement; Councillor Helen Miller cast the sole dissenting vote.",
+          "label": "Turtle Island News",
+          "url": "https://theturtleislandnews.com/index.php/2026/07/15/six-nations-agrees-to-consolidated-funding-agreement-with-moh/"
+        },
+        {
+          "line": "Little Grand Rapids First Nation Chief Clinton Keeper's roughly 13-hour wait in pain at Winnipeg's Grace Hospital has become a rallying point for Manitoba First Nations leaders demanding emergency-care reform.",
+          "label": "CBC News (Manitoba)",
+          "url": "https://www.cbc.ca/news/canada/manitoba/little-grand-rapids-chief-clinton-keeper-hospital-wait-9.7270995"
+        }
+      ]
+    },
+    {
+      "domain": "Culture, language & arts",
+      "items": [
+        {
+          "line": "Up to 20 canoes and 1,000 people were set to land at Fort Worden, hosted by the S'Klallam, Lower Elwha and Jamestown tribes, en route to the Nisqually Tribe's Medicine Creek Potlatch.",
+          "label": "Peninsula Daily News",
+          "url": "https://www.peninsuladailynews.com/2026/07/24/fort-worden-to-host-canoe-journey-families-during-saturday-landings/"
+        },
+        {
+          "line": "The third annual Miss Indigenous Canada competition ran July 20-25, based at Six Nations of the Grand River with a finale in Brantford, featuring 20 First Nations and Métis delegates including Kiauna Cote of Ochapowace First Nation and Ava Roe of Paddle Prairie Métis Settlement.",
+          "label": "CBC News (Indigenous)",
+          "url": "https://www.cbc.ca/news/indigenous/miss-indigenous-canada-kiauna-cote-ava-roe-9.7264566"
+        }
+      ]
+    },
+    {
+      "domain": "Law & courts",
+      "items": [
+        {
+          "line": "A Nova Scotia Supreme Court justice dismissed an industry group's lawsuit seeking to strip Sipekne'katik First Nation of its treaty right to a commercial lobster fishery in St. Mary's Bay, calling the claim \"fatally flawed.\"",
+          "label": "BNN Bloomberg (Canadian Press)",
+          "url": "https://www.bnnbloomberg.ca/business/2026/07/08/ns-court-dismisses-claim-by-fisheries-group-seeking-ruling-on-lobster-treaty-rights/"
+        }
+      ]
+    },
+    {
+      "domain": "Politics & policy",
+      "items": [
+        {
+          "line": "Crown-Indigenous Relations Minister Rebecca Alty said the draft self-government treaty between Ottawa and Métis Nation-Saskatchewan has reached an \"important milestone,\" with a finalized draft now under federal review.",
+          "label": "CTV News Saskatoon",
+          "url": "https://www.ctvnews.ca/saskatoon/article/metis-self-government-treaty-reaches-important-milestone-federal-minister-says/"
+        }
+      ]
+    },
+    {
+      "domain": "International Indigenous",
+      "items": [
+        {
+          "line": "Navajo Nation's presidential primary advanced Justin Jones and Council Speaker Crystalyne Curley to the November general election, eliminating incumbent President Buu Nygren; Curley could become the first woman elected Navajo Nation president.",
+          "label": "ICT News",
+          "url": "https://ictnews.org/politics/election-2026/navajo-nation-presidential-primary-chose-two-contenders-for-general-election/"
+        },
+        {
+          "line": "Yolŋu artists from North East Arnhem Land and Taiwanese Amis and Paiwan artists brought Gapu Ŋupan, a five-year cultural collaboration, to the Garma Festival ahead of Darwin Festival performances in August.",
+          "label": "National Indigenous Times",
+          "url": "https://nit.com.au/21-07-2026/25459/sharing-cultures-one-powerful-story-gapu-nupan-brings-yolnu-and-taiwanese-knowledge-to-the-stage"
+        },
+        {
+          "line": "Bangarra Dance Theatre became the first company ever to receive the Venice Biennale's Golden Lion for Lifetime Achievement in Dance, with the ceremony set for July 26.",
+          "label": "ArtsHub Australia",
+          "url": "https://www.artshub.com.au/news/news/bangarra-awarded-prestigious-golden-lion-by-the-venice-biennale-danza-2026-2842062/"
+        }
+      ]
+    }
+  ],
+  "bright": {
+    "headline": "All 11 Cree communities compete together for the first time at the Eeyou Istchee Summer Games",
+    "text": "Chisasibi is hosting the Eeyou Istchee Summer Games from July 20 to 25 -- the first time athletes from all 11 Cree communities have gathered to compete together. Hundreds of youth aged 9 to 18 are taking part in more than 40 events, from track and field to canoeing, alongside cultural celebrations and traditional Cree games.\n\n\"I was so proud to see all community flags being raised and seeing that many athletes, it's so empowering,\" said Deputy Youth Chief Darius Neacappo Pelchat of the opening ceremony.",
+    "sources": [
+      {
+        "label": "CBC News (North)",
+        "url": "https://www.cbc.ca/news/canada/north/eeyou-istchee-summer-games-chisasibi-9.7280212"
+      }
+    ]
+  },
+  "stillWatching": [
+    {
+      "line": "Whether Ottawa's support for Namaygoosisagagun turns into an actual rebuilding commitment, and whether the October 26 First Ministers Meeting addresses fast-tracked major projects on First Nations' terms."
+    },
+    {
+      "line": "The Cowichan Tribes Aboriginal title case, now facing appeals from the Crown, the City of Richmond, Cowichan Tribes and a private landowner -- all converging toward a likely Supreme Court test of Aboriginal title versus fee-simple land."
+    },
+    {
+      "line": "Whether Ottawa moves to criminalize residential-school denialism through Bill C-9 or standalone legislation, after the Senate rejected an amendment that had passed its own Human Rights Committee."
+    },
+    {
+      "line": "The mental-health toll on First Nations wildfire evacuees sheltering for weeks in Thunder Bay, Mississauga and Niagara Falls, against a 44 percent cut to Ontario's planned firefighting budget."
+    }
+  ]
+}

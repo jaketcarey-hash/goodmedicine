@@ -1,5 +1,32 @@
 [
   {
+    "date": "2026-07-24",
+    "stem": "2026-07-24-weekly",
+    "cadence": "weekly",
+    "dateLong": "Week ending July 24, 2026",
+    "title": "The Nations This Week",
+    "headline": "A wildfire erases a fly-in community as chiefs draw a national line on fast-tracked projects",
+    "throughLine": "On July 13, a fast-moving wildfire swept into Namaygoosisagagun (Collins) First Nation, a fly-in community roughly 125 miles north of Thunder Bay, forcing about two dozen residents to flee across Collins Lake by boat with only minutes' notice. More than 30 homes, the school, the administration office and cultural camps were destroyed. Chief Helen Paavola and Anishinabek Nation Grand Council Chief Linda Debassige confirmed everyone made it out safely.",
+    "oneThing": "Wildfire destroys Namaygoosisagagun First Nation as evacuations sweep northwestern Ontario",
+    "sections": [
+      "Economic Sovereignty",
+      "Land, Water & Rights",
+      "Governance & Policy",
+      "Closer to Home",
+      "The Sweep"
+    ],
+    "sourceCount": 19,
+    "editionUrl": "archive/2026-07-24-weekly.html",
+    "standaloneSource": "today/2026-07-24-weekly.html",
+    "emailUrl": null,
+    "jsonUrl": "today/2026-07-24-weekly.json",
+    "researchUrl": null,
+    "deliveryUrl": null,
+    "emailDeliveryUrl": null,
+    "publicUrl": "/nations/archive/2026-07-24-weekly",
+    "archiveRoot": "/nations/"
+  },
+  {
     "date": "2026-07-20",
     "stem": "2026-07-20",
     "cadence": "daily",
