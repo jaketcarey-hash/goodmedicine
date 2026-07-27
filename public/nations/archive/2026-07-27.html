@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nations This Morning — Monday, July 27, 2026</title>
+  <style>
+    :root {
+      --ink: #18201d;
+      --muted: #66706b;
+      --paper: #fffdf8;
+      --canvas: #ede9df;
+      --cedar: #873f2b;
+      --cedar-dark: #4f241a;
+      --forest: #1f5b4d;
+      --gold: #bc8b35;
+      --line: #ddd6c8;
+      --soft-gold: #f7f0e0;
+      --soft-red: #f7ece7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--forest); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .shell {
+      width: min(760px, calc(100% - 24px));
+      margin: 24px auto 48px;
+      background: var(--paper);
+      border: 1px solid #d6cfc1;
+      box-shadow: 0 18px 50px rgba(43, 37, 28, .12);
+    }
+    .masthead {
+      padding: 38px 46px 30px;
+      border-top: 7px solid var(--cedar);
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 92% 10%, rgba(188,139,53,.16), transparent 28%), linear-gradient(135deg, #fffdf8 0%, #fbf7ee 100%);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.03em;
+    }
+    .strap {
+      max-width: 600px;
+      margin: 18px 0 0;
+      color: #48514d;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .through-line {
+      padding: 24px 46px;
+      color: #f7f3ea;
+      background: var(--cedar-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      line-height: 1.42;
+    }
+    .through-line strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #d7b96d;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    main { padding: 10px 46px 44px; }
+    .section { padding-top: 32px; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    h2 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 29px;
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -.015em;
+    }
+    h3 { margin: 0 0 7px; font-size: 17px; line-height: 1.35; }
+    p { margin: 0 0 13px; font-size: 14px; line-height: 1.72; }
+    .lead {
+      padding: 26px;
+      border-left: 5px solid var(--cedar);
+      background: var(--soft-red);
+    }
+    .pill {
+      display: inline-block;
+      margin: 0 0 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .source-mark { white-space: nowrap; }
+    .source-mark a {
+      color: var(--cedar);
+      font-size: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      vertical-align: super;
+    }
+    .signal {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid #ddc79b;
+      background: var(--soft-gold);
+    }
+    .signal strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #73551c;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .signal p { margin: 0; font-size: 13px; line-height: 1.6; }
+    .item { padding: 18px 0; border-top: 1px solid var(--line); }
+    .item:first-of-type { border-top: 0; padding-top: 0; }
+    .kicker {
+      margin-bottom: 8px;
+      color: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .why, .detail {
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: #4f5954;
+      font-style: italic;
+    }
+    .detail { margin-top: 6px; padding-top: 0; border-top: 0; font-style: normal; }
+    .watch { margin: 0; padding-left: 18px; }
+    .watch li { margin: 0 0 10px; font-size: 13px; line-height: 1.62; }
+    .sources {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 2px solid var(--ink);
+    }
+    .sources-intro {
+      max-width: 620px;
+      margin: -3px 0 17px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .source-list { margin: 0; padding-left: 22px; columns: 2; column-gap: 34px; }
+    .source-list li {
+      break-inside: avoid;
+      margin: 0 0 12px;
+      padding-left: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .source-list a { color: var(--ink); font-weight: 700; text-decoration-color: #acbcb4; }
+    .source-list span { display: block; margin-top: 2px; }
+    footer {
+      padding: 24px 46px 30px;
+      border-top: 1px solid var(--line);
+      color: #777c78;
+      background: #f7f3ea;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    footer strong { color: var(--ink); }
+    @media (max-width: 620px) {
+      .shell { width: 100%; margin: 0; border: 0; }
+      .masthead, main, footer { padding-left: 24px; padding-right: 24px; }
+      .through-line { padding: 22px 24px; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+<div style="max-width:760px;margin:18px auto 0;padding:0 12px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;font-size:12px;line-height:1.5;"><a href="/nations" style="color:#1f5b4d;font-weight:700;text-decoration-thickness:1px;text-underline-offset:2px;">&larr; Nations archive</a></div>
+  <article class="shell">
+    <header class="masthead">
+      <p class="eyebrow">Public-source intelligence brief</p>
+      <h1>The Nations<br>This Morning</h1>
+      <p class="strap">B.C. moved an LNG file through a faster lane while Ottawa and Alberta showed how much the rights process still matters.</p>
+      <div class="meta">
+        <span>Monday, July 27, 2026</span>
+        <span>About five minutes</span>
+        <span>5 developments</span>
+        <span>Primary-source verified</span>
+      </div>
+    </header>
+    <div class="through-line">
+      <strong>Today&apos;s through-line</strong>
+      The weekend's economic signal was not a single transaction. It was the machinery around transactions: B.C. cleared a utility-regulation hurdle for Tilbury LNG with a Musqueam equity opportunity attached, Ottawa finished a heavily contested major-projects consultation window, Alberta's separation petition stayed alive politically despite treaty-rights litigation, and two clean-energy ownership files moved from announcement toward operating assets.
+    </div>
+    <main>
+      
+      <section class="section">
+        <div class="section-label">The One Thing</div>
+        
+        <div class="lead">
+          <span class="pill">reported</span>
+          <h2>B.C. clears Tilbury's first expansion lane, with Musqueam ownership in the frame <span class="source-mark"><a href="#source-1">[1]</a> <a href="#source-2">[2]</a> <a href="#source-3">[3]</a> <a href="#source-4">[4]</a></span></h2>
+          <p>British Columbia moved FortisBC's Tilbury LNG Facility Phase 1B expansion ahead on Friday by exempting it from the usual Certificate of Public Convenience and Necessity step at the B.C. Utilities Commission. Canadian Press and Global News reported the order-in-council is meant to give the roughly $2-billion project regulatory certainty, while leaving other permits and approvals still required before construction.</p>
+<p>The Indigenous economic signal is the ownership architecture. Provincial and media accounts say the decision creates an opportunity for Musqueam Indian Band to become an equity partner in the Delta facility, and the province's major-projects page separately notes that Musqueam Indian Band and FortisBC signed a 2022 agreement to work together on Tilbury Phase 2 with sustainable economic outcomes for Musqueam Peoples and the region.</p>
+<p>This is not a final environmental approval for the broader Phase 2 expansion. The B.C. Environmental Assessment Office says public comment on the draft assessment report closes tonight, July 27, at 11:59 p.m. Pacific time, with a Phase 2 decision still expected later in 2026.</p>
+          <div class="signal">
+            <strong>What remains unknown</strong>
+            <p>The public record does not yet disclose final Musqueam equity terms, financing structure, voting rights, or timing. Phase 1B still requires applicable permits, and Phase 2 remains inside the environmental assessment process. It is not yet clear whether comments filed by affected Nations, local governments, or community groups will materially change the final Phase 2 assessment package.</p>
+          </div>
+        </div>
+    
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Capital &amp; Ownership</div>
+        
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>Clean-energy ownership moved from promise to operating ground in Nova Scotia and Alberta <span class="source-mark"><a href="#source-5">[5]</a> <a href="#source-6">[6]</a> <a href="#source-7">[7]</a> <a href="#source-8">[8]</a></span></h3>
+            <p>Canada announced Friday that 10 Mi'kmaw communities in Nova Scotia have completed net-metered solar installations through a more than $4.8-million combined investment by the federal government and the communities. Ulnooweg Development Group managed the agreement for Acadia, Annapolis Valley, Eskasoni, Glooscap, Millbrook, Paqtnkek, Pictou Landing, Potlotek, Wagmatcook, and Waycobah, while Bayside Renewables and Eskasoni Renewables installed the systems. In Alberta, Alberta Native News reported that Montana First Nation celebrated the July 14 grand opening of the 22.5-megawatt Killarney Lake Solar Farm, a project owned through Akamihk Energy Incorporated and supported in federal and provincial project records.</p>
+            <p class="why"><strong>Why it matters economically:</strong> These are smaller than the billion-dollar equity files, but they are operationally useful. Net metering cuts community power costs, local Indigenous contractors build capability, and Nation-owned grid assets create repeatable experience in development, construction, operations, and market participation.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The Nova Scotia release does not break out project economics by community, and the Montana public record does not yet settle final operating revenue, storage commissioning, or long-term power-market exposure.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch whether the Mi'kmaw solar systems publish annual savings or employment data, and whether Killarney Lake's battery-storage component reaches full commercial operation.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Policy, Rights &amp; Regulation</div>
+        
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>Ottawa's major-project review file now has a consultation count <span class="source-mark"><a href="#source-9">[9]</a> <a href="#source-10">[10]</a></span></h3>
+            <p>Canadian Press reported Saturday that the federal government received more than 21,000 emails on proposed changes to major-project reviews after the public feedback window closed Wednesday, July 22. A Privy Council Office spokesperson said that, as of July 17, Ottawa had also received 187 written submissions from stakeholders, including Indigenous groups, and had held 24 meetings with Indigenous groups, including three virtual engagement sessions. The government says it will publish a summary report by the end of summer, with legislation pushed into the fall sitting.</p>
+            <p class="why"><strong>Why it matters economically:</strong> The numbers matter because they move the file out of rhetoric and into administrative burden. Investors want faster review rules; First Nations and environmental groups are warning that pre-approval, economic zones, and regulator changes could weaken rights and environmental protections. The shape of the summary report will determine whether Ottawa can show a credible consultation record before asking Parliament to move.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The submissions are not yet public in a complete package, and the government has not said how Indigenous submissions will be distinguished from general stakeholder feedback.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch the end-of-summer consultation summary, then the fall legislation that follows.</p>
+          </article>
+            
+
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>Alberta's separation petition cleared a count, but not the treaty-rights case <span class="source-mark"><a href="#source-11">[11]</a> <a href="#source-12">[12]</a> <a href="#source-13">[13]</a></span></h3>
+            <p>Elections Alberta announced Friday that a citizen-led separation petition had enough verified signatures to be successful: nearly 223,000 verified signatures from almost 280,000 valid names counted, above the roughly 178,000-signature threshold. The petition remains blocked by litigation. Earlier this year, Athabasca Chipewyan First Nation, Piikani Nation, Siksika Nation, and Blood Tribe challenged the petition, and the Alberta Court of King's Bench quashed the Chief Electoral Officer's approval decision after finding, among other things, that Alberta had not met its duty to consult.</p>
+            <p class="why"><strong>Why it matters economically:</strong> The economic consequence is uncertainty around the Crown relationship behind land, resources, taxation, infrastructure, and project approvals. The validated count gives the political campaign momentum; the court record keeps the legal question centred on Treaty rights and the constitutional relationship rather than ordinary provincial preference polling.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The appeal outcome is unresolved, and the province's October 19 referendum question is separate from the citizen petition process.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch the appeal, Alberta's October 19 referendum process, and any formal response from Treaty organizations or Canada.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Closer to Home -- British Columbia</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>The LNG Canada equity option picked up an amendment file <span class="source-mark"><a href="#source-4">[4]</a> <a href="#source-14">[14]</a></span></h3>
+            <p>The B.C. Environmental Assessment Office posted Friday that LNG Canada Development Inc. has applied to revise the certified project description for the LNG Canada export terminal in Kitimat. The requested changes would clarify LNG carrier routes and where marine pilots board LNG carriers, and the EAO says the changes require an amendment to environmental assessment certificate E15-01. The same Kitimat complex is the project tied to the July equity option for Gitga'at First Nation, Gitxaała Nation, Haisla Nation, Kitselas First Nation, and Kitsumkalum through MNT Investments LP.</p>
+            <p class="why"><strong>Why it matters economically:</strong> This is narrow, but it is the live project file behind one of the largest pending Indigenous infrastructure ownership options in Canada. A shipping-route and pilotage amendment is not financing approval, but it shows the operating certificate is still moving while the Phase 2 final investment decision remains targeted for the end of 2026.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The amendment application documents need to be reviewed for any Nation-specific comments, conditions, or marine-use concerns, and the equity option still depends on a Phase 2 final investment decision.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch EAO's amendment decision, any posted Indigenous consultation material, and LNG Canada's Phase 2 final investment decision.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">What Happens Next</div>
+        <ul class="watch"><li>Tilbury: today's close of the Phase 2 comment period should move the assessment toward final materials for provincial and federal decision-makers.</li>
+<li>Major-project rules: Ottawa's end-of-summer consultation summary is now the next document that matters before fall legislation.</li>
+<li>Alberta separation: the legal file remains alive even after the signature count, with Treaty rights and consultation at the centre of the appeal risk.</li>
+<li>LNG Canada: EAO's amendment review and the Phase 2 final investment decision remain the catalysts behind the five-Nation equity option.</li>
+<li>Clean-energy ownership: look for operating results, not only ribbon-cuttings, from the Mi'kmaw solar systems and Montana First Nation's Killarney Lake project.</li></ul>
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Still Watching</div>
+        <ul class="watch"><li>No new Inuit or Métis economic item cleared both the weekend materiality bar and verification standard. Inuit-owned Arctic Fresh and the Métis Nation-Saskatchewan self-government treaty milestone were covered in the July 24 weekly edition and had no material weekend update.</li>
+<li>Namaygoosisagagun First Nation remains an emergency-infrastructure and rebuild-funding file. The weekend did not produce a public rebuilding commitment strong enough to update the July 24 weekly lead.</li>
+<li>The Cowichan Tribes Aboriginal title appeal path, Shamattawa drinking-water appeal, Attawapiskat contamination claim, and residential-school denialism legislation remain open from the weekly edition, with no new weekend filing found in this scan.</li>
+<li>B.C. project-risk files from prior editions remain open: Yellowhead Copper consent-based assessment, Burrard Inlet dredging, Mount Polley, RBT2/Tsawwassen, and now Tilbury/LNG Canada assessment steps.</li></ul>
+      </section>
+    
+      <section class="sources" aria-labelledby="sources-heading">
+        
+      <section class="section">
+        <div class="section-label">Sources</div>
+        <p class="sources-intro">All material claims in this edition were traced to primary documents, Indigenous-led reporting, public records or credible independent reporting. Links open the underlying source.</p><ol class="source-list"><li id="source-1"><a href="https://vancouver.citynews.ca/2026/07/24/b-c-government-allows-accelerated-expansion-of-the-tilbury-lng-fuel-facility/">CityNews / The Canadian Press -- B.C. government allows accelerated expansion of the Tilbury LNG fuel facility</a><span>2026-07-24 · Independent wire reporting</span></li><li id="source-2"><a href="https://globalnews.ca/news/11987912/delta-tilbury-lng-expansion-project-green-light-bc/">Global News -- Delta's Tilbury LNG expansion project gets green light from B.C. government</a><span>2026-07-24 · Independent reporting</span></li><li id="source-3"><a href="https://www2.gov.bc.ca/gov/content/employment-business/major-projects">Province of British Columbia -- Major projects in B.C. delivered faster: FortisBC Tilbury LNG Phase 2</a><span>accessed 2026-07-27 · Provincial project record</span></li><li id="source-4"><a href="https://projects.eao.gov.bc.ca/p/ksm/docs?folder=246">B.C. Environmental Assessment Office -- EPIC recent activities and updates</a><span>accessed 2026-07-27 · Provincial regulatory record</span></li><li id="source-5"><a href="https://www.canada.ca/en/housing-infrastructure-communities/news/2026/07/federal-government-and-ten-first-nation-communities-invest-in-renewable-energy-in-nova-scotia.html">Government of Canada -- Federal government and ten First Nation communities invest in renewable energy in Nova Scotia</a><span>2026-07-24 · Federal government release</span></li><li id="source-6"><a href="https://www.albertanativenews.com/montana-first-nation-celebrates-killarney-lake-solar-farm-grand-opening-creating-new-opportunities-for-future-generations/">Alberta Native News -- Montana First Nation celebrates Killarney Lake Solar Farm grand opening</a><span>2026-07-24 · Indigenous and local journalism</span></li><li id="source-7"><a href="https://majorprojects.alberta.ca/details/Killarney-Lake-Solar-and-Battery-Storage-Project-FortisAlberta-Killarney-Lake-267S-DER-Solar/11124">Alberta Major Projects -- Killarney Lake Solar and Battery Storage Project</a><span>accessed 2026-07-27 · Provincial project record</span></li><li id="source-8"><a href="https://natural-resources.canada.ca/climate-change/projects-announced-date-smart-renewables-electrification-pathways-program">Natural Resources Canada -- Smart Renewables and Electrification Pathways Program projects announced to date</a><span>accessed 2026-07-27 · Federal program record</span></li><li id="source-9"><a href="https://larongenow.com/2026/07/25/feds-received-more-than-21000-emails-on-proposed-changes-to-major-project-reviews/">larongeNOW / The Canadian Press -- Feds received more than 21,000 emails on proposed changes to major project reviews</a><span>2026-07-25 · Independent wire reporting</span></li><li id="source-10"><a href="https://www.pm.gc.ca/en/news/statements/2026/07/23/first-ministers-joint-statement">Prime Minister of Canada -- First Ministers' Joint Statement</a><span>2026-07-23 · Federal statement</span></li><li id="source-11"><a href="https://globalnews.ca/news/11988474/elections-alberta-separatism-petition-validated/">Global News / The Canadian Press -- Elections Alberta validates separatist petition that's tied up in court</a><span>2026-07-24 · Independent wire reporting</span></li><li id="source-12"><a href="https://jssbarristers.ca/insights/consultation-on-separation/">JSS Barristers -- Consultation on Separation</a><span>2026-07-08 · Specialist legal analysis</span></li><li id="source-13"><a href="https://jfklaw.ca/treaty-rights-and-alberta-separatism-the-crowns-duty-to-consult-in-athabasca-chipewyan-first-nation-v-alberta-chief-electoral-officer/">JFK Law -- Treaty Rights and Alberta Separatism</a><span>2026-05-20 · Specialist legal analysis</span></li><li id="source-14"><a href="https://www.lngcanada.ca/news/landmark-indigenous-equity-option-creates-potential-for-one-of-canadas-largest-indigenous-ownership-stakes-in-energy-infrastructure-at-lng-canada/">LNG Canada -- Landmark Indigenous equity option creates potential for one of Canada's largest Indigenous ownership stakes in energy infrastructure at LNG Canada</a><span>2026-07-14 · Company disclosure</span></li></ol>
+      </section>
+    
+      </section>
+    </main>
+    <footer>
+      <strong>The Nations This Morning</strong> is a public-source intelligence brief. Completed transactions are separated from proposals, options and active legal or regulatory files. First Nations, Métis and Inuit are distinct peoples; the brief names the specific Nation or organization wherever the source allows. Rendered 2026-07-27 15:40 UTC.
+    </footer>
+  </article>
+</body>
+</html>

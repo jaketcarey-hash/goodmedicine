@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "The Nations This Morning",
+    "date": "2026-07-27",
+    "dateLong": "Monday, July 27, 2026",
+    "timezone": "America/Vancouver",
+    "headline": "B.C. moved an LNG file through a faster lane while Ottawa and Alberta showed how much the rights process still matters.",
+    "readTime": "About five minutes",
+    "status": "verified_public_sources"
+  },
+  "throughLine": "The weekend's economic signal was not a single transaction. It was the machinery around transactions: B.C. cleared a utility-regulation hurdle for Tilbury LNG with a Musqueam equity opportunity attached, Ottawa finished a heavily contested major-projects consultation window, Alberta's separation petition stayed alive politically despite treaty-rights litigation, and two clean-energy ownership files moved from announcement toward operating assets.",
+  "oneThing": {
+    "headline": "B.C. clears Tilbury's first expansion lane, with Musqueam ownership in the frame",
+    "status": "reported",
+    "sourceIds": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "paragraphs": [
+      "British Columbia moved FortisBC's Tilbury LNG Facility Phase 1B expansion ahead on Friday by exempting it from the usual Certificate of Public Convenience and Necessity step at the B.C. Utilities Commission. Canadian Press and Global News reported the order-in-council is meant to give the roughly $2-billion project regulatory certainty, while leaving other permits and approvals still required before construction.",
+      "The Indigenous economic signal is the ownership architecture. Provincial and media accounts say the decision creates an opportunity for Musqueam Indian Band to become an equity partner in the Delta facility, and the province's major-projects page separately notes that Musqueam Indian Band and FortisBC signed a 2022 agreement to work together on Tilbury Phase 2 with sustainable economic outcomes for Musqueam Peoples and the region.",
+      "This is not a final environmental approval for the broader Phase 2 expansion. The B.C. Environmental Assessment Office says public comment on the draft assessment report closes tonight, July 27, at 11:59 p.m. Pacific time, with a Phase 2 decision still expected later in 2026."
+    ],
+    "whyItMatters": "Tilbury sits where B.C.'s Look West export strategy, port marine-fuel demand, utility regulation, and First Nations equity participation meet. The economic question is not simply whether LNG capacity grows; it is whether faster provincial project lanes can still carry clear consent, assessment, and ownership terms.",
+    "unknowns": [
+      "The public record does not yet disclose final Musqueam equity terms, financing structure, voting rights, or timing.",
+      "Phase 1B still requires applicable permits, and Phase 2 remains inside the environmental assessment process.",
+      "It is not yet clear whether comments filed by affected Nations, local governments, or community groups will materially change the final Phase 2 assessment package."
+    ],
+    "nextCatalyst": "The immediate catalyst is tonight's close of the Tilbury Phase 2 public-comment period. The larger catalyst is the late-2026 environmental assessment decision and any disclosed Musqueam equity structure."
+  },
+  "developments": [
+    {
+      "section": "Capital & Ownership",
+      "headline": "Clean-energy ownership moved from promise to operating ground in Nova Scotia and Alberta",
+      "status": "reported",
+      "sourceIds": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "whatHappened": "Canada announced Friday that 10 Mi'kmaw communities in Nova Scotia have completed net-metered solar installations through a more than $4.8-million combined investment by the federal government and the communities. Ulnooweg Development Group managed the agreement for Acadia, Annapolis Valley, Eskasoni, Glooscap, Millbrook, Paqtnkek, Pictou Landing, Potlotek, Wagmatcook, and Waycobah, while Bayside Renewables and Eskasoni Renewables installed the systems. In Alberta, Alberta Native News reported that Montana First Nation celebrated the July 14 grand opening of the 22.5-megawatt Killarney Lake Solar Farm, a project owned through Akamihk Energy Incorporated and supported in federal and provincial project records.",
+      "whyItMatters": "These are smaller than the billion-dollar equity files, but they are operationally useful. Net metering cuts community power costs, local Indigenous contractors build capability, and Nation-owned grid assets create repeatable experience in development, construction, operations, and market participation.",
+      "whatRemainsUnknown": "The Nova Scotia release does not break out project economics by community, and the Montana public record does not yet settle final operating revenue, storage commissioning, or long-term power-market exposure.",
+      "nextCatalyst": "Watch whether the Mi'kmaw solar systems publish annual savings or employment data, and whether Killarney Lake's battery-storage component reaches full commercial operation."
+    },
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "Ottawa's major-project review file now has a consultation count",
+      "status": "reported",
+      "sourceIds": [
+        9,
+        10
+      ],
+      "whatHappened": "Canadian Press reported Saturday that the federal government received more than 21,000 emails on proposed changes to major-project reviews after the public feedback window closed Wednesday, July 22. A Privy Council Office spokesperson said that, as of July 17, Ottawa had also received 187 written submissions from stakeholders, including Indigenous groups, and had held 24 meetings with Indigenous groups, including three virtual engagement sessions. The government says it will publish a summary report by the end of summer, with legislation pushed into the fall sitting.",
+      "whyItMatters": "The numbers matter because they move the file out of rhetoric and into administrative burden. Investors want faster review rules; First Nations and environmental groups are warning that pre-approval, economic zones, and regulator changes could weaken rights and environmental protections. The shape of the summary report will determine whether Ottawa can show a credible consultation record before asking Parliament to move.",
+      "whatRemainsUnknown": "The submissions are not yet public in a complete package, and the government has not said how Indigenous submissions will be distinguished from general stakeholder feedback.",
+      "nextCatalyst": "Watch the end-of-summer consultation summary, then the fall legislation that follows."
+    },
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "Alberta's separation petition cleared a count, but not the treaty-rights case",
+      "status": "confirmed",
+      "sourceIds": [
+        11,
+        12,
+        13
+      ],
+      "whatHappened": "Elections Alberta announced Friday that a citizen-led separation petition had enough verified signatures to be successful: nearly 223,000 verified signatures from almost 280,000 valid names counted, above the roughly 178,000-signature threshold. The petition remains blocked by litigation. Earlier this year, Athabasca Chipewyan First Nation, Piikani Nation, Siksika Nation, and Blood Tribe challenged the petition, and the Alberta Court of King's Bench quashed the Chief Electoral Officer's approval decision after finding, among other things, that Alberta had not met its duty to consult.",
+      "whyItMatters": "The economic consequence is uncertainty around the Crown relationship behind land, resources, taxation, infrastructure, and project approvals. The validated count gives the political campaign momentum; the court record keeps the legal question centred on Treaty rights and the constitutional relationship rather than ordinary provincial preference polling.",
+      "whatRemainsUnknown": "The appeal outcome is unresolved, and the province's October 19 referendum question is separate from the citizen petition process.",
+      "nextCatalyst": "Watch the appeal, Alberta's October 19 referendum process, and any formal response from Treaty organizations or Canada."
+    },
+    {
+      "section": "Closer to Home -- British Columbia",
+      "headline": "The LNG Canada equity option picked up an amendment file",
+      "status": "confirmed",
+      "sourceIds": [
+        4,
+        14
+      ],
+      "whatHappened": "The B.C. Environmental Assessment Office posted Friday that LNG Canada Development Inc. has applied to revise the certified project description for the LNG Canada export terminal in Kitimat. The requested changes would clarify LNG carrier routes and where marine pilots board LNG carriers, and the EAO says the changes require an amendment to environmental assessment certificate E15-01. The same Kitimat complex is the project tied to the July equity option for Gitga'at First Nation, Gitxaała Nation, Haisla Nation, Kitselas First Nation, and Kitsumkalum through MNT Investments LP.",
+      "whyItMatters": "This is narrow, but it is the live project file behind one of the largest pending Indigenous infrastructure ownership options in Canada. A shipping-route and pilotage amendment is not financing approval, but it shows the operating certificate is still moving while the Phase 2 final investment decision remains targeted for the end of 2026.",
+      "whatRemainsUnknown": "The amendment application documents need to be reviewed for any Nation-specific comments, conditions, or marine-use concerns, and the equity option still depends on a Phase 2 final investment decision.",
+      "nextCatalyst": "Watch EAO's amendment decision, any posted Indigenous consultation material, and LNG Canada's Phase 2 final investment decision."
+    }
+  ],
+  "whatHappensNext": [
+    "Tilbury: today's close of the Phase 2 comment period should move the assessment toward final materials for provincial and federal decision-makers.",
+    "Major-project rules: Ottawa's end-of-summer consultation summary is now the next document that matters before fall legislation.",
+    "Alberta separation: the legal file remains alive even after the signature count, with Treaty rights and consultation at the centre of the appeal risk.",
+    "LNG Canada: EAO's amendment review and the Phase 2 final investment decision remain the catalysts behind the five-Nation equity option.",
+    "Clean-energy ownership: look for operating results, not only ribbon-cuttings, from the Mi'kmaw solar systems and Montana First Nation's Killarney Lake project."
+  ],
+  "stillWatching": [
+    "No new Inuit or Métis economic item cleared both the weekend materiality bar and verification standard. Inuit-owned Arctic Fresh and the Métis Nation-Saskatchewan self-government treaty milestone were covered in the July 24 weekly edition and had no material weekend update.",
+    "Namaygoosisagagun First Nation remains an emergency-infrastructure and rebuild-funding file. The weekend did not produce a public rebuilding commitment strong enough to update the July 24 weekly lead.",
+    "The Cowichan Tribes Aboriginal title appeal path, Shamattawa drinking-water appeal, Attawapiskat contamination claim, and residential-school denialism legislation remain open from the weekly edition, with no new weekend filing found in this scan.",
+    "B.C. project-risk files from prior editions remain open: Yellowhead Copper consent-based assessment, Burrard Inlet dredging, Mount Polley, RBT2/Tsawwassen, and now Tilbury/LNG Canada assessment steps."
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "CityNews / The Canadian Press -- B.C. government allows accelerated expansion of the Tilbury LNG fuel facility",
+      "url": "https://vancouver.citynews.ca/2026/07/24/b-c-government-allows-accelerated-expansion-of-the-tilbury-lng-fuel-facility/",
+      "date": "2026-07-24",
+      "type": "Independent wire reporting"
+    },
+    {
+      "id": 2,
+      "label": "Global News -- Delta's Tilbury LNG expansion project gets green light from B.C. government",
+      "url": "https://globalnews.ca/news/11987912/delta-tilbury-lng-expansion-project-green-light-bc/",
+      "date": "2026-07-24",
+      "type": "Independent reporting"
+    },
+    {
+      "id": 3,
+      "label": "Province of British Columbia -- Major projects in B.C. delivered faster: FortisBC Tilbury LNG Phase 2",
+      "url": "https://www2.gov.bc.ca/gov/content/employment-business/major-projects",
+      "date": "accessed 2026-07-27",
+      "type": "Provincial project record"
+    },
+    {
+      "id": 4,
+      "label": "B.C. Environmental Assessment Office -- EPIC recent activities and updates",
+      "url": "https://projects.eao.gov.bc.ca/p/ksm/docs?folder=246",
+      "date": "accessed 2026-07-27",
+      "type": "Provincial regulatory record"
+    },
+    {
+      "id": 5,
+      "label": "Government of Canada -- Federal government and ten First Nation communities invest in renewable energy in Nova Scotia",
+      "url": "https://www.canada.ca/en/housing-infrastructure-communities/news/2026/07/federal-government-and-ten-first-nation-communities-invest-in-renewable-energy-in-nova-scotia.html",
+      "date": "2026-07-24",
+      "type": "Federal government release"
+    },
+    {
+      "id": 6,
+      "label": "Alberta Native News -- Montana First Nation celebrates Killarney Lake Solar Farm grand opening",
+      "url": "https://www.albertanativenews.com/montana-first-nation-celebrates-killarney-lake-solar-farm-grand-opening-creating-new-opportunities-for-future-generations/",
+      "date": "2026-07-24",
+      "type": "Indigenous and local journalism"
+    },
+    {
+      "id": 7,
+      "label": "Alberta Major Projects -- Killarney Lake Solar and Battery Storage Project",
+      "url": "https://majorprojects.alberta.ca/details/Killarney-Lake-Solar-and-Battery-Storage-Project-FortisAlberta-Killarney-Lake-267S-DER-Solar/11124",
+      "date": "accessed 2026-07-27",
+      "type": "Provincial project record"
+    },
+    {
+      "id": 8,
+      "label": "Natural Resources Canada -- Smart Renewables and Electrification Pathways Program projects announced to date",
+      "url": "https://natural-resources.canada.ca/climate-change/projects-announced-date-smart-renewables-electrification-pathways-program",
+      "date": "accessed 2026-07-27",
+      "type": "Federal program record"
+    },
+    {
+      "id": 9,
+      "label": "larongeNOW / The Canadian Press -- Feds received more than 21,000 emails on proposed changes to major project reviews",
+      "url": "https://larongenow.com/2026/07/25/feds-received-more-than-21000-emails-on-proposed-changes-to-major-project-reviews/",
+      "date": "2026-07-25",
+      "type": "Independent wire reporting"
+    },
+    {
+      "id": 10,
+      "label": "Prime Minister of Canada -- First Ministers' Joint Statement",
+      "url": "https://www.pm.gc.ca/en/news/statements/2026/07/23/first-ministers-joint-statement",
+      "date": "2026-07-23",
+      "type": "Federal statement"
+    },
+    {
+      "id": 11,
+      "label": "Global News / The Canadian Press -- Elections Alberta validates separatist petition that's tied up in court",
+      "url": "https://globalnews.ca/news/11988474/elections-alberta-separatism-petition-validated/",
+      "date": "2026-07-24",
+      "type": "Independent wire reporting"
+    },
+    {
+      "id": 12,
+      "label": "JSS Barristers -- Consultation on Separation",
+      "url": "https://jssbarristers.ca/insights/consultation-on-separation/",
+      "date": "2026-07-08",
+      "type": "Specialist legal analysis"
+    },
+    {
+      "id": 13,
+      "label": "JFK Law -- Treaty Rights and Alberta Separatism",
+      "url": "https://jfklaw.ca/treaty-rights-and-alberta-separatism-the-crowns-duty-to-consult-in-athabasca-chipewyan-first-nation-v-alberta-chief-electoral-officer/",
+      "date": "2026-05-20",
+      "type": "Specialist legal analysis"
+    },
+    {
+      "id": 14,
+      "label": "LNG Canada -- Landmark Indigenous equity option creates potential for one of Canada's largest Indigenous ownership stakes in energy infrastructure at LNG Canada",
+      "url": "https://www.lngcanada.ca/news/landmark-indigenous-equity-option-creates-potential-for-one-of-canadas-largest-indigenous-ownership-stakes-in-energy-infrastructure-at-lng-canada/",
+      "date": "2026-07-14",
+      "type": "Company disclosure"
+    }
+  ]
+}
