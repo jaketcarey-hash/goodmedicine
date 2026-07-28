@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nations This Morning — Tuesday, July 28, 2026</title>
+  <style>
+    :root {
+      --ink: #18201d;
+      --muted: #66706b;
+      --paper: #fffdf8;
+      --canvas: #ede9df;
+      --cedar: #873f2b;
+      --cedar-dark: #4f241a;
+      --forest: #1f5b4d;
+      --gold: #bc8b35;
+      --line: #ddd6c8;
+      --soft-gold: #f7f0e0;
+      --soft-red: #f7ece7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--forest); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .shell {
+      width: min(760px, calc(100% - 24px));
+      margin: 24px auto 48px;
+      background: var(--paper);
+      border: 1px solid #d6cfc1;
+      box-shadow: 0 18px 50px rgba(43, 37, 28, .12);
+    }
+    .masthead {
+      padding: 38px 46px 30px;
+      border-top: 7px solid var(--cedar);
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 92% 10%, rgba(188,139,53,.16), transparent 28%), linear-gradient(135deg, #fffdf8 0%, #fbf7ee 100%);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.03em;
+    }
+    .strap {
+      max-width: 600px;
+      margin: 18px 0 0;
+      color: #48514d;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .through-line {
+      padding: 24px 46px;
+      color: #f7f3ea;
+      background: var(--cedar-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      line-height: 1.42;
+    }
+    .through-line strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #d7b96d;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    main { padding: 10px 46px 44px; }
+    .section { padding-top: 32px; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    h2 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 29px;
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -.015em;
+    }
+    h3 { margin: 0 0 7px; font-size: 17px; line-height: 1.35; }
+    p { margin: 0 0 13px; font-size: 14px; line-height: 1.72; }
+    .lead {
+      padding: 26px;
+      border-left: 5px solid var(--cedar);
+      background: var(--soft-red);
+    }
+    .pill {
+      display: inline-block;
+      margin: 0 0 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .source-mark { white-space: nowrap; }
+    .source-mark a {
+      color: var(--cedar);
+      font-size: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      vertical-align: super;
+    }
+    .signal {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid #ddc79b;
+      background: var(--soft-gold);
+    }
+    .signal strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #73551c;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .signal p { margin: 0; font-size: 13px; line-height: 1.6; }
+    .item { padding: 18px 0; border-top: 1px solid var(--line); }
+    .item:first-of-type { border-top: 0; padding-top: 0; }
+    .kicker {
+      margin-bottom: 8px;
+      color: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .why, .detail {
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: #4f5954;
+      font-style: italic;
+    }
+    .detail { margin-top: 6px; padding-top: 0; border-top: 0; font-style: normal; }
+    .watch { margin: 0; padding-left: 18px; }
+    .watch li { margin: 0 0 10px; font-size: 13px; line-height: 1.62; }
+    .sources {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 2px solid var(--ink);
+    }
+    .sources-intro {
+      max-width: 620px;
+      margin: -3px 0 17px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .source-list { margin: 0; padding-left: 22px; columns: 2; column-gap: 34px; }
+    .source-list li {
+      break-inside: avoid;
+      margin: 0 0 12px;
+      padding-left: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .source-list a { color: var(--ink); font-weight: 700; text-decoration-color: #acbcb4; }
+    .source-list span { display: block; margin-top: 2px; }
+    footer {
+      padding: 24px 46px 30px;
+      border-top: 1px solid var(--line);
+      color: #777c78;
+      background: #f7f3ea;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    footer strong { color: var(--ink); }
+    @media (max-width: 620px) {
+      .shell { width: 100%; margin: 0; border: 0; }
+      .masthead, main, footer { padding-left: 24px; padding-right: 24px; }
+      .through-line { padding: 22px 24px; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <article class="shell">
+    <header class="masthead">
+      <p class="eyebrow">Public-source intelligence brief</p>
+      <h1>The Nations<br>This Morning</h1>
+      <p class="strap">A quiet tape still had one clear signal: Ottawa's next economic programs are being pushed toward local control, capacity and consent.</p>
+      <div class="meta">
+        <span>Tuesday, July 28, 2026</span>
+        <span>About four minutes</span>
+        <span>4 developments</span>
+        <span>Primary-source verified</span>
+      </div>
+    </header>
+    <div class="through-line">
+      <strong>Today&apos;s through-line</strong>
+      The past 24 hours did not produce a major Indigenous ownership closing. The live signal was program design: Ottawa's rural-development consultation put local retention and Indigenous engagement into the next action plan, Ontario tied tariff-response training to Treaty #3 workforce pathways, Treaty No. 6 leadership challenged the federal fast-track project model, and B.C.'s wildfire support system moved through another operating test.
+    </div>
+    <main>
+      
+      <section class="section">
+        <div class="section-label">The One Thing</div>
+        
+        <div class="lead">
+          <span class="pill">confirmed</span>
+          <h2>Ottawa's rural plan now has a local-benefit test <span class="source-mark"><a href="#source-1">[1]</a> <a href="#source-2">[2]</a></span></h2>
+          <p>Innovation, Science and Economic Development Canada released the key themes from its Rural Development Action Plan consultation on Monday. The process ran online from December 15, 2025 to February 20, 2026, was supplemented by 14 roundtables, and drew 2,841 participants across individuals, businesses, organizations and governments.</p>
+<p>The economic point is unusually direct. Participants told Ottawa to design programs for rural realities, keep wealth, capacity, infrastructure, decision-making and workforce benefits rooted locally, simplify access to federal support, and measure success by what communities can retain and sustain over time.</p>
+<p>The release names rural, remote, northern and Indigenous communities together, but it does not provide a distinctions-based breakdown of First Nations, Inuit or Metis submissions. That matters because the next plan will land in places where infrastructure, resource development, housing, workforce, digital access and Indigenous jurisdiction are often the same file.</p>
+          <div class="signal">
+            <strong>What remains unknown</strong>
+            <p>The government has not yet published the full Rural Development Action Plan or a detailed distinctions-based summary of Indigenous input. It is not yet clear which programs will change, how funding will be allocated, or whether local-benefit tests will become enforceable conditions.</p>
+          </div>
+        </div>
+    
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Capital &amp; Ownership</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>Treaty #3 workforce training gets a tariff-response allocation <span class="source-mark"><a href="#source-3">[3]</a></span></h3>
+            <p>Ontario and Canada announced more than $7.2 million for northern Ontario workforce training through the Canada-Ontario Workforce Tariff Response. One allocation sends $1,395,150 to Washagamis Bay Investment Corporation to train 40 jobseekers, primarily Indigenous participants from the Treaty #3 region, for careers in housing construction, forestry and telecommunications infrastructure around Kenora.</p>
+            <p class="why"><strong>Why it matters economically:</strong> This is not ownership capital, but it is economic capacity capital. Housing, forestry and telecom infrastructure are exactly the sectors where northern communities need local labour pipelines if public funding, rebuild work and private projects are going to leave more durable value in the region.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The release does not name the participating First Nations, employers, credential path, placement commitments or whether graduates will move into Nation-led projects.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch for the training provider's cohort details, employer partners and any procurement link to housing or infrastructure projects in Treaty #3 territory.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Policy, Rights &amp; Regulation</div>
+        
+          <article class="item">
+            <div class="kicker">reported</div>
+            <h3>Treaty No. 6 puts the fast-track project model back on rights-holder terms <span class="source-mark"><a href="#source-4">[4]</a> <a href="#source-5">[5]</a></span></h3>
+            <p>Alberta Native News reported Monday that the Confederacy of Treaty No. 6 First Nations is objecting to federal proposals to accelerate major-project approvals, including one-year review timelines, consolidated federal approvals, federal economic zones and possible early construction before impact assessments are complete. The federal discussion paper confirms the engagement period closed July 22 and says a What We Heard report is expected by the end of summer.</p>
+            <p class="why"><strong>Why it matters economically:</strong> This is the same national project-speed file as last week, but the new item is specific: Treaty No. 6 leadership is not treating consultation as a scheduling input. For investors and governments, that means the next legislation has to resolve whether faster timelines can coexist with First Nations-led assessments, capacity funding and consent expectations.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The Confederacy's full submission was not separately found in this run, and Ottawa has not yet published the engagement summary or draft legislation.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch Ottawa's end-of-summer What We Heard report and any pre-legislation meetings with Treaty No. 6 Chiefs.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Closer to Home -- British Columbia</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>Pear Lake evacuations tested the local emergency-support lane <span class="source-mark"><a href="#source-6">[6]</a></span></h3>
+            <p>The City of Prince George activated an Emergency Support Services reception centre on Monday for evacuees from 70 Mile House after an evacuation order tied to the Pear Lake wildfire. The city said ESS is financed by the province and administered by Indigenous communities and local governments, with basic supports such as information, hotel vouchers and meal vouchers.</p>
+            <p class="why"><strong>Why it matters economically:</strong> The item is not a First Nation evacuation announcement, and the release does not identify an affected Nation. It is still a B.C. operating signal because the same ESS structure is the delivery lane for Indigenous communities and local governments when wildfire evacuations move across reserve, municipal and regional boundaries.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The public release does not state whether any First Nation communities were receiving evacuees through this centre or whether additional emergency-management funding will follow.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch EmergencyInfoBC, affected regional districts and nearby First Nation notices if the Pear Lake fire forces further evacuations or infrastructure support.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">What Happens Next</div>
+        <ul class="watch"><li>Rural Development Action Plan: the later-2026 plan is the document that will show whether local-benefit and Indigenous-engagement themes become program rules.</li>
+<li>Treaty No. 6 and major projects: Ottawa's What We Heard report should reveal how it records rights-holder objections before legislation lands.</li>
+<li>Treaty #3 workforce: the practical test is whether training dollars connect to real placements in housing, forestry and telecom infrastructure.</li>
+<li>B.C. wildfire capacity: Pear Lake and other fire files remain live tests of ESS, local-government and First Nation emergency administration.</li>
+<li>Tilbury: the Phase 2 public-comment period closed July 27 at 11:59 p.m. Pacific; no decision has been posted yet.</li></ul>
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Still Watching</div>
+        <ul class="watch"><li>Tilbury LNG remains open after the public-comment close. The next material update would be a posted assessment step, final decision timeline or disclosed Musqueam equity structure.</li>
+<li>Dumont Nickel was selected for Quebec's Filon strategic-mining support on July 27, but the company release did not name affected Indigenous Nations or consultation outcomes. It stays on the watchlist rather than becoming an Indigenous economic item.</li>
+<li>The Alberta separation file remains live after the July 24 petition validation; the appeal and Treaty-rights litigation path are still the real catalysts.</li>
+<li>LNG Canada, Yellowhead Copper, Roberts Bank Terminal 2, Burrard Inlet dredging, Mount Polley, Namaygoosisagagun rebuild funding and the Cowichan Tribes title appeal remain unresolved from prior editions.</li></ul>
+      </section>
+    
+      <section class="sources" aria-labelledby="sources-heading">
+        
+      <section class="section">
+        <div class="section-label">Sources</div>
+        <p class="sources-intro">All material claims in this edition were traced to primary documents, Indigenous-led reporting, public records or credible independent reporting. Links open the underlying source.</p><ol class="source-list"><li id="source-1"><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/07/government-of-canada-highlights-key-themes-from-rural-development-action-plan-consultation.html">Innovation, Science and Economic Development Canada -- Government of Canada highlights key themes from Rural Development Action Plan consultation</a><span>2026-07-27 · Federal government release</span></li><li id="source-2"><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/07/government-of-canada-rural-consultation.html">Innovation, Science and Economic Development Canada -- Government of Canada rural consultation backgrounder</a><span>2026-07-27 · Federal government backgrounder</span></li><li id="source-3"><a href="https://news.ontario.ca/en/release/1007801/ontario_and_canada_invest_more_than_72_million_to_protect_workers_in_the_north">Ontario Newsroom -- Ontario and Canada invest more than $7.2 million to protect workers in the North</a><span>2026-07-27 · Provincial government release</span></li><li id="source-4"><a href="https://www.albertanativenews.com/treaty-no-6-first-nations-raise-concerns-over-canadas-proposed-fast-tracking-of-major-projects/">Alberta Native News -- Treaty No. 6 First Nations raise concerns over Canada's proposed fast-tracking of major projects</a><span>2026-07-27 · Indigenous and local journalism</span></li><li id="source-5"><a href="https://www.canada.ca/en/one-canadian-economy/services/simplifying-canada-process/engagement-supporting-timely-decision-making/getting-major-projects-built-canada-discussion-paper-proposed-legislative-regulatory-policy-reforms.html">Government of Canada -- Getting Major Projects Built in Canada discussion paper</a><span>accessed 2026-07-28 · Federal policy document</span></li><li id="source-6"><a href="https://www.princegeorge.ca/city-hall/news-notices/city-prince-george-supports-70-mile-house-evacuees">City of Prince George -- City supports 70 Mile House evacuees</a><span>2026-07-27 · Local government release</span></li><li id="source-7"><a href="https://www.projects.eao.gov.bc.ca/news/?bcgovtm=20220315_FIN_IP_SPEC___TW_BCGOV_EN___STATIC">B.C. Environmental Assessment Office -- EPIC recent activities and updates</a><span>accessed 2026-07-28 · Provincial regulatory record</span></li><li id="source-8"><a href="https://www.newswire.ca/news-releases/dumont-nickel-selected-to-benefit-from-filon-specialized-support-for-strategic-mining-projects-876160998.html">Dumont Nickel -- Dumont Nickel selected to benefit from Filon, specialized support for strategic mining projects</a><span>2026-07-27 · Company disclosure</span></li></ol>
+      </section>
+    
+      </section>
+    </main>
+    <footer>
+      <strong>The Nations This Morning</strong> is a public-source intelligence brief. Completed transactions are separated from proposals, options and active legal or regulatory files. First Nations, Métis and Inuit are distinct peoples; the brief names the specific Nation or organization wherever the source allows. Rendered 2026-07-28 15:37 UTC.
+    </footer>
+  </article>
+</body>
+</html>

@@ -1,5 +1,30 @@
 [
   {
+    "date": "2026-07-28",
+    "stem": "2026-07-28",
+    "cadence": "daily",
+    "dateLong": "Tuesday, July 28, 2026",
+    "title": "The Nations This Morning",
+    "headline": "A quiet tape still had one clear signal: Ottawa's next economic programs are being pushed toward local control, capacity and consent.",
+    "throughLine": "The past 24 hours did not produce a major Indigenous ownership closing. The live signal was program design: Ottawa's rural-development consultation put local retention and Indigenous engagement into the next action plan, Ontario tied tariff-response training to Treaty #3 workforce pathways, Treaty No. 6 leadership challenged the federal fast-track project model, and B.C.'s wildfire support system moved through another operating test.",
+    "oneThing": "Ottawa's rural plan now has a local-benefit test",
+    "sections": [
+      "Capital & Ownership",
+      "Policy, Rights & Regulation",
+      "Closer to Home -- British Columbia"
+    ],
+    "sourceCount": 8,
+    "editionUrl": "archive/2026-07-28.html",
+    "standaloneSource": "today/2026-07-28.html",
+    "emailUrl": "today/2026-07-28.email.html",
+    "jsonUrl": "today/2026-07-28.json",
+    "researchUrl": null,
+    "deliveryUrl": null,
+    "emailDeliveryUrl": null,
+    "publicUrl": "/nations/archive/2026-07-28",
+    "archiveRoot": "/nations/"
+  },
+  {
     "date": "2026-07-27",
     "stem": "2026-07-27",
     "cadence": "daily",
