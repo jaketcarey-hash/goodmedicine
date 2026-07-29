@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "title": "The Nations This Morning",
+    "date": "2026-07-29",
+    "dateLong": "Wednesday, July 29, 2026",
+    "timezone": "America/Vancouver",
+    "headline": "No major ownership deal crossed the tape; the live signal was whether public systems can put usable money, data and authority behind Indigenous jurisdiction.",
+    "readTime": "About four minutes",
+    "status": "verified_public_sources"
+  },
+  "throughLine": "The past 24 hours did not produce a new Indigenous equity closing, loan guarantee or major-project approval. The material movement was in operating systems: Manitoba launched an external review of how child and family services funding and governance work as Indigenous jurisdiction advances, Statistics Canada put new data behind wildfire impacts on First Nations, Métis and Inuit people, B.C. wildfire files kept First Nation emergency authority in the foreground, and Atlantic police oversight added a funded Indigenous liaison and investigation role.",
+  "oneThing": {
+    "headline": "Manitoba is reopening the fiscal machinery under child welfare jurisdiction",
+    "status": "confirmed",
+    "sourceIds": [
+      1,
+      2,
+      3
+    ],
+    "paragraphs": [
+      "Manitoba said Tuesday it will launch an independent external review of the province's Child and Family Services funding and governance model. The review will examine funding pressures, financial management and oversight practices, governance structures tied to funding and accountability, and opportunities to support the return of Indigenous jurisdiction over child welfare.",
+      "The model under review is the Single-Envelope Funding system introduced in 2019. Under that structure, Manitoba provides overall policy direction and funding, while the four CFS authorities manage funding for mandated agencies; those authorities include First Nations of Northern Manitoba Child and Family Services Authority, Southern First Nations Network of Care, Metis Child and Family Services Authority and the General Child and Family Services Authority.",
+      "The province says the review responds to calls from Indigenous leadership and rights holders for greater transparency as they work to reclaim jurisdiction. Southern Chiefs' Organization had called for an immediate review in February, arguing the model was not providing southern First Nations agencies enough money for prevention, culturally based services and frontline capacity."
+    ],
+    "whyItMatters": "Jurisdiction is only as practical as the fiscal system underneath it. If the funding model does not align with prevention, Indigenous-led care and accountable local delivery, child welfare reform remains a legal transfer without a durable operating base.",
+    "unknowns": [
+      "The external consultant has not been selected, the detailed terms of reference are not public, and the province has not said which funding formula changes are on the table.",
+      "It is not yet clear how First Nations and Metis CFS authorities will shape the review beyond participation, or whether interim funding changes will happen before the year-long review is complete."
+    ],
+    "nextCatalyst": "Watch the procurement for the external reviewer, the terms of reference, and the first formal engagement points with Indigenous leadership and CFS authorities later in 2026."
+  },
+  "developments": [
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "Statistics Canada turns wildfire disruption into measurable public-policy evidence",
+      "status": "confirmed",
+      "sourceIds": [
+        4,
+        5
+      ],
+      "whatHappened": "Statistics Canada released a Census of Environment item on wildfire experiences among Indigenous Peoples from 2021 to 2024. The release says the analysis integrates the 2024 Survey Series on First Nations People off reserve, Métis and Inuit - Emergency Preparedness and Extreme Weather, 2021 Census Indigenous population data, and 2023 wildfire and air-quality spatial data; APTN reported that the analysis found 42 per cent of 2023 wildfire evacuations were from communities where more than half the population was Indigenous.",
+      "whyItMatters": "Emergency management is becoming a fiscal and infrastructure file, not just a seasonal response file. Better data on evacuation, smoke exposure, food access, harvesting disruption and mental-health stress should shape where preparedness funding, emergency support services, housing resilience and local response capacity go next.",
+      "whatRemainsUnknown": "The Daily release is a high-level entry point; program-level decisions on funding formulas, evacuation supports and infrastructure standards have not yet followed from the data.",
+      "nextCatalyst": "Watch Public Safety Canada, Indigenous Services Canada and provincial emergency-management budgets for whether the wildfire evidence changes preparedness and mitigation allocations before the next fire season."
+    },
+    {
+      "section": "Closer to Home -- British Columbia",
+      "headline": "B.C.'s active wildfire map keeps First Nation emergency authority on the daily ledger",
+      "status": "confirmed",
+      "sourceIds": [
+        6,
+        7
+      ],
+      "whatHappened": "EmergencyInfoBC's active wildfire page lists several current evacuation files issued by First Nations or jointly with regional districts, including Stswecem'c Xget'tem First Nation, Nooaitch Indian Band, Bonaparte (St'uxwtéws) First Nation, Shackan Indian Band, Coldwater Indian Band, Lower Nicola Indian Band, Whispering Pines/Clinton Indian Band, Spuzzum First Nation, Gitwangak First Nation and Boston Bar First Nation. In the Fraser Canyon file, the Fraser Valley Regional District's July 27 EOC update said Boston Bar and North Bend water systems would run intermittently while prioritized water access continued for BC Wildfire Service, with boil-water and Stage 4 water-conservation measures in effect when service is restored.",
+      "whyItMatters": "The economic consequence is operational capacity. Wildfire response touches Nation authority, water systems, road access, emergency support services and local public works at the same time; the cost of underbuilt infrastructure shows up when communities have to evacuate, host evacuees or keep basic systems running under fire conditions.",
+      "whatRemainsUnknown": "The public pages do not provide a consolidated cost estimate, member-displacement count by Nation, or a clear line between provincial, regional and First Nation incremental costs.",
+      "nextCatalyst": "Watch EmergencyInfoBC, affected First Nation notices and FVRD EOC updates for rescinds, infrastructure-restoration details and any recovery-funding request."
+    },
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "Atlantic police oversight adds a funded Indigenous liaison and investigation role",
+      "status": "reported",
+      "sourceIds": [
+        8,
+        9
+      ],
+      "whatHappened": "APTN reported that the Serious Incident Response Team, the independent police watchdog serving Nova Scotia and New Brunswick, is hiring an Indigenous investigator after advocacy from First Nations communities. SIRT said the role was created to build trust by including Indigenous perspectives, will support affected families and assist investigations, and was developed with groups including Wolastoqey Tribal Council and Mi'gmawe'l Tplu'taqnn; the job posting says the five-year appointment will be based in Fredericton and can pay up to about $127,000 annually.",
+      "whyItMatters": "This is not a capital transaction, but it is institutional-capacity funding. Police oversight affects the practical relationship between First Nations communities and provincial justice systems; a dedicated role moves part of that work from advocacy into an operating budget and a defined public office.",
+      "whatRemainsUnknown": "The hire has not been made, the full community-liaison protocol is not public, and an Indigenous-led inquiry into systemic racism in New Brunswick remains a separate unresolved file.",
+      "nextCatalyst": "Watch the appointment, the community liaison program design, and any New Brunswick decision on the broader inquiry process."
+    }
+  ],
+  "whatHappensNext": [
+    "Manitoba CFS review: the first real test is the external-review terms of reference and whether Indigenous leadership gets more than a consultation role.",
+    "Wildfire data: the question is whether Statistics Canada's new evidence changes emergency-management and infrastructure funding before the 2027 fire season.",
+    "B.C. wildfire files: active First Nation evacuation and water-system updates remain the closer-to-home operating file until orders are rescinded and recovery costs are visible.",
+    "Atlantic police oversight: the SIRT appointment and liaison protocol will show whether the new role carries practical authority or only advisory weight.",
+    "Tilbury: no new decision was found after the July 27 public-comment close; the next material update remains a posted B.C. assessment step or disclosed Musqueam equity structure."
+  ],
+  "stillWatching": [
+    "Tilbury LNG remains open after the Phase 2 public-comment close. The next material update would be a posted assessment step, final decision timeline or disclosed Musqueam equity structure.",
+    "Ottawa's major-project reform file remains unresolved until the end-of-summer What We Heard report shows how rights-holder objections were recorded before legislation.",
+    "The Rural Development Action Plan is still a later-2026 catalyst; the open question is whether local-benefit and Indigenous-engagement themes become program rules.",
+    "LNG Canada, Yellowhead Copper, Roberts Bank Terminal 2, Burrard Inlet dredging, Mount Polley, Namaygoosisagagun rebuild funding, Dumont Nickel and the Cowichan Tribes title appeal remain unresolved from prior editions."
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "Province of Manitoba -- Manitoba Government Launches External Review of Child and Family Services Funding and Governance Model",
+      "url": "https://news.gov.mb.ca/news/?archive=&item=74599",
+      "date": "2026-07-28",
+      "type": "Provincial government release"
+    },
+    {
+      "id": 2,
+      "label": "APTN News -- Funding of Manitoba's CFS system to receive third-party review, audits",
+      "url": "https://www.aptnnews.ca/national-news/funding-of-manitobas-cfs-system-to-receive-third-party-review-audits/",
+      "date": "2026-07-28",
+      "type": "Indigenous-led newsroom"
+    },
+    {
+      "id": 3,
+      "label": "Southern Chiefs' Organization -- SCO Calls for Immediate Review of Manitoba's Child Welfare Funding Model",
+      "url": "https://scoinc.mb.ca/child-welfare-funding-model/",
+      "date": "2026-02-13",
+      "type": "First Nations organization release"
+    },
+    {
+      "id": 4,
+      "label": "Statistics Canada -- Census of Environment: Wildfire experiences among Indigenous Peoples, 2021 to 2024",
+      "url": "https://www150.statcan.gc.ca/n1/daily-quotidien/260728/dq260728b-eng.pdf",
+      "date": "2026-07-28",
+      "type": "Federal statistical release"
+    },
+    {
+      "id": 5,
+      "label": "APTN News -- New report says Indigenous communities significantly impacted by 2023 wildfire season",
+      "url": "https://www.aptnnews.ca/national-news/new-report-says-indigenous-communities-significantly-impacted-by-2023-wildfire-season/",
+      "date": "2026-07-28",
+      "type": "Indigenous-led newsroom"
+    },
+    {
+      "id": 6,
+      "label": "EmergencyInfoBC -- Current wildfire emergencies in B.C.",
+      "url": "https://www.emergencyinfobc.gov.bc.ca/hazard/wildfire/",
+      "date": "accessed 2026-07-29",
+      "type": "Provincial emergency-management record"
+    },
+    {
+      "id": 7,
+      "label": "Fraser Valley Regional District -- Emergency Operations Centre: Brunswick Complex Wildfire",
+      "url": "https://www.fvrd.ca/EN/main/services/emergency-management/emergency-operations-centre-eoc.html?media=contrast",
+      "date": "updated 2026-07-27",
+      "type": "Local government emergency record"
+    },
+    {
+      "id": 8,
+      "label": "APTN News -- Police watchdog in New Brunswick and Nova Scotia hiring Indigenous investigator",
+      "url": "https://www.aptnnews.ca/national-news/police-watchdog-in-new-brunswick-and-nova-scotia-hiring-indigenous-investigator/",
+      "date": "2026-07-27",
+      "type": "Indigenous-led newsroom"
+    },
+    {
+      "id": 9,
+      "label": "Serious Incident Response Team -- Indigenous Liaison Officer and Investigator posting",
+      "url": "https://sirtnsnb.ca/",
+      "date": "accessed 2026-07-29",
+      "type": "Police oversight institution"
+    }
+  ]
+}
