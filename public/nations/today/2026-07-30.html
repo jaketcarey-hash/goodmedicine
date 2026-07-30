@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nations This Morning — Thursday, July 30, 2026</title>
+  <style>
+    :root {
+      --ink: #18201d;
+      --muted: #66706b;
+      --paper: #fffdf8;
+      --canvas: #ede9df;
+      --cedar: #873f2b;
+      --cedar-dark: #4f241a;
+      --forest: #1f5b4d;
+      --gold: #bc8b35;
+      --line: #ddd6c8;
+      --soft-gold: #f7f0e0;
+      --soft-red: #f7ece7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--forest); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .shell {
+      width: min(760px, calc(100% - 24px));
+      margin: 24px auto 48px;
+      background: var(--paper);
+      border: 1px solid #d6cfc1;
+      box-shadow: 0 18px 50px rgba(43, 37, 28, .12);
+    }
+    .masthead {
+      padding: 38px 46px 30px;
+      border-top: 7px solid var(--cedar);
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 92% 10%, rgba(188,139,53,.16), transparent 28%), linear-gradient(135deg, #fffdf8 0%, #fbf7ee 100%);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.03em;
+    }
+    .strap {
+      max-width: 600px;
+      margin: 18px 0 0;
+      color: #48514d;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .through-line {
+      padding: 24px 46px;
+      color: #f7f3ea;
+      background: var(--cedar-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      line-height: 1.42;
+    }
+    .through-line strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #d7b96d;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    main { padding: 10px 46px 44px; }
+    .section { padding-top: 32px; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      color: var(--cedar);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    h2 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 29px;
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -.015em;
+    }
+    h3 { margin: 0 0 7px; font-size: 17px; line-height: 1.35; }
+    p { margin: 0 0 13px; font-size: 14px; line-height: 1.72; }
+    .lead {
+      padding: 26px;
+      border-left: 5px solid var(--cedar);
+      background: var(--soft-red);
+    }
+    .pill {
+      display: inline-block;
+      margin: 0 0 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .source-mark { white-space: nowrap; }
+    .source-mark a {
+      color: var(--cedar);
+      font-size: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      vertical-align: super;
+    }
+    .signal {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid #ddc79b;
+      background: var(--soft-gold);
+    }
+    .signal strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #73551c;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .signal p { margin: 0; font-size: 13px; line-height: 1.6; }
+    .item { padding: 18px 0; border-top: 1px solid var(--line); }
+    .item:first-of-type { border-top: 0; padding-top: 0; }
+    .kicker {
+      margin-bottom: 8px;
+      color: var(--forest);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .why, .detail {
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: #4f5954;
+      font-style: italic;
+    }
+    .detail { margin-top: 6px; padding-top: 0; border-top: 0; font-style: normal; }
+    .watch { margin: 0; padding-left: 18px; }
+    .watch li { margin: 0 0 10px; font-size: 13px; line-height: 1.62; }
+    .sources {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 2px solid var(--ink);
+    }
+    .sources-intro {
+      max-width: 620px;
+      margin: -3px 0 17px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .source-list { margin: 0; padding-left: 22px; columns: 2; column-gap: 34px; }
+    .source-list li {
+      break-inside: avoid;
+      margin: 0 0 12px;
+      padding-left: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .source-list a { color: var(--ink); font-weight: 700; text-decoration-color: #acbcb4; }
+    .source-list span { display: block; margin-top: 2px; }
+    footer {
+      padding: 24px 46px 30px;
+      border-top: 1px solid var(--line);
+      color: #777c78;
+      background: #f7f3ea;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    footer strong { color: var(--ink); }
+    @media (max-width: 620px) {
+      .shell { width: 100%; margin: 0; border: 0; }
+      .masthead, main, footer { padding-left: 24px; padding-right: 24px; }
+      .through-line { padding: 22px 24px; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <article class="shell">
+    <header class="masthead">
+      <p class="eyebrow">Public-source intelligence brief</p>
+      <h1>The Nations<br>This Morning</h1>
+      <p class="strap">No new Indigenous ownership closing crossed the tape; the live signal was litigation over failed infrastructure, coastal project boundaries, fiscal-governance standards and procurement gates.</p>
+      <div class="meta">
+        <span>Thursday, July 30, 2026</span>
+        <span>About four minutes</span>
+        <span>5 developments</span>
+        <span>Primary-source verified</span>
+      </div>
+    </header>
+    <div class="through-line">
+      <strong>Today&apos;s through-line</strong>
+      The past 24 hours did not produce a new Indigenous equity closing, loan guarantee or major-project approval. The material movement was procedural but economic: Pimicikamak Cree Nation moved the December outage into a proposed class action, B.C. and coastal First Nations reaffirmed the North Coast tanker-ban boundary inside the Canada-B.C. prosperity agreement, the First Nations Financial Management Board put proposed standards amendments in front of First Nations, and B.C. procurement lanes kept testing whether opportunity language becomes enforceable participation.
+    </div>
+    <main>
+      
+      <section class="section">
+        <div class="section-label">The One Thing</div>
+        
+        <div class="lead">
+          <span class="pill">reported</span>
+          <h2>Pimicikamak moves the outage file from emergency response to litigation <span class="source-mark"><a href="#source-1">[1]</a></span></h2>
+          <p>APTN reported Wednesday that Chief David Monias, on behalf of Pimicikamak Cree Nation members, has proposed a class action against Manitoba Hydro, Manitoba and Canada over damages tied to a 110-hour power outage that began on December 28, 2025. The report says the statement of claim was filed in the Manitoba Court of King's Bench on July 28 and seeks compensation for damage to infrastructure, homes, community livelihood and evacuation costs, along with preventative measures to avoid a similar outage.</p>
+<p>The claim, as reported by APTN, alleges failures in installation, inspection, maintenance, contingency planning and emergency response for the single electrical line serving the community. It also calls for a second power line, and asks Canada to approve and fund water-treatment and backup-power infrastructure.</p>
+<p>This is not a proven liability finding. APTN reported that Manitoba Hydro said it will file a statement of defence, and that the proposed class action still has to be approved by a judge.</p>
+          <div class="signal">
+            <strong>What remains unknown</strong>
+            <p>A public copy of the statement of claim was not found during this run, so the detailed allegations are carried as reported by APTN rather than independently read from the court file. The claim has not been certified, no defence has been filed publicly, and the size of any repair, replacement or compensation exposure remains unresolved.</p>
+          </div>
+        </div>
+    
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Capital &amp; Ownership</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>Ottawa's defence-drone supplier lane includes Indigenous businesses, but no target yet <span class="source-mark"><a href="#source-5">[5]</a></span></h3>
+            <p>National Defence's Defence Drone Initiative remains open through a Request for Supply Arrangement until August 14, with a virtual information session scheduled for July 30. The federal backgrounder says the process is intended to engage a broad range of organizations, including start-ups, SMEs, established manufacturers, defence and aerospace firms, universities, colleges, research organizations and Indigenous businesses.</p>
+            <p class="why"><strong>Why it matters economically:</strong> This is an early procurement gate in a strategic-industrial file, not a contract award. The economic signal is whether Indigenous-owned technology, security, manufacturing and services firms can enter qualified-supplier pools before procurement requirements harden around incumbent defence suppliers.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The public notice does not disclose an Indigenous procurement target, set-aside, evaluation weight or list of potential Indigenous suppliers.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch CanadaBuys and National Defence for the RFSA documents, qualified-supplier pool and any Indigenous procurement reporting after the August 14 close.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Policy, Rights &amp; Regulation</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>B.C. and coastal First Nations reaffirm the tanker-ban boundary around North Coast growth <span class="source-mark"><a href="#source-2">[2]</a> <a href="#source-3">[3]</a></span></h3>
+            <p>B.C. said Wednesday that Premier David Eby joined coastal First Nations leaders in Prince Rupert to mark the Canada-B.C. Cooperative Prosperity Agreement's commitment to keep the federal North Coast tanker ban in place without modification. The province framed the commitment as protection for a sustainable marine economy that it says generates more than $3 billion annually; Marilyn Slett, president of Coastal First Nations-Great Bear Initiative and elected Chief of the Heiltsuk Nation, said northwest B.C.'s major-project activity is increasing shipping traffic through the North Coast and called for durable economic partnerships, infrastructure for safe and reliable shipping, and environmental protection.</p>
+            <p class="why"><strong>Why it matters economically:</strong> This is a policy boundary around capital formation on the coast. It does not approve or reject any single project, but it shapes the risk map for proposed pipeline, port, LNG, critical-mineral and marine-shipping growth by keeping crude-oil tanker limits in the operating frame while the Canada-B.C. agreement also discusses consultation, loan guarantees, revenue sharing and spill-response funds.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The July 29 release is a reaffirmation, not a new legal instrument. The implementation committee decisions, pipeline route, First Nations consultation, equity terms, liability fund mechanics and whether the commitments become binding instruments remain undisclosed.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch the Canada-B.C. implementation committee, any federal pipeline route or consultation notice, and the December 1, 2026 target for coastal-protection and potential-pipeline financial commitments.</p>
+          </article>
+            
+
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>FMB puts First Nations finance standards back under review <span class="source-mark"><a href="#source-4">[4]</a></span></h3>
+            <p>The First Nations Financial Management Board listed a July 30 webinar on proposed amendments to its Financial Management System, Financial Administration Law and Financial Performance standards. FMB says the standards were last updated in 2019 and that its exposure draft consolidates proposed amendments into one document after feedback on implementation, limitations, changes in the economic and regulatory environment, and client needs for flexibility, clarity and guidance.</p>
+            <p class="why"><strong>Why it matters economically:</strong> FMB standards are part of the operating infrastructure behind First Nations fiscal administration, certification and access to pooled borrowing through the First Nations Fiscal Management Act system. A standards update is not a transaction, but it can affect the pathway from governance readiness to financing capacity.</p>
+            <p class="detail"><strong>What remains unknown:</strong> The final amendments, comment timeline and any transition rules were not visible on the fetched public page.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch FMB for the exposure draft package, comment deadline and final standards.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Closer to Home -- British Columbia</div>
+        
+          <article class="item">
+            <div class="kicker">confirmed</div>
+            <h3>B.C. Hydro reaches supplier-qualification day for Vancouver Island battery storage <span class="source-mark"><a href="#source-6">[6]</a> <a href="#source-7">[7]</a></span></h3>
+            <p>B.C. and BC Hydro said a request for supplier qualifications would be issued July 30 for the province's first utility-scale battery energy storage project, a facility of at least 100 megawatts near the Vancouver Island Terminal Substation by Duncan. BC Hydro expects to own and operate the project, with private-sector expertise sought for design, construction and potentially long-term maintenance, and service targeted by 2030.</p>
+            <p class="why"><strong>Why it matters economically:</strong> This is a B.C. procurement and grid-reliability file in Cowichan territory, not an Indigenous ownership deal. The provincial release says the broader 500-megawatt battery-storage opportunity could create economic opportunity for local businesses and First Nations partners; the test is whether that becomes disclosed procurement design, equity participation, contracting or only general language.</p>
+            <p class="detail"><strong>What remains unknown:</strong> No First Nation ownership structure, procurement set-aside, benefit agreement or named Nation partnership was disclosed in the public release.</p>
+            <p class="detail"><strong>Next catalyst:</strong> Watch the RFQ/RFP documents, BC Hydro procurement notices and any Nation-specific announcement tied to the Duncan-area site.</p>
+          </article>
+            
+      </section>
+    
+      <section class="section">
+        <div class="section-label">What Happens Next</div>
+        <ul class="watch"><li>Pimicikamak: the practical test is certification, Manitoba Hydro's defence and whether infrastructure funding moves outside the litigation timeline.</li>
+<li>FMB standards: the exposure draft and comment period will show whether the proposed amendments materially change certification and borrowing-readiness work.</li>
+<li>B.C. battery storage: the RFQ/RFP package should reveal whether First Nations participation is designed into procurement or left as general opportunity language.</li>
+<li>Defence procurement: the August 14 RFSA close is the next check on whether Indigenous businesses are visible in the qualified-supplier lane.</li>
+<li>Tilbury: no new public decision was found after the July 27 comment close; the next material update remains a posted B.C. assessment step or disclosed Musqueam equity structure.</li></ul>
+      </section>
+    
+      <section class="section">
+        <div class="section-label">Still Watching</div>
+        <ul class="watch"><li>Tilbury LNG remains open after the Phase 2 public-comment close. The next material update would be a posted assessment step, final decision timeline or disclosed Musqueam equity structure.</li>
+<li>Ottawa's major-project reform file remains unresolved until the end-of-summer What We Heard report shows how rights-holder objections were recorded before legislation.</li>
+<li>The Rural Development Action Plan is still a later-2026 catalyst; the open question is whether local-benefit and Indigenous-engagement themes become program rules.</li>
+<li>LNG Canada, Yellowhead Copper, Roberts Bank Terminal 2, Burrard Inlet dredging, Mount Polley, Namaygoosisagagun rebuild funding, Dumont Nickel and the Cowichan Tribes title appeal remain unresolved from prior editions.</li></ul>
+      </section>
+    
+      <section class="sources" aria-labelledby="sources-heading">
+        
+      <section class="section">
+        <div class="section-label">Sources</div>
+        <p class="sources-intro">All material claims in this edition were traced to primary documents, Indigenous-led reporting, public records or credible independent reporting. Links open the underlying source.</p><ol class="source-list"><li id="source-1"><a href="https://www.aptnnews.ca/national-news/pimicikamak-cree-nation-proposes-class-action-against-manitoba-hydro-canada-for-power-outage-damages/">APTN News -- Pimicikamak Cree Nation proposes class action against Manitoba Hydro, Canada for power outage damages</a><span>2026-07-29 · Indigenous-led newsroom</span></li><li id="source-2"><a href="https://news.gov.bc.ca/releases/2026PREM0053-000892">Province of British Columbia -- Premier, coastal First Nations celebrate protections for North Coast economy, environment</a><span>2026-07-29 · Provincial government release</span></li><li id="source-3"><a href="https://www.pm.gc.ca/en/news/backgrounders/2026/07/02/canada-british-columbia-cooperative-prosperity-agreement">Prime Minister of Canada -- Canada-British Columbia Cooperative Prosperity Agreement</a><span>2026-07-02 · Federal-provincial agreement</span></li><li id="source-4"><a href="https://fnfmb.com/">First Nations Financial Management Board -- Webinar: Proposed Amendments to FMB's Standards</a><span>accessed 2026-07-30 · First Nations fiscal institution</span></li><li id="source-5"><a href="https://www.canada.ca/en/department-national-defence/news/2026/07/defence-drone-initiative.html">National Defence -- Defence Drone Initiative</a><span>2026-07-23 · Federal procurement backgrounder</span></li><li id="source-6"><a href="https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026ECS0039-000848.htm">Province of British Columbia / BC Hydro -- Advancing B.C.'s first major battery storage project on Vancouver Island</a><span>2026-07-20 · Provincial government and Crown utility release</span></li><li id="source-7"><a href="https://www.bchydro.com/work-with-us/selling-clean-energy.html">BC Hydro -- Sell clean energy: First Nations Electricity Program and clean-energy procurement context</a><span>accessed 2026-07-30 · Crown utility program page</span></li></ol>
+      </section>
+    
+      </section>
+    </main>
+    <footer>
+      <strong>The Nations This Morning</strong> is a public-source intelligence brief. Completed transactions are separated from proposals, options and active legal or regulatory files. First Nations, Métis and Inuit are distinct peoples; the brief names the specific Nation or organization wherever the source allows. Rendered 2026-07-30 15:38 UTC.
+    </footer>
+  </article>
+</body>
+</html>

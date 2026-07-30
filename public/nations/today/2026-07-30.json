@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "The Nations This Morning",
+    "date": "2026-07-30",
+    "dateLong": "Thursday, July 30, 2026",
+    "timezone": "America/Vancouver",
+    "headline": "No new Indigenous ownership closing crossed the tape; the live signal was litigation over failed infrastructure, coastal project boundaries, fiscal-governance standards and procurement gates.",
+    "readTime": "About four minutes",
+    "status": "verified_public_sources"
+  },
+  "throughLine": "The past 24 hours did not produce a new Indigenous equity closing, loan guarantee or major-project approval. The material movement was procedural but economic: Pimicikamak Cree Nation moved the December outage into a proposed class action, B.C. and coastal First Nations reaffirmed the North Coast tanker-ban boundary inside the Canada-B.C. prosperity agreement, the First Nations Financial Management Board put proposed standards amendments in front of First Nations, and B.C. procurement lanes kept testing whether opportunity language becomes enforceable participation.",
+  "oneThing": {
+    "headline": "Pimicikamak moves the outage file from emergency response to litigation",
+    "status": "reported",
+    "sourceIds": [
+      1
+    ],
+    "paragraphs": [
+      "APTN reported Wednesday that Chief David Monias, on behalf of Pimicikamak Cree Nation members, has proposed a class action against Manitoba Hydro, Manitoba and Canada over damages tied to a 110-hour power outage that began on December 28, 2025. The report says the statement of claim was filed in the Manitoba Court of King's Bench on July 28 and seeks compensation for damage to infrastructure, homes, community livelihood and evacuation costs, along with preventative measures to avoid a similar outage.",
+      "The claim, as reported by APTN, alleges failures in installation, inspection, maintenance, contingency planning and emergency response for the single electrical line serving the community. It also calls for a second power line, and asks Canada to approve and fund water-treatment and backup-power infrastructure.",
+      "This is not a proven liability finding. APTN reported that Manitoba Hydro said it will file a statement of defence, and that the proposed class action still has to be approved by a judge."
+    ],
+    "whyItMatters": "The economics are not abstract. The claim turns emergency infrastructure into a balance-sheet and jurisdiction question: who pays for frozen water and sewage systems, mould-damaged homes, evacuation costs, backup power and a redundant line when a remote First Nation's basic public works fail.",
+    "unknowns": [
+      "A public copy of the statement of claim was not found during this run, so the detailed allegations are carried as reported by APTN rather than independently read from the court file.",
+      "The claim has not been certified, no defence has been filed publicly, and the size of any repair, replacement or compensation exposure remains unresolved."
+    ],
+    "nextCatalyst": "Watch for class-action certification, Manitoba Hydro's statement of defence, any public release of the full claim, and separate funding decisions on a second power line, backup power and water infrastructure."
+  },
+  "developments": [
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "B.C. and coastal First Nations reaffirm the tanker-ban boundary around North Coast growth",
+      "status": "confirmed",
+      "sourceIds": [
+        2,
+        3
+      ],
+      "whatHappened": "B.C. said Wednesday that Premier David Eby joined coastal First Nations leaders in Prince Rupert to mark the Canada-B.C. Cooperative Prosperity Agreement's commitment to keep the federal North Coast tanker ban in place without modification. The province framed the commitment as protection for a sustainable marine economy that it says generates more than $3 billion annually; Marilyn Slett, president of Coastal First Nations-Great Bear Initiative and elected Chief of the Heiltsuk Nation, said northwest B.C.'s major-project activity is increasing shipping traffic through the North Coast and called for durable economic partnerships, infrastructure for safe and reliable shipping, and environmental protection.",
+      "whyItMatters": "This is a policy boundary around capital formation on the coast. It does not approve or reject any single project, but it shapes the risk map for proposed pipeline, port, LNG, critical-mineral and marine-shipping growth by keeping crude-oil tanker limits in the operating frame while the Canada-B.C. agreement also discusses consultation, loan guarantees, revenue sharing and spill-response funds.",
+      "whatRemainsUnknown": "The July 29 release is a reaffirmation, not a new legal instrument. The implementation committee decisions, pipeline route, First Nations consultation, equity terms, liability fund mechanics and whether the commitments become binding instruments remain undisclosed.",
+      "nextCatalyst": "Watch the Canada-B.C. implementation committee, any federal pipeline route or consultation notice, and the December 1, 2026 target for coastal-protection and potential-pipeline financial commitments."
+    },
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "FMB puts First Nations finance standards back under review",
+      "status": "confirmed",
+      "sourceIds": [
+        4
+      ],
+      "whatHappened": "The First Nations Financial Management Board listed a July 30 webinar on proposed amendments to its Financial Management System, Financial Administration Law and Financial Performance standards. FMB says the standards were last updated in 2019 and that its exposure draft consolidates proposed amendments into one document after feedback on implementation, limitations, changes in the economic and regulatory environment, and client needs for flexibility, clarity and guidance.",
+      "whyItMatters": "FMB standards are part of the operating infrastructure behind First Nations fiscal administration, certification and access to pooled borrowing through the First Nations Fiscal Management Act system. A standards update is not a transaction, but it can affect the pathway from governance readiness to financing capacity.",
+      "whatRemainsUnknown": "The final amendments, comment timeline and any transition rules were not visible on the fetched public page.",
+      "nextCatalyst": "Watch FMB for the exposure draft package, comment deadline and final standards."
+    },
+    {
+      "section": "Capital & Ownership",
+      "headline": "Ottawa's defence-drone supplier lane includes Indigenous businesses, but no target yet",
+      "status": "confirmed",
+      "sourceIds": [
+        5
+      ],
+      "whatHappened": "National Defence's Defence Drone Initiative remains open through a Request for Supply Arrangement until August 14, with a virtual information session scheduled for July 30. The federal backgrounder says the process is intended to engage a broad range of organizations, including start-ups, SMEs, established manufacturers, defence and aerospace firms, universities, colleges, research organizations and Indigenous businesses.",
+      "whyItMatters": "This is an early procurement gate in a strategic-industrial file, not a contract award. The economic signal is whether Indigenous-owned technology, security, manufacturing and services firms can enter qualified-supplier pools before procurement requirements harden around incumbent defence suppliers.",
+      "whatRemainsUnknown": "The public notice does not disclose an Indigenous procurement target, set-aside, evaluation weight or list of potential Indigenous suppliers.",
+      "nextCatalyst": "Watch CanadaBuys and National Defence for the RFSA documents, qualified-supplier pool and any Indigenous procurement reporting after the August 14 close."
+    },
+    {
+      "section": "Closer to Home -- British Columbia",
+      "headline": "B.C. Hydro reaches supplier-qualification day for Vancouver Island battery storage",
+      "status": "confirmed",
+      "sourceIds": [
+        6,
+        7
+      ],
+      "whatHappened": "B.C. and BC Hydro said a request for supplier qualifications would be issued July 30 for the province's first utility-scale battery energy storage project, a facility of at least 100 megawatts near the Vancouver Island Terminal Substation by Duncan. BC Hydro expects to own and operate the project, with private-sector expertise sought for design, construction and potentially long-term maintenance, and service targeted by 2030.",
+      "whyItMatters": "This is a B.C. procurement and grid-reliability file in Cowichan territory, not an Indigenous ownership deal. The provincial release says the broader 500-megawatt battery-storage opportunity could create economic opportunity for local businesses and First Nations partners; the test is whether that becomes disclosed procurement design, equity participation, contracting or only general language.",
+      "whatRemainsUnknown": "No First Nation ownership structure, procurement set-aside, benefit agreement or named Nation partnership was disclosed in the public release.",
+      "nextCatalyst": "Watch the RFQ/RFP documents, BC Hydro procurement notices and any Nation-specific announcement tied to the Duncan-area site."
+    }
+  ],
+  "whatHappensNext": [
+    "Pimicikamak: the practical test is certification, Manitoba Hydro's defence and whether infrastructure funding moves outside the litigation timeline.",
+    "FMB standards: the exposure draft and comment period will show whether the proposed amendments materially change certification and borrowing-readiness work.",
+    "B.C. battery storage: the RFQ/RFP package should reveal whether First Nations participation is designed into procurement or left as general opportunity language.",
+    "Defence procurement: the August 14 RFSA close is the next check on whether Indigenous businesses are visible in the qualified-supplier lane.",
+    "Tilbury: no new public decision was found after the July 27 comment close; the next material update remains a posted B.C. assessment step or disclosed Musqueam equity structure."
+  ],
+  "stillWatching": [
+    "Tilbury LNG remains open after the Phase 2 public-comment close. The next material update would be a posted assessment step, final decision timeline or disclosed Musqueam equity structure.",
+    "Ottawa's major-project reform file remains unresolved until the end-of-summer What We Heard report shows how rights-holder objections were recorded before legislation.",
+    "The Rural Development Action Plan is still a later-2026 catalyst; the open question is whether local-benefit and Indigenous-engagement themes become program rules.",
+    "LNG Canada, Yellowhead Copper, Roberts Bank Terminal 2, Burrard Inlet dredging, Mount Polley, Namaygoosisagagun rebuild funding, Dumont Nickel and the Cowichan Tribes title appeal remain unresolved from prior editions."
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "APTN News -- Pimicikamak Cree Nation proposes class action against Manitoba Hydro, Canada for power outage damages",
+      "url": "https://www.aptnnews.ca/national-news/pimicikamak-cree-nation-proposes-class-action-against-manitoba-hydro-canada-for-power-outage-damages/",
+      "date": "2026-07-29",
+      "type": "Indigenous-led newsroom"
+    },
+    {
+      "id": 2,
+      "label": "Province of British Columbia -- Premier, coastal First Nations celebrate protections for North Coast economy, environment",
+      "url": "https://news.gov.bc.ca/releases/2026PREM0053-000892",
+      "date": "2026-07-29",
+      "type": "Provincial government release"
+    },
+    {
+      "id": 3,
+      "label": "Prime Minister of Canada -- Canada-British Columbia Cooperative Prosperity Agreement",
+      "url": "https://www.pm.gc.ca/en/news/backgrounders/2026/07/02/canada-british-columbia-cooperative-prosperity-agreement",
+      "date": "2026-07-02",
+      "type": "Federal-provincial agreement"
+    },
+    {
+      "id": 4,
+      "label": "First Nations Financial Management Board -- Webinar: Proposed Amendments to FMB's Standards",
+      "url": "https://fnfmb.com/",
+      "date": "accessed 2026-07-30",
+      "type": "First Nations fiscal institution"
+    },
+    {
+      "id": 5,
+      "label": "National Defence -- Defence Drone Initiative",
+      "url": "https://www.canada.ca/en/department-national-defence/news/2026/07/defence-drone-initiative.html",
+      "date": "2026-07-23",
+      "type": "Federal procurement backgrounder"
+    },
+    {
+      "id": 6,
+      "label": "Province of British Columbia / BC Hydro -- Advancing B.C.'s first major battery storage project on Vancouver Island",
+      "url": "https://archive.news.gov.bc.ca/releases/news_releases_2024-2028/2026ECS0039-000848.htm",
+      "date": "2026-07-20",
+      "type": "Provincial government and Crown utility release"
+    },
+    {
+      "id": 7,
+      "label": "BC Hydro -- Sell clean energy: First Nations Electricity Program and clean-energy procurement context",
+      "url": "https://www.bchydro.com/work-with-us/selling-clean-energy.html",
+      "date": "accessed 2026-07-30",
+      "type": "Crown utility program page"
+    }
+  ]
+}
