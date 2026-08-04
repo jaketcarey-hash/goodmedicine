@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "The Nations This Morning",
+    "date": "2026-08-04",
+    "dateLong": "Tuesday, August 4, 2026",
+    "timezone": "America/Vancouver",
+    "headline": "No new Indigenous ownership closing crossed the public tape; the live signal was operating capacity around finance standards, procurement access, land-use planning and critical-mineral approval clocks.",
+    "readTime": "About three minutes",
+    "status": "verified_public_sources"
+  },
+  "throughLine": "The past 24 hours did not produce a verified Indigenous equity closing, loan guarantee, court decision or major-project approval. The useful signal was quieter and more mechanical: new First Nations fiscal standards moved into their effective window, an Ontario First Nations economic-development network put procurement-verification tools in front of communities, two B.C. land-use and salmon-habitat consultations closed today, and the Crawford nickel file remained in the decision-making window rather than a completed approval.",
+  "oneThing": {
+    "headline": "FMB's modern-treaty standards move from consultation to operating infrastructure",
+    "status": "confirmed",
+    "sourceIds": [
+      1
+    ],
+    "paragraphs": [
+      "The First Nations Financial Management Board says its draft Financial Administration Law and Financial Performance standards for Self-Governing and Modern Treaty Nations were prepared after changes to the First Nations Fiscal Management Act. The public page says the comment period ran from June 1 to June 30, but feedback continues to be accepted and the new core documents were expected in summer 2026 with a proposed August 1 effective date.",
+      "This is not a financing transaction. It is the plumbing behind financing: standards define how self-governing and modern-treaty governments can align financial administration and performance expectations with the FMA system without forcing their legal status into a First Nations band-government template.",
+      "The public page does not show final adopted wording, transition rules or a final implementation bulletin. That keeps the file in an operating-watch category rather than a closed policy event."
+    ],
+    "whyItMatters": "Fiscal standards are part of the pathway from governance readiness to certification, long-term funding eligibility and borrowing capacity. A standards update can change the administrative route into capital access even when no dollar amount is announced.",
+    "unknowns": [
+      "The final issued core documents, any transition timeline and the first Nations adopting under the new standards were not visible on the public page during this run."
+    ],
+    "nextCatalyst": "Watch FMB for the final standards package, effective-date confirmation and any early adoption or certification notices involving self-governing or modern-treaty governments."
+  },
+  "developments": [
+    {
+      "section": "Capital & Ownership",
+      "headline": "Ontario EDOs get a procurement-verification lane, not a contract award",
+      "status": "confirmed",
+      "sourceIds": [
+        2
+      ],
+      "whatHappened": "The Ontario First Nations Economic Developers Association listed an August 4 coffee meetup on \"Building Verified Pathways to Indigenous Procurement.\" The session description says the expanded procurement portal includes opportunities from MERX, CanadaBuys and Bids & Tenders, and that BuildCode work includes economic-development, business-verification and directory platforms for communities and organizations.",
+      "whyItMatters": "The economics are about access costs. A verified supplier directory and consolidated bid feed can help First Nations businesses and economic-development offices see opportunities earlier, but it is not evidence that procurement targets are being met or that Indigenous firms are winning awards.",
+      "whatRemainsUnknown": "The public event page does not disclose adoption numbers, verified supplier counts, procurement values or whether governments and corporates will treat the verification data as authoritative.",
+      "nextCatalyst": "Watch for the portal's public launch details, participating communities, supplier counts and any procurement award data tied to verified Indigenous businesses."
+    },
+    {
+      "section": "Closer to Home -- British Columbia",
+      "headline": "Two B.C. planning clocks close today: Kaska land use and Meziadin salmon habitat",
+      "status": "confirmed",
+      "sourceIds": [
+        3
+      ],
+      "whatHappened": "B.C.'s govTogether reconciliation-initiatives page listed August 4 as the closing date for engagement on Kaska-B.C. land-use planning and the Meziadin River Watershed Salmon Habitat Conservation Plan. The Kaska item frames land-use planning as a tool for cultural values, ecosystems and economic activity; the Meziadin item points readers to a second round of salmon-habitat conservation engagement.",
+      "whyItMatters": "These are not project approvals. They are rule-setting files that can determine where development, conservation, stewardship work and infrastructure can proceed in northern B.C., including on watersheds and territories where land-use certainty directly affects capital decisions.",
+      "whatRemainsUnknown": "The public index does not show the submissions received, Nation-by-Nation positions, draft plan text or how economic-development trade-offs will be resolved.",
+      "nextCatalyst": "Watch B.C.'s Land and Water Planning pages for what-we-heard summaries, draft objectives and any government-to-government plan approvals."
+    },
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "Crawford nickel remains a decision-clock file, not a verified approval",
+      "status": "confirmed",
+      "sourceIds": [
+        4,
+        5
+      ],
+      "whatHappened": "The Major Projects Office page for Canada Nickel's Crawford project says agreements are signed with Mattagami, Matachewan and Flying Post First Nations for early business and employment opportunities, and that Taykwa Tagamou Nation's $20-million convertible-note investment could become an equity stake if exercised. The Impact Assessment Registry still showed the project in decision making during the run, following a July 20 final assessment report update.",
+      "whyItMatters": "Crawford is a critical-minerals test case for Ottawa's faster project machinery and Indigenous economic participation. The difference between a decision window and an approval matters: capital can prepare, but construction and federal authorizations still depend on a decision statement and enforceable conditions.",
+      "whatRemainsUnknown": "No public decision statement approving the project was verified during the run. The conversion mechanics for Taykwa Tagamou Nation's note, the final conditions and any additional Indigenous equity or benefit terms remain unresolved.",
+      "nextCatalyst": "Watch IAAC for the minister's decision statement and Canada Nickel for financing, construction-decision timing and any Nation-specific implementation agreements."
+    }
+  ],
+  "whatHappensNext": [
+    "FMB standards: the next practical signal is the final core-document package and early adopter list.",
+    "Procurement verification: the next proof point is whether the OFNEDA-linked portal reports verified suppliers, buyers and award values, not just opportunity aggregation.",
+    "B.C. land-use planning: Kaska and Meziadin files now move from engagement into what-we-heard and draft-plan work.",
+    "Crawford nickel: keep the file as pending until IAAC posts a decision statement with conditions."
+  ],
+  "stillWatching": [
+    "Tilbury LNG remains open after the Phase 2 public-comment close. The next material update would be a posted assessment step, final decision timeline or disclosed Musqueam equity structure.",
+    "Ottawa's major-project reform file remains unresolved until the promised What We Heard report shows how rights-holder objections were recorded.",
+    "LNG Canada, Yellowhead Copper, Roberts Bank Terminal 2, Burrard Inlet dredging, Mount Polley, Namaygoosisagagun rebuild funding, Dumont Nickel and the Cowichan Tribes title appeal remain unresolved from prior editions.",
+    "Crawford nickel should be treated as pending until the ministerial decision statement is public, even if secondary reporting moves ahead of the registry."
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "First Nations Financial Management Board -- New FMB Standards",
+      "url": "https://fnfmb.com/en/services/set-standards/standard-setting-process/new-fmb-standards",
+      "date": "accessed 2026-08-04",
+      "type": "First Nations fiscal institution"
+    },
+    {
+      "id": 2,
+      "label": "Ontario First Nations Economic Developers Association -- Turtle Island Building Trust procurement meetup",
+      "url": "https://www.ofneda.ca/members/events?9ab8d7e2_page=2",
+      "date": "2026-08-04",
+      "type": "First Nations economic-development organization"
+    },
+    {
+      "id": 3,
+      "label": "govTogetherBC -- Reconciliation Initiatives engagement index",
+      "url": "https://engage.gov.bc.ca/govtogetherbc/engagement_category/reconciliation-initiatives/",
+      "date": "accessed 2026-08-04",
+      "type": "Provincial public-engagement record"
+    },
+    {
+      "id": 4,
+      "label": "Major Projects Office -- Canada Nickel's Crawford Project",
+      "url": "https://www.canada.ca/en/privy-council/major-projects-office/projects/national/crawford.html",
+      "date": "modified 2026-05-21; accessed 2026-08-04",
+      "type": "Federal major-project record"
+    },
+    {
+      "id": 5,
+      "label": "Impact Assessment Agency of Canada -- Crawford Nickel Project registry",
+      "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/83857",
+      "date": "accessed 2026-08-04",
+      "type": "Federal regulatory registry"
+    }
+  ]
+}
