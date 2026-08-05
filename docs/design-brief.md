@@ -343,8 +343,12 @@ a separate editorial identity are the failure.
 1. Read `CLAUDE.md`, `DECISIONS.md` and this file. Nothing else.
 2. Load `/frontend-design` **before** the first line of markup.
 3. Pick one direction. Do not blend all three.
-4. Build the token system in `src/styles/global.css` first, then one page
-   end-to-end — `/rights/nihb` is the best test, since it is a real answer page.
+4. Build the token system in `src/styles/global.css` first, then one page end-to-end.
+   **Start with `/nations/ledger/YTD26-010`** — a single ledger record. It carries a
+   stage, a confidence rating, a disclosed amount with a qualifier, sources, unresolved
+   questions and a dissenting view, so it exercises the entire provenance system on one
+   screen. If the direction works there it works everywhere. Then `/nations` (the front
+   door), then `/rights/nihb` to check it survives an answer page.
 5. Look at it in Chrome at 375, 768 and 1440 before going further.
 6. Only then apply it outward. Expect three to five passes; the first will look
    generic and that is normal.
