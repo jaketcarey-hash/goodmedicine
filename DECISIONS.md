@@ -72,6 +72,33 @@ earth tones read as grey. The comparison is a magnitude, not an identity, so one
 and direct labels is both correct and accessible. Colour chips in the list rows always
 carry their text label.
 
+### The Record has no serif and no cream
+
+*Was:* cream ground (`#fffdf8`), Newsreader text serif, terracotta accent — built from the
+brief's own existing palette. *Now:* the same white as every other card, the site's own
+sans faces, cedar demoted from editorial accent to a colour that carries meaning.
+
+Two reasons, and the second is the load-bearing one.
+
+The surface was the first AI-design tell `BUILD-PLAYBOOK.md` names, near exactly, with
+broadsheet rules from the third. That alone justified a look. But the deeper problem was
+not that it was a default. **A text serif is publication apparatus in typographic form,
+and this site is explicitly not a publication.** The strongest possible signal that it was
+one had been kept. Every previous session that drifted toward feeds, citation formats and
+a second editorial identity was reading a cue the design itself was giving them.
+
+So the fix was subtraction, not a new palette. One design system, one property.
+
+*The boldness spends in one place instead:* the stage rail. It encodes the single fact
+that separates this record from news — an announcement and a completed transaction read
+identically in a headline and are not the same event. Three steps filled to the point
+reached; contested **breaks** the line rather than extending it, because a court case is
+not progress toward completion. It appears on every record and in the list, where the
+comparison actually happens: you can scan the year and see how much is talk and how much
+is money that moved.
+
+Checked at 375, 768 and 1440. No horizontal scroll at any width.
+
 ### Search is built from rendered HTML
 
 `scripts/build-search-index.js` walks `dist/`. Content lives in four shapes — Astro pages,
@@ -166,11 +193,6 @@ escape hatch. Do not fight it with `!` utilities; they lose.
 
 ## Open questions
 
-- **The Record surface may be a design default rather than a decision.** Cream, serif,
-  terracotta is the first look `BUILD-PLAYBOOK.md` names as machine-made. It was built
-  from the brief's own existing palette, but the critique question — would this appear on
-  any site in this category — answers yes. Needs a deliberate two-pass design run with
-  `/frontend-design` loaded first.
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
   builds toward the former.
 - Whether the site should derive the BC directory itself rather than reading a file
