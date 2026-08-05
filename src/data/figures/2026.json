@@ -1,0 +1,223 @@
+{
+  "_comment": "Every rate, threshold and benefit amount the site states, in one place, each with the date it takes effect, the date it must be re-checked, and the source it came from. Pages and calculators read the same key, so prose and arithmetic cannot drift apart. `npm run build` fails on any entry past its reviewBy — see scripts/check-figures.js.",
+  "federal_bracket_1_rate": {
+    "value": 0.14,
+    "unit": "rate",
+    "label": "Federal first bracket rate",
+    "note": "Reduced from 15% effective 1 July 2025; applies for the full 2026 year.",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-02-28",
+    "source": "https://www.taxtips.ca/taxrates/canada.htm",
+    "sourceLabel": "TaxTips federal rate table",
+    "verifiedOn": "2026-08-04"
+  },
+  "federal_basic_personal": {
+    "value": 16452,
+    "unit": "CAD",
+    "label": "Federal basic personal amount",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-02-28",
+    "source": "https://www.taxtips.ca/taxrates/canada.htm",
+    "sourceLabel": "TaxTips federal rate table",
+    "verifiedOn": "2026-08-04"
+  },
+  "ccb_under_6": {
+    "value": 8157,
+    "unit": "CAD/year",
+    "label": "Canada Child Benefit, child under 6",
+    "note": "$679.75 per month.",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2027-07-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "ccb_6_to_17": {
+    "value": 6883,
+    "unit": "CAD/year",
+    "label": "Canada Child Benefit, child 6 to 17",
+    "note": "$573.58 per month.",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2027-07-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "groceries_benefit_single": {
+    "value": 679,
+    "unit": "CAD/year",
+    "label": "Canada Groceries and Essentials Benefit, single adult",
+    "note": "Replaced the GST/HST credit in July 2026 with a 25% increase. Same eligibility, income test and quarterly schedule.",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2027-07-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit/how-much.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "groceries_benefit_couple": {
+    "value": 890,
+    "unit": "CAD/year",
+    "label": "Canada Groceries and Essentials Benefit, couple",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2027-07-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit/how-much.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "groceries_benefit_per_child": {
+    "value": 234,
+    "unit": "CAD/year",
+    "label": "Canada Groceries and Essentials Benefit, per child under 19",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2027-07-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit/how-much.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "cpp_rate": {
+    "value": 0.0595,
+    "unit": "rate",
+    "label": "CPP base contribution rate, employee",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "cpp_exemption": {
+    "value": 3500,
+    "unit": "CAD",
+    "label": "CPP basic exemption",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "cpp_ympe": {
+    "value": 74600,
+    "unit": "CAD",
+    "label": "Year's maximum pensionable earnings",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "cpp2_rate": {
+    "value": 0.04,
+    "unit": "rate",
+    "label": "CPP2 second additional contribution rate",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "cpp2_yampe": {
+    "value": 85000,
+    "unit": "CAD",
+    "label": "Year's additional maximum pensionable earnings",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "cpp_max_monthly_at_65": {
+    "value": 1507.65,
+    "unit": "CAD/month",
+    "label": "Maximum CPP retirement pension at 65",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.wealthsimple.com/en-ca/learn/how-much-cpp-retirement",
+    "sourceLabel": "CPP retirement pension maximums",
+    "verifiedOn": "2026-08-04",
+    "note": "Secondary source. Service Canada's quarterly figures page blocks automated access; re-check by hand."
+  },
+  "cpp_avg_monthly_new": {
+    "value": 925.35,
+    "unit": "CAD/month",
+    "label": "Average CPP retirement pension, new beneficiaries",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.wealthsimple.com/en-ca/learn/how-much-cpp-retirement",
+    "sourceLabel": "CPP retirement pension averages",
+    "verifiedOn": "2026-08-04",
+    "note": "Secondary source. Service Canada's quarterly figures page blocks automated access; re-check by hand."
+  },
+  "ei_rate": {
+    "value": 0.0163,
+    "unit": "rate",
+    "label": "EI premium rate, employee",
+    "note": "$1.63 per $100 of insurable earnings. Quebec differs.",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "ei_max_insurable": {
+    "value": 68900,
+    "unit": "CAD",
+    "label": "EI maximum insurable earnings",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "sourceLabel": "Canada Revenue Agency",
+    "verifiedOn": "2026-08-04"
+  },
+  "ei_max_weekly": {
+    "value": 729,
+    "unit": "CAD/week",
+    "label": "EI maximum weekly benefit",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-01-31",
+    "source": "https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/benefit-amount.html",
+    "sourceLabel": "Service Canada",
+    "verifiedOn": "2026-08-04"
+  },
+  "oas_65_to_74": {
+    "value": 751.97,
+    "unit": "CAD/month",
+    "label": "Old Age Security maximum, age 65 to 74",
+    "note": "Adjusted quarterly. This is the July to September 2026 quarter.",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2026-10-31",
+    "source": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "sourceLabel": "Service Canada",
+    "verifiedOn": "2026-08-04"
+  },
+  "oas_75_plus": {
+    "value": 827.17,
+    "unit": "CAD/month",
+    "label": "Old Age Security maximum, age 75 and over",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2026-10-31",
+    "source": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "sourceLabel": "Service Canada",
+    "verifiedOn": "2026-08-04"
+  },
+  "gis_single": {
+    "value": 1123.17,
+    "unit": "CAD/month",
+    "label": "Guaranteed Income Supplement maximum, single",
+    "effectiveFrom": "2026-07-01",
+    "reviewBy": "2026-10-31",
+    "source": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "sourceLabel": "Service Canada",
+    "verifiedOn": "2026-08-04",
+    "note": "Adjusted quarterly. July to September 2026 quarter. Corrected 4 Aug 2026 from $1,105.43 — that figure came from a secondary source and Service Canada's own table says $1,123.17."
+  },
+  "capital_gains_inclusion": {
+    "value": 0.5,
+    "unit": "rate",
+    "label": "Capital gains inclusion rate",
+    "note": "The proposed rise to two-thirds was deferred in January 2025 and cancelled in March 2025. It was never enacted. One rate, no threshold.",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-06-30",
+    "source": "https://www.wolterskluwer.com/en-ca/expert-insights/changes-to-capital-gains-inclusion-rate-deferred-to-2026",
+    "sourceLabel": "Wolters Kluwer",
+    "verifiedOn": "2026-08-04"
+  }
+}

@@ -3,20 +3,52 @@ import '../styles/global.css';
 import BottomNav from '../components/BottomNav.svelte';
 import OfflineBanner from '../components/OfflineBanner.svelte';
 import GlossarySheet from '../components/GlossarySheet.astro';
+import Masthead from '../components/Masthead.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
+/**
+ * The app shell, in two registers.
+ *
+ * Below 768px this is unchanged from the phone app it has always been: one
+ * column, bottom nav, safe-area insets, offline. From 768px up the bottom nav
+ * gives way to a masthead and the page opens out.
+ *
+ * Both shells are always rendered and CSS chooses between them. Detecting the
+ * breakpoint in JavaScript would flash the wrong shell on first paint and
+ * fight the service worker on repeat visits.
+ *
+ * `width` controls how far the content opens out on desktop:
+ *   reading — a comfortable measure for prose. The default.
+ *   wide    — full grid width, for indexes, tools and the Record surface.
+ */
 interface Props {
   title?: string;
   description?: string;
-  branch?: 'money' | 'rights' | 'path' | 'self' | 'home' | 'moments';
+  branch?: 'money' | 'rights' | 'path' | 'self' | 'home' | 'moments' | 'nations' | 'tools' | 'glossary' | 'search';
+  width?: 'reading' | 'wide';
 }
 
 const {
   title = 'Strong Fire',
   description = 'Free financial wellness for First Nations communities',
   branch = 'home',
+  width = 'reading',
 } = Astro.props;
 
 const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
+
+// Someone finding this page has almost always been sent it by a person, in a
+// text message. Without these tags that message is a bare URL — no title, no
+// description, no picture — which is a lot to ask of someone already worried
+// enough to be asking the question.
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', 'https://strongfire.ca')
+  .href;
+const shareImage = new URL('/share-card.png', 'https://strongfire.ca').href;
+
+const widthClass =
+  width === 'wide'
+    ? 'max-w-lg md:max-w-6xl md:px-6'
+    : 'max-w-lg md:max-w-3xl md:px-6';
 ---
 
 <!doctype html>
@@ -25,11 +57,34 @@ const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#faf8f5" />
+    <meta name="theme-color" content="#FAFAF8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
     <title>{fullTitle}</title>
+    <link rel="canonical" href={canonical} />
+
+    {/*
+      Not ready to be found yet. robots.txt stops the crawl; this stops the page
+      appearing in results at all, which is the part that actually matters and
+      the part that is hard to undo later. Sharing is unaffected — Open Graph
+      fires on a link in a message, not on a crawl.
+      Remove both this and INDEXABLE in scripts/build-seo.js together.
+    */}
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Shared person to person, far more than found by search. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Strong Fire" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:locale" content="en_CA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
 
     <!-- PWA manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -37,19 +92,32 @@ const fullTitle = title === 'Strong Fire' ? title : `${title} — Strong Fire`;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
 
-  <body class="bg-surface text-text-primary pb-[var(--nav-height)]" data-branch={branch}>
+  <body
+    class="bg-surface text-text-primary pb-[var(--nav-height)] md:pb-0"
+    data-branch={branch}
+  >
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-stone-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm">
       Skip to content
     </a>
     <OfflineBanner client:load />
+
+    <Masthead branch={branch} />
+
     <main
-      class="mx-auto max-w-lg min-h-[calc(100dvh-var(--nav-height))]"
+      class:list={[
+        'mx-auto min-h-[calc(100dvh-var(--nav-height))] md:min-h-0',
+        widthClass,
+      ]}
       id="main-content"
     >
       <slot />
     </main>
 
-    <BottomNav client:load activeBranch={branch} />
+    <SiteFooter />
+
+    <div class="md:hidden">
+      <BottomNav client:load activeBranch={branch} />
+    </div>
     <GlossarySheet />
 
     <!-- Breadcrumb: save last visited page -->

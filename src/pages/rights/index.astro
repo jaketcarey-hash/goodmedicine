@@ -1,10 +1,18 @@
 ---
 import Shell from '../../layouts/Shell.astro';
 import PageHeader from '../../components/PageHeader.svelte';
+import CommonQuestions from '../../components/CommonQuestions.astro';
 import TopicCard from '../../components/TopicCard.svelte';
+
+const QUESTIONS = [
+  { q: 'Can I get help with dental if I have status?', href: '/rights/nihb' },
+  { q: 'Is my income tax-exempt?', href: '/rights/section-87-checker' },
+  { q: 'My child needs something. Who pays for it?', href: '/rights/jordans-principle' },
+  { q: 'How do I pay for school?', href: '/rights/education-funding' },
+];
 ---
 
-<Shell title="Knowing Your Rights" branch="rights">
+<Shell title="Knowing Your Rights" branch="rights" description="Your rights are powerful tools. Understanding them puts you in control.">
   <PageHeader
     title="Knowing Your Rights"
     subtitle="Your rights are powerful tools. Understanding them puts you in control."
@@ -12,6 +20,8 @@ import TopicCard from '../../components/TopicCard.svelte';
     backHref="/"
     backLabel="Home"
   />
+
+  <CommonQuestions questions={QUESTIONS} />
 
   <!-- Interactive tools -->
   <section class="px-5 pb-6">

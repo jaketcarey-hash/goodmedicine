@@ -10,16 +10,16 @@
   let isOpen = $state(open);
 </script>
 
-<div class="rounded-xl border border-stone-200 overflow-hidden mb-4 bg-surface-card">
+<div class="border-b border-rule">
   <button
     onclick={() => isOpen = !isOpen}
-    class="w-full flex items-center justify-between p-4 text-left cursor-pointer
-      hover:bg-stone-50 transition-colors duration-[var(--duration-fast)]"
+    class="w-full flex items-center justify-between py-3.5 text-left cursor-pointer
+      transition-colors duration-[var(--duration-fast)]"
     aria-expanded={isOpen}
   >
-    <span class="font-semibold text-sm pr-4">{title}</span>
+    <span class="font-medium text-[15px] pr-4">{title}</span>
     <svg
-      class="w-5 h-5 text-stone-400 flex-shrink-0 transition-transform duration-300 ease-[var(--ease-out)]"
+      class="w-4 h-4 text-faint flex-shrink-0 transition-transform duration-300 ease-[var(--ease-out)]"
       class:rotate-180={isOpen}
       viewBox="0 0 24 24"
       fill="none"
@@ -33,8 +33,8 @@
   </button>
 
   {#if isOpen}
-    <div transition:slide={{ duration: 300 }} class="px-4 pb-4 border-t border-stone-100">
-      <div class="pt-3">
+    <div transition:slide={{ duration: 300 }} class="pb-4">
+      <div class="pt-1">
         <slot />
       </div>
     </div>

@@ -1,0 +1,86 @@
+---
+/**
+ * Every edition, grouped by month.
+ *
+ * Editions are dense, so the archive shows each one's headline and lead rather
+ * than a bare date list — enough to decide whether to open it.
+ */
+import Record from '../../../layouts/Record.astro';
+import { getEditions, formatDate } from '../../../lib/nations-data';
+
+const editions = getEditions();
+
+// Group by month, keeping newest first within and across groups.
+const months: { label: string; editions: typeof editions }[] = [];
+for (const edition of editions) {
+  const [y, m] = edition.date.split('-').map(Number);
+  const label = new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString('en-CA', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+  let group = months.find((g) => g.label === label);
+  if (!group) {
+    group = { label, editions: [] };
+    months.push(group);
+  }
+  group.editions.push(edition);
+}
+
+const weeklyCount = editions.filter((e) => e.cadence === 'weekly').length;
+---
+
+<Record
+  title="Archive"
+  description="Every edition of the Nations brief."
+  kicker="The Nations"
+  heading="Archive"
+  standfirst={`${editions.length} ${editions.length === 1 ? 'edition' : 'editions'}, daily through the week and one longer read each Friday.`}
+>
+  <div class="not-prose">
+    {
+      months.map((group) => (
+        <section class="mb-14">
+          <h2 class="apparatus-label pb-2.5 mb-6 border-b border-rule">{group.label}</h2>
+
+          <ul class="space-y-8">
+            {group.editions.map((edition) => (
+              <li>
+                <a href={edition.url} class="group block">
+                  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                    <span class="apparatus text-faint tabular-nums">
+                      {formatDate(edition.date)}
+                    </span>
+                    {edition.cadence === 'weekly' && (
+                      <span class="apparatus-label text-ink">Weekly</span>
+                    )}
+                    <span class="apparatus text-faint ml-auto">
+                      {edition.sources.length} sources
+                    </span>
+                  </div>
+
+                  <h3 class="text-xl md:text-[22px] font-semibold tracking-[-0.015em] leading-[1.3] text-ink group-hover:underline decoration-rule underline-offset-4 mb-2">
+                    {edition.headline}
+                  </h3>
+
+                  {edition.lead && (
+                    <p class="text-sm leading-relaxed text-quiet">
+                      <span class="apparatus-label mr-2">One thing</span>
+                      {edition.lead.headline}
+                    </p>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    {
+      editions.length === 0 && (
+        <p class="text-text-secondary">No editions have published yet.</p>
+      )
+    }
+  </div>
+</Record>

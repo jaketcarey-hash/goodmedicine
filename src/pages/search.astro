@@ -1,0 +1,19 @@
+---
+import Shell from '../layouts/Shell.astro';
+import SearchApp from '../components/SearchApp.svelte';
+---
+
+<Shell
+  title="Search"
+  description="Search everything on Strong Fire — articles, tools, the glossary, the Nations brief and the event ledger."
+>
+  <div class="px-5 md:px-0 pt-8 md:pt-14 pb-16">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">Search</h1>
+    <p class="text-text-secondary mb-8 max-w-xl">
+      One box across the whole site — what to do about your money, and what is happening
+      to Indigenous economic power in Canada.
+    </p>
+
+    <SearchApp client:load />
+  </div>
+</Shell>

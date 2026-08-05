@@ -15,7 +15,7 @@
 </script>
 
 <nav
-  class="fixed bottom-0 left-0 right-0 z-50 bg-surface-card/90 backdrop-blur-lg border-t border-stone-200"
+  class="fixed bottom-0 left-0 right-0 z-50 bg-ground/90 backdrop-blur-lg border-t border-rule"
   style="padding-bottom: var(--safe-bottom, 0px);"
   aria-label="Main navigation"
 >
@@ -24,19 +24,12 @@
       <a
         href={tab.href}
         class="flex flex-col items-center justify-center gap-0.5 flex-1 relative group transition-colors duration-[var(--duration-normal)]
-          {activeBranch === tab.id ? 'text-stone-900' : 'text-stone-400 hover:text-stone-600'}"
+          {activeBranch === tab.id ? 'text-ink' : 'text-faint hover:text-quiet'}"
         aria-current={activeBranch === tab.id ? 'page' : undefined}
       >
         <!-- Active indicator dot -->
         {#if activeBranch === tab.id}
-          <span
-            class="absolute top-1.5 w-1 h-1 rounded-full
-              {tab.id === 'money' ? 'bg-clay-500' :
-               tab.id === 'rights' ? 'bg-water-500' :
-               tab.id === 'path' ? 'bg-sage-500' :
-               tab.id === 'self' ? 'bg-berry-500' :
-               'bg-stone-700'}"
-          ></span>
+          <span class="absolute top-1.5 w-1 h-1 rounded-full bg-ink"></span>
         {/if}
 
         <!-- Icon -->

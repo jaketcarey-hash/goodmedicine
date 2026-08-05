@@ -1,0 +1,90 @@
+---
+/**
+ * /nations/who — every Nation and Indigenous organization the ledger names.
+ */
+import Record from '../../../layouts/Record.astro';
+import { getNationProfiles } from '../../../lib/nations-index';
+import { formatDate } from '../../../lib/nations-data';
+
+const profiles = getNationProfiles();
+const multiple = profiles.filter((p) => p.records.length > 1);
+---
+
+<Record
+  title="Nations and organizations"
+  description="Every Nation, Inuit and Métis government and Indigenous organization named in the event ledger, with the record of what has been tracked about each."
+  kicker="The Nations"
+  heading="Who the record names"
+  standfirst={`${profiles.length} Nations, governments and Indigenous organizations appear in the ledger. This is the same record, arranged by who it concerns rather than when it happened.`}
+  measure="full"
+>
+  <section class="mb-12">
+    <h2>How to read this</h2>
+    <p>
+      Everything here is drawn from public sources and is a record of what has been
+      reported, not a description of any Nation's affairs. Most names appear once, because
+      the ledger covers a single year and is deliberately selective. A short entry means
+      little was recorded, not that little happened.
+    </p>
+    <p>
+      Names appear exactly as the ledger records them, which is exactly as each government
+      or organization names itself. Where a Nation is known by more than one name, both may
+      appear separately rather than being merged, because merging them is a judgment that
+      is not mine to make.
+    </p>
+  </section>
+
+  <section>
+    <h2>Named more than once</h2>
+    <p class="not-prose text-sm text-quiet mb-6 max-w-2xl">
+      {multiple.length} appear in several records — usually a file that developed across the
+      year.
+    </p>
+
+    <ul class="not-prose list-none pl-0 m-0 grid md:grid-cols-2 gap-px bg-rule border-y border-rule mb-14">
+      {
+        multiple.map((p) => (
+          <li class="bg-ground">
+            <a href={`/nations/who/${p.slug}`} class="group block px-5 py-4 hover:bg-ink/[0.03] transition-colors">
+              <div class="flex items-baseline justify-between gap-4 mb-1">
+                <span class="text-lg font-medium text-ink group-hover:underline decoration-rule underline-offset-2">
+                  {p.name}
+                </span>
+                <span class="apparatus text-faint whitespace-nowrap">
+                  {p.records.length} records
+                </span>
+              </div>
+              <p class="text-xs text-faint leading-snug">
+                {p.sectors.slice(0, 3).join(' · ')}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>Everyone named</h2>
+    <ul class="not-prose list-none pl-0 m-0 divide-y divide-rule">
+      {
+        profiles.map((p) => (
+          <li>
+            <a
+              href={`/nations/who/${p.slug}`}
+              class="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3 hover:bg-ink/[0.03] transition-colors -mx-2 px-2"
+            >
+              <span class="text-ink group-hover:underline decoration-rule underline-offset-2">{p.name}</span>
+              <span class="text-xs text-faint">
+                {p.places.slice(0, 2).join(', ')}
+              </span>
+              <span class="apparatus text-faint ml-auto whitespace-nowrap">
+                {p.records.length === 1
+                  ? formatDate(p.lastSeen)
+                  : `${p.records.length} records`}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Record>

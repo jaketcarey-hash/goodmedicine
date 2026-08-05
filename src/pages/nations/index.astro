@@ -1,0 +1,115 @@
+---
+/**
+ * /nations — the current edition, which is what most people come for.
+ * The archive and the ledger hang off it.
+ *
+ * The front door answers the front-door question — is this real yet? — so
+ * the edition's own provenance leads: what it was checked against, when,
+ * and how many sources are in the register. The evidence margin carries it,
+ * the same as on every record.
+ */
+import Record from '../../layouts/Record.astro';
+import BriefBody from '../../components/BriefBody.astro';
+import { getEditions, formatDate } from '../../lib/nations-data';
+
+const editions = getEditions();
+const edition = editions[0];
+const recent = editions.slice(1, 6);
+
+const verifiedLabel =
+  edition?.status === 'verified_public_sources' ? 'Public sources only' : null;
+---
+
+{
+  edition ? (
+    <Record
+      title={edition.title}
+      description={edition.headline}
+      kicker={edition.title}
+      heading={edition.headline}
+      standfirst={edition.throughLine || undefined}
+      dateline={`${edition.dateLong}${edition.readTime ? ` · ${edition.readTime}` : ''}`}
+      hasRail={true}
+    >
+      <BriefBody edition={edition} />
+
+      <Fragment slot="evidence">
+        <dl class="flex flex-wrap gap-x-8 gap-y-4 lg:flex-col lg:gap-y-5 m-0">
+          <div>
+            <dt class="apparatus-label mb-1.5">Edition</dt>
+            <dd class="apparatus m-0 text-[11px] text-ink">
+              {edition.cadence === 'weekly' ? 'Weekly' : 'Daily'} · {formatDate(edition.date)}
+            </dd>
+          </div>
+          {
+            verifiedLabel && (
+              <div>
+                <dt class="apparatus-label mb-1.5">Verified against</dt>
+                <dd class="apparatus m-0 text-[11px] text-verified">{verifiedLabel}</dd>
+              </div>
+            )
+          }
+          <div>
+            <dt class="apparatus-label mb-1.5">Sources</dt>
+            <dd class="apparatus m-0 text-[11px] text-ink">
+              {edition.sources.length} in the register
+            </dd>
+          </div>
+        </dl>
+      </Fragment>
+
+      <Fragment slot="rail">
+        <div class="space-y-8">
+          <div>
+            <p class="apparatus-label mb-3">How this is made</p>
+            <p class="text-sm leading-relaxed text-quiet mb-3">
+              Every item is gathered from public sources, checked against them, and dropped
+              if it does not hold. Indigenous-led outlets are read first, then legal and
+              specialist records, then everyone else.
+            </p>
+            <p class="text-sm leading-relaxed text-quiet">
+              Nations, communities and governments are named as they name themselves.
+            </p>
+          </div>
+
+          {
+            recent.length > 0 && (
+              <div class="border-t border-rule pt-5">
+                <p class="apparatus-label mb-4">Earlier</p>
+                <ul class="space-y-4 list-none p-0 m-0">
+                  {recent.map((e) => (
+                    <li>
+                      <a href={e.url} class="group block">
+                        <span class="apparatus block text-faint mb-1">
+                          {formatDate(e.date)}
+                          {e.cadence === 'weekly' ? ' · Weekly' : ''}
+                        </span>
+                        <span class="block text-[14px] leading-snug text-ink group-hover:underline decoration-rule underline-offset-2">
+                          {e.headline}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="/nations/archive"
+                  class="inline-block mt-5 text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+                >
+                  Full archive &rarr;
+                </a>
+              </div>
+            )
+          }
+        </div>
+      </Fragment>
+    </Record>
+  ) : (
+    <Record
+      title="The Nations"
+      heading="No edition published yet"
+      kicker="The Nations"
+    >
+      <p>The first brief will appear here once it publishes.</p>
+    </Record>
+  )
+}

@@ -2,7 +2,11 @@
    Life Change Simulator — Cost of Living Data & Tax Helpers
    Canadian cities, federal/provincial tax brackets, CPP/EI.
    All figures are 2026 estimates for illustration only.
+
+   Tax and contribution figures come from the shared registry, so this
+   simulator and the tax estimator can never disagree. See src/lib/figures.ts.
    ============================================================ */
+import { value } from './figures';
 
 export interface CityData {
   name: string;
@@ -31,6 +35,21 @@ export const provinceNames: Record<string, string> = {
   NU: 'Nunavut',
 };
 
+/**
+ * Rents are asking rents — what someone moving to the city would actually be
+ * quoted — not CMHC's purpose-built averages.
+ *
+ * Worth stating because three review cycles flagged these as "too high versus
+ * CMHC" and asked for them to be revised down. That comparison is wrong for
+ * this tool. CMHC's average covers all occupied purpose-built units including
+ * long-tenured ones, so it runs well below market: its 2025 Vancouver
+ * *two*-bedroom average was about $2,363, below what a one-bedroom is listed
+ * at today. Someone using this to work out whether they can afford to move
+ * needs the number they will be quoted, not the number a sitting tenant pays.
+ *
+ * Re-check against listing data (Rentals.ca, PadMapper, local listings), not
+ * against CMHC. Last reviewed August 2026.
+ */
 const cities: CityData[] = [
   { name: 'Vancouver',    province: 'BC', rent: 2400, groceries: 450, transit: 110, utilities: 80,  phone: 70 },
   { name: 'Victoria',     province: 'BC', rent: 1900, groceries: 420, transit: 85,  utilities: 75,  phone: 70 },
@@ -68,14 +87,14 @@ export function estimateMonthlyCosts(city: CityData): number {
 // ---- Federal tax brackets (2026) ----
 
 const federalBrackets = [
-  { limit: 58_523,  rate: 0.14 },
+  { limit: 58_523,  rate: value('federal_bracket_1_rate') },
   { limit: 117_045, rate: 0.205 },
   { limit: 181_440, rate: 0.26 },
   { limit: 258_482, rate: 0.29 },
   { limit: Infinity, rate: 0.33 },
 ];
 
-const federalPersonalAmount = 16_452;
+const federalPersonalAmount = value('federal_basic_personal');
 
 // Simplified provincial rates (first bracket only — estimation)
 const provincialRates: Record<string, number> = {
@@ -148,19 +167,25 @@ export function estimateAnnualProvincialTax(annualIncome: number, province: stri
 
 // ---- CPP & EI ----
 
-const CPP_RATE = 0.0595;
-const CPP_MAX_PENSIONABLE = 74_600;
-const CPP_EXEMPTION = 3_500;
+const CPP_RATE = value('cpp_rate');
+const CPP_MAX_PENSIONABLE = value('cpp_ympe');
+const CPP_EXEMPTION = value('cpp_exemption');
 
-const EI_RATE = 0.0163;
-const EI_MAX_INSURABLE = 68_900;
+// CPP2 — on earnings between the maximum pensionable and the additional maximum.
+const CPP2_RATE = value('cpp2_rate');
+const CPP2_MAX_PENSIONABLE = value('cpp2_yampe');
+
+const EI_RATE = value('ei_rate');
+const EI_MAX_INSURABLE = value('ei_max_insurable');
 
 /**
  * Estimate annual CPP and EI contributions.
  */
 export function estimateCPPEI(annualIncome: number): { cpp: number; ei: number } {
   const cppPensionable = Math.min(annualIncome, CPP_MAX_PENSIONABLE) - CPP_EXEMPTION;
-  const cpp = Math.max(0, Math.round(cppPensionable * CPP_RATE));
+  const cppAdditional = Math.min(annualIncome, CPP2_MAX_PENSIONABLE) - CPP_MAX_PENSIONABLE;
+  const cpp = Math.max(0, Math.round(cppPensionable * CPP_RATE))
+    + Math.max(0, Math.round(cppAdditional * CPP2_RATE));
 
   const eiInsurable = Math.min(annualIncome, EI_MAX_INSURABLE);
   const ei = Math.max(0, Math.round(eiInsurable * EI_RATE));

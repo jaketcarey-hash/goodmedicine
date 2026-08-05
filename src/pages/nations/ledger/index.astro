@@ -1,0 +1,138 @@
+---
+/**
+ * /nations/ledger — the year as a database.
+ *
+ * The brief tells you what happened this morning. This tells you what has
+ * happened all year, and — the part no one else publishes — how far along each
+ * thing actually is and how firmly the record supports it.
+ */
+import Record from '../../../layouts/Record.astro';
+import StageDistribution from '../../../components/StageDistribution.astro';
+import LedgerBrowser from '../../../components/LedgerBrowser.svelte';
+import { getLedger, formatDate } from '../../../lib/nations-data';
+import { getEntries, getBandCounts, facetOf, BAND_LABEL } from '../../../lib/ledger';
+
+const ledger = getLedger();
+const entries = getEntries();
+const bands = getBandCounts(entries);
+const sectors = facetOf(entries, 'sectors');
+const places = facetOf(entries, 'places');
+
+// Deliberately not a summed total. The disclosed figures measure different
+// things — a purchase price, a loan guarantee's capacity, ten years of grant
+// funding, a government estimate of trade enabled — and adding them together
+// would produce a headline number that means nothing. Each amount is shown on
+// its own record, with the qualifier that says what it actually counts.
+const withAmounts = entries.filter((e) => e.amountValue).length;
+
+// The browser only needs a subset of each record; sending the rest would ship
+// the full dossier text to every visitor for no reason.
+const forBrowser = entries.map((e) => ({
+  id: e.id,
+  date: e.date,
+  event: e.event,
+  significance: (e.significance as string) ?? '',
+  stage: e.stage,
+  band: e.band,
+  confidence: e.confidence,
+  amountLabel: e.amountLabel,
+  amountQualifier: e.amountQualifier,
+  sectors: e.sectors,
+  places: e.places,
+  nations: e.nations,
+  sourceCount: e.sourceCount,
+}));
+
+const year = ledger?.coverageEnd.slice(0, 4) ?? '';
+---
+
+<Record
+  title="Event ledger"
+  description={`${entries.length} material developments in Indigenous economic activity in Canada, each staged and rated for confidence.`}
+  kicker="The Nations"
+  heading={`The ${year} ledger`}
+  standfirst="A deliberately selected record of developments material to Indigenous economic, business, finance, ownership, rights and major-project matters in Canada. Inclusion is a judgment, not a census."
+  dateline={ledger
+    ? `${formatDate(ledger.coverageStart)} — ${formatDate(ledger.coverageEnd)}`
+    : undefined}
+  measure="full"
+>
+  <!-- The year in four numbers. Figures are apparatus, so they speak mono. -->
+  <div class="not-prose grid grid-cols-2 md:grid-cols-4 border-y border-rule divide-x divide-rule mb-14">
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{entries.length}</p>
+      <p class="apparatus-label">developments tracked</p>
+    </div>
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-verified leading-none tabular-nums mb-2">{ledger?.high ?? 0}</p>
+      <p class="apparatus-label">high confidence</p>
+    </div>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">
+        {bands.find((b) => b.band === 'done')?.count ?? 0}
+      </p>
+      <p class="apparatus-label">done or in force</p>
+    </div>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{withAmounts}</p>
+      <p class="apparatus-label">carry a disclosed figure</p>
+    </div>
+  </div>
+
+  <div class="mb-16">
+    <StageDistribution bands={bands} total={entries.length} />
+  </div>
+
+  <section>
+    <h2>Every development</h2>
+    <LedgerBrowser
+      client:load
+      entries={forBrowser}
+      sectors={sectors}
+      places={places}
+      bandLabels={BAND_LABEL}
+    />
+  </section>
+
+  <section class="mt-16">
+    <h2>How to read this</h2>
+    <p>
+      Each record separates the date something occurred from the date it took effect, and an
+      announcement from an execution. Stage says how far along it is. Confidence says how
+      firmly the public record supports it: <strong>high</strong> means primary evidence with
+      independent confirmation, or a legal record that speaks for itself; <strong>medium</strong>
+      means credible evidence with terms still incomplete.
+    </p>
+    <p>
+      Commentary, advocacy, allegation and inference are labelled as such. None of them
+      establishes a financial or legal fact on its own. Where something is unresolved, the
+      record says so rather than rounding it off.
+    </p>
+    <p class="not-prose flex flex-wrap gap-x-6 gap-y-2 text-sm mt-8 pt-6 border-t border-rule">
+      <a
+        href="/nations/ytd-2026/event-ledger.json"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
+        Download as JSON
+      </a>
+      <a
+        href="/nations/ytd-2026/event-ledger.csv"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
+        Download as CSV
+      </a>
+      <a
+        href="/nations/ytd-2026/report"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
+        The long-form report
+      </a>
+      <a
+        href="/nations/ytd-2026/source-gaps-and-confidence"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
+        Source gaps and confidence
+      </a>
+    </p>
+  </section>
+</Record>

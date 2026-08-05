@@ -24,7 +24,7 @@ export interface SimulationResult {
   depletionYear: number | null; // year the trust hits zero, or null if perpetual
 }
 
-const CURRENT_YEAR = 2026;
+export const CURRENT_YEAR = new Date().getFullYear();
 const GENERATION_SPAN = 25;
 const TOTAL_GENERATIONS = 7;
 const TOTAL_YEARS = GENERATION_SPAN * TOTAL_GENERATIONS; // 175

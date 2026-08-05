@@ -1,196 +1,178 @@
 ---
+/**
+ * The landing page.
+ *
+ * Split: the news down one side, everything else down the other. Two audiences
+ * arrive here and neither should have to scroll past the other — someone
+ * following what is happening, and someone who came to find a thing.
+ *
+ * The right-hand side is a directory rather than a feature strip. A one-stop
+ * shop only works if you can see what is in the shop, and search only helps
+ * someone who already knows what to call the thing they want.
+ */
 import Shell from '../layouts/Shell.astro';
-import BranchCard from '../components/BranchCard.svelte';
 import ContinueCard from '../components/ContinueCard.svelte';
+import NationsPanel from '../components/NationsPanel.astro';
+import { DIRECTORY } from '../lib/directory';
+import { getEditions } from '../lib/nations-data';
+import { formatDate } from '../lib/nations-data';
+import { getBcNations } from '../lib/bc-nations';
+
+const recent = getEditions().slice(1, 4);
+const bcCount = getBcNations().length;
+
+// The home page shows the first few groups; the rest live on /directory.
+const FEATURED = DIRECTORY.slice(0, 5);
 ---
 
-<Shell title="Strong Fire" branch="home">
-  <!-- Hero -->
-  <section class="px-5 pt-10 pb-6">
-    <div class="mb-8">
-      <p class="text-sm font-medium text-stone-500 tracking-wide uppercase mb-3">Strong Fire</p>
-      <h1 class="text-4xl font-bold tracking-tight leading-[1.1] mb-4">
-        Your money.<br />Your rights.<br />Your&nbsp;path.
-      </h1>
-      <p class="text-text-secondary leading-relaxed max-w-sm">
-        Free tools and knowledge for building financial wellness — on your terms, at your pace.
-      </p>
-    </div>
-
-    <!-- Wellness prompt card -->
-    <a
-      href="/self"
-      class="group block rounded-2xl bg-gradient-to-br from-berry-50 via-stone-50 to-sage-50 p-5 mb-8
-        border border-stone-200 hover:border-stone-300 hover:shadow-md
-        transition-all duration-[var(--duration-normal)] active:scale-[0.98]"
-    >
-      <div class="flex items-center gap-3 mb-2">
-        <div class="w-8 h-8 rounded-full bg-berry-100 flex items-center justify-center">
-          <svg class="w-4 h-4 text-berry-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21a9 9 0 110-18 9 9 0 010 18z" />
-            <path d="M12 3v18" />
-            <path d="M3 12h18" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-        </div>
-        <span class="text-sm font-medium text-text-secondary">Daily check-in</span>
-      </div>
-      <p class="text-lg font-semibold leading-snug">How are you feeling about money today?</p>
-      <p class="text-sm text-text-muted mt-1">A private reflection — just for you.</p>
-    </a>
-
-    <!-- Moments — quiet entry -->
-    <a
-      href="/moments"
-      class="group block rounded-2xl bg-surface-warm border border-stone-200 p-5 mb-4
-        hover:border-stone-300 hover:shadow-sm
-        transition-all duration-[var(--duration-normal)] active:scale-[0.98]"
-    >
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <svg class="w-4 h-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 7v5l3 2" />
-          </svg>
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="text-base font-semibold leading-snug">When you’re in the middle of something</p>
-          <p class="text-sm text-text-muted mt-1 leading-relaxed">A place to come when life changes.</p>
-        </div>
-      </div>
-    </a>
-
-    <!-- Continue where you left off -->
-    <div class="mb-4">
-      <ContinueCard client:load />
-    </div>
+<Shell
+  title="Strong Fire"
+  description="Straight answers about money, benefits and your rights for First Nations people. Free, private, and works offline."
+  branch="home"
+  width="wide"
+>
+  <section class="px-5 md:px-0 pt-8 md:pt-11 pb-6">
+    <p class="text-sm md:text-base text-text-secondary leading-relaxed max-w-2xl">
+      <strong class="text-text-primary font-semibold"
+        >Straight answers about money, benefits and your rights.</strong
+      >
+      Free, private, and it works with no signal.
+    </p>
   </section>
 
-  <!-- Quick tools -->
-  <section class="px-5 pb-6">
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Quick tools</h2>
-    <div class="grid grid-cols-2 gap-2.5">
-      <a href="/rights/section-87-checker" class="group rounded-xl bg-water-50 border border-water-200 hover:border-water-300 p-3.5 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <div class="w-8 h-8 rounded-lg bg-water-500 flex items-center justify-center mb-2">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg>
-        </div>
-        <p class="font-semibold text-sm leading-tight">Section 87 Checker</p>
-        <p class="text-[11px] text-text-muted mt-0.5">Is your income exempt?</p>
-      </a>
-      <a href="/self/benefits" class="group rounded-xl bg-sage-50 border border-sage-200 hover:border-sage-300 p-3.5 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <div class="w-8 h-8 rounded-lg bg-sage-500 flex items-center justify-center mb-2">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
-        </div>
-        <p class="font-semibold text-sm leading-tight">Benefits Finder</p>
-        <p class="text-[11px] text-text-muted mt-0.5">What are you entitled to?</p>
-      </a>
-      <a href="/tools/tax-estimator" class="group rounded-xl bg-clay-50 border border-clay-200 hover:border-clay-300 p-3.5 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <div class="w-8 h-8 rounded-lg bg-clay-500 flex items-center justify-center mb-2">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
-        </div>
-        <p class="font-semibold text-sm leading-tight">Tax Estimator</p>
-        <p class="text-[11px] text-text-muted mt-0.5">What will you owe or get back?</p>
-      </a>
-      <a href="/tools/life-simulator" class="group rounded-xl bg-berry-50 border border-berry-200 hover:border-berry-300 p-3.5 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <div class="w-8 h-8 rounded-lg bg-berry-500 flex items-center justify-center mb-2">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 01-3.46 0" /></svg>
-        </div>
-        <p class="font-semibold text-sm leading-tight">Life Simulator</p>
-        <p class="text-[11px] text-text-muted mt-0.5">What if I move? Start school?</p>
-      </a>
-    </div>
+  <div class="md:grid md:grid-cols-[1.05fr_1fr] md:gap-12 md:items-start">
+    <!-- ── The news, down one side ─────────────────────────── -->
+    <div class="px-5 md:px-0">
+      <NationsPanel variant="lead" />
 
-    <!-- More tools row -->
-    <div class="grid grid-cols-3 gap-2 mt-2.5">
-      <a href="/money/budget-tool" class="group rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 p-3 text-center transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <p class="font-medium text-xs">Budget</p>
-      </a>
-      <a href="/money/debt-planner" class="group rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 p-3 text-center transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <p class="font-medium text-xs">Debt Planner</p>
-      </a>
-      <a href="/money/net-worth" class="group rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 p-3 text-center transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <p class="font-medium text-xs">Net Worth</p>
-      </a>
-      <a href="/calendar" class="group rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 p-3 text-center transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <p class="font-medium text-xs">Calendar</p>
-      </a>
-      <a href="/glossary" class="group rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 p-3 text-center transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <p class="font-medium text-xs">Glossary</p>
-      </a>
-      <a href="/ask-ai" class="group rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 p-3 text-center transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <p class="font-medium text-xs">AI Help</p>
-      </a>
-    </div>
-  </section>
+      {
+        recent.length > 0 && (
+          <ul class="list-none pl-0 m-0 mt-5 divide-y divide-stone-200 border-t border-stone-200">
+            {recent.map((edition) => (
+              <li>
+                <a href={edition.url} class="group block py-3.5">
+                  <span class="block text-[11px] text-text-muted mb-1">
+                    {formatDate(edition.date)}
+                    {edition.cadence === 'weekly' ? ' · Weekly' : ''}
+                  </span>
+                  <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors line-clamp-2">
+                    {edition.headline}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
 
-  <!-- The four branches -->
-  <section class="px-5 pb-10">
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">Explore</h2>
-
-    <div class="flex flex-col gap-3">
-      <BranchCard
-        client:idle
-        href="/money"
-        title="Knowing Your Money"
-        description="Banking, budgeting, saving, credit — practical tools for everyday financial decisions."
-        branch="money"
-      />
-
-      <BranchCard
-        client:idle
-        href="/rights"
-        title="Knowing Your Rights"
-        description="Section 87, NIHB, treaty payments, education funding — what you're entitled to and how it works."
-        branch="rights"
-      />
-
-      <BranchCard
-        client:idle
-        href="/path"
-        title="Knowing Your Path"
-        description="Whether you're leaving for school, starting work, or planning for family — guides for each stage."
-        branch="path"
-      />
-
-      <BranchCard
-        client:idle
-        href="/self"
-        title="Knowing Yourself"
-        description="Financial wellness check-ins, stress tools, and space to reflect on your relationship with money."
-        branch="self"
-      />
-    </div>
-  </section>
-
-  <!-- About strip -->
-  <section class="px-5 pb-12">
-    <div class="rounded-xl bg-stone-100 p-5">
-      <h3 class="font-semibold mb-2">About this app</h3>
-      <p class="text-sm text-text-secondary leading-relaxed mb-3">
-        Strong Fire is free, private, and built for First Nations communities. No sign-up. No tracking. No ads. Everything works offline.
-      </p>
-      <div class="flex flex-wrap gap-3 text-xs text-text-muted mb-3">
-        <span class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          100% private
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 015.64 18.36M5.64 5.64A9 9 0 0118.36 18.36"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
-          Works offline
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          Always free
-        </span>
-      </div>
-      <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
-        <a href="/resources" class="text-sm font-medium text-stone-600 hover:text-stone-800 hover:underline transition-colors">
-          Books, organizations, and crisis lines &rarr;
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4">
+        <a
+          href="/nations/archive"
+          class="text-sm font-medium text-cedar hover:text-cedar-dark transition-colors"
+        >
+          All editions &rarr;
         </a>
-        <a href="/settings" class="text-sm text-text-muted hover:text-stone-600 hover:underline transition-colors">
-          Settings
+        <a
+          href="/nations/bc"
+          class="text-xs text-text-muted hover:text-text-secondary transition-colors"
+        >
+          All {bcCount} BC First Nations
         </a>
-        <a href="/disclaimer" class="text-sm text-text-muted hover:text-stone-600 hover:underline transition-colors">
+      </div>
+    </div>
+
+    <!-- ── Everything else, down the other ─────────────────── -->
+    <div class="px-5 md:px-0 mt-10 md:mt-0">
+      <form action="/search" method="get" role="search" class="mb-7">
+        <label for="home-search" class="sr-only">Search Strong Fire</label>
+        <div class="relative">
+          <svg
+            class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted pointer-events-none"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="M21 21l-4.35-4.35"></path>
+          </svg>
+          <input
+            id="home-search"
+            type="search"
+            name="q"
+            autocomplete="off"
+            placeholder="Search — benefits, taxes, Section 87…"
+            class="w-full text-base bg-surface-card border border-stone-300 rounded-xl
+              pl-12 pr-4 py-3.5 placeholder:text-text-muted
+              focus:border-clay-400 focus:outline-none focus:ring-2 focus:ring-clay-400/20"
+          />
+        </div>
+      </form>
+
+      <div class="mb-7">
+        <ContinueCard client:load />
+      </div>
+
+      {
+        FEATURED.map((section) => (
+          <section class="mb-7">
+            <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">
+              {section.heading}
+            </h2>
+            <ul class="list-none pl-0 m-0 divide-y divide-stone-200 border-y border-stone-200">
+              {section.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="group flex items-baseline gap-3 py-2.5 hover:text-clay-700 transition-colors"
+                  >
+                    <span class="text-[15px] leading-snug">{link.label}</span>
+                    {link.note && (
+                      <span class="text-[11px] text-text-muted ml-auto text-right shrink-0 hidden sm:block">
+                        {link.note}
+                      </span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+
+      <a
+        href="/directory"
+        class="inline-block text-sm font-medium text-clay-700 hover:text-clay-800 transition-colors"
+      >
+        Everything on this site &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- The promise, plainly. -->
+  <section class="px-5 md:px-0 pt-12 pb-12">
+    <div class="rounded-xl bg-stone-100 p-5 md:p-6">
+      <p class="text-sm text-text-secondary leading-relaxed max-w-3xl">
+        <strong class="text-text-primary">Strong Fire is free and independent.</strong>
+        There is nothing to sign up for and nothing is tracked. Everything you enter — a
+        budget, a check-in, a savings goal — stays on your device and is never sent
+        anywhere. It is not connected to any bank, firm or government agency, and it is
+        general information, not advice about your own situation.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4">
+        <a
+          href="/resources"
+          class="text-sm font-medium text-stone-600 hover:text-stone-800 hover:underline transition-colors"
+        >
+          Books, organizations and crisis lines &rarr;
+        </a>
+        <a
+          href="/disclaimer"
+          class="text-sm text-text-muted hover:text-stone-600 hover:underline transition-colors"
+        >
           Disclaimer
         </a>
       </div>

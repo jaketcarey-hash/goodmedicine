@@ -1,0 +1,43 @@
+---
+/**
+ * The link from "here is what happened" to "here is what it means for you".
+ *
+ * Renders nothing when there is no genuine match, which is the common case and
+ * the correct one. A generic related-strip on every page teaches people to
+ * ignore it.
+ */
+import { crossingsFor } from '../lib/bridge';
+
+interface Props {
+  /** Everything describing the subject: headline, significance, sectors, mechanisms. */
+  subject: string;
+  limit?: number;
+}
+
+const { subject, limit = 3 } = Astro.props;
+const crossings = crossingsFor(subject, limit);
+---
+
+{
+  crossings.length > 0 && (
+    <aside class="not-prose mt-14 pt-6 border-t border-rule">
+      <h2 class="apparatus-label mb-2">What this means for you</h2>
+      <p class="text-sm text-quiet mb-5 max-w-2xl">
+        Plain-language explanations from the other half of this site.
+      </p>
+
+      <ul class="list-none pl-0 m-0 space-y-4">
+        {crossings.map((c) => (
+          <li>
+            <a href={c.href} class="group block">
+              <p class="text-[15px] font-medium text-ink underline decoration-rule underline-offset-2 group-hover:decoration-ink mb-0.5">
+                {c.title}
+              </p>
+              <p class="text-sm text-quiet leading-relaxed">{c.why}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )
+}

@@ -1,0 +1,100 @@
+---
+/**
+ * /nations/bc — every First Nation in British Columbia.
+ */
+import Record from '../../../layouts/Record.astro';
+import BcDirectory from '../../../components/BcDirectory.svelte';
+import { getBcNations, DIRECTORY_META, groupByPeople } from '../../../lib/bc-nations';
+
+const nations = getBcNations();
+const peoples = groupByPeople();
+const tracked = nations.filter((n) => n.records.length || n.mentions.length).length;
+const withoutCouncil = nations.filter((n) => !n.tribalCouncil).length;
+
+const forBrowser = nations.map((n) => ({
+  name: n.name,
+  slug: n.slug,
+  people: n.people,
+  tribalCouncil: n.tribalCouncil,
+  bandNumber: n.bandNumber,
+  tracked: n.records.length + n.mentions.length,
+}));
+---
+
+<Record
+  title="First Nations of British Columbia"
+  description="A directory of every First Nation headquartered in British Columbia, drawn from the federal band registry, with whatever the record tracks about each."
+  kicker="The Nations"
+  heading="First Nations of British Columbia"
+  standfirst={`${nations.length} Nations, listed from the federal band registry, each with whatever this site has tracked about them.`}
+  dateline={`Registry retrieved ${DIRECTORY_META.retrieved}`}
+  measure="full"
+>
+  <div class="not-prose grid grid-cols-2 md:grid-cols-4 border-y border-rule divide-x divide-rule mb-12">
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{nations.length}</p>
+      <p class="apparatus-label">Nations listed</p>
+    </div>
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{peoples.length}</p>
+      <p class="apparatus-label">Peoples and Nations represented</p>
+    </div>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-verified leading-none tabular-nums mb-2">{tracked}</p>
+      <p class="apparatus-label">with something tracked this year</p>
+    </div>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">
+        {nations.length - tracked}
+      </p>
+      <p class="apparatus-label">with nothing tracked yet</p>
+    </div>
+  </div>
+
+  <section class="mb-12">
+    <h2>Why 201 and not 203</h2>
+    <p>
+      You will usually see 203 First Nations quoted for British Columbia, and Indigenous
+      Services Canada's own BC Region contains 204 bands. This list holds {nations.length},
+      because it is filtered to bands whose administrative office is actually in the
+      province — the BC Region also administers a few whose offices sit outside it.
+    </p>
+    <p>
+      Three numbers, three slightly different questions. None of them is wrong. This one is
+      stated rather than smoothed over because a directory that quietly picks a number is
+      the kind of thing you cannot check.
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2>What is here, and what is not</h2>
+    <p>
+      Names, band numbers and office locations come from the federal band registry. People
+      or Nation and Tribal Council affiliation are matched in from a secondary source where
+      the match was confident.
+    </p>
+    <p>
+      Tribal Council is blank for {withoutCouncil} of them. <strong>Blank means no confident
+      match was found, not that the Nation is unaffiliated.</strong> Those are different
+      claims and only one of them is supported here.
+    </p>
+    <p>
+      "Nothing tracked yet" means exactly that — this site has not recorded anything about
+      that Nation this year. It is a statement about the coverage of this record, not about
+      the Nation.
+    </p>
+    <p>
+      One structural limit is worth naming. This is a registry of <em>bands</em>, and a
+      Nation is not always a band. Where a Nation is made up of several communities that
+      each appear here separately, anything recorded at the Nation level will not attach to
+      the individual community pages — the Nisga'a Villages are the clearest example. That
+      is deliberate. A Nation and its communities are related, not interchangeable, and
+      quietly merging them would put one community's name against another's affairs.
+    </p>
+  </section>
+
+  <section>
+    <h2>The directory</h2>
+    <BcDirectory client:load nations={forBrowser} />
+  </section>
+</Record>

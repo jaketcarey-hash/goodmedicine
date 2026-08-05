@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import { money } from '../../lib/figures';
 ---
 
 <Article
@@ -11,7 +12,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   backHref="/path"
   backLabel="Path"
   readTime="9 min"
-  lastUpdated="June 2026"
+  lastUpdated="August 2026"
 >
 
   <p>
@@ -38,8 +39,9 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <div class="callout callout-important">
     <strong>This is the most important financial action for Indigenous parents</strong>
     <p>
-      The CCB can provide over $7,000 per child per year for families with lower incomes.
-      For a family with three kids, that's potentially $21,000+ annually. Filing taxes is
+      The CCB can provide over {money('ccb_6_to_17')} per child per year for families with lower
+      incomes, and more for children under six. For a family with three kids, that is well
+      over $20,000 a year. Filing taxes is
       free. The return on that 20 minutes of paperwork is enormous. If you haven't filed
       in previous years, you can request adjustments for up to 10 years back.
     </p>
@@ -49,8 +51,8 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     <div class="space-y-3 text-sm">
       <p>For the 2026-2027 benefit year, the maximum annual CCB is:</p>
       <ul>
-        <li><strong>Under 6:</strong> $8,157 per child ($679.75/month)</li>
-        <li><strong>Ages 6-17:</strong> $6,883 per child ($573.58/month)</li>
+        <li><strong>Under 6:</strong> {money('ccb_under_6')} per child ($679.75/month)</li>
+        <li><strong>Ages 6-17:</strong> {money('ccb_6_to_17')} per child ($573.58/month)</li>
       </ul>
       <p>The amount decreases as family net income rises above roughly $37,500. But even middle-income families receive significant amounts.</p>
       <p>If your income is tax-exempt under Section 87, it's reported on your return but often results in zero net income for benefit calculation purposes — which means you may qualify for the maximum CCB. This is one of the most valuable intersections of Section 87 and the benefit system.</p>

@@ -132,7 +132,7 @@ export const GLOSSARY: GlossaryEntry[] = [
   {
     term: 'Down payment',
     definition:
-      'The upfront cash you pay when buying a home or other large purchase. In Canada, the minimum down payment is 5% for homes under $500,000. A larger down payment means a smaller mortgage and less interest paid over time.',
+      'The upfront cash you pay when buying a home or other large purchase. In Canada the minimum is 5% on the first $500,000, 10% on any portion between $500,000 and $1.5 million, and 20% on homes priced at $1.5 million or more. A larger down payment means a smaller mortgage and less interest paid over time.',
     category: 'general',
     relatedTerms: ['Mortgage', 'Equity'],
     articleLink: '/money/saving',
@@ -590,9 +590,9 @@ export const GLOSSARY: GlossaryEntry[] = [
     articleLink: '/money/saving',
   },
   {
-    term: 'GST/HST credit',
+    term: 'Canada Groceries and Essentials Benefit',
     definition:
-      'A quarterly tax-free payment that helps low- and modest-income individuals and families offset the sales tax they pay. You receive it automatically when you file your tax return. The amount is based on your family income and size.',
+      'A quarterly tax-free payment that helps low- and modest-income individuals and families with the cost of essentials. It replaced the GST/HST credit in July 2026, keeping the same eligibility rules, income test and payment schedule at a higher amount. You receive it automatically when you file your tax return. The amount is based on your family income and size. You may still see it called the GST credit on older paperwork.',
     category: 'canadian',
     relatedTerms: ['Canada Child Benefit (CCB)', 'Canada Workers Benefit'],
     articleLink: '/money/taxes',

@@ -1,0 +1,132 @@
+---
+/**
+ * One Nation or organization, and everything the ledger records about them.
+ */
+import type { GetStaticPaths } from 'astro';
+import Record from '../../../layouts/Record.astro';
+import StageRail from '../../../components/evidence/StageRail.astro';
+import ConfidenceBadge from '../../../components/evidence/ConfidenceBadge.astro';
+import { getNationProfiles } from '../../../lib/nations-index';
+import { formatDate } from '../../../lib/nations-data';
+
+export const getStaticPaths = (() => {
+  return getNationProfiles().map((profile) => ({
+    params: { slug: profile.slug },
+    props: { profile },
+  }));
+}) satisfies GetStaticPaths;
+
+const { profile } = Astro.props;
+
+const withAmounts = profile.records.filter((r) => r.amountLabel);
+const span =
+  profile.firstSeen === profile.lastSeen
+    ? formatDate(profile.lastSeen)
+    : `${formatDate(profile.firstSeen)} — ${formatDate(profile.lastSeen)}`;
+---
+
+<Record
+  title={profile.name}
+  description={`What the ${new Date().getFullYear()} event ledger records about ${profile.name}.`}
+  kicker="Named in the record"
+  heading={profile.name}
+  standfirst={`${profile.records.length} ${profile.records.length === 1 ? 'development' : 'developments'} recorded from public sources.`}
+  dateline={span}
+  hasRail={true}
+>
+  <ol class="not-prose list-none pl-0 m-0 divide-y divide-rule">
+    {
+      profile.records.map((entry) => (
+        <li class="py-7 first:pt-0">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <span class="apparatus text-faint tabular-nums">{formatDate(entry.date)}</span>
+            <StageRail band={entry.band} stage={entry.stage} />
+            <ConfidenceBadge level={entry.confidence} />
+            {entry.amountLabel && (
+              <span
+                class="font-mono text-sm text-ink ml-auto tabular-nums border-b border-dotted border-faint cursor-help"
+                title={entry.amountQualifier ?? undefined}
+              >
+                {entry.amountLabel}
+              </span>
+            )}
+          </div>
+
+          <h2 class="plain">
+            <a
+              href={`/nations/ledger/${entry.id}`}
+              class="no-underline hover:underline decoration-rule underline-offset-4"
+            >
+              {entry.event}
+            </a>
+          </h2>
+
+          <p class="text-sm leading-relaxed text-quiet max-w-3xl mt-2">
+            {entry.significance as string}
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p class="not-prose text-sm text-faint mt-12 pt-6 border-t border-rule max-w-2xl">
+    This is a record of what has been reported from public sources, not a description of
+    this Nation's affairs. It is deliberately selective and makes no claim to be complete.
+  </p>
+
+  <Fragment slot="rail">
+    <div class="space-y-6">
+      <div>
+        <p class="apparatus-label mb-2">Recorded</p>
+        <p class="text-sm text-ink">
+          {profile.records.length}
+          {profile.records.length === 1 ? 'development' : 'developments'}
+        </p>
+        <p class="apparatus text-faint mt-1">{span}</p>
+      </div>
+
+      {
+        profile.sectors.length > 0 && (
+          <div>
+            <p class="apparatus-label mb-2">Sectors</p>
+            <p class="text-sm text-ink leading-snug">{profile.sectors.join(', ')}</p>
+          </div>
+        )
+      }
+
+      {
+        profile.places.length > 0 && (
+          <div>
+            <p class="apparatus-label mb-2">Where</p>
+            <p class="text-sm text-ink leading-snug">{profile.places.join(', ')}</p>
+          </div>
+        )
+      }
+
+      {
+        withAmounts.length > 0 && (
+          <div>
+            <p class="apparatus-label mb-2">Disclosed figures</p>
+            <ul class="space-y-1.5 list-none p-0 m-0">
+              {withAmounts.map((r) => (
+                <li class="font-mono text-sm text-ink tabular-nums">{r.amountLabel}</li>
+              ))}
+            </ul>
+            <p class="text-[11px] text-faint mt-2 leading-snug">
+              These count different things. Open each record for what its figure measures.
+            </p>
+          </div>
+        )
+      }
+
+      <div class="pt-4 border-t border-rule">
+        <a
+          href="/nations/who"
+          class="text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+        >
+          &larr; All names
+        </a>
+      </div>
+    </div>
+  </Fragment>
+</Record>

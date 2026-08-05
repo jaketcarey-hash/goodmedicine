@@ -1,0 +1,74 @@
+---
+/**
+ * /directory — the whole shop, on one page.
+ */
+import Shell from '../layouts/Shell.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import { DIRECTORY } from '../lib/directory';
+
+const total = DIRECTORY.reduce((n, s) => n + s.links.length, 0);
+---
+
+<Shell
+  title="Everything on this site"
+  description="A full directory of Strong Fire — tools, rights, money guides, life stages, the Nations brief and the BC First Nations directory."
+  branch="home"
+  width="wide"
+>
+  <PageHeader
+    title="Everything on this site"
+    subtitle={`${total} places to go. If you know what you are looking for, search is faster.`}
+    branch="home"
+    backHref="/"
+    backLabel="Home"
+  />
+
+  <div class="px-5 md:px-0 pb-16">
+    <form action="/search" method="get" role="search" class="max-w-xl mb-10">
+      <label for="dir-search" class="sr-only">Search Strong Fire</label>
+      <input
+        type="search"
+        id="dir-search"
+        name="q"
+        placeholder="Search everything…"
+        class="w-full text-base bg-surface-card border border-stone-300 rounded-xl px-4 py-3
+          placeholder:text-text-muted focus:border-clay-400 focus:outline-none"
+      />
+    </form>
+
+    <div class="md:grid md:grid-cols-2 md:gap-x-12">
+      {
+        DIRECTORY.map((section) => (
+          <section class="mb-10 break-inside-avoid">
+            <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-2">
+              {section.heading}
+            </h2>
+            {section.blurb && (
+              <p class="text-sm text-text-secondary leading-relaxed mb-3 max-w-md">
+                {section.blurb}
+              </p>
+            )}
+            <ul class="list-none pl-0 m-0 divide-y divide-stone-200 border-y border-stone-200">
+              {section.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="group flex flex-wrap items-baseline gap-x-3 gap-y-0.5 py-2.5
+                      hover:text-clay-700 transition-colors"
+                  >
+                    <span class="text-[15px] leading-snug">{link.label}</span>
+                    {link.note && (
+                      <span class="text-[11px] text-text-muted ml-auto text-right">
+                        {link.note}
+                      </span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Shell>

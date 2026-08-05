@@ -1,0 +1,1619 @@
+{
+  "source": "Indigenous Services Canada — First Nations Location (Band Governance Management System)",
+  "sourceUrl": "https://open.canada.ca/data/en/dataset/b6567c5c-8339-4055-99fa-63f92114d9e4",
+  "retrieved": "2026-06-04",
+  "datasetModified": "2026-04-14",
+  "scope": "First Nations whose administrative office is located in British Columbia.",
+  "enrichment": "People/Nation and Tribal Council matched from Wikipedia's List of First Nations governments in British Columbia where a confident name match existed; left blank otherwise.",
+  "count": 201,
+  "nations": [
+    {
+      "bandNumber": 684,
+      "name": "Adams Lake",
+      "people": "Secwepemc",
+      "tribalCouncil": "Shuswap Nation Tribal Council",
+      "lat": 50.8287,
+      "lon": -119.7015
+    },
+    {
+      "bandNumber": 659,
+      "name": "Ahousaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.2781,
+      "lon": -126.0561
+    },
+    {
+      "bandNumber": 558,
+      "name": "Aitchelitz",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1504,
+      "lon": -121.9869
+    },
+    {
+      "bandNumber": 685,
+      "name": "Ashcroft",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nlaka'pamux Nation Tribal Council",
+      "lat": 50.7204,
+      "lon": -121.3225
+    },
+    {
+      "bandNumber": 640,
+      "name": "Beecher Bay",
+      "people": "Coast Salish",
+      "tribalCouncil": "Te'mexw Treaty Association",
+      "lat": 48.3376,
+      "lon": -123.6083
+    },
+    {
+      "bandNumber": 730,
+      "name": "Binche Whut'en",
+      "people": "Dakelh",
+      "tribalCouncil": null,
+      "lat": 54.5662,
+      "lon": -124.4942
+    },
+    {
+      "bandNumber": 547,
+      "name": "Blueberry River First Nations",
+      "people": "Dane-zaa",
+      "tribalCouncil": "Treaty 8 Tribal Association",
+      "lat": 56.704,
+      "lon": -121.1124
+    },
+    {
+      "bandNumber": 686,
+      "name": "Bonaparte First Nation",
+      "people": "Secwepemc",
+      "tribalCouncil": "Shuswap Nation Tribal Council",
+      "lat": 50.8408,
+      "lon": -121.3854
+    },
+    {
+      "bandNumber": 700,
+      "name": "Boothroyd",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nlaka'pamux Nation Tribal Council",
+      "lat": 49.9631,
+      "lon": -121.485
+    },
+    {
+      "bandNumber": 701,
+      "name": "Boston Bar First Nation",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nlaka'pamux Nation Tribal Council",
+      "lat": 49.8771,
+      "lon": -121.4514
+    },
+    {
+      "bandNumber": 590,
+      "name": "Bridge River",
+      "people": "St'at'imc",
+      "tribalCouncil": "Lillooet Tribal Council",
+      "lat": 50.7695,
+      "lon": -121.9641
+    },
+    {
+      "bandNumber": 622,
+      "name": "Campbell River",
+      "people": "Laich-kwil-tach / Kwakwaka'wakw",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 50.0317,
+      "lon": -125.2479
+    },
+    {
+      "bandNumber": 591,
+      "name": "Cayoose Creek",
+      "people": "St'at'imc",
+      "tribalCouncil": "Lillooet Tribal Council",
+      "lat": 50.6743,
+      "lon": -121.9341
+    },
+    {
+      "bandNumber": 583,
+      "name": "Chawathil",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.3698,
+      "lon": -121.5526
+    },
+    {
+      "bandNumber": 584,
+      "name": "Cheam First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1893,
+      "lon": -121.7838
+    },
+    {
+      "bandNumber": 620,
+      "name": "Cheslatta Carrier Nation",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.0025,
+      "lon": -125.7141
+    },
+    {
+      "bandNumber": 693,
+      "name": "Coldwater",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nicola Tribal Association",
+      "lat": 50.0311,
+      "lon": -120.8592
+    },
+    {
+      "bandNumber": 694,
+      "name": "Cook's Ferry",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nicola Tribal Association",
+      "lat": 50.4241,
+      "lon": -121.3179
+    },
+    {
+      "bandNumber": 642,
+      "name": "Cowichan",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.7762,
+      "lon": -123.7093
+    },
+    {
+      "bandNumber": 635,
+      "name": "Da'naxda'xw First Nation",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": null,
+      "lat": 50.5965,
+      "lon": -126.5973
+    },
+    {
+      "bandNumber": 504,
+      "name": "Dease River",
+      "people": "Kaska Dena",
+      "tribalCouncil": null,
+      "lat": 59.2949,
+      "lon": -129.2905
+    },
+    {
+      "bandNumber": 662,
+      "name": "Ditidaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 48.8093,
+      "lon": -124.6697
+    },
+    {
+      "bandNumber": 548,
+      "name": "Doig River First Nation",
+      "people": "Dane-zaa",
+      "tribalCouncil": "Treaty 8 Tribal Association",
+      "lat": 56.5779,
+      "lon": -120.4956
+    },
+    {
+      "bandNumber": 561,
+      "name": "Douglas",
+      "people": "St'at'imc",
+      "tribalCouncil": "In-SHUCK-ch Nation",
+      "lat": 49.756,
+      "lon": -122.2011
+    },
+    {
+      "bandNumber": 636,
+      "name": "Dzawada'enuxw First Nation",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": "Musgamagw Dzawada'enuxw Tribal Council",
+      "lat": 50.9773,
+      "lon": -126.1802
+    },
+    {
+      "bandNumber": 634,
+      "name": "Ehattesaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.9851,
+      "lon": -126.859
+    },
+    {
+      "bandNumber": 711,
+      "name": "Esk'etemc",
+      "people": "Secwepemc",
+      "tribalCouncil": null,
+      "lat": 51.7887,
+      "lon": -122.2364
+    },
+    {
+      "bandNumber": 644,
+      "name": "Esquimalt",
+      "people": "Lekwungen / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.4449,
+      "lon": -123.4304
+    },
+    {
+      "bandNumber": 543,
+      "name": "Fort Nelson First Nation",
+      "people": "Dene / Cree",
+      "tribalCouncil": "Treaty 8 Tribal Association",
+      "lat": 58.7701,
+      "lon": -122.6598
+    },
+    {
+      "bandNumber": 531,
+      "name": "Gitanmaax",
+      "people": "Gitxsan",
+      "tribalCouncil": null,
+      "lat": 55.2552,
+      "lon": -127.677
+    },
+    {
+      "bandNumber": 537,
+      "name": "Gitanyow",
+      "people": "Gitxsan",
+      "tribalCouncil": null,
+      "lat": 55.2654,
+      "lon": -128.0695
+    },
+    {
+      "bandNumber": 675,
+      "name": "Gitga'at First Nation",
+      "people": "Tsimshian",
+      "tribalCouncil": "Tsimshian Tribal Council",
+      "lat": 53.4253,
+      "lon": -129.2519
+    },
+    {
+      "bandNumber": 535,
+      "name": "Gitsegukla",
+      "people": "Gitxsan",
+      "tribalCouncil": null,
+      "lat": 55.0875,
+      "lon": -127.8295
+    },
+    {
+      "bandNumber": 536,
+      "name": "Gitwangak",
+      "people": "Gitxsan",
+      "tribalCouncil": null,
+      "lat": 55.1024,
+      "lon": -128.0558
+    },
+    {
+      "bandNumber": 672,
+      "name": "Gitxaala Nation",
+      "people": "Tsimshian",
+      "tribalCouncil": null,
+      "lat": 53.7964,
+      "lon": -130.4331
+    },
+    {
+      "bandNumber": 724,
+      "name": "Gwa'Sala-Nakwaxda'xw",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 50.7342,
+      "lon": -127.4964
+    },
+    {
+      "bandNumber": 627,
+      "name": "Gwawaenuk Tribe",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": "Musgamagw Dzawada'enuxw Tribal Council",
+      "lat": 50.924,
+      "lon": -126.8221
+    },
+    {
+      "bandNumber": 534,
+      "name": "Hagwilget Village Council",
+      "people": "Wet'suwet'en / Gitxsan",
+      "tribalCouncil": null,
+      "lat": 55.2535,
+      "lon": -127.6003
+    },
+    {
+      "bandNumber": 676,
+      "name": "Haisla Nation",
+      "people": "Haisla",
+      "tribalCouncil": null,
+      "lat": 53.9755,
+      "lon": -128.6459
+    },
+    {
+      "bandNumber": 645,
+      "name": "Halalt",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.874,
+      "lon": -123.6961
+    },
+    {
+      "bandNumber": 546,
+      "name": "Halfway River First Nation",
+      "people": "Dane-zaa",
+      "tribalCouncil": "Treaty 8 Tribal Association",
+      "lat": 56.5134,
+      "lon": -121.965
+    },
+    {
+      "bandNumber": 538,
+      "name": "Heiltsuk",
+      "people": "Heiltsuk",
+      "tribalCouncil": null,
+      "lat": 52.1616,
+      "lon": -128.1444
+    },
+    {
+      "bandNumber": 661,
+      "name": "Hesquiaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.3684,
+      "lon": -126.2721
+    },
+    {
+      "bandNumber": 703,
+      "name": "High Bar",
+      "people": "Secwepemc",
+      "tribalCouncil": null,
+      "lat": 51.113,
+      "lon": -122.0181
+    },
+    {
+      "bandNumber": 552,
+      "name": "Homalco",
+      "people": "Mainland Comox / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.9516,
+      "lon": -125.2436
+    },
+    {
+      "bandNumber": 664,
+      "name": "Hupacasath First Nation",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.2658,
+      "lon": -124.8251
+    },
+    {
+      "bandNumber": 663,
+      "name": "Huu-ay-aht First Nations",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council (Maa-nulth)",
+      "lat": 48.8021,
+      "lon": -125.1272
+    },
+    {
+      "bandNumber": 683,
+      "name": "Iskut",
+      "people": "Tahltan",
+      "tribalCouncil": null,
+      "lat": 57.8379,
+      "lon": -129.9882
+    },
+    {
+      "bandNumber": 624,
+      "name": "K'ómoks First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 49.6788,
+      "lon": -124.9589
+    },
+    {
+      "bandNumber": 638,
+      "name": "Ka:'yu:'k't'h'/Che:k'tles7et'h' First Nations",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council (Maa-nulth)",
+      "lat": 50.0306,
+      "lon": -127.3782
+    },
+    {
+      "bandNumber": 704,
+      "name": "Kanaka Bar",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Fraser Canyon Indian Administration",
+      "lat": 50.1122,
+      "lon": -121.562
+    },
+    {
+      "bandNumber": 563,
+      "name": "Katzie",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.2014,
+      "lon": -122.6769
+    },
+    {
+      "bandNumber": 532,
+      "name": "Kispiox",
+      "people": "Gitxsan",
+      "tribalCouncil": null,
+      "lat": 55.3489,
+      "lon": -127.6983
+    },
+    {
+      "bandNumber": 540,
+      "name": "Kitasoo Xai'xais Nation",
+      "people": "Tsimshian / Heiltsuk",
+      "tribalCouncil": "Wuikinuxv-Kitasoo-Nuxalk TC",
+      "lat": 52.5874,
+      "lon": -128.5201
+    },
+    {
+      "bandNumber": 680,
+      "name": "Kitselas",
+      "people": "Tsimshian",
+      "tribalCouncil": "Tsimshian First Nations",
+      "lat": 54.6083,
+      "lon": -128.4107
+    },
+    {
+      "bandNumber": 681,
+      "name": "Kitsumkalum",
+      "people": "Tsimshian",
+      "tribalCouncil": "Tsimshian First Nations",
+      "lat": 54.5229,
+      "lon": -128.6673
+    },
+    {
+      "bandNumber": 553,
+      "name": "Klahoose First Nation",
+      "people": "Mainland Comox / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 50.126,
+      "lon": -124.9209
+    },
+    {
+      "bandNumber": 610,
+      "name": "Kwadacha Nation",
+      "people": "Sekani",
+      "tribalCouncil": null,
+      "lat": 57.4237,
+      "lon": -125.6303
+    },
+    {
+      "bandNumber": 626,
+      "name": "Kwakiutl",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": null,
+      "lat": 50.6937,
+      "lon": -127.4109
+    },
+    {
+      "bandNumber": 564,
+      "name": "Kwantlen First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.1714,
+      "lon": -122.5655
+    },
+    {
+      "bandNumber": 580,
+      "name": "Kwaw-kwaw-Apilt",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1668,
+      "lon": -121.9752
+    },
+    {
+      "bandNumber": 628,
+      "name": "Kwiakah",
+      "people": "Laich-kwil-tach / Kwakwaka'wakw",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 50.4227,
+      "lon": -125.1578
+    },
+    {
+      "bandNumber": 625,
+      "name": "Kwikwasut'inuxw Haxwa'mis",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": "Musgamagw Dzawada'enuxw Tribal Council",
+      "lat": 50.6964,
+      "lon": -126.6006
+    },
+    {
+      "bandNumber": 560,
+      "name": "Kwikwetlem First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.2302,
+      "lon": -122.806
+    },
+    {
+      "bandNumber": 607,
+      "name": "Lake Babine Nation",
+      "people": "Dakelh / Wet'suwet'en",
+      "tribalCouncil": null,
+      "lat": 54.2385,
+      "lon": -125.7616
+    },
+    {
+      "bandNumber": 674,
+      "name": "Lax Kw'alaams",
+      "people": "Tsimshian",
+      "tribalCouncil": null,
+      "lat": 54.5586,
+      "lon": -130.4331
+    },
+    {
+      "bandNumber": 579,
+      "name": "Leq'á:mel First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.204,
+      "lon": -122.0343
+    },
+    {
+      "bandNumber": 611,
+      "name": "Lheidli T'enneh",
+      "people": "Dakelh",
+      "tribalCouncil": null,
+      "lat": 54.0088,
+      "lon": -122.6143
+    },
+    {
+      "bandNumber": 721,
+      "name": "Lhoosk'uz Dene Nation",
+      "people": "Dakelh",
+      "tribalCouncil": null,
+      "lat": 53.0873,
+      "lon": -124.4902
+    },
+    {
+      "bandNumber": 715,
+      "name": "Lhtako Dene Nation",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier-Chilcotin Tribal Council",
+      "lat": 52.9549,
+      "lon": -122.4511
+    },
+    {
+      "bandNumber": 557,
+      "name": "Lil'wat Nation",
+      "people": "St'at'imc",
+      "tribalCouncil": "Lillooet Tribal Council",
+      "lat": 50.3182,
+      "lon": -122.7213
+    },
+    {
+      "bandNumber": 606,
+      "name": "Lower Kootenay",
+      "people": "Ktunaxa",
+      "tribalCouncil": "Ktunaxa Nation Council",
+      "lat": 49.0667,
+      "lon": -116.5163
+    },
+    {
+      "bandNumber": 695,
+      "name": "Lower Nicola",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nicola Tribal Association",
+      "lat": 50.1383,
+      "lon": -120.8577
+    },
+    {
+      "bandNumber": 598,
+      "name": "Lower Similkameen",
+      "people": "Syilx / Okanagan",
+      "tribalCouncil": "Okanagan Nation Alliance",
+      "lat": 49.0514,
+      "lon": -119.7238
+    },
+    {
+      "bandNumber": 646,
+      "name": "Lyackson",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.874,
+      "lon": -123.6961
+    },
+    {
+      "bandNumber": 705,
+      "name": "Lytton",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": null,
+      "lat": 50.2375,
+      "lon": -121.5776
+    },
+    {
+      "bandNumber": 647,
+      "name": "Malahat Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": "Naut'sa mawt Tribal Council",
+      "lat": 48.6137,
+      "lon": -123.5204
+    },
+    {
+      "bandNumber": 629,
+      "name": "Mamalilikulla First Nation",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 50.5942,
+      "lon": -126.6823
+    },
+    {
+      "bandNumber": 565,
+      "name": "Matsqui First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1062,
+      "lon": -122.3426
+    },
+    {
+      "bandNumber": 618,
+      "name": "McLeod Lake",
+      "people": "Sekani / Dakelh",
+      "tribalCouncil": null,
+      "lat": 54.9846,
+      "lon": -123.0458
+    },
+    {
+      "bandNumber": 673,
+      "name": "Metlakatla First Nation",
+      "people": "Tsimshian",
+      "tribalCouncil": null,
+      "lat": 54.3369,
+      "lon": -130.4442
+    },
+    {
+      "bandNumber": 630,
+      "name": "Mowachaht/Muchalaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.811,
+      "lon": -126.0721
+    },
+    {
+      "bandNumber": 550,
+      "name": "Musqueam",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.2249,
+      "lon": -123.1992
+    },
+    {
+      "bandNumber": 556,
+      "name": "N'Quatqua",
+      "people": "St'at'imc",
+      "tribalCouncil": null,
+      "lat": 50.5501,
+      "lon": -122.4846
+    },
+    {
+      "bandNumber": 612,
+      "name": "Nadleh Whuten",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.0761,
+      "lon": -124.6077
+    },
+    {
+      "bandNumber": 614,
+      "name": "Nak'azdli Whut'en",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.4385,
+      "lon": -124.2502
+    },
+    {
+      "bandNumber": 631,
+      "name": "Namgis First Nation",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 50.596,
+      "lon": -126.9353
+    },
+    {
+      "bandNumber": 649,
+      "name": "Nanoose First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": "Naut'sa mawt Tribal Council",
+      "lat": 49.2541,
+      "lon": -124.128
+    },
+    {
+      "bandNumber": 720,
+      "name": "Nazko First Nation",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier-Chilcotin Tribal Council",
+      "lat": 52.9437,
+      "lon": -123.5835
+    },
+    {
+      "bandNumber": 726,
+      "name": "Nee-Tahi-Buhn",
+      "people": "Wet'suwet'en / Dakelh",
+      "tribalCouncil": null,
+      "lat": 53.933,
+      "lon": -125.6674
+    },
+    {
+      "bandNumber": 690,
+      "name": "Neskonlith",
+      "people": "Secwepemc",
+      "tribalCouncil": "Shuswap Nation Tribal Council",
+      "lat": 50.7733,
+      "lon": -119.7306
+    },
+    {
+      "bandNumber": 566,
+      "name": "New Westminster",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.2363,
+      "lon": -123.024
+    },
+    {
+      "bandNumber": 696,
+      "name": "Nicomen",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nicola Tribal Association",
+      "lat": 50.2644,
+      "lon": -121.3982
+    },
+    {
+      "bandNumber": 671,
+      "name": "Nisga'a Village of Gingolx",
+      "people": "Nisga'a",
+      "tribalCouncil": "Nisga'a Lisims Government",
+      "lat": 54.9944,
+      "lon": -129.9573
+    },
+    {
+      "bandNumber": 679,
+      "name": "Nisga'a Village of Gitwinksihlkw",
+      "people": "Nisga'a",
+      "tribalCouncil": "Nisga'a Lisims Government",
+      "lat": 55.1925,
+      "lon": -129.2209
+    },
+    {
+      "bandNumber": 678,
+      "name": "Nisga'a Village of Laxgalt'sap",
+      "people": "Nisga'a",
+      "tribalCouncil": "Nisga'a Lisims Government",
+      "lat": 55.0353,
+      "lon": -129.5837
+    },
+    {
+      "bandNumber": 677,
+      "name": "Nisga'a Village of New Aiyansh",
+      "people": "Nisga'a",
+      "tribalCouncil": "Nisga'a Lisims Government",
+      "lat": 55.2066,
+      "lon": -129.0793
+    },
+    {
+      "bandNumber": 699,
+      "name": "Nooaitch",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nicola Tribal Association",
+      "lat": 50.154,
+      "lon": -121.0373
+    },
+    {
+      "bandNumber": 639,
+      "name": "Nuchatlaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.9903,
+      "lon": -126.9421
+    },
+    {
+      "bandNumber": 539,
+      "name": "Nuxalk Nation",
+      "people": "Nuxalk",
+      "tribalCouncil": "Wuikinuxv-Kitasoo-Nuxalk TC",
+      "lat": 52.3619,
+      "lon": -126.7157
+    },
+    {
+      "bandNumber": 616,
+      "name": "Okanagan",
+      "people": "Syilx / Okanagan",
+      "tribalCouncil": "Okanagan Nation Alliance",
+      "lat": 50.3562,
+      "lon": -119.3181
+    },
+    {
+      "bandNumber": 669,
+      "name": "Old Massett Village Council",
+      "people": "Haida",
+      "tribalCouncil": "Council of the Haida Nation",
+      "lat": 54.0344,
+      "lon": -132.175
+    },
+    {
+      "bandNumber": 692,
+      "name": "Oregon Jack Creek",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nlaka'pamux Nation Tribal Council",
+      "lat": 50.6194,
+      "lon": -121.3191
+    },
+    {
+      "bandNumber": 596,
+      "name": "Osoyoos",
+      "people": "Syilx / Okanagan",
+      "tribalCouncil": "Okanagan Nation Alliance",
+      "lat": 49.1838,
+      "lon": -119.5331
+    },
+    {
+      "bandNumber": 658,
+      "name": "Pacheedaht First Nation",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": null,
+      "lat": 48.5768,
+      "lon": -124.4077
+    },
+    {
+      "bandNumber": 652,
+      "name": "Pauquachin",
+      "people": "W̱SÁNEĆ / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.6272,
+      "lon": -123.4585
+    },
+    {
+      "bandNumber": 650,
+      "name": "Penelakut Tribe",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.971,
+      "lon": -123.6597
+    },
+    {
+      "bandNumber": 597,
+      "name": "Penticton",
+      "people": "Syilx / Okanagan",
+      "tribalCouncil": "Okanagan Nation Alliance",
+      "lat": 49.4914,
+      "lon": -119.6448
+    },
+    {
+      "bandNumber": 586,
+      "name": "Peters First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.2939,
+      "lon": -121.6579
+    },
+    {
+      "bandNumber": 585,
+      "name": "Popkum First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.2019,
+      "lon": -121.7195
+    },
+    {
+      "bandNumber": 544,
+      "name": "Prophet River First Nation",
+      "people": "Dane-zaa",
+      "tribalCouncil": "Treaty 8 Tribal Association",
+      "lat": 58.092,
+      "lon": -122.6982
+    },
+    {
+      "bandNumber": 651,
+      "name": "Qualicum First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.397,
+      "lon": -124.6158
+    },
+    {
+      "bandNumber": 633,
+      "name": "Quatsino",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 50.6141,
+      "lon": -127.5713
+    },
+    {
+      "bandNumber": 615,
+      "name": "Saik'uz First Nation",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 53.9434,
+      "lon": -124.114
+    },
+    {
+      "bandNumber": 567,
+      "name": "Samahquam",
+      "people": "St'at'imc",
+      "tribalCouncil": "In-SHUCK-ch Nation",
+      "lat": 50.0513,
+      "lon": -122.5411
+    },
+    {
+      "bandNumber": 542,
+      "name": "Saulteau First Nations",
+      "people": "Saulteau / Cree / Dane-zaa",
+      "tribalCouncil": "Treaty 8 Tribal Association",
+      "lat": 55.8522,
+      "lon": -121.653
+    },
+    {
+      "bandNumber": 581,
+      "name": "Seabird Island",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.2551,
+      "lon": -121.7304
+    },
+    {
+      "bandNumber": 569,
+      "name": "Semiahmoo",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.0145,
+      "lon": -122.7777
+    },
+    {
+      "bandNumber": 698,
+      "name": "Shackan",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": null,
+      "lat": 50.2934,
+      "lon": -121.1754
+    },
+    {
+      "bandNumber": 605,
+      "name": "Shuswap Band",
+      "people": "Secwepemc",
+      "tribalCouncil": null,
+      "lat": 50.5159,
+      "lon": -116.0073
+    },
+    {
+      "bandNumber": 587,
+      "name": "Shxw'ow'hamel First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.343,
+      "lon": -121.6067
+    },
+    {
+      "bandNumber": 570,
+      "name": "Shxwhá:y Village",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.169,
+      "lon": -121.9889
+    },
+    {
+      "bandNumber": 533,
+      "name": "Sik-E-Dakh",
+      "people": "Gitxsan",
+      "tribalCouncil": null,
+      "lat": 55.3096,
+      "lon": -127.6799
+    },
+    {
+      "bandNumber": 691,
+      "name": "Simpcw First Nation",
+      "people": "Secwepemc",
+      "tribalCouncil": "Shuswap Nation Tribal Council",
+      "lat": 51.3169,
+      "lon": -120.149
+    },
+    {
+      "bandNumber": 706,
+      "name": "Siska",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nicola Tribal Association",
+      "lat": 50.1363,
+      "lon": -121.5716
+    },
+    {
+      "bandNumber": 562,
+      "name": "Skatin",
+      "people": "St'at'imc",
+      "tribalCouncil": "In-SHUCK-ch Nation",
+      "lat": 49.9383,
+      "lon": -122.4104
+    },
+    {
+      "bandNumber": 582,
+      "name": "Skawahlook First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.3568,
+      "lon": -121.6062
+    },
+    {
+      "bandNumber": 687,
+      "name": "Skeetchestn",
+      "people": "Secwepemc",
+      "tribalCouncil": "Shuswap Nation Tribal Council",
+      "lat": 50.8397,
+      "lon": -120.9548
+    },
+    {
+      "bandNumber": 670,
+      "name": "Skidegate",
+      "people": "Haida",
+      "tribalCouncil": "Council of the Haida Nation",
+      "lat": 53.2696,
+      "lon": -131.9904
+    },
+    {
+      "bandNumber": 729,
+      "name": "Skin Tyee",
+      "people": "Wet'suwet'en / Dakelh",
+      "tribalCouncil": null,
+      "lat": 53.9956,
+      "lon": -125.8819
+    },
+    {
+      "bandNumber": 571,
+      "name": "Skowkale",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1417,
+      "lon": -121.9406
+    },
+    {
+      "bandNumber": 707,
+      "name": "Skuppah",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Fraser Canyon Indian Administration",
+      "lat": 50.1876,
+      "lon": -121.5739
+    },
+    {
+      "bandNumber": 689,
+      "name": "Skwlax te Secwepemculecw",
+      "people": "Secwepemc",
+      "tribalCouncil": null,
+      "lat": 50.8702,
+      "lon": -119.5997
+    },
+    {
+      "bandNumber": 648,
+      "name": "Snuneymuxw First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": "Naut'sa mawt Tribal Council",
+      "lat": 49.1517,
+      "lon": -123.9303
+    },
+    {
+      "bandNumber": 656,
+      "name": "Songhees Nation",
+      "people": "Lekwungen / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.4414,
+      "lon": -123.4282
+    },
+    {
+      "bandNumber": 572,
+      "name": "Soowahlie",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.081,
+      "lon": -121.969
+    },
+    {
+      "bandNumber": 600,
+      "name": "Splatsin",
+      "people": "Secwepemc",
+      "tribalCouncil": "Shuswap Nation Tribal Council",
+      "lat": 50.5425,
+      "lon": -119.1387
+    },
+    {
+      "bandNumber": 708,
+      "name": "Spuzzum",
+      "people": "Nlaka'pamux",
+      "tribalCouncil": "Nlaka'pamux Nation Tribal Council",
+      "lat": 49.661,
+      "lon": -121.4115
+    },
+    {
+      "bandNumber": 568,
+      "name": "Sq'éwlets",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.2359,
+      "lon": -122.0025
+    },
+    {
+      "bandNumber": 555,
+      "name": "Squamish",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.3237,
+      "lon": -123.1322
+    },
+    {
+      "bandNumber": 574,
+      "name": "Squiala First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.158,
+      "lon": -121.9794
+    },
+    {
+      "bandNumber": 573,
+      "name": "Sqwá First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1781,
+      "lon": -121.9723
+    },
+    {
+      "bandNumber": 613,
+      "name": "Stellat'en First Nation",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.0638,
+      "lon": -124.9111
+    },
+    {
+      "bandNumber": 559,
+      "name": "Sts'ailes",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.2985,
+      "lon": -121.9142
+    },
+    {
+      "bandNumber": 723,
+      "name": "Stswecem'c Xget'tem First Nation",
+      "people": "Secwepemc",
+      "tribalCouncil": "Northern Shuswap Tribal Council",
+      "lat": 51.5888,
+      "lon": -122.209
+    },
+    {
+      "bandNumber": 641,
+      "name": "Stz'uminus First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": "Naut'sa mawt Tribal Council",
+      "lat": 48.993,
+      "lon": -123.7721
+    },
+    {
+      "bandNumber": 578,
+      "name": "Sumas First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.0553,
+      "lon": -122.1946
+    },
+    {
+      "bandNumber": 657,
+      "name": "T'Sou-ke First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": "Te'mexw Treaty Association",
+      "lat": 48.3846,
+      "lon": -123.6972
+    },
+    {
+      "bandNumber": 593,
+      "name": "T'it'q'et",
+      "people": "St'at'imc",
+      "tribalCouncil": "Lillooet Tribal Council",
+      "lat": 50.6774,
+      "lon": -121.9456
+    },
+    {
+      "bandNumber": 682,
+      "name": "Tahltan",
+      "people": "Tahltan",
+      "tribalCouncil": null,
+      "lat": 57.9018,
+      "lon": -131.1797
+    },
+    {
+      "bandNumber": 608,
+      "name": "Takla Nation",
+      "people": "Dakelh / Sekani",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 55.4824,
+      "lon": -125.9753
+    },
+    {
+      "bandNumber": 501,
+      "name": "Taku River Tlingit",
+      "people": "Tlingit",
+      "tribalCouncil": null,
+      "lat": 59.5058,
+      "lon": -133.6587
+    },
+    {
+      "bandNumber": 688,
+      "name": "Tk'emlúps te Secwépemc",
+      "people": "Secwepemc",
+      "tribalCouncil": "Shuswap Nation Tribal Council",
+      "lat": 50.6789,
+      "lon": -120.2942
+    },
+    {
+      "bandNumber": 617,
+      "name": "Tl'azt'en Nation",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.6559,
+      "lon": -124.7236
+    },
+    {
+      "bandNumber": 712,
+      "name": "Tl'etinqox Government",
+      "people": "Tsilhqot'in",
+      "tribalCouncil": "Tsilhqot'in National Government",
+      "lat": 52.017,
+      "lon": -123.1764
+    },
+    {
+      "bandNumber": 554,
+      "name": "Tla'amin Nation",
+      "people": "Mainland Comox / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.9006,
+      "lon": -124.6174
+    },
+    {
+      "bandNumber": 660,
+      "name": "Tla-o-qui-aht First Nations",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.1733,
+      "lon": -125.9121
+    },
+    {
+      "bandNumber": 632,
+      "name": "Tlatlasikwala",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": null,
+      "lat": 50.9225,
+      "lon": -127.94
+    },
+    {
+      "bandNumber": 637,
+      "name": "Tlowitsis Tribe",
+      "people": "Kwakwaka'wakw",
+      "tribalCouncil": null,
+      "lat": 49.9095,
+      "lon": -125.2089
+    },
+    {
+      "bandNumber": 718,
+      "name": "Tl’esqox",
+      "people": "Tsilhqot'in",
+      "tribalCouncil": "Tsilhqot'in National Government",
+      "lat": 51.9296,
+      "lon": -122.5014
+    },
+    {
+      "bandNumber": 666,
+      "name": "Toquaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council (Maa-nulth)",
+      "lat": 48.9962,
+      "lon": -125.3745
+    },
+    {
+      "bandNumber": 619,
+      "name": "Ts'il Kaz Koh",
+      "people": "Wet'suwet'en / Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.2367,
+      "lon": -125.7711
+    },
+    {
+      "bandNumber": 594,
+      "name": "Ts'kw'aylaxw First Nation",
+      "people": "St'at'imc / Secwepemc",
+      "tribalCouncil": "Lillooet Tribal Council",
+      "lat": 50.8859,
+      "lon": -121.819
+    },
+    {
+      "bandNumber": 643,
+      "name": "Ts'uubaa-asatx",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.826,
+      "lon": -124.0697
+    },
+    {
+      "bandNumber": 595,
+      "name": "Tsal'alh",
+      "people": "St'at'imc",
+      "tribalCouncil": "Lillooet Tribal Council",
+      "lat": 50.7281,
+      "lon": -122.2176
+    },
+    {
+      "bandNumber": 653,
+      "name": "Tsartlip",
+      "people": "W̱SÁNEĆ / Coast Salish",
+      "tribalCouncil": "Sencot'en Alliance",
+      "lat": 48.5813,
+      "lon": -123.4675
+    },
+    {
+      "bandNumber": 654,
+      "name": "Tsawout First Nation",
+      "people": "W̱SÁNEĆ / Coast Salish",
+      "tribalCouncil": "Sencot'en Alliance",
+      "lat": 48.592,
+      "lon": -123.3907
+    },
+    {
+      "bandNumber": 577,
+      "name": "Tsawwassen First Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": "Naut'sa mawt Tribal Council",
+      "lat": 49.0379,
+      "lon": -123.0977
+    },
+    {
+      "bandNumber": 609,
+      "name": "Tsay Keh Dene",
+      "people": "Sekani",
+      "tribalCouncil": null,
+      "lat": 56.8919,
+      "lon": -124.9632
+    },
+    {
+      "bandNumber": 665,
+      "name": "Tseshaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council",
+      "lat": 49.2672,
+      "lon": -124.8489
+    },
+    {
+      "bandNumber": 655,
+      "name": "Tseycum",
+      "people": "W̱SÁNEĆ / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 48.666,
+      "lon": -123.4513
+    },
+    {
+      "bandNumber": 549,
+      "name": "Tsleil-Waututh Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.3106,
+      "lon": -122.9879
+    },
+    {
+      "bandNumber": 713,
+      "name": "Tsq'escen' First Nation",
+      "people": "Secwepemc",
+      "tribalCouncil": "Northern Shuswap Tribal Council",
+      "lat": 51.7711,
+      "lon": -120.9933
+    },
+    {
+      "bandNumber": 575,
+      "name": "Tzeachten",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1119,
+      "lon": -121.954
+    },
+    {
+      "bandNumber": 710,
+      "name": "Tŝideldel First Nation",
+      "people": "Tsilhqot'in",
+      "tribalCouncil": "Tsilhqot'in National Government",
+      "lat": 52.1389,
+      "lon": -123.9525
+    },
+    {
+      "bandNumber": 667,
+      "name": "Uchucklesaht",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council (Maa-nulth)",
+      "lat": 49.0205,
+      "lon": -125.0381
+    },
+    {
+      "bandNumber": 668,
+      "name": "Ucluelet First Nation",
+      "people": "Nuu-chah-nulth",
+      "tribalCouncil": "Nuu-chah-nulth Tribal Council (Maa-nulth)",
+      "lat": 48.9364,
+      "lon": -125.526
+    },
+    {
+      "bandNumber": 722,
+      "name": "Ulkatcho",
+      "people": "Dakelh / Tsilhqot'in",
+      "tribalCouncil": "Carrier-Chilcotin Tribal Council",
+      "lat": 52.4673,
+      "lon": -125.3067
+    },
+    {
+      "bandNumber": 588,
+      "name": "Union Bar First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.4374,
+      "lon": -121.4345
+    },
+    {
+      "bandNumber": 697,
+      "name": "Upper Nicola",
+      "people": "Syilx / Okanagan",
+      "tribalCouncil": "Okanagan Nation Alliance / Nicola TA",
+      "lat": 50.142,
+      "lon": -120.2824
+    },
+    {
+      "bandNumber": 599,
+      "name": "Upper Similkameen",
+      "people": "Syilx / Okanagan",
+      "tribalCouncil": "Okanagan Nation Alliance",
+      "lat": 49.3559,
+      "lon": -120.0787
+    },
+    {
+      "bandNumber": 623,
+      "name": "We Wai Kai Nation",
+      "people": "Laich-kwil-tach / Kwakwaka'wakw",
+      "tribalCouncil": "Kwakiutl District Council",
+      "lat": 50.0186,
+      "lon": -125.2906
+    },
+    {
+      "bandNumber": 545,
+      "name": "West Moberly First Nations",
+      "people": "Dane-zaa / Cree",
+      "tribalCouncil": "Treaty 8 Tribal Association",
+      "lat": 55.8306,
+      "lon": -121.8309
+    },
+    {
+      "bandNumber": 601,
+      "name": "Westbank First Nation",
+      "people": "Syilx / Okanagan",
+      "tribalCouncil": "Okanagan Nation Alliance",
+      "lat": 49.8398,
+      "lon": -119.6053
+    },
+    {
+      "bandNumber": 725,
+      "name": "Wet'suwet'en First Nation",
+      "people": "Wet'suwet'en / Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.3295,
+      "lon": -125.8825
+    },
+    {
+      "bandNumber": 702,
+      "name": "Whispering Pines/Clinton",
+      "people": "Secwepemc",
+      "tribalCouncil": null,
+      "lat": 50.9867,
+      "lon": -120.2408
+    },
+    {
+      "bandNumber": 719,
+      "name": "Williams Lake First Nation",
+      "people": "Secwepemc",
+      "tribalCouncil": "Northern Shuswap Tribal Council",
+      "lat": 52.1182,
+      "lon": -122.0166
+    },
+    {
+      "bandNumber": 530,
+      "name": "Witset First Nation",
+      "people": "Wet'suwet'en",
+      "tribalCouncil": "Office of the Wet'suwet'en",
+      "lat": 55.0216,
+      "lon": -127.3309
+    },
+    {
+      "bandNumber": 541,
+      "name": "Wuikinuxv Nation",
+      "people": "Wuikinuxv",
+      "tribalCouncil": "Wuikinuxv-Kitasoo-Nuxalk TC",
+      "lat": 51.6801,
+      "lon": -127.2321
+    },
+    {
+      "bandNumber": 716,
+      "name": "Xatsull First Nation",
+      "people": "Secwepemc",
+      "tribalCouncil": "Northern Shuswap Tribal Council",
+      "lat": 52.2804,
+      "lon": -122.1448
+    },
+    {
+      "bandNumber": 592,
+      "name": "Xaxli'p",
+      "people": "St'at'imc",
+      "tribalCouncil": "Lillooet Tribal Council",
+      "lat": 50.7346,
+      "lon": -121.8644
+    },
+    {
+      "bandNumber": 714,
+      "name": "Xeni Gwet'in First Nations Government",
+      "people": "Tsilhqot'in",
+      "tribalCouncil": "Tsilhqot'in National Government",
+      "lat": 51.4154,
+      "lon": -124.0956
+    },
+    {
+      "bandNumber": 576,
+      "name": "Yakweakwioose",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": "Stó:lō Nation",
+      "lat": 49.1324,
+      "lon": -121.9369
+    },
+    {
+      "bandNumber": 589,
+      "name": "Yale First Nation",
+      "people": "Stó:lō / Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.5625,
+      "lon": -121.426
+    },
+    {
+      "bandNumber": 603,
+      "name": "Yaqit ʔa·knuqli‘it First Nation",
+      "people": "Ktunaxa",
+      "tribalCouncil": "Ktunaxa Nation Council",
+      "lat": 49.0933,
+      "lon": -115.0819
+    },
+    {
+      "bandNumber": 728,
+      "name": "Yekooche First Nation",
+      "people": "Dakelh",
+      "tribalCouncil": "Carrier Sekani Tribal Council",
+      "lat": 54.5979,
+      "lon": -125.0822
+    },
+    {
+      "bandNumber": 717,
+      "name": "Yunesit'in Government",
+      "people": "Tsilhqot'in",
+      "tribalCouncil": "Tsilhqot'in National Government",
+      "lat": 51.9268,
+      "lon": -123.1399
+    },
+    {
+      "bandNumber": 551,
+      "name": "shishálh Nation",
+      "people": "Coast Salish",
+      "tribalCouncil": null,
+      "lat": 49.4738,
+      "lon": -123.7494
+    },
+    {
+      "bandNumber": 604,
+      "name": "ʔAkisq'nuk First Nation",
+      "people": "Ktunaxa",
+      "tribalCouncil": "Ktunaxa Nation Council",
+      "lat": 50.4585,
+      "lon": -115.964
+    },
+    {
+      "bandNumber": 709,
+      "name": "ʔEsdilagh First Nation",
+      "people": "Tsilhqot'in",
+      "tribalCouncil": "Tsilhqot'in National Government",
+      "lat": 52.5628,
+      "lon": -122.4968
+    },
+    {
+      "bandNumber": 602,
+      "name": "ʔaqam",
+      "people": "Ktunaxa",
+      "tribalCouncil": "Ktunaxa Nation Council",
+      "lat": 49.5835,
+      "lon": -115.7545
+    }
+  ]
+}

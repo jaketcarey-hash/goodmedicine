@@ -1,0 +1,82 @@
+---
+/**
+ * How far along a thing is, as a mark rather than a sentence.
+ *
+ * This is the signature element of the record, and it exists because of the one
+ * fact that makes this record different from news: an announcement and a
+ * completed transaction read identically in a headline, and they are not the
+ * same event. A reader's real question is not "what happened" but "has this
+ * actually happened yet".
+ *
+ * Three filled steps, left to right — proposed, committed, done. Contested sits
+ * apart rather than further along, because a court case is not progress toward
+ * completion; it is the road forking. That asymmetry is the whole point and is
+ * why this is not a progress bar.
+ *
+ * The fill is the verified green: the rail measures how settled the thing is,
+ * which is the same axis the rest of the apparatus speaks in. Never colour
+ * alone: the stage is always named beside it, in the apparatus voice.
+ */
+import { BAND_LABEL, BAND_MEANING, type Band } from '../../lib/ledger';
+
+interface Props {
+  band: Band;
+  /** The exact stage from the ledger's vocabulary, shown as the label. */
+  stage?: string;
+  size?: 'sm' | 'md';
+}
+
+const { band, stage, size = 'sm' } = Astro.props;
+
+/** The three steps of becoming real. Contested is not one of them. */
+const STEPS: Band[] = ['early', 'committed', 'done'];
+const reached = STEPS.indexOf(band);
+const contested = band === 'contested';
+
+const dim =
+  size === 'md'
+    ? { w: 'w-9', h: 'h-[5px]', gap: 'gap-[3px]', text: 'text-[11px]', dot: 'w-2.5 h-2.5' }
+    : { w: 'w-5', h: 'h-[3px]', gap: 'gap-[2px]', text: 'text-[10px]', dot: 'w-2 h-2' };
+---
+
+<span
+  class="inline-flex items-center gap-2.5"
+  title={BAND_MEANING[band]}
+  role="img"
+  aria-label={`${stage ?? BAND_LABEL[band]} — ${BAND_LABEL[band]}`}
+>
+  <span class:list={['inline-flex items-center', dim.gap]} aria-hidden="true">
+    {
+      STEPS.map((_, i) => (
+        <span
+          class:list={[
+            dim.w,
+            dim.h,
+            contested
+              ? 'bg-rule'
+              : i <= reached
+                ? 'bg-verified'
+                : 'bg-rule',
+          ]}
+        />
+      ))
+    }
+    {
+      contested && (
+        /* The fork. Contested is off the road, not further along it — which is
+           why it breaks the line instead of extending it. */
+        <span class:list={['rotate-45 bg-contested ml-1.5 shrink-0', dim.dot]} />
+      )
+    }
+  </span>
+
+  <span
+    class:list={[
+      'apparatus leading-none',
+      dim.text,
+      contested ? 'text-contested' : 'text-ink',
+    ]}
+  >
+    {stage ?? BAND_LABEL[band]}
+  </span>
+</span>
