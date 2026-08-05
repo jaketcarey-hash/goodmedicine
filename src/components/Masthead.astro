@@ -1,0 +1,149 @@
+---
+/**
+ * Desktop masthead — the site's front door from 768px up.
+ *
+ * The phone keeps its bottom nav; this replaces it on wider screens. Both are
+ * always in the markup and CSS decides which one is visible, so there is no
+ * layout shift while JavaScript works out how wide the window is.
+ *
+ * Nations sits first and carries its own rule underneath, because it is the
+ * publication — the thing that changes daily and the reason to come back.
+ */
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  branch?: string;
+}
+
+const { branch = 'home' } = Astro.props;
+
+const record = [{ id: 'nations', label: 'Nations', href: '/nations' }];
+
+const community = [
+  { id: 'money', label: 'Money', href: '/money', accent: 'clay' },
+  { id: 'rights', label: 'Rights', href: '/rights', accent: 'water' },
+  { id: 'path', label: 'Path', href: '/path', accent: 'sage' },
+  { id: 'self', label: 'Self', href: '/self', accent: 'berry' },
+] as const;
+
+const utility = [
+  { id: 'tools', label: 'Tools', href: '/tools' },
+  { id: 'glossary', label: 'Glossary', href: '/glossary' },
+];
+
+const searchActive = branch === 'search';
+
+const accentClass: Record<string, string> = {
+  clay: 'after:bg-clay-500',
+  water: 'after:bg-water-500',
+  sage: 'after:bg-sage-500',
+  berry: 'after:bg-berry-500',
+};
+---
+
+<header
+  class="hidden md:block sticky top-0 z-50 bg-surface/85 backdrop-blur-lg border-b border-stone-200"
+>
+  <div class="mx-auto max-w-6xl px-6 h-16 flex items-center gap-8">
+    <a
+      href="/"
+      class="flex items-center gap-2.5 shrink-0 group"
+      aria-label="Strong Fire — home"
+    >
+      <BrandMark size={26} id="masthead" />
+      <span
+        class="font-display font-semibold text-lg tracking-tight text-text-primary
+          group-hover:text-clay-600 transition-colors duration-[var(--duration-normal)]"
+      >
+        Strong Fire
+      </span>
+    </a>
+
+    <nav class="flex items-center gap-1 ml-auto" aria-label="Main navigation">
+      {
+        record.map((item) => (
+          <a
+            href={item.href}
+            aria-current={branch === item.id ? 'page' : undefined}
+            class:list={[
+              'relative px-3 py-2 text-sm font-semibold tracking-tight transition-colors duration-[var(--duration-normal)]',
+              'after:absolute after:left-3 after:right-3 after:-bottom-px after:h-[2px] after:rounded-full',
+              'after:bg-cedar after:transition-opacity after:duration-[var(--duration-normal)]',
+              branch === item.id
+                ? 'text-cedar after:opacity-100'
+                : 'text-text-secondary hover:text-cedar after:opacity-0 hover:after:opacity-40',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+
+      <span class="w-px h-5 bg-stone-200 mx-2" aria-hidden="true"></span>
+
+      {
+        community.map((item) => (
+          <a
+            href={item.href}
+            aria-current={branch === item.id ? 'page' : undefined}
+            class:list={[
+              'relative px-3 py-2 text-sm font-medium transition-colors duration-[var(--duration-normal)]',
+              'after:absolute after:left-3 after:right-3 after:-bottom-px after:h-[2px] after:rounded-full',
+              'after:transition-opacity after:duration-[var(--duration-normal)]',
+              accentClass[item.accent],
+              branch === item.id
+                ? 'text-text-primary after:opacity-100'
+                : 'text-text-secondary hover:text-text-primary after:opacity-0 hover:after:opacity-50',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+
+      <span class="w-px h-5 bg-stone-200 mx-2" aria-hidden="true"></span>
+
+      {
+        utility.map((item) => (
+          <a
+            href={item.href}
+            aria-current={branch === item.id ? 'page' : undefined}
+            class:list={[
+              'px-3 py-2 text-sm transition-colors duration-[var(--duration-normal)]',
+              branch === item.id
+                ? 'text-text-primary font-medium'
+                : 'text-text-muted hover:text-text-secondary',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+
+      <a
+        href="/search"
+        aria-label="Search"
+        aria-current={searchActive ? 'page' : undefined}
+        class:list={[
+          'ml-1 p-2 rounded-lg transition-colors duration-[var(--duration-normal)]',
+          searchActive
+            ? 'text-text-primary bg-stone-100'
+            : 'text-text-muted hover:text-text-secondary hover:bg-stone-100',
+        ]}
+      >
+        <svg
+          class="w-[18px] h-[18px]"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>

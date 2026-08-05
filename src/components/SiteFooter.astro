@@ -1,0 +1,104 @@
+---
+/**
+ * Desktop footer. Hidden on phones, where the bottom nav already carries
+ * wayfinding and a tall footer would just sit underneath it.
+ *
+ * The closing statement is the same promise the home page makes, said once
+ * more at the bottom of every page: nothing here leaves the device.
+ */
+import BrandMark from './BrandMark.astro';
+
+const columns = [
+  {
+    heading: 'The Record',
+    links: [
+      { label: 'Today', href: '/nations' },
+      { label: 'Archive', href: '/nations/archive' },
+      { label: 'Event ledger', href: '/nations/ledger' },
+      { label: 'Open questions', href: '/nations/open' },
+      { label: 'Who the record names', href: '/nations/who' },
+    ],
+  },
+  {
+    heading: 'Knowing',
+    links: [
+      { label: 'Your money', href: '/money' },
+      { label: 'Your rights', href: '/rights' },
+      { label: 'Your path', href: '/path' },
+      { label: 'Yourself', href: '/self' },
+    ],
+  },
+  {
+    heading: 'Use',
+    links: [
+      { label: 'Tools', href: '/tools' },
+      { label: 'Learning paths', href: '/learn' },
+      { label: 'Glossary', href: '/glossary' },
+      { label: 'Search', href: '/search' },
+      { label: 'Calendar', href: '/calendar' },
+      { label: 'Moments', href: '/moments' },
+    ],
+  },
+  {
+    heading: 'About',
+    links: [
+      { label: 'Resources', href: '/resources' },
+      { label: 'Your data', href: '/settings' },
+      { label: 'Disclaimer', href: '/disclaimer' },
+    ],
+  },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="hidden md:block border-t border-stone-200 bg-surface-warm mt-20">
+  <div class="mx-auto max-w-6xl px-6 py-14">
+    <div class="grid grid-cols-[1.4fr_repeat(4,1fr)] gap-10">
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <BrandMark size={24} id="footer" />
+          <span class="font-display font-semibold tracking-tight">Strong Fire</span>
+        </div>
+        <p class="text-sm text-text-secondary leading-relaxed max-w-xs">
+          Financial knowledge and tools for First Nations communities. Free to use,
+          with nothing to sign up for.
+        </p>
+      </div>
+
+      {
+        columns.map((col) => (
+          <nav aria-labelledby={`footer-${col.heading}`}>
+            <h2
+              id={`footer-${col.heading}`}
+              class="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-4"
+            >
+              {col.heading}
+            </h2>
+            <ul class="space-y-2.5">
+              {col.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-[var(--duration-normal)]"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-stone-200 flex items-baseline justify-between gap-8">
+      <p class="text-xs text-text-muted leading-relaxed max-w-2xl">
+        Everything you enter stays on your device. No accounts, no tracking, no ads,
+        nothing sent anywhere. This is an independent educational project, unaffiliated
+        with any bank, firm, or government agency, and it is not financial or tax advice.
+      </p>
+      <p class="text-xs text-text-muted shrink-0">&copy; {year}</p>
+    </div>
+  </div>
+</footer>

@@ -15,7 +15,7 @@ interface Props {
 const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = Astro.props;
 ---
 
-<Shell title={title} branch={branch}>
+<Shell title={title} branch={branch} description={subtitle}>
   <PageHeader
     title={title}
     subtitle={subtitle}
@@ -25,12 +25,12 @@ const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = 
   />
 
   {readTime && (
-    <div class="px-5 -mt-2 mb-4">
+    <div class="px-5 md:px-0 -mt-2 mb-4">
       <span class="text-xs text-text-muted">{readTime} read</span>
     </div>
   )}
 
-  <article class="px-5 pb-12 prose-gm">
+  <article class="px-5 md:px-0 pb-12 md:pb-20 prose-gm md:max-w-[68ch]">
     <slot />
 
     {lastUpdated && (
@@ -47,6 +47,19 @@ const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = 
     font-size: var(--text-base);
     line-height: 1.75;
     color: var(--color-text-primary);
+  }
+
+  /* Desktop gets a slightly larger body and more air between sections.
+     The measure is capped at 68ch in the markup, so this stays readable
+     rather than sprawling. */
+  @media (min-width: 768px) {
+    .prose-gm {
+      font-size: var(--text-lg);
+      line-height: 1.7;
+    }
+    .prose-gm h2 { margin-top: 3.25rem; }
+    .prose-gm h3 { margin-top: 2.5rem; }
+    .prose-gm p { margin-bottom: 1.4rem; }
   }
 
   .prose-gm h2 {

@@ -26,7 +26,7 @@
   };
 </script>
 
-<header class="pt-6 pb-4 px-5 bg-gradient-to-b {accentBg[branch]} to-transparent">
+<header class="pt-6 md:pt-14 pb-4 md:pb-6 px-5 md:px-0 bg-gradient-to-b {accentBg[branch]} to-transparent">
   {#if backHref}
     <a
       href={backHref}
@@ -39,8 +39,8 @@
     </a>
   {/if}
 
-  <h1 class="text-3xl font-bold tracking-tight">{title}</h1>
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight max-w-2xl">{title}</h1>
   {#if subtitle}
-    <p class="text-text-secondary mt-2 leading-relaxed max-w-md">{subtitle}</p>
+    <p class="text-text-secondary mt-2 md:mt-3 leading-relaxed max-w-md md:max-w-xl md:text-lg">{subtitle}</p>
   {/if}
 </header>

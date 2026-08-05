@@ -74,6 +74,19 @@
   --color-berry-800: #3b1e28;
   --color-berry-900: #241318;
 
+  /* ---- Palette: Record ----
+     The intelligence surface. Cedar and forest were already carrying the
+     Nations brief in its own renderer; bringing them into the token set is
+     what lets the brief stop looking like a different website. Additive —
+     nothing on the community side changes. */
+  --color-ink: #18201d;
+  --color-cedar: #873f2b;
+  --color-cedar-dark: #4f241a;
+  --color-forest: #1f5b4d;
+  --color-paper: #fffdf8;
+  --color-canvas: #ede9df;
+  --color-rule: #ddd6c8;
+
   /* ---- Semantic ---- */
   --color-surface: #faf8f5;
   --color-surface-warm: #f2ede6;
@@ -86,6 +99,10 @@
   /* ---- Typography ---- */
   --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  /* The Record register. One serif, self-hosted, used only on the Nations
+     surface so the two doors read differently without a second font on
+     every page of a connection-constrained app. */
+  --font-record: 'Newsreader', Georgia, 'Times New Roman', serif;
 
   /* ---- Fluid type scale ---- */
   --text-xs: clamp(0.7rem, 0.66rem + 0.2vw, 0.78rem);
@@ -147,12 +164,18 @@ body {
   html { scroll-behavior: smooth; }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--color-text-primary);
-  letter-spacing: -0.01em;
+/* In @layer base so Tailwind's utilities layer can still override it.
+   Unlayered CSS beats layered CSS no matter the source order, so leaving this
+   outside a layer made `font-record` silently lose on every heading — the
+   Record surface rendered in the app's sans instead of its serif. */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+  }
 }
 
 /* ============================================================
