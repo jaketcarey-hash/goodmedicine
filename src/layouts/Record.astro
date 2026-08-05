@@ -12,10 +12,6 @@
  * downloads on the pages that use it. The community half stays as light as it
  * has always been.
  */
-import '@fontsource/newsreader/400.css';
-import '@fontsource/newsreader/500.css';
-import '@fontsource/newsreader/400-italic.css';
-
 import Shell from './Shell.astro';
 
 interface Props {
@@ -150,7 +146,7 @@ const SECTIONS = [
 <style is:global>
   /* Record typography. Serif for reading, sans for labels and apparatus. */
   .record-body {
-    font-family: var(--font-record);
+    font-family: var(--font-body);
     font-size: 1.0625rem;
     line-height: 1.72;
     color: var(--color-ink);

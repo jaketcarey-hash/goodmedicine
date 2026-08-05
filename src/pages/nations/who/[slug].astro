@@ -4,7 +4,7 @@
  */
 import type { GetStaticPaths } from 'astro';
 import Record from '../../../layouts/Record.astro';
-import StageChip from '../../../components/evidence/StageChip.astro';
+import StageRail from '../../../components/evidence/StageRail.astro';
 import ConfidenceBadge from '../../../components/evidence/ConfidenceBadge.astro';
 import { getNationProfiles } from '../../../lib/nations-index';
 import { formatDate } from '../../../lib/nations-data';
@@ -40,7 +40,7 @@ const span =
         <li class="py-7 first:pt-0">
           <div class="flex flex-wrap items-center gap-2 mb-3">
             <span class="text-xs text-text-muted tabular-nums">{formatDate(entry.date)}</span>
-            <StageChip stage={entry.stage} />
+            <StageRail band={entry.band} stage={entry.stage} />
             <ConfidenceBadge level={entry.confidence} />
             {entry.amountLabel && (
               <span

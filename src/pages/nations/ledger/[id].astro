@@ -10,7 +10,7 @@ import type { GetStaticPaths } from 'astro';
 import Record from '../../../layouts/Record.astro';
 import SourceList from '../../../components/evidence/SourceList.astro';
 import ConfidenceBadge from '../../../components/evidence/ConfidenceBadge.astro';
-import StageChip from '../../../components/evidence/StageChip.astro';
+import StageRail from '../../../components/evidence/StageRail.astro';
 import { formatDate } from '../../../lib/nations-data';
 import { getEntries, BAND_MEANING } from '../../../lib/ledger';
 import { slugify } from '../../../lib/nations-index';
@@ -63,8 +63,8 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
   dateline={`${formatDate(entry.date)}${entry.effective_date ? ` · effective ${formatDate(entry.effective_date)}` : ''}`}
   hasRail={true}
 >
-  <div class="not-prose flex flex-wrap items-center gap-2.5 mb-10">
-    <StageChip stage={entry.stage} size="md" />
+  <div class="not-prose flex flex-wrap items-center gap-x-6 gap-y-3 -mt-4 mb-10 pb-6 border-b border-rule">
+    <StageRail band={entry.band} stage={entry.stage} size="md" />
     <ConfidenceBadge level={entry.confidence} size="md" />
   </div>
 

@@ -42,12 +42,17 @@
 
   const bandOrder = ['early', 'committed', 'done', 'contested'];
 
-  const bandTone: Record<string, string> = {
-    early: 'bg-stone-100 text-stone-700 border-stone-300',
-    committed: 'bg-clay-50 text-clay-700 border-clay-300',
-    done: 'bg-forest/10 text-forest border-forest/30',
-    contested: 'bg-berry-50 text-berry-700 border-berry-300',
-  };
+  /**
+   * The stage rail, inline.
+   *
+   * A list of 42 records is where the comparison actually happens — scanning it
+   * you can see how much of the year is talk and how much is money that moved.
+   * Three steps filled to the point reached; contested breaks the line with a
+   * mark rather than extending it, because a court case is not progress toward
+   * completion.
+   */
+  const STEPS = ['early', 'committed', 'done'];
+  const reachedIndex = (band: string) => STEPS.indexOf(band);
 
   const confidenceTone: Record<string, string> = {
     high: 'bg-forest/10 text-forest border-forest/25',
@@ -198,11 +203,29 @@
             <span class="text-xs text-text-muted tabular-nums">{shortDate(entry.date)}</span>
 
             <span
-              class="text-[10px] font-medium tracking-wide border rounded px-2 py-0.5 {bandTone[
-                entry.band
-              ]}"
+              class="inline-flex items-center gap-2"
+              title={bandLabels[entry.band]}
+              aria-label="{entry.stage} — {bandLabels[entry.band]}"
             >
-              {entry.stage}
+              <span class="inline-flex items-center gap-1" aria-hidden="true">
+                {#each STEPS as _, i}
+                  <span
+                    class="w-6 h-[3px] rounded-full {entry.band === 'contested'
+                      ? 'bg-stone-200'
+                      : i <= reachedIndex(entry.band)
+                        ? 'bg-forest'
+                        : 'bg-stone-200'}"
+                  ></span>
+                {/each}
+                {#if entry.band === 'contested'}
+                  <span class="w-2 h-2 rotate-45 bg-berry-500 ml-1"></span>
+                {/if}
+              </span>
+              <span
+                class="text-[11px] font-medium {entry.band === 'contested'
+                  ? 'text-berry-700'
+                  : 'text-ink'}">{entry.stage}</span
+              >
             </span>
 
             <span

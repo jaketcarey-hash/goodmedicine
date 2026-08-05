@@ -83,9 +83,13 @@
   --color-cedar: #873f2b;
   --color-cedar-dark: #4f241a;
   --color-forest: #1f5b4d;
-  --color-paper: #fffdf8;
-  --color-canvas: #ede9df;
-  --color-rule: #ddd6c8;
+  /* Was #fffdf8 — a cream newsprint. Cream plus a serif plus terracotta is the
+     look every AI-generated editorial page arrives at, and more to the point it
+     signalled "publication", which this is not. Record cards now sit on the
+     same white as every other card on the site. */
+  --color-paper: #ffffff;
+  --color-canvas: #f2ede6;
+  --color-rule: #e5ddd1;
 
   /* ---- Semantic ---- */
   --color-surface: #faf8f5;
@@ -99,10 +103,14 @@
   /* ---- Typography ---- */
   --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  /* The Record register. One serif, self-hosted, used only on the Nations
-     surface so the two doors read differently without a second font on
-     every page of a connection-constrained app. */
-  --font-record: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* The Record voice.
+     Was Newsreader — a text serif, chosen to make the news layer read as a
+     publication. That was the mistake: this is one information shop, not a
+     site with a second editorial identity, and a serif is that identity in
+     typographic form. The Record now speaks in the site's own face and is
+     distinguished by structure and density instead. One design system, one
+     property. */
+  --font-record: 'Outfit', system-ui, -apple-system, sans-serif;
 
   /* ---- Fluid type scale ---- */
   --text-xs: clamp(0.7rem, 0.66rem + 0.2vw, 0.78rem);
