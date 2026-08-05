@@ -21,6 +21,18 @@ const here = dirname(fileURLToPath(import.meta.url));
 const DIST = join(here, '..', 'dist');
 const ORIGIN = 'https://strongfire.ca';
 
+/**
+ * Whether search engines should index the site yet.
+ *
+ * Off while it is being built out and shared by hand. A half-finished page that
+ * gets indexed is hard to un-index, and the snippet Google caches today is the
+ * one it shows for months. Sharing still works — the Open Graph tags and share
+ * card are unaffected, because those fire on a link in a message, not a crawl.
+ *
+ * Flip to true, rebuild, deploy, then submit the sitemap.
+ */
+const INDEXABLE = false;
+
 /** Kept out of search results: shells, settings, legal, error pages. */
 const NOINDEX = new Set(['/404', '/settings']);
 
@@ -83,14 +95,22 @@ writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
 
 writeFileSync(
   join(DIST, 'robots.txt'),
-  `# Strong Fire — free financial information for First Nations people.
+  INDEXABLE
+    ? `# Strong Fire — free financial information for First Nations people.
 # Everything here is meant to be found. Please index it.
 User-agent: *
 Allow: /
 Disallow: /settings
 
 Sitemap: ${ORIGIN}/sitemap.xml
+`
+    : `# Strong Fire is still being built. Not ready to be indexed yet.
+# Shared by hand for now — see INDEXABLE in scripts/build-seo.js.
+User-agent: *
+Disallow: /
 `,
 );
 
-console.log(`[seo] sitemap: ${entries.length} URLs, robots.txt written`);
+console.log(
+  `[seo] sitemap: ${entries.length} URLs · ${INDEXABLE ? 'INDEXABLE' : 'noindex — not discoverable yet'}`,
+);

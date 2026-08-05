@@ -64,6 +64,15 @@ const widthClass =
     <title>{fullTitle}</title>
     <link rel="canonical" href={canonical} />
 
+    {/*
+      Not ready to be found yet. robots.txt stops the crawl; this stops the page
+      appearing in results at all, which is the part that actually matters and
+      the part that is hard to undo later. Sharing is unaffected — Open Graph
+      fires on a link in a message, not on a crawl.
+      Remove both this and INDEXABLE in scripts/build-seo.js together.
+    */}
+    <meta name="robots" content="noindex, nofollow" />
+
     <!-- Shared person to person, far more than found by search. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Strong Fire" />
