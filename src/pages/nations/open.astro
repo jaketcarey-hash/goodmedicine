@@ -1,0 +1,89 @@
+---
+/**
+ * /nations/open — the open-questions register.
+ *
+ * The counterpart to the ledger. The ledger records what is established; this
+ * records what is not, and how long it has stayed that way.
+ */
+import Record from '../../layouts/Record.astro';
+import OpenQuestions from '../../components/OpenQuestions.svelte';
+import { getOpenQuestions, getOpenQuestionStats } from '../../lib/open-questions';
+import { formatDate } from '../../lib/nations-data';
+
+const questions = getOpenQuestions();
+const stats = getOpenQuestionStats(questions);
+---
+
+<Record
+  title="Open questions"
+  description="A running register of what is not yet known about Indigenous economic activity in Canada — unclosed deals, undisclosed terms, pending decisions — and how long each has stayed open."
+  kicker="The Nations"
+  heading="What isn't known yet"
+  standfirst="Every deal that has not closed, every term left undisclosed, every decision still pending. Gathered from the ledger and from the briefs, and kept until the record answers them."
+  dateline={stats.asOf ? `As of ${formatDate(stats.asOf)}` : undefined}
+  measure="full"
+>
+  <div
+    class="not-prose grid grid-cols-2 md:grid-cols-4 gap-px bg-rule border border-rule rounded overflow-hidden mb-12"
+  >
+    <div class="bg-paper px-5 py-5">
+      <p class="font-record text-3xl text-ink leading-none mb-1.5">{stats.total}</p>
+      <p class="text-xs text-text-muted leading-snug">questions open</p>
+    </div>
+    <div class="bg-paper px-5 py-5">
+      <p class="font-record text-3xl text-cedar leading-none mb-1.5">{stats.carried}</p>
+      <p class="text-xs text-text-muted leading-snug">restated in a later edition</p>
+    </div>
+    <div class="bg-paper px-5 py-5">
+      <p class="font-record text-3xl text-ink leading-none mb-1.5">{stats.oldestDays}</p>
+      <p class="text-xs text-text-muted leading-snug">days since the oldest was raised</p>
+    </div>
+    <div class="bg-paper px-5 py-5">
+      <p class="font-record text-3xl text-ink leading-none mb-1.5">{stats.fromLedger}</p>
+      <p class="text-xs text-text-muted leading-snug">
+        from the ledger, {stats.fromBriefs} from the briefs
+      </p>
+    </div>
+  </div>
+
+  <section class="mb-12">
+    <h2>Why this exists</h2>
+    <p>
+      An announcement and a completed transaction read almost identically in a headline.
+      What separates them is usually a question nobody has answered yet: what the terms
+      were, who actually holds the equity, whether the financing closed, what a court will
+      decide. Those questions get raised once when a story breaks and then disappear,
+      which is how an announcement quietly becomes remembered as a fact.
+    </p>
+    <p>
+      This page keeps them. Anything restated in a later edition has been carried — the
+      record went back to it and still had no answer — and those sort to the top.
+    </p>
+    <p>
+      The carried count is a floor, not a total. Questions are matched by their wording,
+      and the brief tends to rephrase as a story develops, so the same underlying question
+      asked three different ways counts as three. Treat a high carry count as a strong
+      signal and a count of one as no signal either way.
+    </p>
+  </section>
+
+  <section>
+    <h2>The register</h2>
+    <OpenQuestions client:load questions={questions} />
+  </section>
+
+  <section class="mt-14">
+    <h2>What this page does not claim</h2>
+    <p>
+      A question leaving this register means the source material stopped carrying it. That
+      is weaker than an answer. Sometimes a question is dropped because it was resolved;
+      sometimes attention simply moved on. Where something has genuinely been settled, the
+      ledger record is the place that says so, and its stage will have moved.
+    </p>
+    <p>
+      Nothing here is a claim that an answer is being withheld. Most of these are open for
+      the ordinary reason that commercial terms are private, regulatory processes take
+      time, and courts are slow.
+    </p>
+  </section>
+</Record>

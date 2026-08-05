@@ -1,0 +1,239 @@
+---
+/**
+ * One BC First Nation.
+ *
+ * A briefing, not a portrait. It says what the federal registry records, what
+ * this site has tracked, and — importantly — where it is silent. A page about a
+ * living community that quietly implies completeness would be worse than no
+ * page at all, so the silences are stated as plainly as the facts.
+ */
+import type { GetStaticPaths } from 'astro';
+import Record from '../../../layouts/Record.astro';
+import StageChip from '../../../components/evidence/StageChip.astro';
+import ConfidenceBadge from '../../../components/evidence/ConfidenceBadge.astro';
+import { getBcNations, DIRECTORY_META } from '../../../lib/bc-nations';
+import { formatDate } from '../../../lib/nations-data';
+
+export const getStaticPaths = (() => {
+  const all = getBcNations();
+  return all.map((nation, i) => ({
+    params: { slug: nation.slug },
+    props: {
+      nation,
+      previous: all[i - 1] ?? null,
+      next: all[i + 1] ?? null,
+      // Others sharing the same People/Nation — the most useful sideways step.
+      kin: all
+        .filter((n) => n.people && n.people === nation.people && n.slug !== nation.slug)
+        .slice(0, 8),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { nation, previous, next, kin } = Astro.props;
+
+const hasTracked = nation.records.length > 0 || nation.mentions.length > 0;
+const standfirst = nation.people
+  ? `${nation.people}. Band ${nation.bandNumber} in the federal registry.`
+  : `Band ${nation.bandNumber} in the federal registry.`;
+---
+
+<Record
+  title={nation.name}
+  description={`${nation.name}${nation.people ? ` — ${nation.people}` : ''}. What the record holds about this Nation.`}
+  kicker="First Nations of British Columbia"
+  heading={nation.name}
+  standfirst={standfirst}
+  hasRail={true}
+>
+  {
+    hasTracked ? (
+      <>
+        {nation.records.length > 0 && (
+          <section class="mb-12">
+            <h2>In the ledger</h2>
+            <ol class="not-prose list-none pl-0 m-0 divide-y divide-rule">
+              {nation.records.map((entry) => (
+                <li class="py-6 first:pt-0">
+                  <div class="flex flex-wrap items-center gap-2 mb-2.5">
+                    <span class="text-xs text-text-muted tabular-nums">
+                      {formatDate(entry.date)}
+                    </span>
+                    <StageChip stage={entry.stage} />
+                    <ConfidenceBadge level={entry.confidence} />
+                  </div>
+                  <h3 class="plain">
+                    <a href={`/nations/ledger/${entry.id}`}>{entry.event}</a>
+                  </h3>
+                  <p class="text-sm leading-relaxed text-text-secondary max-w-3xl mt-2">
+                    {entry.significance as string}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {nation.mentions.length > 0 && (
+          <section class="mb-12">
+            <h2>Editions that mention this Nation</h2>
+            <p class="not-prose text-sm text-text-secondary max-w-2xl mb-5">
+              The name appears somewhere in these editions. That does not mean the edition
+              is about this Nation — a brief covers many at once, and the headline below is
+              the edition's, not this Nation's.
+            </p>
+            <ul class="not-prose list-none pl-0 m-0 divide-y divide-rule">
+              {nation.mentions.map((m) => (
+                <li class="py-4">
+                  <a href={m.url} class="group block">
+                    <span class="block text-xs text-text-muted mb-1">{formatDate(m.date)}</span>
+                    <span class="block font-record text-base leading-snug text-ink group-hover:text-cedar transition-colors">
+                      {m.headline}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </>
+    ) : (
+      <section class="mb-12">
+        <h2>Nothing tracked yet</h2>
+        <p>
+          This site has not recorded anything about {nation.name} this year. That is a
+          statement about the reach of this record and nothing else. The ledger is
+          deliberately selective, it covers a single year, and it is assembled from public
+          reporting — which is thinner for some Nations than others, and thinnest of all
+          for the ones furthest from a newsroom.
+        </p>
+        <p>
+          An empty page here should not be read as a quiet place. It should be read as a
+          gap in the record.
+        </p>
+      </section>
+    )
+  }
+
+  <section>
+    <h2>What this page is</h2>
+    <p>
+      A briefing drawn from public sources: the federal band registry for the name, band
+      number and office location, and this site's own ledger and briefs for anything
+      tracked. It is not a description of this Nation, its government, its territory or its
+      affairs, and it is not written with the Nation's involvement.
+    </p>
+    <p>
+      Anything wrong here is worth telling us about — a misspelled name or a wrong
+      affiliation matters more than any of the rest of it.
+    </p>
+  </section>
+
+  <nav
+    class="not-prose grid grid-cols-2 gap-6 mt-16 pt-8 border-t border-rule"
+    aria-label="Other Nations"
+  >
+    <div>
+      {
+        previous && (
+          <a href={`/nations/bc/${previous.slug}`} class="group block">
+            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
+              Previous
+            </span>
+            <span class="block font-record text-[15px] text-ink group-hover:text-cedar transition-colors">
+              {previous.name}
+            </span>
+          </a>
+        )
+      }
+    </div>
+    <div class="text-right">
+      {
+        next && (
+          <a href={`/nations/bc/${next.slug}`} class="group block">
+            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
+              Next
+            </span>
+            <span class="block font-record text-[15px] text-ink group-hover:text-cedar transition-colors">
+              {next.name}
+            </span>
+          </a>
+        )
+      }
+    </div>
+  </nav>
+
+  <Fragment slot="rail">
+    <div class="border-t border-rule pt-5 space-y-6">
+      <div>
+        <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
+          Registry
+        </p>
+        <dl class="space-y-2 text-sm">
+          <div class="flex justify-between gap-3">
+            <dt class="text-text-muted">Band number</dt>
+            <dd class="text-ink tabular-nums">{nation.bandNumber}</dd>
+          </div>
+          {
+            nation.people && (
+              <div class="flex justify-between gap-3">
+                <dt class="text-text-muted shrink-0">People</dt>
+                <dd class="text-ink text-right">{nation.people}</dd>
+              </div>
+            )
+          }
+        </dl>
+      </div>
+
+      <div>
+        <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
+          Tribal Council
+        </p>
+        {
+          nation.tribalCouncil ? (
+            <p class="text-sm text-ink leading-snug">{nation.tribalCouncil}</p>
+          ) : (
+            <p class="text-sm text-text-muted leading-snug">
+              Not recorded here. This does not mean the Nation is unaffiliated — only that
+              no confident match was found.
+            </p>
+          )
+        }
+      </div>
+
+      {
+        kin.length > 0 && (
+          <div>
+            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
+              Also {nation.people}
+            </p>
+            <ul class="space-y-1.5">
+              {kin.map((k) => (
+                <li>
+                  <a
+                    href={`/nations/bc/${k.slug}`}
+                    class="text-sm text-ink hover:text-cedar transition-colors leading-snug"
+                  >
+                    {k.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      <div class="pt-4 border-t border-rule">
+        <p class="text-[11px] text-text-muted leading-relaxed mb-3">
+          Registry data from {DIRECTORY_META.source}, retrieved {DIRECTORY_META.retrieved}.
+        </p>
+        <a
+          href="/nations/bc"
+          class="text-sm font-semibold text-cedar hover:text-cedar-dark transition-colors"
+        >
+          &larr; All BC Nations
+        </a>
+      </div>
+    </div>
+  </Fragment>
+</Record>

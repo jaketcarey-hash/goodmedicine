@@ -1,0 +1,60 @@
+---
+/**
+ * How far along the year's developments actually are.
+ *
+ * One series, so one colour and no legend — the heading names what the bars
+ * measure. The bars are ordered by how settled the thing is, not by size,
+ * because the progression is the point: an MOU and a financial close both make
+ * headlines and only one of them is money that moved.
+ *
+ * Counts are direct-labelled, so this reads without hovering anything and
+ * survives being printed in black and white.
+ */
+import type { BandCount } from '../lib/ledger';
+
+interface Props {
+  bands: BandCount[];
+  total: number;
+}
+
+const { bands, total } = Astro.props;
+const widest = Math.max(...bands.map((b) => b.count), 1);
+---
+
+<figure class="not-prose m-0">
+  <figcaption class="mb-6">
+    <h2
+      class="text-[11px] font-bold tracking-[0.15em] uppercase text-cedar pb-2.5 mb-3 border-b border-rule"
+    >
+      How far along
+    </h2>
+    <p class="text-sm leading-relaxed text-text-secondary max-w-xl">
+      All {total} developments, grouped by the stage they had reached. Hover a row for what
+      the stage means.
+    </p>
+  </figcaption>
+
+  <ul class="space-y-5 list-none pl-0 m-0">
+    {
+      bands.map((band) => (
+        <li title={band.meaning}>
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <span class="text-sm font-medium text-ink">{band.label}</span>
+            <span class="font-record text-lg text-ink tabular-nums leading-none">
+              {band.count}
+            </span>
+          </div>
+
+          <div class="h-2.5 bg-canvas rounded-sm overflow-hidden">
+            <div
+              class="h-full bg-cedar rounded-sm"
+              style={`width: ${(band.count / widest) * 100}%`}
+            />
+          </div>
+
+          <p class="text-xs text-text-muted mt-1.5 leading-snug">{band.meaning}</p>
+        </li>
+      ))
+    }
+  </ul>
+</figure>
