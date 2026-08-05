@@ -7,36 +7,68 @@ Three directions, worked far enough to choose between. Pick one, then build it.
 
 ## 1. What this is
 
-A free, offline-first information shop for First Nations people: money, rights,
-life stages, and a news layer about Indigenous economic activity in Canada. No
-accounts, no tracking, everything on-device. Independent of any bank, firm or
-government agency, and it says so.
+**A news-led information shop for First Nations people.** The front door is what is
+happening — deals, court decisions, approvals, and crucially *what stage each one has
+reached*. Behind that sits the depth: tools, rights guides, money guides, a glossary, a
+directory of every First Nation in BC.
 
-**Not a publication.** Two previous sessions drifted toward feeds, citation
-formats and a second editorial identity because the news layer's data *looks*
-scholarly. It is one shop with a news shelf.
+Someone arrives to find out what is going on. They stay, or come back, because they
+discover the site also answers the question they have been carrying.
+
+**Framing corrected by Jake, 5 August 2026**, refining the 4 August note. Both halves are
+true and the distinction is exact:
+
+- **Not a publication in *form*.** No feeds as a subscriber product, no citation
+  apparatus, no scholarly methodology page, no second editorial identity with its own
+  typeface. Three previous sessions drifted there because the ledger data *looks*
+  scholarly. That drift is still the failure mode.
+- **News-led in *function*.** The news is the entry point, not a shelf at the back. The
+  4 August note said "the app comes first"; that ordering is superseded. What is not
+  superseded is everything about apparatus.
+
+The test for any feature is now two questions, in order: *does this help someone
+understand what is happening?* and *does it lead them to something that helps them?*
 
 ## 2. Who it is for
 
-One person, and the whole design answers to her: **a 26-year-old in Lytton, on
-her phone, mid-worry.**
+**Primary — someone following the file.** A Nation member who wants to know what is
+happening to Indigenous economic power in Canada. A band councillor, a finance officer,
+an entrepreneur, someone who saw a headline about a deal in their territory and wants to
+know whether it actually closed. They arrive at the front door, on a phone or a desktop,
+and they come back.
 
-> "Can I get help with dental if I have status?"
-> "What happens to my house on reserve when someone dies?"
+Their question is not "what is the news" — plenty of outlets do that. It is **"is this
+real yet, and what does it mean for us?"** Nobody else answers the first half.
 
-She is not browsing. She has a specific question, she is probably a bit anxious,
-and she may be on a bad connection in the Fraser Canyon. She has likely been
-sent a link by a person rather than finding it in a search result.
+**Secondary — someone with a specific question.** A 26-year-old in Lytton, on her phone,
+mid-worry: *"Can I get help with dental if I have status?"* She matters enormously, but
+she does **not** arrive at the front door. She lands on the page that answers her
+question, from a search result or a link someone texted her. That was established on
+4 August and still holds.
 
-A second, quieter audience exists — Nation finance staff, entrepreneurs, people
-who follow the file — but they are never the reason to make a decision.
+So the site has two entrances and they are not the same design problem:
+
+| | Front door | Deep page |
+|---|---|---|
+| Who | Following the file | Carrying a question |
+| Arrives at | `/`, `/nations` | `/rights/nihb`, a glossary term |
+| Wants | What happened, how real is it | The answer, and what to do |
+| Design job | Orient, and show status at a glance | Answer first, then explain |
+
+**A design that only serves one of these fails.** The current site does the front door
+adequately and the deep pages poorly, which is the same conclusion the depth work reached
+from the other direction.
 
 ## 3. The job of the page
 
-Answer her question, and be trustworthy while doing it.
+**Front door:** show what is happening and how settled it is, fast enough to scan, and
+make the depth behind it visible rather than hidden.
 
-Trustworthy is the hard half. This audience has specific, earned reasons to
-distrust financial institutions and government forms. The design either earns
+**Deep page:** answer the question, then explain, then say what is unsettled and who to
+ask.
+
+Both share one obligation: **be trustworthy.** This audience has specific, earned reasons
+to distrust financial institutions and government forms. The design either earns
 confidence or it triggers the wrong memory.
 
 ## 4. Real constraints
@@ -282,20 +314,29 @@ not want to be spoken to gently.
 
 # Recommendation
 
-**Direction A, with the evidence margin from B as a secondary element.**
+**Direction B, with A's answer line carried into the deep pages.**
 
-The reasoning: the person this site is for arrives with a question and some
-anxiety, and the single most valuable thing the design can do is put the answer
-in front of her immediately, legibly, on a cheap phone. That is Direction A's
-whole premise, and the answer-line discipline forces the content to improve too
-— which is the next work anyway.
+This changed on 5 August, and it changed because the framing did. When the brief was
+written around the mid-worry reader, A was right — answer-first, legible at arm's length,
+nothing in the way. Now that the front door is news and the primary reader is someone
+asking *"is this real yet?"*, B is not merely a good option; it is the subject itself.
 
-B's evidence margin is the site's real differentiator and should survive, but as
-a quiet supporting element rather than the organising idea. Made central, it
-pulls back toward the publication failure mode.
+Status, provenance and confidence are not decoration on this site. They are the product.
+The stage rail, the confidence ratings, the open-questions register and the figure
+registry already exist and already carry that meaning — B makes them the organising idea
+rather than machinery hidden behind ordinary cards.
 
-C is the most interesting and the most likely to fail. Worth revisiting once the
-site has a stronger spine.
+A does not disappear. **The answer line is the right discipline for every deep page**, and
+it forces the content improvement the depth work needs anyway. Take it as a rule for those
+pages rather than as the site's organising idea.
+
+C is set aside. It is the warmest and the most likely to fail, and it serves the primary
+reader least.
+
+**The one thing to watch:** B is also the direction most likely to drift back into
+publication apparatus, which is the mistake this project keeps making. The guard is the
+distinction in §1 — provenance shown *in the interface* is the point; feeds, citations and
+a separate editorial identity are the failure.
 
 # How to run the session
 
