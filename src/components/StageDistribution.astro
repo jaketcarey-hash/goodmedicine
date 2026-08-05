@@ -23,12 +23,8 @@ const widest = Math.max(...bands.map((b) => b.count), 1);
 
 <figure class="not-prose m-0">
   <figcaption class="mb-6">
-    <h2
-      class="text-[11px] font-bold tracking-[0.15em] uppercase text-cedar pb-2.5 mb-3 border-b border-rule"
-    >
-      How far along
-    </h2>
-    <p class="text-sm leading-relaxed text-text-secondary max-w-xl">
+    <h2 class="apparatus-label pb-2.5 mb-3 border-b border-rule">How far along</h2>
+    <p class="text-sm leading-relaxed text-quiet max-w-xl">
       All {total} developments, grouped by the stage they had reached. Hover a row for what
       the stage means.
     </p>
@@ -40,19 +36,19 @@ const widest = Math.max(...bands.map((b) => b.count), 1);
         <li title={band.meaning}>
           <div class="flex items-baseline justify-between gap-4 mb-2">
             <span class="text-sm font-medium text-ink">{band.label}</span>
-            <span class="font-record text-lg text-ink tabular-nums leading-none">
+            <span class="font-mono text-base text-ink tabular-nums leading-none">
               {band.count}
             </span>
           </div>
 
-          <div class="h-2.5 bg-canvas rounded-sm overflow-hidden">
+          <div class="h-2 bg-canvas overflow-hidden">
             <div
-              class="h-full bg-cedar rounded-sm"
+              class:list={['h-full', band.band === 'contested' ? 'bg-contested' : 'bg-verified']}
               style={`width: ${(band.count / widest) * 100}%`}
             />
           </div>
 
-          <p class="text-xs text-text-muted mt-1.5 leading-snug">{band.meaning}</p>
+          <p class="text-xs text-faint mt-1.5 leading-snug">{band.meaning}</p>
         </li>
       ))
     }

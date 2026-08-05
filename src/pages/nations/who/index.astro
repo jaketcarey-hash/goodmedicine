@@ -36,25 +36,25 @@ const multiple = profiles.filter((p) => p.records.length > 1);
 
   <section>
     <h2>Named more than once</h2>
-    <p class="not-prose text-sm text-text-secondary mb-6 max-w-2xl">
+    <p class="not-prose text-sm text-quiet mb-6 max-w-2xl">
       {multiple.length} appear in several records — usually a file that developed across the
       year.
     </p>
 
-    <ul class="not-prose list-none pl-0 m-0 grid md:grid-cols-2 gap-px bg-rule border border-rule rounded overflow-hidden mb-14">
+    <ul class="not-prose list-none pl-0 m-0 grid md:grid-cols-2 gap-px bg-rule border-y border-rule mb-14">
       {
         multiple.map((p) => (
-          <li class="bg-paper">
-            <a href={`/nations/who/${p.slug}`} class="group block px-5 py-4 hover:bg-canvas/50 transition-colors">
+          <li class="bg-ground">
+            <a href={`/nations/who/${p.slug}`} class="group block px-5 py-4 hover:bg-ink/[0.03] transition-colors">
               <div class="flex items-baseline justify-between gap-4 mb-1">
-                <span class="font-record text-lg text-ink group-hover:text-cedar transition-colors">
+                <span class="text-lg font-medium text-ink group-hover:underline decoration-rule underline-offset-2">
                   {p.name}
                 </span>
-                <span class="text-xs text-text-muted whitespace-nowrap">
+                <span class="apparatus text-faint whitespace-nowrap">
                   {p.records.length} records
                 </span>
               </div>
-              <p class="text-xs text-text-muted leading-snug">
+              <p class="text-xs text-faint leading-snug">
                 {p.sectors.slice(0, 3).join(' · ')}
               </p>
             </a>
@@ -70,13 +70,13 @@ const multiple = profiles.filter((p) => p.records.length > 1);
           <li>
             <a
               href={`/nations/who/${p.slug}`}
-              class="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3 hover:bg-canvas/40 transition-colors -mx-2 px-2 rounded"
+              class="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3 hover:bg-ink/[0.03] transition-colors -mx-2 px-2"
             >
-              <span class="text-ink group-hover:text-cedar transition-colors">{p.name}</span>
-              <span class="text-xs text-text-muted">
+              <span class="text-ink group-hover:underline decoration-rule underline-offset-2">{p.name}</span>
+              <span class="text-xs text-faint">
                 {p.places.slice(0, 2).join(', ')}
               </span>
-              <span class="text-xs text-text-muted ml-auto whitespace-nowrap">
+              <span class="apparatus text-faint ml-auto whitespace-nowrap">
                 {p.records.length === 1
                   ? formatDate(p.lastSeen)
                   : `${p.records.length} records`}

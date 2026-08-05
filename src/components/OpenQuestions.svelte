@@ -68,7 +68,7 @@
 </script>
 
 <div class="not-prose">
-  <div class="border-y border-rule py-4 mb-8 md:sticky md:top-16 bg-surface/95 backdrop-blur-sm z-30">
+  <div class="border-y border-rule py-4 mb-8 md:sticky md:top-16 bg-ground/95 backdrop-blur-sm z-30">
     <div class="flex flex-wrap items-center gap-2.5">
       <label class="sr-only" for="oq-search">Search open questions</label>
       <input
@@ -76,14 +76,14 @@
         type="search"
         bind:value={query}
         placeholder="Search open questions…"
-        class="flex-1 min-w-[14rem] text-sm bg-paper border border-stone-300 rounded px-3 py-2
-          placeholder:text-text-muted focus:border-cedar focus:outline-none"
+        class="flex-1 min-w-[14rem] text-sm bg-white border border-rule rounded-sm px-3 py-2
+          placeholder:text-faint focus:border-ink focus:outline-none"
       />
 
       <select
         bind:value={source}
         aria-label="Filter by where the question came from"
-        class="text-sm bg-paper border border-stone-300 rounded px-2.5 py-2 focus:border-cedar focus:outline-none"
+        class="text-sm bg-white border border-rule rounded-sm px-2.5 py-2 focus:border-ink focus:outline-none"
       >
         <option value="all">Ledger and briefs</option>
         <option value="ledger">From the ledger</option>
@@ -91,9 +91,9 @@
       </select>
 
       <label
-        class="flex items-center gap-2 text-sm text-text-secondary cursor-pointer select-none px-2"
+        class="flex items-center gap-2 text-sm text-quiet cursor-pointer select-none px-2"
       >
-        <input type="checkbox" bind:checked={carriedOnly} class="accent-cedar" />
+        <input type="checkbox" bind:checked={carriedOnly} class="accent-[#8A5A00]" />
         Carried more than once
       </label>
 
@@ -101,23 +101,27 @@
         <button
           type="button"
           onclick={reset}
-          class="text-sm text-cedar hover:text-cedar-dark underline underline-offset-2"
+          class="text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
         >
           Clear
         </button>
       {/if}
     </div>
 
-    <p class="text-xs text-text-muted mt-3" aria-live="polite">
+    <p class="apparatus text-faint mt-3" aria-live="polite">
       Showing {filtered.length} of {questions.length}
       {questions.length === 1 ? 'question' : 'questions'}
     </p>
   </div>
 
   {#if filtered.length === 0}
-    <p class="text-text-secondary py-12 text-center">
+    <p class="text-quiet py-12 text-center">
       Nothing matches.
-      <button type="button" onclick={reset} class="text-cedar underline underline-offset-2">
+      <button
+        type="button"
+        onclick={reset}
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
         Clear the filters
       </button>
     </p>
@@ -125,42 +129,41 @@
     <ol class="list-none pl-0 m-0 divide-y divide-rule">
       {#each filtered as q (q.question)}
         <li class="py-6">
-          <div class="flex flex-wrap items-center gap-2 mb-2.5">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2.5">
             {#if q.carriedIn > 1}
+              <!-- A question the record keeps returning to without an answer
+                   is the register's strongest signal, and it is unsettledness
+                   by definition — so it wears the amber. -->
               <span
-                class="text-[10px] font-semibold tracking-wide uppercase border border-cedar/30
-                  bg-cedar/5 text-cedar rounded px-2 py-0.5"
+                class="inline-flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-[0.08em] uppercase text-unsettled"
               >
+                <span class="w-[7px] h-[7px] bg-current" aria-hidden="true"></span>
                 Carried {q.carriedIn}&times;
               </span>
             {/if}
 
-            <span class="text-xs text-text-muted">{age(q.daysOpen)}</span>
+            <span class="apparatus text-faint">{age(q.daysOpen)}</span>
 
-            <span class="text-xs text-text-muted">
+            <span class="apparatus text-faint">
               &middot; first raised {shortDate(q.firstSeen)}
             </span>
 
             {#if q.stage}
-              <span
-                class="text-[10px] tracking-wide border border-stone-300 bg-stone-50 text-stone-600 rounded px-1.5 py-0.5"
-              >
-                {q.stage}
-              </span>
+              <span class="apparatus text-faint">{q.stage}</span>
             {/if}
 
-            <span class="text-[11px] text-text-muted ml-auto">
+            <span class="apparatus text-faint ml-auto">
               {q.source === 'ledger' ? 'Ledger' : 'Brief'}
             </span>
           </div>
 
-          <p class="font-record text-lg md:text-xl leading-[1.4] text-ink mb-2">
+          <p class="plain mb-2">
             {q.question}
           </p>
 
           <a
             href={q.url}
-            class="text-sm text-text-secondary hover:text-cedar transition-colors leading-snug block max-w-3xl"
+            class="text-sm text-quiet leading-snug block max-w-3xl underline decoration-rule underline-offset-2 hover:decoration-ink hover:text-ink transition-colors"
           >
             On: {q.subject}
           </a>

@@ -41,37 +41,31 @@ const weeklyCount = editions.filter((e) => e.cadence === 'weekly').length;
     {
       months.map((group) => (
         <section class="mb-14">
-          <h2 class="text-[11px] font-bold tracking-[0.15em] uppercase text-cedar pb-2.5 mb-6 border-b border-rule">
-            {group.label}
-          </h2>
+          <h2 class="apparatus-label pb-2.5 mb-6 border-b border-rule">{group.label}</h2>
 
           <ul class="space-y-8">
             {group.editions.map((edition) => (
               <li>
                 <a href={edition.url} class="group block">
                   <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                    <span class="text-xs text-text-muted tabular-nums">
+                    <span class="apparatus text-faint tabular-nums">
                       {formatDate(edition.date)}
                     </span>
                     {edition.cadence === 'weekly' && (
-                      <span class="text-[10px] font-bold tracking-[0.12em] uppercase text-forest border border-forest/25 bg-forest/5 rounded px-1.5 py-0.5">
-                        Weekly
-                      </span>
+                      <span class="apparatus-label text-ink">Weekly</span>
                     )}
-                    <span class="text-xs text-text-muted ml-auto">
+                    <span class="apparatus text-faint ml-auto">
                       {edition.sources.length} sources
                     </span>
                   </div>
 
-                  <h3 class="font-record text-xl md:text-[22px] leading-[1.3] text-ink group-hover:text-cedar transition-colors mb-2">
+                  <h3 class="text-xl md:text-[22px] font-semibold tracking-[-0.015em] leading-[1.3] text-ink group-hover:underline decoration-rule underline-offset-4 mb-2">
                     {edition.headline}
                   </h3>
 
                   {edition.lead && (
-                    <p class="text-sm leading-relaxed text-text-secondary">
-                      <span class="text-[10px] font-bold tracking-[0.14em] uppercase text-forest mr-2">
-                        One thing
-                      </span>
+                    <p class="text-sm leading-relaxed text-quiet">
+                      <span class="apparatus-label mr-2">One thing</span>
                       {edition.lead.headline}
                     </p>
                   )}

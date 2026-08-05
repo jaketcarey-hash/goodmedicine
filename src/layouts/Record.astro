@@ -237,9 +237,11 @@ const SECTIONS = [
 
   /* Links in running prose are underlined in the rule grey until wanted.
      Links that *are* a heading are not underlined — a headline with a rule
-     under it reads as a link, not a title. */
+     under it reads as a link, not a title. Block card-links (the `.group`
+     convention on list rows) are excluded: underline propagates through
+     block descendants, and a whole row underlined at rest reads as noise. */
   .record-body p > a,
-  .record-body li > a {
+  .record-body li > a:not(.group) {
     color: var(--color-ink);
     text-decoration: underline;
     text-decoration-color: var(--color-rule);
@@ -247,7 +249,7 @@ const SECTIONS = [
   }
 
   .record-body p > a:hover,
-  .record-body li > a:hover {
+  .record-body li > a:not(.group):hover {
     text-decoration-color: var(--color-ink);
   }
 

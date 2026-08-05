@@ -23,26 +23,22 @@ const stats = getOpenQuestionStats(questions);
   dateline={stats.asOf ? `As of ${formatDate(stats.asOf)}` : undefined}
   measure="full"
 >
-  <div
-    class="not-prose grid grid-cols-2 md:grid-cols-4 gap-px bg-rule border border-rule rounded overflow-hidden mb-12"
-  >
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">{stats.total}</p>
-      <p class="text-xs text-text-muted leading-snug">questions open</p>
+  <div class="not-prose grid grid-cols-2 md:grid-cols-4 border-y border-rule divide-x divide-rule mb-12">
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{stats.total}</p>
+      <p class="apparatus-label">questions open</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-cedar leading-none mb-1.5">{stats.carried}</p>
-      <p class="text-xs text-text-muted leading-snug">restated in a later edition</p>
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-unsettled leading-none tabular-nums mb-2">{stats.carried}</p>
+      <p class="apparatus-label">restated in a later edition</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">{stats.oldestDays}</p>
-      <p class="text-xs text-text-muted leading-snug">days since the oldest was raised</p>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{stats.oldestDays}</p>
+      <p class="apparatus-label">days since the oldest was raised</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">{stats.fromLedger}</p>
-      <p class="text-xs text-text-muted leading-snug">
-        from the ledger, {stats.fromBriefs} from the briefs
-      </p>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{stats.fromLedger}</p>
+      <p class="apparatus-label">from the ledger, {stats.fromBriefs} from the briefs</p>
     </div>
   </div>
 

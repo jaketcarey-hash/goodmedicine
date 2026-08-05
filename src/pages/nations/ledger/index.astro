@@ -57,25 +57,25 @@ const year = ledger?.coverageEnd.slice(0, 4) ?? '';
     : undefined}
   measure="full"
 >
-  <!-- The year in four numbers -->
-  <div class="not-prose grid grid-cols-2 md:grid-cols-4 gap-px bg-rule border border-rule rounded overflow-hidden mb-14">
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">{entries.length}</p>
-      <p class="text-xs text-text-muted leading-snug">developments tracked</p>
+  <!-- The year in four numbers. Figures are apparatus, so they speak mono. -->
+  <div class="not-prose grid grid-cols-2 md:grid-cols-4 border-y border-rule divide-x divide-rule mb-14">
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{entries.length}</p>
+      <p class="apparatus-label">developments tracked</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-forest leading-none mb-1.5">{ledger?.high ?? 0}</p>
-      <p class="text-xs text-text-muted leading-snug">high confidence</p>
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-verified leading-none tabular-nums mb-2">{ledger?.high ?? 0}</p>
+      <p class="apparatus-label">high confidence</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">
         {bands.find((b) => b.band === 'done')?.count ?? 0}
       </p>
-      <p class="text-xs text-text-muted leading-snug">done or in force</p>
+      <p class="apparatus-label">done or in force</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">{withAmounts}</p>
-      <p class="text-xs text-text-muted leading-snug">carry a disclosed figure</p>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{withAmounts}</p>
+      <p class="apparatus-label">carry a disclosed figure</p>
     </div>
   </div>
 
@@ -109,18 +109,27 @@ const year = ledger?.coverageEnd.slice(0, 4) ?? '';
       record says so rather than rounding it off.
     </p>
     <p class="not-prose flex flex-wrap gap-x-6 gap-y-2 text-sm mt-8 pt-6 border-t border-rule">
-      <a href="/nations/ytd-2026/event-ledger.json" class="text-cedar hover:text-cedar-dark">
+      <a
+        href="/nations/ytd-2026/event-ledger.json"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
         Download as JSON
       </a>
-      <a href="/nations/ytd-2026/event-ledger.csv" class="text-cedar hover:text-cedar-dark">
+      <a
+        href="/nations/ytd-2026/event-ledger.csv"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
         Download as CSV
       </a>
-      <a href="/nations/ytd-2026/report" class="text-cedar hover:text-cedar-dark">
+      <a
+        href="/nations/ytd-2026/report"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >
         The long-form report
       </a>
       <a
         href="/nations/ytd-2026/source-gaps-and-confidence"
-        class="text-cedar hover:text-cedar-dark"
+        class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
       >
         Source gaps and confidence
       </a>

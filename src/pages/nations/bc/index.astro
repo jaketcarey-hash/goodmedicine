@@ -30,26 +30,24 @@ const forBrowser = nations.map((n) => ({
   dateline={`Registry retrieved ${DIRECTORY_META.retrieved}`}
   measure="full"
 >
-  <div
-    class="not-prose grid grid-cols-2 md:grid-cols-4 gap-px bg-rule border border-rule rounded overflow-hidden mb-12"
-  >
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">{nations.length}</p>
-      <p class="text-xs text-text-muted leading-snug">Nations listed</p>
+  <div class="not-prose grid grid-cols-2 md:grid-cols-4 border-y border-rule divide-x divide-rule mb-12">
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{nations.length}</p>
+      <p class="apparatus-label">Nations listed</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">{peoples.length}</p>
-      <p class="text-xs text-text-muted leading-snug">Peoples and Nations represented</p>
+    <div class="px-5 py-5 max-md:border-b max-md:border-rule">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">{peoples.length}</p>
+      <p class="apparatus-label">Peoples and Nations represented</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-cedar leading-none mb-1.5">{tracked}</p>
-      <p class="text-xs text-text-muted leading-snug">with something tracked this year</p>
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-verified leading-none tabular-nums mb-2">{tracked}</p>
+      <p class="apparatus-label">with something tracked this year</p>
     </div>
-    <div class="bg-paper px-5 py-5">
-      <p class="font-record text-3xl text-ink leading-none mb-1.5">
+    <div class="px-5 py-5">
+      <p class="font-mono text-[26px] text-ink leading-none tabular-nums mb-2">
         {nations.length - tracked}
       </p>
-      <p class="text-xs text-text-muted leading-snug">with nothing tracked yet</p>
+      <p class="apparatus-label">with nothing tracked yet</p>
     </div>
   </div>
 

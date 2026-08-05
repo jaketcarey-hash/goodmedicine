@@ -48,17 +48,15 @@ const { edition, newer, older } = Astro.props;
   />
 
   <nav
-    class="not-prose grid grid-cols-2 gap-6 mt-16 pt-8 border-t border-rule"
+    class="not-prose grid grid-cols-2 gap-6 mt-16 pt-6 border-t border-rule"
     aria-label="Other editions"
   >
     <div>
       {
         older && (
           <a href={older.url} class="group block">
-            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-              Previous
-            </span>
-            <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors">
+            <span class="apparatus-label block mb-2">Previous</span>
+            <span class="block text-[15px] leading-snug text-ink font-medium group-hover:underline decoration-rule underline-offset-2">
               {older.headline}
             </span>
           </a>
@@ -69,10 +67,8 @@ const { edition, newer, older } = Astro.props;
       {
         newer && (
           <a href={newer.url} class="group block">
-            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-              Next
-            </span>
-            <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors">
+            <span class="apparatus-label block mb-2">Next</span>
+            <span class="block text-[15px] leading-snug text-ink font-medium group-hover:underline decoration-rule underline-offset-2">
               {newer.headline}
             </span>
           </a>
@@ -81,32 +77,35 @@ const { edition, newer, older } = Astro.props;
     </div>
   </nav>
 
-  <Fragment slot="rail">
-    <div class="border-t border-rule pt-5">
-      <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-4">
-        This edition
-      </p>
-      <dl class="space-y-3 text-sm">
-        <div class="flex justify-between gap-4">
-          <dt class="text-text-muted">Published</dt>
-          <dd class="text-ink text-right">{formatDate(edition.date)}</dd>
-        </div>
-        <div class="flex justify-between gap-4">
-          <dt class="text-text-muted">Cadence</dt>
-          <dd class="text-ink text-right capitalize">{edition.cadence}</dd>
-        </div>
-        <div class="flex justify-between gap-4">
-          <dt class="text-text-muted">Sources</dt>
-          <dd class="text-ink text-right">{edition.sources.length}</dd>
-        </div>
-      </dl>
+  <Fragment slot="evidence">
+    <dl class="flex flex-wrap gap-x-8 gap-y-4 lg:flex-col lg:gap-y-5 m-0">
+      <div>
+        <dt class="apparatus-label mb-1.5">Edition</dt>
+        <dd class="apparatus m-0 text-[11px] text-ink">
+          {edition.cadence === 'weekly' ? 'Weekly' : 'Daily'} · {formatDate(edition.date)}
+        </dd>
+      </div>
+      {
+        edition.status === 'verified_public_sources' && (
+          <div>
+            <dt class="apparatus-label mb-1.5">Verified against</dt>
+            <dd class="apparatus m-0 text-[11px] text-verified">Public sources only</dd>
+          </div>
+        )
+      }
+      <div>
+        <dt class="apparatus-label mb-1.5">Sources</dt>
+        <dd class="apparatus m-0 text-[11px] text-ink">{edition.sources.length} in the register</dd>
+      </div>
+    </dl>
+  </Fragment>
 
-      <a
-        href="/nations/archive"
-        class="inline-block mt-6 text-sm font-semibold text-cedar hover:text-cedar-dark transition-colors"
-      >
-        All editions &rarr;
-      </a>
-    </div>
+  <Fragment slot="rail">
+    <a
+      href="/nations/archive"
+      class="text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+    >
+      All editions &rarr;
+    </a>
   </Fragment>
 </Record>

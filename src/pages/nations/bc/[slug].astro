@@ -55,8 +55,8 @@ const standfirst = nation.people
             <ol class="not-prose list-none pl-0 m-0 divide-y divide-rule">
               {nation.records.map((entry) => (
                 <li class="py-6 first:pt-0">
-                  <div class="flex flex-wrap items-center gap-2 mb-2.5">
-                    <span class="text-xs text-text-muted tabular-nums">
+                  <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2.5">
+                    <span class="apparatus text-faint tabular-nums">
                       {formatDate(entry.date)}
                     </span>
                     <StageRail band={entry.band} stage={entry.stage} />
@@ -65,7 +65,7 @@ const standfirst = nation.people
                   <h3 class="plain">
                     <a href={`/nations/ledger/${entry.id}`}>{entry.event}</a>
                   </h3>
-                  <p class="text-sm leading-relaxed text-text-secondary max-w-3xl mt-2">
+                  <p class="text-sm leading-relaxed text-quiet max-w-3xl mt-2">
                     {entry.significance as string}
                   </p>
                 </li>
@@ -77,7 +77,7 @@ const standfirst = nation.people
         {nation.mentions.length > 0 && (
           <section class="mb-12">
             <h2>Editions that mention this Nation</h2>
-            <p class="not-prose text-sm text-text-secondary max-w-2xl mb-5">
+            <p class="not-prose text-sm text-quiet max-w-2xl mb-5">
               The name appears somewhere in these editions. That does not mean the edition
               is about this Nation — a brief covers many at once, and the headline below is
               the edition's, not this Nation's.
@@ -86,8 +86,8 @@ const standfirst = nation.people
               {nation.mentions.map((m) => (
                 <li class="py-4">
                   <a href={m.url} class="group block">
-                    <span class="block text-xs text-text-muted mb-1">{formatDate(m.date)}</span>
-                    <span class="block font-record text-base leading-snug text-ink group-hover:text-cedar transition-colors">
+                    <span class="apparatus block text-faint mb-1">{formatDate(m.date)}</span>
+                    <span class="block text-base font-medium leading-snug text-ink group-hover:underline decoration-rule underline-offset-2">
                       {m.headline}
                     </span>
                   </a>
@@ -137,10 +137,8 @@ const standfirst = nation.people
       {
         previous && (
           <a href={`/nations/bc/${previous.slug}`} class="group block">
-            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-              Previous
-            </span>
-            <span class="block font-record text-[15px] text-ink group-hover:text-cedar transition-colors">
+            <span class="apparatus-label block mb-2">Previous</span>
+            <span class="block text-[15px] font-medium text-ink group-hover:underline decoration-rule underline-offset-2">
               {previous.name}
             </span>
           </a>
@@ -151,10 +149,8 @@ const standfirst = nation.people
       {
         next && (
           <a href={`/nations/bc/${next.slug}`} class="group block">
-            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-              Next
-            </span>
-            <span class="block font-record text-[15px] text-ink group-hover:text-cedar transition-colors">
+            <span class="apparatus-label block mb-2">Next</span>
+            <span class="block text-[15px] font-medium text-ink group-hover:underline decoration-rule underline-offset-2">
               {next.name}
             </span>
           </a>
@@ -164,20 +160,18 @@ const standfirst = nation.people
   </nav>
 
   <Fragment slot="rail">
-    <div class="border-t border-rule pt-5 space-y-6">
+    <div class="space-y-6">
       <div>
-        <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-          Registry
-        </p>
+        <p class="apparatus-label mb-2">Registry</p>
         <dl class="space-y-2 text-sm">
           <div class="flex justify-between gap-3">
-            <dt class="text-text-muted">Band number</dt>
-            <dd class="text-ink tabular-nums">{nation.bandNumber}</dd>
+            <dt class="text-quiet">Band number</dt>
+            <dd class="font-mono text-[13px] text-ink tabular-nums">{nation.bandNumber}</dd>
           </div>
           {
             nation.people && (
               <div class="flex justify-between gap-3">
-                <dt class="text-text-muted shrink-0">People</dt>
+                <dt class="text-quiet shrink-0">People</dt>
                 <dd class="text-ink text-right">{nation.people}</dd>
               </div>
             )
@@ -186,14 +180,12 @@ const standfirst = nation.people
       </div>
 
       <div>
-        <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-          Tribal Council
-        </p>
+        <p class="apparatus-label mb-2">Tribal Council</p>
         {
           nation.tribalCouncil ? (
             <p class="text-sm text-ink leading-snug">{nation.tribalCouncil}</p>
           ) : (
-            <p class="text-sm text-text-muted leading-snug">
+            <p class="text-sm text-quiet leading-snug">
               Not recorded here. This does not mean the Nation is unaffiliated — only that
               no confident match was found.
             </p>
@@ -204,15 +196,13 @@ const standfirst = nation.people
       {
         kin.length > 0 && (
           <div>
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-              Also {nation.people}
-            </p>
-            <ul class="space-y-1.5">
+            <p class="apparatus-label mb-2">Also {nation.people}</p>
+            <ul class="space-y-1.5 list-none p-0 m-0">
               {kin.map((k) => (
                 <li>
                   <a
                     href={`/nations/bc/${k.slug}`}
-                    class="text-sm text-ink hover:text-cedar transition-colors leading-snug"
+                    class="text-sm text-ink leading-snug underline decoration-rule underline-offset-2 hover:decoration-ink"
                   >
                     {k.name}
                   </a>
@@ -224,12 +214,12 @@ const standfirst = nation.people
       }
 
       <div class="pt-4 border-t border-rule">
-        <p class="text-[11px] text-text-muted leading-relaxed mb-3">
+        <p class="text-[11px] text-faint leading-relaxed mb-3">
           Registry data from {DIRECTORY_META.source}, retrieved {DIRECTORY_META.retrieved}.
         </p>
         <a
           href="/nations/bc"
-          class="text-sm font-semibold text-cedar hover:text-cedar-dark transition-colors"
+          class="text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
         >
           &larr; All BC Nations
         </a>
