@@ -18,7 +18,7 @@ if (!card || !card.published) {
 const barColor = accentBar(card.accent);
 ---
 
-<Shell title={card.title} branch="rights">
+<Shell title={card.title} branch="rights" description={`${card.setting} — ${card.answer}`}>
   <article class="px-5 pt-10 pb-12">
     <!-- Back link -->
     <a

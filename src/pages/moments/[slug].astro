@@ -21,7 +21,7 @@ if (!moment || !moment.published) {
 const storageKey = STORAGE_KEYS.MOMENTS_PROGRESS;
 ---
 
-<Shell title={moment.title} branch="home">
+<Shell title={moment.title} branch="home" description={moment.cardPrompt}>
   <article class="px-5 pt-10 pb-12 moment-prose">
     <!-- Back link -->
     <a
