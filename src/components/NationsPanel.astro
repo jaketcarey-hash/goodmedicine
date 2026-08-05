@@ -1,0 +1,127 @@
+---
+/**
+ * The latest brief.
+ *
+ * It carries the cedar rule and the serif of the brief itself rather than the
+ * app's rounded-card language, so the change of register is legible before you
+ * read a word.
+ *
+ * `lead` is the home page: full width, given real weight, because it is the one
+ * thing on the site that changes and therefore the reason to come back.
+ * `card` is for sitting beside other things.
+ */
+import { getLatestEdition, formatDate } from '../lib/nations-data';
+
+interface Props {
+  variant?: 'lead' | 'card';
+}
+
+const { variant = 'card' } = Astro.props;
+const edition = getLatestEdition();
+
+// The daily carries a through-line; the weekly does not, so fall back to the
+// opening of its lead item rather than leaving a hole.
+const summary = edition?.throughLine || edition?.lead?.paragraphs[0] || '';
+const sourceCount = edition?.sources.length ?? 0;
+const isLead = variant === 'lead';
+---
+
+{
+  edition && (
+    <section
+      class:list={[
+        'bg-paper overflow-hidden border-t-cedar',
+        isLead
+          ? 'border-t-[6px] border-b border-b-stone-200'
+          : 'rounded-lg border border-stone-200 border-t-[5px]',
+      ]}
+    >
+      <div class:list={[isLead ? 'py-7 md:py-9' : 'p-5 md:p-7']}>
+        {/*
+          Wraps rather than holding one line. The kicker is wide with its
+          tracking, and a nowrap date beside it sets a min-content width that
+          overflows a small phone and clips the whole column.
+        */}
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-4">
+          <p class="text-[11px] font-bold tracking-[0.15em] uppercase text-cedar">
+            {edition.title}
+          </p>
+          <p class="text-[11px] text-text-muted">{formatDate(edition.date)}</p>
+        </div>
+
+        <h2
+          class:list={[
+            'font-record leading-[1.2] text-ink mb-4',
+            isLead
+              ? edition.headline.length > 150
+                ? 'text-[22px] md:text-[30px] max-w-4xl'
+                : 'text-[26px] md:text-[38px] max-w-4xl'
+              : 'text-2xl md:text-[28px]',
+          ]}
+        >
+          <a
+            href={edition.url}
+            class="hover:text-cedar transition-colors duration-[var(--duration-normal)]"
+          >
+            {edition.headline}
+          </a>
+        </h2>
+
+        {summary && (
+          <p
+            class:list={[
+              'font-record leading-[1.7] text-stone-700 mb-6',
+              isLead
+                ? 'text-base md:text-lg max-w-3xl line-clamp-4'
+                : 'text-[15px] md:text-base mb-5 line-clamp-6',
+            ]}
+          >
+            {summary}
+          </p>
+        )}
+
+        {edition.lead && (
+          <div class="border-l-[3px] border-forest pl-4 mb-6 max-w-3xl">
+            <p class="text-[10px] font-bold tracking-[0.14em] uppercase text-forest mb-1">
+              The one thing
+            </p>
+            <p
+              class:list={[
+                'font-record leading-snug text-ink',
+                isLead ? 'text-base md:text-lg' : 'text-[15px]',
+              ]}
+            >
+              {edition.lead.headline}
+            </p>
+          </div>
+        )}
+
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 pt-4 border-t border-rule">
+          <a
+            href={edition.url}
+            class="text-sm font-semibold text-cedar hover:text-cedar-dark transition-colors duration-[var(--duration-normal)]"
+          >
+            Read the brief &rarr;
+          </a>
+          <span class="text-xs text-text-muted">
+            {`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}, each checked`}
+          </span>
+          {isLead && (
+            <a
+              href="/nations"
+              class="text-xs text-text-muted hover:text-text-secondary transition-colors"
+            >
+              The Nations
+            </a>
+          )}
+          <a
+            href="/nations/archive"
+            class="text-xs text-text-muted hover:text-text-secondary transition-colors ml-auto"
+          >
+            Archive
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}

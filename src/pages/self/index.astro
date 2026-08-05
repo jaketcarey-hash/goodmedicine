@@ -1,7 +1,14 @@
 ---
 import Shell from '../../layouts/Shell.astro';
 import PageHeader from '../../components/PageHeader.svelte';
+import CommonQuestions from '../../components/CommonQuestions.astro';
 import WellnessHub from '../../components/WellnessHub.svelte';
+
+const QUESTIONS = [
+  { q: 'Money just arrived. What should I do first?', href: '/moments/money-arrived' },
+  { q: 'Money is stressing me out.', href: '/self/stress' },
+  { q: 'I have to talk to family about money.', href: '/self/conversations' },
+];
 ---
 
 <Shell title="Knowing Yourself" branch="self">
@@ -12,6 +19,8 @@ import WellnessHub from '../../components/WellnessHub.svelte';
     backHref="/"
     backLabel="Home"
   />
+
+  <CommonQuestions questions={QUESTIONS} />
 
   <section class="px-5 pb-10">
     <WellnessHub client:load />

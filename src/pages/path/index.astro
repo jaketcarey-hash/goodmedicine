@@ -1,7 +1,15 @@
 ---
 import Shell from '../../layouts/Shell.astro';
 import PageHeader from '../../components/PageHeader.svelte';
+import CommonQuestions from '../../components/CommonQuestions.astro';
 import TopicCard from '../../components/TopicCard.svelte';
+
+const QUESTIONS = [
+  { q: 'Someone died. What happens to their house on reserve?', href: '/moments/someone-passed' },
+  { q: "I'm leaving home for school.", href: '/path/leaving-home' },
+  { q: 'I just got my first job.', href: '/path/first-job' },
+  { q: "I'm helping an elder with their money.", href: '/path/supporting-elders' },
+];
 ---
 
 <Shell title="Knowing Your Path" branch="path">
@@ -12,6 +20,8 @@ import TopicCard from '../../components/TopicCard.svelte';
     backHref="/"
     backLabel="Home"
   />
+
+  <CommonQuestions questions={QUESTIONS} />
 
   <!-- Interactive tools -->
   <section class="px-5 pb-6">
