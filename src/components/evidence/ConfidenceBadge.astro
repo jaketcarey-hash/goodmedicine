@@ -1,0 +1,51 @@
+---
+/**
+ * How firmly the record supports a claim.
+ *
+ * The vocabulary comes from the ledger's own taxonomy: high means primary
+ * evidence plus independent confirmation, or a self-authenticating public
+ * legal record; medium means credible primary evidence with incomplete terms;
+ * low means a single source, an inaccessible document, or an open allegation.
+ */
+interface Props {
+  level: 'high' | 'medium' | 'low' | string;
+  /** Show the explanation as a title attribute for anyone who hovers. */
+  withTooltip?: boolean;
+  size?: 'sm' | 'md';
+}
+
+const { level, withTooltip = true, size = 'sm' } = Astro.props;
+
+const meaning: Record<string, string> = {
+  high: 'Primary evidence with independent confirmation, or a public legal record that speaks for itself.',
+  medium: 'Credible primary evidence, but with terms or details still incomplete.',
+  low: 'A single source, an unreachable underlying document, or a claim not yet resolved.',
+};
+
+const tone: Record<string, string> = {
+  high: 'bg-forest/10 text-forest border-forest/25',
+  medium: 'bg-clay-100 text-clay-700 border-clay-300',
+  low: 'bg-stone-100 text-stone-600 border-stone-300',
+};
+
+const label: Record<string, string> = {
+  high: 'High confidence',
+  medium: 'Medium confidence',
+  low: 'Low confidence',
+};
+
+const key = level.toLowerCase();
+const sizing = size === 'md' ? 'text-xs px-2.5 py-1' : 'text-[10px] px-2 py-0.5';
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-1.5 rounded-full border font-semibold tracking-wide uppercase whitespace-nowrap',
+    tone[key] ?? tone.low,
+    sizing,
+  ]}
+  title={withTooltip ? meaning[key] : undefined}
+>
+  <span class="w-1.5 h-1.5 rounded-full bg-current opacity-70" aria-hidden="true"></span>
+  {label[key] ?? level}
+</span>

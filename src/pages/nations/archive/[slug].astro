@@ -1,0 +1,112 @@
+---
+/**
+ * A single edition.
+ *
+ * The route is /nations/archive/YYYY-MM-DD, which is the address these
+ * editions have always had — the weekday automation checks it, and anything
+ * already shared points at it. Weekly editions keep their -weekly suffix.
+ */
+import type { GetStaticPaths } from 'astro';
+import Record from '../../../layouts/Record.astro';
+import BriefBody from '../../../components/BriefBody.astro';
+import { getEditions, formatDate } from '../../../lib/nations-data';
+import Crossings from '../../../components/Crossings.astro';
+
+export const getStaticPaths = (() => {
+  const editions = getEditions();
+  return editions.map((edition, i) => ({
+    params: { slug: edition.slug },
+    props: {
+      edition,
+      newer: editions[i - 1] ?? null,
+      older: editions[i + 1] ?? null,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { edition, newer, older } = Astro.props;
+---
+
+<Record
+  title={`${edition.title} — ${formatDate(edition.date)}`}
+  description={edition.headline}
+  kicker={edition.title}
+  heading={edition.headline}
+  standfirst={edition.throughLine || undefined}
+  dateline={`${edition.dateLong}${edition.readTime ? ` · ${edition.readTime}` : ''}`}
+  hasRail={true}
+>
+  <BriefBody edition={edition} />
+
+  <Crossings
+    subject={[
+      edition.headline,
+      edition.throughLine,
+      edition.lead?.headline ?? '',
+      ...edition.sections.flatMap((s) => s.items.map((i) => i.headline)),
+    ].join(' ')}
+  />
+
+  <nav
+    class="not-prose grid grid-cols-2 gap-6 mt-16 pt-8 border-t border-rule"
+    aria-label="Other editions"
+  >
+    <div>
+      {
+        older && (
+          <a href={older.url} class="group block">
+            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
+              Previous
+            </span>
+            <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors">
+              {older.headline}
+            </span>
+          </a>
+        )
+      }
+    </div>
+    <div class="text-right">
+      {
+        newer && (
+          <a href={newer.url} class="group block">
+            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
+              Next
+            </span>
+            <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors">
+              {newer.headline}
+            </span>
+          </a>
+        )
+      }
+    </div>
+  </nav>
+
+  <Fragment slot="rail">
+    <div class="border-t border-rule pt-5">
+      <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-4">
+        This edition
+      </p>
+      <dl class="space-y-3 text-sm">
+        <div class="flex justify-between gap-4">
+          <dt class="text-text-muted">Published</dt>
+          <dd class="text-ink text-right">{formatDate(edition.date)}</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="text-text-muted">Cadence</dt>
+          <dd class="text-ink text-right capitalize">{edition.cadence}</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="text-text-muted">Sources</dt>
+          <dd class="text-ink text-right">{edition.sources.length}</dd>
+        </div>
+      </dl>
+
+      <a
+        href="/nations/archive"
+        class="inline-block mt-6 text-sm font-semibold text-cedar hover:text-cedar-dark transition-colors"
+      >
+        All editions &rarr;
+      </a>
+    </div>
+  </Fragment>
+</Record>

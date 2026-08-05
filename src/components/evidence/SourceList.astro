@@ -1,0 +1,65 @@
+---
+/**
+ * The numbered source register that sits under a brief, and the same component
+ * that will sit under a ledger record and a calculator figure.
+ *
+ * Sources are shown, not hidden behind a disclosure. If a claim rests on a
+ * single blog post, that should be as visible as if it rests on a court
+ * decision — which is the whole reason for showing the type alongside the label.
+ */
+export interface Source {
+  id: number;
+  label: string;
+  url: string;
+  date?: string;
+  type?: string;
+}
+
+interface Props {
+  sources: Source[];
+  heading?: string;
+  /** `full` numbers each source and shows its type. `compact` is a plain list. */
+  variant?: 'full' | 'compact';
+}
+
+const { sources, heading = 'Sources', variant = 'full' } = Astro.props;
+---
+
+{
+  sources.length > 0 && (
+    <section class="not-prose">
+      <h2 class="text-[11px] font-bold tracking-[0.15em] uppercase text-cedar pb-2.5 mb-4 border-b border-rule">
+        {heading}
+      </h2>
+
+      <ol class="space-y-3.5 list-none pl-0">
+        {sources.map((source) => (
+          <li class="flex gap-3 text-sm leading-snug">
+            {variant === 'full' && (
+              <span class="font-record text-cedar tabular-nums shrink-0 w-5 text-right">
+                {source.id}
+              </span>
+            )}
+            <span class="min-w-0">
+              <a
+                href={source.url}
+                rel="noopener noreferrer"
+                target="_blank"
+                class="text-ink hover:text-cedar transition-colors break-words"
+              >
+                {source.label}
+              </a>
+              {(source.type || source.date) && (
+                <span class="block text-xs text-text-muted mt-1">
+                  {source.type}
+                  {source.type && source.date ? ' · ' : ''}
+                  {source.date}
+                </span>
+              )}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}

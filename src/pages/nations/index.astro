@@ -1,0 +1,82 @@
+---
+/**
+ * /nations — the current edition, which is what most people come for.
+ * The archive and the ledger hang off it.
+ */
+import Record from '../../layouts/Record.astro';
+import BriefBody from '../../components/BriefBody.astro';
+import { getEditions, formatDate } from '../../lib/nations-data';
+
+const editions = getEditions();
+const edition = editions[0];
+const recent = editions.slice(1, 6);
+---
+
+{
+  edition ? (
+    <Record
+      title={edition.title}
+      description={edition.headline}
+      kicker={edition.title}
+      heading={edition.headline}
+      standfirst={edition.throughLine || undefined}
+      dateline={`${edition.dateLong}${edition.readTime ? ` · ${edition.readTime}` : ''}`}
+      hasRail={true}
+    >
+      <BriefBody edition={edition} />
+
+      <Fragment slot="rail">
+        <div class="border-t border-rule pt-5">
+          <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-4">
+            How this is made
+          </p>
+          <p class="text-sm leading-relaxed text-text-secondary mb-4">
+            Every item is gathered from public sources, checked against them, and dropped
+            if it does not hold. Indigenous-led outlets are read first, then legal and
+            specialist records, then everyone else.
+          </p>
+          <p class="text-sm leading-relaxed text-text-secondary">
+            Nations, communities and governments are named as they name themselves.
+          </p>
+        </div>
+
+        {recent.length > 0 && (
+          <div class="border-t border-rule pt-5 mt-8">
+            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-4">
+              Earlier
+            </p>
+            <ul class="space-y-4">
+              {recent.map((e) => (
+                <li>
+                  <a href={e.url} class="group block">
+                    <span class="block text-[11px] text-text-muted mb-1">
+                      {formatDate(e.date)}
+                      {e.cadence === 'weekly' ? ' · Weekly' : ''}
+                    </span>
+                    <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors">
+                      {e.headline}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/nations/archive"
+              class="inline-block mt-5 text-sm font-semibold text-cedar hover:text-cedar-dark transition-colors"
+            >
+              Full archive &rarr;
+            </a>
+          </div>
+        )}
+      </Fragment>
+    </Record>
+  ) : (
+    <Record
+      title="The Nations"
+      heading="No edition published yet"
+      kicker="The Nations"
+    >
+      <p>The first brief will appear here once it publishes.</p>
+    </Record>
+  )
+}
