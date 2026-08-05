@@ -1,18 +1,24 @@
 /**
  * Canadian tax estimator — 2026 rates.
  * These are estimates only. Not tax advice.
+ *
+ * Rates and thresholds that also appear in prose come from the figure registry
+ * rather than being typed here, so an article and this calculator can never
+ * quote different numbers. See src/lib/figures.ts.
  */
+import { value } from './figures';
 
 // ---- Federal brackets (2026) ----
+// Widths, not ceilings: 58,523 / 117,045 / 181,440 / 258,482.
 const FEDERAL_BRACKETS: [number, number][] = [
-  [58_523, 0.14],
+  [58_523, value('federal_bracket_1_rate')],
   [58_522, 0.205],   // 58,523 to 117,045
   [64_395, 0.26],    // 117,045 to 181,440
   [77_042, 0.29],    // 181,440 to 258,482
   [Infinity, 0.33],  // above 258,482
 ];
 
-const FEDERAL_BASIC_PERSONAL = 16_452;
+const FEDERAL_BASIC_PERSONAL = value('federal_basic_personal');
 
 // ---- Provincial first-bracket rates and basic personal amounts ----
 interface ProvincialInfo {
@@ -38,15 +44,20 @@ export const PROVINCES: Record<string, ProvincialInfo> = {
 };
 
 // ---- CPP / EI (2026) ----
-const CPP_RATE = 0.0595;
-const CPP_EXEMPTION = 3_500;
-const CPP_MAX_PENSIONABLE = 74_600;
+const CPP_RATE = value('cpp_rate');
+const CPP_EXEMPTION = value('cpp_exemption');
+const CPP_MAX_PENSIONABLE = value('cpp_ympe');
 
-const EI_RATE = 0.0163;
-const EI_MAX_INSURABLE = 68_900;
+// CPP2 — the second additional contribution, on earnings between the year's
+// maximum pensionable earnings and the year's additional maximum (YAMPE).
+const CPP2_RATE = value('cpp2_rate');
+const CPP2_MAX_PENSIONABLE = value('cpp2_yampe');
 
-// ---- GST credit rough estimate (single adult, July 2025–June 2026) ----
-const GST_CREDIT_SINGLE = 533;
+const EI_RATE = value('ei_rate');
+const EI_MAX_INSURABLE = value('ei_max_insurable');
+
+// ---- Canada Groceries and Essentials Benefit, formerly the GST/HST credit ----
+const GROCERIES_BENEFIT_SINGLE = value('groceries_benefit_single');
 
 // ---- Calculation functions ----
 
@@ -80,11 +91,24 @@ export function estimateProvincialTax(income: number, province: string): number 
   return taxable * info.rate;
 }
 
-/** Estimate CPP contributions. */
+/**
+ * Estimate CPP contributions, including the second additional contribution (CPP2).
+ *
+ * Base CPP applies at 5.95% on earnings between the $3,500 exemption and the
+ * year's maximum pensionable earnings. CPP2 then applies at 4% on the slice
+ * between that ceiling and the year's additional maximum. Someone earning above
+ * the first ceiling pays both, so leaving CPP2 out understates their deductions.
+ */
 export function estimateCPP(income: number): number {
   if (income <= CPP_EXEMPTION) return 0;
+
   const pensionable = Math.min(income, CPP_MAX_PENSIONABLE) - CPP_EXEMPTION;
-  return Math.max(pensionable * CPP_RATE, 0);
+  const base = Math.max(pensionable * CPP_RATE, 0);
+
+  const additionalEarnings = Math.min(income, CPP2_MAX_PENSIONABLE) - CPP_MAX_PENSIONABLE;
+  const additional = Math.max(additionalEarnings * CPP2_RATE, 0);
+
+  return base + additional;
 }
 
 /** Estimate EI premiums. */
@@ -120,7 +144,7 @@ export function estimateTotal(
   if (income <= 0) {
     return {
       federal: 0, provincial: 0, cpp: 0, ei: 0, total: 0,
-      effectiveRate: 0, monthlyTakeHome: 0, annualTakeHome: 0, gstCredit: GST_CREDIT_SINGLE,
+      effectiveRate: 0, monthlyTakeHome: 0, annualTakeHome: 0, gstCredit: GROCERIES_BENEFIT_SINGLE,
     };
   }
 
@@ -141,8 +165,8 @@ export function estimateTotal(
   const annualTakeHome = income - total;
   const monthlyTakeHome = annualTakeHome / 12;
 
-  // GST credit estimate (rough — depends on net income)
-  const gstCredit = adjustedIncome < 50_000 ? GST_CREDIT_SINGLE : 0;
+  // Groceries and Essentials Benefit estimate (rough — depends on net income)
+  const gstCredit = adjustedIncome < 50_000 ? GROCERIES_BENEFIT_SINGLE : 0;
 
   return {
     federal, provincial, cpp, ei, total,

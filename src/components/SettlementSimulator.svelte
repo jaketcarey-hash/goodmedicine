@@ -3,6 +3,7 @@
     simulateSettlement,
     formatCurrency,
     formatMultiplier,
+    CURRENT_YEAR,
     type SimulationResult,
     type GenerationResult,
   } from '../lib/settlement-math';
@@ -112,9 +113,9 @@
     }
 
     if (r.depletionYear !== null) {
-      const depletionGeneration = Math.ceil((r.depletionYear - 2026) / 25);
+      const depletionGeneration = Math.ceil((r.depletionYear - CURRENT_YEAR) / 25);
       insights.push(
-        `At this rate, the trust runs out by Year ${r.depletionYear - 2026}. Generations ${depletionGeneration + 1} through 7 receive nothing.`
+        `At this rate, the trust runs out by Year ${r.depletionYear - CURRENT_YEAR}. Generations ${depletionGeneration + 1} through 7 receive nothing.`
       );
     } else if (distributePercent < 100) {
       insights.push(
@@ -383,7 +384,7 @@
     {#if result.depletionYear}
       <div class="mt-4 rounded-xl bg-berry-50 border border-berry-200 p-3">
         <p class="text-xs font-semibold text-berry-600">
-          Trust depleted by Year {result.depletionYear - 2026}
+          Trust depleted by Year {result.depletionYear - CURRENT_YEAR}
         </p>
         <p class="text-xs text-berry-500 mt-0.5">
           The spending rate exceeds growth. Future generations lose access to trust income.

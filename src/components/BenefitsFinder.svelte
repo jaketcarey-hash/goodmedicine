@@ -1,6 +1,9 @@
 <script lang="ts">
   import { fly, fade, slide } from 'svelte/transition';
   import { STORAGE_KEYS } from '../lib/storage-keys';
+  // Benefit amounts come from the shared registry so this tool and the
+  // articles that quote the same programmes cannot drift apart.
+  import { money, moneyExact } from '../lib/figures';
 
   // ── State ──────────────────────────────────────────────────
   let step = $state(0);
@@ -186,9 +189,9 @@
     if (taxFiled) {
       benefits.push({
         id: 'gst',
-        name: 'GST/HST Credit',
-        description: 'A quarterly tax-free payment to help individuals and families with low or modest income offset the GST or HST they pay.',
-        value: 'Estimated $300 to $500 per year',
+        name: 'Canada Groceries and Essentials Benefit',
+        description: 'A quarterly tax-free payment for individuals and families with low or modest income. This replaced the GST/HST credit in July 2026 — same eligibility, same payment schedule, larger amount.',
+        value: `Up to an estimated ${money('groceries_benefit_single')} per year (single adult), ${money('groceries_benefit_couple')} (couple), plus ${money('groceries_benefit_per_child')} per child`,
         howTo: 'File your tax return. The CRA automatically determines eligibility and sends payments quarterly. No separate application needed.',
         link: '/money/taxes',
         priority: 'medium',
@@ -201,7 +204,7 @@
         id: 'ccb',
         name: 'Canada Child Benefit (CCB)',
         description: 'A tax-free monthly payment to eligible families to help with the cost of raising children under 18.',
-        value: 'Up to an estimated $7,787 per child per year (under 6) or $6,570 (ages 6 to 17)',
+        value: `Up to an estimated ${money('ccb_under_6')} per child per year (under 6) or ${money('ccb_6_to_17')} (ages 6 to 17)`,
         howTo: 'File your tax return each year. Apply through My CRA Account or by mailing form RC66. Payments are automatic once approved.',
         link: '/money/taxes',
         priority: 'high',
@@ -240,7 +243,7 @@
         id: 'gis',
         name: 'Guaranteed Income Supplement (GIS)',
         description: 'A monthly non-taxable benefit for low-income Old Age Security pensioners living in Canada.',
-        value: 'Up to an estimated $1,065 per month (single)',
+        value: `Up to an estimated ${moneyExact('gis_single')} per month (single)`,
         howTo: 'If you receive OAS and filed taxes, you may be automatically enrolled. Otherwise, contact Service Canada or apply using form ISP-3025.',
         priority: 'high',
         type: 'qualify',
@@ -250,7 +253,7 @@
         id: 'oas',
         name: 'Old Age Security (OAS)',
         description: 'A monthly payment available to most Canadians aged 65 and older, regardless of employment history.',
-        value: 'Up to an estimated $727 per month',
+        value: `Up to an estimated ${moneyExact('oas_65_to_74')} per month (age 65 to 74), or ${moneyExact('oas_75_plus')} (age 75 and over)`,
         howTo: 'Many are automatically enrolled. If not, apply through My Service Canada Account or your local Service Canada office.',
         priority: 'high',
         type: 'qualify',
@@ -275,7 +278,7 @@
         id: 'ei',
         name: 'Employment Insurance (EI)',
         description: 'Temporary income support if you\'ve recently lost your job through no fault of your own, or are unable to work due to illness, pregnancy, or caregiving.',
-        value: 'Up to 55% of previous earnings, to an estimated maximum of $668 per week',
+        value: `Up to 55% of previous earnings, to an estimated maximum of ${money('ei_max_weekly')} per week`,
         howTo: 'Apply online through Service Canada within four weeks of your last day of work. You need your Record of Employment (ROE) from your employer.',
         priority: 'medium',
         type: 'qualify',
@@ -287,8 +290,8 @@
       benefits.push({
         id: 'ccb-action',
         name: 'Canada Child Benefit (CCB) — File Taxes to Unlock',
-        description: 'You may be eligible for up to $7,787 per child per year, but the CRA needs your tax return to calculate your payment.',
-        value: 'Up to an estimated $7,787 per child per year',
+        description: `You may be eligible for up to ${money('ccb_under_6')} per child per year, but the CRA needs your tax return to calculate your payment.`,
+        value: `Up to an estimated ${money('ccb_under_6')} per child per year`,
         howTo: 'File your tax return for the past two years. You can do this for free at a community tax clinic or through a volunteer tax preparer.',
         link: '/money/taxes',
         priority: 'high',
@@ -299,9 +302,9 @@
     if (taxNotFiled && !children) {
       benefits.push({
         id: 'gst-action',
-        name: 'GST/HST Credit — File Taxes to Unlock',
-        description: 'A quarterly payment of roughly $300 to $500 per year that you are likely missing by not having a tax return on file.',
-        value: 'Estimated $300 to $500 per year',
+        name: 'Canada Groceries and Essentials Benefit — File Taxes to Unlock',
+        description: 'A quarterly payment, formerly the GST/HST credit, that you are likely missing by not having a tax return on file.',
+        value: `Up to an estimated ${money('groceries_benefit_single')} per year (single adult)`,
         howTo: 'File your tax return. Free community tax clinics are available in most areas. You can also file online through certified tax software at no cost.',
         link: '/money/taxes',
         priority: 'high',

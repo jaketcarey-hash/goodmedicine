@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import { money, moneyExact } from '../../lib/figures';
 ---
 
 <Article
@@ -11,7 +12,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   backHref="/path"
   backLabel="Path"
   readTime="9 min"
-  lastUpdated="March 2026"
+  lastUpdated="August 2026"
 >
 
   <p>
@@ -39,7 +40,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <ul>
     <li>Based on contributions made during working years. If your elder worked and had CPP deducted from their pay, they've earned a pension</li>
     <li>Can start as early as 60 (reduced) or as late as 70 (increased). Standard age is 65</li>
-    <li>The average CPP payment is around $815/month, but it varies widely based on contributions. Maximum is about $1,365/month</li>
+    <li>The average CPP payment for someone starting in 2026 is around {moneyExact('cpp_avg_monthly_new')}/month, but it varies widely based on contributions. The maximum at age 65 is about {moneyExact('cpp_max_monthly_at_65')}/month</li>
     <li>Must be applied for — it doesn't start automatically</li>
   </ul>
 
@@ -48,7 +49,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <ul>
     <li>Available to most Canadians aged 65+ who have lived in Canada for at least 10 years after turning 18</li>
     <li>Not based on employment — it's based on residency. Even elders who didn't work in the formal economy qualify</li>
-    <li>Maximum is about $727/month (age 65-74) or $800/month (75+)</li>
+    <li>Maximum is about {moneyExact('oas_65_to_74')}/month (age 65-74) or {moneyExact('oas_75_plus')}/month (75+)</li>
     <li>Service Canada may automatically enrol some people, but don't count on it. Apply</li>
   </ul>
 
@@ -56,7 +57,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
 
   <ul>
     <li>An additional monthly payment for low-income OAS recipients</li>
-    <li>Can add up to $1,065/month for a single elder</li>
+    <li>Can add up to {moneyExact('gis_single')}/month for a single elder</li>
     <li>Income-tested — but here's the key: <strong>tax-exempt income under Section 87 is not counted as income for GIS purposes.</strong> This means many Indigenous elders on reserve qualify for the full GIS even if they have some income</li>
     <li>Must be renewed annually — typically by filing a tax return. If your elder doesn't file, they lose GIS</li>
   </ul>
@@ -65,7 +66,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     <strong>Filing taxes is everything</strong>
     <p>
       The single most important thing you can do for an elder's finances is make sure they
-      file a tax return every year. GIS, GST/HST credits, and provincial benefits all
+      file a tax return every year. GIS, the Groceries and Essentials Benefit, and provincial benefits all
       depend on it. Even if they owe nothing. Even if their income is entirely exempt.
       Many free tax clinics will come to communities or reserves — ask your band office
       or local friendship centre.
@@ -76,10 +77,10 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     <div class="space-y-3 text-sm">
       <p>For a single elder aged 65+ with low income, living on reserve:</p>
       <ul>
-        <li><strong>OAS:</strong> ~$727/month</li>
-        <li><strong>GIS:</strong> up to ~$1,065/month</li>
+        <li><strong>OAS:</strong> ~{moneyExact('oas_65_to_74')}/month</li>
+        <li><strong>GIS:</strong> up to ~{moneyExact('gis_single')}/month</li>
         <li><strong>CPP:</strong> varies (could be $0 if they never contributed, or $200-800+ if they did)</li>
-        <li><strong>GST/HST credit:</strong> ~$500/year</li>
+        <li><strong>Groceries and Essentials Benefit:</strong> ~{money('groceries_benefit_single')}/year</li>
         <li><strong>Provincial supplements:</strong> varies — BC, ON, AB, and others offer additional seniors' benefits</li>
       </ul>
       <p><strong>Total potential income:</strong> $1,800-2,800+/month, depending on CPP history and province. Some elders are receiving only a fraction of this because they haven't applied for everything or haven't been filing taxes.</p>

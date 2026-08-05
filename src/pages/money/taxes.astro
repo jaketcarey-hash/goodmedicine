@@ -2,6 +2,10 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import VerifiedStamp from '../../components/evidence/VerifiedStamp.astro';
+// Amounts are read from the registry, not typed here. This page and the
+// Benefits Finder used to quote different CCB figures; they now cannot.
+import { money, figure } from '../../lib/figures';
 ---
 
 <Article
@@ -11,7 +15,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   backHref="/money"
   backLabel="Money"
   readTime="7 min"
-  lastUpdated="June 2026"
+  lastUpdated="August 2026"
 >
 
   <p>
@@ -35,13 +39,21 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   </p>
 
   <ul>
-    <li><strong>GST/HST credit</strong> — up to $533/year for a single person (2025-2026), paid quarterly</li>
-    <li><strong>Canada Child Benefit (CCB)</strong> — up to $8,157 per child under 6 and $6,883 per child aged 6-17 (2026-2027 benefit year). This is significant money</li>
+    <li><strong>Canada Groceries and Essentials Benefit</strong> — up to {money('groceries_benefit_single')}/year for a single person, {money('groceries_benefit_couple')} for a couple, plus {money('groceries_benefit_per_child')} per child (2026-2027 benefit year), paid quarterly. This replaced the GST/HST credit in July 2026</li>
+    <li><strong>Canada Child Benefit (CCB)</strong> — up to {money('ccb_under_6')} per child under 6 and {money('ccb_6_to_17')} per child aged 6-17 (2026-2027 benefit year). This is significant money</li>
     <li><strong>Canada Workers Benefit</strong> — refundable tax credit for low-income workers</li>
     <li><strong>Provincial credits</strong> — climate action payments, sales tax credits, rental credits (varies by province)</li>
     <li><strong>RRSP and TFSA contribution room</strong> — CRA calculates your RRSP room from your filed return</li>
     <li><strong>GIS and OAS supplements</strong> — for elders, filing is required to receive the Guaranteed Income Supplement</li>
   </ul>
+
+  <p class="not-prose -mt-3 mb-8">
+    <VerifiedStamp
+      date={figure('ccb_under_6').verifiedOn}
+      source={figure('ccb_under_6').source}
+      label="Amounts verified"
+    />
+  </p>
 
   <div class="callout callout-important">
     <strong>Unfiled returns = uncollected money</strong>

@@ -251,7 +251,7 @@
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </span>
-                GST/HST credit — roughly ${fmt(estimate.gstCredit)}/year
+                Groceries and Essentials Benefit — roughly ${fmt(estimate.gstCredit)}/year
               </li>
               <li class="flex gap-2">
                 <span class="text-sage-500 mt-0.5">
@@ -340,7 +340,8 @@
             <div class="rounded-xl bg-water-50 border border-water-200 px-4 py-3 mt-3">
               <p class="text-xs font-semibold text-water-700 mb-1">What filing gets you</p>
               <p class="text-sm text-water-600 leading-relaxed">
-                Filing your return may qualify you for the GST/HST credit (roughly ${fmt(estimate.gstCredit)}/year)
+                Filing your return may qualify you for the Canada Groceries and Essentials Benefit
+                (roughly ${fmt(estimate.gstCredit)}/year, formerly the GST/HST credit)
                 and the Canada Child Benefit if you have children.
               </p>
             </div>
@@ -353,7 +354,7 @@
   <!-- Disclaimer -->
   <div class="rounded-xl bg-surface-warm border border-stone-200 px-4 py-3">
     <p class="text-xs text-text-muted leading-relaxed">
-      These are rough estimates based on 2025 federal and provincial rates.
+      These are rough estimates based on 2026 federal and provincial rates.
       Your actual taxes depend on credits, deductions, and other income not captured here.
       This is not tax advice. For your specific situation, talk to a tax professional.
     </p>
