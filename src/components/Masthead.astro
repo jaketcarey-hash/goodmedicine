@@ -20,10 +20,10 @@ const { branch = 'home' } = Astro.props;
 const record = [{ id: 'nations', label: 'Nations', href: '/nations' }];
 
 const community = [
-  { id: 'money', label: 'Money', href: '/money', accent: 'clay' },
-  { id: 'rights', label: 'Rights', href: '/rights', accent: 'water' },
-  { id: 'path', label: 'Path', href: '/path', accent: 'sage' },
-  { id: 'self', label: 'Self', href: '/self', accent: 'berry' },
+  { id: 'money', label: 'Money', href: '/money' },
+  { id: 'rights', label: 'Rights', href: '/rights' },
+  { id: 'path', label: 'Path', href: '/path' },
+  { id: 'self', label: 'Self', href: '/self' },
 ] as const;
 
 const utility = [
@@ -32,17 +32,10 @@ const utility = [
 ];
 
 const searchActive = branch === 'search';
-
-const accentClass: Record<string, string> = {
-  clay: 'after:bg-clay-500',
-  water: 'after:bg-water-500',
-  sage: 'after:bg-sage-500',
-  berry: 'after:bg-berry-500',
-};
 ---
 
 <header
-  class="hidden md:block sticky top-0 z-50 bg-surface/85 backdrop-blur-lg border-b border-stone-200"
+  class="hidden md:block sticky top-0 z-50 bg-ground/85 backdrop-blur-lg border-b border-rule"
 >
   <div class="mx-auto max-w-6xl px-6 h-16 flex items-center gap-8">
     <a
@@ -51,10 +44,7 @@ const accentClass: Record<string, string> = {
       aria-label="Strong Fire — home"
     >
       <BrandMark size={26} id="masthead" />
-      <span
-        class="font-display font-semibold text-lg tracking-tight text-text-primary
-          group-hover:text-clay-600 transition-colors duration-[var(--duration-normal)]"
-      >
+      <span class="font-display font-semibold text-lg tracking-tight text-ink">
         Strong Fire
       </span>
     </a>
@@ -67,11 +57,11 @@ const accentClass: Record<string, string> = {
             aria-current={branch === item.id ? 'page' : undefined}
             class:list={[
               'relative px-3 py-2 text-sm font-semibold tracking-tight transition-colors duration-[var(--duration-normal)]',
-              'after:absolute after:left-3 after:right-3 after:-bottom-px after:h-[2px] after:rounded-full',
-              'after:bg-cedar after:transition-opacity after:duration-[var(--duration-normal)]',
+              'after:absolute after:left-3 after:right-3 after:-bottom-px after:h-[2px]',
+              'after:bg-ink after:transition-opacity after:duration-[var(--duration-normal)]',
               branch === item.id
-                ? 'text-cedar after:opacity-100'
-                : 'text-text-secondary hover:text-cedar after:opacity-0 hover:after:opacity-40',
+                ? 'text-ink after:opacity-100'
+                : 'text-quiet hover:text-ink after:opacity-0 hover:after:opacity-30',
             ]}
           >
             {item.label}
@@ -79,7 +69,7 @@ const accentClass: Record<string, string> = {
         ))
       }
 
-      <span class="w-px h-5 bg-stone-200 mx-2" aria-hidden="true"></span>
+      <span class="w-px h-5 bg-rule mx-2" aria-hidden="true"></span>
 
       {
         community.map((item) => (
@@ -88,12 +78,11 @@ const accentClass: Record<string, string> = {
             aria-current={branch === item.id ? 'page' : undefined}
             class:list={[
               'relative px-3 py-2 text-sm font-medium transition-colors duration-[var(--duration-normal)]',
-              'after:absolute after:left-3 after:right-3 after:-bottom-px after:h-[2px] after:rounded-full',
-              'after:transition-opacity after:duration-[var(--duration-normal)]',
-              accentClass[item.accent],
+              'after:absolute after:left-3 after:right-3 after:-bottom-px after:h-[2px]',
+              'after:bg-ink after:transition-opacity after:duration-[var(--duration-normal)]',
               branch === item.id
-                ? 'text-text-primary after:opacity-100'
-                : 'text-text-secondary hover:text-text-primary after:opacity-0 hover:after:opacity-50',
+                ? 'text-ink after:opacity-100'
+                : 'text-quiet hover:text-ink after:opacity-0 hover:after:opacity-30',
             ]}
           >
             {item.label}
@@ -101,7 +90,7 @@ const accentClass: Record<string, string> = {
         ))
       }
 
-      <span class="w-px h-5 bg-stone-200 mx-2" aria-hidden="true"></span>
+      <span class="w-px h-5 bg-rule mx-2" aria-hidden="true"></span>
 
       {
         utility.map((item) => (
@@ -111,8 +100,8 @@ const accentClass: Record<string, string> = {
             class:list={[
               'px-3 py-2 text-sm transition-colors duration-[var(--duration-normal)]',
               branch === item.id
-                ? 'text-text-primary font-medium'
-                : 'text-text-muted hover:text-text-secondary',
+                ? 'text-ink font-medium'
+                : 'text-faint hover:text-ink',
             ]}
           >
             {item.label}
@@ -125,10 +114,10 @@ const accentClass: Record<string, string> = {
         aria-label="Search"
         aria-current={searchActive ? 'page' : undefined}
         class:list={[
-          'ml-1 p-2 rounded-lg transition-colors duration-[var(--duration-normal)]',
+          'ml-1 p-2 rounded-sm transition-colors duration-[var(--duration-normal)]',
           searchActive
-            ? 'text-text-primary bg-stone-100'
-            : 'text-text-muted hover:text-text-secondary hover:bg-stone-100',
+            ? 'text-ink bg-ink/5'
+            : 'text-faint hover:text-ink hover:bg-ink/5',
         ]}
       >
         <svg

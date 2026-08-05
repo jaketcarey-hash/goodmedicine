@@ -52,7 +52,7 @@ const columns = [
 const year = new Date().getFullYear();
 ---
 
-<footer class="hidden md:block border-t border-stone-200 bg-surface-warm mt-20">
+<footer class="hidden md:block border-t border-rule bg-surface-warm mt-20">
   <div class="mx-auto max-w-6xl px-6 py-14">
     <div class="grid grid-cols-[1.4fr_repeat(4,1fr)] gap-10">
       <div>
@@ -71,7 +71,7 @@ const year = new Date().getFullYear();
           <nav aria-labelledby={`footer-${col.heading}`}>
             <h2
               id={`footer-${col.heading}`}
-              class="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-4"
+              class="text-[11px] font-semibold tracking-widest uppercase text-faint mb-4"
             >
               {col.heading}
             </h2>
@@ -80,7 +80,7 @@ const year = new Date().getFullYear();
                 <li>
                   <a
                     href={link.href}
-                    class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-[var(--duration-normal)]"
+                    class="text-sm text-quiet hover:text-ink transition-colors duration-[var(--duration-normal)]"
                   >
                     {link.label}
                   </a>
@@ -92,13 +92,13 @@ const year = new Date().getFullYear();
       }
     </div>
 
-    <div class="mt-12 pt-8 border-t border-stone-200 flex items-baseline justify-between gap-8">
-      <p class="text-xs text-text-muted leading-relaxed max-w-2xl">
+    <div class="mt-12 pt-8 border-t border-rule flex items-baseline justify-between gap-8">
+      <p class="text-xs text-faint leading-relaxed max-w-2xl">
         Everything you enter stays on your device. No accounts, no tracking, no ads,
         nothing sent anywhere. This is an independent educational project, unaffiliated
         with any bank, firm, or government agency, and it is not financial or tax advice.
       </p>
-      <p class="text-xs text-text-muted shrink-0">&copy; {year}</p>
+      <p class="text-xs text-faint shrink-0">&copy; {year}</p>
     </div>
   </div>
 </footer>
