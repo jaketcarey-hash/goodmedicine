@@ -61,10 +61,34 @@
       .sort((a, b) => a.label.localeCompare(b.label)),
   );
 
+  /**
+   * A full guide beats a one-line definition of the same thing.
+   *
+   * Searching "dental" returned the NIHB glossary stub above the NIHB article,
+   * because both had the word in their excerpt and the tie broke
+   * alphabetically. The article is what someone actually wants; the definition
+   * is what they want after it.
+   */
+  const KIND_WEIGHT: Record<string, number> = {
+    rights: 6,
+    money: 6,
+    path: 6,
+    self: 6,
+    moments: 6,
+    tool: 5,
+    bc: 3,
+    nation: 3,
+    ledger: 2,
+    brief: 2,
+    open: 2,
+    glossary: 0,
+    page: 1,
+  };
+
   function score(entry: Entry, words: string[]): number {
     const title = entry.title.toLowerCase();
     const excerpt = entry.excerpt.toLowerCase();
-    let total = 0;
+    let total = KIND_WEIGHT[entry.kind] ?? 1;
 
     for (const word of words) {
       if (title.includes(word)) total += 10;
