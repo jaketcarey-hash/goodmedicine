@@ -39,8 +39,11 @@ async function collectHtmlFiles(dir) {
 async function main() {
   const htmlUrls = await collectHtmlFiles(DIST_DIR);
 
-  // Static assets to always include
-  const staticAssets = ['/favicon.svg', '/manifest.json'];
+  // Static assets to always include.
+  // search-index.json is here so search keeps working offline — the search page
+  // fetches it at runtime, so precaching the HTML alone would leave it dead
+  // without a connection.
+  const staticAssets = ['/favicon.svg', '/manifest.json', '/search-index.json'];
   const allUrls = [...htmlUrls, ...staticAssets];
 
   // Format as JS array
