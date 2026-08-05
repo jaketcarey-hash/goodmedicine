@@ -5,13 +5,18 @@
  * The dossier holds more per record than any list can show — competing
  * perspectives, unresolved questions, what would move it next. This is where
  * that lives, and it is the reason each record has a stable URL.
+ *
+ * The whole provenance system meets on this page: stage, confidence, the
+ * disclosed figure with its qualifier, the source register, the open
+ * questions, the dissenting view. The evidence margin carries the compressed
+ * record; the body carries the account.
  */
 import type { GetStaticPaths } from 'astro';
 import Record from '../../../layouts/Record.astro';
 import SourceList from '../../../components/evidence/SourceList.astro';
 import ConfidenceBadge from '../../../components/evidence/ConfidenceBadge.astro';
 import StageRail from '../../../components/evidence/StageRail.astro';
-import { formatDate } from '../../../lib/nations-data';
+import { formatDate, getLedger } from '../../../lib/nations-data';
 import { getEntries, BAND_MEANING } from '../../../lib/ledger';
 import { slugify } from '../../../lib/nations-index';
 import Crossings from '../../../components/Crossings.astro';
@@ -29,6 +34,10 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 const { entry, newer, older } = Astro.props;
+
+// The date the ledger was last checked against its sources — the coverage
+// end of the register itself, not the date of the event.
+const checkedDate = getLedger()?.coverageEnd ?? null;
 
 // Primary sources and independent verification share the register, but the
 // distinction matters — so they keep their own headings.
@@ -57,29 +66,76 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
   {/* The event, not the record id — this is the browser tab and the search result. */}
   title={entry.event}
   description={(entry.significance as string) ?? entry.event}
-  kicker="Ledger record"
+  kicker={`Ledger record ${entry.id}`}
   heading={entry.event}
   standfirst={(entry.significance as string) ?? undefined}
   dateline={`${formatDate(entry.date)}${entry.effective_date ? ` · effective ${formatDate(entry.effective_date)}` : ''}`}
   hasRail={true}
 >
-  <div class="not-prose flex flex-wrap items-center gap-x-6 gap-y-3 -mt-4 mb-10 pb-6 border-b border-rule">
-    <StageRail band={entry.band} stage={entry.stage} size="md" />
-    <ConfidenceBadge level={entry.confidence} size="md" />
-  </div>
-
-  {
-    entry.amountLabel && (
-      <div class="not-prose border border-rule bg-canvas/50 rounded px-5 py-4 mb-10">
-        <p class="font-record text-2xl text-ink tabular-nums leading-none mb-2">
-          {entry.amountLabel}
-        </p>
-        <p class="text-sm leading-relaxed text-text-secondary">
-          {entry.amountQualifier ?? 'No qualifier recorded for this figure.'}
-        </p>
+  {/* The compressed record. On a phone this is the strip under the heading;
+      on desktop it is the head of the evidence margin. */}
+  <Fragment slot="evidence">
+    <dl class="flex flex-wrap gap-x-8 gap-y-4 lg:flex-col lg:gap-y-5 m-0">
+      <div>
+        <dt class="apparatus-label mb-1.5">Stage</dt>
+        <dd class="m-0"><StageRail band={entry.band} stage={entry.stage} size="md" /></dd>
       </div>
-    )
-  }
+      <div>
+        <dt class="apparatus-label mb-1.5">Confidence</dt>
+        <dd class="m-0"><ConfidenceBadge level={entry.confidence} size="md" /></dd>
+      </div>
+      {
+        checkedDate && (
+          <div>
+            <dt class="apparatus-label mb-1.5">Checked</dt>
+            <dd class="apparatus m-0 text-[11px] text-ink">{formatDate(checkedDate)}</dd>
+          </div>
+        )
+      }
+      <div>
+        <dt class="apparatus-label mb-1.5">Sources</dt>
+        <dd class="apparatus m-0 text-[11px] text-ink">
+          {primary.length} primary
+          {verification.length > 0 ? ` · ${verification.length} independent` : ' · 0 independent'}
+        </dd>
+      </div>
+      {
+        unresolvedList.length > 0 && (
+          <div>
+            <dt class="apparatus-label mb-1.5">Unsettled</dt>
+            <dd class="m-0">
+              <a
+                href="#unresolved"
+                class="apparatus text-[11px] text-unsettled underline decoration-unsettled/40 underline-offset-2 hover:decoration-unsettled"
+              >
+                {unresolvedList.length} open question{unresolvedList.length > 1 ? 's' : ''}
+              </a>
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+  </Fragment>
+
+  {/* The figure travels with its qualifier, and its absence is stated rather
+      than hidden — an undisclosed amount is a fact about the deal. */}
+  <div class="not-prose mb-12">
+    <p class="apparatus-label mb-2">Disclosed</p>
+    {
+      entry.amountLabel ? (
+        <>
+          <p class="font-mono text-[28px] md:text-[34px] leading-none tracking-[-0.01em] text-ink tabular-nums">
+            {entry.amountLabel}
+          </p>
+          <p class="text-sm leading-relaxed text-quiet mt-2.5 max-w-md">
+            {entry.amountQualifier ?? 'No qualifier recorded for this figure.'}
+          </p>
+        </>
+      ) : (
+        <p class="apparatus text-[13px] text-unsettled">No amount made public.</p>
+      )
+    }
+  </div>
 
   {
     statusAsOf && (
@@ -110,11 +166,13 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
 
   {
     unresolvedList.length > 0 && (
-      <section class="mb-10">
+      <section class="mb-10" id="unresolved">
         <h2>Unresolved</h2>
-        <ul>
+        <ul class="not-prose list-none p-0 m-0 space-y-3">
           {unresolvedList.map((q) => (
-            <li>{q}</li>
+            <li class="border-l-2 border-unsettled pl-4 text-[15px] md:text-base leading-relaxed">
+              {q}
+            </li>
           ))}
         </ul>
       </section>
@@ -130,7 +188,7 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
     }
     {
       verification.length === 0 && (
-        <p class="not-prose text-sm text-text-muted border-l-[3px] border-clay-300 pl-4">
+        <p class="not-prose text-sm text-quiet border-l-2 border-unsettled pl-4">
           No independent verification is recorded for this entry. That is part of why it
           carries the confidence rating it does.
         </p>
@@ -148,17 +206,15 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
   />
 
   <nav
-    class="not-prose grid grid-cols-2 gap-6 mt-16 pt-8 border-t border-rule"
+    class="not-prose grid grid-cols-2 gap-6 mt-16 pt-6 border-t border-rule"
     aria-label="Other records"
   >
     <div>
       {
         older && (
           <a href={`/nations/ledger/${older.id}`} class="group block">
-            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-              Earlier
-            </span>
-            <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors">
+            <span class="apparatus-label block mb-2">Earlier</span>
+            <span class="block text-[15px] leading-snug text-ink font-medium group-hover:underline decoration-rule underline-offset-2">
               {older.event}
             </span>
           </a>
@@ -169,10 +225,8 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
       {
         newer && (
           <a href={`/nations/ledger/${newer.id}`} class="group block">
-            <span class="block text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-              Later
-            </span>
-            <span class="block font-record text-[15px] leading-snug text-ink group-hover:text-cedar transition-colors">
+            <span class="apparatus-label block mb-2">Later</span>
+            <span class="block text-[15px] leading-snug text-ink font-medium group-hover:underline decoration-rule underline-offset-2">
               {newer.event}
             </span>
           </a>
@@ -182,26 +236,22 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
   </nav>
 
   <Fragment slot="rail">
-    <div class="border-t border-rule pt-5 space-y-6">
+    <div class="space-y-6">
       <div>
-        <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-          Stage
-        </p>
-        <p class="text-sm leading-relaxed text-text-secondary">{BAND_MEANING[entry.band]}</p>
+        <p class="apparatus-label mb-2">Stage means</p>
+        <p class="text-sm leading-relaxed text-quiet">{BAND_MEANING[entry.band]}</p>
       </div>
 
       {
         entry.nations.length > 0 && (
           <div>
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-              Nations and organizations
-            </p>
-            <ul class="space-y-1.5">
+            <p class="apparatus-label mb-2">Nations and organizations</p>
+            <ul class="space-y-1.5 list-none p-0 m-0">
               {entry.nations.map((n) => (
                 <li class="text-sm leading-snug">
                   <a
                     href={`/nations/who/${slugify(n)}`}
-                    class="text-ink hover:text-cedar transition-colors"
+                    class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
                   >
                     {n}
                   </a>
@@ -215,10 +265,8 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
       {
         governments.length > 0 && (
           <div>
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-              Governments
-            </p>
-            <ul class="space-y-1.5">
+            <p class="apparatus-label mb-2">Governments</p>
+            <ul class="space-y-1.5 list-none p-0 m-0">
               {governments.map((g) => (
                 <li class="text-sm text-ink leading-snug">{g}</li>
               ))}
@@ -230,10 +278,8 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
       {
         companies.length > 0 && (
           <div>
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-              Companies and assets
-            </p>
-            <ul class="space-y-1.5">
+            <p class="apparatus-label mb-2">Companies and assets</p>
+            <ul class="space-y-1.5 list-none p-0 m-0">
               {companies.map((c) => (
                 <li class="text-sm text-ink leading-snug">{c}</li>
               ))}
@@ -245,9 +291,7 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
       {
         entry.places.length > 0 && (
           <div>
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-              Where
-            </p>
+            <p class="apparatus-label mb-2">Where</p>
             <p class="text-sm text-ink leading-snug">{entry.places.join(', ')}</p>
           </div>
         )
@@ -256,19 +300,17 @@ const companies = (entry.companies_and_assets as string[]) ?? [];
       {
         mechanisms.length > 0 && (
           <div>
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-stone-500 mb-2">
-              Mechanism
-            </p>
+            <p class="apparatus-label mb-2">Mechanism</p>
             <p class="text-sm text-ink leading-snug">{mechanisms.join(', ')}</p>
           </div>
         )
       }
 
       <div class="pt-4 border-t border-rule">
-        <p class="text-xs text-text-muted mb-3">Record {entry.id}</p>
+        <p class="apparatus text-faint mb-3">Record {entry.id}</p>
         <a
           href="/nations/ledger"
-          class="text-sm font-semibold text-cedar hover:text-cedar-dark transition-colors"
+          class="text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
         >
           &larr; All records
         </a>

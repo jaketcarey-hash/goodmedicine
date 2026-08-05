@@ -20,26 +20,20 @@ const crossings = crossingsFor(subject, limit);
 
 {
   crossings.length > 0 && (
-    <aside class="not-prose mt-14 pt-8 border-t border-rule">
-      <h2 class="text-[11px] font-bold tracking-[0.15em] uppercase text-cedar mb-2">
-        What this means for you
-      </h2>
-      <p class="text-sm text-text-secondary mb-5 max-w-2xl">
+    <aside class="not-prose mt-14 pt-6 border-t border-rule">
+      <h2 class="apparatus-label mb-2">What this means for you</h2>
+      <p class="text-sm text-quiet mb-5 max-w-2xl">
         Plain-language explanations from the other half of this site.
       </p>
 
-      <ul class="list-none pl-0 m-0 grid md:grid-cols-2 gap-3">
+      <ul class="list-none pl-0 m-0 space-y-4">
         {crossings.map((c) => (
           <li>
-            <a
-              href={c.href}
-              class="group block rounded-lg border border-stone-200 bg-surface-card px-5 py-4
-                hover:border-clay-300 transition-colors duration-[var(--duration-normal)]"
-            >
-              <p class="font-body font-semibold text-sm text-text-primary group-hover:text-clay-700 transition-colors mb-1">
+            <a href={c.href} class="group block">
+              <p class="text-[15px] font-medium text-ink underline decoration-rule underline-offset-2 group-hover:decoration-ink mb-0.5">
                 {c.title}
               </p>
-              <p class="font-body text-sm text-text-secondary leading-relaxed">{c.why}</p>
+              <p class="text-sm text-quiet leading-relaxed">{c.why}</p>
             </a>
           </li>
         ))}

@@ -1,4 +1,17 @@
 ---
+/**
+ * The community surface: one question, answered.
+ *
+ * Two disciplines meet here. From the counter: the answer line — every page
+ * opens with one sentence that answers the question the page is named after,
+ * before any explanation. From the record: the evidence strip — when it was
+ * checked, where it comes from, what genuinely varies. A page that cannot
+ * state its answer in one sentence is not ready to ship; a page that cannot
+ * say when it was checked has not earned the answer.
+ *
+ * Both are optional props so existing pages keep rendering; the intent is
+ * that every answer page grows them.
+ */
 import Shell from './Shell.astro';
 import PageHeader from '../components/PageHeader.svelte';
 
@@ -10,9 +23,33 @@ interface Props {
   backLabel: string;
   readTime?: string;
   lastUpdated?: string;
+  /** The one-sentence answer to the question the page is named after. */
+  answer?: string;
+  /** When the answer was last checked against its sources. */
+  checked?: string;
+  /** Who the answer rests on — the program, the statute, the register. */
+  sourceLabel?: string;
+  sourceUrl?: string;
+  /** The one thing that genuinely varies or is not settled, stated honestly. */
+  unsettled?: string;
 }
 
-const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = Astro.props;
+const {
+  title,
+  subtitle,
+  branch,
+  backHref,
+  backLabel,
+  readTime,
+  lastUpdated,
+  answer,
+  checked,
+  sourceLabel,
+  sourceUrl,
+  unsettled,
+} = Astro.props;
+
+const hasStrip = checked || sourceLabel || unsettled;
 ---
 
 <Shell title={title} branch={branch} description={subtitle}>
@@ -24,34 +61,86 @@ const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = 
     backLabel={backLabel}
   />
 
-  {readTime && (
-    <div class="px-5 md:px-0 -mt-2 mb-4">
-      <span class="text-xs text-text-muted">{readTime} read</span>
-    </div>
-  )}
+  {
+    answer && (
+      <div class="px-5 md:px-0 mt-2 mb-2">
+        <p class="apparatus-label text-verified mb-2">Short answer</p>
+        <p class="text-[20px] md:text-[23px] leading-[1.45] font-medium text-ink max-w-[38ch] m-0">
+          {answer}
+        </p>
+      </div>
+    )
+  }
 
-  <article class="px-5 md:px-0 pb-12 md:pb-20 prose-gm md:max-w-[68ch]">
+  {
+    hasStrip && (
+      <div class="px-5 md:px-0">
+        <dl class="flex flex-wrap gap-x-8 gap-y-3 border-y border-rule py-3.5 mt-6 mb-2 m-0">
+          {checked && (
+            <div>
+              <dt class="apparatus-label mb-1">Checked</dt>
+              <dd class="apparatus m-0 text-[11px] text-verified">{checked}</dd>
+            </div>
+          )}
+          {sourceLabel && (
+            <div>
+              <dt class="apparatus-label mb-1">Source</dt>
+              <dd class="apparatus m-0 text-[11px] text-ink">
+                {sourceUrl ? (
+                  <a
+                    href={sourceUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    class="underline decoration-rule underline-offset-2 hover:decoration-ink"
+                  >
+                    {sourceLabel}
+                  </a>
+                ) : (
+                  sourceLabel
+                )}
+              </dd>
+            </div>
+          )}
+          {unsettled && (
+            <div class="min-w-0">
+              <dt class="apparatus-label mb-1">Unsettled</dt>
+              <dd class="apparatus m-0 text-[11px] text-unsettled">{unsettled}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    )
+  }
+
+  {
+    readTime && !answer && (
+      <div class="px-5 md:px-0 -mt-2 mb-4">
+        <span class="apparatus text-faint">{readTime} read</span>
+      </div>
+    )
+  }
+
+  <article class="px-5 md:px-0 pt-6 pb-12 md:pb-20 prose-gm md:max-w-[68ch]">
     <slot />
 
-    {lastUpdated && (
-      <p class="text-xs text-text-muted mt-10 pt-4 border-t border-stone-100">
-        Last updated: {lastUpdated}
-      </p>
-    )}
+    {
+      lastUpdated && (
+        <p class="apparatus text-faint mt-10 pt-4 border-t border-rule">
+          Last updated {lastUpdated}
+        </p>
+      )
+    }
   </article>
 </Shell>
 
 <style is:global>
-  /* Article typography — warm, readable, generous */
+  /* Article typography — readable, unhurried. */
   .prose-gm {
     font-size: var(--text-base);
     line-height: 1.75;
-    color: var(--color-text-primary);
+    color: var(--color-ink);
   }
 
-  /* Desktop gets a slightly larger body and more air between sections.
-     The measure is capped at 68ch in the markup, so this stays readable
-     rather than sprawling. */
   @media (min-width: 768px) {
     .prose-gm {
       font-size: var(--text-lg);
@@ -63,16 +152,16 @@ const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = 
   }
 
   .prose-gm h2 {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: var(--text-xl);
     font-weight: 600;
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
 
   .prose-gm h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: var(--text-lg);
     font-weight: 600;
     margin-top: 2rem;
@@ -94,37 +183,36 @@ const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = 
 
   .prose-gm strong {
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--color-ink);
   }
 
-  /* Callout boxes */
+  .prose-gm a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-rule);
+    text-underline-offset: 2px;
+  }
+
+  .prose-gm a:hover {
+    text-decoration-color: var(--color-ink);
+  }
+
+  /* Callouts. No boxes, no fills — a rule and a voice. The rule colour is
+     the same three-colour system as everywhere else: verified green for
+     "this helps you", unsettled amber for "watch this", contested violet
+     for "this is disputed", plain rule-grey for context. */
   .prose-gm .callout {
-    border-radius: var(--radius-lg);
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
+    border-left: 2px solid var(--color-rule);
+    padding-left: 1.125rem;
+    margin: 1.75rem 0;
     font-size: var(--text-sm);
     line-height: 1.65;
   }
 
-  .prose-gm .callout-info {
-    background-color: var(--color-water-50);
-    border-left: 3px solid var(--color-water-400);
-  }
-
-  .prose-gm .callout-tip {
-    background-color: var(--color-sage-50);
-    border-left: 3px solid var(--color-sage-400);
-  }
-
-  .prose-gm .callout-warning {
-    background-color: var(--color-clay-50);
-    border-left: 3px solid var(--color-clay-400);
-  }
-
-  .prose-gm .callout-important {
-    background-color: var(--color-berry-50);
-    border-left: 3px solid var(--color-berry-400);
-  }
+  .prose-gm .callout-info { border-left-color: var(--color-rule); }
+  .prose-gm .callout-tip { border-left-color: var(--color-verified); }
+  .prose-gm .callout-warning { border-left-color: var(--color-unsettled); }
+  .prose-gm .callout-important { border-left-color: var(--color-contested); }
 
   .prose-gm .callout p:last-child {
     margin-bottom: 0;
@@ -133,24 +221,24 @@ const { title, subtitle, branch, backHref, backLabel, readTime, lastUpdated } = 
   .prose-gm .callout strong {
     display: block;
     margin-bottom: 0.25rem;
+    font-size: var(--text-base);
   }
 
-  /* Example boxes */
+  /* Example boxes — quiet, factual. */
   .prose-gm .example {
-    border-radius: var(--radius-lg);
-    background: var(--color-surface-warm);
-    border: 1px solid var(--color-stone-200);
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
+    border-left: 2px solid var(--color-rule);
+    padding-left: 1.125rem;
+    margin: 1.75rem 0;
     font-size: var(--text-sm);
   }
 
   .prose-gm .example-label {
-    font-size: var(--text-xs);
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-muted);
+    letter-spacing: 0.12em;
+    color: var(--color-faint);
     margin-bottom: 0.5rem;
   }
 </style>

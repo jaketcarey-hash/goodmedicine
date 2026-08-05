@@ -2,10 +2,10 @@
 /**
  * The quiet end of the evidence apparatus.
  *
- * On the Record surface a reader wants the full register — confidence, stage,
+ * On the record surface a reader wants the full register — confidence, stage,
  * unknowns, numbered sources. On the community surface, someone reading about
  * their own child benefit wants one thing: is this number still true? This is
- * that, and nothing more.
+ * that, and nothing more: the date it was checked, in the apparatus voice.
  */
 interface Props {
   date: string;
@@ -13,18 +13,17 @@ interface Props {
   label?: string;
 }
 
-const { date, source, label = 'Verified' } = Astro.props;
+const { date, source, label = 'Checked' } = Astro.props;
 ---
 
-<span class="inline-flex items-center gap-1.5 text-[11px] text-text-muted">
+<span class="apparatus inline-flex items-center gap-1.5 text-verified">
   <svg
     class="w-3 h-3 shrink-0"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2.25"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    stroke-width="2.5"
+    stroke-linecap="square"
     aria-hidden="true"
   >
     <path d="M20 6L9 17l-5-5" />
@@ -33,7 +32,7 @@ const { date, source, label = 'Verified' } = Astro.props;
     source ? (
       <>
         {label} {date} &middot;{' '}
-        <a href={source} rel="noopener noreferrer" target="_blank" class="underline hover:text-text-secondary">
+        <a href={source} rel="noopener noreferrer" target="_blank" class="underline underline-offset-2 hover:text-ink">
           source
         </a>
       </>

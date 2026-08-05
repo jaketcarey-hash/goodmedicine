@@ -2,7 +2,7 @@
 /**
  * How far along a thing is, as a mark rather than a sentence.
  *
- * This is the signature element of the Record, and it exists because of the one
+ * This is the signature element of the record, and it exists because of the one
  * fact that makes this record different from news: an announcement and a
  * completed transaction read identically in a headline, and they are not the
  * same event. A reader's real question is not "what happened" but "has this
@@ -13,9 +13,11 @@
  * completion; it is the road forking. That asymmetry is the whole point and is
  * why this is not a progress bar.
  *
- * Never colour alone: the stage is always named beside it.
+ * The fill is the verified green: the rail measures how settled the thing is,
+ * which is the same axis the rest of the apparatus speaks in. Never colour
+ * alone: the stage is always named beside it, in the apparatus voice.
  */
-import { BAND_ORDER, BAND_LABEL, BAND_MEANING, type Band } from '../../lib/ledger';
+import { BAND_LABEL, BAND_MEANING, type Band } from '../../lib/ledger';
 
 interface Props {
   band: Band;
@@ -31,12 +33,10 @@ const STEPS: Band[] = ['early', 'committed', 'done'];
 const reached = STEPS.indexOf(band);
 const contested = band === 'contested';
 
-// Big enough to read at a glance. This is the one element the Record is meant
-// to be remembered by, and the first pass was so restrained it disappeared.
 const dim =
   size === 'md'
-    ? { w: 'w-10', h: 'h-[5px]', gap: 'gap-1.5', text: 'text-xs', dot: 'w-2.5 h-2.5' }
-    : { w: 'w-6', h: 'h-[3px]', gap: 'gap-1', text: 'text-[11px]', dot: 'w-2 h-2' };
+    ? { w: 'w-9', h: 'h-[5px]', gap: 'gap-[3px]', text: 'text-[11px]', dot: 'w-2.5 h-2.5' }
+    : { w: 'w-5', h: 'h-[3px]', gap: 'gap-[2px]', text: 'text-[10px]', dot: 'w-2 h-2' };
 ---
 
 <span
@@ -52,12 +52,11 @@ const dim =
           class:list={[
             dim.w,
             dim.h,
-            'rounded-full',
             contested
-              ? 'bg-stone-300'
+              ? 'bg-rule'
               : i <= reached
-                ? 'bg-forest'
-                : 'bg-stone-200',
+                ? 'bg-verified'
+                : 'bg-rule',
           ]}
         />
       ))
@@ -66,16 +65,16 @@ const dim =
       contested && (
         /* The fork. Contested is off the road, not further along it — which is
            why it breaks the line instead of extending it. */
-        <span class:list={['rotate-45 bg-berry-500 ml-1.5 shrink-0', dim.dot]} />
+        <span class:list={['rotate-45 bg-contested ml-1.5 shrink-0', dim.dot]} />
       )
     }
   </span>
 
   <span
     class:list={[
-      'leading-none font-medium',
+      'apparatus leading-none',
       dim.text,
-      contested ? 'text-berry-700' : 'text-ink',
+      contested ? 'text-contested' : 'text-ink',
     ]}
   >
     {stage ?? BAND_LABEL[band]}

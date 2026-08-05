@@ -62,6 +62,14 @@ No accounts, no tracking, all state in `localStorage`.
   the Nations paths. Commit before Friday or the brief will not publish.
 - **Never sum the ledger amounts.** They measure different things. See `DECISIONS.md`.
 - **Nation names are never folded for display**, only for slugs and matching.
+- **Mono is provenance only.** The `apparatus`/`apparatus-label` utilities set IBM Plex
+  Mono for dates, figures, sources, confidence, stages and record ids — never for
+  content. Content never carries provenance styling. See the 2026-08-05 entry in
+  `DECISIONS.md`.
+- **The earth ramps (stone/sage/water/clay/berry) are legacy.** They exist in
+  `global.css` only so unconverted pages keep rendering. New and converted work uses
+  ground/ink/quiet/faint/rule plus the three status colours — and colour never appears
+  without its text label.
 
 ## Hard boundary
 

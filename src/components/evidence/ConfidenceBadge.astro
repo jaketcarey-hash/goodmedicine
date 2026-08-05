@@ -1,11 +1,15 @@
 ---
 /**
- * How firmly the record supports a claim.
+ * How firmly the record supports a claim, as a stamp rather than a pill.
  *
  * The vocabulary comes from the ledger's own taxonomy: high means primary
  * evidence plus independent confirmation, or a self-authenticating public
  * legal record; medium means credible primary evidence with incomplete terms;
  * low means a single source, an inaccessible document, or an open allegation.
+ *
+ * Medium and low are set in the unsettled and quiet tones deliberately —
+ * a middling rating is a statement that something is not yet resolved, and
+ * the site says that plainly rather than dressing every record in green.
  */
 interface Props {
   level: 'high' | 'medium' | 'low' | string;
@@ -23,9 +27,9 @@ const meaning: Record<string, string> = {
 };
 
 const tone: Record<string, string> = {
-  high: 'bg-forest/10 text-forest border-forest/25',
-  medium: 'bg-clay-100 text-clay-700 border-clay-300',
-  low: 'bg-stone-100 text-stone-600 border-stone-300',
+  high: 'text-verified',
+  medium: 'text-unsettled',
+  low: 'text-quiet',
 };
 
 const label: Record<string, string> = {
@@ -35,17 +39,13 @@ const label: Record<string, string> = {
 };
 
 const key = level.toLowerCase();
-const sizing = size === 'md' ? 'text-xs px-2.5 py-1' : 'text-[10px] px-2 py-0.5';
+const sizing = size === 'md' ? 'text-[11px]' : 'text-[10px]';
 ---
 
 <span
-  class:list={[
-    'inline-flex items-center gap-1.5 rounded-full border font-semibold tracking-wide uppercase whitespace-nowrap',
-    tone[key] ?? tone.low,
-    sizing,
-  ]}
+  class:list={['apparatus inline-flex items-center gap-1.5 leading-none', sizing, tone[key] ?? tone.low]}
   title={withTooltip ? meaning[key] : undefined}
 >
-  <span class="w-1.5 h-1.5 rounded-full bg-current opacity-70" aria-hidden="true"></span>
+  <span class="w-[7px] h-[7px] bg-current shrink-0" aria-hidden="true"></span>
   {label[key] ?? level}
 </span>

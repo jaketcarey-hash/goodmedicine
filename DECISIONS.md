@@ -191,6 +191,91 @@ escape hatch. Do not fight it with `!` utilities; they lose.
 
 ---
 
+## 2026-08-05 — Direction B: show your work
+
+The redesign session the 5 August brief was written for. Direction B chosen per the
+brief's own recommendation; A's answer line carried into the deep pages; C not blended
+in. Built end-to-end on `/nations/ledger/YTD26-010`, then `/nations`, then
+`/rights/nihb`; checked at 375, 768 and 1440; production build green.
+
+### One family, three voices
+
+IBM Plex Sans reads and heads; IBM Plex Mono is the apparatus. The brief asked for
+three faces with a load-bearing monospace; this delivers the three voices from one
+family instead of three families. Deliberate guard, not economy: every previous drift
+toward "publication" started with a second typographic identity, and an apparatus that
+shares the site's own family cannot become one. Inter and Outfit are gone site-wide.
+
+*The rule that matters:* mono speaks only provenance — dates, figures, sources,
+confidence, stages, record ids. Content never sets in mono; prose never carries
+provenance. The `apparatus` / `apparatus-label` utilities in `global.css` are that rule
+in code.
+
+### The status palette was validated, not eyeballed
+
+Ground `#FAFAF8`, ink `#1A1A1A`, rule `#DEDEDA`, and exactly three meanings: verified
+green `#17654A`, unsettled amber `#8A5A00`, contested red-violet `#7E2C73`. All text
+tones ≥4.5:1 on ground and on their own washes. Contested was first drafted `#8D2F5D`
+and moved violet-ward after simulation showed ΔE 7.9 against the green under
+deuteranopia — the blue channel is what survives red-green blindness; `#7E2C73` gives
+ΔE 26+ deutan, 44+ protan. Colour still never travels without its text label. The five
+earth ramps survive in a marked legacy block only until unconverted pages are ported;
+nothing new may use them.
+
+### The evidence margin is structural, not decorative
+
+`Record.astro` grew a second named slot: `evidence` (the compressed record — stage,
+confidence, checked, sources, unsettled) renders as a bordered strip directly under the
+heading on a phone and as the head of a hairline right margin on desktop; `rail` (the
+longer apparatus) follows the body on a phone and sits under it on desktop. Grid rows
+are `auto 1fr` so the margin never floats free of its content. A converted page whose
+margin is empty is a page that has not said how it knows what it says.
+
+### Section headings on the record surface are the rubric
+
+"Where it stands", "Unresolved", "Primary sources" are the record's schema, not its
+content, so `record-body h2` speaks in the apparatus voice and every record reads as
+the same form, filled in. Content headlines (`h3`, `.plain`) stay in the site face.
+This replaced a first pass with sans section headings; the rubric reading is the
+direction's whole point, and it is also what keeps the source register from becoming
+citation apparatus — the sources are one rubric field among many, not a bibliography.
+
+### Absence is stated, not hidden
+
+A record with no disclosed figure prints "No amount made public." in unsettled amber
+under the DISCLOSED label. An entry with no independent verification says so and says
+that this is why its confidence rating is what it is. The margin links "2 open
+questions" in amber. Unsettledness is used honestly and often, exactly as the brief's
+token table demanded — it is the differentiator, not a defect state.
+
+### The answer page carries both disciplines
+
+`Article.astro` gained optional `answer`, `checked`, `sourceLabel`/`sourceUrl` and
+`unsettled` props: the one-sentence answer leads at the largest size after the title,
+then the same evidence strip as the record surface. One spine across both entrances.
+NIHB is the first page converted. *Rejected in the same pass:* retitling answer pages
+into second-person question form ("Can I get help with dental…?") — that is Direction
+C's signature and C was set aside; pages keep the name of the thing.
+
+*Also converted to the system:* callouts and examples (rules, not tinted boxes — the
+three colours mean what they mean everywhere), ExpandableSection (hairline rows, no
+card), RelatedLinks and PageHeader (branch tinting removed — a section is not a
+meaning), Crossings, BriefBody, SourceList, ConfidenceBadge (pill → mono stamp),
+StageRail (recoloured to the settled axis; contested still breaks the line),
+VerifiedStamp (now "Checked", in the apparatus voice).
+
+*Cost accepted:* fontsource ships every unicode subset, so `dist/` carries ~604 KB of
+woff2; `unicode-range` means a phone fetches only the latin files (~148 KB, comparable
+to the old Inter+Outfit set) and the service worker precaches HTML only. Revisit if
+subsetting to latin-only files becomes worth a build step.
+
+*Not yet converted:* the masthead, footer, bottom nav, ledger index Svelte browser
+(old pills and chips), archive, open questions, BC directory, who pages, and the whole
+community side beyond NIHB. They render correctly on re-pointed legacy tokens and are
+the apply-outward list for the next session.
+
+---
+
 ## Open questions
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

@@ -1,116 +1,62 @@
 @import "tailwindcss";
 
-/* Self-hosted fonts — no external requests */
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
-@import '@fontsource/outfit/500.css';
-@import '@fontsource/outfit/600.css';
-@import '@fontsource/outfit/700.css';
+/* Self-hosted fonts — no external requests.
+   One family, three voices. IBM Plex was drawn as an institution's
+   record-keeping face; here the Sans reads and heads, and the Mono is
+   reserved for the apparatus — dates, figures, sources, confidence,
+   record ids. Provenance speaks in mono; content never does. Keeping
+   both voices inside one family is a structural guard: the apparatus
+   cannot become a second editorial identity when it shares the site's
+   own face. */
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/400-italic.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-sans/700.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
 
 /* ============================================================
-   GOOD MEDICINE — Design Tokens
-   Earth tones. Warm. Grounded. Never corporate.
+   STRONG FIRE — Design tokens
+   Direction B: show your work.
+
+   The differentiator of this site is that it says what is known,
+   what is not, and when it was last checked. The tokens exist to
+   carry that: a near-neutral ground, one ink, and exactly three
+   colours that mean something. Nothing is coloured for decoration.
+
+   Status palette validated 5 Aug 2026: every text tone ≥4.5:1 on
+   ground and on its own wash; pairwise ΔE under deuteranopia and
+   protanopia ≥16 (contested was moved violet-ward from #8D2F5D to
+   #7E2C73 for exactly this reason). Colour never travels alone —
+   every status mark carries its text label.
    ============================================================ */
 
 @theme {
-  /* ---- Palette: Stone ---- */
-  --color-stone-50: #faf8f5;
-  --color-stone-100: #f2ede6;
-  --color-stone-200: #e5ddd1;
-  --color-stone-300: #d4c8b8;
-  --color-stone-400: #b8a78f;
-  --color-stone-500: #9c8a70;
-  --color-stone-600: #7d6d56;
-  --color-stone-700: #5e5140;
-  --color-stone-800: #3f362b;
-  --color-stone-900: #231e17;
+  /* ---- Ground and ink ---- */
+  --color-ground: #FAFAF8;
+  --color-ink: #1A1A1A;
+  --color-quiet: #5B5A54;   /* secondary text */
+  --color-faint: #6E6D66;   /* apparatus labels; 4.97:1, still AA */
+  --color-rule: #DEDEDA;
 
-  /* ---- Palette: Sage ---- */
-  --color-sage-50: #f4f7f4;
-  --color-sage-100: #e3ebe3;
-  --color-sage-200: #c5d6c5;
-  --color-sage-300: #9db89d;
-  --color-sage-400: #759775;
-  --color-sage-500: #587b58;
-  --color-sage-600: #436143;
-  --color-sage-700: #354d35;
-  --color-sage-800: #273827;
-  --color-sage-900: #1a261a;
-
-  /* ---- Palette: Water ---- */
-  --color-water-50: #f0f5f8;
-  --color-water-100: #dbe8f0;
-  --color-water-200: #b3cfe0;
-  --color-water-300: #7fafc9;
-  --color-water-400: #5591b0;
-  --color-water-500: #3d7493;
-  --color-water-600: #305b74;
-  --color-water-700: #264758;
-  --color-water-800: #1c333f;
-  --color-water-900: #121f28;
-
-  /* ---- Palette: Clay ---- */
-  --color-clay-50: #faf5f0;
-  --color-clay-100: #f0e4d5;
-  --color-clay-200: #e0c7a8;
-  --color-clay-300: #cda577;
-  --color-clay-400: #b8864e;
-  --color-clay-500: #9a6d3a;
-  --color-clay-600: #7a562e;
-  --color-clay-700: #5c4023;
-  --color-clay-800: #3f2c18;
-  --color-clay-900: #271b0f;
-
-  /* ---- Palette: Berry ---- */
-  --color-berry-50: #f9f3f5;
-  --color-berry-100: #f0e0e5;
-  --color-berry-200: #dfbcc7;
-  --color-berry-300: #c98ea0;
-  --color-berry-400: #b0667e;
-  --color-berry-500: #924862;
-  --color-berry-600: #733a4e;
-  --color-berry-700: #562c3b;
-  --color-berry-800: #3b1e28;
-  --color-berry-900: #241318;
-
-  /* ---- Palette: Record ----
-     The intelligence surface. Cedar and forest were already carrying the
-     Nations brief in its own renderer; bringing them into the token set is
-     what lets the brief stop looking like a different website. Additive —
-     nothing on the community side changes. */
-  --color-ink: #18201d;
-  --color-cedar: #873f2b;
-  --color-cedar-dark: #4f241a;
-  --color-forest: #1f5b4d;
-  /* Was #fffdf8 — a cream newsprint. Cream plus a serif plus terracotta is the
-     look every AI-generated editorial page arrives at, and more to the point it
-     signalled "publication", which this is not. Record cards now sit on the
-     same white as every other card on the site. */
-  --color-paper: #ffffff;
-  --color-canvas: #f2ede6;
-  --color-rule: #e5ddd1;
-
-  /* ---- Semantic ---- */
-  --color-surface: #faf8f5;
-  --color-surface-warm: #f2ede6;
-  --color-surface-card: #ffffff;
-  --color-text-primary: #231e17;
-  --color-text-secondary: #5e5140;
-  --color-text-muted: #9c8a70;
-  --color-text-inverse: #faf8f5;
+  /* ---- The three meanings ----
+     verified  — checked, dated, sourced
+     unsettled — genuinely not resolved; used honestly and often
+     contested — before a court, disputed */
+  --color-verified: #17654A;
+  --color-verified-wash: #E7F0EA;
+  --color-unsettled: #8A5A00;
+  --color-unsettled-wash: #F5EBD8;
+  --color-contested: #7E2C73;
+  --color-contested-wash: #F2E6F1;
 
   /* ---- Typography ---- */
-  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  /* The Record voice.
-     Was Newsreader — a text serif, chosen to make the news layer read as a
-     publication. That was the mistake: this is one information shop, not a
-     site with a second editorial identity, and a serif is that identity in
-     typographic form. The Record now speaks in the site's own face and is
-     distinguished by structure and density instead. One design system, one
-     property. */
-  --font-record: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+  /* Legacy alias — the Record surface now speaks in the site face. */
+  --font-record: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
 
   /* ---- Fluid type scale ---- */
   --text-xs: clamp(0.7rem, 0.66rem + 0.2vw, 0.78rem);
@@ -122,18 +68,15 @@
   --text-3xl: clamp(1.68rem, 1.45rem + 1vw, 2.25rem);
   --text-4xl: clamp(1.95rem, 1.65rem + 1.3vw, 2.7rem);
 
-  /* ---- Radius ---- */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
+  /* ---- Radius ----
+     The new surface is rectilinear: structure is drawn with rules and
+     space, not containers. Radius survives only for small interactive
+     targets, and barely. */
+  --radius-sm: 0.1875rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.5rem;
   --radius-full: 9999px;
-
-  /* ---- Shadows (warm-tinted) ---- */
-  --shadow-sm: 0 1px 2px rgba(35, 30, 23, 0.06);
-  --shadow-md: 0 4px 12px rgba(35, 30, 23, 0.08);
-  --shadow-lg: 0 8px 24px rgba(35, 30, 23, 0.1);
-  --shadow-xl: 0 16px 48px rgba(35, 30, 23, 0.12);
 
   /* ---- Easing ---- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -144,6 +87,87 @@
   --duration-fast: 150ms;
   --duration-normal: 250ms;
   --duration-slow: 400ms;
+
+  /* ============================================================
+     LEGACY COMPAT — everything below is the old system, kept only
+     so unconverted pages keep rendering while the redesign is
+     applied outward. Do not use any of it in new or converted
+     work. Delete each block as its last consumer is converted.
+     ============================================================ */
+
+  /* Old semantic names, re-pointed at the new system. */
+  --color-surface: #FAFAF8;
+  --color-surface-warm: #F1F1EE;
+  --color-surface-card: #FFFFFF;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #5B5A54;
+  --color-text-muted: #6E6D66;
+  --color-text-inverse: #FAFAF8;
+  --color-paper: #FFFFFF;
+  --color-canvas: #F1F1EE;
+  --color-cedar: #17654A;      /* old accent, now reads as verified */
+  --color-cedar-dark: #114C38;
+  --color-forest: #17654A;
+
+  /* Old branch ramps. Decorative, colour-blind-unsafe when carrying
+     meaning; slated for removal. */
+  --color-stone-50: #faf8f5;
+  --color-stone-100: #f2ede6;
+  --color-stone-200: #e5ddd1;
+  --color-stone-300: #d4c8b8;
+  --color-stone-400: #b8a78f;
+  --color-stone-500: #9c8a70;
+  --color-stone-600: #7d6d56;
+  --color-stone-700: #5e5140;
+  --color-stone-800: #3f362b;
+  --color-stone-900: #231e17;
+  --color-sage-50: #f4f7f4;
+  --color-sage-100: #e3ebe3;
+  --color-sage-200: #c5d6c5;
+  --color-sage-300: #9db89d;
+  --color-sage-400: #759775;
+  --color-sage-500: #587b58;
+  --color-sage-600: #436143;
+  --color-sage-700: #354d35;
+  --color-sage-800: #273827;
+  --color-sage-900: #1a261a;
+  --color-water-50: #f0f5f8;
+  --color-water-100: #dbe8f0;
+  --color-water-200: #b3cfe0;
+  --color-water-300: #7fafc9;
+  --color-water-400: #5591b0;
+  --color-water-500: #3d7493;
+  --color-water-600: #305b74;
+  --color-water-700: #264758;
+  --color-water-800: #1c333f;
+  --color-water-900: #121f28;
+  --color-clay-50: #faf5f0;
+  --color-clay-100: #f0e4d5;
+  --color-clay-200: #e0c7a8;
+  --color-clay-300: #cda577;
+  --color-clay-400: #b8864e;
+  --color-clay-500: #9a6d3a;
+  --color-clay-600: #7a562e;
+  --color-clay-700: #5c4023;
+  --color-clay-800: #3f2c18;
+  --color-clay-900: #271b0f;
+  --color-berry-50: #f9f3f5;
+  --color-berry-100: #f0e0e5;
+  --color-berry-200: #dfbcc7;
+  --color-berry-300: #c98ea0;
+  --color-berry-400: #b0667e;
+  --color-berry-500: #924862;
+  --color-berry-600: #733a4e;
+  --color-berry-700: #562c3b;
+  --color-berry-800: #3b1e28;
+  --color-berry-900: #241318;
+
+  /* Old shadows. The new surface draws structure with rules, not
+     elevation; these stay only for unconverted cards. */
+  --shadow-sm: 0 1px 2px rgba(26, 26, 26, 0.05);
+  --shadow-md: 0 3px 8px rgba(26, 26, 26, 0.06);
+  --shadow-lg: 0 6px 16px rgba(26, 26, 26, 0.07);
+  --shadow-xl: 0 10px 28px rgba(26, 26, 26, 0.08);
 }
 
 /* ============================================================
@@ -151,8 +175,8 @@
    ============================================================ */
 
 html {
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
+  background-color: var(--color-ground);
+  color: var(--color-ink);
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.6;
@@ -165,7 +189,7 @@ html {
 body {
   min-height: 100dvh;
   margin: 0;
-  background-color: var(--color-surface);
+  background-color: var(--color-ground);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -173,17 +197,38 @@ body {
 }
 
 /* In @layer base so Tailwind's utilities layer can still override it.
-   Unlayered CSS beats layered CSS no matter the source order, so leaving this
-   outside a layer made `font-record` silently lose on every heading — the
-   Record surface rendered in the app's sans instead of its serif. */
+   Unlayered CSS beats layered CSS no matter the source order. */
 @layer base {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 600;
     line-height: 1.2;
-    color: var(--color-text-primary);
-    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    letter-spacing: -0.015em;
   }
+}
+
+/* ============================================================
+   The apparatus voice.
+   One class, used everywhere provenance is spoken: dates, sources,
+   figures, confidence, stages, record ids. If a thing is a claim
+   about the record rather than the record itself, it is set in this.
+   ============================================================ */
+
+@utility apparatus {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility apparatus-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-faint);
 }
 
 /* ============================================================
@@ -197,18 +242,18 @@ body {
 }
 
 /* ============================================================
-   Focus — visible, warm, accessible
+   Focus — visible, accessible
    ============================================================ */
 
 :focus-visible {
-  outline: 2px solid var(--color-clay-400);
+  outline: 2px solid var(--color-verified);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
 ::selection {
-  background-color: var(--color-sage-200);
-  color: var(--color-stone-900);
+  background-color: var(--color-verified-wash);
+  color: var(--color-ink);
 }
 
 /* ============================================================

@@ -7,6 +7,11 @@
  * unknown, what would move it next — is shown inline rather than collected at
  * the bottom, because those are the parts a reader needs while the claim is
  * still in front of them.
+ *
+ * Two marks recur, and they mean what they mean everywhere on this surface:
+ * a verified-green rule beside "why it matters" (the checked claim's weight)
+ * and an unsettled-amber rule beside "what remains unknown". Colour never
+ * decorates here; it reports.
  */
 import type { Edition } from '../lib/nations-data';
 import SourceList from './evidence/SourceList.astro';
@@ -34,40 +39,32 @@ function refs(ids: number[]): string {
         ))}
 
         {edition.lead.whyItMatters && (
-          <div class="not-prose border-l-[3px] border-forest pl-5 my-7">
-            <p class="font-body text-[10px] font-bold tracking-[0.14em] uppercase text-forest mb-1.5">
-              Why it matters
-            </p>
+          <div class="not-prose border-l-2 border-verified pl-4 my-7">
+            <p class="apparatus-label text-verified mb-1.5">Why it matters</p>
             <p class="text-[16px] leading-[1.65] text-ink m-0">{edition.lead.whyItMatters}</p>
           </div>
         )}
 
         {edition.lead.unknowns && edition.lead.unknowns.length > 0 && (
-          <div class="not-prose bg-canvas/60 border border-rule rounded px-5 py-4 my-7">
-            <p class="font-body text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-              What remains unknown
-            </p>
-            <ul class="list-disc pl-4 space-y-1.5 m-0">
+          <div class="not-prose border-l-2 border-unsettled pl-4 my-7">
+            <p class="apparatus-label text-unsettled mb-2">What remains unknown</p>
+            <ul class="list-none pl-0 space-y-1.5 m-0">
               {edition.lead.unknowns.map((u) => (
-                <li class="text-[15px] leading-[1.6] text-stone-700">{u}</li>
+                <li class="text-[15px] leading-[1.6] text-quiet">{u}</li>
               ))}
             </ul>
           </div>
         )}
 
         {edition.lead.nextCatalyst && (
-          <p class="not-prose text-[15px] leading-[1.65] text-stone-600 border-t border-rule pt-4 mt-6">
-            <span class="font-body text-[10px] font-bold tracking-[0.14em] uppercase text-cedar mr-2">
-              Next
-            </span>
+          <p class="not-prose text-[15px] leading-[1.65] text-quiet border-t border-rule pt-4 mt-6">
+            <span class="apparatus-label mr-2">Next</span>
             {edition.lead.nextCatalyst}
           </p>
         )}
 
         {edition.lead.sourceIds.length > 0 && (
-          <p class="not-prose text-xs text-text-muted mt-4">
-            Sources {refs(edition.lead.sourceIds)}
-          </p>
+          <p class="not-prose apparatus text-faint mt-4">Sources {refs(edition.lead.sourceIds)}</p>
         )}
       </section>
     )
@@ -85,40 +82,32 @@ function refs(ids: number[]): string {
             ))}
 
             {item.whyItMatters && (
-              <div class="not-prose border-l-[3px] border-forest pl-5 my-6">
-                <p class="font-body text-[10px] font-bold tracking-[0.14em] uppercase text-forest mb-1.5">
-                  Why it matters
-                </p>
+              <div class="not-prose border-l-2 border-verified pl-4 my-6">
+                <p class="apparatus-label text-verified mb-1.5">Why it matters</p>
                 <p class="text-[16px] leading-[1.65] text-ink m-0">{item.whyItMatters}</p>
               </div>
             )}
 
             {item.unknowns && item.unknowns.length > 0 && (
-              <div class="not-prose bg-canvas/60 border border-rule rounded px-5 py-4 my-6">
-                <p class="font-body text-[10px] font-bold tracking-[0.14em] uppercase text-stone-500 mb-2">
-                  What remains unknown
-                </p>
-                <ul class="list-disc pl-4 space-y-1.5 m-0">
+              <div class="not-prose border-l-2 border-unsettled pl-4 my-6">
+                <p class="apparatus-label text-unsettled mb-2">What remains unknown</p>
+                <ul class="list-none pl-0 space-y-1.5 m-0">
                   {item.unknowns.map((u) => (
-                    <li class="text-[15px] leading-[1.6] text-stone-700">{u}</li>
+                    <li class="text-[15px] leading-[1.6] text-quiet">{u}</li>
                   ))}
                 </ul>
               </div>
             )}
 
             {item.nextCatalyst && (
-              <p class="not-prose text-[15px] leading-[1.65] text-stone-600 mt-4">
-                <span class="font-body text-[10px] font-bold tracking-[0.14em] uppercase text-cedar mr-2">
-                  Next
-                </span>
+              <p class="not-prose text-[15px] leading-[1.65] text-quiet mt-4">
+                <span class="apparatus-label mr-2">Next</span>
                 {item.nextCatalyst}
               </p>
             )}
 
             {item.sourceIds.length > 0 && (
-              <p class="not-prose text-xs text-text-muted mt-3">
-                Sources {refs(item.sourceIds)}
-              </p>
+              <p class="not-prose apparatus text-faint mt-3">Sources {refs(item.sourceIds)}</p>
             )}
           </article>
         ))}
@@ -132,7 +121,7 @@ function refs(ids: number[]): string {
         <h2>The sweep</h2>
         {edition.sweep.map((group) => (
           <div class="mb-7 last:mb-0">
-            <h3 class="!text-lg">{group.domain}</h3>
+            <h3>{group.domain}</h3>
             <ul class="not-prose space-y-2.5 list-none pl-0 mt-3">
               {group.items.map((entry) => (
                 <li class="text-[16px] leading-[1.6] text-ink pl-4 border-l border-rule">
@@ -142,7 +131,7 @@ function refs(ids: number[]): string {
                       href={entry.url}
                       rel="noopener noreferrer"
                       target="_blank"
-                      class="text-xs text-text-muted ml-2 whitespace-nowrap"
+                      class="apparatus text-faint ml-2 whitespace-nowrap underline decoration-rule underline-offset-2 hover:decoration-ink hover:text-ink"
                     >
                       {entry.label ?? 'source'}
                     </a>
@@ -165,7 +154,7 @@ function refs(ids: number[]): string {
           <p>{p}</p>
         ))}
         {edition.bright.sourceIds.length > 0 && (
-          <p class="not-prose text-xs text-text-muted mt-3">
+          <p class="not-prose apparatus text-faint mt-3">
             Sources {refs(edition.bright.sourceIds)}
           </p>
         )}
