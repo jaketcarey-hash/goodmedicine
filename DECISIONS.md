@@ -328,6 +328,52 @@ meaning in the new palette: eligibility results, settled/unsettled law on
 *Found in passing:* `LedgerStrip.astro` lost its last importer during the page
 conversions and is now orphaned; left in place, flagged for cleanup.
 
+---
+
+## 2026-08-06 — The money spine, milestone 1: honest plumbing
+
+The approved build (plan: money depth + the planning spine, five milestones) starts
+from the finding that the money tools are capable and completely siloed. M1 fixes the
+dead ends and lays the read layer; no new UI.
+
+### One component, one *writable* store
+
+`src/lib/money-picture.ts` reads across every money store and writes none of them.
+This deliberately relaxes the one-component-one-store convention on the read side
+only. Its two rules are structural: absence is stated (every field null until the
+person enters that data — a zero would be a claim), and suggestions derive from
+stated data only, each naming the datum it rests on. There is no composite score and
+never will be — a number that can go down is advice in a costume, and it punishes
+absence.
+
+*Also deliberate:* the read layer uses `getBudget()`/`getAllBudgetMonths()` rather
+than `getCurrentBudget()`, because the latter creates the month it reports — a write
+hiding in a getter.
+
+### Restore-on-mount is the wizard standard
+
+Section87Checker was the only tool that restored its saved state; BenefitsFinder
+saved results behind a no-op restore effect and DistributionPlanner's saved plan was
+never read back. Both now restore on mount — but only the *inputs*, with results
+recomputed, so a saved run can never show conclusions the current rules would not
+reach. Each shows a provenance line ("Saved 6 August 2026 — start fresh") in the
+apparatus voice; a save without a timestamp is not restored, because a silent
+pre-selection is worse than none. TaxEstimator now pre-selects its exemption toggle
+from the checker's saved verdict on the same terms — grey-zone verdicts pre-select
+nothing, because a grey verdict is not a percentage claim.
+
+### WelcomeFlow deleted, not wired
+
+The first-visit intake was orphaned code writing a key nothing read. Jake's call, 6
+August: delete. The entry model is someone landing mid-worry on a specific page —
+they never see a front door, and a questionnaire before value contradicts that.
+Intent capture belongs on /money/plan (M4), after the site has earned the question.
+Keys `gm_welcome_complete` / `gm_welcome_interests` removed from the registry.
+
+---
+
+## Open questions
+
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
   builds toward the former.
 - Whether the site should derive the BC directory itself rather than reading a file

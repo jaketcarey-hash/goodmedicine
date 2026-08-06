@@ -70,7 +70,7 @@
       results.push({ label: 'Find your benefits', href: '/self/benefits' });
     }
     if (set.has('General stress')) {
-      results.push({ label: 'Read about financial stress', href: '/self/financial-stress' });
+      results.push({ label: 'Read about financial stress', href: '/self/stress' });
     }
     if (set.has('Saving')) {
       results.push({ label: 'Track your savings', href: '/money/savings-tracker' });

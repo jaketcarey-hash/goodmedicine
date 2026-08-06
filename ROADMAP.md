@@ -1,7 +1,7 @@
 # Strong Fire — Roadmap
 
 ## Current State (April 2026)
-48 pages, 15 interactive tools, live at strongfire.ca. Self-hosted fonts, data export/import, first-launch orientation flow, monthly automated content review scheduled.
+48 pages, 15 interactive tools, live at strongfire.ca. Self-hosted fonts, data export/import, monthly automated content review scheduled. (The first-launch orientation flow was removed August 2026 — it was never wired to a page, and intent capture belongs on /money/plan after the site has shown value.)
 
 ## Community Feedback
 - Elsa DJ provided first round of feedback (implemented March 2026)

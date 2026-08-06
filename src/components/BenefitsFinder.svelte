@@ -15,6 +15,8 @@
   let filedTaxes = $state<string>('');
   let expanded = $state<Set<string>>(new Set());
   let saved = $state(false);
+  // ISO timestamp of a restored previous run, null when starting clean.
+  let restoredFrom = $state<string | null>(null);
 
   const totalSteps = 6;
 
@@ -126,6 +128,7 @@
     filedTaxes = '';
     expanded = new Set();
     saved = false;
+    restoredFrom = null;
   }
 
   // ── Results logic ──────────────────────────────────────────
@@ -351,16 +354,28 @@
     }
   }
 
-  // ── Check for saved results on mount ───────────────────────
+  // ── Restore previous answers on mount ──────────────────────
+  // Answers are restored and results recomputed, so a saved run never
+  // shows conclusions the current rules wouldn't reach. "Start fresh"
+  // is always one tap away.
   $effect(() => {
+    if (typeof window === 'undefined') return;
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.BENEFITS_RESULTS);
-      if (stored) {
-        // We don't auto-load — user starts fresh each time
-        // but we note that they have saved results
-      }
+      if (!stored) return;
+      const { timestamp, answers } = JSON.parse(stored);
+      if (!answers?.hasStatus) return;
+      hasStatus = answers.hasStatus;
+      ageGroup = answers.ageGroup ?? '';
+      livesOnReserve = answers.livesOnReserve ?? '';
+      hasChildren = answers.hasChildren ?? '';
+      employment = answers.employment ?? '';
+      filedTaxes = answers.filedTaxes ?? '';
+      restoredFrom = timestamp ?? null;
+      saved = true;
+      step = totalSteps;
     } catch {
-      // no-op
+      // unreadable save — start clean
     }
   });
 
@@ -449,6 +464,15 @@
           <p class="text-sm text-text-secondary">
             We found <strong class="text-ink">{results.benefits.length} potential benefits</strong> based on your answers.
           </p>
+          {#if restoredFrom}
+            <p class="apparatus text-faint mt-2">
+              Your answers from {new Date(restoredFrom).toLocaleDateString('en-CA', { day: 'numeric', month: 'long', year: 'numeric' })}
+              —
+              <button onclick={startOver} class="underline decoration-rule underline-offset-2 hover:decoration-ink cursor-pointer">
+                start fresh
+              </button>
+            </p>
+          {/if}
         </div>
 
         <!-- Urgent tax callout -->

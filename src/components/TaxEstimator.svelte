@@ -4,6 +4,7 @@
     estimateTotal,
     type TaxEstimate,
   } from '../lib/tax-estimator';
+  import { STORAGE_KEYS } from '../lib/storage-keys';
   import { fade, slide } from 'svelte/transition';
 
   // ---- Input mode ----
@@ -15,6 +16,27 @@
   let exemptStatus = $state<'no' | 'yes' | 'partial'>('no');
   let exemptPercentage = $state('100');
   let rrspContribution = $state('');
+  // Date of a Section 87 Checker verdict that pre-selected the toggle, null
+  // otherwise. A grey-zone verdict pre-selects nothing — it is not a
+  // percentage claim, and guessing one would be worse than asking.
+  let exemptPrefilledFrom = $state<string | null>(null);
+
+  $effect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.SECTION87_RESULT);
+      if (!stored) return;
+      const { outcome, timestamp } = JSON.parse(stored);
+      // No timestamp means no visible provenance line — never pre-select silently.
+      if (!timestamp) return;
+      if (outcome === 'likely-exempt') exemptStatus = 'yes';
+      else if (outcome === 'likely-not-exempt' || outcome === 'not-eligible') exemptStatus = 'no';
+      else return;
+      exemptPrefilledFrom = timestamp;
+    } catch {
+      // unreadable — leave the default
+    }
+  });
 
   // ---- Derived income ----
   let income = $derived(() => {
@@ -159,6 +181,12 @@
   <!-- Section 87 -->
   <div class="rounded-sm bg-surface-card border border-rule p-4 shadow-sm">
     <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Section 87 tax exemption</p>
+    {#if exemptPrefilledFrom}
+      <p class="apparatus text-faint mb-3">
+        From your Section 87 check on {new Date(exemptPrefilledFrom).toLocaleDateString('en-CA', { day: 'numeric', month: 'long', year: 'numeric' })}
+        — change it below if that's wrong
+      </p>
+    {/if}
     <div class="grid grid-cols-3 gap-2 mb-2">
       <button
         onclick={() => exemptStatus = 'no'}

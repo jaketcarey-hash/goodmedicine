@@ -66,10 +66,11 @@ No accounts, no tracking, all state in `localStorage`.
   Mono for dates, figures, sources, confidence, stages and record ids — never for
   content. Content never carries provenance styling. See the 2026-08-05 entry in
   `DECISIONS.md`.
-- **The earth ramps (stone/sage/water/clay/berry) are legacy.** They exist in
-  `global.css` only so unconverted pages keep rendering. New and converted work uses
-  ground/ink/quiet/faint/rule plus the three status colours — and colour never appears
-  without its text label.
+- **The earth ramps (stone/sage/water/clay/berry) are gone** (retired 2026-08-06).
+  Everything uses ground/ink/quiet/faint/rule plus the three status colours — and
+  colour never appears without its text label. Do not reintroduce a ramp.
+- **`money-picture.ts` reads every store and writes none.** Tools own their writes;
+  cross-tool reads go through the picture. No composite score, ever.
 
 ## Hard boundary
 

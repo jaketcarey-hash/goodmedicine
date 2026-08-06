@@ -9,6 +9,37 @@
   let situations = $state<string[]>([]);
   let saved = $state(false);
   let expandedSegment = $state<string | null>(null);
+  // ISO timestamp of a restored saved plan, null when starting clean.
+  let restoredFrom = $state<string | null>(null);
+
+  // ---- Restore a saved plan on mount ----
+  // Only the three inputs are restored; the plan and projections recompute,
+  // so a saved plan never shows numbers the current rules wouldn't produce.
+  $effect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.DISTRIBUTION_PLAN);
+      if (!stored) return;
+      const data = JSON.parse(stored);
+      if (!(data?.amount > 0) || !Array.isArray(data.situations) || data.situations.length === 0) return;
+      amount = data.amount.toLocaleString('en-CA');
+      distributionType = data.type === 'one-time' ? 'one-time' : 'annual';
+      situations = data.situations;
+      restoredFrom = data.savedAt ?? null;
+      step = 2;
+    } catch {
+      // unreadable save — start clean
+    }
+  });
+
+  function startFresh() {
+    step = 0;
+    amount = '';
+    distributionType = 'annual';
+    situations = [];
+    expandedSegment = null;
+    restoredFrom = null;
+  }
 
   // ---- Preset amounts ----
   const presets = [500, 1_000, 2_000, 5_000, 10_000];
@@ -387,7 +418,16 @@
       <div in:fly={{ y: 20, duration: 300 }}>
         <p class="text-sm text-text-muted mb-1">Step 3 of {totalSteps}</p>
         <h3 class="text-xl font-semibold mb-1">Here's your plan</h3>
-        <p class="text-sm text-text-secondary mb-5">Your ${fmt(parsedAmount)}, with purpose.</p>
+        <p class="text-sm text-text-secondary {restoredFrom ? 'mb-1' : 'mb-5'}">Your ${fmt(parsedAmount)}, with purpose.</p>
+        {#if restoredFrom}
+          <p class="apparatus text-faint mb-5">
+            Saved {new Date(restoredFrom).toLocaleDateString('en-CA', { day: 'numeric', month: 'long', year: 'numeric' })}
+            —
+            <button onclick={startFresh} class="underline decoration-rule underline-offset-2 hover:decoration-ink cursor-pointer">
+              start fresh
+            </button>
+          </p>
+        {/if}
 
         <!-- Visual bar — one hue; the gaps divide segments, the cards below carry the labels -->
         <div class="flex h-3 gap-[3px] mb-6">
