@@ -17,85 +17,59 @@
     id: string;
     title: string;
     description: string;
-    color: string;
-    iconColor: string;
-    iconBg: string;
     icon: string;
   }
 
   // ── Categories ─────────────────────────────────────────────
+  // Per-category tints removed — a category is not a meaning.
 
   const categories: Category[] = [
     {
       id: 'cra-notice',
       title: 'Explain a CRA notice',
       description: 'Understand what the CRA is asking and what to do next',
-      color: 'clay',
-      iconColor: 'text-clay-500',
-      iconBg: 'bg-clay-50',
       icon: 'document',
     },
     {
       id: 'nihb-appeal',
       title: 'Appeal an NIHB denial',
       description: 'Get help preparing an appeal for denied health benefits',
-      color: 'sage',
-      iconColor: 'text-sage-500',
-      iconBg: 'bg-sage-50',
       icon: 'shield',
     },
     {
       id: 'section-87',
       title: 'Section 87 deep analysis',
       description: 'Find out if your income qualifies for tax exemption',
-      color: 'water',
-      iconColor: 'text-water-500',
-      iconBg: 'bg-water-50',
       icon: 'scale',
     },
     {
       id: 'budget',
       title: 'Help with my budget',
       description: 'Get practical advice on your spending and saving',
-      color: 'clay',
-      iconColor: 'text-clay-500',
-      iconBg: 'bg-clay-50',
       icon: 'calculator',
     },
     {
       id: 'letter',
       title: 'Draft a letter',
       description: 'Write a professional letter for any financial situation',
-      color: 'berry',
-      iconColor: 'text-berry-500',
-      iconBg: 'bg-berry-50',
       icon: 'pen',
     },
     {
       id: 'band-finance',
       title: 'Understand band finances',
       description: 'Make sense of your band\'s financial statements',
-      color: 'water',
-      iconColor: 'text-water-500',
-      iconBg: 'bg-water-50',
       icon: 'chart',
     },
     {
       id: 'benefits',
       title: 'Find missing benefits',
       description: 'Discover programs and credits you may be eligible for',
-      color: 'sage',
-      iconColor: 'text-sage-500',
-      iconBg: 'bg-sage-50',
       icon: 'search',
     },
     {
       id: 'general',
       title: 'Ask anything',
       description: 'Get help with any financial question',
-      color: 'stone',
-      iconColor: 'text-stone-500',
-      iconBg: 'bg-stone-100',
       icon: 'chat',
     },
   ];
@@ -143,24 +117,6 @@
 
   // General
   let generalQuestion = $state('');
-
-  // ── Card border colours ────────────────────────────────────
-
-  const borderColors: Record<string, string> = {
-    clay: 'border-clay-300 hover:border-clay-400',
-    sage: 'border-sage-300 hover:border-sage-400',
-    water: 'border-water-300 hover:border-water-400',
-    berry: 'border-berry-300 hover:border-berry-400',
-    stone: 'border-stone-300 hover:border-stone-400',
-  };
-
-  const activeBorders: Record<string, string> = {
-    clay: 'border-clay-400',
-    sage: 'border-sage-400',
-    water: 'border-water-400',
-    berry: 'border-berry-400',
-    stone: 'border-stone-400',
-  };
 
   // ── Handlers ───────────────────────────────────────────────
 
@@ -277,23 +233,21 @@
   ];
 
   // Input styling constants
-  const inputClass = `w-full rounded-xl border border-stone-200 bg-surface-warm px-4 py-3 text-sm
-    placeholder:text-stone-400 focus:border-clay-300 focus:ring-1 focus:ring-clay-200
-    focus:outline-none transition-colors`;
+  const inputClass = `w-full rounded-sm border border-rule bg-white px-4 py-3 text-sm
+    placeholder:text-faint focus:border-ink focus:outline-none transition-colors`;
 
-  const selectClass = `w-full rounded-xl border border-stone-200 bg-surface-warm px-4 py-3 text-sm
-    focus:border-clay-300 focus:ring-1 focus:ring-clay-200 focus:outline-none transition-colors`;
+  const selectClass = `w-full rounded-sm border border-rule bg-white px-4 py-3 text-sm
+    focus:border-ink focus:outline-none transition-colors`;
 
-  const textareaClass = `w-full rounded-xl border border-stone-200 bg-surface-warm p-4 text-sm
-    placeholder:text-stone-400 focus:border-clay-300 focus:ring-1 focus:ring-clay-200
-    focus:outline-none resize-none transition-colors`;
+  const textareaClass = `w-full rounded-sm border border-rule bg-white p-4 text-sm
+    placeholder:text-faint focus:border-ink focus:outline-none resize-none transition-colors`;
 </script>
 
 <div class="space-y-5">
-  <!-- Privacy note -->
-  <div class="rounded-xl bg-sage-50 border border-sage-200 px-4 py-3">
-    <p class="text-xs text-sage-700 leading-relaxed">
-      <span class="font-semibold">Private by design.</span> Your data stays on your device. Only the text you see below gets shared when you choose to open Claude.
+  <!-- Privacy note — a rule and a voice, not a tinted box -->
+  <div class="border-l-2 border-verified pl-4 py-0.5">
+    <p class="text-xs text-quiet leading-relaxed">
+      <span class="font-semibold text-ink">Private by design.</span> Your data stays on your device. Only the text you see below gets shared when you choose to open Claude.
     </p>
   </div>
 
@@ -304,31 +258,30 @@
       <div class="contents">
         <button
           onclick={() => toggleCategory(cat.id)}
-          class="rounded-xl bg-surface-card border p-4 text-left transition-all duration-200 cursor-pointer
-            {isActive ? activeBorders[cat.color] : borderColors[cat.color]}
-            {isActive ? 'shadow-md ring-1 ring-' + cat.color + '-200' : 'hover:shadow-sm'}
+          class="rounded-sm bg-white border p-4 text-left transition-all duration-200 cursor-pointer
+            {isActive ? 'border-ink' : 'border-rule hover:border-quiet'}
             active:scale-[0.97]"
           aria-expanded={isActive}
         >
-          <div class="w-9 h-9 rounded-lg {cat.iconBg} flex items-center justify-center mb-3">
+          <div class="w-9 h-9 flex items-center justify-center mb-3 -ml-2">
             {#if cat.icon === 'document'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                 <polyline points="14,2 14,8 20,8" />
                 <line x1="16" y1="13" x2="8" y2="13" />
                 <line x1="16" y1="17" x2="8" y2="17" />
               </svg>
             {:else if cat.icon === 'shield'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
             {:else if cat.icon === 'scale'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="3" x2="12" y2="21" />
                 <polyline points="1,14 12,3 23,14" />
               </svg>
             {:else if cat.icon === 'calculator'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="4" y="2" width="16" height="20" rx="2" />
                 <line x1="8" y1="6" x2="16" y2="6" />
                 <line x1="8" y1="10" x2="8" y2="10.01" />
@@ -340,23 +293,23 @@
                 <line x1="8" y1="18" x2="16" y2="18" />
               </svg>
             {:else if cat.icon === 'pen'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 20h9" />
                 <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
               </svg>
             {:else if cat.icon === 'chart'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="20" x2="18" y2="10" />
                 <line x1="12" y1="20" x2="12" y2="4" />
                 <line x1="6" y1="20" x2="6" y2="14" />
               </svg>
             {:else if cat.icon === 'search'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             {:else if cat.icon === 'chat'}
-              <svg class="w-4.5 h-4.5 {cat.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-4.5 h-4.5 text-quiet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
             {/if}
@@ -368,7 +321,7 @@
         <!-- Expanded form — spans full width below the grid row -->
         {#if isActive}
           <div
-            class="col-span-2 rounded-xl bg-surface-card border {activeBorders[cat.color]} p-5 space-y-4"
+            class="col-span-2 rounded-sm bg-white border border-rule p-5 space-y-4"
             in:slide={{ duration: 250 }}
           >
             <!-- CRA Notice form -->
@@ -509,7 +462,7 @@
                 </select>
               </label>
               <label class="flex items-center gap-3 cursor-pointer">
-                <input type="checkbox" bind:checked={benefitsChildren} class="w-5 h-5 rounded border-stone-300 text-sage-500 focus:ring-sage-200" />
+                <input type="checkbox" bind:checked={benefitsChildren} class="w-5 h-5 rounded-sm border-rule text-ink" />
                 <span class="text-sm font-medium">I have children under 18</span>
               </label>
               <label class="block">
@@ -543,8 +496,8 @@
             <!-- Generate button -->
             <button
               onclick={generatePrompt}
-              class="w-full py-3 rounded-xl text-sm font-semibold bg-stone-900 text-white
-                hover:bg-stone-800 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              class="w-full py-3 rounded-sm text-sm font-semibold bg-ink text-ground
+                hover:bg-ink/85 active:scale-[0.98] transition-all duration-200 cursor-pointer"
             >
               Generate prompt
             </button>
@@ -552,7 +505,7 @@
             <!-- Prompt preview -->
             {#if generatedPrompt}
               <div in:fade={{ duration: 200 }} class="space-y-3">
-                <div class="rounded-xl border border-stone-200 bg-surface-warm p-4">
+                <div class="rounded-sm border border-rule bg-white p-4">
                   <p class="text-[10px] font-semibold text-text-muted uppercase tracking-wider mb-2">Your prompt</p>
                   <textarea
                     bind:value={generatedPrompt}
@@ -565,17 +518,17 @@
                 <div class="flex gap-2">
                   <button
                     onclick={copyPrompt}
-                    class="flex-1 py-3 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
+                    class="flex-1 py-3 rounded-sm text-sm font-semibold transition-all duration-200 cursor-pointer
                       {copied
-                        ? 'bg-sage-500 text-white'
-                        : 'bg-stone-900 text-white hover:bg-stone-800 active:scale-[0.98]'}"
+                        ? 'bg-verified text-white'
+                        : 'bg-ink text-ground hover:bg-ink/85 active:scale-[0.98]'}"
                   >
                     {copied ? 'Copied' : 'Copy to clipboard'}
                   </button>
                   <button
                     onclick={openClaude}
-                    class="flex-1 py-3 rounded-xl text-sm font-semibold border border-stone-300
-                      bg-surface-card text-text-primary hover:border-stone-400 hover:shadow-sm
+                    class="flex-1 py-3 rounded-sm text-sm font-semibold border border-rule
+                      bg-white text-ink hover:border-quiet
                       active:scale-[0.98] transition-all duration-200 cursor-pointer"
                   >
                     Open in Claude

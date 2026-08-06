@@ -9,7 +9,7 @@ import { CARRY_CARDS } from '../../../lib/carry-cards-data';
   <section class="px-5 pt-10 pb-4">
     <a
       href="/rights"
-      class="inline-flex items-center gap-1 text-sm text-text-muted hover:text-stone-700 transition-colors mb-4"
+      class="inline-flex items-center gap-1 text-sm text-text-muted hover:text-ink transition-colors mb-4"
     >
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M15 18l-6-6 6-6" />
@@ -34,7 +34,6 @@ import { CARRY_CARDS } from '../../../lib/carry-cards-data';
           title={c.title}
           setting={c.setting}
           answer={c.answer}
-          accent={c.accent}
           published={c.published}
         />
       ))}
@@ -43,7 +42,7 @@ import { CARRY_CARDS } from '../../../lib/carry-cards-data';
 
   <!-- Footer note -->
   <section class="px-5 pb-12">
-    <div class="rounded-xl bg-stone-100 p-5">
+    <div class="border-t border-rule pt-5">
       <p class="text-sm text-text-secondary leading-relaxed">
         Each card is a plain-language summary of what's already in the Rights and Money sections —
         kept short so you can read it on the spot. For the full picture, every card links back to the article it came from.

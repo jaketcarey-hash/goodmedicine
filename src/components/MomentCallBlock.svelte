@@ -17,14 +17,14 @@
   }
 </script>
 
-<div class="rounded-xl border border-stone-200 bg-surface-card p-4">
+<div class="rounded-sm border border-rule bg-white p-4">
   <div class="flex items-baseline justify-between gap-3 mb-2">
     <p class="font-semibold text-sm">{label}</p>
     {#if number && numberHref}
       <a
         href={numberHref}
         onclick={onTap}
-        class="text-sm font-mono text-water-600 hover:text-water-700 hover:underline transition-colors"
+        class="text-sm font-mono text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors"
       >
         {number}
       </a>

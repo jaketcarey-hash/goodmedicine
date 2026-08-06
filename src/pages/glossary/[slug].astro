@@ -42,18 +42,15 @@ export const getStaticPaths = (() => {
 
 const { entry, related } = Astro.props;
 
-const tone: Record<string, string> = {
-  general: 'bg-stone-100 text-stone-700 border-stone-300',
-  indigenous: 'bg-water-50 text-water-700 border-water-300',
-  canadian: 'bg-clay-50 text-clay-700 border-clay-300',
-};
+// Category chips no longer tint by category — a category is not a meaning.
+// The label alone carries it.
 ---
 
 <Shell title={entry.term} description={entry.definition.slice(0, 200)} branch="glossary">
   <div class="px-5 md:px-0 pt-8 md:pt-14 pb-16">
     <a
       href="/glossary"
-      class="inline-flex items-center gap-1.5 text-sm text-stone-600 mb-6 hover:opacity-70 transition-opacity"
+      class="inline-flex items-center gap-1.5 text-sm text-quiet mb-6 hover:text-ink transition-colors"
     >
       <svg
         class="w-4 h-4"
@@ -72,10 +69,7 @@ const tone: Record<string, string> = {
     <div class="flex flex-wrap items-center gap-3 mb-3">
       <h1 class="text-3xl md:text-4xl font-bold tracking-tight">{entry.term}</h1>
       <span
-        class:list={[
-          'text-[10px] font-semibold tracking-wide uppercase border rounded px-2 py-0.5',
-          tone[entry.category],
-        ]}
+        class="text-[10px] font-semibold tracking-wide uppercase border border-rule bg-white text-quiet rounded px-2 py-0.5"
       >
         {CATEGORY_LABELS[entry.category]}
       </span>
@@ -89,7 +83,7 @@ const tone: Record<string, string> = {
       entry.articleLink && (
         <a
           href={entry.articleLink}
-          class="inline-block text-sm font-semibold text-clay-700 hover:text-clay-800 transition-colors mb-10"
+          class="inline-block text-sm font-semibold text-ink underline decoration-rule underline-offset-2 hover:decoration-ink mb-10"
         >
           Read more about this &rarr;
         </a>
@@ -98,8 +92,8 @@ const tone: Record<string, string> = {
 
     {
       related.length > 0 && (
-        <section class="border-t border-stone-200 pt-6 mt-2">
-          <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">
+        <section class="border-t border-rule pt-6 mt-2">
+          <h2 class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">
             Related terms
           </h2>
           <ul class="list-none pl-0 m-0 flex flex-col gap-2.5">
@@ -107,9 +101,9 @@ const tone: Record<string, string> = {
               <li>
                 <a
                   href={`/glossary/${termSlug(r.term)}`}
-                  class="group block rounded-xl bg-surface-card border border-stone-200 hover:border-stone-300 p-4 transition-colors"
+                  class="group block rounded-sm bg-surface-card border border-rule hover:border-quiet p-4 transition-colors"
                 >
-                  <p class="font-semibold text-sm group-hover:text-clay-700 transition-colors">
+                  <p class="font-semibold text-sm">
                     {r.term}
                   </p>
                   <p class="text-sm text-text-secondary mt-1 leading-relaxed line-clamp-2">

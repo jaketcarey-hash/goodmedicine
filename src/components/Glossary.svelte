@@ -55,18 +55,13 @@
     return 'term-' + term.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
 
-  const categoryDot: Record<GlossaryEntry['category'], string> = {
-    general: 'bg-stone-400',
-    indigenous: 'bg-water-400',
-    canadian: 'bg-clay-400',
-  };
 </script>
 
 <div class="flex flex-col gap-5">
   <!-- Search -->
   <div class="relative">
     <svg
-      class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-stone-400 pointer-events-none"
+      class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-faint pointer-events-none"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -82,9 +77,9 @@
       bind:value={search}
       placeholder="Search terms or definitions..."
       aria-label="Search glossary terms"
-      class="w-full pl-11 pr-4 py-3 rounded-xl bg-stone-100 text-text-primary
-        placeholder:text-stone-400 text-sm border border-transparent
-        focus:border-stone-300 focus:bg-surface-card focus:outline-none
+      class="w-full pl-11 pr-4 py-3 rounded-sm bg-white text-ink
+        placeholder:text-faint text-sm border border-rule
+        focus:border-ink focus:outline-none
         transition-all duration-[var(--duration-fast)]"
     />
   </div>
@@ -96,11 +91,11 @@
         role="tab"
         aria-selected={activeCategory === cat.key}
         onclick={() => activeCategory = cat.key}
-        class="flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium
+        class="flex-shrink-0 px-4 py-2 rounded-sm text-sm font-medium border
           transition-all duration-[var(--duration-fast)] cursor-pointer
           {activeCategory === cat.key
-            ? 'bg-stone-800 text-stone-50'
-            : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}"
+            ? 'bg-ink text-ground border-ink'
+            : 'bg-white text-quiet border-rule hover:border-quiet'}"
       >
         {cat.label}
       </button>
@@ -118,7 +113,7 @@
       <p class="text-text-muted text-sm">No terms match your search.</p>
       <button
         onclick={() => { search = ''; activeCategory = 'all'; }}
-        class="mt-3 text-sm text-water-500 hover:text-water-600 transition-colors cursor-pointer"
+        class="mt-3 text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors cursor-pointer"
       >
         Clear filters
       </button>
@@ -131,7 +126,7 @@
           <span class="text-xs font-semibold uppercase tracking-wider text-text-muted bg-surface px-1">
             {letter}
           </span>
-          <div class="border-b border-stone-200 mt-1"></div>
+          <div class="border-b border-rule mt-1"></div>
         </div>
 
         <!-- Term cards -->
@@ -141,15 +136,14 @@
             <button
               onclick={() => toggleTerm(entry.term)}
               aria-expanded={isOpen}
-              class="w-full text-left p-4 rounded-xl bg-surface-card border border-stone-200
+              class="w-full text-left p-4 rounded-sm bg-white border border-rule
                 transition-all duration-[var(--duration-fast)] cursor-pointer
-                hover:border-stone-300 {isOpen ? 'border-stone-300 shadow-sm' : ''}"
+                hover:border-quiet {isOpen ? 'border-quiet shadow-sm' : ''}"
             >
               <div class="flex items-center gap-2.5">
-                <span class="w-1.5 h-1.5 rounded-full {categoryDot[entry.category]} flex-shrink-0"></span>
                 <span class="font-semibold text-sm flex-1">{entry.term}</span>
                 <svg
-                  class="w-4 h-4 text-stone-400 flex-shrink-0 transition-transform duration-300 ease-[var(--ease-out)]"
+                  class="w-4 h-4 text-faint flex-shrink-0 transition-transform duration-300 ease-[var(--ease-out)]"
                   class:rotate-180={isOpen}
                   viewBox="0 0 24 24"
                   fill="none"
@@ -164,7 +158,7 @@
             </button>
 
             {#if isOpen}
-              <div transition:slide={{ duration: 250 }} class="px-4 pb-4 pt-1 -mt-2 rounded-b-xl bg-surface-card border border-t-0 border-stone-200">
+              <div transition:slide={{ duration: 250 }} class="px-4 pb-4 pt-1 -mt-2 rounded-b-sm bg-white border border-t-0 border-rule">
                 <p class="text-sm text-text-secondary leading-relaxed mb-3">
                   {entry.definition}
                 </p>
@@ -180,8 +174,8 @@
                     {#each entry.relatedTerms as related}
                       <button
                         onclick={() => scrollToTerm(related)}
-                        class="px-2.5 py-1 rounded-full text-xs font-medium
-                          bg-sage-50 text-sage-700 hover:bg-sage-100
+                        class="px-2.5 py-1 rounded-sm text-xs font-medium
+                          bg-white border border-rule text-quiet hover:border-quiet
                           transition-colors duration-[var(--duration-fast)] cursor-pointer"
                       >
                         {related}
@@ -194,7 +188,7 @@
                 {#if entry.articleLink}
                   <a
                     href={entry.articleLink}
-                    class="inline-flex items-center gap-1 text-sm text-water-500 hover:text-water-600 font-medium transition-colors"
+                    class="inline-flex items-center gap-1 text-sm text-ink font-medium underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors"
                   >
                     Learn more
                     <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

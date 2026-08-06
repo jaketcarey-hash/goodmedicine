@@ -27,8 +27,6 @@ export interface CarryCall {
   numberHref: string;
 }
 
-export type CarryAccent = 'water' | 'sage' | 'clay' | 'berry';
-
 export interface CarryCard {
   slug: string;
   /** Short label for the index card and the page title. */
@@ -37,7 +35,6 @@ export interface CarryCard {
   setting: string;
   /** The front: the one-line answer, the thing to hold in your head. */
   answer: string;
-  accent: CarryAccent;
   published: boolean;
 
   /** The back. Each block is optional so a card only carries what it needs. */
@@ -53,24 +50,12 @@ export interface CarryCard {
   sourceLabel: string;
 }
 
-const ACCENT_BAR: Record<CarryAccent, string> = {
-  water: 'var(--color-water-400)',
-  sage: 'var(--color-sage-400)',
-  clay: 'var(--color-clay-400)',
-  berry: 'var(--color-berry-400)',
-};
-
-export function accentBar(accent: CarryAccent): string {
-  return ACCENT_BAR[accent];
-}
-
 export const CARRY_CARDS: CarryCard[] = [
   {
     slug: 'status-card-benefits',
     title: 'NIHB at the counter',
     setting: 'At the pharmacy, dentist, or optometrist',
     answer: 'Your Status card is your benefits card. Show it — the provider bills NIHB directly.',
-    accent: 'water',
     published: true,
     bring: [
       'Your Status card',
@@ -113,7 +98,6 @@ export const CARRY_CARDS: CarryCard[] = [
     title: 'Section 87, the right question',
     setting: 'With an employer, bank, or advisor',
     answer: 'The question that opens it up: "How does this work with my Section 87 status?"',
-    accent: 'water',
     published: true,
     say: [
       {
@@ -148,7 +132,6 @@ export const CARRY_CARDS: CarryCard[] = [
     title: 'Jordan’s Principle ask',
     setting: 'For a First Nations child who needs something',
     answer: 'If your child has an unmet need, you can apply directly. The child comes first — always.',
-    accent: 'sage',
     published: true,
     bring: [
       'A clear description of what your child needs',
@@ -187,7 +170,6 @@ export const CARRY_CARDS: CarryCard[] = [
     title: 'NIHB medical travel',
     setting: 'When care isn’t available in your community',
     answer: 'NIHB can cover travel for care you can’t get locally — but arrange it before you go, and keep every receipt.',
-    accent: 'water',
     published: true,
     bring: [
       'Your Status card',

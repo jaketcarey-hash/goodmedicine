@@ -28,15 +28,11 @@
   let canProceedStep1 = $derived(situations.length > 0);
 
   // ---- Plan generation ----
+  // Segment colour fields removed with the earth ramps — segments render neutrally.
   interface PlanSegment {
     id: string;
     label: string;
     amount: number;
-    color: string;
-    bgColor: string;
-    borderColor: string;
-    textColor: string;
-    barColor: string;
     description: string;
     howTo: string[];
   }
@@ -65,11 +61,6 @@
         id: 'invest',
         label: 'Invest for growth',
         amount: investAmount,
-        color: 'clay',
-        bgColor: 'bg-clay-50',
-        borderColor: 'border-clay-200',
-        textColor: 'text-clay-600',
-        barColor: 'bg-clay-400',
         description: 'Open a TFSA and put this to work. One-fund portfolios make it simple.',
         howTo: [
           'Open a TFSA if you don\'t have one — at your bank, Wealthsimple, or Questrade',
@@ -85,11 +76,6 @@
           id: 'enjoy',
           label: 'Enjoy',
           amount: enjoyAmount,
-          color: 'water',
-          bgColor: 'bg-water-50',
-          borderColor: 'border-water-200',
-          textColor: 'text-water-600',
-          barColor: 'bg-water-400',
           description: 'You\'re doing the right things. Treat yourself to something meaningful.',
           howTo: [
             'This is your money — you\'ve earned the right to enjoy some of it',
@@ -131,11 +117,6 @@
         id: 'debt',
         label: 'Pay down debt',
         amount: amt,
-        color: 'berry',
-        bgColor: 'bg-berry-50',
-        borderColor: 'border-berry-200',
-        textColor: 'text-berry-600',
-        barColor: 'bg-berry-400',
         description: 'Put this toward your highest-interest debt first. Credit card before student loan, always.',
         howTo: [
           'List your debts by interest rate — highest first',
@@ -154,11 +135,6 @@
         id: 'emergency',
         label: 'Emergency fund',
         amount: amt,
-        color: 'sage',
-        bgColor: 'bg-sage-50',
-        borderColor: 'border-sage-200',
-        textColor: 'text-sage-600',
-        barColor: 'bg-sage-400',
         description: 'Open a TFSA savings account if you don\'t have one. This is your "something broke" money.',
         howTo: [
           'Open a high-interest savings account (TFSA if you have room)',
@@ -177,11 +153,6 @@
         id: 'savings',
         label: 'Savings goal',
         amount: amt,
-        color: 'water',
-        bgColor: 'bg-water-50',
-        borderColor: 'border-water-200',
-        textColor: 'text-water-600',
-        barColor: 'bg-water-400',
         description: 'Add this to your goal in the savings tracker. Every deposit is progress.',
         howTo: [
           'Open the Savings Goals tracker and add a deposit',
@@ -199,11 +170,6 @@
         id: 'invest',
         label: 'Invest for growth',
         amount: amt,
-        color: 'clay',
-        bgColor: 'bg-clay-50',
-        borderColor: 'border-clay-200',
-        textColor: 'text-clay-600',
-        barColor: 'bg-clay-400',
         description: 'Open a TFSA and buy a one-fund portfolio. This is seven-generation thinking in action.',
         howTo: [
           'Open a TFSA if you don\'t have one — at your bank, Wealthsimple, or Questrade',
@@ -308,11 +274,11 @@
   let totalSteps = $derived(investAmount > 0 ? 4 : 3);
 </script>
 
-<div class="rounded-2xl bg-surface-card border border-stone-200 overflow-hidden shadow-lg">
+<div class="rounded-sm bg-white border border-rule overflow-hidden shadow-lg">
   <!-- Progress bar -->
-  <div class="h-1 bg-stone-100">
+  <div class="h-1 bg-rule">
     <div
-      class="h-full bg-gradient-to-r from-clay-400 to-sage-400 transition-all duration-500 ease-[var(--ease-out)]"
+      class="h-full bg-ink transition-all duration-500 ease-[var(--ease-out)]"
       style="width: {((step + 1) / totalSteps) * 100}%"
     ></div>
   </div>
@@ -333,9 +299,9 @@
             inputmode="numeric"
             bind:value={amount}
             placeholder="0"
-            class="w-full rounded-xl border-2 border-stone-200 bg-surface-warm pl-10 pr-4 py-4
+            class="w-full rounded-sm border-2 border-rule bg-white pl-10 pr-4 py-4
               text-2xl font-bold text-text-primary
-              placeholder:text-stone-300 focus:border-clay-400 focus:ring-2 focus:ring-clay-200
+              placeholder:text-faint focus:border-ink
               focus:outline-none transition-all"
             aria-label="Distribution amount"
           />
@@ -346,10 +312,10 @@
           {#each presets as preset}
             <button
               onclick={() => setPreset(preset)}
-              class="px-3.5 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer
+              class="px-3.5 py-2 rounded-sm text-sm font-medium border transition-all duration-200 cursor-pointer
                 {parsedAmount === preset
-                  ? 'bg-clay-500 text-white border-clay-500'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-clay-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-quiet border-rule hover:border-quiet'}"
             >
               ${fmt(preset)}
             </button>
@@ -364,8 +330,8 @@
               onclick={() => distributionType = 'annual'}
               class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium border-2 transition-all duration-200 cursor-pointer
                 {distributionType === 'annual'
-                  ? 'bg-clay-50 text-clay-700 border-clay-400'
-                  : 'bg-surface-warm text-text-muted border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-quiet border-rule hover:border-quiet'}"
             >
               Regular (annual)
             </button>
@@ -373,8 +339,8 @@
               onclick={() => distributionType = 'one-time'}
               class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium border-2 transition-all duration-200 cursor-pointer
                 {distributionType === 'one-time'
-                  ? 'bg-clay-50 text-clay-700 border-clay-400'
-                  : 'bg-surface-warm text-text-muted border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-quiet border-rule hover:border-quiet'}"
             >
               One-time settlement
             </button>
@@ -395,14 +361,14 @@
               onclick={() => toggleSituation(option.id)}
               class="w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium transition-all duration-200 cursor-pointer
                 {situations.includes(option.id)
-                  ? 'bg-clay-50 text-clay-800 border-clay-400'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-white border-ink text-ink'
+                  : 'bg-white text-quiet border-rule hover:border-quiet'}"
             >
               <span class="flex items-center gap-3">
                 <span class="w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-all
                   {situations.includes(option.id)
-                    ? 'bg-clay-500 border-clay-500'
-                    : 'border-stone-300 bg-surface-card'}">
+                    ? 'bg-ink border-ink'
+                    : 'border-quiet bg-white'}">
                   {#if situations.includes(option.id)}
                     <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M20 6L9 17l-5-5" />
@@ -423,11 +389,11 @@
         <h3 class="text-xl font-semibold mb-1">Here's your plan</h3>
         <p class="text-sm text-text-secondary mb-5">Your ${fmt(parsedAmount)}, with purpose.</p>
 
-        <!-- Visual bar -->
-        <div class="flex rounded-xl overflow-hidden h-4 mb-6">
+        <!-- Visual bar — one hue; the gaps divide segments, the cards below carry the labels -->
+        <div class="flex h-3 gap-[3px] mb-6">
           {#each plan as segment}
             <div
-              class="{segment.barColor} transition-all duration-500"
+              class="bg-ink transition-all duration-500"
               style="width: {(segment.amount / parsedAmount) * 100}%"
               title="{segment.label}: ${fmt(segment.amount)}"
             ></div>
@@ -438,22 +404,19 @@
         <div class="space-y-3">
           {#each plan as segment (segment.id)}
             <div
-              class="rounded-xl border-2 {segment.borderColor} {segment.bgColor} overflow-hidden"
+              class="rounded-sm border border-rule bg-white overflow-hidden"
               in:fly={{ y: 10, duration: 250, delay: plan.indexOf(segment) * 80 }}
             >
               <div class="p-4">
                 <div class="flex items-start justify-between mb-1.5">
-                  <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 rounded-full {segment.barColor} flex-shrink-0"></div>
-                    <p class="text-sm font-semibold {segment.textColor}">{segment.label}</p>
-                  </div>
-                  <p class="text-xl font-bold {segment.textColor}">${fmt(segment.amount)}</p>
+                  <p class="text-sm font-semibold text-ink">{segment.label}</p>
+                  <p class="text-xl font-bold text-ink">${fmt(segment.amount)}</p>
                 </div>
-                <p class="text-sm text-text-secondary ml-5">{segment.description}</p>
+                <p class="text-sm text-text-secondary">{segment.description}</p>
 
                 <button
                   onclick={() => toggleHowTo(segment.id)}
-                  class="mt-3 ml-5 text-xs font-medium {segment.textColor} hover:opacity-70 transition-opacity cursor-pointer flex items-center gap-1"
+                  class="mt-3 text-xs font-medium text-quiet hover:text-ink transition-colors cursor-pointer flex items-center gap-1"
                 >
                   <svg
                     class="w-3.5 h-3.5 transition-transform duration-200 {expandedSegment === segment.id ? 'rotate-90' : ''}"
@@ -466,11 +429,11 @@
               </div>
 
               {#if expandedSegment === segment.id}
-                <div class="px-4 pb-4 ml-5" transition:slide={{ duration: 200 }}>
+                <div class="px-4 pb-4" transition:slide={{ duration: 200 }}>
                   <ol class="space-y-2 text-sm text-text-secondary">
                     {#each segment.howTo as instruction, i}
                       <li class="flex gap-2">
-                        <span class="flex-shrink-0 w-5 h-5 rounded-full bg-stone-200 text-stone-600 text-xs font-semibold flex items-center justify-center mt-0.5">
+                        <span class="flex-shrink-0 w-5 h-5 rounded-full border border-rule text-quiet text-xs font-semibold flex items-center justify-center mt-0.5">
                           {i + 1}
                         </span>
                         <span>{instruction}</span>
@@ -484,7 +447,7 @@
         </div>
 
         <!-- Section 87 note -->
-        <div class="mt-5 rounded-xl bg-stone-50 border border-stone-200 p-4">
+        <div class="mt-5 border-t border-rule pt-4">
           <p class="text-xs font-semibold text-text-secondary mb-1">Tax note</p>
           <p class="text-xs text-text-muted leading-relaxed">
             Per-cap distributions from your band on reserve are generally tax-exempt under Section 87.
@@ -511,11 +474,11 @@
             <div in:fly={{ x: -20, duration: 300, delay: i * 100 }}>
               <div class="flex items-center justify-between mb-1">
                 <span class="text-xs font-medium text-text-muted w-16">Year {proj.year}</span>
-                <span class="text-sm font-bold text-clay-600">${fmt(proj.value)}</span>
+                <span class="text-sm font-bold text-ink">${fmt(proj.value)}</span>
               </div>
-              <div class="h-6 bg-stone-100 rounded-lg overflow-hidden">
+              <div class="h-6 bg-rule overflow-hidden">
                 <div
-                  class="h-full bg-gradient-to-r from-clay-300 to-clay-400 rounded-lg transition-all duration-700 ease-[var(--ease-out)]"
+                  class="h-full bg-verified transition-all duration-700 ease-[var(--ease-out)]"
                   style="width: {maxProjectionValue > 0 ? Math.max((proj.value / maxProjectionValue) * 100, 3) : 0}%"
                 ></div>
               </div>
@@ -525,16 +488,16 @@
 
         <!-- Context -->
         {#if distributionType === 'annual' && projections.length >= 5}
-          <div class="rounded-xl bg-clay-50 border border-clay-200 p-4 mb-5">
-            <p class="text-sm text-clay-700">
+          <div class="border-l-2 border-rule pl-4 py-1 mb-5">
+            <p class="text-sm text-quiet">
               <span class="font-semibold">${fmt(projections[4].value)}</span> from
               investing ${fmt(investAmount)} a year. That's the power of compounding —
               your money making money, year after year. All of it tax-free inside a TFSA.
             </p>
           </div>
         {:else if projections.length >= 4}
-          <div class="rounded-xl bg-clay-50 border border-clay-200 p-4 mb-5">
-            <p class="text-sm text-clay-700">
+          <div class="border-l-2 border-rule pl-4 py-1 mb-5">
+            <p class="text-sm text-quiet">
               One decision today. <span class="font-semibold">${fmt(projections[3].value)}</span> in
               20 years. That's compounding — and it starts the moment you invest.
             </p>
@@ -550,7 +513,7 @@
 
     <!-- Navigation -->
     {#if step <= 1 || (step === 2 && investAmount > 0) || (step === 2 && investAmount === 0)}
-      <div class="flex items-center justify-between mt-6 pt-4 border-t border-stone-100">
+      <div class="flex items-center justify-between mt-6 pt-4 border-t border-rule">
         <button
           onclick={back}
           class="text-sm text-text-muted hover:text-text-secondary transition-colors cursor-pointer
@@ -565,8 +528,8 @@
             disabled={!canProceedStep0}
             class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
               {canProceedStep0
-                ? 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'
-                : 'bg-stone-200 text-stone-400 cursor-not-allowed'}"
+                ? 'bg-ink text-ground hover:bg-ink/85 active:scale-95'
+                : 'bg-rule text-faint cursor-not-allowed'}"
           >
             Continue
           </button>
@@ -576,16 +539,16 @@
             disabled={!canProceedStep1}
             class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
               {canProceedStep1
-                ? 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'
-                : 'bg-stone-200 text-stone-400 cursor-not-allowed'}"
+                ? 'bg-ink text-ground hover:bg-ink/85 active:scale-95'
+                : 'bg-rule text-faint cursor-not-allowed'}"
           >
             Build my plan
           </button>
         {:else if step === 2 && investAmount > 0}
           <button
             onclick={next}
-            class="px-5 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-              hover:bg-stone-800 active:scale-95 transition-all duration-200 cursor-pointer"
+            class="px-5 py-2.5 rounded-xl text-sm font-semibold bg-ink text-ground
+              hover:bg-ink/85 active:scale-95 transition-all duration-200 cursor-pointer"
           >
             See the growth
           </button>
@@ -599,14 +562,14 @@
     {/if}
 
     {#if step === 3 || (step === 2 && investAmount === 0)}
-      <div class="mt-6 pt-4 border-t border-stone-100 space-y-2.5">
+      <div class="mt-6 pt-4 border-t border-rule space-y-2.5">
         <!-- Save plan -->
         <button
           onclick={savePlan}
           class="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
             {saved
-              ? 'bg-sage-500 text-white'
-              : 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'}"
+              ? 'bg-verified text-white'
+              : 'bg-ink text-ground hover:bg-ink/85 active:scale-95'}"
         >
           {saved ? 'Plan saved' : 'Save my plan'}
         </button>
@@ -615,8 +578,8 @@
         <div class="grid grid-cols-1 gap-2">
           <a
             href="/money/savings-tracker"
-            class="flex items-center justify-between px-4 py-3 rounded-xl bg-sage-50 border border-sage-200
-              text-sm font-medium text-sage-700 hover:bg-sage-100 transition-colors"
+            class="flex items-center justify-between px-4 py-3 rounded-sm bg-white border border-rule
+              text-sm font-medium text-ink hover:border-quiet transition-colors"
           >
             Start a savings goal
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -625,8 +588,8 @@
           </a>
           <a
             href="/money/investing"
-            class="flex items-center justify-between px-4 py-3 rounded-xl bg-clay-50 border border-clay-200
-              text-sm font-medium text-clay-700 hover:bg-clay-100 transition-colors"
+            class="flex items-center justify-between px-4 py-3 rounded-sm bg-white border border-rule
+              text-sm font-medium text-ink hover:border-quiet transition-colors"
           >
             Learn more about investing
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -635,8 +598,8 @@
           </a>
           <a
             href="/money/budget-tool"
-            class="flex items-center justify-between px-4 py-3 rounded-xl bg-stone-50 border border-stone-200
-              text-sm font-medium text-stone-600 hover:bg-stone-100 transition-colors"
+            class="flex items-center justify-between px-4 py-3 rounded-sm bg-white border border-rule
+              text-sm font-medium text-ink hover:border-quiet transition-colors"
           >
             Track my budget
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -672,7 +635,7 @@
 <!-- Saved toast -->
 {#if saved}
   <div
-    class="fixed top-6 left-1/2 -translate-x-1/2 z-50 rounded-xl bg-sage-600 text-white px-5 py-3 shadow-lg"
+    class="fixed top-6 left-1/2 -translate-x-1/2 z-50 rounded-sm bg-verified text-white px-5 py-3 shadow-lg"
     in:fly={{ y: -30, duration: 300 }}
     out:fade={{ duration: 200 }}
   >

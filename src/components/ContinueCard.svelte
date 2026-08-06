@@ -28,15 +28,16 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
-    background: var(--color-stone-100);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    border: 1px solid var(--color-rule);
     text-decoration: none;
     color: var(--color-text-primary);
     transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .continue-strip:hover {
-    background: var(--color-stone-200);
+    border-color: var(--color-quiet);
   }
 
   .continue-strip:active {
@@ -62,7 +63,7 @@
   .continue-arrow {
     width: 1rem;
     height: 1rem;
-    color: var(--color-stone-400);
+    color: var(--color-faint);
     flex-shrink: 0;
   }
 </style>

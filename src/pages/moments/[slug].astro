@@ -26,7 +26,7 @@ const storageKey = STORAGE_KEYS.MOMENTS_PROGRESS;
     <!-- Back link -->
     <a
       href="/moments"
-      class="inline-flex items-center gap-1 text-sm text-text-muted hover:text-stone-700 transition-colors mb-6"
+      class="inline-flex items-center gap-1 text-sm text-text-muted hover:text-ink transition-colors mb-6"
     >
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M15 18l-6-6 6-6" />
@@ -98,8 +98,8 @@ const storageKey = STORAGE_KEYS.MOMENTS_PROGRESS;
         <h2 class="moment-heading">A few things to watch for</h2>
         <div class="mt-4 space-y-3">
           {moment.watchFor.map((item) => (
-            <div class="rounded-xl bg-clay-50 border-l-[3px] border-clay-400 px-4 py-3">
-              <p class="text-sm text-stone-700 leading-relaxed m-0">{item}</p>
+            <div class="border-l-2 border-unsettled pl-4 py-1">
+              <p class="text-sm text-ink leading-relaxed m-0">{item}</p>
             </div>
           ))}
         </div>
@@ -108,7 +108,7 @@ const storageKey = STORAGE_KEYS.MOMENTS_PROGRESS;
 
     <!-- Closing note -->
     {moment.closingNote && (
-      <section class="mt-12 pt-6 border-t border-stone-100">
+      <section class="mt-12 pt-6 border-t border-rule">
         <p class="text-sm text-text-muted italic text-center">
           {moment.closingNote}
         </p>

@@ -168,14 +168,10 @@
   <!-- Status message -->
   {#if statusMessage}
     <div
-      class="rounded-xl px-4 py-3 text-sm font-medium"
-      class:bg-sage-50={statusType === 'success'}
-      class:text-sage-700={statusType === 'success'}
-      class:border-sage-200={statusType === 'success'}
-      class:bg-berry-50={statusType === 'error'}
-      class:text-berry-700={statusType === 'error'}
-      class:border-berry-200={statusType === 'error'}
-      class:border={true}
+      class="rounded-sm px-4 py-3 text-sm font-medium border-l-2
+        {statusType === 'success'
+          ? 'bg-verified-wash text-verified border-verified'
+          : 'bg-contested-wash text-contested border-contested'}"
       role="status"
     >
       {statusMessage}
@@ -183,7 +179,7 @@
   {/if}
 
   <!-- Data summary -->
-  <div class="rounded-xl border border-stone-200 bg-stone-50 p-4">
+  <div class="rounded-sm border border-rule bg-white p-4">
     <h3 class="text-sm font-semibold mb-3">Your data on this device</h3>
 
     {#if dataSummary.totalKeys === 0}
@@ -192,55 +188,55 @@
       <div class="grid grid-cols-2 gap-2 text-sm">
         {#if dataSummary.checkins > 0}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-berry-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>{dataSummary.checkins} check-in{dataSummary.checkins === 1 ? '' : 's'}</span>
           </div>
         {/if}
         {#if dataSummary.savingsGoals > 0}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-sage-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>{dataSummary.savingsGoals} savings goal{dataSummary.savingsGoals === 1 ? '' : 's'}</span>
           </div>
         {/if}
         {#if dataSummary.budgetMonths > 0}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-clay-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>{dataSummary.budgetMonths} month{dataSummary.budgetMonths === 1 ? '' : 's'} of budget data</span>
           </div>
         {/if}
         {#if dataSummary.hasDebtPlan}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-berry-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>Debt payoff plan</span>
           </div>
         {/if}
         {#if dataSummary.hasNetWorth}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-water-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>Net worth data</span>
           </div>
         {/if}
         {#if dataSummary.hasCalendar}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-stone-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>Calendar profile</span>
           </div>
         {/if}
         {#if dataSummary.hasSection87}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-water-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>Section 87 result</span>
           </div>
         {/if}
         {#if dataSummary.hasBenefits}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-sage-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>Benefits results</span>
           </div>
         {/if}
         {#if dataSummary.hasDistribution}
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-clay-400"></span>
+            <span class="w-2 h-2 rounded-full bg-faint"></span>
             <span>Distribution plan</span>
           </div>
         {/if}
@@ -252,8 +248,8 @@
   <div>
     <button
       onclick={exportData}
-      class="w-full rounded-xl bg-stone-800 text-white px-4 py-3 text-sm font-semibold
-        hover:bg-stone-700 active:scale-[0.98] transition-all duration-[var(--duration-normal)] cursor-pointer"
+      class="w-full rounded-sm bg-ink text-ground px-4 py-3 text-sm font-semibold
+        hover:bg-ink/85 active:scale-[0.98] transition-all duration-[var(--duration-normal)] cursor-pointer"
     >
       Download my data
     </button>
@@ -265,9 +261,9 @@
   <!-- Restore -->
   <div>
     <label
-      class="block w-full rounded-xl border-2 border-dashed border-stone-300 text-center
-        px-4 py-3 text-sm font-semibold text-stone-600 cursor-pointer
-        hover:border-stone-400 hover:bg-stone-50 active:scale-[0.98]
+      class="block w-full rounded-sm border-2 border-dashed border-rule text-center
+        px-4 py-3 text-sm font-semibold text-quiet cursor-pointer
+        hover:border-quiet hover:bg-ground active:scale-[0.98]
         transition-all duration-[var(--duration-normal)]"
     >
       Restore from backup
@@ -277,7 +273,7 @@
 
   <!-- Restore confirmation -->
   {#if showRestoreConfirm}
-    <div class="rounded-xl border border-clay-200 bg-clay-50 p-4">
+    <div class="border-l-2 border-unsettled pl-4 py-1">
       <p class="text-sm font-semibold mb-1">This will replace your current data.</p>
       <p class="text-sm text-text-muted mb-3">
         Any existing check-ins, goals, and saved results will be overwritten with the backup.
@@ -285,15 +281,15 @@
       <div class="flex gap-2">
         <button
           onclick={restoreData}
-          class="flex-1 rounded-lg bg-clay-600 text-white px-3 py-2 text-sm font-medium
-            hover:bg-clay-700 active:scale-[0.98] transition-all cursor-pointer"
+          class="flex-1 rounded-sm bg-ink text-ground px-3 py-2 text-sm font-medium
+            hover:bg-ink/85 active:scale-[0.98] transition-all cursor-pointer"
         >
           Continue
         </button>
         <button
           onclick={resetRestore}
-          class="flex-1 rounded-lg border border-stone-300 px-3 py-2 text-sm font-medium
-            hover:bg-stone-50 active:scale-[0.98] transition-all cursor-pointer"
+          class="flex-1 rounded-sm border border-rule bg-white px-3 py-2 text-sm font-medium
+            hover:bg-ground active:scale-[0.98] transition-all cursor-pointer"
         >
           Cancel
         </button>
@@ -302,57 +298,57 @@
   {/if}
 
   <!-- Clear all data -->
-  <div class="pt-4 border-t border-stone-200">
+  <div class="pt-4 border-t border-rule">
     {#if !showClearConfirm && !showClearFinal}
       <button
         onclick={() => showClearConfirm = true}
-        class="w-full rounded-xl border border-berry-200 text-berry-600 px-4 py-3
-          text-sm font-medium hover:bg-berry-50 active:scale-[0.98]
+        class="w-full rounded-sm border border-rule text-contested px-4 py-3
+          text-sm font-medium hover:border-contested active:scale-[0.98]
           transition-all duration-[var(--duration-normal)] cursor-pointer"
       >
         Clear all data
       </button>
     {:else if showClearConfirm && !showClearFinal}
-      <div class="rounded-xl border border-berry-200 bg-berry-50 p-4">
-        <p class="text-sm font-semibold text-berry-700 mb-1">Are you sure?</p>
+      <div class="border-l-2 border-contested pl-4 py-1">
+        <p class="text-sm font-semibold text-contested mb-1">Are you sure?</p>
         <p class="text-sm text-text-muted mb-3">
           This will remove all your check-ins, savings goals, budgets, and saved results.
         </p>
         <div class="flex gap-2">
           <button
             onclick={() => showClearFinal = true}
-            class="flex-1 rounded-lg bg-berry-600 text-white px-3 py-2 text-sm font-medium
-              hover:bg-berry-700 active:scale-[0.98] transition-all cursor-pointer"
+            class="flex-1 rounded-sm bg-contested text-white px-3 py-2 text-sm font-medium
+              hover:bg-contested/85 active:scale-[0.98] transition-all cursor-pointer"
           >
             Yes, continue
           </button>
           <button
             onclick={() => { showClearConfirm = false; showClearFinal = false; }}
-            class="flex-1 rounded-lg border border-stone-300 px-3 py-2 text-sm font-medium
-              hover:bg-stone-50 active:scale-[0.98] transition-all cursor-pointer"
+            class="flex-1 rounded-sm border border-rule bg-white px-3 py-2 text-sm font-medium
+              hover:bg-ground active:scale-[0.98] transition-all cursor-pointer"
           >
             Cancel
           </button>
         </div>
       </div>
     {:else}
-      <div class="rounded-xl border border-berry-300 bg-berry-100 p-4">
-        <p class="text-sm font-bold text-berry-800 mb-1">This cannot be undone.</p>
-        <p class="text-sm text-berry-700 mb-3">
+      <div class="border-l-2 border-contested pl-4 py-1">
+        <p class="text-sm font-bold text-contested mb-1">This cannot be undone.</p>
+        <p class="text-sm text-quiet mb-3">
           Once cleared, your data is gone. Download a backup first if you want to keep it.
         </p>
         <div class="flex gap-2">
           <button
             onclick={clearAllData}
-            class="flex-1 rounded-lg bg-berry-700 text-white px-3 py-2 text-sm font-medium
-              hover:bg-berry-800 active:scale-[0.98] transition-all cursor-pointer"
+            class="flex-1 rounded-sm bg-contested text-white px-3 py-2 text-sm font-medium
+              hover:bg-contested/85 active:scale-[0.98] transition-all cursor-pointer"
           >
             Clear everything
           </button>
           <button
             onclick={() => { showClearConfirm = false; showClearFinal = false; }}
-            class="flex-1 rounded-lg border border-stone-300 px-3 py-2 text-sm font-medium
-              hover:bg-stone-50 active:scale-[0.98] transition-all cursor-pointer"
+            class="flex-1 rounded-sm border border-rule bg-white px-3 py-2 text-sm font-medium
+              hover:bg-ground active:scale-[0.98] transition-all cursor-pointer"
           >
             Cancel
           </button>

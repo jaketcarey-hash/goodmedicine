@@ -149,10 +149,10 @@
 <div class="space-y-5">
   <!-- Summary banner -->
   {#if plan.debts.length > 0 && timeline.length > 0}
-    <div class="rounded-2xl bg-gradient-to-br from-sage-50 to-water-50 p-5 text-center">
+    <div class="rounded-sm bg-white border border-rule p-5 text-center">
       <p class="text-xs text-text-muted mb-1">Debt-free by</p>
       {#if payoffDate}
-        <p class="text-2xl font-bold text-sage-600">{formatDate(payoffDate)}</p>
+        <p class="text-2xl font-bold text-ink">{formatDate(payoffDate)}</p>
       {/if}
       <p class="text-sm text-text-muted mt-1">{monthsToYearsMonths(totalMonths)} to go</p>
       <div class="flex justify-center gap-4 mt-3 text-xs text-text-muted">
@@ -161,18 +161,18 @@
       </div>
     </div>
   {:else if plan.debts.length > 0}
-    <div class="rounded-2xl bg-gradient-to-br from-sage-50 to-water-50 p-5 text-center">
+    <div class="rounded-sm bg-white border border-rule p-5 text-center">
       <p class="text-xs text-text-muted mb-1">Total owed</p>
-      <p class="text-2xl font-bold text-stone-700">${fmt(totalOwed)}</p>
+      <p class="text-2xl font-bold text-ink">${fmt(totalOwed)}</p>
       <p class="text-sm text-text-muted mt-1">Add minimum payments to see your payoff timeline</p>
     </div>
   {/if}
 
   <!-- High interest warning -->
   {#if hasHighInterest}
-    <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3" in:fade={{ duration: 200 }}>
-      <p class="text-sm font-medium text-clay-700 mb-1">High-interest debt detected</p>
-      <p class="text-sm text-clay-600 leading-relaxed">
+    <div class="border-l-2 border-unsettled pl-4" in:fade={{ duration: 200 }}>
+      <p class="text-sm font-medium text-ink mb-1">High-interest debt detected</p>
+      <p class="text-sm text-quiet leading-relaxed">
         Some of your debts have interest rates above 20%. If any of these are payday loans,
         there may be lower-cost alternatives available — credit unions, community lending
         programs, or band-administered emergency funds.
@@ -182,24 +182,24 @@
 
   <!-- Strategy toggle -->
   {#if plan.debts.length > 0}
-    <div class="rounded-2xl bg-surface-card border border-stone-200 p-4 shadow-sm">
-      <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Strategy</p>
+    <div class="rounded-sm bg-surface-card border border-rule p-4 shadow-sm">
+      <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Strategy</p>
       <div class="grid grid-cols-2 gap-2 mb-3">
         <button
           onclick={() => setStrategy('avalanche')}
-          class="py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer
+          class="py-2.5 rounded-sm text-sm font-semibold transition-all cursor-pointer
             {plan.strategy === 'avalanche'
-              ? 'bg-stone-900 text-white'
-              : 'bg-surface-warm text-text-secondary hover:bg-stone-100'}"
+              ? 'border border-ink bg-ink text-ground'
+              : 'border border-rule bg-white text-text-secondary hover:border-quiet'}"
         >
           Avalanche
         </button>
         <button
           onclick={() => setStrategy('snowball')}
-          class="py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer
+          class="py-2.5 rounded-sm text-sm font-semibold transition-all cursor-pointer
             {plan.strategy === 'snowball'
-              ? 'bg-stone-900 text-white'
-              : 'bg-surface-warm text-text-secondary hover:bg-stone-100'}"
+              ? 'border border-ink bg-ink text-ground'
+              : 'border border-rule bg-white text-text-secondary hover:border-quiet'}"
         >
           Snowball
         </button>
@@ -214,7 +214,7 @@
 
       <!-- Strategy comparison -->
       {#if plan.debts.length >= 2 && interestSavings > 5}
-        <div class="mt-3 pt-3 border-t border-stone-100">
+        <div class="mt-3 pt-3 border-t border-rule">
           <p class="text-xs text-text-muted leading-relaxed">
             {#if totalInterest < altTotalInterest}
               {plan.strategy === 'avalanche' ? 'Avalanche' : 'Snowball'} saves you ${fmt(interestSavings)} in interest
@@ -239,8 +239,8 @@
 
   <!-- Extra monthly payment -->
   {#if plan.debts.length > 0}
-    <div class="rounded-2xl bg-surface-card border border-stone-200 p-4 shadow-sm">
-      <label for="extra-payment" class="block text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">
+    <div class="rounded-sm bg-surface-card border border-rule p-4 shadow-sm">
+      <label for="extra-payment" class="block text-xs font-semibold text-faint tracking-widest uppercase mb-3">
         Extra monthly payment
       </label>
       <div class="flex items-center gap-3 mb-2">
@@ -253,19 +253,19 @@
           step="10"
           value={plan.extraMonthly}
           oninput={setExtra}
-          class="flex-1 h-2 appearance-none bg-stone-200 rounded-full cursor-pointer
+          class="flex-1 h-2 appearance-none bg-rule rounded-full cursor-pointer
             [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
-            [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-stone-900
+            [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-ink
             [&::-webkit-slider-thumb]:cursor-pointer"
           aria-label="Extra monthly payment amount"
         />
         <span class="text-sm text-text-muted">$500</span>
       </div>
-      <p class="text-center text-lg font-bold text-stone-900">${fmt(plan.extraMonthly)}/mo extra</p>
+      <p class="text-center text-lg font-bold text-ink">${fmt(plan.extraMonthly)}/mo extra</p>
 
       {#if plan.extraMonthly > 0 && extraSavings > 0}
-        <div class="mt-3 pt-3 border-t border-stone-100">
-          <p class="text-sm text-sage-600 leading-relaxed text-center">
+        <div class="mt-3 pt-3 border-t border-rule">
+          <p class="text-sm text-verified leading-relaxed text-center">
             Paying an extra ${fmt(plan.extraMonthly)}/month saves you ${fmt(extraSavings)} in interest
             {#if extraMonthsSaved > 0}
               and gets you debt-free {extraMonthsSaved} {extraMonthsSaved === 1 ? 'month' : 'months'} sooner
@@ -279,9 +279,9 @@
   <!-- Debt list -->
   <section>
     <div class="flex items-center justify-between mb-3">
-      <h3 class="text-xs font-semibold text-stone-400 tracking-widest uppercase">Your debts</h3>
+      <h3 class="text-xs font-semibold text-faint tracking-widest uppercase">Your debts</h3>
       {#if plan.debts.length > 0}
-        <p class="text-sm font-medium text-stone-600">{plan.debts.length} {plan.debts.length === 1 ? 'debt' : 'debts'}</p>
+        <p class="text-sm font-medium text-quiet">{plan.debts.length} {plan.debts.length === 1 ? 'debt' : 'debts'}</p>
       {/if}
     </div>
 
@@ -295,7 +295,7 @@
           {@const paidOffMonth = timeline.findIndex((m) => m.debtsPaidOff.includes(debt.id))}
 
           <div
-            class="rounded-xl bg-surface-card border border-stone-200 overflow-hidden shadow-sm"
+            class="rounded-sm bg-surface-card border border-rule overflow-hidden shadow-sm"
             in:fly={{ y: 10, duration: 200 }}
           >
             <div class="px-4 py-3">
@@ -307,18 +307,18 @@
                   </p>
                 </div>
                 <div class="text-right ml-3">
-                  <p class="text-sm font-semibold text-stone-700">${fmt(debt.balance)}</p>
+                  <p class="text-sm font-semibold text-ink">${fmt(debt.balance)}</p>
                   {#if paidOffMonth >= 0}
-                    <p class="text-xs text-sage-600">Paid off in {monthsToYearsMonths(paidOffMonth + 1)}</p>
+                    <p class="text-xs text-verified">Paid off in {monthsToYearsMonths(paidOffMonth + 1)}</p>
                   {/if}
                 </div>
               </div>
 
               <!-- Progress bar -->
               {#if timeline.length > 0}
-                <div class="h-2.5 bg-stone-100 rounded-full overflow-hidden mt-2">
+                <div class="h-2.5 bg-rule overflow-hidden mt-2">
                   <div
-                    class="h-full bg-sage-400 rounded-full transition-all duration-700"
+                    class="h-full bg-verified transition-all duration-700"
                     style="width: {pct}%"
                   ></div>
                 </div>
@@ -329,7 +329,7 @@
               {#if confirmingDeleteId === debt.id}
                 <button
                   onclick={() => removeDebt(debt.id)}
-                  class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-berry-500 text-white
+                  class="px-3 py-1.5 rounded-sm text-xs font-semibold bg-contested text-white
                     active:scale-95 transition-all cursor-pointer"
                   aria-label="Confirm remove {debt.name}"
                 >
@@ -338,7 +338,7 @@
               {:else}
                 <button
                   onclick={() => removeDebt(debt.id)}
-                  class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+                  class="p-1.5 rounded-sm text-faint hover:text-ink hover:bg-ground transition-colors cursor-pointer"
                   aria-label="Remove {debt.name}"
                 >
                   <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -355,7 +355,7 @@
 
     <!-- Add debt form -->
     {#if showAddForm}
-      <div class="rounded-xl bg-surface-warm border border-stone-200 p-4 space-y-3" in:slide={{ duration: 200 }}>
+      <div class="rounded-sm bg-surface-warm border border-rule p-4 space-y-3" in:slide={{ duration: 200 }}>
         <h4 class="font-semibold text-sm">Add a debt</h4>
         <div class="grid grid-cols-2 gap-3">
           <div class="col-span-2">
@@ -365,8 +365,8 @@
               type="text"
               bind:value={newName}
               placeholder="e.g. Visa, student loan"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -379,8 +379,8 @@
               bind:value={newBalance}
               placeholder="0"
               min="0"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -394,8 +394,8 @@
               placeholder="19.99"
               min="0"
               step="0.01"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -408,8 +408,8 @@
               bind:value={newMinimum}
               placeholder="0"
               min="0"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -417,14 +417,14 @@
         <div class="flex gap-2">
           <button
             onclick={addDebt}
-            class="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-              hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+            class="flex-1 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+              hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
           >
             Add debt
           </button>
           <button
             onclick={() => { showAddForm = false; newName = ''; newBalance = ''; newRate = ''; newMinimum = ''; }}
-            class="px-4 py-2.5 rounded-xl text-sm text-text-muted hover:text-text-secondary
+            class="px-4 py-2.5 rounded-sm text-sm text-text-muted hover:text-text-secondary
               transition-colors cursor-pointer"
           >
             Cancel
@@ -434,8 +434,8 @@
     {:else}
       <button
         onclick={() => showAddForm = true}
-        class="w-full py-2.5 rounded-xl border-2 border-dashed border-stone-200 text-sm
-          font-medium text-text-muted hover:border-sage-300 hover:text-sage-600
+        class="w-full py-2.5 rounded-sm border border-dashed border-rule text-sm
+          font-medium text-text-muted hover:border-quiet hover:text-ink
           transition-colors cursor-pointer"
       >
         + Add debt
@@ -445,9 +445,9 @@
 
   <!-- Empty state -->
   {#if plan.debts.length === 0}
-    <div class="rounded-2xl bg-surface-card border border-stone-200 p-8 text-center">
-      <div class="w-14 h-14 rounded-full bg-sage-50 flex items-center justify-center mx-auto mb-4">
-        <svg class="w-7 h-7 text-sage-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <div class="rounded-sm bg-surface-card border border-rule p-8 text-center">
+      <div class="w-14 h-14 rounded-full bg-ground flex items-center justify-center mx-auto mb-4">
+        <svg class="w-7 h-7 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
         </svg>
       </div>

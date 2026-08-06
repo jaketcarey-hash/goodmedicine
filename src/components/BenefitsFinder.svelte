@@ -371,12 +371,12 @@
   let actionBenefits = $derived(results.benefits.filter(b => b.type === 'action'));
 </script>
 
-<div class="rounded-2xl bg-surface-card border border-stone-200 overflow-hidden shadow-lg">
+<div class="rounded-sm bg-surface-card border border-rule overflow-hidden shadow-lg">
   <!-- Progress bar -->
   {#if !showingResults}
-    <div class="h-1 bg-stone-100">
+    <div class="h-1 bg-rule">
       <div
-        class="h-full bg-gradient-to-r from-water-400 to-sage-400 transition-all duration-500 ease-[var(--ease-out)]"
+        class="h-full bg-ink transition-all duration-500 ease-[var(--ease-out)]"
         style="width: {((step + 1) / totalSteps) * 100}%"
       ></div>
     </div>
@@ -396,10 +396,10 @@
               {#each q.options as opt}
                 <button
                   onclick={() => setAnswer(i, opt.value)}
-                  class="w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium transition-all duration-200 cursor-pointer
+                  class="w-full text-left px-4 py-3.5 rounded-sm border-2 text-sm font-medium transition-all duration-200 cursor-pointer
                     {getAnswer(i) === opt.value
-                      ? 'bg-water-500 text-white border-water-500'
-                      : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                      ? 'bg-ink text-ground border-ink'
+                      : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
                 >
                   {opt.label}
                 </button>
@@ -410,7 +410,7 @@
       {/each}
 
       <!-- Navigation -->
-      <div class="flex items-center justify-between mt-6 pt-4 border-t border-stone-100">
+      <div class="flex items-center justify-between mt-6 pt-4 border-t border-rule">
         {#if step > 0}
           <button
             onclick={back}
@@ -425,10 +425,10 @@
         <button
           onclick={next}
           disabled={!canProceed()}
-          class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
+          class="px-5 py-2.5 rounded-sm text-sm font-semibold transition-all duration-200 cursor-pointer
             {canProceed()
-              ? 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'
-              : 'bg-stone-200 text-stone-400 cursor-not-allowed'}"
+              ? 'bg-ink text-ground hover:bg-ink/85 active:scale-95'
+              : 'bg-rule text-faint cursor-not-allowed'}"
         >
           {step === totalSteps - 1 ? 'See my results' : 'Continue'}
         </button>
@@ -439,38 +439,40 @@
       <div in:fade={{ duration: 400 }}>
         <!-- Results header -->
         <div class="text-center mb-6">
-          <div class="w-14 h-14 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-sage-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="w-14 h-14 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-verified" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 12l2 2 4-4" />
               <circle cx="12" cy="12" r="10" />
             </svg>
           </div>
           <h3 class="text-2xl font-bold mb-1">Your Benefits</h3>
           <p class="text-sm text-text-secondary">
-            We found <strong class="text-sage-700">{results.benefits.length} potential benefits</strong> based on your answers.
+            We found <strong class="text-ink">{results.benefits.length} potential benefits</strong> based on your answers.
           </p>
         </div>
 
         <!-- Urgent tax callout -->
         {#if results.urgent}
+          <!-- A rule and a voice, not a tinted box. Amber says caution; the
+               heading says the same thing in words. -->
           <div
-            class="rounded-xl border-2 border-clay-300 bg-clay-50 p-4 mb-5"
+            class="border-l-2 border-unsettled pl-4 py-1 mb-5"
             in:fly={{ y: 10, duration: 300, delay: 100 }}
           >
             <div class="flex gap-3">
               <div class="shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-clay-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-5 h-5 text-unsettled" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
                   <line x1="12" y1="9" x2="12" y2="13" />
                   <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
               </div>
               <div>
-                <p class="text-sm font-semibold text-clay-800 mb-1">Action needed: File your taxes</p>
-                <p class="text-sm text-clay-700 leading-relaxed">{results.urgent}</p>
+                <p class="text-sm font-semibold text-unsettled mb-1">Action needed: File your taxes</p>
+                <p class="text-sm text-text-secondary leading-relaxed">{results.urgent}</p>
                 <a
                   href="/money/taxes"
-                  class="inline-block mt-2 text-sm font-medium text-clay-700 underline underline-offset-2 hover:text-clay-900 transition-colors"
+                  class="inline-block mt-2 text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors"
                 >
                   Learn about filing your taxes
                 </a>
@@ -482,11 +484,11 @@
         <!-- Action needed benefits -->
         {#if actionBenefits.length > 0}
           <div class="mb-4">
-            <p class="text-xs font-semibold uppercase tracking-wider text-clay-600 mb-3">Unlocked by filing taxes</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-unsettled mb-3">Unlocked by filing taxes</p>
             <div class="flex flex-col gap-2.5">
               {#each actionBenefits as benefit, i}
                 <div
-                  class="rounded-xl border-2 border-clay-200 bg-white overflow-hidden transition-all duration-200"
+                  class="rounded-sm border border-rule border-l-2 border-l-unsettled bg-white overflow-hidden transition-all duration-200"
                   in:fly={{ y: 10, duration: 300, delay: 150 + i * 50 }}
                 >
                   <button
@@ -494,13 +496,13 @@
                     class="w-full text-left p-4 cursor-pointer flex items-start justify-between gap-3"
                   >
                     <div class="min-w-0">
-                      <p class="text-sm font-semibold text-clay-800 leading-snug">{benefit.name}</p>
+                      <p class="text-sm font-semibold text-ink leading-snug">{benefit.name}</p>
                       {#if benefit.value}
-                        <p class="text-xs text-clay-600 mt-0.5">{benefit.value}</p>
+                        <p class="text-xs text-quiet mt-0.5">{benefit.value}</p>
                       {/if}
                     </div>
                     <svg
-                      class="w-4 h-4 text-clay-400 shrink-0 mt-1 transition-transform duration-200
+                      class="w-4 h-4 text-faint shrink-0 mt-1 transition-transform duration-200
                         {expanded.has(benefit.id) ? 'rotate-180' : ''}"
                       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
                     >
@@ -509,7 +511,7 @@
                   </button>
 
                   {#if expanded.has(benefit.id)}
-                    <div class="px-4 pb-4 border-t border-clay-100" transition:slide={{ duration: 200 }}>
+                    <div class="px-4 pb-4 border-t border-rule" transition:slide={{ duration: 200 }}>
                       <p class="text-sm text-text-secondary mt-3 leading-relaxed">{benefit.description}</p>
                       <p class="text-sm text-text-primary mt-2 leading-relaxed">
                         <span class="font-medium">How to access:</span> {benefit.howTo}
@@ -517,7 +519,7 @@
                       {#if benefit.link}
                         <a
                           href={benefit.link}
-                          class="inline-block mt-3 text-sm font-medium text-clay-700 underline underline-offset-2 hover:text-clay-900 transition-colors"
+                          class="inline-block mt-3 text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors"
                         >
                           Read more
                         </a>
@@ -533,11 +535,11 @@
         <!-- Qualifying benefits -->
         {#if qualifyBenefits.length > 0}
           <div class="mb-4">
-            <p class="text-xs font-semibold uppercase tracking-wider text-sage-600 mb-3">You likely qualify for</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-verified mb-3">You likely qualify for</p>
             <div class="flex flex-col gap-2.5">
               {#each qualifyBenefits as benefit, i}
                 <div
-                  class="rounded-xl border-2 border-sage-200 bg-white overflow-hidden transition-all duration-200"
+                  class="rounded-sm border border-rule border-l-2 border-l-verified bg-white overflow-hidden transition-all duration-200"
                   in:fly={{ y: 10, duration: 300, delay: 150 + i * 50 }}
                 >
                   <button
@@ -545,13 +547,13 @@
                     class="w-full text-left p-4 cursor-pointer flex items-start justify-between gap-3"
                   >
                     <div class="min-w-0">
-                      <p class="text-sm font-semibold text-sage-800 leading-snug">{benefit.name}</p>
+                      <p class="text-sm font-semibold text-ink leading-snug">{benefit.name}</p>
                       {#if benefit.value}
-                        <p class="text-xs text-sage-600 mt-0.5">{benefit.value}</p>
+                        <p class="text-xs text-quiet mt-0.5">{benefit.value}</p>
                       {/if}
                     </div>
                     <svg
-                      class="w-4 h-4 text-sage-400 shrink-0 mt-1 transition-transform duration-200
+                      class="w-4 h-4 text-faint shrink-0 mt-1 transition-transform duration-200
                         {expanded.has(benefit.id) ? 'rotate-180' : ''}"
                       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
                     >
@@ -560,7 +562,7 @@
                   </button>
 
                   {#if expanded.has(benefit.id)}
-                    <div class="px-4 pb-4 border-t border-sage-100" transition:slide={{ duration: 200 }}>
+                    <div class="px-4 pb-4 border-t border-rule" transition:slide={{ duration: 200 }}>
                       <p class="text-sm text-text-secondary mt-3 leading-relaxed">{benefit.description}</p>
                       <p class="text-sm text-text-primary mt-2 leading-relaxed">
                         <span class="font-medium">How to access:</span> {benefit.howTo}
@@ -568,7 +570,7 @@
                       {#if benefit.link}
                         <a
                           href={benefit.link}
-                          class="inline-block mt-3 text-sm font-medium text-sage-700 underline underline-offset-2 hover:text-sage-900 transition-colors"
+                          class="inline-block mt-3 text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors"
                         >
                           Read more
                         </a>
@@ -587,13 +589,13 @@
         </p>
 
         <!-- Actions -->
-        <div class="flex flex-col gap-2.5 mt-5 pt-4 border-t border-stone-100">
+        <div class="flex flex-col gap-2.5 mt-5 pt-4 border-t border-rule">
           <button
             onclick={saveResults}
-            class="w-full px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
+            class="w-full px-5 py-3 rounded-sm text-sm font-semibold transition-all duration-200 cursor-pointer
               {saved
-                ? 'bg-sage-100 text-sage-700 border-2 border-sage-300'
-                : 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'}"
+                ? 'bg-verified text-white'
+                : 'bg-ink text-ground hover:bg-ink/85 active:scale-95'}"
           >
             {saved ? 'Saved to this device' : 'Save my results'}
           </button>

@@ -16,12 +16,14 @@
   let reflection = $state('');
   let gratitude = $state('');
 
+  // The scale's meaning lives in the labels, not in a colour ramp —
+  // selection reads like every other control on the site.
   const feelings = [
-    { value: 1, label: 'Stressed', emoji: '1', color: 'bg-berry-100 text-berry-700 border-berry-300', selected: 'bg-berry-500 text-white border-berry-500' },
-    { value: 2, label: 'Uneasy', emoji: '2', color: 'bg-clay-100 text-clay-700 border-clay-300', selected: 'bg-clay-500 text-white border-clay-500' },
-    { value: 3, label: 'Steady', emoji: '3', color: 'bg-stone-100 text-stone-700 border-stone-300', selected: 'bg-stone-500 text-white border-stone-500' },
-    { value: 4, label: 'Good', emoji: '4', color: 'bg-water-100 text-water-700 border-water-300', selected: 'bg-water-500 text-white border-water-500' },
-    { value: 5, label: 'Strong', emoji: '5', color: 'bg-sage-100 text-sage-700 border-sage-300', selected: 'bg-sage-500 text-white border-sage-500' },
+    { value: 1, label: 'Stressed' },
+    { value: 2, label: 'Uneasy' },
+    { value: 3, label: 'Steady' },
+    { value: 4, label: 'Good' },
+    { value: 5, label: 'Strong' },
   ];
 
   const areaOptions = [
@@ -97,11 +99,11 @@
   }
 </script>
 
-<div class="rounded-2xl bg-surface-card border border-stone-200 overflow-hidden shadow-lg">
+<div class="rounded-sm bg-white border border-rule overflow-hidden shadow-lg">
   <!-- Progress bar -->
-  <div class="h-1 bg-stone-100">
+  <div class="h-1 bg-rule">
     <div
-      class="h-full bg-gradient-to-r from-berry-400 to-sage-400 transition-all duration-500 ease-[var(--ease-out)]"
+      class="h-full bg-ink transition-all duration-500 ease-[var(--ease-out)]"
       style="width: {((step + 1) / 5) * 100}%"
     ></div>
   </div>
@@ -118,9 +120,11 @@
           {#each feelings as f}
             <button
               onclick={() => feeling = f.value}
-              class="flex-1 py-3 px-1 rounded-xl border-2 text-center transition-all duration-200
-                {feeling === f.value ? f.selected : f.color + ' border-transparent'}
-                hover:shadow-sm active:scale-95 cursor-pointer"
+              class="flex-1 py-3 px-1 rounded-sm border text-center transition-all duration-200
+                {feeling === f.value
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-quiet border-rule hover:border-quiet'}
+                active:scale-95 cursor-pointer"
             >
               <span class="block text-lg font-bold">{f.value}</span>
               <span class="block text-[10px] font-medium mt-0.5 leading-tight">{f.label}</span>
@@ -140,10 +144,10 @@
           {#each areaOptions as area}
             <button
               onclick={() => toggleArea(area)}
-              class="px-3.5 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer
+              class="px-3.5 py-2 rounded-sm text-sm font-medium border transition-all duration-200 cursor-pointer
                 {areas.includes(area)
-                  ? 'bg-berry-500 text-white border-berry-500'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-quiet border-rule hover:border-quiet'}"
             >
               {area}
             </button>
@@ -162,8 +166,8 @@
           bind:value={reflection}
           placeholder="Whatever comes to mind..."
           rows="4"
-          class="w-full rounded-xl border border-stone-200 bg-surface-warm p-4 text-sm
-            placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200
+          class="w-full rounded-sm border border-rule bg-white p-4 text-sm
+            placeholder:text-faint focus:border-ink
             focus:outline-none resize-none transition-colors"
         ></textarea>
       </div>
@@ -179,8 +183,8 @@
           type="text"
           bind:value={gratitude}
           placeholder="e.g., My sister helped with groceries"
-          class="w-full rounded-xl border border-stone-200 bg-surface-warm px-4 py-3.5 text-sm
-            placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+          class="w-full rounded-sm border border-rule bg-white px-4 py-3.5 text-sm
+            placeholder:text-faint focus:border-ink
             focus:outline-none transition-colors"
         />
       </div>
@@ -188,11 +192,9 @@
     <!-- Step 4: Complete -->
     {:else if step === 4}
       <div in:fade={{ duration: 400 }} class="text-center py-4">
-        <div class="w-14 h-14 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-sage-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 6L9 17l-5-5" />
-          </svg>
-        </div>
+        <svg class="w-8 h-8 text-verified mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
         <p class="text-xl font-semibold mb-1">Noted.</p>
         <p class="text-sm text-text-secondary mb-5">Thanks for checking in with yourself today.</p>
 
@@ -203,9 +205,9 @@
             {#each suggestions as suggestion}
               <a
                 href={suggestion.href}
-                class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-left
-                  bg-surface-warm border border-stone-200 text-text-secondary
-                  hover:border-stone-300 hover:bg-stone-100 transition-colors"
+                class="block w-full px-4 py-2.5 rounded-sm text-sm font-medium text-left
+                  bg-white border border-rule text-quiet
+                  hover:border-quiet transition-colors"
               >
                 {suggestion.label}
               </a>
@@ -215,9 +217,9 @@
           <div class="mb-5">
             <a
               href="/"
-              class="inline-block px-4 py-2.5 rounded-xl text-sm font-medium
-                bg-surface-warm border border-stone-200 text-text-secondary
-                hover:border-stone-300 hover:bg-stone-100 transition-colors"
+              class="inline-block px-4 py-2.5 rounded-sm text-sm font-medium
+                bg-white border border-rule text-quiet
+                hover:border-quiet transition-colors"
             >
               Explore the app
             </a>
@@ -226,8 +228,8 @@
 
         <button
           onclick={onComplete}
-          class="px-6 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-            hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+          class="px-6 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+            hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
         >
           Done
         </button>
@@ -236,7 +238,7 @@
 
     <!-- Navigation -->
     {#if step < 4}
-      <div class="flex items-center justify-between mt-6 pt-4 border-t border-stone-100">
+      <div class="flex items-center justify-between mt-6 pt-4 border-t border-rule">
         <button
           onclick={step === 0 ? onCancel : back}
           class="text-sm text-text-muted hover:text-text-secondary transition-colors cursor-pointer"
@@ -247,10 +249,10 @@
         <button
           onclick={step === 3 ? finish : next}
           disabled={!canProceed()}
-          class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
+          class="px-5 py-2.5 rounded-sm text-sm font-semibold transition-all duration-200 cursor-pointer
             {canProceed()
-              ? 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'
-              : 'bg-stone-200 text-stone-400 cursor-not-allowed'}"
+              ? 'bg-ink text-ground hover:bg-ink/85 active:scale-95'
+              : 'bg-rule text-faint cursor-not-allowed'}"
         >
           {step === 3 ? 'Finish' : 'Continue'}
         </button>

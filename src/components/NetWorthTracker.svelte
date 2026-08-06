@@ -184,9 +184,9 @@
 
 <div class="space-y-5">
   <!-- Net worth banner -->
-  <div class="rounded-2xl bg-gradient-to-br from-sage-50 to-water-50 p-5 text-center">
+  <div class="rounded-sm bg-white border border-rule p-5 text-center">
     <p class="text-xs text-text-muted mb-1">Net worth</p>
-    <p class="text-3xl font-bold {netWorth >= 0 ? 'text-sage-600' : 'text-berry-600'}">
+    <p class="text-3xl font-bold text-ink">
       {netWorth < 0 ? '-' : ''}${fmt(netWorth)}
     </p>
     {#if assets.length > 0 || debts.length > 0}
@@ -203,18 +203,18 @@
     <div class="space-y-2">
       <div class="flex items-center gap-2">
         <span class="text-xs text-text-muted w-12">Own</span>
-        <div class="flex-1 h-4 bg-stone-100 rounded-full overflow-hidden">
+        <div class="flex-1 h-4 bg-rule overflow-hidden">
           <div
-            class="h-full bg-sage-400 rounded-full transition-all duration-500"
+            class="h-full bg-ink transition-all duration-500"
             style="width: {(totalAssets / maxBar) * 100}%"
           ></div>
         </div>
       </div>
       <div class="flex items-center gap-2">
         <span class="text-xs text-text-muted w-12">Owe</span>
-        <div class="flex-1 h-4 bg-stone-100 rounded-full overflow-hidden">
+        <div class="flex-1 h-4 bg-rule overflow-hidden">
           <div
-            class="h-full bg-berry-400 rounded-full transition-all duration-500"
+            class="h-full bg-ink transition-all duration-500"
             style="width: {(totalDebts / maxBar) * 100}%"
           ></div>
         </div>
@@ -224,8 +224,8 @@
 
   <!-- Insight text -->
   {#if netWorthChange !== null && (assets.length > 0 || debts.length > 0)}
-    <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3" in:fade={{ duration: 200 }}>
-      <p class="text-sm text-clay-700 leading-relaxed">
+    <div class="border-l-2 border-rule pl-4" in:fade={{ duration: 200 }}>
+      <p class="text-sm text-quiet leading-relaxed">
         {#if netWorthChange > 0}
           Your net worth increased by ${fmt(netWorthChange)} since your last snapshot. Heading in the right direction.
         {:else if netWorthChange < 0}
@@ -240,9 +240,9 @@
   <!-- Assets section -->
   <section>
     <div class="flex items-center justify-between mb-3">
-      <h3 class="text-xs font-semibold text-stone-400 tracking-widest uppercase">Assets</h3>
+      <h3 class="text-xs font-semibold text-faint tracking-widest uppercase">Assets</h3>
       {#if assets.length > 0}
-        <p class="text-sm font-medium text-sage-600">${fmt(totalAssets)}</p>
+        <p class="text-sm font-medium text-ink">${fmt(totalAssets)}</p>
       {/if}
     </div>
 
@@ -250,18 +250,18 @@
       <div class="space-y-2 mb-3">
         {#each assets as item, index (index)}
           <div
-            class="flex items-center gap-3 rounded-xl bg-surface-card border border-stone-200 px-4 py-3"
+            class="flex items-center gap-3 rounded-sm bg-surface-card border border-rule px-4 py-3"
             in:fly={{ y: 10, duration: 200 }}
           >
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium truncate">{item.label}</p>
               <p class="text-xs text-text-muted">{getCategoryLabel(item.category, 'asset')}</p>
             </div>
-            <p class="text-sm font-semibold text-sage-600 whitespace-nowrap">${fmt(item.amount)}</p>
+            <p class="text-sm font-semibold text-ink whitespace-nowrap">${fmt(item.amount)}</p>
             {#if confirmingDelete === `asset-${index}`}
               <button
                 onclick={() => removeAsset(index)}
-                class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-berry-500 text-white
+                class="px-3 py-1.5 rounded-sm text-xs font-semibold bg-contested text-white
                   active:scale-95 transition-all cursor-pointer"
                 aria-label="Confirm remove {item.label}"
               >
@@ -270,7 +270,7 @@
             {:else}
               <button
                 onclick={() => removeAsset(index)}
-                class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+                class="p-1.5 rounded-sm text-faint hover:text-ink hover:bg-ground transition-colors cursor-pointer"
                 aria-label="Remove {item.label}"
               >
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -284,7 +284,7 @@
     {/if}
 
     {#if showAssetForm}
-      <div class="rounded-xl bg-surface-warm border border-stone-200 p-4 space-y-3" in:slide={{ duration: 200 }}>
+      <div class="rounded-sm bg-surface-warm border border-rule p-4 space-y-3" in:slide={{ duration: 200 }}>
         <div class="grid grid-cols-2 gap-3">
           <div class="col-span-2">
             <label for="asset-label" class="block text-xs font-medium text-text-muted mb-1">What is it?</label>
@@ -293,8 +293,8 @@
               type="text"
               bind:value={newAssetLabel}
               placeholder="e.g. Chequing account"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -307,8 +307,8 @@
               bind:value={newAssetAmount}
               placeholder="0"
               min="0"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -317,8 +317,8 @@
             <select
               id="asset-category"
               bind:value={newAssetCategory}
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink
                 focus:outline-none transition-colors cursor-pointer"
             >
               {#each assetCategories as cat}
@@ -330,14 +330,14 @@
         <div class="flex gap-2">
           <button
             onclick={addAsset}
-            class="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-              hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+            class="flex-1 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+              hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
           >
             Add asset
           </button>
           <button
             onclick={() => { showAssetForm = false; newAssetLabel = ''; newAssetAmount = ''; }}
-            class="px-4 py-2.5 rounded-xl text-sm text-text-muted hover:text-text-secondary
+            class="px-4 py-2.5 rounded-sm text-sm text-text-muted hover:text-text-secondary
               transition-colors cursor-pointer"
           >
             Cancel
@@ -347,8 +347,8 @@
     {:else}
       <button
         onclick={() => showAssetForm = true}
-        class="w-full py-2.5 rounded-xl border-2 border-dashed border-stone-200 text-sm
-          font-medium text-text-muted hover:border-sage-300 hover:text-sage-600
+        class="w-full py-2.5 rounded-sm border border-dashed border-rule text-sm
+          font-medium text-text-muted hover:border-quiet hover:text-ink
           transition-colors cursor-pointer"
       >
         + Add asset
@@ -359,9 +359,9 @@
   <!-- Debts section -->
   <section>
     <div class="flex items-center justify-between mb-3">
-      <h3 class="text-xs font-semibold text-stone-400 tracking-widest uppercase">Debts</h3>
+      <h3 class="text-xs font-semibold text-faint tracking-widest uppercase">Debts</h3>
       {#if debts.length > 0}
-        <p class="text-sm font-medium text-berry-600">${fmt(totalDebts)}</p>
+        <p class="text-sm font-medium text-ink">${fmt(totalDebts)}</p>
       {/if}
     </div>
 
@@ -369,18 +369,18 @@
       <div class="space-y-2 mb-3">
         {#each debts as item, index (index)}
           <div
-            class="flex items-center gap-3 rounded-xl bg-surface-card border border-stone-200 px-4 py-3"
+            class="flex items-center gap-3 rounded-sm bg-surface-card border border-rule px-4 py-3"
             in:fly={{ y: 10, duration: 200 }}
           >
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium truncate">{item.label}</p>
               <p class="text-xs text-text-muted">{getCategoryLabel(item.category, 'debt')}</p>
             </div>
-            <p class="text-sm font-semibold text-berry-600 whitespace-nowrap">${fmt(item.amount)}</p>
+            <p class="text-sm font-semibold text-ink whitespace-nowrap">${fmt(item.amount)}</p>
             {#if confirmingDelete === `debt-${index}`}
               <button
                 onclick={() => removeDebt(index)}
-                class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-berry-500 text-white
+                class="px-3 py-1.5 rounded-sm text-xs font-semibold bg-contested text-white
                   active:scale-95 transition-all cursor-pointer"
                 aria-label="Confirm remove {item.label}"
               >
@@ -389,7 +389,7 @@
             {:else}
               <button
                 onclick={() => removeDebt(index)}
-                class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+                class="p-1.5 rounded-sm text-faint hover:text-ink hover:bg-ground transition-colors cursor-pointer"
                 aria-label="Remove {item.label}"
               >
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -403,7 +403,7 @@
     {/if}
 
     {#if showDebtForm}
-      <div class="rounded-xl bg-surface-warm border border-stone-200 p-4 space-y-3" in:slide={{ duration: 200 }}>
+      <div class="rounded-sm bg-surface-warm border border-rule p-4 space-y-3" in:slide={{ duration: 200 }}>
         <div class="grid grid-cols-2 gap-3">
           <div class="col-span-2">
             <label for="debt-label" class="block text-xs font-medium text-text-muted mb-1">What is it?</label>
@@ -412,8 +412,8 @@
               type="text"
               bind:value={newDebtLabel}
               placeholder="e.g. Visa card"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -426,8 +426,8 @@
               bind:value={newDebtAmount}
               placeholder="0"
               min="0"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -436,8 +436,8 @@
             <select
               id="debt-category"
               bind:value={newDebtCategory}
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                focus:border-berry-300 focus:ring-1 focus:ring-berry-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink
                 focus:outline-none transition-colors cursor-pointer"
             >
               {#each debtCategories as cat}
@@ -449,14 +449,14 @@
         <div class="flex gap-2">
           <button
             onclick={addDebt}
-            class="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-              hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+            class="flex-1 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+              hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
           >
             Add debt
           </button>
           <button
             onclick={() => { showDebtForm = false; newDebtLabel = ''; newDebtAmount = ''; }}
-            class="px-4 py-2.5 rounded-xl text-sm text-text-muted hover:text-text-secondary
+            class="px-4 py-2.5 rounded-sm text-sm text-text-muted hover:text-text-secondary
               transition-colors cursor-pointer"
           >
             Cancel
@@ -466,8 +466,8 @@
     {:else}
       <button
         onclick={() => showDebtForm = true}
-        class="w-full py-2.5 rounded-xl border-2 border-dashed border-stone-200 text-sm
-          font-medium text-text-muted hover:border-berry-300 hover:text-berry-600
+        class="w-full py-2.5 rounded-sm border border-dashed border-rule text-sm
+          font-medium text-text-muted hover:border-quiet hover:text-ink
           transition-colors cursor-pointer"
       >
         + Add debt
@@ -479,8 +479,8 @@
   {#if assets.length > 0 || debts.length > 0}
     <button
       onclick={takeSnapshot}
-      class="w-full py-3 rounded-xl text-sm font-semibold bg-stone-900 text-white
-        hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+      class="w-full py-3 rounded-sm text-sm font-semibold bg-ink text-ground
+        hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
     >
       Take snapshot
     </button>
@@ -496,9 +496,9 @@
         onclick={() => showHistory = !showHistory}
         class="flex items-center justify-between w-full mb-3 cursor-pointer"
       >
-        <h3 class="text-xs font-semibold text-stone-400 tracking-widest uppercase">History</h3>
+        <h3 class="text-xs font-semibold text-faint tracking-widest uppercase">History</h3>
         <svg
-          class="w-4 h-4 text-stone-400 transition-transform duration-200 {showHistory ? 'rotate-180' : ''}"
+          class="w-4 h-4 text-faint transition-transform duration-200 {showHistory ? 'rotate-180' : ''}"
           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
         >
           <path d="M6 9l6 6 6-6" />
@@ -510,17 +510,17 @@
           {#each [...snapshots].reverse() as snapshot (snapshot.id)}
             {@const nw = snapshotNetWorth(snapshot)}
             {@const barWidth = historyMax > 0 ? (Math.abs(nw) / historyMax) * 100 : 0}
-            <div class="rounded-xl bg-surface-card border border-stone-200 px-4 py-3">
+            <div class="rounded-sm bg-surface-card border border-rule px-4 py-3">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-xs text-text-muted">{formatDate(snapshot.date)}</span>
                 <div class="flex items-center gap-2">
-                  <span class="text-sm font-semibold {nw >= 0 ? 'text-sage-600' : 'text-berry-600'}">
+                  <span class="text-sm font-semibold text-ink">
                     {nw < 0 ? '-' : ''}${fmt(nw)}
                   </span>
                   {#if confirmingDelete === `snapshot-${snapshot.id}`}
                     <button
                       onclick={() => handleDeleteSnapshot(snapshot.id)}
-                      class="px-2 py-1 rounded text-[10px] font-semibold bg-berry-500 text-white
+                      class="px-2 py-1 rounded text-[10px] font-semibold bg-contested text-white
                         active:scale-95 transition-all cursor-pointer"
                       aria-label="Confirm delete snapshot from {formatDate(snapshot.date)}"
                     >
@@ -529,7 +529,7 @@
                   {:else}
                     <button
                       onclick={() => handleDeleteSnapshot(snapshot.id)}
-                      class="p-1 rounded text-stone-400 hover:text-berry-500 transition-colors cursor-pointer"
+                      class="p-1 rounded text-faint hover:text-ink transition-colors cursor-pointer"
                       aria-label="Delete snapshot from {formatDate(snapshot.date)}"
                     >
                       <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -539,9 +539,9 @@
                   {/if}
                 </div>
               </div>
-              <div class="h-2.5 bg-stone-100 rounded-full overflow-hidden">
+              <div class="h-2.5 bg-rule overflow-hidden">
                 <div
-                  class="h-full rounded-full transition-all duration-500 {nw >= 0 ? 'bg-sage-400' : 'bg-berry-400'}"
+                  class="h-full bg-ink transition-all duration-500"
                   style="width: {barWidth}%"
                 ></div>
               </div>
@@ -554,9 +554,9 @@
 
   <!-- Empty state -->
   {#if assets.length === 0 && debts.length === 0 && snapshots.length === 0}
-    <div class="rounded-2xl bg-surface-card border border-stone-200 p-8 text-center">
-      <div class="w-14 h-14 rounded-full bg-sage-50 flex items-center justify-center mx-auto mb-4">
-        <svg class="w-7 h-7 text-sage-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <div class="rounded-sm bg-surface-card border border-rule p-8 text-center">
+      <div class="w-14 h-14 rounded-full bg-ground flex items-center justify-center mx-auto mb-4">
+        <svg class="w-7 h-7 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="3" width="20" height="18" rx="2" />
           <path d="M2 9h20" />
           <path d="M10 3v18" />

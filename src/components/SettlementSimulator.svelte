@@ -5,7 +5,6 @@
     formatMultiplier,
     CURRENT_YEAR,
     type SimulationResult,
-    type GenerationResult,
   } from '../lib/settlement-math';
   import { slide } from 'svelte/transition';
 
@@ -126,13 +125,6 @@
     return insights;
   }
 
-  // ---- Sustainability check ----
-
-  function barHealthColour(gen: GenerationResult, prevGen: GenerationResult | null): string {
-    if (gen.trustBalance <= 0) return 'bg-berry-400';
-    if (prevGen && gen.trustBalance < prevGen.trustBalance * 0.7) return 'bg-clay-400';
-    return 'bg-sage-400';
-  }
 </script>
 
 <div class="space-y-6">
@@ -140,7 +132,7 @@
   <!-- ============================================================
        SETTLEMENT AMOUNT
        ============================================================ -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
+  <div class="rounded-sm bg-surface-card border border-rule p-5 shadow-sm">
     <label class="block text-xs font-semibold text-text-muted tracking-wide uppercase mb-3">
       Settlement amount
     </label>
@@ -148,10 +140,10 @@
       {#each amountPresets as amount}
         <button
           onclick={() => selectAmount(amount)}
-          class="px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-[var(--duration-fast)] cursor-pointer
+          class="px-4 py-2 rounded-sm text-sm font-semibold border transition-all duration-[var(--duration-fast)] cursor-pointer
             {totalAmount === amount && !customAmountStr
-              ? 'bg-stone-900 text-white border-stone-900'
-              : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300 active:scale-95'}"
+              ? 'bg-ink text-ground border-ink'
+              : 'bg-white text-text-secondary border-rule hover:border-quiet active:scale-95'}"
         >
           {formatCurrency(amount)}
         </button>
@@ -166,8 +158,8 @@
           bind:value={customAmountStr}
           oninput={() => applyCustomAmount()}
           placeholder="Custom (millions)"
-          class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-14 py-2.5 text-sm
-            placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+          class="w-full rounded-sm border border-rule bg-white pl-7 pr-14 py-2.5 text-sm
+            placeholder:text-faint focus:border-ink
             focus:outline-none transition-colors"
           aria-label="Custom settlement amount in millions"
         />
@@ -179,7 +171,7 @@
   <!-- ============================================================
        COMMUNITY MEMBERS
        ============================================================ -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
+  <div class="rounded-sm bg-surface-card border border-rule p-5 shadow-sm">
     <label class="block text-xs font-semibold text-text-muted tracking-wide uppercase mb-3">
       Community members
     </label>
@@ -187,10 +179,10 @@
       {#each memberPresets as count}
         <button
           onclick={() => selectMembers(count)}
-          class="px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-[var(--duration-fast)] cursor-pointer
+          class="px-4 py-2 rounded-sm text-sm font-semibold border transition-all duration-[var(--duration-fast)] cursor-pointer
             {members === count && !customMembersStr
-              ? 'bg-stone-900 text-white border-stone-900'
-              : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300 active:scale-95'}"
+              ? 'bg-ink text-ground border-ink'
+              : 'bg-white text-text-secondary border-rule hover:border-quiet active:scale-95'}"
         >
           {count.toLocaleString('en-CA')}
         </button>
@@ -202,8 +194,8 @@
       bind:value={customMembersStr}
       oninput={() => applyCustomMembers()}
       placeholder="Custom member count"
-      class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-        placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+      class="w-full rounded-sm border border-rule bg-white px-3 py-2.5 text-sm
+        placeholder:text-faint focus:border-ink
         focus:outline-none transition-colors"
       aria-label="Custom community member count"
     />
@@ -212,7 +204,7 @@
   <!-- ============================================================
        THE BIG SLIDER
        ============================================================ -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
+  <div class="rounded-sm bg-surface-card border border-rule p-5 shadow-sm">
     <label class="block text-sm font-semibold mb-1">
       How much to distribute now?
     </label>
@@ -228,20 +220,22 @@
         step="1"
         bind:value={distributePercent}
         class="settlement-slider w-full h-3 rounded-full appearance-none cursor-pointer"
-        style="background: linear-gradient(to right, var(--color-sage-400) {100 - distributePercent}%, var(--color-clay-400) {100 - distributePercent}%);"
+        style="background: linear-gradient(to right, var(--color-verified) {100 - distributePercent}%, var(--color-rule) {100 - distributePercent}%);"
         aria-label="Percentage to distribute now"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={distributePercent}
       />
-      <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-stone-900 text-white text-xs font-bold px-2.5 py-1 rounded-lg pointer-events-none">
+      <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-ink text-ground text-xs font-bold px-2.5 py-1 rounded-sm pointer-events-none">
         {distributePercent}%
       </div>
     </div>
 
+    <!-- The invested share is the single accent; the distributed share is
+         scaffolding grey. Both ends carry their label. -->
     <div class="flex items-center justify-between text-xs">
-      <span class="text-sage-600 font-medium">Invest for the future</span>
-      <span class="text-clay-600 font-medium">Distribute now</span>
+      <span class="text-verified font-medium">Invest for the future</span>
+      <span class="text-quiet font-medium">Distribute now</span>
     </div>
   </div>
 
@@ -250,23 +244,23 @@
        ============================================================ -->
   <div class="grid grid-cols-2 gap-3">
     <!-- Distributed today -->
-    <div class="rounded-2xl border border-clay-200 bg-gradient-to-br from-clay-50 to-clay-100/50 p-4 transition-all duration-[var(--duration-slow)]">
-      <p class="text-xs font-semibold text-clay-600 uppercase tracking-wide mb-1">Distributed today</p>
-      <p class="text-xl font-bold text-clay-700 leading-tight transition-all duration-[var(--duration-slow)]">
+    <div class="rounded-sm border border-rule bg-white p-4 transition-all duration-[var(--duration-slow)]">
+      <p class="text-xs font-semibold text-faint uppercase tracking-wide mb-1">Distributed today</p>
+      <p class="text-xl font-bold text-ink leading-tight transition-all duration-[var(--duration-slow)]">
         {formatCurrency(result.distributedAmount)}
       </p>
-      <p class="text-xs text-clay-500 mt-1">
+      <p class="text-xs text-quiet mt-1">
         {formatCurrency(result.initialPerCap)} per member
       </p>
     </div>
 
     <!-- Invested in trust -->
-    <div class="rounded-2xl border border-sage-200 bg-gradient-to-br from-sage-50 to-sage-100/50 p-4 transition-all duration-[var(--duration-slow)]">
-      <p class="text-xs font-semibold text-sage-600 uppercase tracking-wide mb-1">Invested in trust</p>
-      <p class="text-xl font-bold text-sage-700 leading-tight transition-all duration-[var(--duration-slow)]">
+    <div class="rounded-sm border border-rule bg-white p-4 transition-all duration-[var(--duration-slow)]">
+      <p class="text-xs font-semibold text-faint uppercase tracking-wide mb-1">Invested in trust</p>
+      <p class="text-xl font-bold text-ink leading-tight transition-all duration-[var(--duration-slow)]">
         {formatCurrency(result.investedAmount)}
       </p>
-      <p class="text-xs text-sage-500 mt-1">
+      <p class="text-xs text-quiet mt-1">
         For 7 generations
       </p>
     </div>
@@ -276,17 +270,15 @@
        MULTIPLIER STAT
        ============================================================ -->
   {#if distributePercent < 100}
-    <div class="rounded-2xl border-2 p-5 text-center transition-all duration-[var(--duration-slow)]
-      {result.multiplierVsPureDist >= 3 ? 'border-sage-300 bg-sage-50/50' : 'border-stone-200 bg-surface-warm'}">
+    <div class="rounded-sm border border-rule bg-white p-5 text-center transition-all duration-[var(--duration-slow)]">
       <p class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-1">
         Total community benefit over 7 generations
       </p>
-      <p class="text-3xl font-bold leading-tight transition-all duration-[var(--duration-slow)]
-        {result.multiplierVsPureDist >= 3 ? 'text-sage-700' : 'text-stone-700'}">
+      <p class="text-3xl font-bold leading-tight text-ink transition-all duration-[var(--duration-slow)]">
         {formatCurrency(result.totalDistributedOver175Years)}
       </p>
       <p class="text-lg font-semibold mt-1 transition-all duration-[var(--duration-slow)]
-        {result.multiplierVsPureDist >= 3 ? 'text-sage-600' : 'text-stone-500'}">
+        {result.multiplierVsPureDist >= 3 ? 'text-verified' : 'text-quiet'}">
         {formatMultiplier(result.multiplierVsPureDist)} the original settlement
       </p>
     </div>
@@ -295,26 +287,23 @@
   <!-- ============================================================
        TIMELINE VISUALIZATION
        ============================================================ -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
+  <div class="rounded-sm bg-surface-card border border-rule p-5 shadow-sm">
     <h3 class="text-sm font-semibold mb-4">Seven generation projection</h3>
 
     <div class="space-y-4">
       {#each result.generations as gen, i}
-        {@const prevGen = i > 0 ? result.generations[i - 1] : null}
         {@const trustBarWidth = maxTrustBalance > 0 ? (gen.trustBalance / maxTrustBalance) * 100 : 0}
         {@const distBarWidth = maxAnnualDist > 0 ? (gen.annualDistribution / maxAnnualDist) * 100 : 0}
-        {@const healthColour = barHealthColour(gen, prevGen)}
 
         <div class="relative pl-8">
-          <!-- Timeline dot + line -->
+          <!-- Timeline dot + line. One hue: the dot goes contested only when
+               the trust is gone, and the warning below says so in words. -->
           <div class="absolute left-0 top-0 bottom-0 flex flex-col items-center">
             <div class="w-4 h-4 rounded-full border-2 flex-shrink-0 transition-colors duration-[var(--duration-slow)]
-              {gen.trustBalance > 0 ? 'border-sage-400 bg-sage-100' : 'border-berry-300 bg-berry-50'}">
+              {gen.trustBalance > 0 ? 'border-verified bg-verified-wash' : 'border-contested bg-contested-wash'}">
             </div>
             {#if i < result.generations.length - 1}
-              <div class="w-0.5 flex-1 transition-colors duration-[var(--duration-slow)]
-                {gen.trustBalance > 0 ? 'bg-sage-200' : 'bg-berry-200'}">
-              </div>
+              <div class="w-0.5 flex-1 bg-rule"></div>
             {/if}
           </div>
 
@@ -334,7 +323,7 @@
                 {#if result.distributedAmount > 0}
                   <p>Per-capita distribution: <span class="font-semibold">{formatCurrency(result.initialPerCap)}</span> per member</p>
                 {/if}
-                <p>Trust starting balance: <span class="font-semibold text-sage-600">{formatCurrency(result.investedAmount)}</span></p>
+                <p>Trust starting balance: <span class="font-semibold text-ink">{formatCurrency(result.investedAmount)}</span></p>
               </div>
             {:else}
               <!-- Future generations: bars + numbers -->
@@ -343,13 +332,13 @@
                 <div>
                   <div class="flex items-center justify-between text-xs mb-0.5">
                     <span class="text-text-muted">Trust balance</span>
-                    <span class="font-semibold {gen.trustBalance > 0 ? 'text-sage-600' : 'text-berry-500'}">
+                    <span class="font-semibold {gen.trustBalance > 0 ? 'text-ink' : 'text-contested'}">
                       {formatCurrency(gen.trustBalance)}
                     </span>
                   </div>
-                  <div class="h-3.5 bg-stone-100 rounded-full overflow-hidden">
+                  <div class="h-3.5 bg-rule/50 overflow-hidden">
                     <div
-                      class="h-full rounded-full transition-all duration-700 ease-[var(--ease-out)] {healthColour}"
+                      class="h-full bg-ink transition-all duration-700 ease-[var(--ease-out)]"
                       style="width: {trustBarWidth}%"
                     ></div>
                   </div>
@@ -359,11 +348,11 @@
                 <div>
                   <div class="flex items-center justify-between text-xs mb-0.5">
                     <span class="text-text-muted">Annual per member</span>
-                    <span class="font-semibold text-water-600">{formatCurrency(gen.perMemberAnnual)}</span>
+                    <span class="font-semibold text-ink">{formatCurrency(gen.perMemberAnnual)}</span>
                   </div>
-                  <div class="h-3.5 bg-stone-100 rounded-full overflow-hidden">
+                  <div class="h-3.5 bg-rule/50 overflow-hidden">
                     <div
-                      class="h-full rounded-full bg-water-400 transition-all duration-700 ease-[var(--ease-out)]"
+                      class="h-full bg-ink transition-all duration-700 ease-[var(--ease-out)]"
                       style="width: {distBarWidth}%"
                     ></div>
                   </div>
@@ -382,11 +371,11 @@
 
     <!-- Depletion warning -->
     {#if result.depletionYear}
-      <div class="mt-4 rounded-xl bg-berry-50 border border-berry-200 p-3">
-        <p class="text-xs font-semibold text-berry-600">
+      <div class="mt-4 border-l-2 border-contested pl-3 py-1">
+        <p class="text-xs font-semibold text-contested">
           Trust depleted by Year {result.depletionYear - CURRENT_YEAR}
         </p>
-        <p class="text-xs text-berry-500 mt-0.5">
+        <p class="text-xs text-quiet mt-0.5">
           The spending rate exceeds growth. Future generations lose access to trust income.
         </p>
       </div>
@@ -396,7 +385,7 @@
   <!-- ============================================================
        DYNAMIC INSIGHTS
        ============================================================ -->
-  <div class="rounded-2xl bg-gradient-to-br from-stone-50 to-sage-50/30 border border-stone-200 p-5">
+  <div class="rounded-sm bg-white border border-rule p-5">
     <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-3">What the numbers say</h3>
     <div class="space-y-2">
       {#each insightText as line}
@@ -408,11 +397,11 @@
   <!-- ============================================================
        ADVANCED SETTINGS
        ============================================================ -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 overflow-hidden shadow-sm">
+  <div class="rounded-sm bg-surface-card border border-rule overflow-hidden shadow-sm">
     <button
       onclick={() => showAdvanced = !showAdvanced}
       class="w-full flex items-center justify-between p-4 text-sm font-semibold text-text-secondary
-        hover:bg-stone-50 transition-colors cursor-pointer"
+        hover:bg-ground transition-colors cursor-pointer"
     >
       <span>Advanced assumptions</span>
       <svg
@@ -425,12 +414,12 @@
     </button>
 
     {#if showAdvanced}
-      <div class="px-5 pb-5 space-y-5 border-t border-stone-100" transition:slide={{ duration: 200 }}>
+      <div class="px-5 pb-5 space-y-5 border-t border-rule" transition:slide={{ duration: 200 }}>
         <!-- Annual return -->
         <div class="pt-4">
           <div class="flex items-center justify-between mb-1">
             <label for="annual-return" class="text-xs font-semibold text-text-muted">Annual return</label>
-            <span class="text-sm font-bold text-sage-600">{(annualReturn * 100).toFixed(1)}%</span>
+            <span class="text-sm font-bold text-ink">{(annualReturn * 100).toFixed(1)}%</span>
           </div>
           <input
             id="annual-return"
@@ -439,7 +428,7 @@
             max="0.08"
             step="0.005"
             bind:value={annualReturn}
-            class="settings-slider w-full h-2 rounded-full appearance-none cursor-pointer bg-stone-200"
+            class="settings-slider w-full h-2 rounded-full appearance-none cursor-pointer bg-rule"
             aria-label="Annual return assumption"
           />
           <p class="text-xs text-text-muted mt-1">
@@ -451,7 +440,7 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <label for="spending-rate" class="text-xs font-semibold text-text-muted">Spending rate</label>
-            <span class="text-sm font-bold text-water-600">{(spendingRate * 100).toFixed(1)}%</span>
+            <span class="text-sm font-bold text-ink">{(spendingRate * 100).toFixed(1)}%</span>
           </div>
           <input
             id="spending-rate"
@@ -460,7 +449,7 @@
             max="0.06"
             step="0.005"
             bind:value={spendingRate}
-            class="settings-slider w-full h-2 rounded-full appearance-none cursor-pointer bg-stone-200"
+            class="settings-slider w-full h-2 rounded-full appearance-none cursor-pointer bg-rule"
             aria-label="Annual spending rate"
           />
           <p class="text-xs text-text-muted mt-1">
@@ -472,7 +461,7 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <label for="pop-growth" class="text-xs font-semibold text-text-muted">Population growth</label>
-            <span class="text-sm font-bold text-clay-600">{(populationGrowth * 100).toFixed(1)}%</span>
+            <span class="text-sm font-bold text-ink">{(populationGrowth * 100).toFixed(1)}%</span>
           </div>
           <input
             id="pop-growth"
@@ -481,7 +470,7 @@
             max="0.03"
             step="0.005"
             bind:value={populationGrowth}
-            class="settings-slider w-full h-2 rounded-full appearance-none cursor-pointer bg-stone-200"
+            class="settings-slider w-full h-2 rounded-full appearance-none cursor-pointer bg-rule"
             aria-label="Annual population growth rate"
           />
           <p class="text-xs text-text-muted mt-1">
@@ -496,7 +485,7 @@
        EDUCATIONAL FOOTER
        ============================================================ -->
   <div class="space-y-4 px-1">
-    <div class="rounded-2xl bg-surface-warm border border-stone-200 p-5">
+    <div class="rounded-sm bg-white border border-rule p-5">
       <h3 class="text-sm font-semibold mb-2">What does this mean?</h3>
       <div class="space-y-2 text-sm text-text-secondary leading-relaxed">
         <p>
@@ -521,11 +510,11 @@
     <div class="flex flex-col gap-2">
       <a
         href="/money/seven-generations"
-        class="flex items-center gap-3 rounded-xl bg-sage-50 border border-sage-200 hover:border-sage-300 p-4
+        class="flex items-center gap-3 rounded-sm bg-white border border-rule hover:border-quiet p-4
           transition-all duration-[var(--duration-normal)] active:scale-[0.98]"
       >
-        <div class="w-8 h-8 rounded-lg bg-sage-500 flex items-center justify-center flex-shrink-0">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="w-8 h-8 rounded-sm bg-ink flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-ground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
           </svg>
         </div>
@@ -537,11 +526,11 @@
 
       <a
         href="/rights/band-finances"
-        class="flex items-center gap-3 rounded-xl bg-water-50 border border-water-200 hover:border-water-300 p-4
+        class="flex items-center gap-3 rounded-sm bg-white border border-rule hover:border-quiet p-4
           transition-all duration-[var(--duration-normal)] active:scale-[0.98]"
       >
-        <div class="w-8 h-8 rounded-lg bg-water-500 flex items-center justify-center flex-shrink-0">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="w-8 h-8 rounded-sm bg-ink flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-ground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8" /><path d="M12 17v4" />
           </svg>
         </div>
@@ -577,7 +566,7 @@
     height: 28px;
     border-radius: 50%;
     background: white;
-    border: 3px solid var(--color-stone-800);
+    border: 3px solid var(--color-ink);
     box-shadow: 0 2px 8px rgba(35, 30, 23, 0.2);
     cursor: pointer;
     transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -598,7 +587,7 @@
     height: 28px;
     border-radius: 50%;
     background: white;
-    border: 3px solid var(--color-stone-800);
+    border: 3px solid var(--color-ink);
     box-shadow: 0 2px 8px rgba(35, 30, 23, 0.2);
     cursor: pointer;
   }
@@ -624,7 +613,7 @@
     height: 18px;
     border-radius: 50%;
     background: white;
-    border: 2px solid var(--color-stone-600);
+    border: 2px solid var(--color-quiet);
     box-shadow: 0 1px 4px rgba(35, 30, 23, 0.15);
     cursor: pointer;
     transition: transform 0.15s ease;
@@ -639,7 +628,7 @@
     height: 18px;
     border-radius: 50%;
     background: white;
-    border: 2px solid var(--color-stone-600);
+    border: 2px solid var(--color-quiet);
     box-shadow: 0 1px 4px rgba(35, 30, 23, 0.15);
     cursor: pointer;
   }
@@ -647,6 +636,6 @@
   .settings-slider::-moz-range-track {
     height: 8px;
     border-radius: 9999px;
-    background: var(--color-stone-200);
+    background: var(--color-rule);
   }
 </style>

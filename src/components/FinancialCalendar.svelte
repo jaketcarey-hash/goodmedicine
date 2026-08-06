@@ -49,16 +49,10 @@
     }
   });
 
-  // ── Category colours ──────────────────────────────────────
-
-  const categoryBorder: Record<string, string> = {
-    tax: 'border-l-clay-500',
-    benefits: 'border-l-sage-500',
-    education: 'border-l-water-500',
-    band: 'border-l-berry-500',
-    health: 'border-l-sage-400',
-    custom: 'border-l-stone-400',
-  };
+  // ── Category labels ───────────────────────────────────────
+  // Categories no longer tint cards or chips — colour on this site carries
+  // meaning, and an event category is not a meaning. The text label does
+  // the work on its own.
 
   const categoryLabel: Record<string, string> = {
     tax: 'Tax',
@@ -67,15 +61,6 @@
     band: 'Community',
     health: 'Health',
     custom: 'Reminder',
-  };
-
-  const categoryTag: Record<string, string> = {
-    tax: 'bg-clay-100 text-clay-700',
-    benefits: 'bg-sage-100 text-sage-700',
-    education: 'bg-water-100 text-water-700',
-    band: 'bg-berry-100 text-berry-700',
-    health: 'bg-sage-50 text-sage-600',
-    custom: 'bg-stone-100 text-stone-600',
   };
 
   // ── Handlers ───────────────────────────────────────────────
@@ -160,7 +145,7 @@
        SETUP FLOW
        ═══════════════════════════════════════════════════════ -->
   {#if showSetup}
-    <div in:fly={{ y: 20, duration: 300 }} class="rounded-2xl bg-surface-card border border-stone-200 shadow-lg overflow-hidden">
+    <div in:fly={{ y: 20, duration: 300 }} class="rounded-sm bg-surface-card border border-rule shadow-lg overflow-hidden">
       <div class="p-6">
         <h2 class="text-xl font-semibold mb-1">Set up your calendar</h2>
         <p class="text-sm text-text-secondary mb-6">Tell us a bit about your situation so we can show what matters to you.</p>
@@ -170,8 +155,8 @@
           <span class="text-sm font-medium text-text-primary">Treaty area</span>
           <select
             bind:value={draft.treatyArea}
-            class="mt-1.5 w-full rounded-xl border border-stone-200 bg-surface-warm px-4 py-3 text-sm
-              focus:border-clay-300 focus:ring-1 focus:ring-clay-200 focus:outline-none transition-colors"
+            class="mt-1.5 w-full rounded-sm border border-rule bg-surface-warm px-4 py-3 text-sm
+              focus:border-ink focus:outline-none transition-colors"
           >
             <option value={null}>Select...</option>
             {#each TREATY_AREAS as area}
@@ -185,8 +170,8 @@
           <span class="text-sm font-medium text-text-primary">Province or territory</span>
           <select
             bind:value={draft.province}
-            class="mt-1.5 w-full rounded-xl border border-stone-200 bg-surface-warm px-4 py-3 text-sm
-              focus:border-clay-300 focus:ring-1 focus:ring-clay-200 focus:outline-none transition-colors"
+            class="mt-1.5 w-full rounded-sm border border-rule bg-surface-warm px-4 py-3 text-sm
+              focus:border-ink focus:outline-none transition-colors"
           >
             <option value={null}>Select...</option>
             {#each PROVINCES as prov}
@@ -210,7 +195,7 @@
                 <input
                   type="checkbox"
                   bind:checked={draft[item.key as keyof CalendarProfile] as boolean}
-                  class="w-5 h-5 rounded border-stone-300 text-sage-500 focus:ring-sage-200"
+                  class="w-5 h-5 rounded border-rule text-ink"
                 />
                 <span class="text-sm">{item.label}</span>
               </label>
@@ -227,10 +212,10 @@
               <button
                 type="button"
                 onclick={() => toggleBandMonth(i)}
-                class="px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer
+                class="px-3 py-1.5 rounded-sm text-xs font-medium border transition-all duration-200 cursor-pointer
                   {draft.bandDistributionMonths.includes(i)
-                    ? 'bg-berry-500 text-white border-berry-500'
-                    : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                    ? 'bg-ink text-ground border-ink'
+                    : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
               >
                 {name.slice(0, 3)}
               </button>
@@ -252,8 +237,8 @@
           {/if}
           <button
             onclick={saveSetup}
-            class="px-6 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-              hover:bg-stone-800 active:scale-95 transition-all duration-200 cursor-pointer"
+            class="px-6 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+              hover:bg-ink/85 active:scale-95 transition-all duration-200 cursor-pointer"
           >
             Save profile
           </button>
@@ -269,8 +254,8 @@
     <div class="flex items-center justify-between">
       <button
         onclick={prevMonth}
-        class="w-10 h-10 rounded-xl border border-stone-200 bg-surface-card flex items-center justify-center
-          hover:border-stone-300 active:scale-95 transition-all cursor-pointer"
+        class="w-10 h-10 rounded-sm border border-rule bg-surface-card flex items-center justify-center
+          hover:border-quiet active:scale-95 transition-all cursor-pointer"
         aria-label="Previous month"
       >
         <svg class="w-5 h-5 text-text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -283,7 +268,7 @@
         {#if !isCurrentMonth}
           <button
             onclick={goToday}
-            class="text-xs text-clay-500 hover:text-clay-600 transition-colors cursor-pointer"
+            class="text-xs text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors cursor-pointer"
           >
             Back to this month
           </button>
@@ -292,8 +277,8 @@
 
       <button
         onclick={nextMonth}
-        class="w-10 h-10 rounded-xl border border-stone-200 bg-surface-card flex items-center justify-center
-          hover:border-stone-300 active:scale-95 transition-all cursor-pointer"
+        class="w-10 h-10 rounded-sm border border-rule bg-surface-card flex items-center justify-center
+          hover:border-quiet active:scale-95 transition-all cursor-pointer"
         aria-label="Next month"
       >
         <svg class="w-5 h-5 text-text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -306,15 +291,15 @@
     {#if topEvent && isCurrentMonth}
       <div
         in:fade={{ duration: 300 }}
-        class="rounded-2xl bg-gradient-to-br from-clay-50 to-clay-100 border border-clay-200 p-5"
+        class="rounded-sm bg-white border border-rule p-5"
       >
-        <p class="text-xs font-semibold text-clay-500 tracking-wide uppercase mb-1.5">What matters now</p>
+        <p class="text-xs font-semibold text-faint tracking-wide uppercase mb-1.5">What matters now</p>
         <h3 class="font-semibold text-lg leading-snug mb-1.5">{topEvent.title}</h3>
         <p class="text-sm text-text-secondary leading-relaxed">{topEvent.description}</p>
         {#if topEvent.actionUrl}
           <a
             href={topEvent.actionUrl}
-            class="inline-block mt-3 text-sm font-medium text-clay-600 hover:text-clay-700 transition-colors"
+            class="inline-block mt-3 text-sm font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors"
           >
             Learn more &rarr;
           </a>
@@ -324,7 +309,7 @@
 
     <!-- Event cards -->
     {#if events.length === 0}
-      <div class="rounded-2xl bg-surface-card border border-stone-200 p-8 text-center">
+      <div class="rounded-sm bg-surface-card border border-rule p-8 text-center">
         <p class="text-text-secondary text-sm">Nothing specific for this month based on your profile.</p>
         <p class="text-text-muted text-xs mt-1">Try browsing other months, or add a custom reminder below.</p>
       </div>
@@ -333,15 +318,14 @@
         {#each (isCurrentMonth ? remainingEvents : events) as event (event.id)}
           <div
             in:fly={{ y: 12, duration: 250 }}
-            class="rounded-xl bg-surface-card border border-stone-200 overflow-hidden
-              border-l-4 {categoryBorder[event.category]}
-              {event.priority === 'high' ? 'border-l-[6px]' : ''}"
+            class="rounded-sm bg-surface-card border border-rule overflow-hidden
+              {event.priority === 'high' ? 'border-l-2 border-l-ink' : ''}"
           >
             <div class="p-4">
               <div class="flex items-start justify-between gap-3">
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold {categoryTag[event.category]}">
+                    <span class="inline-block px-2 py-0.5 rounded-sm text-[10px] font-semibold border border-rule text-quiet">
                       {categoryLabel[event.category]}
                     </span>
                     {#if event.day}
@@ -355,7 +339,7 @@
               {#if event.actionUrl}
                 <a
                   href={event.actionUrl}
-                  class="inline-block mt-2.5 text-xs font-medium text-clay-500 hover:text-clay-600 transition-colors"
+                  class="inline-block mt-2.5 text-xs font-medium text-ink underline decoration-rule underline-offset-2 hover:decoration-ink transition-colors"
                 >
                   Learn more &rarr;
                 </a>
@@ -368,7 +352,7 @@
                     );
                     if (idx >= 0) removeReminder(idx);
                   }}
-                  class="inline-block mt-2 text-xs text-text-muted hover:text-berry-500 transition-colors cursor-pointer"
+                  class="inline-block mt-2 text-xs text-text-muted hover:text-ink transition-colors cursor-pointer"
                 >
                   Remove reminder
                 </button>
@@ -382,21 +366,21 @@
     <!-- Custom reminder -->
     <div class="pt-2">
       {#if showReminderForm}
-        <div in:fly={{ y: 12, duration: 250 }} class="rounded-xl bg-surface-card border border-stone-200 p-4 space-y-3">
+        <div in:fly={{ y: 12, duration: 250 }} class="rounded-sm bg-surface-card border border-rule p-4 space-y-3">
           <h4 class="text-sm font-semibold">Add a custom reminder</h4>
           <input
             type="text"
             bind:value={newReminderLabel}
             placeholder="What do you want to remember?"
-            class="w-full rounded-xl border border-stone-200 bg-surface-warm px-4 py-3 text-sm
-              placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+            class="w-full rounded-sm border border-rule bg-surface-warm px-4 py-3 text-sm
+              placeholder:text-faint focus:border-ink
               focus:outline-none transition-colors"
           />
           <div class="flex gap-2">
             <select
               bind:value={newReminderMonth}
-              class="flex-1 rounded-xl border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-                focus:border-sage-300 focus:ring-1 focus:ring-sage-200 focus:outline-none transition-colors"
+              class="flex-1 rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm
+                focus:border-ink focus:outline-none transition-colors"
             >
               {#each MONTH_NAMES as name, i}
                 <option value={i}>{name}</option>
@@ -408,8 +392,8 @@
               placeholder="Day"
               min="1"
               max="31"
-              class="w-20 rounded-xl border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm text-center
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-20 rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm text-center
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -423,10 +407,10 @@
             <button
               onclick={addReminder}
               disabled={!newReminderLabel.trim()}
-              class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
+              class="px-4 py-2 rounded-sm text-sm font-semibold transition-all duration-200 cursor-pointer
                 {newReminderLabel.trim()
-                  ? 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'
-                  : 'bg-stone-200 text-stone-400 cursor-not-allowed'}"
+                  ? 'bg-ink text-ground hover:bg-ink/85 active:scale-95'
+                  : 'bg-rule text-faint cursor-not-allowed'}"
             >
               Add reminder
             </button>
@@ -435,8 +419,8 @@
       {:else}
         <button
           onclick={() => showReminderForm = true}
-          class="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-stone-300
-            bg-surface-warm py-3.5 text-sm text-text-muted hover:text-text-secondary hover:border-stone-400
+          class="w-full flex items-center justify-center gap-2 rounded-sm border border-dashed border-rule
+            bg-surface-warm py-3.5 text-sm text-text-muted hover:text-text-secondary hover:border-quiet
             transition-all cursor-pointer"
         >
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

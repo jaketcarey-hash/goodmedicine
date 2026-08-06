@@ -253,7 +253,7 @@
   <div class="flex items-center justify-between">
     <button
       onclick={() => navigateMonth(-1)}
-      class="p-2 rounded-lg hover:bg-stone-100 transition-colors cursor-pointer"
+      class="p-2 rounded-sm hover:bg-ground transition-colors cursor-pointer"
       aria-label="Previous month"
     >
       <svg class="w-5 h-5 text-text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -263,7 +263,7 @@
     <h2 class="text-lg font-semibold">{displayMonth(currentMonth)}</h2>
     <button
       onclick={() => navigateMonth(1)}
-      class="p-2 rounded-lg hover:bg-stone-100 transition-colors cursor-pointer"
+      class="p-2 rounded-sm hover:bg-ground transition-colors cursor-pointer"
       aria-label="Next month"
     >
       <svg class="w-5 h-5 text-text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -273,17 +273,17 @@
   </div>
 
   <!-- The picture -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-    <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">The picture</p>
+  <div class="rounded-sm bg-surface-card border border-rule p-5 shadow-sm">
+    <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">The picture</p>
 
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div>
         <p class="text-xs text-text-muted mb-0.5">Monthly income</p>
-        <p class="text-2xl font-bold text-sage-600">${fmt(monthlyIncome)}</p>
+        <p class="text-2xl font-bold text-ink">${fmt(monthlyIncome)}</p>
       </div>
       <div>
         <p class="text-xs text-text-muted mb-0.5">Monthly expenses</p>
-        <p class="text-2xl font-bold text-stone-700">${fmt(monthlyExpenses)}</p>
+        <p class="text-2xl font-bold text-ink">${fmt(monthlyExpenses)}</p>
       </div>
     </div>
 
@@ -293,19 +293,18 @@
       <div class="space-y-2 mb-4">
         <div class="flex items-center gap-2">
           <span class="text-xs text-text-muted w-16">Income</span>
-          <div class="flex-1 h-3 bg-stone-100 rounded-full overflow-hidden">
+          <div class="flex-1 h-3 bg-rule overflow-hidden">
             <div
-              class="h-full bg-sage-400 rounded-full transition-all duration-500"
+              class="h-full bg-ink transition-all duration-500"
               style="width: {(monthlyIncome / maxVal) * 100}%"
             ></div>
           </div>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-xs text-text-muted w-16">Expenses</span>
-          <div class="flex-1 h-3 bg-stone-100 rounded-full overflow-hidden">
+          <div class="flex-1 h-3 bg-rule overflow-hidden">
             <div
-              class="h-full rounded-full transition-all duration-500
-                {monthlyExpenses > monthlyIncome ? 'bg-berry-400' : 'bg-stone-400'}"
+              class="h-full bg-ink transition-all duration-500"
               style="width: {(monthlyExpenses / maxVal) * 100}%"
             ></div>
           </div>
@@ -314,13 +313,13 @@
     {/if}
 
     <!-- Difference -->
-    <div class="rounded-xl p-3.5 text-center
-      {difference > 0 ? 'bg-sage-50' : difference < 0 ? 'bg-berry-50' : 'bg-stone-50'}">
+    <div class="rounded-sm p-3.5 text-center
+      {difference > 0 ? 'bg-verified-wash' : difference < 0 ? 'bg-contested-wash' : 'bg-ground'}">
       <p class="text-xs text-text-muted mb-0.5">
         {difference >= 0 ? 'Monthly surplus' : 'Monthly shortfall'}
       </p>
       <p class="text-xl font-bold
-        {difference > 0 ? 'text-sage-600' : difference < 0 ? 'text-berry-600' : 'text-stone-600'}">
+        {difference > 0 ? 'text-verified' : difference < 0 ? 'text-contested' : 'text-ink'}">
         {difference >= 0 ? '' : '-'}${fmt(Math.abs(difference))}
       </p>
     </div>
@@ -328,9 +327,9 @@
 
   <!-- Empty state welcome -->
   {#if budget.income.length === 0 && budget.expenses.length === 0}
-    <div class="rounded-2xl bg-surface-card border border-stone-200 p-6 text-center" in:fade={{ duration: 200 }}>
-      <div class="w-14 h-14 rounded-full bg-sage-50 flex items-center justify-center mx-auto mb-4">
-        <svg class="w-7 h-7 text-sage-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <div class="rounded-sm bg-surface-card border border-rule p-6 text-center" in:fade={{ duration: 200 }}>
+      <div class="w-14 h-14 rounded-full bg-ground flex items-center justify-center mx-auto mb-4">
+        <svg class="w-7 h-7 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
         </svg>
       </div>
@@ -345,8 +344,8 @@
   {#if insights.length > 0}
     <div class="space-y-2" in:fade={{ duration: 200 }}>
       {#each insights as insight}
-        <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3">
-          <p class="text-sm text-clay-700 leading-relaxed">{insight}</p>
+        <div class="border-l-2 border-rule pl-4">
+          <p class="text-sm text-quiet leading-relaxed">{insight}</p>
         </div>
       {/each}
     </div>
@@ -355,9 +354,9 @@
   <!-- Income section -->
   <section>
     <div class="flex items-center justify-between mb-3">
-      <h3 class="text-xs font-semibold text-stone-400 tracking-widest uppercase">Income</h3>
+      <h3 class="text-xs font-semibold text-faint tracking-widest uppercase">Income</h3>
       {#if budget.income.length > 0}
-        <p class="text-sm font-medium text-sage-600">${fmt(monthlyIncome)}/mo</p>
+        <p class="text-sm font-medium text-ink">${fmt(monthlyIncome)}/mo</p>
       {/if}
     </div>
 
@@ -366,7 +365,7 @@
       <div class="space-y-2 mb-3">
         {#each budget.income as item (item.id)}
           <div
-            class="flex items-center gap-3 rounded-xl bg-surface-card border border-stone-200 px-4 py-3"
+            class="flex items-center gap-3 rounded-sm bg-surface-card border border-rule px-4 py-3"
             in:fly={{ y: 10, duration: 200 }}
           >
             <div class="flex-1 min-w-0">
@@ -379,10 +378,10 @@
                 {/if}
               </p>
             </div>
-            <p class="text-sm font-semibold text-sage-600 whitespace-nowrap">${fmt(item.amount)}</p>
+            <p class="text-sm font-semibold text-ink whitespace-nowrap">${fmt(item.amount)}</p>
             <button
               onclick={() => removeIncome(item.id)}
-              class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+              class="p-1.5 rounded-sm text-faint hover:text-ink hover:bg-ground transition-colors cursor-pointer"
               aria-label="Remove {item.label}"
             >
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -402,8 +401,8 @@
           {#each incomeCategorySuggestions as suggestion}
             <button
               onclick={() => pickSuggestion(suggestion)}
-              class="px-3 py-1.5 rounded-full text-xs font-medium border border-stone-200
-                bg-surface-warm text-text-secondary hover:border-sage-300 hover:bg-sage-50
+              class="px-3 py-1.5 rounded-sm text-xs font-medium border border-rule
+                bg-surface-warm text-text-secondary hover:border-quiet
                 transition-colors cursor-pointer"
             >
               {suggestion.label}
@@ -416,7 +415,7 @@
     <!-- Add income form -->
     {#if showIncomeForm}
       <div
-        class="rounded-xl bg-surface-warm border border-stone-200 p-4 space-y-3"
+        class="rounded-sm bg-surface-warm border border-rule p-4 space-y-3"
         in:slide={{ duration: 200 }}
       >
         <div class="grid grid-cols-2 gap-3">
@@ -427,8 +426,8 @@
               type="text"
               bind:value={newIncomeLabel}
               placeholder="e.g. Work pay"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -442,8 +441,8 @@
               placeholder="0"
               min="0"
               step="0.01"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -452,8 +451,8 @@
             <select
               id="income-frequency"
               bind:value={newIncomeFrequency}
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink
                 focus:outline-none transition-colors cursor-pointer"
             >
               {#each Object.entries(frequencyLabels) as [value, label]}
@@ -466,8 +465,8 @@
             <select
               id="income-category"
               bind:value={newIncomeCategory}
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink
                 focus:outline-none transition-colors cursor-pointer"
             >
               {#each Object.entries(incomeCategories) as [value, label]}
@@ -479,14 +478,14 @@
         <div class="flex gap-2">
           <button
             onclick={addIncome}
-            class="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-              hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+            class="flex-1 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+              hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
           >
             Add income
           </button>
           <button
             onclick={() => { showIncomeForm = false; newIncomeLabel = ''; newIncomeAmount = ''; }}
-            class="px-4 py-2.5 rounded-xl text-sm text-text-muted hover:text-text-secondary
+            class="px-4 py-2.5 rounded-sm text-sm text-text-muted hover:text-text-secondary
               transition-colors cursor-pointer"
           >
             Cancel
@@ -496,8 +495,8 @@
     {:else}
       <button
         onclick={() => showIncomeForm = true}
-        class="w-full py-2.5 rounded-xl border-2 border-dashed border-stone-200 text-sm
-          font-medium text-text-muted hover:border-sage-300 hover:text-sage-600
+        class="w-full py-2.5 rounded-sm border border-dashed border-rule text-sm
+          font-medium text-text-muted hover:border-quiet hover:text-ink
           transition-colors cursor-pointer"
       >
         + Add income source
@@ -508,9 +507,9 @@
   <!-- Expenses section -->
   <section>
     <div class="flex items-center justify-between mb-3">
-      <h3 class="text-xs font-semibold text-stone-400 tracking-widest uppercase">Expenses</h3>
+      <h3 class="text-xs font-semibold text-faint tracking-widest uppercase">Expenses</h3>
       {#if budget.expenses.length > 0}
-        <p class="text-sm font-medium text-stone-600">${fmt(monthlyExpenses)}/mo</p>
+        <p class="text-sm font-medium text-ink">${fmt(monthlyExpenses)}/mo</p>
       {/if}
     </div>
 
@@ -519,7 +518,7 @@
       <div class="space-y-2 mb-3">
         {#each budget.expenses as item (item.id)}
           <div
-            class="flex items-center gap-3 rounded-xl bg-surface-card border border-stone-200 px-4 py-3"
+            class="flex items-center gap-3 rounded-sm bg-surface-card border border-rule px-4 py-3"
             in:fly={{ y: 10, duration: 200 }}
           >
             <div class="flex-1 min-w-0">
@@ -532,10 +531,10 @@
                 {/if}
               </p>
             </div>
-            <p class="text-sm font-semibold text-stone-700 whitespace-nowrap">${fmt(item.amount)}</p>
+            <p class="text-sm font-semibold text-ink whitespace-nowrap">${fmt(item.amount)}</p>
             <button
               onclick={() => removeExpense(item.id)}
-              class="p-1.5 rounded-lg text-stone-400 hover:text-berry-500 hover:bg-berry-50 transition-colors cursor-pointer"
+              class="p-1.5 rounded-sm text-faint hover:text-ink hover:bg-ground transition-colors cursor-pointer"
               aria-label="Remove {item.label}"
             >
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -550,7 +549,7 @@
     <!-- Add expense form -->
     {#if showExpenseForm}
       <div
-        class="rounded-xl bg-surface-warm border border-stone-200 p-4 space-y-3"
+        class="rounded-sm bg-surface-warm border border-rule p-4 space-y-3"
         in:slide={{ duration: 200 }}
       >
         <div class="grid grid-cols-2 gap-3">
@@ -561,8 +560,8 @@
               type="text"
               bind:value={newExpenseLabel}
               placeholder="e.g. Rent, groceries"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-clay-300 focus:ring-1 focus:ring-clay-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -576,8 +575,8 @@
               placeholder="0"
               min="0"
               step="0.01"
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                placeholder:text-stone-400 focus:border-clay-300 focus:ring-1 focus:ring-clay-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                placeholder:text-faint focus:border-ink
                 focus:outline-none transition-colors"
             />
           </div>
@@ -586,8 +585,8 @@
             <select
               id="expense-frequency"
               bind:value={newExpenseFrequency}
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                focus:border-clay-300 focus:ring-1 focus:ring-clay-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink
                 focus:outline-none transition-colors cursor-pointer"
             >
               {#each Object.entries(expenseFrequencyLabels) as [value, label]}
@@ -600,8 +599,8 @@
             <select
               id="expense-category"
               bind:value={newExpenseCategory}
-              class="w-full rounded-lg border border-stone-200 bg-surface-card px-3 py-2.5 text-sm
-                focus:border-clay-300 focus:ring-1 focus:ring-clay-200
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink
                 focus:outline-none transition-colors cursor-pointer"
             >
               {#each Object.entries(expenseCategories) as [value, label]}
@@ -613,14 +612,14 @@
         <div class="flex gap-2">
           <button
             onclick={addExpense}
-            class="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-              hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+            class="flex-1 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+              hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
           >
             Add expense
           </button>
           <button
             onclick={() => { showExpenseForm = false; newExpenseLabel = ''; newExpenseAmount = ''; }}
-            class="px-4 py-2.5 rounded-xl text-sm text-text-muted hover:text-text-secondary
+            class="px-4 py-2.5 rounded-sm text-sm text-text-muted hover:text-text-secondary
               transition-colors cursor-pointer"
           >
             Cancel
@@ -630,8 +629,8 @@
     {:else}
       <button
         onclick={() => showExpenseForm = true}
-        class="w-full py-2.5 rounded-xl border-2 border-dashed border-stone-200 text-sm
-          font-medium text-text-muted hover:border-clay-300 hover:text-clay-600
+        class="w-full py-2.5 rounded-sm border border-dashed border-rule text-sm
+          font-medium text-text-muted hover:border-quiet hover:text-ink
           transition-colors cursor-pointer"
       >
         + Add expense
@@ -643,8 +642,8 @@
   {#if previousMonth && budget.income.length === 0 && budget.expenses.length === 0}
     <button
       onclick={copyLastMonth}
-      class="w-full py-3 rounded-xl bg-surface-warm border border-stone-200 text-sm
-        font-medium text-text-secondary hover:border-stone-300 hover:bg-stone-100
+      class="w-full py-3 rounded-sm bg-surface-warm border border-rule text-sm
+        font-medium text-text-secondary hover:border-quiet hover:bg-ground
         transition-colors cursor-pointer"
     >
       Copy from {displayMonth(previousMonth)}

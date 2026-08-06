@@ -46,12 +46,9 @@
     expandedPath = expandedPath === pathId ? null : pathId;
   }
 
-  const colourMap: Record<string, { bg: string; border: string; text: string; bar: string; accent: string; dot: string }> = {
-    clay:  { bg: 'bg-clay-50',  border: 'border-clay-200',  text: 'text-clay-600',  bar: 'bg-clay-400',  accent: 'bg-clay-500',  dot: 'bg-clay-400' },
-    water: { bg: 'bg-water-50', border: 'border-water-200', text: 'text-water-600', bar: 'bg-water-400', accent: 'bg-water-500', dot: 'bg-water-400' },
-    sage:  { bg: 'bg-sage-50',  border: 'border-sage-200',  text: 'text-sage-600',  bar: 'bg-sage-400',  accent: 'bg-sage-500',  dot: 'bg-sage-400' },
-    berry: { bg: 'bg-berry-50', border: 'border-berry-200', text: 'text-berry-600', bar: 'bg-berry-400', accent: 'bg-berry-500', dot: 'bg-berry-400' },
-  };
+  // Paths carry a `colour` in the data, but branch tinting is gone — colour on
+  // this site carries meaning, and a path is not a meaning. Completion speaks
+  // in `verified`, always beside a label that says the same thing.
 
   // Sort: active path first, then incomplete, then complete
   let sortedPaths = $derived(
@@ -69,7 +66,6 @@
 
 <div class="space-y-4">
   {#each sortedPaths as path (path.id)}
-    {@const colours = colourMap[path.colour]}
     {@const completed = stepsComplete(path)}
     {@const total = path.steps.length}
     {@const done = completed === total}
@@ -80,8 +76,8 @@
     {@const next = getNextStep(path.id, [...progress, ...completedArticles])}
 
     <div
-      class="rounded-2xl bg-surface-card border transition-all duration-[var(--duration-normal)]
-        {isActive ? colours.border + ' shadow-md' : 'border-stone-200'}"
+      class="rounded-sm bg-white border transition-all duration-[var(--duration-normal)]
+        {isActive ? 'border-ink shadow-md' : 'border-rule'}"
     >
       <!-- Card header — tappable to expand -->
       <button
@@ -92,10 +88,10 @@
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 mb-1">
               {#if isActive && !done}
-                <span class="text-[10px] font-semibold uppercase tracking-widest {colours.text}">Active path</span>
+                <span class="text-[10px] font-semibold uppercase tracking-widest text-ink">Active path</span>
               {/if}
               {#if done}
-                <span class="text-[10px] font-semibold uppercase tracking-widest text-sage-600">Complete</span>
+                <span class="text-[10px] font-semibold uppercase tracking-widest text-verified">Complete</span>
               {/if}
             </div>
             <h3 class="text-lg font-semibold leading-snug">{path.name}</h3>
@@ -103,7 +99,7 @@
           </div>
           <div class="flex-shrink-0 mt-1">
             <svg
-              class="w-5 h-5 text-stone-400 transition-transform duration-[var(--duration-normal)]
+              class="w-5 h-5 text-faint transition-transform duration-[var(--duration-normal)]
                 {isExpanded ? 'rotate-180' : ''}"
               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             >
@@ -114,9 +110,9 @@
 
         <!-- Progress bar and stats -->
         <div class="mt-4 space-y-2">
-          <div class="h-1.5 rounded-full bg-stone-100 overflow-hidden">
+          <div class="h-1.5 bg-rule overflow-hidden">
             <div
-              class="h-full rounded-full transition-all duration-[var(--duration-slow)] {done ? 'bg-sage-400' : colours.bar}"
+              class="h-full transition-all duration-[var(--duration-slow)] {done ? 'bg-verified' : 'bg-ink'}"
               style="width: {total > 0 ? (completed / total) * 100 : 0}%"
             ></div>
           </div>
@@ -134,9 +130,9 @@
         <div class="px-5 pb-5 -mt-1">
           <a
             href={next.path}
-            class="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium
-              text-text-inverse {colours.accent} transition-all duration-[var(--duration-normal)]
-              hover:opacity-90 active:scale-[0.98]"
+            class="inline-flex items-center gap-2 rounded-sm px-4 py-2.5 text-sm font-medium
+              bg-ink text-ground transition-all duration-[var(--duration-normal)]
+              hover:bg-ink/85 active:scale-[0.98]"
           >
             Continue: {next.title}
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -149,7 +145,7 @@
       <!-- Expanded step list -->
       {#if isExpanded}
         <div class="px-5 pb-5 space-y-1">
-          <div class="border-t border-stone-100 pt-4 mb-3"></div>
+          <div class="border-t border-rule pt-4 mb-3"></div>
 
           {#each path.steps as step, i (step.path)}
             {@const stepDone = progress.includes(step.path) || completedArticles.includes(step.path)}
@@ -157,27 +153,26 @@
 
             <a
               href={step.path}
-              class="group flex items-center gap-3 rounded-xl p-3 -mx-1 transition-all duration-[var(--duration-normal)]
-                {isCurrent ? colours.bg + ' ' + colours.border + ' border' : 'hover:bg-stone-50'}
+              class="group flex items-center gap-3 rounded-sm p-3 -mx-1 transition-all duration-[var(--duration-normal)]
+                {isCurrent ? 'border border-ink' : 'hover:bg-ground'}
                 {stepDone ? 'opacity-70' : ''}"
             >
               <!-- Step indicator -->
               <div class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center
-                {stepDone ? 'bg-sage-100' : isCurrent ? colours.bg : 'bg-stone-100'}">
+                {stepDone ? 'bg-verified-wash' : isCurrent ? 'bg-ink' : 'bg-ground border border-rule'}">
                 {#if stepDone}
-                  <svg class="w-4 h-4 text-sage-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-4 h-4 text-verified" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
                 {:else}
-                  <span class="text-xs font-medium {isCurrent ? colours.text : 'text-stone-400'}">{i + 1}</span>
+                  <span class="text-xs font-medium {isCurrent ? 'text-ground' : 'text-faint'}">{i + 1}</span>
                 {/if}
               </div>
 
               <!-- Step content -->
               <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium leading-snug
-                  {stepDone ? 'line-through text-text-muted' : ''}
-                  {isCurrent ? colours.text : ''}">
+                  {stepDone ? 'line-through text-text-muted' : ''}">
                   {step.title}
                 </p>
                 <span class="text-xs text-text-muted">{step.estimatedMinutes} min</span>
@@ -185,7 +180,7 @@
 
               <!-- Arrow for current -->
               {#if isCurrent}
-                <svg class="w-4 h-4 {colours.text} flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-4 h-4 text-ink flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               {/if}
@@ -197,10 +192,10 @@
             <div class="pt-3">
               <button
                 onclick={() => handleStart(path.id)}
-                class="w-full rounded-xl py-3 text-sm font-medium cursor-pointer
-                  {colours.bg} {colours.text} border {colours.border}
+                class="w-full rounded-sm py-3 text-sm font-medium cursor-pointer
+                  bg-ink text-ground
                   transition-all duration-[var(--duration-normal)]
-                  hover:opacity-90 active:scale-[0.98]"
+                  hover:bg-ink/85 active:scale-[0.98]"
               >
                 {completed > 0 ? 'Set as active path' : 'Start this path'}
               </button>

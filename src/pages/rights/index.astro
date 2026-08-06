@@ -25,11 +25,11 @@ const QUESTIONS = [
 
   <!-- Interactive tools -->
   <section class="px-5 pb-6">
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Tools</h2>
+    <h2 class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Tools</h2>
     <div class="flex flex-col gap-2.5">
-      <a href="/rights/section-87-checker" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-water-50 to-water-100 border border-water-200 hover:border-water-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <div class="w-10 h-10 rounded-lg bg-water-500 flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <a href="/rights/section-87-checker" class="group flex items-center gap-3 rounded-sm bg-white border border-rule hover:border-quiet p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
           </svg>
         </div>
@@ -38,9 +38,9 @@ const QUESTIONS = [
           <p class="text-xs text-text-muted">Find out if your income is likely tax-exempt</p>
         </div>
       </a>
-      <a href="/self/benefits" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-sage-50 to-water-50 border border-stone-200 hover:border-water-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <div class="w-10 h-10 rounded-lg bg-sage-500 flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <a href="/self/benefits" class="group flex items-center gap-3 rounded-sm bg-white border border-rule hover:border-quiet p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
           </svg>
         </div>
@@ -49,9 +49,9 @@ const QUESTIONS = [
           <p class="text-xs text-text-muted">Discover every benefit you might be entitled to</p>
         </div>
       </a>
-      <a href="/rights/carry-cards" class="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-water-50 to-water-100 border border-water-200 hover:border-water-300 p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
-        <div class="w-10 h-10 rounded-lg bg-water-500 flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <a href="/rights/carry-cards" class="group flex items-center gap-3 rounded-sm bg-white border border-rule hover:border-quiet p-4 transition-all duration-[var(--duration-normal)] active:scale-[0.98]">
+        <div class="w-10 h-10 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="6" width="20" height="13" rx="2" /><path d="M2 11h20M6 15h4" />
           </svg>
         </div>
@@ -65,7 +65,7 @@ const QUESTIONS = [
 
   <!-- Articles grouped by category -->
   <section class="px-5 pb-10">
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Taxation</h2>
+    <h2 class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Taxation</h2>
     <div class="flex flex-col gap-2.5 mb-6">
       <TopicCard
         client:idle
@@ -77,7 +77,7 @@ const QUESTIONS = [
       />
     </div>
 
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Health</h2>
+    <h2 class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Health</h2>
     <div class="flex flex-col gap-2.5 mb-6">
       <TopicCard
         client:idle
@@ -98,7 +98,7 @@ const QUESTIONS = [
       />
     </div>
 
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Community Wealth</h2>
+    <h2 class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Community Wealth</h2>
     <div class="flex flex-col gap-2.5 mb-6">
       <TopicCard
         client:idle
@@ -119,7 +119,7 @@ const QUESTIONS = [
       />
     </div>
 
-    <h2 class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Education</h2>
+    <h2 class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Education</h2>
     <div class="flex flex-col gap-2.5">
       <TopicCard
         client:idle

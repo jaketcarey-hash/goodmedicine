@@ -24,38 +24,38 @@ const year = ledger ? ledger.coverageEnd.slice(0, 4) : '';
   ledger && variant === 'compact' && (
     <a
       href="/nations/ledger"
-      class="group block bg-ink rounded-lg px-6 py-6 hover:bg-cedar-dark
+      class="group block bg-ink rounded-sm px-6 py-6 hover:bg-ink/90
         transition-colors duration-[var(--duration-normal)]"
     >
       <div class="flex items-baseline gap-3 mb-3">
-        <span class="font-record text-4xl leading-none text-paper">{ledger.total}</span>
-        <span class="text-sm text-stone-300 leading-snug">
+        <span class="font-record text-4xl leading-none text-ground">{ledger.total}</span>
+        <span class="text-sm text-ground/70 leading-snug">
           material developments
           <br />
           tracked in {year}
         </span>
         <span
-          class="text-paper text-lg ml-auto self-center group-hover:translate-x-1 transition-transform duration-[var(--duration-normal)]"
+          class="text-ground text-lg ml-auto self-center group-hover:translate-x-1 transition-transform duration-[var(--duration-normal)]"
           aria-hidden="true"
         >
           &rarr;
         </span>
       </div>
 
-      <p class="text-[13px] leading-relaxed text-stone-400 mb-4">
+      <p class="text-[13px] leading-relaxed text-ground/60 mb-4">
         Each one placed on a stage from first discussion through to operating, and rated
         for how firmly the record supports it.
       </p>
 
-      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 pt-3 border-t border-stone-700">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 pt-3 border-t border-ground/25">
         <span class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-forest" aria-hidden="true" />
-          <span class="text-xs text-stone-300">{ledger.high} high confidence</span>
+          <span class="w-2 h-2 bg-verified" aria-hidden="true" />
+          <span class="text-xs text-ground/70">{ledger.high} high confidence</span>
         </span>
         {ledger.medium > 0 && (
           <span class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-clay-400" aria-hidden="true" />
-            <span class="text-xs text-stone-300">{ledger.medium} medium</span>
+            <span class="w-2 h-2 bg-unsettled" aria-hidden="true" />
+            <span class="text-xs text-ground/70">{ledger.medium} medium</span>
           </span>
         )}
       </div>
@@ -67,22 +67,22 @@ const year = ledger ? ledger.coverageEnd.slice(0, 4) : '';
   ledger && variant === 'wide' && (
     <a
       href="/nations/ledger"
-      class="group block bg-ink rounded-lg px-5 py-5 md:px-8 md:py-6
-        hover:bg-cedar-dark transition-colors duration-[var(--duration-normal)]"
+      class="group block bg-ink rounded-sm px-5 py-5 md:px-8 md:py-6
+        hover:bg-ink/90 transition-colors duration-[var(--duration-normal)]"
     >
       <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
         <div class="flex items-baseline gap-3 shrink-0">
-          <span class="font-record text-4xl md:text-5xl leading-none text-paper">
+          <span class="font-record text-4xl md:text-5xl leading-none text-ground">
             {ledger.total}
           </span>
-          <span class="text-sm text-stone-300 leading-snug">
+          <span class="text-sm text-ground/70 leading-snug">
             material developments
             <br class="hidden lg:block" />
             tracked in {year}
           </span>
         </div>
 
-        <p class="text-sm text-stone-300 leading-relaxed lg:border-l lg:border-stone-600 lg:pl-8 lg:max-w-md">
+        <p class="text-sm text-ground/70 leading-relaxed lg:border-l lg:border-ground/25 lg:pl-8 lg:max-w-md">
           Ownership stakes, financing, court decisions and approvals — each one placed on
           a stage from first discussion through to operating, and rated for how firmly
           the record supports it.
@@ -90,17 +90,17 @@ const year = ledger ? ledger.coverageEnd.slice(0, 4) : '';
 
         <div class="flex items-center gap-4 lg:ml-auto shrink-0">
           <span class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-forest" aria-hidden="true" />
-            <span class="text-xs text-stone-300">{ledger.high} high confidence</span>
+            <span class="w-2 h-2 bg-verified" aria-hidden="true" />
+            <span class="text-xs text-ground/70">{ledger.high} high confidence</span>
           </span>
           {ledger.medium > 0 && (
             <span class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-clay-400" aria-hidden="true" />
-              <span class="text-xs text-stone-300">{ledger.medium} medium</span>
+              <span class="w-2 h-2 bg-unsettled" aria-hidden="true" />
+              <span class="text-xs text-ground/70">{ledger.medium} medium</span>
             </span>
           )}
           <span
-            class="text-paper text-lg group-hover:translate-x-1 transition-transform duration-[var(--duration-normal)]"
+            class="text-ground text-lg group-hover:translate-x-1 transition-transform duration-[var(--duration-normal)]"
             aria-hidden="true"
           >
             &rarr;
@@ -108,7 +108,7 @@ const year = ledger ? ledger.coverageEnd.slice(0, 4) : '';
         </div>
       </div>
 
-      <p class="text-[11px] text-stone-400 mt-4 md:mt-5">
+      <p class="text-[11px] text-ground/60 mt-4 md:mt-5">
         Covering {formatDate(ledger.coverageStart)} to {formatDate(ledger.coverageEnd)}
       </p>
     </a>

@@ -109,58 +109,8 @@
   --color-cedar-dark: #114C38;
   --color-forest: #17654A;
 
-  /* Old branch ramps. Decorative, colour-blind-unsafe when carrying
-     meaning; slated for removal. */
-  --color-stone-50: #faf8f5;
-  --color-stone-100: #f2ede6;
-  --color-stone-200: #e5ddd1;
-  --color-stone-300: #d4c8b8;
-  --color-stone-400: #b8a78f;
-  --color-stone-500: #9c8a70;
-  --color-stone-600: #7d6d56;
-  --color-stone-700: #5e5140;
-  --color-stone-800: #3f362b;
-  --color-stone-900: #231e17;
-  --color-sage-50: #f4f7f4;
-  --color-sage-100: #e3ebe3;
-  --color-sage-200: #c5d6c5;
-  --color-sage-300: #9db89d;
-  --color-sage-400: #759775;
-  --color-sage-500: #587b58;
-  --color-sage-600: #436143;
-  --color-sage-700: #354d35;
-  --color-sage-800: #273827;
-  --color-sage-900: #1a261a;
-  --color-water-50: #f0f5f8;
-  --color-water-100: #dbe8f0;
-  --color-water-200: #b3cfe0;
-  --color-water-300: #7fafc9;
-  --color-water-400: #5591b0;
-  --color-water-500: #3d7493;
-  --color-water-600: #305b74;
-  --color-water-700: #264758;
-  --color-water-800: #1c333f;
-  --color-water-900: #121f28;
-  --color-clay-50: #faf5f0;
-  --color-clay-100: #f0e4d5;
-  --color-clay-200: #e0c7a8;
-  --color-clay-300: #cda577;
-  --color-clay-400: #b8864e;
-  --color-clay-500: #9a6d3a;
-  --color-clay-600: #7a562e;
-  --color-clay-700: #5c4023;
-  --color-clay-800: #3f2c18;
-  --color-clay-900: #271b0f;
-  --color-berry-50: #f9f3f5;
-  --color-berry-100: #f0e0e5;
-  --color-berry-200: #dfbcc7;
-  --color-berry-300: #c98ea0;
-  --color-berry-400: #b0667e;
-  --color-berry-500: #924862;
-  --color-berry-600: #733a4e;
-  --color-berry-700: #562c3b;
-  --color-berry-800: #3b1e28;
-  --color-berry-900: #241318;
+  /* The old branch ramps (stone/sage/water/clay/berry) were retired
+     2026-08-06 once their last consumer was converted. */
 
   /* Old shadows. The new surface draws structure with rules, not
      elevation; these stay only for unconverted cards. */

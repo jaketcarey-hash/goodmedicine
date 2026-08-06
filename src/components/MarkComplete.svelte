@@ -83,28 +83,26 @@
 </script>
 
 <div class="mt-10 mb-4">
-  <div class="rounded-2xl border border-stone-200 bg-surface-card overflow-hidden
+  <div class="rounded-sm border border-rule bg-white overflow-hidden
     transition-all duration-[var(--duration-normal)]
-    {justCompleted ? 'border-sage-300 shadow-md' : ''}">
+    {justCompleted ? 'border-verified shadow-md' : ''}">
 
     {#if pathJustFinished && justCompleted}
       <!-- Path complete celebration -->
-      <div class="p-6 text-center bg-gradient-to-br from-sage-50 to-water-50">
-        <div class="w-14 h-14 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-sage-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 6L9 17l-5-5" />
-          </svg>
-        </div>
+      <div class="p-6 text-center">
+        <svg class="w-8 h-8 text-verified mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
         <p class="text-lg font-semibold mb-1">Path complete</p>
         <p class="text-sm text-text-secondary">
           You finished <strong>{finishedPathName}</strong>. That knowledge is yours now.
         </p>
         <a
           href="/learn"
-          class="inline-block mt-4 rounded-xl px-5 py-2.5 text-sm font-medium
-            bg-sage-500 text-text-inverse
+          class="inline-block mt-4 rounded-sm px-5 py-2.5 text-sm font-medium
+            bg-ink text-ground
             transition-all duration-[var(--duration-normal)]
-            hover:opacity-90 active:scale-[0.98]"
+            hover:bg-ink/85 active:scale-[0.98]"
         >
           Back to Learning Paths
         </a>
@@ -114,9 +112,9 @@
       <!-- Already completed / just marked complete -->
       <div class="p-5">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center flex-shrink-0
+          <div class="w-10 h-10 rounded-full bg-verified-wash flex items-center justify-center flex-shrink-0
             {justCompleted ? 'animate-[scale-in_0.3s_var(--ease-spring)]' : ''}">
-            <svg class="w-5 h-5 text-sage-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-5 h-5 text-verified" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 6L9 17l-5-5" />
             </svg>
           </div>
@@ -131,15 +129,15 @@
         {#if nextStep}
           <a
             href={nextStep.path}
-            class="mt-4 flex items-center justify-between gap-3 rounded-xl
-              bg-stone-50 hover:bg-stone-100 p-4
+            class="mt-4 flex items-center justify-between gap-3 rounded-sm
+              border border-rule bg-white hover:border-quiet p-4
               transition-all duration-[var(--duration-normal)] active:scale-[0.98]"
           >
             <div>
               <p class="text-xs text-text-muted">Next up</p>
               <p class="text-sm font-medium mt-0.5">{nextStep.title}</p>
             </div>
-            <svg class="w-5 h-5 text-stone-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-5 h-5 text-faint flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 18l6-6-6-6" />
             </svg>
           </a>
@@ -151,10 +149,10 @@
       <div class="p-5">
         <button
           onclick={handleComplete}
-          class="w-full rounded-xl py-3.5 text-sm font-medium cursor-pointer
-            bg-sage-500 text-text-inverse border-none
+          class="w-full rounded-sm py-3.5 text-sm font-medium cursor-pointer
+            bg-ink text-ground border-none
             transition-all duration-[var(--duration-normal)]
-            hover:bg-sage-600 active:scale-[0.98]"
+            hover:bg-ink/85 active:scale-[0.98]"
         >
           Mark as complete
         </button>

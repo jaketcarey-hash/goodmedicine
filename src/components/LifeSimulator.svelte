@@ -17,50 +17,39 @@
     id: Scenario;
     label: string;
     description: string;
-    accent: string;
-    accentBg: string;
     icon: string;
   }
 
+  // Scenario accents removed with the earth ramps — a scenario is not a meaning.
   const scenarios: ScenarioOption[] = [
     {
       id: 'moving-work',
       label: 'Moving off reserve for work',
       description: 'See how taxes and city costs change your take-home pay.',
-      accent: 'text-sage-600',
-      accentBg: 'bg-sage-50 border-sage-200 hover:border-sage-300',
       icon: 'briefcase',
     },
     {
       id: 'leaving-school',
       label: 'Leaving for school',
       description: 'Budget projection for your education move.',
-      accent: 'text-water-600',
-      accentBg: 'bg-water-50 border-water-200 hover:border-water-300',
       icon: 'book',
     },
     {
       id: 'moving-back',
       label: 'Moving back home',
       description: 'See what changes when you return to reserve.',
-      accent: 'text-clay-600',
-      accentBg: 'bg-clay-50 border-clay-200 hover:border-clay-300',
       icon: 'home',
     },
     {
       id: 'starting-business',
       label: 'Starting a business',
       description: 'Estimate startup costs against your current income.',
-      accent: 'text-berry-600',
-      accentBg: 'bg-berry-50 border-berry-200 hover:border-berry-300',
       icon: 'store',
     },
     {
       id: 'retiring',
       label: 'Retiring',
       description: 'Compare working income to retirement income.',
-      accent: 'text-stone-600',
-      accentBg: 'bg-stone-50 border-stone-200 hover:border-stone-300',
       icon: 'sunset',
     },
   ];
@@ -367,9 +356,9 @@
       {#each scenarios as s}
         <button
           onclick={() => selectScenario(s.id)}
-          class="w-full text-left rounded-2xl border p-5 transition-all duration-200 cursor-pointer active:scale-[0.98] {s.accentBg}"
+          class="w-full text-left rounded-sm border border-rule bg-white hover:border-quiet p-5 transition-all duration-200 cursor-pointer active:scale-[0.98]"
         >
-          <p class="text-base font-semibold {s.accent}">{s.label}</p>
+          <p class="text-base font-semibold">{s.label}</p>
           <p class="text-sm text-text-secondary mt-1">{s.description}</p>
         </button>
       {/each}
@@ -377,11 +366,11 @@
 
   <!-- Active scenario flow -->
   {:else if !showResults}
-    <div class="rounded-2xl bg-surface-card border border-stone-200 overflow-hidden shadow-lg">
+    <div class="rounded-sm bg-white border border-rule overflow-hidden shadow-lg">
       <!-- Progress bar -->
-      <div class="h-1 bg-stone-100">
+      <div class="h-1 bg-rule">
         <div
-          class="h-full bg-gradient-to-r from-sage-400 to-water-400 transition-all duration-500 ease-[var(--ease-out)]"
+          class="h-full bg-ink transition-all duration-500 ease-[var(--ease-out)]"
           style="width: {((step + 1) / totalSteps) * 100}%"
         ></div>
       </div>
@@ -400,15 +389,15 @@
                 <div class="flex gap-2">
                   <button
                     onclick={() => incomeType = 'annual'}
-                    class="flex-1 py-2.5 rounded-xl text-sm font-medium border-2 transition-all cursor-pointer
-                      {incomeType === 'annual' ? 'bg-stone-900 text-white border-stone-900' : 'border-stone-200 text-text-secondary hover:border-stone-300'}"
+                    class="flex-1 py-2.5 rounded-sm text-sm font-medium border-2 transition-all cursor-pointer
+                      {incomeType === 'annual' ? 'bg-ink text-ground border-ink' : 'border-rule text-text-secondary hover:border-quiet'}"
                   >
                     Annual salary
                   </button>
                   <button
                     onclick={() => incomeType = 'hourly'}
-                    class="flex-1 py-2.5 rounded-xl text-sm font-medium border-2 transition-all cursor-pointer
-                      {incomeType === 'hourly' ? 'bg-stone-900 text-white border-stone-900' : 'border-stone-200 text-text-secondary hover:border-stone-300'}"
+                    class="flex-1 py-2.5 rounded-sm text-sm font-medium border-2 transition-all cursor-pointer
+                      {incomeType === 'hourly' ? 'bg-ink text-ground border-ink' : 'border-rule text-text-secondary hover:border-quiet'}"
                   >
                     Hourly wage
                   </button>
@@ -426,8 +415,8 @@
                         bind:value={annualIncome}
                         placeholder="45,000"
                         min="0"
-                        class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm
-                          placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+                        class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm
+                          placeholder:text-faint focus:border-ink
                           focus:outline-none transition-colors"
                       />
                     </div>
@@ -445,8 +434,8 @@
                           bind:value={hourlyRate}
                           placeholder="22"
                           min="0"
-                          class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm
-                            placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+                          class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm
+                            placeholder:text-faint focus:border-ink
                             focus:outline-none transition-colors"
                         />
                       </div>
@@ -461,8 +450,8 @@
                         placeholder="40"
                         min="0"
                         max="80"
-                        class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-                          placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+                        class="w-full rounded-sm border border-rule bg-white px-3 py-2.5 text-sm
+                          placeholder:text-faint focus:border-ink
                           focus:outline-none transition-colors"
                       />
                     </div>
@@ -476,16 +465,16 @@
                 {/if}
 
                 <!-- Tax exemption -->
-                <div class="rounded-xl bg-water-50 border border-water-200 p-4">
+                <div class="rounded-sm border border-rule p-4">
                   <label class="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
                       bind:checked={isExempt}
-                      class="mt-0.5 rounded border-stone-300 text-water-600 focus:ring-water-300 cursor-pointer"
+                      class="mt-0.5 rounded-sm border-quiet text-ink focus:ring-ink cursor-pointer"
                     />
                     <div>
-                      <p class="text-sm font-medium text-water-700">Income is currently tax-exempt</p>
-                      <p class="text-xs text-water-600 mt-0.5">Under Section 87 of the Indian Act, employment income earned on reserve is exempt from federal and provincial income tax.</p>
+                      <p class="text-sm font-medium text-ink">Income is currently tax-exempt</p>
+                      <p class="text-xs text-quiet mt-0.5">Under Section 87 of the Indian Act, employment income earned on reserve is exempt from federal and provincial income tax.</p>
                     </div>
                   </label>
                 </div>
@@ -502,8 +491,8 @@
                       bind:value={currentExpenses}
                       placeholder="1,200"
                       min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm
-                        placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm
+                        placeholder:text-faint focus:border-ink
                         focus:outline-none transition-colors"
                     />
                   </div>
@@ -523,8 +512,8 @@
                 <select
                   id="city-select"
                   bind:value={selectedCity}
-                  class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-                    focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+                  class="w-full rounded-sm border border-rule bg-white px-3 py-2.5 text-sm
+                    focus:border-ink
                     focus:outline-none transition-colors cursor-pointer"
                 >
                   {#each allCities as c}
@@ -534,8 +523,8 @@
               </div>
 
               {#if city}
-                <div class="mt-4 rounded-xl bg-stone-50 border border-stone-200 p-4">
-                  <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Estimated monthly costs in {city.name}</p>
+                <div class="mt-4 rounded-sm border border-rule p-4">
+                  <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Estimated monthly costs in {city.name}</p>
                   <div class="space-y-2">
                     <div class="flex justify-between text-sm">
                       <span class="text-text-secondary">Rent (1-bedroom)</span>
@@ -557,7 +546,7 @@
                       <span class="text-text-secondary">Phone</span>
                       <span class="font-medium">${fmt(city.phone)}</span>
                     </div>
-                    <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+                    <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                       <span>Total</span>
                       <span>${fmt(estimateMonthlyCosts(city))}</span>
                     </div>
@@ -580,8 +569,8 @@
                 ] as option}
                   <button
                     onclick={() => workType = option.value as 'same' | 'different' | 'new'}
-                    class="w-full text-left rounded-xl border-2 p-4 transition-all duration-200 cursor-pointer
-                      {workType === option.value ? 'border-sage-400 bg-sage-50' : 'border-stone-200 hover:border-stone-300'}"
+                    class="w-full text-left rounded-sm border-2 p-4 transition-all duration-200 cursor-pointer
+                      {workType === option.value ? 'border-ink' : 'border-rule hover:border-quiet'}"
                   >
                     <p class="text-sm font-medium">{option.label}</p>
                     <p class="text-xs text-text-muted mt-0.5">{option.desc}</p>
@@ -604,8 +593,8 @@
                 <select
                   id="school-city"
                   bind:value={selectedCity}
-                  class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-                    focus:border-water-300 focus:ring-1 focus:ring-water-200
+                  class="w-full rounded-sm border border-rule bg-white px-3 py-2.5 text-sm
+                    focus:border-ink
                     focus:outline-none transition-colors cursor-pointer"
                 >
                   {#each allCities as c}
@@ -615,8 +604,8 @@
               </div>
 
               {#if city}
-                <div class="mt-4 rounded-xl bg-stone-50 border border-stone-200 p-4">
-                  <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-2">Monthly living costs in {city.name}</p>
+                <div class="mt-4 rounded-sm border border-rule p-4">
+                  <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-2">Monthly living costs in {city.name}</p>
                   <p class="text-2xl font-bold">${fmt(estimateMonthlyCosts(city))}</p>
                 </div>
               {/if}
@@ -634,7 +623,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="band-funding" type="number" inputmode="numeric" bind:value={bandFunding} placeholder="0" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-water-300 focus:ring-1 focus:ring-water-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
@@ -642,7 +631,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="scholarships" type="number" inputmode="numeric" bind:value={scholarships} placeholder="0" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-water-300 focus:ring-1 focus:ring-water-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
@@ -650,7 +639,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="savings-draw" type="number" inputmode="numeric" bind:value={savings} placeholder="0" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-water-300 focus:ring-1 focus:ring-water-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
@@ -658,7 +647,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="part-time" type="number" inputmode="numeric" bind:value={partTimeWork} placeholder="0" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-water-300 focus:ring-1 focus:ring-water-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
               </div>
@@ -675,7 +664,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                   <input id="tuition" type="number" inputmode="numeric" bind:value={tuition} placeholder="500" min="0"
-                    class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-water-300 focus:ring-1 focus:ring-water-200 focus:outline-none transition-colors" />
+                    class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                 </div>
               </div>
             </div>
@@ -695,8 +684,8 @@
                   <select
                     id="current-city"
                     bind:value={currentCity}
-                    class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-                      focus:border-clay-300 focus:ring-1 focus:ring-clay-200
+                    class="w-full rounded-sm border border-rule bg-white px-3 py-2.5 text-sm
+                      focus:border-ink
                       focus:outline-none transition-colors cursor-pointer"
                   >
                     {#each allCities as c}
@@ -710,7 +699,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="city-income" type="number" inputmode="numeric" bind:value={annualIncome} placeholder="45,000" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-clay-300 focus:ring-1 focus:ring-clay-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
               </div>
@@ -728,7 +717,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="reserve-income" type="number" inputmode="numeric" bind:value={reserveIncome} placeholder="2,500" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-clay-300 focus:ring-1 focus:ring-clay-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
 
@@ -737,13 +726,13 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="reserve-expenses" type="number" inputmode="numeric" bind:value={currentExpenses} placeholder="800" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-clay-300 focus:ring-1 focus:ring-clay-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                   <p class="text-xs text-text-muted mt-1">Many costs are lower on reserve — housing may be covered, no transit needed.</p>
                 </div>
 
-                <div class="rounded-xl bg-water-50 border border-water-200 p-4">
-                  <p class="text-sm text-water-700">On-reserve employment income is typically exempt from income tax under Section 87 of the Indian Act.</p>
+                <div class="rounded-sm border border-rule p-4">
+                  <p class="text-sm text-quiet">On-reserve employment income is typically exempt from income tax under Section 87 of the Indian Act.</p>
                 </div>
               </div>
             </div>
@@ -763,16 +752,16 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="biz-current-income" type="number" inputmode="numeric" bind:value={annualIncome} placeholder="45,000" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
 
-                <div class="rounded-xl bg-water-50 border border-water-200 p-4">
+                <div class="rounded-sm border border-rule p-4">
                   <label class="flex items-start gap-3 cursor-pointer">
                     <input type="checkbox" bind:checked={isExempt}
-                      class="mt-0.5 rounded border-stone-300 text-water-600 focus:ring-water-300 cursor-pointer" />
+                      class="mt-0.5 rounded-sm border-quiet text-ink focus:ring-ink cursor-pointer" />
                     <div>
-                      <p class="text-sm font-medium text-water-700">Current income is tax-exempt (Section 87)</p>
+                      <p class="text-sm font-medium text-ink">Current income is tax-exempt (Section 87)</p>
                     </div>
                   </label>
                 </div>
@@ -782,7 +771,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="biz-current-expenses" type="number" inputmode="numeric" bind:value={currentExpenses} placeholder="1,200" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
               </div>
@@ -800,7 +789,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="expected-revenue" type="number" inputmode="numeric" bind:value={expectedRevenue} placeholder="5,000" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
 
@@ -809,7 +798,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="biz-expenses" type="number" inputmode="numeric" bind:value={businessExpenses} placeholder="2,000" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                   <p class="text-xs text-text-muted mt-1">Rent, supplies, insurance, marketing, etc.</p>
                 </div>
@@ -819,7 +808,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="startup-costs" type="number" inputmode="numeric" bind:value={startupCosts} placeholder="10,000" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-berry-300 focus:ring-1 focus:ring-berry-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                   <p class="text-xs text-text-muted mt-1">We'll spread this across the first 12 months.</p>
                 </div>
@@ -832,13 +821,13 @@
               <h3 class="text-xl font-semibold mb-2">Tax situation</h3>
               <p class="text-sm text-text-secondary mb-5">Where will the business operate?</p>
 
-              <div class="rounded-xl bg-water-50 border border-water-200 p-4">
+              <div class="rounded-sm border border-rule p-4">
                 <label class="flex items-start gap-3 cursor-pointer">
                   <input type="checkbox" bind:checked={onReserve}
-                    class="mt-0.5 rounded border-stone-300 text-water-600 focus:ring-water-300 cursor-pointer" />
+                    class="mt-0.5 rounded-sm border-quiet text-ink focus:ring-ink cursor-pointer" />
                   <div>
-                    <p class="text-sm font-medium text-water-700">Business will operate on reserve</p>
-                    <p class="text-xs text-water-600 mt-0.5">Business income earned on reserve by a Status Indian may qualify for Section 87 tax exemption. Rules are complex — consult a tax professional.</p>
+                    <p class="text-sm font-medium text-ink">Business will operate on reserve</p>
+                    <p class="text-xs text-quiet mt-0.5">Business income earned on reserve by a Status Indian may qualify for Section 87 tax exemption. Rules are complex — consult a tax professional.</p>
                   </div>
                 </label>
               </div>
@@ -859,16 +848,16 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="retire-income" type="number" inputmode="numeric" bind:value={annualIncome} placeholder="55,000" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-stone-300 focus:ring-1 focus:ring-stone-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
 
-                <div class="rounded-xl bg-water-50 border border-water-200 p-4">
+                <div class="rounded-sm border border-rule p-4">
                   <label class="flex items-start gap-3 cursor-pointer">
                     <input type="checkbox" bind:checked={isExempt}
-                      class="mt-0.5 rounded border-stone-300 text-water-600 focus:ring-water-300 cursor-pointer" />
+                      class="mt-0.5 rounded-sm border-quiet text-ink focus:ring-ink cursor-pointer" />
                     <div>
-                      <p class="text-sm font-medium text-water-700">Current income is tax-exempt (Section 87)</p>
+                      <p class="text-sm font-medium text-ink">Current income is tax-exempt (Section 87)</p>
                     </div>
                   </label>
                 </div>
@@ -878,7 +867,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="retire-expenses" type="number" inputmode="numeric" bind:value={currentExpenses} placeholder="1,500" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-stone-300 focus:ring-1 focus:ring-stone-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
               </div>
@@ -896,7 +885,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="cpp-income" type="number" inputmode="numeric" bind:value={cppAmount} placeholder="800" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-stone-300 focus:ring-1 focus:ring-stone-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
@@ -904,7 +893,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="oas-income" type="number" inputmode="numeric" bind:value={oasAmount} placeholder="700" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-stone-300 focus:ring-1 focus:ring-stone-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
@@ -912,7 +901,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="pension-income" type="number" inputmode="numeric" bind:value={pensionAmount} placeholder="0" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-stone-300 focus:ring-1 focus:ring-stone-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
@@ -920,17 +909,17 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">$</span>
                     <input id="retirement-savings" type="number" inputmode="numeric" bind:value={retirementSavings} placeholder="500" min="0"
-                      class="w-full rounded-lg border border-stone-200 bg-surface-warm pl-7 pr-3 py-2.5 text-sm placeholder:text-stone-400 focus:border-stone-300 focus:ring-1 focus:ring-stone-200 focus:outline-none transition-colors" />
+                      class="w-full rounded-sm border border-rule bg-white pl-7 pr-3 py-2.5 text-sm placeholder:text-faint focus:border-ink focus:outline-none transition-colors" />
                   </div>
                 </div>
 
-                <div class="rounded-xl bg-water-50 border border-water-200 p-4">
+                <div class="rounded-sm border border-rule p-4">
                   <label class="flex items-start gap-3 cursor-pointer">
                     <input type="checkbox" bind:checked={retireOnReserve}
-                      class="mt-0.5 rounded border-stone-300 text-water-600 focus:ring-water-300 cursor-pointer" />
+                      class="mt-0.5 rounded-sm border-quiet text-ink focus:ring-ink cursor-pointer" />
                     <div>
-                      <p class="text-sm font-medium text-water-700">Retiring on reserve</p>
-                      <p class="text-xs text-water-600 mt-0.5">CPP and OAS are generally not exempt under Section 87, but pension income from on-reserve employment may be. Rules vary.</p>
+                      <p class="text-sm font-medium text-ink">Retiring on reserve</p>
+                      <p class="text-xs text-quiet mt-0.5">CPP and OAS are generally not exempt under Section 87, but pension income from on-reserve employment may be. Rules vary.</p>
                     </div>
                   </label>
                 </div>
@@ -940,7 +929,7 @@
         {/if}
 
         <!-- Navigation -->
-        <div class="flex items-center justify-between mt-6 pt-4 border-t border-stone-100">
+        <div class="flex items-center justify-between mt-6 pt-4 border-t border-rule">
           <button
             onclick={back}
             class="text-sm text-text-muted hover:text-text-secondary transition-colors cursor-pointer"
@@ -950,8 +939,8 @@
 
           <button
             onclick={next}
-            class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
-              bg-stone-900 text-white hover:bg-stone-800 active:scale-95"
+            class="px-5 py-2.5 rounded-sm text-sm font-semibold transition-all duration-200 cursor-pointer
+              bg-ink text-ground hover:bg-ink/85 active:scale-95"
           >
             {step === totalSteps - 1 ? 'See results' : 'Continue'}
           </button>
@@ -968,8 +957,8 @@
         {@const r = movingWorkResult}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <!-- Current card -->
-          <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">Current</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Current</p>
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Gross monthly</span>
@@ -977,7 +966,7 @@
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Income tax</span>
-                <span class="font-medium {r.currentTax === 0 ? 'text-sage-600' : ''}">{r.currentTax === 0 ? '$0 (exempt)' : `-$${fmt(r.currentTax)}`}</span>
+                <span class="font-medium {r.currentTax === 0 ? 'text-verified' : ''}">{r.currentTax === 0 ? '$0 (exempt)' : `-$${fmt(r.currentTax)}`}</span>
               </div>
               {#if r.currentDeductions > 0}
                 <div class="flex justify-between text-sm">
@@ -989,16 +978,16 @@
                 <span class="text-text-secondary">Expenses</span>
                 <span class="font-medium">-${fmt(r.currentExp)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="text-sage-600">${fmt(r.currentNet)}</span>
+                <span>${fmt(r.currentNet)}</span>
               </div>
             </div>
           </div>
 
           <!-- After move card -->
-          <div class="rounded-2xl bg-surface-card border border-sage-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-sage-500 tracking-widest uppercase mb-4">After move to {r.cityName}</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">After move to {r.cityName}</p>
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Gross monthly</span>
@@ -1006,7 +995,7 @@
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Income tax</span>
-                <span class="font-medium text-berry-600">-${fmt(r.newTax)}</span>
+                <span class="font-medium">-${fmt(r.newTax)}</span>
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">CPP / EI</span>
@@ -1016,18 +1005,18 @@
                 <span class="text-text-secondary">Living costs</span>
                 <span class="font-medium">-${fmt(r.newCosts)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="{r.newNet >= 0 ? 'text-sage-600' : 'text-berry-600'}">{r.newNet >= 0 ? '' : '-'}${fmt(Math.abs(r.newNet))}</span>
+                <span class="{r.newNet >= 0 ? '' : 'text-unsettled'}">{r.newNet >= 0 ? '' : '-'}${fmt(Math.abs(r.newNet))}</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Difference banner -->
-        <div class="rounded-2xl p-5 text-center {r.difference >= 0 ? 'bg-sage-50 border border-sage-200' : 'bg-berry-50 border border-berry-200'}">
+        <div class="rounded-sm border border-rule bg-white p-5 text-center">
           <p class="text-xs text-text-muted mb-1">Monthly difference</p>
-          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-sage-600' : 'text-berry-600'}">
+          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-verified' : 'text-unsettled'}">
             {fmtSigned(r.difference)}
           </p>
           <p class="text-sm text-text-secondary mt-1">per month</p>
@@ -1036,20 +1025,20 @@
         <!-- Insights -->
         <div class="space-y-2">
           {#if r.wasExempt}
-            <div class="rounded-xl bg-water-50 border border-water-200 px-4 py-3">
-              <p class="text-sm text-water-700 leading-relaxed">
+            <div class="border-l-2 border-rule pl-4 py-1">
+              <p class="text-sm text-quiet leading-relaxed">
                 <span class="font-semibold">Section 87 change:</span> Moving off reserve means your employment income will likely become taxable. That's approximately ${fmt(r.newTax)}/month in income tax that you don't currently pay.
               </p>
             </div>
           {/if}
           {#if r.newTax > 0}
-            <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3">
-              <p class="text-sm text-clay-700 leading-relaxed">
+            <div class="border-l-2 border-rule pl-4 py-1">
+              <p class="text-sm text-quiet leading-relaxed">
                 Your estimated combined federal and {r.province} tax is ${fmt(r.newTax)}/month. CPP and EI add another ${fmt(r.newDeductions)}/month in deductions.
               </p>
             </div>
           {/if}
-          <div class="rounded-xl bg-stone-50 border border-stone-200 px-4 py-3">
+          <div class="border-l-2 border-rule pl-4 py-1">
             <p class="text-sm text-text-secondary leading-relaxed">
               City costs are averages. Your actual expenses will depend on where you live, how you eat, and how you get around. Use the <a href="/money/budgeting" class="underline hover:text-text-primary">budget tool</a> to build a detailed picture.
             </p>
@@ -1059,46 +1048,46 @@
       <!-- School results -->
       {:else if selectedScenario === 'leaving-school' && schoolResult}
         {@const r = schoolResult}
-        <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-          <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">Monthly budget in {r.cityName}</p>
+        <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+          <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Monthly budget in {r.cityName}</p>
 
           <div class="space-y-4">
             <div>
-              <p class="text-xs font-semibold text-sage-500 tracking-widest uppercase mb-2">Income</p>
+              <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-2">Income</p>
               <div class="space-y-2">
                 {#if r.income.band > 0}
                   <div class="flex justify-between text-sm">
                     <span class="text-text-secondary">Band / post-secondary funding</span>
-                    <span class="font-medium text-sage-600">${fmt(r.income.band)}</span>
+                    <span class="font-medium">${fmt(r.income.band)}</span>
                   </div>
                 {/if}
                 {#if r.income.scholarships > 0}
                   <div class="flex justify-between text-sm">
                     <span class="text-text-secondary">Scholarships</span>
-                    <span class="font-medium text-sage-600">${fmt(r.income.scholarships)}</span>
+                    <span class="font-medium">${fmt(r.income.scholarships)}</span>
                   </div>
                 {/if}
                 {#if r.income.savings > 0}
                   <div class="flex justify-between text-sm">
                     <span class="text-text-secondary">Savings</span>
-                    <span class="font-medium text-sage-600">${fmt(r.income.savings)}</span>
+                    <span class="font-medium">${fmt(r.income.savings)}</span>
                   </div>
                 {/if}
                 {#if r.income.work > 0}
                   <div class="flex justify-between text-sm">
                     <span class="text-text-secondary">Part-time work</span>
-                    <span class="font-medium text-sage-600">${fmt(r.income.work)}</span>
+                    <span class="font-medium">${fmt(r.income.work)}</span>
                   </div>
                 {/if}
-                <div class="flex justify-between text-sm font-semibold pt-1 border-t border-stone-100">
+                <div class="flex justify-between text-sm font-semibold pt-1 border-t border-rule">
                   <span>Total income</span>
-                  <span class="text-sage-600">${fmt(r.totalIncome)}</span>
+                  <span>${fmt(r.totalIncome)}</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <p class="text-xs font-semibold text-berry-500 tracking-widest uppercase mb-2">Expenses</p>
+              <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-2">Expenses</p>
               <div class="space-y-2">
                 <div class="flex justify-between text-sm">
                   <span class="text-text-secondary">Living costs</span>
@@ -1110,7 +1099,7 @@
                     <span class="font-medium">${fmt(r.tuition)}</span>
                   </div>
                 {/if}
-                <div class="flex justify-between text-sm font-semibold pt-1 border-t border-stone-100">
+                <div class="flex justify-between text-sm font-semibold pt-1 border-t border-rule">
                   <span>Total expenses</span>
                   <span>${fmt(r.totalExpenses)}</span>
                 </div>
@@ -1120,16 +1109,16 @@
         </div>
 
         <!-- Difference -->
-        <div class="rounded-2xl p-5 text-center {r.difference >= 0 ? 'bg-sage-50 border border-sage-200' : 'bg-berry-50 border border-berry-200'}">
+        <div class="rounded-sm border border-rule bg-white p-5 text-center">
           <p class="text-xs text-text-muted mb-1">{r.difference >= 0 ? 'Monthly surplus' : 'Monthly shortfall'}</p>
-          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-sage-600' : 'text-berry-600'}">
+          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-verified' : 'text-unsettled'}">
             {fmtSigned(r.difference)}
           </p>
         </div>
 
         {#if r.difference < 0}
-          <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3">
-            <p class="text-sm text-clay-700 leading-relaxed">
+          <div class="border-l-2 border-unsettled pl-4 py-1">
+            <p class="text-sm text-quiet leading-relaxed">
               There's a gap of ${fmt(Math.abs(r.difference))}/month. Consider applying for additional bursaries, adjusting housing, or picking up a few more hours of work.
             </p>
           </div>
@@ -1139,8 +1128,8 @@
       {:else if selectedScenario === 'moving-back' && movingBackResult}
         {@const r = movingBackResult}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">In {r.fromCity}</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">In {r.fromCity}</p>
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Gross monthly</span>
@@ -1148,7 +1137,7 @@
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Income tax</span>
-                <span class="font-medium text-berry-600">-${fmt(r.cityTax)}</span>
+                <span class="font-medium">-${fmt(r.cityTax)}</span>
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">CPP / EI</span>
@@ -1158,15 +1147,15 @@
                 <span class="text-text-secondary">Living costs</span>
                 <span class="font-medium">-${fmt(r.cityCosts)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="{r.cityNet >= 0 ? 'text-sage-600' : 'text-berry-600'}">{r.cityNet >= 0 ? '' : '-'}${fmt(Math.abs(r.cityNet))}</span>
+                <span class="{r.cityNet >= 0 ? '' : 'text-unsettled'}">{r.cityNet >= 0 ? '' : '-'}${fmt(Math.abs(r.cityNet))}</span>
               </div>
             </div>
           </div>
 
-          <div class="rounded-2xl bg-surface-card border border-clay-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-clay-500 tracking-widest uppercase mb-4">Back on reserve</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Back on reserve</p>
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Monthly income</span>
@@ -1174,35 +1163,35 @@
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Income tax</span>
-                <span class="font-medium text-sage-600">$0 (exempt)</span>
+                <span class="font-medium text-verified">$0 (exempt)</span>
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Expenses</span>
                 <span class="font-medium">-${fmt(r.reserveExp)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="{r.reserveNet >= 0 ? 'text-sage-600' : 'text-berry-600'}">{r.reserveNet >= 0 ? '' : '-'}${fmt(Math.abs(r.reserveNet))}</span>
+                <span class="{r.reserveNet >= 0 ? '' : 'text-unsettled'}">{r.reserveNet >= 0 ? '' : '-'}${fmt(Math.abs(r.reserveNet))}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="rounded-2xl p-5 text-center {r.difference >= 0 ? 'bg-sage-50 border border-sage-200' : 'bg-berry-50 border border-berry-200'}">
+        <div class="rounded-sm border border-rule bg-white p-5 text-center">
           <p class="text-xs text-text-muted mb-1">Monthly difference</p>
-          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-sage-600' : 'text-berry-600'}">
+          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-verified' : 'text-unsettled'}">
             {fmtSigned(r.difference)}
           </p>
         </div>
 
         <div class="space-y-2">
-          <div class="rounded-xl bg-water-50 border border-water-200 px-4 py-3">
-            <p class="text-sm text-water-700 leading-relaxed">
+          <div class="border-l-2 border-rule pl-4 py-1">
+            <p class="text-sm text-quiet leading-relaxed">
               <span class="font-semibold">Tax savings:</span> Moving back to reserve means your employment income becomes exempt under Section 87. That's approximately ${fmt(r.taxSavings)}/month you keep.
             </p>
           </div>
-          <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3">
-            <p class="text-sm text-clay-700 leading-relaxed">
+          <div class="border-l-2 border-rule pl-4 py-1">
+            <p class="text-sm text-quiet leading-relaxed">
               Income may be lower on reserve, but so are many costs. The net effect depends on your specific situation.
             </p>
           </div>
@@ -1212,8 +1201,8 @@
       {:else if selectedScenario === 'starting-business' && businessResult}
         {@const r = businessResult}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">Current employment</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Current employment</p>
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Gross monthly</span>
@@ -1227,15 +1216,15 @@
                 <span class="text-text-secondary">Expenses</span>
                 <span class="font-medium">-${fmt(r.currentExp)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="text-sage-600">${fmt(r.currentNet)}</span>
+                <span>${fmt(r.currentNet)}</span>
               </div>
             </div>
           </div>
 
-          <div class="rounded-2xl bg-surface-card border border-berry-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-berry-500 tracking-widest uppercase mb-4">Business (year 1)</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Business (year 1)</p>
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Revenue</span>
@@ -1253,31 +1242,31 @@
                 <span class="text-text-secondary">Startup (amortised)</span>
                 <span class="font-medium">-${fmt(r.startupMonthly)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="{r.bizNetAfterStartup >= 0 ? 'text-sage-600' : 'text-berry-600'}">{r.bizNetAfterStartup >= 0 ? '' : '-'}${fmt(Math.abs(r.bizNetAfterStartup))}</span>
+                <span class="{r.bizNetAfterStartup >= 0 ? '' : 'text-unsettled'}">{r.bizNetAfterStartup >= 0 ? '' : '-'}${fmt(Math.abs(r.bizNetAfterStartup))}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="rounded-2xl p-5 text-center {r.difference >= 0 ? 'bg-sage-50 border border-sage-200' : 'bg-berry-50 border border-berry-200'}">
+        <div class="rounded-sm border border-rule bg-white p-5 text-center">
           <p class="text-xs text-text-muted mb-1">Monthly difference (year 1)</p>
-          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-sage-600' : 'text-berry-600'}">
+          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-verified' : 'text-unsettled'}">
             {fmtSigned(r.difference)}
           </p>
         </div>
 
         <div class="space-y-2">
           {#if r.onReserve}
-            <div class="rounded-xl bg-water-50 border border-water-200 px-4 py-3">
-              <p class="text-sm text-water-700 leading-relaxed">
+            <div class="border-l-2 border-rule pl-4 py-1">
+              <p class="text-sm text-quiet leading-relaxed">
                 <span class="font-semibold">Section 87 note:</span> Business income earned on reserve by a Status Indian may be tax-exempt. The rules depend on where the work is performed, where customers are, and other factors. Get professional advice.
               </p>
             </div>
           {/if}
-          <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3">
-            <p class="text-sm text-clay-700 leading-relaxed">
+          <div class="border-l-2 border-rule pl-4 py-1">
+            <p class="text-sm text-quiet leading-relaxed">
               Year 1 is usually the hardest. After startup costs are absorbed, your net improves by ${fmt(r.startupMonthly)}/month.
             </p>
           </div>
@@ -1287,8 +1276,8 @@
       {:else if selectedScenario === 'retiring' && retireResult}
         {@const r = retireResult}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">Working</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Working</p>
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-text-secondary">Gross monthly</span>
@@ -1308,15 +1297,15 @@
                 <span class="text-text-secondary">Expenses</span>
                 <span class="font-medium">-${fmt(r.currentExp)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="text-sage-600">${fmt(r.currentNet)}</span>
+                <span>${fmt(r.currentNet)}</span>
               </div>
             </div>
           </div>
 
-          <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-            <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">Retired</p>
+          <div class="rounded-sm bg-white border border-rule p-5 shadow-sm">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Retired</p>
             <div class="space-y-2">
               {#if r.cpp > 0}
                 <div class="flex justify-between text-sm">
@@ -1350,24 +1339,24 @@
                 <span class="text-text-secondary">Expenses</span>
                 <span class="font-medium">-${fmt(parseFloat(currentExpenses) || 0)}</span>
               </div>
-              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-stone-200">
+              <div class="flex justify-between text-sm font-semibold pt-2 border-t border-rule">
                 <span>Monthly net</span>
-                <span class="{r.retirementNet >= 0 ? 'text-sage-600' : 'text-berry-600'}">{r.retirementNet >= 0 ? '' : '-'}${fmt(Math.abs(r.retirementNet))}</span>
+                <span class="{r.retirementNet >= 0 ? '' : 'text-unsettled'}">{r.retirementNet >= 0 ? '' : '-'}${fmt(Math.abs(r.retirementNet))}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="rounded-2xl p-5 text-center {r.difference >= 0 ? 'bg-sage-50 border border-sage-200' : 'bg-berry-50 border border-berry-200'}">
+        <div class="rounded-sm border border-rule bg-white p-5 text-center">
           <p class="text-xs text-text-muted mb-1">Monthly difference</p>
-          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-sage-600' : 'text-berry-600'}">
+          <p class="text-3xl font-bold {r.difference >= 0 ? 'text-verified' : 'text-unsettled'}">
             {fmtSigned(r.difference)}
           </p>
         </div>
 
         <div class="space-y-2">
-          <div class="rounded-xl bg-water-50 border border-water-200 px-4 py-3">
-            <p class="text-sm text-water-700 leading-relaxed">
+          <div class="border-l-2 border-rule pl-4 py-1">
+            <p class="text-sm text-quiet leading-relaxed">
               <span class="font-semibold">Section 87 and retirement:</span> CPP and OAS are generally not tax-exempt, even if you live on reserve. However, pension income from on-reserve employment and TFSA withdrawals remain tax-free. The details matter — speak with someone who understands both tax law and Section 87.
             </p>
           </div>
@@ -1375,7 +1364,7 @@
       {/if}
 
       <!-- Disclaimer + actions -->
-      <div class="rounded-xl bg-stone-50 border border-stone-200 px-4 py-3">
+      <div class="border-t border-rule pt-4">
         <p class="text-xs text-text-muted leading-relaxed">
           This is an estimate based on averages and simplified tax calculations. It is not financial or tax advice. Your actual situation will depend on your specific circumstances, employer, location, and tax status. Consider speaking with a tax professional who understands Section 87.
         </p>
@@ -1384,15 +1373,15 @@
       <div class="flex gap-3">
         <button
           onclick={startOver}
-          class="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-stone-900 text-white
-            hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
+          class="flex-1 py-2.5 rounded-sm text-sm font-semibold bg-ink text-ground
+            hover:bg-ink/85 active:scale-95 transition-all cursor-pointer"
         >
           Try another scenario
         </button>
         <button
           onclick={() => { showResults = false; step = 0; }}
-          class="px-4 py-2.5 rounded-xl text-sm text-text-muted hover:text-text-secondary border border-stone-200
-            hover:border-stone-300 transition-colors cursor-pointer"
+          class="px-4 py-2.5 rounded-sm text-sm text-text-muted hover:text-text-secondary border border-rule
+            hover:border-quiet transition-colors cursor-pointer"
         >
           Edit inputs
         </button>

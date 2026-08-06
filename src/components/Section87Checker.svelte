@@ -129,40 +129,33 @@
     }
   }
 
+  // The verdict is genuine meaning, so it takes a status colour — always
+  // beside the title text that says the same thing. "Not exempt" and "not
+  // eligible" are outcomes, not dangers, so they stay neutral ink.
   const outcomeConfig: Record<Outcome, {
     title: string;
-    accent: string;
-    bgGradient: string;
-    iconBg: string;
-    iconColor: string;
+    rule: string;
+    tone: string;
   }> = {
     'likely-exempt': {
       title: 'Likely exempt',
-      accent: 'sage',
-      bgGradient: 'from-sage-50 to-sage-50/30',
-      iconBg: 'bg-sage-100',
-      iconColor: 'text-sage-600',
+      rule: 'border-verified',
+      tone: 'text-verified',
     },
     'likely-not-exempt': {
       title: 'Likely not exempt',
-      accent: 'stone',
-      bgGradient: 'from-stone-100 to-stone-50/30',
-      iconBg: 'bg-stone-200',
-      iconColor: 'text-stone-600',
+      rule: 'border-rule',
+      tone: 'text-ink',
     },
     'grey-zone': {
       title: 'Grey zone',
-      accent: 'clay',
-      bgGradient: 'from-clay-50 to-clay-50/30',
-      iconBg: 'bg-clay-100',
-      iconColor: 'text-clay-600',
+      rule: 'border-unsettled',
+      tone: 'text-unsettled',
     },
     'not-eligible': {
       title: 'Not eligible',
-      accent: 'stone',
-      bgGradient: 'from-stone-100 to-stone-50/30',
-      iconBg: 'bg-stone-200',
-      iconColor: 'text-stone-600',
+      rule: 'border-rule',
+      tone: 'text-ink',
     },
   };
 </script>
@@ -170,15 +163,15 @@
 <div class="space-y-6">
   <!-- Employment income checker -->
   <div
-    class="rounded-2xl bg-surface-card border border-stone-200 overflow-hidden shadow-lg"
+    class="rounded-sm bg-surface-card border border-rule overflow-hidden shadow-lg"
     role="region"
     aria-label="Section 87 employment income eligibility checker"
   >
     <!-- Progress bar -->
     {#if step < TOTAL_STEPS}
-      <div class="h-1 bg-stone-100" role="progressbar" aria-valuenow={step + 1} aria-valuemin={1} aria-valuemax={TOTAL_STEPS}>
+      <div class="h-1 bg-rule" role="progressbar" aria-valuenow={step + 1} aria-valuemin={1} aria-valuemax={TOTAL_STEPS}>
         <div
-          class="h-full bg-gradient-to-r from-water-400 to-sage-400 transition-all duration-500 ease-[var(--ease-out)]"
+          class="h-full bg-ink transition-all duration-500 ease-[var(--ease-out)]"
           style="width: {((step + 1) / TOTAL_STEPS) * 100}%"
         ></div>
       </div>
@@ -198,20 +191,20 @@
             <button
               onclick={() => hasStatus = 'yes'}
               aria-pressed={hasStatus === 'yes'}
-              class="py-3.5 px-4 rounded-xl border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
+              class="py-3.5 px-4 rounded-sm border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
                 {hasStatus === 'yes'
-                  ? 'bg-water-500 text-white border-water-500'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
             >
               Yes, I have Status
             </button>
             <button
               onclick={() => hasStatus = 'no'}
               aria-pressed={hasStatus === 'no'}
-              class="py-3.5 px-4 rounded-xl border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
+              class="py-3.5 px-4 rounded-sm border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
                 {hasStatus === 'no'
-                  ? 'bg-stone-700 text-white border-stone-700'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
             >
               No
             </button>
@@ -236,13 +229,13 @@
               <button
                 onclick={() => workLocation = option.value as WorkLocation}
                 aria-pressed={workLocation === option.value}
-                class="w-full text-left py-3.5 px-4 rounded-xl border-2 transition-all duration-200 cursor-pointer
+                class="w-full text-left py-3.5 px-4 rounded-sm border-2 transition-all duration-200 cursor-pointer
                   {workLocation === option.value
-                    ? 'bg-water-500 text-white border-water-500'
-                    : 'bg-surface-warm text-text-primary border-stone-200 hover:border-stone-300'}"
+                    ? 'bg-ink text-ground border-ink'
+                    : 'bg-white text-text-primary border-rule hover:border-quiet'}"
               >
                 <span class="block text-sm font-semibold">{option.label}</span>
-                <span class="block text-xs mt-0.5 {workLocation === option.value ? 'text-water-100' : 'text-text-muted'}">{option.desc}</span>
+                <span class="block text-xs mt-0.5 {workLocation === option.value ? 'text-ground/75' : 'text-text-muted'}">{option.desc}</span>
               </button>
             {/each}
           </div>
@@ -261,20 +254,20 @@
             <button
               onclick={() => employerLocation = 'yes'}
               aria-pressed={employerLocation === 'yes'}
-              class="py-3.5 px-4 rounded-xl border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
+              class="py-3.5 px-4 rounded-sm border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
                 {employerLocation === 'yes'
-                  ? 'bg-water-500 text-white border-water-500'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
             >
               On reserve
             </button>
             <button
               onclick={() => employerLocation = 'no'}
               aria-pressed={employerLocation === 'no'}
-              class="py-3.5 px-4 rounded-xl border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
+              class="py-3.5 px-4 rounded-sm border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
                 {employerLocation === 'no'
-                  ? 'bg-stone-700 text-white border-stone-700'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
             >
               Off reserve
             </button>
@@ -299,13 +292,13 @@
               <button
                 onclick={() => benefitsReserve = option.value as YesNoMaybe}
                 aria-pressed={benefitsReserve === option.value}
-                class="w-full text-left py-3.5 px-4 rounded-xl border-2 transition-all duration-200 cursor-pointer
+                class="w-full text-left py-3.5 px-4 rounded-sm border-2 transition-all duration-200 cursor-pointer
                   {benefitsReserve === option.value
-                    ? 'bg-water-500 text-white border-water-500'
-                    : 'bg-surface-warm text-text-primary border-stone-200 hover:border-stone-300'}"
+                    ? 'bg-ink text-ground border-ink'
+                    : 'bg-white text-text-primary border-rule hover:border-quiet'}"
               >
                 <span class="block text-sm font-semibold">{option.label}</span>
-                <span class="block text-xs mt-0.5 {benefitsReserve === option.value ? 'text-water-100' : 'text-text-muted'}">{option.desc}</span>
+                <span class="block text-xs mt-0.5 {benefitsReserve === option.value ? 'text-ground/75' : 'text-text-muted'}">{option.desc}</span>
               </button>
             {/each}
           </div>
@@ -324,20 +317,20 @@
             <button
               onclick={() => livesOnReserve = 'yes'}
               aria-pressed={livesOnReserve === 'yes'}
-              class="py-3.5 px-4 rounded-xl border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
+              class="py-3.5 px-4 rounded-sm border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
                 {livesOnReserve === 'yes'
-                  ? 'bg-water-500 text-white border-water-500'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
             >
               Yes
             </button>
             <button
               onclick={() => livesOnReserve = 'no'}
               aria-pressed={livesOnReserve === 'no'}
-              class="py-3.5 px-4 rounded-xl border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
+              class="py-3.5 px-4 rounded-sm border-2 text-center text-sm font-semibold transition-all duration-200 cursor-pointer
                 {livesOnReserve === 'no'
-                  ? 'bg-stone-700 text-white border-stone-700'
-                  : 'bg-surface-warm text-text-secondary border-stone-200 hover:border-stone-300'}"
+                  ? 'bg-ink text-ground border-ink'
+                  : 'bg-white text-text-secondary border-rule hover:border-quiet'}"
             >
               No
             </button>
@@ -348,22 +341,22 @@
       {:else if step === TOTAL_STEPS && outcome}
         {@const config = outcomeConfig[outcome]}
         <div in:fade={{ duration: 400 }}>
-          <!-- Result header -->
-          <div class="rounded-xl bg-gradient-to-br {config.bgGradient} p-5 mb-5">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-full {config.iconBg} flex items-center justify-center flex-shrink-0">
+          <!-- Result header: a rule and a voice, not a tinted box -->
+          <div class="border-l-2 {config.rule} pl-4 py-1 mb-5">
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
                 {#if outcome === 'likely-exempt'}
-                  <svg class="w-6 h-6 {config.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-6 h-6 {config.tone}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
                 {:else if outcome === 'grey-zone'}
-                  <svg class="w-6 h-6 {config.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-6 h-6 {config.tone}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <line x1="12" y1="8" x2="12" y2="12" />
                     <line x1="12" y1="16" x2="12.01" y2="16" />
                   </svg>
                 {:else}
-                  <svg class="w-6 h-6 {config.iconColor}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-6 h-6 {config.tone}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <line x1="15" y1="9" x2="9" y2="15" />
                     <line x1="9" y1="9" x2="15" y2="15" />
@@ -405,18 +398,18 @@
           {#if outcome === 'likely-exempt'}
             <div class="space-y-3 mb-5">
               <h4 class="text-sm font-semibold text-text-primary">What this means for you</h4>
-              <div class="rounded-xl bg-sage-50 border border-sage-200 p-4">
+              <div class="rounded-sm border border-rule p-4">
                 <ul class="space-y-2.5 text-sm text-text-secondary">
                   <li class="flex gap-2.5">
-                    <span class="text-sage-500 font-bold flex-shrink-0">1.</span>
+                    <span class="text-faint font-bold flex-shrink-0">1.</span>
                     <span><strong>TFSA first.</strong> Growth is already tax-free. Combined with exempt income, this is your most powerful tool.</span>
                   </li>
                   <li class="flex gap-2.5">
-                    <span class="text-sage-500 font-bold flex-shrink-0">2.</span>
+                    <span class="text-faint font-bold flex-shrink-0">2.</span>
                     <span><strong>Be careful with RRSPs.</strong> If your income is exempt, the RRSP deduction provides no benefit — and withdrawals become taxable. A TFSA is almost always better.</span>
                   </li>
                   <li class="flex gap-2.5">
-                    <span class="text-sage-500 font-bold flex-shrink-0">3.</span>
+                    <span class="text-faint font-bold flex-shrink-0">3.</span>
                     <span><strong>File your taxes anyway.</strong> You need to file to receive the GST credit, Canada Child Benefit, and other entitlements. Report exempt income using Form T90.</span>
                   </li>
                 </ul>
@@ -425,18 +418,18 @@
           {:else if outcome === 'likely-not-exempt'}
             <div class="space-y-3 mb-5">
               <h4 class="text-sm font-semibold text-text-primary">What this means for you</h4>
-              <div class="rounded-xl bg-stone-50 border border-stone-200 p-4">
+              <div class="rounded-sm border border-rule p-4">
                 <ul class="space-y-2.5 text-sm text-text-secondary">
                   <li class="flex gap-2.5">
-                    <span class="text-stone-500 font-bold flex-shrink-0">1.</span>
+                    <span class="text-faint font-bold flex-shrink-0">1.</span>
                     <span><strong>TFSA is your primary tool.</strong> Since your income is taxed normally, tax-free growth inside a TFSA is especially valuable.</span>
                   </li>
                   <li class="flex gap-2.5">
-                    <span class="text-stone-500 font-bold flex-shrink-0">2.</span>
+                    <span class="text-faint font-bold flex-shrink-0">2.</span>
                     <span><strong>RRSPs can help.</strong> Unlike those with exempt income, you can benefit from the RRSP deduction to reduce your tax bill now.</span>
                   </li>
                   <li class="flex gap-2.5">
-                    <span class="text-stone-500 font-bold flex-shrink-0">3.</span>
+                    <span class="text-faint font-bold flex-shrink-0">3.</span>
                     <span><strong>Keep records.</strong> If your situation changes — new job on reserve, different employer — the exemption may apply in the future.</span>
                   </li>
                 </ul>
@@ -445,18 +438,18 @@
           {:else if outcome === 'grey-zone'}
             <div class="space-y-3 mb-5">
               <h4 class="text-sm font-semibold text-text-primary">Next steps</h4>
-              <div class="rounded-xl bg-clay-50 border border-clay-200 p-4">
+              <div class="rounded-sm border border-rule p-4">
                 <ul class="space-y-2.5 text-sm text-text-secondary">
                   <li class="flex gap-2.5">
-                    <span class="text-clay-500 font-bold flex-shrink-0">1.</span>
+                    <span class="text-faint font-bold flex-shrink-0">1.</span>
                     <span><strong>Consult a tax professional</strong> with specific experience in Section 87 and the connecting factors test. This is not a DIY situation.</span>
                   </li>
                   <li class="flex gap-2.5">
-                    <span class="text-clay-500 font-bold flex-shrink-0">2.</span>
+                    <span class="text-faint font-bold flex-shrink-0">2.</span>
                     <span><strong>Gather documentation.</strong> Employment contract, job description, any evidence of where your duties are performed and who they serve.</span>
                   </li>
                   <li class="flex gap-2.5">
-                    <span class="text-clay-500 font-bold flex-shrink-0">3.</span>
+                    <span class="text-faint font-bold flex-shrink-0">3.</span>
                     <span><strong>Use a TFSA in the meantime.</strong> Regardless of how the exemption question resolves, TFSA growth is tax-free for everyone.</span>
                   </li>
                 </ul>
@@ -469,9 +462,9 @@
             <button
               onclick={() => showInvestment = !showInvestment}
               aria-expanded={showInvestment}
-              class="w-full flex items-center justify-between py-3.5 px-4 rounded-xl border border-stone-200
-                bg-surface-warm text-left text-sm font-semibold transition-all duration-200
-                hover:border-stone-300 cursor-pointer mb-4"
+              class="w-full flex items-center justify-between py-3.5 px-4 rounded-sm border border-rule
+                bg-white text-left text-sm font-semibold transition-all duration-200
+                hover:border-quiet cursor-pointer mb-4"
             >
               <span>What about investment income?</span>
               <svg
@@ -483,7 +476,7 @@
             </button>
 
             {#if showInvestment}
-              <div in:fly={{ y: -10, duration: 200 }} class="rounded-xl border border-stone-200 bg-surface-warm p-4 mb-5">
+              <div in:fly={{ y: -10, duration: 200 }} class="rounded-sm border border-rule bg-white p-4 mb-5">
                 <p class="text-sm text-text-secondary mb-3">
                   Investment income — interest, dividends, capital gains — is <strong>generally not exempt</strong>
                   unless the investment itself is situated on reserve. Most banks and brokerages are off reserve,
@@ -491,15 +484,15 @@
                 </p>
                 <div class="space-y-2.5">
                   <div class="flex gap-2.5 text-sm">
-                    <span class="text-sage-500 font-bold flex-shrink-0">TFSA</span>
+                    <span class="text-ink font-bold flex-shrink-0">TFSA</span>
                     <span class="text-text-secondary">Growth is already tax-free for everyone. This is your best savings tool regardless of Section 87 status.</span>
                   </div>
                   <div class="flex gap-2.5 text-sm">
-                    <span class="text-water-500 font-bold flex-shrink-0">On-reserve FIs</span>
+                    <span class="text-ink font-bold flex-shrink-0">On-reserve FIs</span>
                     <span class="text-text-secondary">Interest earned at Peace Hills Trust or other on-reserve financial institutions may be exempt. Where you bank can make a difference.</span>
                   </div>
                   <div class="flex gap-2.5 text-sm">
-                    <span class="text-clay-500 font-bold flex-shrink-0">RRSP</span>
+                    <span class="text-ink font-bold flex-shrink-0">RRSP</span>
                     <span class="text-text-secondary">If your income is exempt, RRSP deductions have no benefit and withdrawals become taxable. Think carefully before contributing.</span>
                   </div>
                 </div>
@@ -508,7 +501,7 @@
           {/if}
 
           <!-- Disclaimer -->
-          <div class="rounded-xl bg-stone-50 border border-stone-200 p-4 mb-5">
+          <div class="border-t border-rule pt-4 mb-5">
             <p class="text-xs text-text-muted leading-relaxed">
               This tool provides general guidance only. It is not legal or tax advice. Your specific
               situation may differ. Consult a qualified tax professional for definitive answers.
@@ -519,15 +512,15 @@
           <div class="flex items-center gap-3">
             <button
               onclick={startOver}
-              class="flex-1 py-3 px-4 rounded-xl border-2 border-stone-200 text-sm font-semibold
-                text-text-secondary hover:border-stone-300 transition-all duration-200 cursor-pointer"
+              class="flex-1 py-3 px-4 rounded-sm border-2 border-rule text-sm font-semibold
+                text-text-secondary hover:border-quiet transition-all duration-200 cursor-pointer"
             >
               Start over
             </button>
             <a
               href="/rights/section-87"
-              class="flex-1 py-3 px-4 rounded-xl bg-stone-900 text-white text-sm font-semibold
-                text-center hover:bg-stone-800 transition-all duration-200 no-underline"
+              class="flex-1 py-3 px-4 rounded-sm bg-ink text-ground text-sm font-semibold
+                text-center hover:bg-ink/85 transition-all duration-200 no-underline"
             >
               Read full guide
             </a>
@@ -537,7 +530,7 @@
 
       <!-- Navigation (steps 0-4) -->
       {#if step < TOTAL_STEPS}
-        <div class="flex items-center justify-between mt-6 pt-4 border-t border-stone-100">
+        <div class="flex items-center justify-between mt-6 pt-4 border-t border-rule">
           {#if step === 0}
             <span></span>
           {:else}
@@ -552,10 +545,10 @@
           <button
             onclick={next}
             disabled={!canProceed()}
-            class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer
+            class="px-5 py-2.5 rounded-sm text-sm font-semibold transition-all duration-200 cursor-pointer
               {canProceed()
-                ? 'bg-stone-900 text-white hover:bg-stone-800 active:scale-95'
-                : 'bg-stone-200 text-stone-400 cursor-not-allowed'}"
+                ? 'bg-ink text-ground hover:bg-ink/85 active:scale-95'
+                : 'bg-rule text-faint cursor-not-allowed'}"
           >
             {step === TOTAL_STEPS - 1 ? 'See result' : 'Continue'}
           </button>

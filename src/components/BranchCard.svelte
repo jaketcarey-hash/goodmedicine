@@ -7,42 +7,20 @@
     icon?: string;
   }
 
+  // `branch` still chooses the icon, but no longer tints the card — colour on
+  // this site carries meaning, and a section is not a meaning.
   let { href, title, description, branch }: Props = $props();
-
-  const gradients: Record<string, string> = {
-    money: 'from-clay-50 to-clay-100 hover:from-clay-100 hover:to-clay-200',
-    rights: 'from-water-50 to-water-100 hover:from-water-100 hover:to-water-200',
-    path: 'from-sage-50 to-sage-100 hover:from-sage-100 hover:to-sage-200',
-    self: 'from-berry-50 to-berry-100 hover:from-berry-100 hover:to-berry-200',
-  };
-
-  const accents: Record<string, string> = {
-    money: 'bg-clay-500',
-    rights: 'bg-water-500',
-    path: 'bg-sage-500',
-    self: 'bg-berry-500',
-  };
-
-  const iconColors: Record<string, string> = {
-    money: 'text-clay-600',
-    rights: 'text-water-600',
-    path: 'text-sage-600',
-    self: 'text-berry-600',
-  };
 </script>
 
 <a
   {href}
-  class="group relative block rounded-xl bg-gradient-to-br {gradients[branch]}
+  class="group relative block rounded-sm bg-white border border-rule
     p-5 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)]
-    hover:shadow-md active:scale-[0.98] overflow-hidden"
+    hover:border-quiet hover:shadow-md active:scale-[0.98] overflow-hidden"
 >
-  <!-- Accent bar -->
-  <div class="absolute top-0 left-0 w-1 h-full {accents[branch]} rounded-l-xl"></div>
-
-  <div class="flex items-start gap-4 pl-2">
+  <div class="flex items-start gap-4">
     <!-- Icon -->
-    <div class="w-10 h-10 rounded-lg bg-white/60 flex items-center justify-center flex-shrink-0 {iconColors[branch]}">
+    <div class="w-10 h-10 flex items-center justify-center flex-shrink-0 text-quiet">
       {#if branch === 'money'}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
           <circle cx="12" cy="12" r="9" />
@@ -78,7 +56,7 @@
 
     <!-- Arrow -->
     <svg
-      class="w-5 h-5 text-stone-400 group-hover:text-stone-600 group-hover:translate-x-0.5 transition-all duration-[var(--duration-normal)] flex-shrink-0 mt-1"
+      class="w-5 h-5 text-faint group-hover:text-ink group-hover:translate-x-0.5 transition-all duration-[var(--duration-normal)] flex-shrink-0 mt-1"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

@@ -105,8 +105,8 @@ const glossMapJson = JSON.stringify(glossMap);
     left: 0;
     right: 0;
     z-index: 70;
-    background: #faf8f5;
-    border-radius: 1.25rem 1.25rem 0 0;
+    background: #ffffff;
+    border-radius: 0.75rem 0.75rem 0 0;
     padding: 0.75rem 1.25rem 2.5rem;
     box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.12);
     max-height: 72vh;
@@ -126,7 +126,7 @@ const glossMapJson = JSON.stringify(glossMap);
   .gloss-handle {
     width: 2.5rem;
     height: 4px;
-    background: #d6d3cf;
+    background: var(--color-rule);
     border-radius: 9999px;
     margin: 0 auto 1rem;
   }
@@ -144,7 +144,7 @@ const glossMapJson = JSON.stringify(glossMap);
     font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.3;
-    color: var(--color-text-primary, #1c1917);
+    color: var(--color-ink);
     flex: 1;
     margin: 0;
   }
@@ -158,21 +158,21 @@ const glossMapJson = JSON.stringify(glossMap);
     height: 2rem;
     border-radius: 9999px;
     border: none;
-    background: #e7e5e4;
-    color: #78716c;
+    background: var(--color-rule);
+    color: var(--color-quiet);
     cursor: pointer;
     transition: background 0.15s;
     margin-top: 0.1rem;
     padding: 0;
   }
   #gloss-close:hover {
-    background: #d6d3ce;
+    color: var(--color-ink);
   }
 
   .gloss-def {
     font-size: 0.9375rem;
     line-height: 1.65;
-    color: var(--color-text-secondary, #44403c);
+    color: var(--color-quiet);
     margin: 0 0 1.25rem;
   }
 
@@ -182,12 +182,14 @@ const glossMapJson = JSON.stringify(glossMap);
     gap: 0.375rem;
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-water-600, #0369a1);
-    text-decoration: none;
-    transition: color 0.15s;
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-rule);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.15s;
   }
   .gloss-link:hover {
-    color: var(--color-water-700, #075985);
+    text-decoration-color: var(--color-ink);
   }
 
   /* The dotted-underline marker on matched <strong> tags */
@@ -200,7 +202,7 @@ const glossMapJson = JSON.stringify(glossMap);
     text-decoration-thickness: 1px;
   }
   :global(strong[data-gloss]:focus-visible) {
-    outline: 2px solid var(--color-water-500, #0284c7);
+    outline: 2px solid var(--color-verified);
     outline-offset: 2px;
     border-radius: 2px;
   }

@@ -4,7 +4,7 @@
     estimateTotal,
     type TaxEstimate,
   } from '../lib/tax-estimator';
-  import { fade } from 'svelte/transition';
+  import { fade, slide } from 'svelte/transition';
 
   // ---- Input mode ----
   let inputMode = $state<'annual' | 'hourly'>('annual');
@@ -63,26 +63,26 @@
 
 <div class="space-y-5">
   <!-- Income input -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-4 shadow-sm">
-    <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Income</p>
+  <div class="rounded-sm bg-surface-card border border-rule p-4 shadow-sm">
+    <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Income</p>
 
     <!-- Annual vs hourly toggle -->
     <div class="grid grid-cols-2 gap-2 mb-4">
       <button
         onclick={() => inputMode = 'annual'}
-        class="py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer
+        class="py-2 rounded-sm text-sm font-semibold transition-all cursor-pointer
           {inputMode === 'annual'
-            ? 'bg-stone-900 text-white'
-            : 'bg-surface-warm text-text-secondary hover:bg-stone-100'}"
+            ? 'border border-ink bg-ink text-ground'
+            : 'border border-rule bg-white text-text-secondary hover:border-quiet'}"
       >
         Annual salary
       </button>
       <button
         onclick={() => inputMode = 'hourly'}
-        class="py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer
+        class="py-2 rounded-sm text-sm font-semibold transition-all cursor-pointer
           {inputMode === 'hourly'
-            ? 'bg-stone-900 text-white'
-            : 'bg-surface-warm text-text-secondary hover:bg-stone-100'}"
+            ? 'border border-ink bg-ink text-ground'
+            : 'border border-rule bg-white text-text-secondary hover:border-quiet'}"
       >
         Hourly rate
       </button>
@@ -98,8 +98,8 @@
           bind:value={annualIncome}
           placeholder="50000"
           min="0"
-          class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-            placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+          class="w-full rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm
+            placeholder:text-faint focus:border-ink
             focus:outline-none transition-colors"
         />
       </div>
@@ -114,8 +114,8 @@
             bind:value={hourlyRate}
             placeholder="25"
             min="0"
-            class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-              placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+            class="w-full rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm
+              placeholder:text-faint focus:border-ink
               focus:outline-none transition-colors"
           />
         </div>
@@ -128,8 +128,8 @@
             bind:value={hoursPerWeek}
             placeholder="40"
             min="0"
-            class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-              placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+            class="w-full rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm
+              placeholder:text-faint focus:border-ink
               focus:outline-none transition-colors"
           />
         </div>
@@ -141,13 +141,13 @@
   </div>
 
   <!-- Province -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-4 shadow-sm">
-    <label for="province" class="block text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Province or territory</label>
+  <div class="rounded-sm bg-surface-card border border-rule p-4 shadow-sm">
+    <label for="province" class="block text-xs font-semibold text-faint tracking-widest uppercase mb-3">Province or territory</label>
     <select
       id="province"
       bind:value={province}
-      class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-        focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+      class="w-full rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm
+        focus:border-ink
         focus:outline-none transition-colors cursor-pointer"
     >
       {#each provinceOptions as opt}
@@ -157,33 +157,33 @@
   </div>
 
   <!-- Section 87 -->
-  <div class="rounded-2xl bg-surface-card border border-stone-200 p-4 shadow-sm">
-    <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">Section 87 tax exemption</p>
+  <div class="rounded-sm bg-surface-card border border-rule p-4 shadow-sm">
+    <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-3">Section 87 tax exemption</p>
     <div class="grid grid-cols-3 gap-2 mb-2">
       <button
         onclick={() => exemptStatus = 'no'}
-        class="py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer
+        class="py-2 rounded-sm text-sm font-semibold transition-all cursor-pointer
           {exemptStatus === 'no'
-            ? 'bg-stone-900 text-white'
-            : 'bg-surface-warm text-text-secondary hover:bg-stone-100'}"
+            ? 'border border-ink bg-ink text-ground'
+            : 'border border-rule bg-white text-text-secondary hover:border-quiet'}"
       >
         No
       </button>
       <button
         onclick={() => exemptStatus = 'yes'}
-        class="py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer
+        class="py-2 rounded-sm text-sm font-semibold transition-all cursor-pointer
           {exemptStatus === 'yes'
-            ? 'bg-stone-900 text-white'
-            : 'bg-surface-warm text-text-secondary hover:bg-stone-100'}"
+            ? 'border border-ink bg-ink text-ground'
+            : 'border border-rule bg-white text-text-secondary hover:border-quiet'}"
       >
         Yes
       </button>
       <button
         onclick={() => exemptStatus = 'partial'}
-        class="py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer
+        class="py-2 rounded-sm text-sm font-semibold transition-all cursor-pointer
           {exemptStatus === 'partial'
-            ? 'bg-stone-900 text-white'
-            : 'bg-surface-warm text-text-secondary hover:bg-stone-100'}"
+            ? 'border border-ink bg-ink text-ground'
+            : 'border border-rule bg-white text-text-secondary hover:border-quiet'}"
       >
         Partial
       </button>
@@ -199,8 +199,8 @@
           placeholder="50"
           min="0"
           max="100"
-          class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-            placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+          class="w-full rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm
+            placeholder:text-faint focus:border-ink
             focus:outline-none transition-colors"
         />
       </div>
@@ -212,8 +212,8 @@
 
   <!-- RRSP -->
   {#if !isFullyExempt}
-    <div class="rounded-2xl bg-surface-card border border-stone-200 p-4 shadow-sm">
-      <label for="rrsp" class="block text-xs font-semibold text-stone-400 tracking-widest uppercase mb-3">RRSP contributions</label>
+    <div class="rounded-sm bg-surface-card border border-rule p-4 shadow-sm">
+      <label for="rrsp" class="block text-xs font-semibold text-faint tracking-widest uppercase mb-3">RRSP contributions</label>
       <input
         id="rrsp"
         type="number"
@@ -221,8 +221,8 @@
         bind:value={rrspContribution}
         placeholder="0"
         min="0"
-        class="w-full rounded-lg border border-stone-200 bg-surface-warm px-3 py-2.5 text-sm
-          placeholder:text-stone-400 focus:border-sage-300 focus:ring-1 focus:ring-sage-200
+        class="w-full rounded-sm border border-rule bg-surface-warm px-3 py-2.5 text-sm
+          placeholder:text-faint focus:border-ink
           focus:outline-none transition-colors"
       />
       <p class="text-xs text-text-muted mt-2">RRSP contributions reduce your taxable income.</p>
@@ -234,19 +234,19 @@
     <div in:fade={{ duration: 200 }}>
       <!-- Fully exempt result -->
       {#if isFullyExempt}
-        <div class="rounded-2xl bg-sage-50 border border-sage-200 p-5 text-center">
-          <p class="text-3xl font-bold text-sage-600 mb-2">$0 tax</p>
-          <p class="text-sm text-sage-700 leading-relaxed mb-3">
+        <div class="rounded-sm bg-verified-wash p-5 text-center">
+          <p class="text-3xl font-bold text-verified mb-2">$0 tax</p>
+          <p class="text-sm text-ink leading-relaxed mb-3">
             Your income is exempt under Section 87 of the Indian Act.
           </p>
-          <div class="rounded-xl bg-surface-card border border-sage-200 p-4 text-left">
-            <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-2">File anyway</p>
+          <div class="rounded-sm bg-surface-card border border-rule p-4 text-left">
+            <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-2">File anyway</p>
             <p class="text-sm text-text-secondary leading-relaxed mb-2">
               Even with $0 tax owing, filing a return unlocks benefits you're entitled to:
             </p>
             <ul class="text-sm text-text-secondary space-y-1.5">
               <li class="flex gap-2">
-                <span class="text-sage-500 mt-0.5">
+                <span class="text-verified mt-0.5">
                   <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
@@ -254,7 +254,7 @@
                 Groceries and Essentials Benefit — roughly ${fmt(estimate.gstCredit)}/year
               </li>
               <li class="flex gap-2">
-                <span class="text-sage-500 mt-0.5">
+                <span class="text-verified mt-0.5">
                   <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
@@ -262,7 +262,7 @@
                 Canada Child Benefit (if you have kids under 18)
               </li>
               <li class="flex gap-2">
-                <span class="text-sage-500 mt-0.5">
+                <span class="text-verified mt-0.5">
                   <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
@@ -275,22 +275,22 @@
 
       <!-- Non-exempt / partial result -->
       {:else}
-        <div class="rounded-2xl bg-surface-card border border-stone-200 p-5 shadow-sm">
-          <p class="text-xs font-semibold text-stone-400 tracking-widest uppercase mb-4">Your estimate</p>
+        <div class="rounded-sm bg-surface-card border border-rule p-5 shadow-sm">
+          <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Your estimate</p>
 
           <!-- Visual bar: gross to take-home -->
           <div class="space-y-2 mb-5">
             <div class="flex items-center gap-2">
               <span class="text-xs text-text-muted w-20">Gross</span>
-              <div class="flex-1 h-4 bg-stone-100 rounded-full overflow-hidden">
-                <div class="h-full bg-sage-400 rounded-full" style="width: 100%"></div>
+              <div class="flex-1 h-4 bg-rule overflow-hidden">
+                <div class="h-full bg-ink" style="width: 100%"></div>
               </div>
             </div>
             <div class="flex items-center gap-2">
               <span class="text-xs text-text-muted w-20">Take-home</span>
-              <div class="flex-1 h-4 bg-stone-100 rounded-full overflow-hidden">
+              <div class="flex-1 h-4 bg-rule overflow-hidden">
                 <div
-                  class="h-full bg-sage-500 rounded-full transition-all duration-500"
+                  class="h-full bg-verified transition-all duration-500"
                   style="width: {income() > 0 ? (estimate.annualTakeHome / income()) * 100 : 0}%"
                 ></div>
               </div>
@@ -315,31 +315,31 @@
               <span class="text-text-secondary">EI premiums</span>
               <span class="font-medium">${fmt(estimate.ei)}</span>
             </div>
-            <div class="border-t border-stone-200 pt-2 flex justify-between text-sm font-semibold">
+            <div class="border-t border-rule pt-2 flex justify-between text-sm font-semibold">
               <span>Total deductions</span>
               <span>${fmt(estimate.total)}</span>
             </div>
           </div>
 
           <!-- Take-home highlight -->
-          <div class="rounded-xl p-4 bg-sage-50 text-center mb-4">
+          <div class="rounded-sm p-4 bg-verified-wash text-center mb-4">
             <p class="text-xs text-text-muted mb-1">Estimated take-home</p>
-            <p class="text-2xl font-bold text-sage-600">${fmt(estimate.annualTakeHome)}/year</p>
-            <p class="text-lg font-semibold text-sage-500">${fmt(estimate.monthlyTakeHome)}/month</p>
+            <p class="text-2xl font-bold text-verified">${fmt(estimate.annualTakeHome)}/year</p>
+            <p class="text-lg font-semibold text-verified">${fmt(estimate.monthlyTakeHome)}/month</p>
           </div>
 
           <!-- Effective rate callout -->
-          <div class="rounded-xl bg-clay-50 border border-clay-200 px-4 py-3">
-            <p class="text-sm text-clay-700 leading-relaxed">
+          <div class="border-l-2 border-rule pl-4">
+            <p class="text-sm text-quiet leading-relaxed">
               Effective rate: {fmtPct(estimate.effectiveRate)}% — for every $100 earned, you keep ${fmt(100 - estimate.effectiveRate)}.
             </p>
           </div>
 
           <!-- GST credit note -->
           {#if estimate.gstCredit > 0}
-            <div class="rounded-xl bg-water-50 border border-water-200 px-4 py-3 mt-3">
-              <p class="text-xs font-semibold text-water-700 mb-1">What filing gets you</p>
-              <p class="text-sm text-water-600 leading-relaxed">
+            <div class="border-l-2 border-verified pl-4 mt-3">
+              <p class="text-xs font-semibold text-ink mb-1">What filing gets you</p>
+              <p class="text-sm text-quiet leading-relaxed">
                 Filing your return may qualify you for the Canada Groceries and Essentials Benefit
                 (roughly ${fmt(estimate.gstCredit)}/year, formerly the GST/HST credit)
                 and the Canada Child Benefit if you have children.
@@ -352,7 +352,7 @@
   {/if}
 
   <!-- Disclaimer -->
-  <div class="rounded-xl bg-surface-warm border border-stone-200 px-4 py-3">
+  <div class="rounded-sm bg-surface-warm border border-rule px-4 py-3">
     <p class="text-xs text-text-muted leading-relaxed">
       These are rough estimates based on 2026 federal and provincial rates.
       Your actual taxes depend on credits, deductions, and other income not captured here.

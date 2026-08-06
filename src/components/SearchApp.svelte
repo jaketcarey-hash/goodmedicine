@@ -131,14 +131,6 @@
     return escaped.replace(new RegExp(`(${pattern})`, 'gi'), '<mark>$1</mark>');
   }
 
-  const tone: Record<string, string> = {
-    ledger: 'text-cedar border-cedar/25 bg-cedar/5',
-    brief: 'text-cedar border-cedar/25 bg-cedar/5',
-    money: 'text-clay-700 border-clay-300 bg-clay-50',
-    rights: 'text-water-700 border-water-300 bg-water-50',
-    path: 'text-sage-700 border-sage-300 bg-sage-50',
-    self: 'text-berry-700 border-berry-300 bg-berry-50',
-  };
 </script>
 
 <div>
@@ -151,16 +143,16 @@
       type="search"
       autocomplete="off"
       placeholder="Search everything — articles, tools, briefs, the ledger…"
-      class="flex-1 text-base bg-surface-card border border-stone-300 rounded-lg px-4 py-3
-        placeholder:text-text-muted focus:border-clay-400 focus:outline-none"
+      class="flex-1 text-base bg-white border border-rule rounded-sm px-4 py-3
+        placeholder:text-faint focus:border-ink focus:outline-none"
     />
 
     {#if kinds.length > 1}
       <select
         bind:value={kind}
         aria-label="Filter by section"
-        class="text-sm bg-surface-card border border-stone-300 rounded-lg px-3 py-3
-          focus:border-clay-400 focus:outline-none"
+        class="text-sm bg-white border border-rule rounded-sm px-3 py-3
+          focus:border-ink focus:outline-none"
       >
         <option value="all">Everywhere</option>
         {#each kinds as k}
@@ -188,7 +180,7 @@
         <button
           type="button"
           onclick={() => (kind = 'all')}
-          class="text-clay-600 underline underline-offset-2">Search everywhere</button
+          class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">Search everywhere</button
         > instead?
       {/if}
     </p>
@@ -198,21 +190,22 @@
       {results.length === 1 ? 'result' : 'results'}
     </p>
 
-    <ol class="list-none pl-0 m-0 divide-y divide-stone-200">
+    <ol class="list-none pl-0 m-0 divide-y divide-rule">
       {#each results as { entry } (entry.url)}
         <li class="py-4">
           <a href={entry.url} class="group block">
             <div class="flex items-center gap-2.5 mb-1.5">
+              <!-- Section badges are all one neutral voice — a section is not a meaning. -->
               <span
-                class="text-[10px] font-semibold tracking-wide uppercase border rounded px-1.5 py-0.5
-                  {tone[entry.kind] ?? 'text-stone-600 border-stone-300 bg-stone-50'}"
+                class="text-[10px] font-semibold tracking-wide uppercase border rounded-sm px-1.5 py-0.5
+                  text-quiet border-rule bg-white"
               >
                 {entry.label}
               </span>
               <span class="text-[11px] text-text-muted truncate">{entry.url}</span>
             </div>
 
-            <p class="font-semibold leading-snug group-hover:text-clay-700 transition-colors mb-1">
+            <p class="font-semibold leading-snug group-hover:underline decoration-rule underline-offset-4 mb-1">
               <!-- eslint-disable-next-line svelte/no-at-html-tags -->
               {@html highlight(entry.title, query)}
             </p>
@@ -229,7 +222,7 @@
 
 <style>
   :global(mark) {
-    background-color: var(--color-clay-100);
+    background-color: var(--color-verified-wash);
     color: inherit;
     padding: 0 0.1em;
     border-radius: 2px;

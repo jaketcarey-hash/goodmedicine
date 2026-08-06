@@ -276,7 +276,57 @@ the apply-outward list for the next session.
 
 ---
 
-## Open questions
+## 2026-08-05 — The provenance gate, then the conversion
+
+### Page provenance is gated the way figures are
+
+`scripts/check-provenance.js` runs before `astro build`, beside `check-figures.js`. It
+reads the `<Article>` tag of every page that imports the Article layout and fails the
+build on: a claim (`answer` or `checked`) without `sourceUrl` and `sourceLabel`; a
+`checked` date more than 12 months old (warns from 10); a `checked` it cannot parse.
+All three failure modes were watched firing — stale date, missing source, unreadable
+date — each exiting non-zero before Astro ran.
+
+*Kept on the page, not in a registry:* the failure mode is someone editing content and
+forgetting the date; co-location means they are looking at it.
+
+*One call beyond the brief:* an `answer` also requires a `checked` date. Without that,
+dropping the date would dodge the staleness gate entirely — an undated claim can never
+go stale, which defeats the point of dating claims.
+
+*Scoped to the `<Article>` tag, not a grep for `answer=`:* CarryCard takes an `answer`
+prop that means something different; a text search would gate the wrong thing. The tag
+is read with a quote-aware scanner so an answer containing `>` does not truncate it.
+A `checked` set from an `{expression}` fails — the script cannot read it, and
+unreadable must fail rather than pass.
+
+*Never the network:* builds work offline and do not depend on canada.ca being up. Link
+health stays a separate, occasional job.
+
+### The conversion finished honest: 11 strips, 13 deliberate absences
+
+All 24 article pages considered; 11 carry the answer line and evidence strip, each
+source fetched live in a real browser on 5 August before the claim was written. The
+other 13 have no strip because their content cannot yet support a one-sentence sourced
+claim — the full list with reasons is `docs/progress/2026-08-05-answer-line-findings.md`
+and is the depth session's worklist. No answer was invented to fill a slot.
+
+*Figure-bearing answers are expressions, not strings:* raising-family and
+supporting-elders interpolate `money()` / `moneyExact()` into the `answer` prop, so an
+answer can never quote a different number than the body. The provenance gate treats an
+expression `answer` as present-but-unreadable, which is all it needs; `checked` stays a
+literal so the date remains verifiable.
+
+### The earth ramps are gone
+
+Every shade of stone/sage/water/clay/berry is out of `src/` and the ramp block is
+deleted from `global.css`. Branch tinting was removed, not remapped — sage did not
+become verified green by virtue of being green. Colour that carried real meaning kept
+meaning in the new palette: eligibility results, settled/unsettled law on
+`/what-applies`, caution boxes, success states. Selection is drawn with ink, not washes.
+
+*Found in passing:* `LedgerStrip.astro` lost its last importer during the page
+conversions and is now orphaned; left in place, flagged for cleanup.
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
   builds toward the former.

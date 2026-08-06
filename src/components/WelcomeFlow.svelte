@@ -110,7 +110,7 @@
           out:fly={{ x: -80, duration: 250 }}
         >
           <div class="welcome-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-clay-500">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-ink">
               <path d="M12 3c-1.5 3-4 5.5-4 9a4 4 0 008 0c0-3.5-2.5-6-4-9z" />
               <path d="M12 16v5" />
               <path d="M9 21h6" />
@@ -158,7 +158,7 @@
             {#each getRecommendations() as rec}
               <a href={rec.href} class="rec-link" onclick={complete}>
                 <span>{rec.title}</span>
-                <svg class="w-4 h-4 text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+                <svg class="w-4 h-4 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
               </a>
             {/each}
           </div>
@@ -197,8 +197,6 @@
   .welcome-badge {
     width: 4rem;
     height: 4rem;
-    border-radius: 1rem;
-    background: var(--color-clay-50);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -241,9 +239,9 @@
     width: 100%;
     padding: 0.875rem 1.5rem;
     border: none;
-    border-radius: 0.75rem;
-    background: var(--color-stone-800);
-    color: var(--color-text-inverse);
+    border-radius: var(--radius-sm);
+    background: var(--color-ink);
+    color: var(--color-ground);
     font-family: var(--font-body);
     font-size: var(--text-base);
     font-weight: 600;
@@ -253,7 +251,7 @@
   }
 
   .welcome-btn:hover {
-    background: var(--color-stone-900);
+    background: color-mix(in srgb, var(--color-ink) 85%, transparent);
   }
 
   .welcome-btn:active {
@@ -262,12 +260,12 @@
 
   .welcome-btn--secondary {
     background: transparent;
-    color: var(--color-text-secondary);
-    border: 1px solid var(--color-stone-200);
+    color: var(--color-quiet);
+    border: 1px solid var(--color-rule);
   }
 
   .welcome-btn--secondary:hover {
-    background: var(--color-stone-100);
+    background: var(--color-ground);
   }
 
   .interest-grid {
@@ -284,9 +282,9 @@
     align-items: flex-start;
     gap: 0.125rem;
     padding: 0.875rem 1rem;
-    border: 1.5px solid var(--color-stone-200);
-    border-radius: 0.75rem;
-    background: var(--color-surface-card);
+    border: 1.5px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
     cursor: pointer;
     transition: all 200ms;
     text-align: left;
@@ -294,12 +292,22 @@
   }
 
   .interest-card:hover {
-    border-color: var(--color-stone-300);
+    border-color: var(--color-quiet);
   }
 
+  /* Selected reads like every other control: ink, not a colour wash. */
   .interest-card--active {
-    border-color: var(--color-clay-400);
-    background: var(--color-clay-50);
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+  }
+
+  .interest-card--active .interest-label {
+    color: var(--color-ground);
+  }
+
+  .interest-card--active .interest-sub {
+    color: var(--color-ground);
+    opacity: 0.7;
   }
 
   .interest-label {
@@ -326,18 +334,18 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.875rem 1rem;
-    border: 1px solid var(--color-stone-200);
-    border-radius: 0.75rem;
-    background: var(--color-surface-card);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
     text-decoration: none;
-    color: var(--color-text-primary);
+    color: var(--color-ink);
     font-weight: 500;
     font-size: var(--text-sm);
     transition: all 200ms;
   }
 
   .rec-link:hover {
-    border-color: var(--color-stone-300);
-    background: var(--color-stone-50);
+    border-color: var(--color-quiet);
+    background: var(--color-ground);
   }
 </style>
