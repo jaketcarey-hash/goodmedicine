@@ -370,6 +370,29 @@ they never see a front door, and a questionnaire before value contradicts that.
 Intent capture belongs on /money/plan (M4), after the site has earned the question.
 Keys `gm_welcome_complete` / `gm_welcome_interests` removed from the registry.
 
+### M2 — credit and debt earned their strips (6 August)
+
+Every claim fetched live the same day it was written (canada.ca via the browser;
+curl is WAF-blocked). Two content corrections came out of the sourcing:
+
+*The payday figure was stale.* The page said $15 per $100 ≈ 400%; the federal cap
+has been $14 per $100 (~365%, FCAC's own equivalence) since 1 January 2025. Both
+now read the registry (`payday_cost_per_100`, `payday_annual_equivalent`), with
+the worked example recomputed.
+
+*The factor weights lost their false precision.* FCAC states scoring formulas
+"aren't shared" and differ by bureau and lender — so 35%/30%/15%/10%/10% as bare
+fact was overclaiming. The page now attributes rough weightings to Equifax's own
+education page (fetched live, states ~35%/~30%) and the strip's unsettled line
+carries the formula caveat. The consumer-proposal retention line was also
+corrected to FCAC's actual rule (off 3 years after paid or 6 after signing,
+whichever first — not "3 years after completion").
+
+New registry entries: payday cost + annual equivalent, proposal ceiling
+($250,000 excl. principal-residence mortgage, OSB), negative-info retention
+(6 years, FCAC). Registry rule from the plan held: illustrations (the $400
+avalanche example, the $2,400 budget) stayed prose.
+
 ---
 
 ## Open questions

@@ -10,6 +10,14 @@ Every `checked="August 2026"` below was verified against its source URL on
 Figure-bearing answers read the registry through `money()` / `moneyExact()`,
 so they cannot drift from `src/data/figures/2026.json`.
 
+> **Update, 6 August 2026 (M2):** `/money/credit` and `/money/debt` now carry
+> strips — credit sourced to FCAC (with the factor-weight percentages reframed
+> as Equifax-attributed approximations, since FCAC states formulas aren't
+> published), debt sourced to the OSB. The stale payday figure ($15/$100,
+> "almost 400%") was corrected to the registry-fed federal cap ($14/$100,
+> ~365% per FCAC). Remaining worklist: budgeting, investing, seven-generations
+> (M3).
+
 ## Carrying a sourced strip (11)
 
 | Page | Source |

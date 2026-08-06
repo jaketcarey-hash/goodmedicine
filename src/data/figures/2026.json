@@ -209,6 +209,50 @@
     "verifiedOn": "2026-08-04",
     "note": "Adjusted quarterly. July to September 2026 quarter. Corrected 4 Aug 2026 from $1,105.43 — that figure came from a secondary source and Service Canada's own table says $1,123.17."
   },
+  "payday_cost_per_100": {
+    "value": 14,
+    "unit": "CAD",
+    "label": "Payday loan maximum cost per $100 borrowed",
+    "note": "Federal cap since 1 January 2025. Payday lenders are provincially licensed.",
+    "effectiveFrom": "2025-01-01",
+    "reviewBy": "2027-08-31",
+    "source": "https://www.canada.ca/en/financial-consumer-agency/services/loans/payday-loans.html",
+    "sourceLabel": "FCAC payday loans",
+    "verifiedOn": "2026-08-06"
+  },
+  "payday_annual_equivalent": {
+    "value": 3.65,
+    "unit": "rate",
+    "label": "Payday loan cost as an approximate annual rate",
+    "note": "FCAC's own equivalence for $14 per $100 over two weeks: approximately 365% annualized.",
+    "effectiveFrom": "2025-01-01",
+    "reviewBy": "2027-08-31",
+    "source": "https://www.canada.ca/en/financial-consumer-agency/services/loans/payday-loans.html",
+    "sourceLabel": "FCAC payday loans",
+    "verifiedOn": "2026-08-06"
+  },
+  "consumer_proposal_ceiling": {
+    "value": 250000,
+    "unit": "CAD",
+    "label": "Consumer proposal maximum total debt",
+    "note": "Excludes debts secured by your principal residence, such as a mortgage. Proposal term cannot exceed five years.",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-08-31",
+    "source": "https://ised-isde.canada.ca/site/office-superintendent-bankruptcy/en/you-owe-money/you-owe-money-consumer-proposals",
+    "sourceLabel": "Office of the Superintendent of Bankruptcy",
+    "verifiedOn": "2026-08-06"
+  },
+  "credit_negative_retention_years": {
+    "value": 6,
+    "unit": "years",
+    "label": "How long late or unpaid accounts stay on a credit report",
+    "note": "Up to 6 years for late or unpaid credit cards and loans. Bankruptcy: 6 or 7 years depending on province. A consumer proposal comes off 3 years after the debts are paid or 6 years after signing, whichever comes first.",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-08-31",
+    "source": "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/information-credit-report.html",
+    "sourceLabel": "FCAC — how long information stays on your credit report",
+    "verifiedOn": "2026-08-06"
+  },
   "capital_gains_inclusion": {
     "value": 0.5,
     "unit": "rate",

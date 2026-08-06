@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import { money, percent } from '../../lib/figures';
 ---
 
 <Article
@@ -11,7 +12,12 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   backHref="/money"
   backLabel="Money"
   readTime="7 min"
-  lastUpdated="March 2026"
+  lastUpdated="August 2026"
+  answer="If debt has become unmanageable, a consumer proposal — a legal process run by a Licensed Insolvency Trustee — can settle it for a portion of what you owe, over up to five years."
+  checked="August 2026"
+  sourceLabel="Consumer proposals / OSB"
+  sourceUrl="https://ised-isde.canada.ca/site/office-superintendent-bankruptcy/en/you-owe-money/you-owe-money-consumer-proposals"
+  unsettled="Collection rules and limitation periods are provincial — in BC, Consumer Protection BC licenses collectors"
 >
 
   <p>
@@ -101,6 +107,12 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     </div>
   </ExpandableSection>
 
+  <p>
+    You don't have to do this arithmetic yourself: the
+    <a href="/money/debt-planner">Debt Planner</a> runs both strategies on
+    your actual debts and shows the months and interest each one saves.
+  </p>
+
   <h2>Negotiating with creditors</h2>
 
   <p>
@@ -127,15 +139,15 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <h2>The payday loan trap</h2>
 
   <p>
-    Payday loans are designed to keep you borrowing. A typical payday loan
-    charges $15 per $100 borrowed for two weeks. That sounds manageable until
-    you do the math: $15 on $100 for two weeks is equivalent to almost
-    400% annual interest.
+    Payday loans are designed to keep you borrowing. The maximum a payday
+    lender can charge is {money('payday_cost_per_100')} per $100 borrowed —
+    usually for two weeks. That sounds manageable until you do the math:
+    it works out to roughly {percent('payday_annual_equivalent')} a year.
   </p>
 
   <p>
     The cycle works like this: you borrow $300 to cover a shortfall. Two weeks
-    later you owe $345. But you still have the same shortfall, so you borrow
+    later you owe $342. But you still have the same shortfall, so you borrow
     again. Each cycle costs you more.
   </p>
 
@@ -144,7 +156,7 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     <p>
       If you're currently in a payday loan cycle, the goal is to replace it
       with anything cheaper. A credit union personal loan at 12% is expensive
-      — but it's a fraction of 400%. Some credit unions specifically offer
+      — but it's a fraction of a payday loan's annualized cost. Some credit unions specifically offer
       "payday loan alternatives" for this reason. Your band office may also
       have emergency assistance programs that can bridge the gap.
     </p>
@@ -171,8 +183,8 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     <li>You keep your assets (home, car, RRSP)</li>
     <li>Interest stops immediately</li>
     <li>Collection calls and wage garnishments stop</li>
-    <li>Stays on your credit report for 3 years after completion</li>
-    <li>You typically pay 20-50% of what you owe</li>
+    <li>Comes off your credit report 3 years after you finish paying, or 6 years after signing — whichever comes first</li>
+    <li>You pay a portion of what you owe, negotiated with your creditors</li>
   </ul>
 
   <h3>Bankruptcy</h3>
@@ -189,7 +201,8 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
       <p>
         <strong>Consumer proposal makes sense when:</strong> You have some
         income and can afford reduced payments. You want to keep your assets.
-        Your total debt (excluding mortgage) is under $250,000.
+        Your total debt is under {money('consumer_proposal_ceiling')}, not
+        counting a mortgage on your home.
       </p>
       <p>
         <strong>Bankruptcy makes sense when:</strong> Your debt is
@@ -197,11 +210,12 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
         would still be unmanageable. You need a complete reset.
       </p>
       <p>
-        The first consultation with a Licensed Insolvency Trustee is free.
-        They're legally required to explain all your options, not just push
-        you toward bankruptcy. You can find one through the
-        Canadian Association of Insolvency and Restructuring Professionals
-        (CAIRP) website.
+        A Licensed Insolvency Trustee is required to explain all your
+        options, not just push you toward bankruptcy, and most offer the
+        first consultation at no charge. The federal regulator keeps the
+        official register — use the
+        <a href="https://ised-isde.canada.ca/site/office-superintendent-bankruptcy/en">Office of the Superintendent of Bankruptcy's</a>
+        "Find a Licensed Insolvency Trustee" search.
       </p>
     </div>
   </ExpandableSection>
@@ -210,8 +224,11 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
 
   <p>
     If a debt goes to collections, the calls can feel intimidating. But
-    collection agencies have rules they must follow. Knowing your rights
-    changes the dynamic.
+    collection agencies have rules they must follow, and the rules are
+    provincial. In BC,
+    <a href="https://www.consumerprotectionbc.ca/consumer-help/debt-collection/">Consumer Protection BC</a>
+    licenses collectors and spells out your rights. Knowing them changes
+    the dynamic.
   </p>
 
   <ul>
