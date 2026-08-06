@@ -15,8 +15,19 @@ so they cannot drift from `src/data/figures/2026.json`.
 > as Equifax-attributed approximations, since FCAC states formulas aren't
 > published), debt sourced to the OSB. The stale payday figure ($15/$100,
 > "almost 400%") was corrected to the registry-fed federal cap ($14/$100,
-> ~365% per FCAC). Remaining worklist: budgeting, investing, seven-generations
-> (M3).
+> ~365% per FCAC).
+>
+> **Update, 6 August 2026 (M3):** `/money/investing` carries a strip (OSC fee
+> page); its 6/7/8% drift is dead — every projection on investing and
+> seven-generations is now *computed in frontmatter* from one registry figure,
+> `assumed_balanced_return` (5%, derived from the 2026 FP Canada/IQPF
+> guidelines), which DistributionPlanner and SettlementSimulator's default
+> also read. Seven-generations and budgeting stay strip-free by design;
+> depth landed instead: case studies sourced to the Nations' own sites
+> (Westbank's unsourced "$1.5 billion" removed), FCAC Budget Planner linked,
+> all five article↔tool pairs cross-linked. A validate-indigenous pass caught
+> four "windfall" framings; all rewritten. **The /money worklist from this
+> document is closed.**
 
 ## Carrying a sourced strip (11)
 

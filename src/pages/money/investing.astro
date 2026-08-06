@@ -2,6 +2,26 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import { value, percent } from '../../lib/figures';
+
+// One assumed rate for every projection on this page, read from the registry —
+// so the prose, the scenarios and the Distribution Planner cannot drift apart.
+// The page once carried 6%, 7% and 8% in different examples; that is the
+// failure this block exists to prevent.
+const r = value('assumed_balanced_return');
+const ratePct = percent('assumed_balanced_return');
+
+/** FV of month-end deposits, compounded monthly. */
+const fvMonthly = (monthly: number, years: number, rate = r) => {
+  const i = rate / 12;
+  return (monthly * ((1 + i) ** (years * 12) - 1)) / i;
+};
+/** FV of year-end deposits, compounded annually — same convention as the Distribution Planner. */
+const fvAnnual = (annual: number, years: number) => (annual * ((1 + r) ** years - 1)) / r;
+/** FV of a single lump sum, compounded annually. */
+const fvLump = (amount: number, years: number) => amount * (1 + r) ** years;
+/** "approximately $66,100" — rounded to the nearest $100 so it reads as an estimate. */
+const approx = (n: number) => '$' + (Math.round(n / 100) * 100).toLocaleString('en-CA');
 ---
 
 <Article
@@ -11,7 +31,12 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   backHref="/money"
   backLabel="Money"
   readTime="7 min"
-  lastUpdated="March 2026"
+  lastUpdated="August 2026"
+  answer="You can't control markets, but you can control fees — they come straight off your return every year, and index funds charge a tenth of what typical mutual funds do."
+  checked="August 2026"
+  sourceLabel="Mutual fund fees / OSC GetSmarterAboutMoney"
+  sourceUrl="https://www.getsmarteraboutmoney.ca/learning-path/mutual-funds-segregated-funds/mutual-fund-fees/"
+  unsettled="Growth figures here are planning assumptions from the 2026 FP Canada guidelines, not forecasts"
 >
 
   <p>
@@ -35,21 +60,22 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
 
   <ExpandableSection client:idle title="The cost of waiting: $50/month over time">
     <div class="space-y-3 text-sm">
-      <p>Assume a balanced portfolio averaging 6% annual return:</p>
+      <p>Assume a balanced portfolio averaging {ratePct} a year — the planning assumption used across this site:</p>
       <p>
         <strong>Start at age 25, invest $50/month until age 65:</strong><br>
         Total contributed: $24,000<br>
-        Portfolio value: approximately $99,000
+        Portfolio value: approximately {approx(fvMonthly(50, 40))}
       </p>
       <p>
         <strong>Start at age 35, invest $50/month until age 65:</strong><br>
         Total contributed: $18,000<br>
-        Portfolio value: approximately $50,000
+        Portfolio value: approximately {approx(fvMonthly(50, 30))}
       </p>
       <p>
-        Ten years of waiting cost nearly $49,000 — even though you only
-        contributed $6,000 less. That's compounding: your money earns returns,
-        and those returns earn returns. Time is the most powerful variable.
+        Ten years of waiting cost about {approx(fvMonthly(50, 40) - fvMonthly(50, 30))} —
+        even though you only contributed $6,000 less. That's compounding: your
+        money earns returns, and those returns earn returns. Time is the most
+        powerful variable.
       </p>
     </div>
   </ExpandableSection>
@@ -95,11 +121,14 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <div class="callout callout-tip">
     <strong>Fees matter more than you think</strong>
     <p>
-      A 2% annual fee doesn't sound like much, but over 30 years it can eat
-      up a third of your returns. A portfolio earning 6% with a 2% fee nets
-      you 4%. The same portfolio with a 0.2% fee nets you 5.8%. On $50/month
-      over 30 years, that difference is tens of thousands of dollars. Low-cost
-      index funds exist for exactly this reason.
+      A 2% annual fee doesn't sound like much, but it comes off your return
+      every single year. A portfolio earning {ratePct} with a 2% fee nets
+      you {parseFloat(((r - 0.02) * 100).toFixed(1))}%. The same portfolio with a
+      0.2% fee nets you {parseFloat(((r - 0.002) * 100).toFixed(1))}%. On $50/month
+      over 30 years, that difference is about
+      {approx(fvMonthly(50, 30, 0.048) - fvMonthly(50, 30, 0.03))} — money
+      that went to fees instead of you. Low-cost index funds exist for
+      exactly this reason.
     </p>
   </div>
 
@@ -261,15 +290,16 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <p>
     When a large amount of money arrives all at once — a settlement payment, a significant
     per-cap — something happens psychologically. The money doesn't feel real in the same way
-    a paycheque does. Research shows that people treat windfalls differently from earned
-    income: they spend them faster, on different things, and with less deliberation. This is
-    called "mental accounting," and it is normal human behaviour, not a failing.
+    a paycheque does. Research shows that people treat money that arrives all at once
+    differently from earned income: they spend it faster, on different things, and with
+    less deliberation. This is called "mental accounting," and it is normal human
+    behaviour, not a failing.
   </p>
 
   <p>
     Large lump sums also attract attention. Family members may have expectations. There can
     be social pressure — spoken or unspoken — to share immediately and generously. The
-    combination of windfall psychology and community pressure means that large per-capita
+    combination of lump-sum psychology and social pressure means that large per-capita
     payments often move through people's hands very quickly.
   </p>
 
@@ -376,24 +406,26 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
 
   <p>
     The numbers tell the story better than any argument. Here's what happens when you
-    treat distributions as investment capital instead of a windfall.
+    treat distributions as investment capital — money that is yours by right, put to
+    work for the long term.
   </p>
 
   <ExpandableSection client:idle title="Scenario 1: Investing a $2,000 annual distribution">
     <div class="space-y-3 text-sm">
       <p>
         Your band distributes $2,000 per year from resource royalties. You invest it
-        in a balanced index fund inside your TFSA, earning an average of 7% annually.
+        in a balanced index fund inside your TFSA, earning an average of {ratePct} annually.
       </p>
       <p>
-        <strong>After 10 years:</strong> approximately $29,500 (contributed $20,000)<br>
-        <strong>After 20 years:</strong> approximately $87,700 (contributed $40,000)<br>
-        <strong>After 30 years:</strong> approximately $202,000 (contributed $60,000)
+        <strong>After 10 years:</strong> approximately {approx(fvAnnual(2000, 10))} (contributed $20,000)<br>
+        <strong>After 20 years:</strong> approximately {approx(fvAnnual(2000, 20))} (contributed $40,000)<br>
+        <strong>After 30 years:</strong> approximately {approx(fvAnnual(2000, 30))} (contributed $60,000)
       </p>
       <p>
-        Over 30 years, $60,000 in contributions becomes $202,000. The other $142,000 is
-        compounding — your money earning returns, and those returns earning returns. All
-        of it tax-free inside a TFSA.
+        Over 30 years, $60,000 in contributions becomes {approx(fvAnnual(2000, 30))}.
+        The other {approx(fvAnnual(2000, 30) - 60000)} is compounding — your money
+        earning returns, and those returns earning returns. All of it tax-free inside
+        a TFSA.
       </p>
     </div>
   </ExpandableSection>
@@ -402,16 +434,16 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     <div class="space-y-3 text-sm">
       <p>
         You use half your $2,000 distribution for current needs and invest the other
-        $1,000. Same assumptions — 7% annual return in a TFSA.
+        $1,000. Same assumptions — {ratePct} annual return in a TFSA.
       </p>
       <p>
-        <strong>After 10 years:</strong> approximately $14,800<br>
-        <strong>After 20 years:</strong> approximately $43,900<br>
-        <strong>After 30 years:</strong> approximately $101,000
+        <strong>After 10 years:</strong> approximately {approx(fvAnnual(1000, 10))}<br>
+        <strong>After 20 years:</strong> approximately {approx(fvAnnual(1000, 20))}<br>
+        <strong>After 30 years:</strong> approximately {approx(fvAnnual(1000, 30))}
       </p>
       <p>
-        Half the input, but still six figures over 30 years. The principle is the same:
-        consistency and time beat everything.
+        Half the input, and more than double what you put in by year 30. The principle
+        is the same: consistency and time beat everything.
       </p>
     </div>
   </ExpandableSection>
@@ -424,17 +456,17 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
         savings, and $8,400 invested in a growth ETF inside your TFSA.
       </p>
       <p>
-        That $8,400 invested portion at 7% annual return:
+        That $8,400 invested portion at {ratePct} annual return:
       </p>
       <p>
-        <strong>After 10 years:</strong> approximately $16,500<br>
-        <strong>After 20 years:</strong> approximately $32,500<br>
-        <strong>After 30 years:</strong> approximately $64,000
+        <strong>After 10 years:</strong> approximately {approx(fvLump(8400, 10))}<br>
+        <strong>After 20 years:</strong> approximately {approx(fvLump(8400, 20))}<br>
+        <strong>After 30 years:</strong> approximately {approx(fvLump(8400, 30))}
       </p>
       <p>
         You used two-thirds of the distribution for your life right now — which is valid
-        and important. The remaining third, left to grow, nearly doubled in 10 years and
-        grew eightfold over 30.
+        and important. The remaining third, left to grow, was up by more than half in
+        10 years and grew more than fourfold over 30.
       </p>
     </div>
   </ExpandableSection>
@@ -442,19 +474,21 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <ExpandableSection client:idle title="Scenario 4: $5,000/year into an all-equity fund">
     <div class="space-y-3 text-sm">
       <p>
-        Some nations distribute larger per-caps — $5,000 or more annually. If you can
-        invest the full amount in an all-equity ETF (like VEQT/XEQT) inside a TFSA,
-        assuming a long-term average return of 8%:
+        Some nations distribute larger per-caps — $5,000 or more annually. All-equity
+        funds (like VEQT/XEQT) have historically returned more than balanced ones over
+        long periods, but to stay conservative, here is the full amount invested at the
+        same {ratePct} assumption:
       </p>
       <p>
-        <strong>After 10 years:</strong> approximately $78,200<br>
-        <strong>After 20 years:</strong> approximately $247,000<br>
-        <strong>After 30 years:</strong> approximately $611,700
+        <strong>After 10 years:</strong> approximately {approx(fvAnnual(5000, 10))}<br>
+        <strong>After 20 years:</strong> approximately {approx(fvAnnual(5000, 20))}<br>
+        <strong>After 30 years:</strong> approximately {approx(fvAnnual(5000, 30))}
       </p>
       <p>
-        Over 30 years, $150,000 in contributions becomes over $611,000. This is the kind
-        of wealth that changes a family's trajectory across generations. It starts with a
-        decision to treat a recurring distribution as investment capital.
+        Over 30 years, $150,000 in contributions becomes more than
+        {approx(fvAnnual(5000, 30))}. This is the kind of wealth that changes a family's
+        trajectory across generations. It starts with a decision to treat a recurring
+        distribution as investment capital.
       </p>
     </div>
   </ExpandableSection>

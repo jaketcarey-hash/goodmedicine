@@ -6,6 +6,7 @@
     CURRENT_YEAR,
     type SimulationResult,
   } from '../lib/settlement-math';
+  import { value } from '../lib/figures';
   import { slide } from 'svelte/transition';
 
   // ---- Inputs ----
@@ -13,7 +14,8 @@
   let totalAmount = $state(50_000_000);
   let members = $state(2000);
   let distributePercent = $state(30);
-  let annualReturn = $state(0.06);
+  // Starts at the registry's planning assumption; the slider stays yours to move.
+  let annualReturn = $state(value('assumed_balanced_return'));
   let spendingRate = $state(0.04);
   let populationGrowth = $state(0.015);
   let showAdvanced = $state(false);

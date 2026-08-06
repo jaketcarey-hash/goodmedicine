@@ -2,6 +2,23 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import { value, percent } from '../../lib/figures';
+
+// Every projection on this page runs at the registry's assumed balanced
+// return, so the essay and the tools cannot quote different growth.
+const r = value('assumed_balanced_return');
+const ratePct = percent('assumed_balanced_return');
+const SPEND = 0.04;
+/** Trust value after `years` at the assumed return net of the spending rate, in $M. */
+const trustM = (years: number) => 50 * (1 + r - SPEND) ** years;
+const payoutM = (years: number) => trustM(years) * SPEND;
+const m = (n: number) => '$' + (Math.round(n * 10) / 10).toLocaleString('en-CA') + ' million';
+/** $100,000 compounded for `years` at the assumed return. */
+const grow = (years: number) => 100_000 * (1 + r) ** years;
+const big = (n: number) =>
+  n >= 1_000_000
+    ? '$' + (Math.round(n / 100_000) / 10).toLocaleString('en-CA') + ' million'
+    : '$' + (Math.round(n / 1000) * 1000).toLocaleString('en-CA');
 ---
 
 <Article
@@ -211,16 +228,23 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
         combination of per-capita payments, programs, and infrastructure investment.
       </p>
       <p>
-        At a long-term average return of 7%, the trust not only sustains the $2 million
-        annual payout but grows over time:
+        At the site's standard planning assumption of {ratePct}, the trust sustains
+        the $2 million annual payout and still edges ahead of where it started:
       </p>
       <p>
-        <strong>After 10 years:</strong> trust value approximately $65 million, still
-        paying out $2.6 million/year<br>
-        <strong>After 25 years:</strong> trust value approximately $100 million, paying
-        out $4 million/year<br>
-        <strong>After 50 years:</strong> trust value approximately $200 million, paying
-        out $8 million/year
+        <strong>After 10 years:</strong> trust value approximately {m(trustM(10))},
+        paying out {m(payoutM(10))}/year<br>
+        <strong>After 25 years:</strong> trust value approximately {m(trustM(25))},
+        paying out {m(payoutM(25))}/year<br>
+        <strong>After 50 years:</strong> trust value approximately {m(trustM(50))},
+        paying out {m(payoutM(50))}/year
+      </p>
+      <p>
+        Growth-tilted trust portfolios have historically returned more than a balanced
+        assumption, and every extra point compounds. The
+        <a href="/tools/settlement-simulator">Settlement Simulator</a> runs this same
+        distribute-versus-invest question with your own numbers — settlement size,
+        membership, spending rate and return.
       </p>
       <p>
         In Path A, $50 million served one generation once. In Path B, $50 million serves
@@ -271,9 +295,11 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     <div class="space-y-3 text-sm">
       <p>
         The Osoyoos Indian Band has built one of the most diversified Indigenous economies
-        in Canada. Their economic development includes Nk'Mip Cellars (the first
-        Indigenous-owned winery in North America), Nk'Mip Desert Cultural Centre, a
-        construction company, a golf course, and significant real estate development.
+        in Canada. Their economic development includes
+        <a href="https://www.nkmipcellars.com/About-Us">Nk'Mip Cellars</a> — in the
+        winery's own words, the first Indigenous-owned winery in North America — the
+        Nk'Mip Desert Cultural Centre, a construction company, a golf course, and
+        significant real estate development.
       </p>
       <p>
         Rather than distributing all business profits, the band reinvests in new ventures
@@ -286,10 +312,11 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <ExpandableSection client:idle title="Membertou First Nation (Nova Scotia)">
     <div class="space-y-3 text-sm">
       <p>
-        Membertou was the first Indigenous community in the world to receive ISO 9001
-        certification for quality management. From near-bankruptcy in the 1990s, the
-        community built a diversified economy spanning gaming, hospitality, fisheries,
-        and professional services.
+        Membertou describes itself as
+        <a href="https://membertou.ca/community/">the first Indigenous organization in the
+        world to receive ISO 9001 certification</a> for quality management. From serious
+        financial difficulty in the 1990s, the community built a diversified economy
+        spanning gaming, hospitality, fisheries, and professional services.
       </p>
       <p>
         Their approach emphasizes governance excellence and reinvestment. Membertou's
@@ -303,10 +330,11 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <ExpandableSection client:idle title="Westbank First Nation (British Columbia)">
     <div class="space-y-3 text-sm">
       <p>
-        Operating under a self-government agreement since 2005, Westbank First Nation
-        manages over $1.5 billion in real estate development on their lands near Kelowna.
-        Their economic development arm manages commercial and residential properties that
-        generate significant own-source revenue.
+        Operating under
+        <a href="https://www.wfn.ca/self-government-laws.htm">its own self-government
+        agreement</a> since April 2005, Westbank First Nation oversees substantial
+        commercial and residential development on its lands near Kelowna — real estate
+        that generates significant own-source revenue.
       </p>
       <p>
         Westbank's model demonstrates what's possible when a nation controls its own
@@ -419,13 +447,13 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
   <ExpandableSection client:idle title="The seven-generation growth curve">
     <div class="space-y-3 text-sm">
       <p>
-        Consider $100,000 invested today in a diversified portfolio earning 7% annually:
+        Consider $100,000 invested today in a diversified portfolio earning {ratePct} annually:
       </p>
       <p>
-        <strong>After 25 years (one generation):</strong> approximately $542,000<br>
-        <strong>After 50 years (two generations):</strong> approximately $2.9 million<br>
-        <strong>After 100 years (four generations):</strong> approximately $86.8 million<br>
-        <strong>After 175 years (seven generations):</strong> approximately $12.7 billion
+        <strong>After 25 years (one generation):</strong> approximately {big(grow(25))}<br>
+        <strong>After 50 years (two generations):</strong> approximately {big(grow(50))}<br>
+        <strong>After 100 years (four generations):</strong> approximately {big(grow(100))}<br>
+        <strong>After 175 years (seven generations):</strong> approximately {big(grow(175))}
       </p>
       <p>
         These numbers are theoretical — no investment grows in a straight line, and

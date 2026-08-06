@@ -209,6 +209,17 @@
     "verifiedOn": "2026-08-04",
     "note": "Adjusted quarterly. July to September 2026 quarter. Corrected 4 Aug 2026 from $1,105.43 — that figure came from a secondary source and Service Canada's own table says $1,123.17."
   },
+  "assumed_balanced_return": {
+    "value": 0.05,
+    "unit": "rate",
+    "label": "Assumed long-term balanced portfolio return",
+    "note": "Derived from the 2026 FP Canada / Institute of Financial Planning Projection Assumption Guidelines (April 2026): 60% equities (Canadian 6.3%, U.S. 6.4%, international developed 6.6%) + 40% fixed income (3.2%) ≈ 5.1% before fees, rounded to 5%. A planning assumption for 10+ year projections, not a forecast. Guidelines are updated annually each spring.",
+    "effectiveFrom": "2026-04-01",
+    "reviewBy": "2027-06-30",
+    "source": "https://www.fpcanada.ca/projection-assumption-guidelines",
+    "sourceLabel": "FP Canada / Institute of Financial Planning Projection Assumption Guidelines",
+    "verifiedOn": "2026-08-06"
+  },
   "payday_cost_per_100": {
     "value": 14,
     "unit": "CAD",

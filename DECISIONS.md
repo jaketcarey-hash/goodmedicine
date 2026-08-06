@@ -393,6 +393,31 @@ New registry entries: payday cost + annual equivalent, proposal ceiling
 (6 years, FCAC). Registry rule from the plan held: illustrations (the $400
 avalanche example, the $2,400 budget) stayed prose.
 
+### M3 — one assumed return, computed everywhere (6 August)
+
+`assumed_balanced_return` (5%) landed in the registry, derived from the 2026
+FP Canada / IQPF Projection Assumption Guidelines (fetched as the primary PDF:
+fixed income 3.2%, Canadian/U.S./international equities 6.3–6.6%; 60/40 ≈ 5.1%
+before fees, rounded down). Every projection on /money/investing and
+/money/seven-generations is now computed in the page frontmatter from that one
+figure — the 6%, 7% and 8% that coexisted on one page cannot recur, because the
+outcomes are no longer typed. DistributionPlanner reads the same figure;
+SettlementSimulator's slider starts there and stays adjustable.
+
+*Deliberate conservatism:* the old 7–8% illustrations exceeded what any PAG mix
+supports. For this audience, overstating growth is the worse failure; the
+all-equity scenario now runs at the balanced assumption with the tilt stated in
+prose. Path B's endowment story survives at 5%/4% — smaller numbers, same
+argument, and the Settlement Simulator is linked for exploring other rates.
+
+*Case studies now cite the Nations' own publications* (Nk'Mip's "first
+Indigenous-owned winery," Membertou's ISO 9001 in its own wording — "first
+Indigenous organization," not "community" — Westbank's self-government dates).
+Westbank's "$1.5 billion" was on no source and is gone. A validate-indigenous
+pass caught four "windfall" framings for distribution money — restitution is
+not luck; all rewritten. Budgeting and seven-generations stay strip-free by
+design; their depth is sourcing and tool wiring, not manufactured answers.
+
 ---
 
 ## Open questions

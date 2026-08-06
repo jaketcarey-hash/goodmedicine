@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fly, fade, slide } from 'svelte/transition';
   import { STORAGE_KEYS } from '../lib/storage-keys';
+  import { value, percent } from '../lib/figures';
 
   // ---- State ----
   let step = $state(0);
@@ -224,7 +225,10 @@
   let investAmount = $derived(plan.find(s => s.id === 'invest')?.amount ?? 0);
 
   // ---- Compounding projections ----
-  const ANNUAL_RETURN = 0.07;
+  // The assumed rate comes from the registry so this tool and the investing
+  // article cannot quote different growth for the same dollar.
+  const ANNUAL_RETURN = value('assumed_balanced_return');
+  const RETURN_PCT = percent('assumed_balanced_return');
 
   interface Projection {
     year: number;
@@ -505,7 +509,7 @@
         {#if distributionType === 'annual'}
           <p class="text-sm text-text-secondary mb-6">If you invest ${fmt(investAmount)} from every annual distribution...</p>
         {:else}
-          <p class="text-sm text-text-secondary mb-6">Your ${fmt(investAmount)} invested today, growing at 7% average annual return...</p>
+          <p class="text-sm text-text-secondary mb-6">Your ${fmt(investAmount)} invested today, growing at a {RETURN_PCT} assumed annual return...</p>
         {/if}
 
         <!-- Bar chart -->
@@ -545,8 +549,9 @@
         {/if}
 
         <p class="text-xs text-text-muted text-center">
-          Based on 7% average annual return. Actual returns will vary. Past performance
-          does not guarantee future results.
+          Based on a {RETURN_PCT} assumed annual return, from the FP Canada planning
+          guidelines. Actual returns will vary. Past performance does not guarantee
+          future results.
         </p>
       </div>
     {/if}
