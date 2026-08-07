@@ -445,6 +445,27 @@ moment a scenario was chosen — the provenance note rendered beside an empty
 field. Pre-fill now applies on mount and after every reset. The screenshot
 caught it; the code read as correct.
 
+### M5 — the literacy scaffold ships, and using a tool is completing it (7 August)
+
+The learning system was four-fifths built and frozen at zero because
+MarkComplete.svelte had no host. It now renders through an opt-in `markComplete`
+prop on Article.astro (the layout supplies its own pathname), enabled on the
+eight /money articles first. Progress advances for the first time since the
+scaffold was written.
+
+*Tool steps complete on click-through.* `PathStep` gained `kind: 'article' |
+'tool'`, and Financial Foundations interleaves four tools into the reading order
+(budget → snapshot, saving → tracker, debt → planner, ending on Your Money
+Plan). A tool cannot host a "mark as complete" footer, and it shouldn't — using
+the tool is the completion, so opening it from the path records the step. That
+is the tools-over-content and stealth-education research applied literally, and
+it only goes up.
+
+*Reachability:* /learn now has a "prefer a guided order?" line on /money's
+Learn section; the directory already carried it. Not a sixth nav tab — five
+tabs is a design decision, revisit only if Jake asks. `knowledgeChecks` stays a
+reserved slot; quizzes remain unbuilt on purpose.
+
 ---
 
 ## Open questions

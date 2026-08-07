@@ -28,6 +28,7 @@ export const DIRECTORY: DirectorySection[] = [
     blurb: 'Tools that take what you know and give you a number or an answer.',
     links: [
       { label: 'What applies to me', href: '/what-applies', note: 'Narrow the question, and who to ask' },
+      { label: 'Your Money Plan', href: '/money/plan', note: 'Where you stand, and what usually helps' },
       { label: 'Section 87 Checker', href: '/rights/section-87-checker', note: 'Is your income exempt?' },
       { label: 'Benefits Finder', href: '/self/benefits', note: 'What you may be entitled to' },
       { label: 'Tax Estimator', href: '/tools/tax-estimator', note: 'What you will owe or get back' },

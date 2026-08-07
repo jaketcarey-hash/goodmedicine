@@ -85,7 +85,7 @@
 <div class="mt-10 mb-4">
   <div class="rounded-sm border border-rule bg-white overflow-hidden
     transition-all duration-[var(--duration-normal)]
-    {justCompleted ? 'border-verified shadow-md' : ''}">
+    {justCompleted ? 'border-verified' : ''}">
 
     {#if pathJustFinished && justCompleted}
       <!-- Path complete celebration -->
@@ -112,7 +112,7 @@
       <!-- Already completed / just marked complete -->
       <div class="p-5">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-verified-wash flex items-center justify-center flex-shrink-0
+          <div class="w-10 h-10 rounded-sm bg-verified-wash flex items-center justify-center flex-shrink-0
             {justCompleted ? 'animate-[scale-in_0.3s_var(--ease-spring)]' : ''}">
             <svg class="w-5 h-5 text-verified" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 6L9 17l-5-5" />

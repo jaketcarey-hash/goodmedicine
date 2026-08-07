@@ -46,6 +46,14 @@
     expandedPath = expandedPath === pathId ? null : pathId;
   }
 
+  // A tool step counts as done when it is opened from the path — using the
+  // tool is the completion. Fires before navigation; progress only goes up.
+  function handleStepClick(pathId: string, step: { path: string; kind?: string }, alreadyDone: boolean) {
+    if (step.kind === 'tool' && !alreadyDone) {
+      completePathStep(pathId, step.path);
+    }
+  }
+
   // Paths carry a `colour` in the data, but branch tinting is gone — colour on
   // this site carries meaning, and a path is not a meaning. Completion speaks
   // in `verified`, always beside a label that says the same thing.
@@ -130,6 +138,7 @@
         <div class="px-5 pb-5 -mt-1">
           <a
             href={next.path}
+            onclick={() => handleStepClick(path.id, next, false)}
             class="inline-flex items-center gap-2 rounded-sm px-4 py-2.5 text-sm font-medium
               bg-ink text-ground transition-all duration-[var(--duration-normal)]
               hover:bg-ink/85 active:scale-[0.98]"
@@ -153,6 +162,7 @@
 
             <a
               href={step.path}
+              onclick={() => handleStepClick(path.id, step, stepDone)}
               class="group flex items-center gap-3 rounded-sm p-3 -mx-1 transition-all duration-[var(--duration-normal)]
                 {isCurrent ? 'border border-ink' : 'hover:bg-ground'}
                 {stepDone ? 'opacity-70' : ''}"
@@ -175,7 +185,7 @@
                   {stepDone ? 'line-through text-text-muted' : ''}">
                   {step.title}
                 </p>
-                <span class="text-xs text-text-muted">{step.estimatedMinutes} min</span>
+                <span class="text-xs text-text-muted">{step.kind === 'tool' ? `tool · ${step.estimatedMinutes} min` : `${step.estimatedMinutes} min`}</span>
               </div>
 
               <!-- Arrow for current -->

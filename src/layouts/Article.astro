@@ -14,6 +14,7 @@
  */
 import Shell from './Shell.astro';
 import PageHeader from '../components/PageHeader.svelte';
+import MarkComplete from '../components/MarkComplete.svelte';
 
 interface Props {
   title: string;
@@ -32,6 +33,8 @@ interface Props {
   sourceUrl?: string;
   /** The one thing that genuinely varies or is not settled, stated honestly. */
   unsettled?: string;
+  /** Opt-in: render the mark-as-complete footer that advances learning paths. */
+  markComplete?: boolean;
 }
 
 const {
@@ -47,6 +50,7 @@ const {
   sourceLabel,
   sourceUrl,
   unsettled,
+  markComplete = false,
 } = Astro.props;
 
 const hasStrip = checked || sourceLabel || unsettled;
@@ -130,6 +134,8 @@ const hasStrip = checked || sourceLabel || unsettled;
         </p>
       )
     }
+
+    {markComplete && <MarkComplete client:idle pagePath={Astro.url.pathname} />}
   </article>
 </Shell>
 

@@ -7,6 +7,9 @@ export interface PathStep {
   title: string;
   path: string;
   estimatedMinutes: number;
+  /** Articles are read and marked complete; tools count as done when opened
+   *  from the path — using the tool is the completion. */
+  kind?: 'article' | 'tool';
 }
 
 export interface LearningPath {
@@ -22,17 +25,21 @@ export const learningPaths: LearningPath[] = [
   {
     id: 'financial-foundations',
     name: 'Financial Foundations',
-    description: 'The essentials, in order. Everything you need to build a solid financial foundation.',
+    description: 'The essentials, in order — and after each idea, the tool that puts it to work.',
     colour: 'clay',
-    estimatedMinutes: 40,
+    estimatedMinutes: 55,
     steps: [
       { title: 'Banking Basics', path: '/money/banking', estimatedMinutes: 6 },
       { title: 'Budgeting That Works', path: '/money/budgeting', estimatedMinutes: 6 },
+      { title: 'Budget Snapshot — try one month', path: '/money/budget-tool', estimatedMinutes: 3, kind: 'tool' },
       { title: 'Understanding Credit', path: '/money/credit', estimatedMinutes: 6 },
       { title: 'Saving and Growing', path: '/money/saving', estimatedMinutes: 6 },
+      { title: 'Savings Tracker — set a goal', path: '/money/savings-tracker', estimatedMinutes: 3, kind: 'tool' },
       { title: 'Taxes and Filing', path: '/money/taxes', estimatedMinutes: 6 },
       { title: 'Dealing with Debt', path: '/money/debt', estimatedMinutes: 5 },
+      { title: 'Debt Planner — map what you owe', path: '/money/debt-planner', estimatedMinutes: 3, kind: 'tool' },
       { title: 'Investing 101', path: '/money/investing', estimatedMinutes: 5 },
+      { title: 'Your Money Plan — bring it together', path: '/money/plan', estimatedMinutes: 4, kind: 'tool' },
     ],
   },
   {
