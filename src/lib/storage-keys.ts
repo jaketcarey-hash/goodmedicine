@@ -18,6 +18,7 @@ export const STORAGE_KEYS = {
   SECTION87_RESULT: 'gm_section87_result',
   BENEFITS_RESULTS: 'gm-benefits-results',
   DISTRIBUTION_PLAN: 'gm-distribution-plan',
+  MONEY_PLAN: 'gm_money_plan',
   LAST_VISITED: 'gm_last_visited',
   MOMENTS_PROGRESS: 'gm_moments_progress',
 } as const;

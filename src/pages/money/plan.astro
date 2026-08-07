@@ -1,0 +1,19 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import MoneyPlan from '../../components/MoneyPlan.svelte';
+---
+
+<Shell title="Your Money Plan" branch="money" description="Where you're headed, what you're working toward, and where you stand — built from what you've already entered, on your phone, nowhere else.">
+  <PageHeader
+    title="Your money plan"
+    subtitle="Where you're headed, what you're working toward, and where you stand right now."
+    branch="money"
+    backHref="/money"
+    backLabel="Money"
+  />
+
+  <section class="px-5 pb-12">
+    <MoneyPlan client:load />
+  </section>
+</Shell>

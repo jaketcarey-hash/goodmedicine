@@ -418,6 +418,33 @@ pass caught four "windfall" framings for distribution money — restitution is
 not luck; all rewritten. Budgeting and seven-generations stay strip-free by
 design; their depth is sourcing and tool wiring, not manufactured answers.
 
+### M4 — /money/plan is a personal record, not a dashboard (7 August)
+
+The plan surface's signature is the site's own signature turned inward: "Your
+picture right now" renders like the record surface — rubric headings in the
+apparatus voice, values with provenance ("from your August budget"), absence
+stated in unsettled amber with an invitation attached, never a zero. No cards,
+no rings, no score, no wizard. The empty page teaches the site by being empty.
+
+*What persists vs what derives:* one key (`gm_money_plan`: vision + intentions;
+auto-saved, but never written on a passive visit — an untouched page leaves no
+trace). Everything else recomputes on render through money-picture, so the page
+cannot show a stale conclusion. Intentions may link a SavingsGoal by id and then
+display its live progress; the dollar goal stays owned by savings-store.
+
+*The Braiding sequence is cited, not borrowed:* the vision-before-numbers order
+is credited to the bundle in an apparatus footnote and the bundle joins
+resources; the prompt language is the site's own.
+
+*Severed by design:* the net-worth sparkline. Most profiles will hold one or two
+snapshots, and a two-point line is decoration wearing a chart's clothes. The
+trend is stated in words; revisit if snapshot histories deepen.
+
+*Found by looking:* the LifeSimulator pre-fill was wiped by `resetInputs()` the
+moment a scenario was chosen — the provenance note rendered beside an empty
+field. Pre-fill now applies on mount and after every reset. The screenshot
+caught it; the code read as correct.
+
 ---
 
 ## Open questions

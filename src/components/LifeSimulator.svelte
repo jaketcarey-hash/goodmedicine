@@ -7,6 +7,7 @@
     estimateMonthlyCPPEI,
     type CityData,
   } from '../lib/simulator-data';
+  import { getMoneyPicture } from '../lib/money-picture';
   import { fly, fade, slide } from 'svelte/transition';
 
   // ---- Scenarios ----
@@ -68,6 +69,29 @@
   let hoursPerWeek = $state('40');
   let isExempt = $state(true);
   let currentExpenses = $state('');
+  // Month name when income/expenses were pre-filled from the budget, null otherwise.
+  let prefilledFromBudget = $state<string | null>(null);
+
+  // Pre-fill income and expenses from the latest budget month rather than
+  // asking again — read-only via the money picture, and yours to overwrite.
+  // Called on mount and again after resetInputs(), which clears the fields
+  // when a scenario is chosen.
+  function applyBudgetPrefill() {
+    if (typeof window === 'undefined') return;
+    const picture = getMoneyPicture();
+    if (!picture.income) return;
+    annualIncome = String(Math.round(picture.income.monthly * 12));
+    if (picture.expenses) currentExpenses = String(Math.round(picture.expenses.monthly));
+    prefilledFromBudget = new Date(
+      Number(picture.income.month.slice(0, 4)),
+      Number(picture.income.month.slice(5, 7)) - 1,
+      1,
+    ).toLocaleDateString('en-CA', { month: 'long' });
+  }
+
+  $effect(() => {
+    if (typeof window !== 'undefined' && !prefilledFromBudget) applyBudgetPrefill();
+  });
   let selectedCity = $state(allCities[0].name);
   let workType = $state<'same' | 'different' | 'new'>('same');
 
@@ -162,6 +186,7 @@
     pensionAmount = '';
     retirementSavings = '';
     retireOnReserve = true;
+    applyBudgetPrefill();
   }
 
   function back() {
@@ -420,6 +445,11 @@
                           focus:outline-none transition-colors"
                       />
                     </div>
+                    {#if prefilledFromBudget}
+                      <p class="apparatus text-faint mt-1.5">
+                        from your {prefilledFromBudget} budget — change it if that's off
+                      </p>
+                    {/if}
                   </div>
                 {:else}
                   <div class="grid grid-cols-2 gap-3">
