@@ -118,6 +118,7 @@
   let newIncomeAmount = $state('');
   let newIncomeFrequency = $state<IncomeItem['frequency']>('monthly');
   let newIncomeCategory = $state<IncomeItem['category']>('employment');
+  let newIncomeAnchor = $state('');
   let showIncomeForm = $state(false);
 
   function addIncome() {
@@ -131,12 +132,14 @@
         amount,
         frequency: newIncomeFrequency,
         category: newIncomeCategory,
+        ...(newIncomeAnchor ? { anchorDate: newIncomeAnchor } : {}),
       },
     ];
     newIncomeLabel = '';
     newIncomeAmount = '';
     newIncomeFrequency = 'monthly';
     newIncomeCategory = 'employment';
+    newIncomeAnchor = '';
     showIncomeForm = false;
   }
 
@@ -155,6 +158,7 @@
   let newExpenseAmount = $state('');
   let newExpenseCategory = $state<ExpenseItem['category']>('housing');
   let newExpenseFrequency = $state<'monthly' | 'biweekly' | 'weekly'>('monthly');
+  let newExpenseAnchor = $state('');
   let showExpenseForm = $state(false);
 
   const expenseFrequencyLabels: Record<'monthly' | 'biweekly' | 'weekly', string> = {
@@ -174,12 +178,14 @@
         amount,
         frequency: newExpenseFrequency,
         category: newExpenseCategory,
+        ...(newExpenseAnchor ? { anchorDate: newExpenseAnchor } : {}),
       },
     ];
     newExpenseLabel = '';
     newExpenseAmount = '';
     newExpenseCategory = 'housing';
     newExpenseFrequency = 'monthly';
+    newExpenseAnchor = '';
     showExpenseForm = false;
   }
 
@@ -461,6 +467,18 @@
             </select>
           </div>
           <div class="col-span-2">
+            <label for="income-anchor" class="block text-xs font-medium text-text-muted mb-1">
+              When did it last arrive? <span class="text-faint">(optional — lets the forecast place it on real days)</span>
+            </label>
+            <input
+              id="income-anchor"
+              type="date"
+              bind:value={newIncomeAnchor}
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink focus:outline-none transition-colors"
+            />
+          </div>
+          <div class="col-span-2">
             <label for="income-category" class="block text-xs font-medium text-text-muted mb-1">Category</label>
             <select
               id="income-category"
@@ -593,6 +611,18 @@
                 <option {value}>{label}</option>
               {/each}
             </select>
+          </div>
+          <div class="col-span-2">
+            <label for="expense-anchor" class="block text-xs font-medium text-text-muted mb-1">
+              When does it come out? <span class="text-faint">(optional — lets the forecast place it on real days)</span>
+            </label>
+            <input
+              id="expense-anchor"
+              type="date"
+              bind:value={newExpenseAnchor}
+              class="w-full rounded-sm border border-rule bg-surface-card px-3 py-2.5 text-sm
+                focus:border-ink focus:outline-none transition-colors"
+            />
           </div>
           <div class="col-span-2">
             <label for="expense-category" class="block text-xs font-medium text-text-muted mb-1">Category</label>

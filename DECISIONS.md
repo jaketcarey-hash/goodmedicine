@@ -468,7 +468,41 @@ reserved slot; quizzes remain unbuilt on purpose.
 
 ---
 
-## Open questions
+## 2026-08-10 — DIY planning software, milestone 6: dates and the payment rails
+
+The next arc (plan: DIY financial planning software — explain layers, the
+cash-flow forecast, the plan document) starts with fuel, not features. Nothing
+in the app knew what day money moves: budget items carried frequency without
+phase, calendar events are month-granular, and benefit *payment* dates existed
+nowhere.
+
+### A third build gate: stale payment schedules stop the build
+
+`src/data/benefit-dates/2026.json` holds the year's actual payment dates —
+CCB, CGEB, OAS/GIS, CPP — fetched live from canada.ca's Benefits payment
+dates page. `scripts/check-benefit-dates.js` fails the build once a series
+passes its `reviewBy`, which is deliberately 31 December: the 2027 schedule
+publishes in December, and a forecast running on last year's dates is wrong
+silently — the worst kind of wrong for this site. Watched failing (exit 1
+before Astro) and restored.
+
+*Found by fetching:* the Canada Carbon Rebate is closed — the page lists 2025
+dates only. It is deliberately absent from the dataset; the plan had assumed
+it existed. The CGEB series carries only its two new-name dates (July,
+October) with the January/April payments noted as belonging to the closed
+GST/HST-credit series.
+
+### Anchors, not day-of-month fields
+
+`IncomeItem`/`ExpenseItem` gained optional `anchorDate` — a date the item
+actually landed. An anchor beats a day-of-month field because it preserves
+biweekly *phase* (which Friday), and `occurrencesBetween()` in the new
+`src/lib/dates.ts` walks the 7/14-day grid from it, clamps monthly anchors to
+short months (the 31st lands on Feb 28), and yields nothing for irregular
+income — a forecast that invented dates for irregular income would be a guess
+wearing a schedule. Old stored items parse unchanged; without an anchor an
+item stays a monthly average and the forecast will say so. Eleven date tests
+cover phase, clamping, year-end and the fall DST boundary.
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
   builds toward the former.

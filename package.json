@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check-figures.js && node scripts/check-provenance.js && astro build && node scripts/build-search-index.js && node scripts/build-seo.js && node scripts/generate-sw.js",
+    "build": "node scripts/check-figures.js && node scripts/check-provenance.js && node scripts/check-benefit-dates.js && astro build && node scripts/build-search-index.js && node scripts/build-seo.js && node scripts/generate-sw.js",
     "check:figures": "node scripts/check-figures.js",
     "check:provenance": "node scripts/check-provenance.js",
+    "check:benefit-dates": "node scripts/check-benefit-dates.js",
     "preview": "astro preview",
     "astro": "astro"
   },

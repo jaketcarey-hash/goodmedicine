@@ -4,6 +4,7 @@
  */
 
 import { STORAGE_KEYS } from './storage-keys';
+import { addDays } from './dates';
 
 export interface CalendarProfile {
   treatyArea: string | null;
@@ -146,14 +147,11 @@ export function getUpcomingEvents(
   profile: CalendarProfile,
 ): CalendarEvent[] {
   const now = new Date();
-  const currentMonth = now.getMonth();
-  const currentDay = now.getDate();
 
   const upcoming: CalendarEvent[] = [];
 
   for (let offset = 0; offset <= 30; offset++) {
-    const date = new Date(now);
-    date.setDate(date.getDate() + offset);
+    const date = addDays(now, offset);
     const month = date.getMonth();
     const day = date.getDate();
 
@@ -228,8 +226,7 @@ function customRemindersUpcoming(
   const results: CalendarEvent[] = [];
 
   for (let offset = 0; offset <= 30; offset++) {
-    const date = new Date(from);
-    date.setDate(date.getDate() + offset);
+    const date = addDays(from, offset);
     const month = date.getMonth();
     const day = date.getDate();
 

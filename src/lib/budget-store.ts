@@ -11,6 +11,11 @@ export interface IncomeItem {
   amount: number;
   frequency: 'monthly' | 'biweekly' | 'weekly' | 'irregular';
   category: 'employment' | 'band' | 'benefits' | 'family' | 'other';
+  /** A date this item actually landed ("2026-08-07"). Optional — old items
+   *  don't have one. With it, the forecast knows which Friday biweekly pay
+   *  arrives and what "the 1st" means; without it, the item stays a monthly
+   *  average and the forecast says so. */
+  anchorDate?: string;
 }
 
 export interface ExpenseItem {
@@ -18,6 +23,8 @@ export interface ExpenseItem {
   label: string;
   amount: number;
   frequency?: 'monthly' | 'biweekly' | 'weekly';
+  /** See IncomeItem.anchorDate. */
+  anchorDate?: string;
   category:
     | 'housing'
     | 'food'
