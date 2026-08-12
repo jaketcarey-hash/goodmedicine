@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "title": "The Nations This Morning",
+    "date": "2026-08-12",
+    "dateLong": "Wednesday, August 12, 2026",
+    "timezone": "America/Vancouver",
+    "headline": "No new verified ownership closing crossed the Tuesday tape; the live signal was supplier access, small procurement and public-sector capacity.",
+    "readTime": "About four minutes",
+    "status": "verified_public_sources"
+  },
+  "throughLine": "Tuesday did not produce a verified Indigenous equity closing, loan guarantee, court decision or major-project approval. The useful signal sat in quieter operating systems: Indigenous supplier-diversity networks moved into an international procurement room at Supply Nation Connect 2026, Saanich's foundational Indigenous learning RFQ hit its closing date, and Yukon's child-and-family-services audit remained a live fiscal-governance file rather than a closed social-policy story.",
+  "oneThing": {
+    "headline": "Connect 2026 turns supplier diversity into an international procurement lane",
+    "status": "confirmed",
+    "sourceIds": [
+      1,
+      2,
+      3
+    ],
+    "paragraphs": [
+      "Supply Nation's Connect 2026 opened August 11 in Boorloo, Perth, on the lands of the Whadjuk people of the Noongar Nation. The two-day program brings Aboriginal and Torres Strait Islander businesses together with corporate organizations and government departments through a Knowledge Forum, Indigenous Business Tradeshow and Gala Awards Dinner.",
+      "The Canadian angle is the trade bridge. First Nations News reported in June that Supply Nation's 2026 Canada trade mission built relationships with the Canadian Aboriginal and Minority Supplier Council and the National Aboriginal Capital Corporations Association, with Canadian delegates and business representatives set to participate in Connect 2026.",
+      "This is not a disclosed transaction. It is a procurement-access and relationship-building file: the event can create buyer introductions, supplier visibility and cross-border Indigenous-to-Indigenous business learning, but no completed contract, financing or partnership was public during this run."
+    ],
+    "whyItMatters": "For Indigenous-owned businesses, supplier-diversity systems can be practical market infrastructure. They do not replace capital, scale or procurement reform, but they can make buyers, certifications and commercial partners easier to reach.",
+    "unknowns": [
+      "No public source reviewed in this run disclosed Canadian delegate lists, signed contracts, financing, procurement commitments or post-event business outcomes."
+    ],
+    "nextCatalyst": "Watch Supply Nation, CAMSC and NACCA for post-event announcements from August 12 onward."
+  },
+  "developments": [
+    {
+      "section": "Closer to Home -- British Columbia",
+      "headline": "Saanich's Indigenous learning RFQ closes without a named supplier yet",
+      "status": "confirmed",
+      "sourceIds": [
+        4
+      ],
+      "whatHappened": "The District of Saanich listed RFQ 26-152, Creation of a Foundational Indigenous Learning Module, with a July 17 posting time and a 3:00 p.m. August 11 closing date.",
+      "whyItMatters": "This is small compared with a major-project financing, but it is still an economic signal. Local governments are increasingly buying Indigenous knowledge, training and reconciliation capacity as professional services, and the procurement design determines whether that spend reaches Indigenous-led providers or general consultants with Indigenous content bolted on.",
+      "whatRemainsUnknown": "The public bid page did not disclose the budget, evaluation criteria, preferred supplier, Indigenous-business requirements or whether an Indigenous-led proponent will receive the work.",
+      "nextCatalyst": "Watch Saanich's procurement page for an award notice or amended status."
+    },
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "Yukon's child-welfare audit remains a budget and governance file",
+      "status": "confirmed",
+      "sourceIds": [
+        5,
+        6
+      ],
+      "whatHappened": "The Yukon Legislative Assembly's Public Accounts Committee continues to carry the Auditor General's Child and Family Services in Yukon report on its committee page, with the May 25 public hearing record and submissions from Little Salmon Carmacks First Nation, Kwanlin Dun First Nation, the Yukon Status of Women Council and the Office of the Yukon Child and Youth Advocate. The March audit found serious service gaps, including missed response and investigation timelines, incomplete foster or extended-family-home screening, weak face-to-face contact and only 62% of social worker and supervisor positions staffed as of March 2025.",
+      "whyItMatters": "Child and family services are also fiscal infrastructure. Staffing levels, prevention funding, First Nation participation, accountability reporting and transfer arrangements determine whether governments are funding reactive intervention or the community-controlled capacity needed to keep children connected to family, culture and Nation.",
+      "whatRemainsUnknown": "No new public funding package, statutory amendment, implementation timetable or committee report was verified during this run.",
+      "nextCatalyst": "Watch the Public Accounts Committee, Yukon Health and Social Services and Yukon First Nations submissions for recommendations and a government action plan."
+    }
+  ],
+  "whatHappensNext": [
+    "Supply Nation Connect 2026: the next material signal is whether any Canadian-Indigenous supplier partnerships, procurement commitments or follow-on trade missions are disclosed after the August 11-12 program.",
+    "Saanich RFQ 26-152: the next proof point is the award notice and whether the selected supplier is Indigenous-led.",
+    "Yukon child and family services: the next signal is a committee report, implementation plan or funding response that changes staffing, prevention or First Nation participation."
+  ],
+  "stillWatching": [
+    "Okanagan Indian Band wildfire recovery remains active until damage totals, recovery funding, water status and service-restoration timelines are public.",
+    "Tilbury LNG remains open after the Phase 2 public-comment close. The next material update would be a posted assessment step, final decision timeline or disclosed Musqueam equity structure.",
+    "Crawford nickel remains pending until IAAC posts a decision statement with conditions, even if secondary reporting moves ahead of the registry.",
+    "LNG Canada, Yellowhead Copper, Roberts Bank Terminal 2, Burrard Inlet dredging, Mount Polley, Namaygoosisagagun rebuild funding, Dumont Nickel and the Cowichan Tribes title appeal remain unresolved from prior editions."
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "Supply Nation -- Supply Nation Connect 2026",
+      "url": "https://supplynation.org.au/event/supply-nation-connect-2026/",
+      "date": "accessed 2026-08-12",
+      "type": "Event primary source"
+    },
+    {
+      "id": 2,
+      "label": "Supply Nation Connect 2026 -- Indigenous Business Tradeshow",
+      "url": "https://connect.supplynation.org.au/tradeshow/",
+      "date": "accessed 2026-08-12",
+      "type": "Event primary source"
+    },
+    {
+      "id": 3,
+      "label": "First Nations News -- Trade mission strengthens business opportunities in Canada",
+      "url": "https://firstnationsnews.com.au/trade-mission-strengthens-business-opportunities-in-canada/",
+      "date": "2026-06-25",
+      "type": "Independent Indigenous business reporting"
+    },
+    {
+      "id": 4,
+      "label": "District of Saanich -- Bid Opportunities",
+      "url": "https://www.saanich.ca/EN/main/business/selling-to-saanich/bid-opportunities.html",
+      "date": "accessed 2026-08-12",
+      "type": "Municipal procurement record"
+    },
+    {
+      "id": 5,
+      "label": "Office of the Auditor General of Canada -- Child and Family Services in Yukon",
+      "url": "https://www.canada.ca/en/auditor-general/media-room/yukon-child-family-services-are-failing-meet-key-obligations-protect-vulnerable-children.html",
+      "date": "2026-03-04",
+      "type": "Auditor General public report"
+    },
+    {
+      "id": 6,
+      "label": "Yukon Legislative Assembly -- Standing Committee on Public Accounts",
+      "url": "https://yukonassembly.ca/committees/pac",
+      "date": "accessed 2026-08-12",
+      "type": "Legislative committee record"
+    }
+  ]
+}
