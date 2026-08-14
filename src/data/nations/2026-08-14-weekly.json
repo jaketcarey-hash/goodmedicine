@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "headline": "A community counts what the fire took, while the consultation question moves into courtrooms and comment periods — from the Smoky River to the Ring of Fire"
+  },
+  "oneThing": {
+    "headline": "Okanagan Indian Band counts its losses: homes, Syilx baskets, and berry grounds generations old",
+    "status": "confirmed",
+    "paragraphs": [
+      "Two weeks after the Bradley Creek wildfire ignited on Okanagan Indian Band reserve lands near Vernon at the start of August and forced the entire reserve to evacuate, the scale of what was lost is coming into focus. Chief Dan Wilson said more than 30 members' homes and over 200 additional homes and structures on certificate-of-possession lands were destroyed. Among those burned out is 91-year-old Elder Frederick Louis, who lost not only his home but family photographs, Syilx baskets and other artifacts collected over generations.",
+      "The losses extend past the buildings. Forest and berry-picking grounds that families had used for generations burned too, and the community expects the scorched watershed and landscape to take decades to recover. Neighbouring Syilx Okanagan Nation Alliance communities, including Penticton Indian Band and Westbank First Nation, opened their communities to evacuees, and leaders performed smudging and drumming ceremonies to support those displaced.",
+      "As of August 13, some residents have returned home while others remain displaced, and the community says it is prepared to rebuild. The recovery ahead spans three different kinds of loss — housing on a reserve already facing chronic shortages, a watershed that will heal on its own timeline, and cultural belongings that cannot be rebuilt at all. How federal and provincial rebuilding commitments meet that reality will play out over years, not seasons."
+    ],
+    "sources": [
+      {
+        "label": "CBC News",
+        "url": "https://www.cbc.ca/news/canada/british-columbia/members-of-okanagan-indian-band-mourn-loss-of-forests-and-irreplaceable-artifacts-in-wildfire-9.7305507"
+      }
+    ]
+  },
+  "econ": [
+    {
+      "headline": "Five Anishinabek First Nations sign toward an equity stake in an Ontario graphite project",
+      "status": "confirmed",
+      "what": "Dokis, Henvey Inlet, Magnetawan, Shawanaga and Wasauksing First Nations, working collectively as the Gizhe Manidoo O-Miigwewinan Limited Partnership, signed a Letter of Agreement with Global Battery Materials Corp. on August 10 covering the Kearney Graphite Project in northeastern Ontario. The LOA sets out a process to negotiate a full Partnership Framework that would include potential equity ownership, an energy partnership, and long-term stewardship of lands and waters. It accompanies a Preliminary Economic Assessment showing a 67 per cent internal rate of return and a 1.3-year payback period; the company's next step is a Definitive Feasibility Study.",
+      "why": "Equity participation is being written into this critical-minerals project at the earliest planning stage — before a feasibility study exists — rather than negotiated in later as a concession. It is another marker of Indigenous equity becoming a baseline deal term in battery-supply-chain projects rather than an add-on.",
+      "sources": [
+        {
+          "label": "PR Newswire (also syndicated via Morningstar)",
+          "url": "https://www.prnewswire.com/news-releases/five-first-nations-and-global-battery-materials-sign-letter-of-agreement-for-potential-equity-investment-in-kearney-graphite-project-302847231.html"
+        }
+      ]
+    },
+    {
+      "headline": "Ottawa commits $1.98 million to four Indigenous-led economic projects across the NWT",
+      "status": "confirmed",
+      "what": "On August 10, Parliamentary Secretary Dr. Brendan Hanley announced, on behalf of Minister Rebecca Chartrand, a CanNor contribution of up to $1,982,199 across four Indigenous-led initiatives in the Northwest Territories: a new hangar at Norman Wells Airport for North-Wright Airways Ltd., majority owned by Sahtu land corporations; support for Deh Gáh Got'ı̨ę First Nation's Undah Gogha Corporation to establish a timber harvesting site in Fort Providence; business-management software upgrades for Det'on Cho Management LP, the economic development arm of Yellowknives Dene First Nation; and an entrepreneurship bootcamp for 30 Indigenous youth run by Thebacha Business Development Services Inc.",
+      "why": "The money flows directly through Indigenous-owned corporate vehicles — an airline, a forestry operator, a management company, a youth business developer — rather than through social-program channels. Spread across aviation, forestry, business services and youth entrepreneurship, it reads as own-source revenue diversification beyond resource extraction, one corporation at a time.",
+      "sources": [
+        {
+          "label": "Government of Canada / CanNor; corroborated by Cabin Radio",
+          "url": "https://www.canada.ca/en/northern-economic-development/news/2026/08/indigenous-led-projects-in-the-nwt-to-expand-businesses-and-empower-youth.html"
+        }
+      ]
+    },
+    {
+      "headline": "Northern Development opens a $900,000 capacity-building fund for BC First Nation development corporations",
+      "status": "confirmed",
+      "what": "Northern Development announced a new First Nations Business Development Capacity Building program on August 12, offering up to $900,000 in total, with individual grants up to $75,000 covering 90 per cent of the cost of hiring consultants. The stated purpose is to help First Nation development corporations negotiate, diversify or capitalize on nearby large-scale industrial projects. Applications open September 2 and run through June 30, 2027, alongside a companion $1.8-million Business Diversification and Sustainability program for the broader small-business sector.",
+      "why": "As loan-guarantee programs multiply the capital available for equity stakes, the constraint is shifting to whether a Nation's development corporation has the in-house negotiating and technical capacity to structure and close those deals. This program funds that advisory capacity directly — money aimed at the bottleneck rather than the balance sheet.",
+      "sources": [
+        {
+          "label": "Prince George Daily News (corroborated by Energeticcity.ca)",
+          "url": "https://pgdailynews.ca/index.php/2026/08/12/grants-available-to-businesses-and-first-nation-development-corporations-through-duo-of-new-programs/"
+        }
+      ]
+    }
+  ],
+  "land": [
+    {
+      "headline": "Alberta court rejects O'Leary Digital's bid to block Sturgeon Lake Cree Nation's water-licence challenge",
+      "status": "confirmed",
+      "what": "On August 13, Justice P.K. Johal of the Alberta Court of King's Bench dismissed O'Leary Digital Incorporated's attempt to intervene in and block Sturgeon Lake Cree Nation's judicial review of a water licence tied to the proposed $70-billion Wonder Valley AI data centre in northern Alberta. The licence, granted to the Municipal District of Greenview with plans to transfer it to O'Leary Digital, authorizes withdrawal of six million cubic metres of water annually from the Smoky River. Justice Johal found the company's stake in the licence 'contingent and speculative,' its heavily redacted purchase agreement making it 'impossible to determine whether those contractual rights have crystallized.' Chief Sheldon Sunshine said the Nation was not consulted before the licence was granted: 'There is no environmental assessment and next to no consultation with our Nations.' The merits hearing is scheduled for December 2026.",
+      "why": "The ruling keeps alive a direct test of Alberta's duty to consult on provincial water licensing tied to industrial mega-projects — an area where the consultation case law built from Haida Nation and Mikisew Cree has mostly developed around federal and resource-extraction decisions, not water permits for data centres. It is an early marker for how Aboriginal and treaty rights litigation will engage the AI buildout as data centres compete for water and land across treaty territory.",
+      "sources": [
+        {
+          "label": "The Energy Mix",
+          "url": "https://www.theenergymix.com/oleary-loses-first-nation-wins-in-bid-for-judicial-review-of-data-centre-water-permits/"
+        }
+      ]
+    },
+    {
+      "headline": "Friends of the Attawapiskat River takes Ottawa's Ring of Fire road approval to Federal Court",
+      "status": "confirmed",
+      "what": "Friends of the Attawapiskat River, a Treaty 9-based grassroots group, filed for judicial review in Federal Court on July 23, seeking to overturn federal Environment Minister Julie Dabrusin's June 25 approval of the Webequie Supply Road — a 107-kilometre all-season road connecting Webequie First Nation to the McFaulds Lake mineral deposits in Ontario's Ring of Fire. The group calls the approval 'inherently unreasonable and fundamentally flawed' for failing to properly account for rights under the UN Declaration on the Rights of Indigenous Peoples and for climate, biodiversity and sustainability impacts, even though the federal impact assessment itself found significant adverse effects on Indigenous peoples and rights, wetlands, peatlands, caribou and culturally significant areas. Kate Kempton, senior counsel at Woodward & Company LLP, says the case turns partly on 'project splitting' — the three Ring of Fire road segments being assessed separately rather than as the single road they are meant to form.",
+      "why": "This is the first legal test of the piece-by-piece approach to approving Ring of Fire infrastructure, and it puts the cumulative-effects question — long argued in assessment law but rarely tested against a road built explicitly to unlock a mining region — squarely before the Federal Court. A ruling on project splitting would bear directly on how the rest of the corridor and the mine itself get approved.",
+      "sources": [
+        {
+          "label": "The Energy Mix",
+          "url": "https://www.theenergymix.com/lawyer-warns-of-cumulative-impact-as-first-nations-group-challenges-ring-of-fire-road/"
+        }
+      ]
+    },
+    {
+      "headline": "The West Coast pipeline's compressed consultation clock draws First Nations pushback",
+      "status": "confirmed",
+      "what": "The comment deadline on listing the roughly 1,250-kilometre West Coast oil pipeline — Bruderheim, Alberta to a deepwater port near Delta, BC — as a national-interest project under the Building Canada Act has been extended to September 18, with Ottawa citing wildfire disruption and competing priorities; the formal listing decision remains targeted for October 1. Listing would let the government fast-track approvals and bypass laws including the Impact Assessment Act and the Species at Risk Act. Writing August 10, Tsartlip First Nation member and former BC Green MLA Adam Olsen described the Major Projects Office's consultation process as 'bureaucratic and rigid' theatre, criticizing a 47-day initial response window issued by letter on July 10 — timed for a summer stretch when First Nations leadership traditionally isn't convened and members are away harvesting.",
+      "why": "This is an early stress test of the duty to consult under the Building Canada Act, a statute written to compress timelines that the common law from Haida Nation through Mikisew Cree has held must be proportionate to the strength of the claim and the severity of potential impact. Nations along the corridor are already treating the comment period as the venue where that tension gets tested first.",
+      "sources": [
+        {
+          "label": "The Tyee",
+          "url": "https://thetyee.ca/Opinion/2026/08/10/Canada-Major-Projects-Consultation-Theatre/"
+        }
+      ]
+    }
+  ],
+  "governance": [
+    {
+      "headline": "Bill C-21 stalls until fall; Manitoba Métis Federation says self-government proceeds regardless",
+      "status": "confirmed",
+      "what": "The House of Commons broke for summer before Bill C-21, the Red River Métis Self-Government Recognition and Implementation Act, could reach second reading, leaving no timeline for its next step. The bill, introduced February 12, would give legal effect to the Self-Government Treaty Canada signed with the Manitoba Métis Federation, formally recognizing the MMF as the government of the Red River Métis with jurisdiction over citizenship, leadership selection and internal administrative law — while explicitly creating no harvesting, land or resource rights and altering no existing First Nations treaty rights. MMF President David Chartrand told MBC Radio on August 8 that the delay will not stop the Federation's work, noting the MMF already operates its own hunting laws and governance systems that the bill would recognize rather than create. First Nations organizations, including the Assembly of Manitoba Chiefs and the Assembly of First Nations, continue to raise consultation and jurisdictional-overlap concerns.",
+      "why": "C-21 would be the first legislated Self-Government Treaty with a Métis government in Canadian history. Its stall leaves the treaty's legal implementation in limbo even as the MMF builds governing institutions on the ground — and the unresolved jurisdictional debate will resurface whenever the bill returns to the House.",
+      "sources": [
+        {
+          "label": "MBC Radio",
+          "url": "https://www.mbcradio.com/2026/08/bill-c-21-delay-wont-halt-red-river-metis-self-government-mmf-says"
+        }
+      ]
+    },
+    {
+      "headline": "Auditor General of Canada to review Nunavut's drinking water management",
+      "status": "confirmed",
+      "what": "The Office of the Auditor General of Canada confirmed it plans a performance audit of drinking water management in Nunavut, with results expected in 2027; scope, methodology and timeline are not yet finalized, according to spokesperson Vincent Frignon. The announcement follows a string of crises: Gjoa Haven's nearly seven-month boil-water advisory after a January pipeline break, Kugaaruk's plant disabled by seawater infiltration in December 2025, Pangnirtung's September 2025 state of emergency when its plant stopped producing water, and Sanikiluaq's do-not-consume order in place since 2016. Only 8 of the territory's 25 water treatment plants passed their most recent inspections without deficiencies, and the 2023 Drinking Water Strategic Framework put the infrastructure funding gap at $605 million.",
+      "why": "A federal performance audit creates an accountability record on water infrastructure that Nunavut Tunngavik Inc. and Nunavut communities can carry into future funding negotiations with Ottawa and the territorial government.",
+      "sources": [
+        {
+          "label": "Nunatsiaq News",
+          "url": "https://nunatsiaq.com/stories/article/auditor-general-plans-to-review-nunavuts-drinking-water-management/"
+        }
+      ]
+    },
+    {
+      "headline": "Métis Nation British Columbia opens voting in its presidential by-election",
+      "status": "confirmed",
+      "what": "Online voting opened August 8 and runs through August 22 at 8pm PT in Métis Nation British Columbia's by-election to fill the presidency, with mail-in ballot packages sent August 7. The vacancy follows the removal of former president Walter Mineault in April, after an independent investigation by lawyer Robyn Gervais found breaches of fiduciary duty, including conflicts of interest and conduct meeting the threshold for dishonesty or bad faith. Two virtual town halls preceded the vote — one for youth voters on August 4 and one for all voters on August 6 — and results are expected once voting closes.",
+      "why": "The by-election determines leadership of one of Canada's largest provincial Métis governments at a moment when MNBC is rebuilding governance credibility after a misconduct-driven vacancy.",
+      "sources": [
+        {
+          "label": "MNBC 2026 By-Election (elections.mnbc.ca)",
+          "url": "https://elections.mnbc.ca/"
+        }
+      ]
+    }
+  ],
+  "home": [
+    {
+      "headline": "UBCIC letter urges Carney and Smith to halt the West Coast pipeline as BC fights record wildfires",
+      "text": "On Sunday, August 9, the Union of BC Indian Chiefs sent an open letter to Prime Minister Mark Carney and Alberta Premier Danielle Smith demanding a halt to advancement of the proposed West Coast pipeline. Published to coincide with the International Day of the World's Indigenous Peoples, the letter was signed by UBCIC Grand Chief Stewart Phillip, Gitxaała Nation Chief Councillor Linda Innes and Heiltsuk Tribal Council Chief Councillor Marilyn Slett, with a copy to BC Premier David Eby. It landed a day after BC declared a provincial state of emergency, with more than 100 wildfires burning and one fire forcing nearly 25,000 people in two Interior communities east of Vancouver to evacuate. The letter states government has not consulted and cooperated in good faith with First Nations, noting the pipeline corridor has already been developed and prospective development partners named.",
+      "why": "The timing links two live regional pressures — wildfire emergency response near Interior Nations and pipeline consultation obligations under DRIPA — and shows coastal and Interior BC Nations coordinating provincial-federal pressure ahead of any pipeline advancement through their territories.",
+      "sources": [
+        {
+          "label": "The Turtle Island News (Canadian Press)",
+          "url": "https://theturtleislandnews.com/index.php/2026/08/10/first-nations-chiefs-in-b-c-call-on-carney-smith-to-halt-pipeline-advancement/"
+        }
+      ]
+    },
+    {
+      "headline": "BC public accounts disclose 135,000-plus hectares committed to First Nations land transfers",
+      "text": "BC's newly released 2025/26 Public Accounts disclosed that the province has committed to transferring 135,425 hectares of provincial Crown land to twenty First Nations. The two largest commitments are to Kitsumkalum, roughly 46,000 hectares, and Kitselas, over 35,000 hectares, both near Terrace; the smallest listed is 47 hectares to Tla-o-qui-aht on western Vancouver Island. The disclosure included no maps of specific parcels, and the province noted implementation could require compensation to third parties in amounts not yet determined. The commitments apply only to Nations in voluntary negotiations, excluding litigation-driven transfers and federal Crown land. BC Conservative Leader Kerry-Lynne Findlay called for a halt to all land transfers and repeal of reconciliation agreements.",
+      "why": "This is the land-transfer process made concrete in numbers — showing where the province's reconciliation commitments are landing on the map, how much is concentrated in a handful of northern Nations, and how the political fight over DRIPA-era agreements is sharpening in the legislature.",
+      "sources": [
+        {
+          "label": "Sitka Media",
+          "url": "https://www.sitkamedia.ca/bc-government-reveals-135-000-hectares-in-first-nation-land-transfers/"
+        }
+      ]
+    },
+    {
+      "headline": "Iskum Investments' coastal wood-processing study moves from announcement to active site analysis",
+      "text": "Ha-Shilth-Sa reported August 13 that Iskum Investments LP — the consortium of more than 20 coastal First Nations including Huu-ay-aht, Hupacasath, Lyackson and 'Namgis — is now conducting its feasibility study for a majority Indigenous-owned wood processing facility on the BC coast, backed by $1.275 million from Natural Resources Canada's Indigenous Forestry Initiative. Three potential sites are under comparative technical, commercial and financial analysis; no site has been selected and no final investment decision made, according to Huu-ay-aht Chief Councillor John Jack. The facility would process hemlock and balsam, underutilized second-growth species that make up about half of BC's coastal forest, and participating Nations collectively hold over 200 forest tenures representing roughly 4.6 million cubic metres of allowable annual harvest.",
+      "why": "A follow-on to the federal funding covered last week: the project has moved from announcement to active site study, with the potential for 700-plus ongoing jobs and a shift of processing capacity for underused coastal species toward the Nations that hold the underlying tenures.",
+      "sources": [
+        {
+          "label": "Ha-Shilth-Sa Newspaper",
+          "url": "https://hashilthsa.com/news/2026-08-13/study-underway-new-state-art-wood-processing-facility-bc-coast"
+        }
+      ]
+    }
+  ],
+  "sweep": [
+    {
+      "domain": "Law & courts",
+      "items": [
+        {
+          "line": "Quebec's Director of Criminal and Penal Prosecutions will not charge Nunavik Police Service officers in the July 2025 shooting death of Jamie Kavik, 34, in Inukjuak, finding the use of force justified — the first charging decision among four police-involved deaths in Nunavik over eighteen months, with three cases still under review.",
+          "label": "Nunatsiaq News",
+          "url": "https://nunatsiaq.com/stories/article/no-charges-against-police-involved-in-fatal-2025-inukjuak-shooting/"
+        }
+      ]
+    },
+    {
+      "domain": "Health & education",
+      "items": [
+        {
+          "line": "Ontario announced $7 million on August 5 for the Indian Residential School Community Engagement Fund, part of a $20-million 2026-27 commitment — but Survivors' Secretariat lead Laura Arndt called it a 'bait and switch,' saying the application process and program structure are unchanged from previous rounds.",
+          "label": "The Turtle Island News",
+          "url": "https://theturtleislandnews.com/index.php/2026/08/12/bait-and-switch-new-provincial-residential-school-survivor-funding-is-not-what-it-seems/"
+        }
+      ]
+    },
+    {
+      "domain": "Culture, language & arts",
+      "items": [
+        {
+          "line": "The Manitoba Métis Federation held a three-day Michif language summit, 'Lii vway di la tayaen'd niikinaahk,' in Winnipeg August 10-12, bringing together Elders, Knowledge Keepers, speakers, educators and youth to strengthen revitalization efforts.",
+          "label": "APTN News",
+          "url": "https://www.aptnnews.ca/videos/michif-language-summit-celebrates-and-strengthens-the-language/"
+        }
+      ]
+    },
+    {
+      "domain": "International Indigenous",
+      "items": [
+        {
+          "line": "Arizona Governor Katie Hobbs, Navajo Nation President Buu Nygren and Hopi Chairman Lamar Keevama signed a five-year MOU on economic resilience for coal-dependent Four Corners communities, responding to the thousands of jobs and tens of millions in annual revenue lost with the Navajo Generating Station and Kayenta Mine closures.",
+          "label": "KJZZ",
+          "url": "https://www.kjzz.org/tribal-natural-resources/2026-08-12/hobbs-northern-arizona-tribes-enter-5-year-economic-resilience-pact-as-coal-decline-continues"
+        },
+        {
+          "line": "Marri Ngarr artist Dr Ryan Presley won the $100,000 Telstra Art Award at Australia's 2026 NATSIAA — the country's longest-running Indigenous art award — for 'Our lifestyle of tranquillity undisturbed,' an oil painting drawing on Beccafumi's The Annunciation.",
+          "label": "National Indigenous Times",
+          "url": "https://nit.com.au/07-08-2026/25805/from-renaissance-dreamscapes-to-digital-ceremony-2026-telstra-natsiaa-winners-revealed"
+        }
+      ]
+    }
+  ],
+  "bright": {
+    "headline": "Vuntut Gwitchin teen becomes the first female youth from her Nation to reach Team Canada level in karate",
+    "text": "Lily Simard, a 14-year-old Vuntut Gwitchin citizen now living in Saskatoon, has become the first female youth from her Nation to reach the international level in karate. She holds a shodan-ho junior black belt, trains five sessions a week, and placed fourth in her second year at nationals — earning her first international trip, to Italy, in December 2025. Later this month she travels to Costa Rica to represent Team Canada at the Junior Pan American Karate Championships. Her aunt, Kim Blake, says the recognition matters especially for youth from small northern communities who rarely see themselves at elite levels; Simard's family ties run to Old Crow through her great-great-grandparents Charlie Peter and Fanny Charlie, and she says she hopes one day to coach younger karate athletes in the Yukon.",
+    "sources": [
+      {
+        "label": "Yukon News",
+        "url": "https://yukon-news.com/2026/08/03/vuntut-gwitchin-youth-becomes-first-female-youth-to-reach-team-canada-karate-level/"
+      }
+    ]
+  },
+  "stillWatching": [
+    {
+      "line": "The West Coast pipeline comment deadline, extended to September 18 amid wildfire disruption, still runs toward an October 1 listing decision — with the consultation process itself now publicly contested by UBCIC's open letter and Nation-side critics of the Major Projects Office."
+    },
+    {
+      "line": "Ottawa has yet to respond to the August 6 coalition letter on renewing lapsing MMIWG2S+ program funding, with roughly half of Calls for Justice-linked initiatives at risk between 2026-27 and 2030-31."
+    },
+    {
+      "line": "Bill C-21, the Red River Métis self-government treaty legislation, remains short of second reading with no fall sitting date confirmed, and First Nations consultation concerns unresolved."
+    },
+    {
+      "line": "Sturgeon Lake Cree Nation's judicial review of the Wonder Valley water licence now heads to a December 2026 merits hearing, having survived O'Leary Digital's attempt to block it — the first close look at consultation duties on water permits for the AI buildout."
+    }
+  ]
+}
