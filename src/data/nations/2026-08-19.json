@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "title": "The Nations This Morning",
+    "date": "2026-08-19",
+    "dateLong": "Wednesday, August 19, 2026",
+    "timezone": "America/Vancouver",
+    "headline": "No new verified ownership closing crossed Tuesday's tape; the material signal was reclamation governance at Ekati and B.C. community-capital planning.",
+    "readTime": "About four minutes",
+    "status": "verified_public_sources"
+  },
+  "throughLine": "Tuesday did not produce a verified Indigenous equity closing, loan guarantee, final project approval or completed major transaction in the public record reviewed for this edition. The useful signal sat in operating control: the Wek'eezhii Land and Water Board says Ekati's receiver continued unauthorized waste disposal after clear direction not to do so, PwC says 2025 aquatic-monitoring data cannot be produced because a pre-receivership contractor will not release it without payment, and Gitsegukla First Nation used the Four Pillars settlement process and a 2026-2030 strategic plan to tie housing, infrastructure, land management and economic development to a multi-year budget discipline.",
+  "oneThing": {
+    "headline": "Ekati's receiver is now a reclamation-governance test, not only an insolvency file",
+    "status": "confirmed",
+    "sourceIds": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "paragraphs": [
+      "Cabin Radio reported that PricewaterhouseCoopers, the court-appointed receiver for the insolvent Ekati diamond mine, has been accused by the Wek'eezhii Land and Water Board of \"direct non-compliance\" after continuing to dispose of explosive emulsion into the Long Lake Containment Facility. The underlying August 14 board letter says the board had given clear direction that the disposal was not authorized and asked N.W.T. Environment Minister Jay Macdonald for a meeting within five business days.",
+      "The same public registry shows how quickly a former operating mine can become a capital-allocation problem. PwC told the board it cannot submit the 2025 Aquatic Effects Monitoring Program annual report because the contractor holding the field data has refused to release it without payment of pre-receivership debts, while the receiver says its mandate and funding are directed to go-forward environmental obligations. A July 29 inspection report uploaded August 18 separately flagged non-compliant landfill waste and ammonium nitrate prill escaping containment.",
+      "The economic point is not a mine restart. It is the liability stack after a northern mine fails: security posted by prior owners, regulator authority, receiver funding, missing environmental data, contractor claims and Indigenous/public oversight all start pulling on the same file. That matters for future critical-minerals finance because closure security is only as strong as the operating record, the enforceability of board directions and the funding available when a receiver inherits the site."
+    ],
+    "whyItMatters": "Ekati shows how insolvency can convert an operating asset into a test of reclamation security, regulatory compliance and public balance-sheet exposure in a co-managed northern resource regime.",
+    "unknowns": [
+      "The public record reviewed does not yet show the result of the requested minister-board meeting, whether enforcement or suspension proceedings will follow, the amount of emulsion disposed, whether the 2025 AEMP data can be recovered, or whether the posted security will fully cover final closure."
+    ],
+    "nextCatalyst": "Watch the Wek'eezhii Land and Water Board registry, GNWT Environment and Climate Change, PwC receiver reports and the Independent Environmental Monitoring Agency for the meeting outcome, enforcement steps, 2026 AEMP monitoring and any revised closure-cost estimate."
+  },
+  "developments": [
+    {
+      "section": "Closer to Home -- British Columbia",
+      "headline": "Gitsegukla is turning settlement proceeds and planning into a local budget discipline",
+      "status": "confirmed",
+      "sourceIds": [
+        5
+      ],
+      "whatHappened": "Gitsegukla First Nation posted an August 18 virtual engagement session for members on the Four Pillars Society Settlement and said Gitsegukla, as one of 325 Band Class Members, will receive a portion of the C$2.8-billion settlement to support a five-to-10-year community plan focused on heritage, culture, wellness and language. The same page says Gitsegukla has released its 2026-2030 Multi-Year Council Strategic Plan, with nine goals including housing, infrastructure, governance, education, health, economic development, land-base management, culture and community engagement.",
+      "whyItMatters": "This is not a transaction headline, but it is economically relevant in B.C. because settlement capital becomes more useful when tied to a planning cycle, departmental work plans, budgets and recurring progress reviews. The plan also puts economic development beside housing, infrastructure, land and workforce priorities rather than treating it as a standalone file.",
+      "whatRemainsUnknown": "The public page does not disclose Gitsegukla's dollar allocation from the settlement, the investment policy for proceeds, project-level budgets, timing for housing or infrastructure work, or whether any external financing will be layered onto the settlement-funded plan.",
+      "nextCatalyst": "Watch Gitsegukla council updates, financial-audit postings and future Four Pillars engagement materials for project selection, budget allocation and implementation timelines."
+    }
+  ],
+  "whatHappensNext": [
+    "Ekati: the next material record is the WLWB/GNWT meeting outcome, any enforcement step tied to unauthorized disposal, and whether PwC can recover or replace the missing 2025 aquatic-monitoring record.",
+    "Gitsegukla: the next signal is whether the Four Pillars plan turns into named projects, disclosed budgets, procurement opportunities or an investment policy for the Nation's settlement allocation.",
+    "Churchill Falls: the digest surfaced an August 18 APTN item saying Innu in Quebec reject the Quebec-Newfoundland and Labrador deal, but APTN was Cloudflare-blocked in-run and no fresh readable primary record was located.",
+    "First Nations child welfare: the digest surfaced an August 18 APTN item on the Canadian Human Rights Tribunal rejecting Canada's panelist request, but direct APTN access was blocked and a public tribunal record was not located in-run."
+  ],
+  "stillWatching": [
+    "Churchill Falls / Innu rights: hold the August 18 APTN item until a readable ITUM, Matimekush-Lac John, court, provincial, utility or independent report is available. The older ITUM position remains relevant background, but it is not a fresh August 18 source.",
+    "Canadian Human Rights Tribunal / First Nations child welfare: hold the panelist-request item until a CHRT record, Caring Society note, AFN note or readable independent report can be fetched and read.",
+    "Ekati closure: keep this active until the regulator meeting, enforcement posture, missing monitoring-data issue and closure-security sufficiency are clearer.",
+    "Gitxaa\u0142a / Declaration Act, Build Communities Strong Fund selection, Tilbury LNG, Crawford nickel, LNG Canada Phase 2 / MNT, Ksi Lisims LNG, Roberts Bank Terminal 2, Cowichan Tribes title appeal, Baffinland / Mary River and B.C.'s First Nations Equity Financing Program remain unresolved from prior editions."
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "Cabin Radio -- PwC accused by regulator of 'direct non-compliance' at Ekati",
+      "url": "https://cabinradio.ca/305430/news/environment/reclamation/pwc-accused-by-regulator-of-direct-non-compliance-at-ekati/",
+      "date": "2026-08-18",
+      "type": "Independent regional reporting"
+    },
+    {
+      "id": 2,
+      "label": "Wek'eezhii Land and Water Board -- Unauthorized Disposal of Waste at the Ekati Mine letter to Minister Macdonald",
+      "url": "https://lwb-registry-867.s3.ca-central-1.amazonaws.com/Documents/W2022L2-0001/Ekati%20-%20Non-Compliance%20-%20Letter%20to%20Minister%20-%20Aug%2014_26.pdf",
+      "date": "2026-08-14",
+      "type": "Regulatory board record"
+    },
+    {
+      "id": 3,
+      "label": "PricewaterhouseCoopers -- Ekati Diamond Mine Receivership, 2025 AEMP Annual Report letter",
+      "url": "https://lwb-registry-867.s3.ca-central-1.amazonaws.com/Documents/W2022L2-0001/Ekati%20-%20Inability%20to%20Submit%202025%20AEMP%20Annual%20Report%20-%20Aug%2015_26.pdf",
+      "date": "2026-08-15; modified 2026-08-17",
+      "type": "Receiver filing"
+    },
+    {
+      "id": 4,
+      "label": "GNWT Environment and Climate Change -- Ekati July 29, 2026 water licence inspection report",
+      "url": "https://lwb-registry-867.s3.ca-central-1.amazonaws.com/Documents/W2022L2-0001/Ekati%20-%20Water%20Licence%20Inspection%20Report%20-%20July%2029%202026%20-%20Aug%2018_26.pdf",
+      "date": "2026-08-18",
+      "type": "Territorial inspection report"
+    },
+    {
+      "id": 5,
+      "label": "Gitsegukla First Nation -- Four Pillars Society Settlement and 2026-2030 Multi-Year Council Strategic Plan notices",
+      "url": "https://www.gitsegukla.net/category/general/",
+      "date": "accessed 2026-08-19; August 18 engagement date",
+      "type": "First Nation public notice"
+    }
+  ]
+}
