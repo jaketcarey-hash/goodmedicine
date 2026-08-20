@@ -15,7 +15,7 @@
    * Two deposits are the floor. One deposit is a balance, not a pace, and
    * a line drawn through it would be invention.
    */
-  import type { SavingsGoal } from '../lib/savings-store';
+  import { projectGoal, type SavingsGoal } from '../lib/savings-store';
   import { VIEW, normalise, linePath, labelStyle, type Point } from '../lib/chart';
 
   interface Props { goal: SavingsGoal }
@@ -29,32 +29,28 @@
       .sort((a, b) => a.date.localeCompare(b.date)),
   );
 
+  /** The projection itself lives in savings-store, so this chart and the plan
+   *  document can never quote different dates. Only the plotting is local. */
+  let projection = $derived(projectGoal(goal));
+
   let analysis = $derived.by(() => {
-    if (dated.length < 2) return null;
-
+    if (!projection || dated.length < 2) return null;
     const first = Date.parse(dated[0].date);
-    const last = Date.parse(dated[dated.length - 1].date);
-    const spanDays = Math.max((last - first) / DAY, 1);
-
-    // Cumulative saved at each deposit, as (daysFromFirst, amount).
     let running = 0;
     const actual: { day: number; amount: number }[] = [];
     for (const d of dated) {
       running += d.amount;
       actual.push({ day: (Date.parse(d.date) - first) / DAY, amount: running });
     }
-
-    const perDay = running / spanDays;
-    const remaining = goal.targetAmount - goal.currentAmount;
-    if (perDay <= 0) return null;
-    if (remaining <= 0) return { actual, spanDays, perDay, daysToGo: 0, arrival: null, done: true };
-
-    const daysToGo = remaining / perDay;
-    // Beyond a decade the projection stops meaning anything; say so instead.
-    if (daysToGo > 3650) return { actual, spanDays, perDay, daysToGo, arrival: null, done: false };
-
-    const arrival = new Date(last + daysToGo * DAY);
-    return { actual, spanDays, perDay, daysToGo, arrival, done: false };
+    const spanDays = Math.max((Date.parse(dated[dated.length - 1].date) - first) / DAY, 1);
+    return {
+      actual,
+      spanDays,
+      perDay: projection.perDay,
+      daysToGo: projection.done ? 0 : projection.daysToGo,
+      arrival: projection.arrival,
+      done: projection.done,
+    };
   });
 
   // One scale for both series: days across, dollars up to the target.

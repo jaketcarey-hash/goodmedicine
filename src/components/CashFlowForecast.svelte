@@ -27,6 +27,15 @@
   import { STORAGE_KEYS } from '../lib/storage-keys';
   import { fromISO, longLabel, toISO } from '../lib/dates';
 
+  interface Props {
+    /** The plan document embeds the answer and the strip only — the balance
+     *  field, the week list and the limits live on the forecast's own page,
+     *  and duplicating them here would make the chapter a second tool rather
+     *  than a chapter. */
+    compact?: boolean;
+  }
+  let { compact = false }: Props = $props();
+
   /** A balance goes stale fast. Past this, it is still used but flagged. */
   const STALE_AFTER_DAYS = 7;
 
@@ -220,6 +229,7 @@
     </section>
 
     <!-- ---------- What is in the account ---------- -->
+    {#if !compact}
     <section class="mt-6">
       <label for="start-balance" class="apparatus-label block">What is in your account now</label>
       <div class="mt-2 flex flex-wrap items-center gap-2">
@@ -250,6 +260,7 @@
         Stays on this device. Nothing here connects to a bank.
       </p>
     </section>
+    {/if}
 
     <!-- ---------- The strip ---------- -->
     <figure class="not-prose mt-8 m-0">
@@ -329,7 +340,15 @@
       {/if}
     </figure>
 
+    {#if compact}
+      <a
+        href="/money/forecast"
+        class="mt-6 inline-block text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+      >Open the full eight weeks</a>
+    {/if}
+
     <!-- ---------- The weeks ---------- -->
+    {#if !compact}
     <section class="mt-10">
       <h2 class="apparatus-label border-b border-rule pb-2.5">Week by week</h2>
       <ul class="m-0 list-none space-y-0 pl-0">
@@ -391,9 +410,10 @@
         {/each}
       </ul>
     </section>
+    {/if}
 
     <!-- ---------- The limits, stated ---------- -->
-    {#if forecast.unplaced.length > 0 || forecast.unentered.length > 0 || forecast.corrections.length > 0}
+    {#if !compact && (forecast.unplaced.length > 0 || forecast.unentered.length > 0 || forecast.corrections.length > 0)}
       <section class="mt-10">
         <h2 class="apparatus-label border-b border-rule pb-2.5">What this forecast cannot see</h2>
 

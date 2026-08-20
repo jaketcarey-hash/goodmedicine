@@ -268,3 +268,99 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ------------------------------------------------------------------
+   Print.
+
+   "Print your plan" produces the paper document — the thing a planner
+   would hand across a desk, for a reader who will never sit at one.
+   The browser makes the PDF; there is no dependency here and no second
+   rendering path to keep in sync.
+
+   Every chart on this site already survives this, and that was not an
+   accident: identity is carried by texture and dash rather than a second
+   hue precisely so a black-and-white page loses nothing. The only work
+   left for print is to remove the furniture — navigation, controls, the
+   things that exist to be tapped — and to stop chapters breaking across
+   pages.
+   ------------------------------------------------------------------ */
+@media print {
+  /* Chrome drops background fills by default; the charts ARE fills. */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  /* Furniture: anything that exists to be tapped or navigated. */
+  header,
+  nav,
+  footer,
+  .no-print,
+  button,
+  [role='button'],
+  input[type='range'] {
+    display: none !important;
+  }
+
+  /* A link's destination is useless on paper, and its underline is noise. */
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* The document keeps its measure on paper. Letting it run the full page
+     width would give a 180mm line — readable on a screen at arm's length,
+     tiring in a hand. */
+  .money-plan {
+    max-width: 68ch;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Chapters are the document's structure — keep each one whole. */
+  .money-plan section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  .money-plan h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* A figure split across a page break is a figure that lies. */
+  figure,
+  svg {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    max-width: 100% !important;
+  }
+
+  /* Empty inputs print as blank boxes; a filled one is part of the record. */
+  textarea {
+    border: none !important;
+    padding: 0 !important;
+    resize: none !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  @page {
+    margin: 18mm 16mm;
+  }
+}

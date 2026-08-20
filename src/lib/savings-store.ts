@@ -104,3 +104,53 @@ export function deleteGoal(goalId: string): void {
 export function getTotalSaved(): number {
   return getAll().reduce((sum, g) => sum + g.currentAmount, 0);
 }
+
+/**
+ * When this goal arrives at the rate the deposits actually show.
+ *
+ * Extracted so the pace chart and the plan document cannot disagree about a
+ * date. Two deposits are the floor — one deposit is a balance, not a pace,
+ * and a rate derived from it would be invention. Returns null when there is
+ * no honest projection to make.
+ */
+export interface GoalProjection {
+  perDay: number;
+  perMonth: number;
+  daysToGo: number;
+  /** Null when already reached, or when the date is too far out to mean anything. */
+  arrival: Date | null;
+  done: boolean;
+  /** Beyond ten years a date stops being a plan and becomes discouragement. */
+  beyondHorizon: boolean;
+}
+
+export function projectGoal(goal: SavingsGoal): GoalProjection | null {
+  const DAY = 86_400_000;
+  const dated = [...goal.deposits]
+    .filter((d) => d.date && Number.isFinite(d.amount))
+    .sort((a, b) => a.date.localeCompare(b.date));
+  if (dated.length < 2) return null;
+
+  const first = Date.parse(dated[0].date);
+  const last = Date.parse(dated[dated.length - 1].date);
+  const spanDays = Math.max((last - first) / DAY, 1);
+  const saved = dated.reduce((s, d) => s + d.amount, 0);
+  const perDay = saved / spanDays;
+  if (perDay <= 0) return null;
+
+  const remaining = goal.targetAmount - goal.currentAmount;
+  if (remaining <= 0) {
+    return { perDay, perMonth: perDay * 30, daysToGo: 0, arrival: null, done: true, beyondHorizon: false };
+  }
+
+  const daysToGo = remaining / perDay;
+  const beyondHorizon = daysToGo > 3650;
+  return {
+    perDay,
+    perMonth: perDay * 30,
+    daysToGo,
+    arrival: beyondHorizon ? null : new Date(last + daysToGo * DAY),
+    done: false,
+    beyondHorizon,
+  };
+}

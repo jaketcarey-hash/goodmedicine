@@ -740,6 +740,71 @@ already on those two pages, rather than `client:visible`. The reader arrives
 mid-article on a slow connection, and hydrating a teaching tool at the moment
 she scrolls to it is the wrong moment.
 
+### M10 — the plan document, and the paper version (20 August)
+
+`/money/plan` stops being a flat record and becomes four chapters, each led
+by its visual. The arc closes here: the forecast, the charts and the action
+layer were all built to be assembled into one thing a person can read from
+top to bottom and then hold in their hand.
+
+**1 · Where you stand** — income, spending, balance, debt, net worth, then
+the eight-week strip. `CashFlowForecast` gained a `compact` prop rather than
+a second implementation: the chapter shows the answer line and the strip and
+links out. The balance field, the week list and the limits stay on the
+forecast's own page, because duplicating them would make the chapter a
+second tool instead of a chapter.
+
+**2 · Where you're headed** — vision, then the things, each linked goal now
+carrying "at your pace, February 2027". That date comes from
+`projectGoal()`, lifted out of `SavingsPace` into `savings-store` so the
+chart and the document are structurally incapable of quoting different
+dates. It was duplicated logic for about an hour and that was already too
+long.
+
+**3 · What protects you** — the genuinely new chapter, and the only one that
+required new thinking. Two measures, both from stated data:
+
+- *Cushion in months, not dollars.* Emergency savings over one month's
+  recorded spending. "How long could I go" is the question a cushion is
+  actually for; "how much do I have" is a different and less useful one.
+- *What filing opens.* Registry benefit amounts summed against the household
+  profile — "up to $8,836 a year" for a household with one child under 6.
+  Every figure here is a **maximum at low income**, and the note says so
+  plainly: the amount tapers, and this is not a promise of what she would
+  receive. What is certain, and what the line actually exists to say, is
+  that none of it pays out without a return filed. This audience has been
+  told enough things that turned out to have conditions attached; the
+  conditions go in the same breath as the number.
+
+**4 · What to do next** — the M9 steps, already able to act.
+
+### Print
+
+"Print this plan" and a `@media print` block. No dependency, no second
+rendering path, no PDF library — the browser makes the file.
+
+The block is small because the hard part was done three milestones ago.
+**Every chart on this site survives black and white because identity is
+carried by texture and dash rather than a second hue** — a call made in M8
+for colour-blind readers and forced-colours mode, which turns out to be the
+same call print needs. Nothing had to be redrawn. The only work was removing
+the furniture (nav, footer, buttons, sliders), stopping chapters and figures
+breaking across pages, and setting `print-color-adjust: exact`, without
+which Chrome drops every fill and the charts print as empty outlines.
+
+*Corrected on inspection:* the first version stripped `max-width` off the
+document as well as `main`, which gave a 180mm measure — fine on a screen at
+arm's length, tiring in a hand. The document keeps its 68ch on paper.
+
+*Verified without a dialog:* `window.print()` opens a modal that blocks the
+browser extension entirely. The print rendering was checked by lifting the
+`@media print` rules into an unconditional stylesheet and screenshotting
+that — a technique worth keeping for any future print work here.
+
+*A validate-indigenous pass* caught one new "not X" framing ("Not what you
+own — what would still be standing…") and removed it. The sentence is better
+without the negation, which is usually how that rule goes.
+
 ---
 
 ## Still open

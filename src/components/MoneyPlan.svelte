@@ -15,7 +15,9 @@
    */
   import { getMoneyPicture, suggestNextSteps, type MoneyPicture, type NextStep } from '../lib/money-picture';
   import { getMoneyPlan, saveMoneyPlan, generateIntentionId, type Intention } from '../lib/money-plan-store';
-  import { getGoals, createGoal, type SavingsGoal } from '../lib/savings-store';
+  import { getGoals, createGoal, projectGoal, type SavingsGoal } from '../lib/savings-store';
+  import { value } from '../lib/figures';
+  import CashFlowForecast from './CashFlowForecast.svelte';
   import { slide } from 'svelte/transition';
 
   let vision = $state('');
@@ -107,6 +109,51 @@
   const shortDate = (iso: string) =>
     new Date(iso).toLocaleDateString('en-CA', { day: 'numeric', month: 'long', year: 'numeric' });
 
+  /* ---- What protects you ----
+   *
+   * Two derived measures, both from stated data only.
+   *
+   * Cushion months is emergency savings over one month's recorded spending —
+   * the number that answers "how long could I go" rather than "how much do I
+   * have", which is the question a cushion is actually for.
+   *
+   * The benefits figure is deliberately an "up to". Every registry amount
+   * here is a maximum at low income; quoting one as an entitlement would
+   * overclaim, and this audience has been told enough things that turned out
+   * to have conditions attached. */
+  let emergencySaved = $derived(
+    goals.filter((g) => g.category === 'emergency').reduce((sum, g) => sum + g.currentAmount, 0),
+  );
+  let cushionMonths = $derived(
+    picture?.expenses && picture.expenses.monthly > 0 && emergencySaved > 0
+      ? emergencySaved / picture.expenses.monthly
+      : null,
+  );
+
+  /** What filing a return could put in reach, from the household profile. */
+  let benefitsUpTo = $derived.by(() => {
+    const h = picture?.household;
+    if (!h) return null;
+    const parts: { label: string; amount: number }[] = [];
+    parts.push({
+      label: 'the Groceries and Essentials Benefit',
+      amount: value('groceries_benefit_single'),
+    });
+    if (h.hasChildren) {
+      parts.push({
+        label: 'the Canada Child Benefit for one child under 6',
+        amount: value('ccb_under_6'),
+      });
+    }
+    return { total: parts.reduce((s, p) => s + p.amount, 0), parts };
+  });
+
+  let filedRecently = $derived(picture?.benefits?.filedTaxes ?? null);
+
+  function printPlan() {
+    window.print();
+  }
+
   const OUTCOME_WORDS: Record<string, string> = {
     'likely-exempt': 'likely exempt',
     'likely-not-exempt': 'likely not exempt',
@@ -115,14 +162,115 @@
   };
 </script>
 
-<div class="max-w-[68ch]">
-  <p class="apparatus text-faint mb-10">
-    Lives on this phone. Nothing leaves it.
-  </p>
+<div class="max-w-[68ch] money-plan">
+  <div class="mb-10 flex flex-wrap items-baseline justify-between gap-3">
+    <p class="apparatus text-faint m-0">
+      Lives on this phone. Nothing leaves it.
+    </p>
+    <button
+      onclick={printPlan}
+      class="no-print apparatus cursor-pointer rounded-sm border border-rule px-3 py-1.5 text-faint transition-colors hover:border-quiet hover:text-ink"
+    >Print this plan</button>
+  </div>
 
-  <!-- ── Where you're headed ─────────────────────────────────── -->
+  <!-- ══ Chapter 1 — Where you stand ═══════════════════════════ -->
   <section class="mb-12">
-    <h2 class="apparatus-label mb-3">Where you're headed</h2>
+    <h2 class="apparatus-label mb-1">1 · Where you stand</h2>
+    <p class="text-sm text-quiet mb-5 max-w-[52ch]">
+      Built from what you've entered in the tools — each line says where it
+      comes from. What's missing is part of the picture too.
+    </p>
+
+    {#if picture}
+      <dl class="m-0 border-y border-rule divide-y divide-rule mb-8">
+        <!-- Income -->
+        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
+          <dt class="apparatus-label">Income</dt>
+          <dd class="m-0">
+            {#if picture.income}
+              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.income.monthly)} a month</span>
+              <span class="apparatus text-faint ml-3">from your {monthName(picture.income.month)} budget</span>
+            {:else}
+              <span class="text-sm text-unsettled">Not on record yet</span>
+              <a href="/money/budget-tool" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">start with one month</a>
+            {/if}
+          </dd>
+        </div>
+        <!-- Spending -->
+        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
+          <dt class="apparatus-label">Spending</dt>
+          <dd class="m-0">
+            {#if picture.expenses}
+              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.expenses.monthly)} a month</span>
+              <span class="apparatus text-faint ml-3">from your {monthName(picture.expenses.month)} budget</span>
+            {:else}
+              <span class="text-sm text-unsettled">Not on record yet</span>
+            {/if}
+          </dd>
+        </div>
+        <!-- Balance -->
+        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
+          <dt class="apparatus-label">Balance</dt>
+          <dd class="m-0">
+            {#if picture.surplus !== null}
+              <span class="font-mono text-[13px] tabular-nums text-ink">
+                {picture.surplus >= 0 ? '+' : '−'}{money(Math.abs(picture.surplus))} a month
+              </span>
+              {#if picture.surplus < 0}
+                <span class="apparatus text-unsettled ml-3">short this month</span>
+              {:else}
+                <span class="apparatus text-verified ml-3">room to work with</span>
+              {/if}
+            {:else}
+              <span class="text-sm text-unsettled">Needs both income and spending</span>
+            {/if}
+          </dd>
+        </div>
+        <!-- Debt -->
+        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
+          <dt class="apparatus-label">Debt</dt>
+          <dd class="m-0">
+            {#if picture.debt}
+              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.debt.total)}</span>
+              {#if picture.debt.debtFreeMonths !== null}
+                <span class="apparatus text-faint ml-3">debt-free in {picture.debt.debtFreeMonths} months on your plan</span>
+              {:else}
+                <span class="apparatus text-unsettled ml-3">plan never reaches zero — worth a look</span>
+              {/if}
+            {:else}
+              <span class="text-sm text-faint">None recorded</span>
+              <a href="/money/debt-planner" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">map yours</a>
+            {/if}
+          </dd>
+        </div>
+        <!-- Net worth -->
+        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
+          <dt class="apparatus-label">Net worth</dt>
+          <dd class="m-0">
+            {#if picture.netWorth}
+              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.netWorth.current)}</span>
+              {#if picture.netWorth.trend}
+                <span class="apparatus text-faint ml-3">
+                  {picture.netWorth.trend === 'up' ? 'up' : picture.netWorth.trend === 'down' ? 'down' : 'flat'} since your last snapshot
+                </span>
+              {:else if picture.netWorth.lastSnapshot}
+                <span class="apparatus text-faint ml-3">snapshot {shortDate(picture.netWorth.lastSnapshot)}</span>
+              {/if}
+            {:else}
+              <span class="text-sm text-faint">Not tracked yet</span>
+            {/if}
+          </dd>
+        </div>
+      </dl>
+
+      <!-- The chapter's visual: the weeks in front of you. -->
+      <CashFlowForecast compact />
+    {/if}
+  </section>
+
+  <!-- ══ Chapter 2 — Where you're headed ═══════════════════════ -->
+  <section class="mb-7">
+    <h2 class="apparatus-label mb-3">2 · Where you're headed</h2>
     <p class="text-sm text-quiet mb-3 max-w-[52ch]">
       Before any numbers: what should your money have made possible — for you,
       your family, the people after you? A sentence is enough.
@@ -146,9 +294,9 @@
     </p>
   </section>
 
-  <!-- ── What you're working toward ──────────────────────────── -->
+  <!-- Chapter 2 continued: the things, and the pace they are moving at. -->
   <section class="mb-12">
-    <h2 class="apparatus-label mb-3">What you're working toward</h2>
+    <h3 class="apparatus-label mb-3">What you're working toward</h3>
     {#if intentions.length === 0}
       <p class="text-sm text-quiet mb-3 max-w-[52ch]">
         Name the things, big or small — a licence, a move, a cushion, being
@@ -164,9 +312,19 @@
           <li class="py-3 flex flex-wrap items-baseline gap-x-4 gap-y-1" transition:slide={{ duration: 200 }}>
             <span class="text-[15px] font-medium">{intention.label}</span>
             {#if goal}
+              {@const pace = projectGoal(goal)}
               <a href="/money/savings-tracker" class="apparatus text-verified no-underline hover:underline">
                 {money(goal.currentAmount)} of {money(goal.targetAmount)} saved
               </a>
+              {#if pace?.done}
+                <span class="apparatus text-verified">reached</span>
+              {:else if pace?.arrival}
+                <span class="apparatus text-faint">
+                  at your pace, {pace.arrival.toLocaleDateString('en-CA', { month: 'long', year: 'numeric' })}
+                </span>
+              {:else if pace?.beyondHorizon}
+                <span class="apparatus text-faint">more than ten years out at this pace</span>
+              {/if}
             {:else if goals.length > 0}
               <select
                 value={intention.savingsGoalId ?? ''}
@@ -216,81 +374,38 @@
     </form>
   </section>
 
-  <!-- ── Your picture right now — the personal record ────────── -->
+  <!-- ══ Chapter 3 — What protects you ═════════════════════════ -->
   <section class="mb-12">
-    <h2 class="apparatus-label mb-1">Your picture right now</h2>
-    <p class="text-sm text-quiet mb-4 max-w-[52ch]">
-      Built from what you've entered in the tools — each line says where it
-      comes from. What's missing is part of the picture too.
+    <h2 class="apparatus-label mb-1">3 · What protects you</h2>
+    <p class="text-sm text-quiet mb-5 max-w-[52ch]">
+      What would still be standing if the month went wrong.
     </p>
 
     {#if picture}
       <dl class="m-0 border-y border-rule divide-y divide-rule">
-        <!-- Income -->
+        <!-- Cushion, in months rather than dollars -->
         <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
-          <dt class="apparatus-label">Income</dt>
+          <dt class="apparatus-label">Cushion</dt>
           <dd class="m-0">
-            {#if picture.income}
-              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.income.monthly)} a month</span>
-              <span class="apparatus text-faint ml-3">from your {monthName(picture.income.month)} budget</span>
-            {:else}
-              <span class="text-sm text-unsettled">Not on record yet</span>
-              <a href="/money/budget-tool" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">start with one month</a>
-            {/if}
-          </dd>
-        </div>
-
-        <!-- Spending -->
-        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
-          <dt class="apparatus-label">Spending</dt>
-          <dd class="m-0">
-            {#if picture.expenses}
-              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.expenses.monthly)} a month</span>
-              <span class="apparatus text-faint ml-3">from your {monthName(picture.expenses.month)} budget</span>
-            {:else}
-              <span class="text-sm text-unsettled">Not on record yet</span>
-            {/if}
-          </dd>
-        </div>
-
-        <!-- Balance -->
-        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
-          <dt class="apparatus-label">Balance</dt>
-          <dd class="m-0">
-            {#if picture.surplus !== null}
+            {#if cushionMonths !== null}
+              {@const shown = cushionMonths < 1 ? cushionMonths.toFixed(1) : String(Math.floor(cushionMonths))}
               <span class="font-mono text-[13px] tabular-nums text-ink">
-                {picture.surplus >= 0 ? '+' : '−'}{money(Math.abs(picture.surplus))} a month
+                {shown} {shown === '1' ? 'month' : 'months'} of spending
               </span>
-              {#if picture.surplus < 0}
-                <span class="apparatus text-unsettled ml-3">short this month</span>
-              {:else}
-                <span class="apparatus text-verified ml-3">room to work with</span>
-              {/if}
+              <span class="apparatus text-faint ml-3">
+                {money(emergencySaved)} against your {monthName(picture.expenses!.month)} spending
+              </span>
+            {:else if emergencySaved > 0}
+              <span class="font-mono text-[13px] tabular-nums text-ink">{money(emergencySaved)} set aside</span>
+              <span class="apparatus text-faint ml-3">a budget month would turn this into months of cover</span>
             {:else}
-              <span class="text-sm text-unsettled">Needs both income and spending</span>
+              <span class="text-sm text-unsettled">Nothing set aside yet</span>
+              <a href="/money/savings-tracker" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">start one</a>
             {/if}
           </dd>
         </div>
 
-        <!-- Debt -->
-        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
-          <dt class="apparatus-label">Debt</dt>
-          <dd class="m-0">
-            {#if picture.debt}
-              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.debt.total)}</span>
-              {#if picture.debt.debtFreeMonths !== null}
-                <span class="apparatus text-faint ml-3">debt-free in {picture.debt.debtFreeMonths} months on your plan</span>
-              {:else}
-                <span class="apparatus text-unsettled ml-3">plan never reaches zero — worth a look</span>
-              {/if}
-            {:else}
-              <span class="text-sm text-faint">None recorded</span>
-              <a href="/money/debt-planner" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">map yours</a>
-            {/if}
-          </dd>
-        </div>
-
-        <!-- Savings -->
+        <!-- Savings across all goals -->
         <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
           <dt class="apparatus-label">Savings</dt>
           <dd class="m-0">
@@ -304,26 +419,7 @@
           </dd>
         </div>
 
-        <!-- Net worth -->
-        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
-          <dt class="apparatus-label">Net worth</dt>
-          <dd class="m-0">
-            {#if picture.netWorth}
-              <span class="font-mono text-[13px] tabular-nums text-ink">{money(picture.netWorth.current)}</span>
-              {#if picture.netWorth.trend}
-                <span class="apparatus text-faint ml-3">
-                  {picture.netWorth.trend === 'up' ? 'up' : picture.netWorth.trend === 'down' ? 'down' : 'flat'} since your last snapshot
-                </span>
-              {:else if picture.netWorth.lastSnapshot}
-                <span class="apparatus text-faint ml-3">snapshot {shortDate(picture.netWorth.lastSnapshot)}</span>
-              {/if}
-            {:else}
-              <span class="text-sm text-faint">Not tracked yet</span>
-            {/if}
-          </dd>
-        </div>
-
-        <!-- Tax status -->
+        <!-- Exemption status -->
         <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
           <dt class="apparatus-label">Tax status</dt>
           <dd class="m-0">
@@ -331,19 +427,22 @@
               <span class="text-sm text-ink">{OUTCOME_WORDS[picture.taxStatus.outcome] ?? picture.taxStatus.outcome}</span>
               <span class="apparatus text-faint ml-3">checked {shortDate(picture.taxStatus.checkedOn)}</span>
             {:else}
-              <span class="text-sm text-unsettled">Section 87 not checked</span>
+              <span class="text-sm text-unsettled">Not checked</span>
               <a href="/rights/section-87-checker" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">five questions</a>
             {/if}
           </dd>
         </div>
 
-        <!-- Benefits -->
+        <!-- Filing, and what it opens -->
         <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
-          <dt class="apparatus-label">Benefits</dt>
+          <dt class="apparatus-label">Filing</dt>
           <dd class="m-0">
-            {#if picture.benefits}
-              <span class="text-sm text-ink">last checked</span>
-              <span class="apparatus text-faint ml-3">{shortDate(picture.benefits.checkedOn)}</span>
+            {#if filedRecently === true}
+              <span class="text-sm text-ink">Filed recently</span>
+              <span class="apparatus text-faint ml-3">from your Benefits Finder answers</span>
+            {:else if filedRecently === false}
+              <span class="text-sm text-unsettled">Not filed recently</span>
+              <span class="apparatus text-faint ml-3">several benefits only pay out once a return is in</span>
             {:else}
               <span class="text-sm text-unsettled">Never checked</span>
               <a href="/self/benefits" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">six questions</a>
@@ -351,12 +450,28 @@
           </dd>
         </div>
       </dl>
+
+      {#if benefitsUpTo && filedRecently !== true}
+        <div class="mt-5 border-l-2 border-rule pl-4">
+          <p class="text-sm leading-relaxed text-quiet">
+            For a household like the one in your calendar profile, filing a return
+            is what opens up to
+            <span class="apparatus font-medium text-ink tabular-nums">{money(benefitsUpTo.total)}</span>
+            a year — {#each benefitsUpTo.parts as part, i}{i > 0 ? ' and ' : ''}{money(part.amount)} from {part.label}{/each}.
+          </p>
+          <p class="apparatus mt-1.5 text-[11px] leading-snug text-faint">
+            Maximums at low income, from the figure registry — the amount tapers as
+            income rises and these are not a promise of what you would receive. What
+            is certain is that none of it pays out without a return filed.
+          </p>
+        </div>
+      {/if}
     {/if}
   </section>
 
-  <!-- ── What usually helps next ─────────────────────────────── -->
+  <!-- ══ Chapter 4 — What to do next ═══════════════════════════ -->
   <section class="mb-8">
-    <h2 class="apparatus-label mb-1">What usually helps next</h2>
+    <h2 class="apparatus-label mb-1">4 · What to do next</h2>
     <p class="text-sm text-quiet mb-4 max-w-[52ch]">
       Drawn from your picture, most useful first. Each one says why it's here.
       For anything beyond education, a licensed advisor, a tax professional or
