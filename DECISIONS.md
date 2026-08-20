@@ -898,6 +898,58 @@ it does not un-index what has already been taken.
 
 ---
 
+## 2026-08-20 — The claims register, and making the review cheap enough to happen
+
+ROADMAP has said "Section 87 content reviewed by a tax professional" since
+April and nothing has moved. The page itself carries a callout saying, in its
+own words, that it "has not been reviewed by a tax professional" — so the site
+is honest about the gap, and the gap is now the front door for search, since
+the page is titled "Do I pay tax if I work on reserve?"
+
+The bottleneck was never willingness. Asking someone to review a website means
+asking them to read 1,600 words and work out for themselves what is being
+asserted. Nobody does that as a favour.
+
+**So the register extends the site's existing spine from numbers to
+statements.** `src/data/claims/section-87.json` holds all thirteen checkable
+assertions on that page, and `scripts/build-review-pack.js` renders them into
+`docs/review/section-87.md` — a numbered list with a box beside each claim.
+The ask becomes "please check these thirteen statements", which is an
+afternoon.
+
+The `status` field is the honest split, and it is what makes the pack worth a
+practitioner's time:
+
+- `sourced` (5) — checked against a named authority. The reviewer skims and
+  flags only what is wrong.
+- `needs-practitioner` (8) — judgement calls. This is the only part that
+  actually needs them, and the hybrid-work claim is flagged as the priority:
+  it is the least settled area, it is the situation most readers are now in,
+  and the page advises keeping a work log on the strength of it.
+
+The pack asks for "Correct / Needs changing / **Cannot be stated in general**"
+— the third being a real answer — and explicitly does not ask the reviewer to
+endorse the site or be named on it. A review that costs someone their name is
+a different and much larger ask.
+
+*Caught by the discipline, on the first use of it:* the register initially
+cited Williams v. Canada with an SCC URL that resolves to Sinclair v. Quebec,
+and the CanLII fallback is bot-blocked. The citation is right; the link was
+not. It now ships with the citation and no link, and a note saying the link
+was left off deliberately rather than guessed. A provenance claim nothing
+verifies is worse than none — that is this repo's own rule, and it caught a
+bad citation the first time it was pointed at prose instead of figures.
+
+*Also established:* an automated link-health job **cannot use curl** here.
+Twenty-two of the twenty-seven cited sources return `000` to curl and load
+fine in a browser — canada.ca and sac-isc.gc.ca are WAF-blocked, exactly as
+CLAUDE.md warns for fetching. `check-provenance.js` says link health is "a
+separate, occasional job"; that job needs a browser session, which is
+probably why it has never been built. Spot-checked the highest-stakes source
+(NIHB) by browser: alive and correct.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

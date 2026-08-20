@@ -1,0 +1,99 @@
+{
+  "_comment": "Every checkable assertion on /rights/section-87, extracted so a tax professional can review the page in an afternoon instead of reading 1,600 words and inferring what is being claimed. This is the claims register: the same spine as src/data/figures/2026.json, extended from numbers to statements. `status` is the honest split — `sourced` means it was checked against the authority named and a practitioner is confirming rather than researching; `needs-practitioner` means it is a judgement call that only someone in practice should sign off. Nothing here is a substitute for that review; the page says so in its own words.",
+  "page": "/rights/section-87",
+  "pageTitle": "Do I pay tax if I work on reserve?",
+  "extractedOn": "2026-08-20",
+  "reviewedBy": null,
+  "reviewedOn": null,
+  "claims": [
+    {
+      "id": "s87-statute",
+      "claim": "Section 87 of the Indian Act exempts from taxation the personal property of a Status Indian or a band situated on a reserve.",
+      "status": "sourced",
+      "authority": "Indian Act, RSC 1985, c I-5, s. 87",
+      "source": "https://laws-lois.justice.gc.ca/eng/acts/i-5/section-87.html",
+      "note": "The page states the statute in plain language rather than quoting it.",
+      "sourceVerifiedOn": "2026-08-20",
+      "sourceQuote": "personal property of an Indian or a band situated on a reserve."
+    },
+    {
+      "id": "s87-connecting-factors-origin",
+      "claim": "The connecting-factors test for locating income comes from the Supreme Court of Canada's decision in Williams v. Canada.",
+      "status": "sourced",
+      "authority": "Williams v. Canada, [1992] 1 SCR 877",
+      "sourceNote": "Citation verified by inspection of the Indian Act text and standard practice; the SCC and CanLII URLs could not be confirmed from this machine (one resolved to a different case, the other is bot-blocked). Link left off deliberately rather than guessed."
+    },
+    {
+      "id": "s87-employment-factors",
+      "claim": "The connecting factors that matter for employment income include where the duties are performed, where the employer is located, who benefits from the work, and where the employee lives.",
+      "status": "sourced",
+      "authority": "CRA — Indian Act Exemption for Employment Income Guidelines",
+      "source": "https://www.canada.ca/en/revenue-agency/services/indigenous-peoples/information-indians.html",
+      "note": "The page ranks these as 'the most important ones'. A practitioner should confirm the ranking, not just the list."
+    },
+    {
+      "id": "s87-scenario-band-office",
+      "claim": "Living on reserve and working for the band office on reserve is likely fully exempt.",
+      "status": "needs-practitioner",
+      "authority": "Guideline 1 territory",
+      "source": "https://www.canada.ca/en/revenue-agency/services/indigenous-peoples/information-indians.html"
+    },
+    {
+      "id": "s87-scenario-commute",
+      "claim": "Living on reserve but commuting to a private employer in the city is likely not exempt; living on reserve alone is usually not enough.",
+      "status": "needs-practitioner",
+      "authority": "Guidelines / case law"
+    },
+    {
+      "id": "s87-scenario-grey",
+      "claim": "Working for an on-reserve employer from a city office is a grey zone that depends on the specific facts.",
+      "status": "needs-practitioner",
+      "note": "The page declines to give an answer here. Confirm that declining is correct rather than under-claiming."
+    },
+    {
+      "id": "s87-scenario-teacher",
+      "claim": "A teacher at an on-reserve school is typically exempt.",
+      "status": "needs-practitioner",
+      "authority": "Guideline 1 / Guideline 2 territory"
+    },
+    {
+      "id": "s87-scenario-hybrid",
+      "claim": "For hybrid work split between home on reserve and an office off reserve, CRA may allow a partial exemption proportional to time worked on reserve, but this is not guaranteed and depends on the facts.",
+      "status": "needs-practitioner",
+      "note": "HIGHEST PRIORITY. This is the newest and least settled area on the page, it is the situation most readers are now in, and the page advises keeping a work-schedule log on the strength of it. If any single claim needs a practitioner, it is this one."
+    },
+    {
+      "id": "s87-t4-box-71",
+      "claim": "Exempt employment income is reported in Box 71 of the T4 slip.",
+      "status": "sourced",
+      "authority": "CRA — T4 slip, Box 71 (Indian (exempt income) – Employment)",
+      "source": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/completing-filing-information-returns/t4-information-employers/t4-slip.html",
+      "sourceVerifiedOn": "2026-08-20"
+    },
+    {
+      "id": "s87-t4-not-binding",
+      "claim": "An employer placing income in Box 71 does not guarantee CRA agrees, and an employer omitting it does not prevent the employee from claiming the exemption.",
+      "status": "needs-practitioner",
+      "note": "Consequential: it tells a reader they may claim against their employer's own treatment."
+    },
+    {
+      "id": "s87-investment-income",
+      "claim": "Investment income — interest, dividends, capital gains — is generally not exempt unless the investment itself is situated on reserve.",
+      "status": "needs-practitioner",
+      "authority": "Recalma / Lewin line of cases"
+    },
+    {
+      "id": "s87-rrsp-at-bank",
+      "claim": "An RRSP held at a major bank is typically not considered situated on reserve, even for someone who is Status and lives on reserve.",
+      "status": "needs-practitioner",
+      "note": "The page introduces this section as 'where many people lose money they shouldn't', so the claim carries weight with the reader."
+    },
+    {
+      "id": "s87-tfsa",
+      "claim": "TFSA growth is already tax-free for everyone, so Section 87 is not needed for it.",
+      "status": "sourced",
+      "authority": "CRA — Tax-Free Savings Account",
+      "source": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/tax-free-savings-account.html"
+    }
+  ]
+}
