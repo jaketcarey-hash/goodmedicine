@@ -171,8 +171,16 @@
 </script>
 
 {#if ready && forecast}
-  {#if !hasAnything}
-    <!-- Honest empty state: says exactly what unlocks it, and links the one place to do it. -->
+  {#if !hasAnything && compact}
+    <!-- Inside a chapter, an empty forecast is one line. The chapter has
+         already said the budget is missing and already offered the link; a
+         second pitch here would be the page asking twice. -->
+    <p class="apparatus text-[11px] leading-snug text-faint">
+      The eight-week strip appears here once a budget month has dates on its items.
+    </p>
+  {:else if !hasAnything}
+    <!-- On its own page, the empty state says exactly what unlocks it, and
+         links the one place to do it. -->
     <section class="rounded-sm border border-rule bg-white p-6">
       <h2 class="text-lg font-semibold">Nothing to forecast yet</h2>
       <p class="mt-2 text-sm text-quiet leading-relaxed max-w-prose">

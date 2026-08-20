@@ -805,6 +805,16 @@ that — a technique worth keeping for any future print work here.
 own — what would still be standing…") and removed it. The sentence is better
 without the negation, which is usually how that rule goes.
 
+*Fixed after shipping:* the first version of the chapter rendered the
+forecast's full empty state — a headline, two paragraphs of pitch and a
+call-to-action button — inside chapter 1, three lines below a row that
+already said "Not on record yet · start with one month". A document chapter
+must not contain a pitch, and the page must not ask twice. `compact` now
+suppresses the card in favour of one apparatus line. **The lesson is that a
+component embedded in a second context needs its empty state designed for
+that context too** — the populated case was verified in both places and the
+empty case only in one, which is exactly where it broke.
+
 ---
 
 ## Still open
