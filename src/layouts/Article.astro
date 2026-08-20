@@ -54,9 +54,42 @@ const {
 } = Astro.props;
 
 const hasStrip = checked || sourceLabel || unsettled;
+
+/* The search snippet, and the machine-readable answer.
+ *
+ * `answer` beats `subtitle` as a description because it *is* the answer — the
+ * one sentence this page exists to say. A snippet that answers the question
+ * in the result list saves a worried person a page load, and if she does not
+ * click because she already had what she needed, that is the site working,
+ * not the site failing.
+ *
+ * The FAQ entry ships only when the page has both a question-shaped title and
+ * an answer. Structured data that restates a heading teaches a crawler
+ * nothing, and claiming an answer the page does not actually give is the one
+ * way this could make the site less trustworthy rather than more. */
+const metaDescription = answer ?? subtitle;
+const faq =
+  answer && title.includes('?')
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: title,
+            acceptedAnswer: { '@type': 'Answer', text: answer },
+          },
+        ],
+      }
+    : null;
 ---
 
-<Shell title={title} branch={branch} description={subtitle}>
+<Shell
+  title={title}
+  branch={branch}
+  description={metaDescription}
+  structuredData={faq}
+>
   <PageHeader
     title={title}
     subtitle={subtitle}

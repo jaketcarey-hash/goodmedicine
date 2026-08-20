@@ -1,0 +1,5 @@
+{
+  "_comment": "Site-wide switches that more than one build step needs to agree on. Kept as JSON so both the Astro layouts and the plain-Node build scripts read the same bytes — the noindex meta tag and robots.txt drifting apart is the exact failure this file exists to prevent.",
+  "indexable": true,
+  "indexableNote": "Turned on 20 August 2026, after the answer pages were renamed for the questions they answer. Turning this off again does not un-index anything that has already been crawled; it only stops future crawls."
+}

@@ -1,0 +1,82 @@
+---
+/**
+ * Every question the site answers, on one page.
+ *
+ * This is the site's index written in the reader's language instead of the
+ * programs'. It exists for three readers at once: someone scanning for her
+ * own worry, a search engine reading the FAQ data below, and a band office
+ * or health centre that wants to print one sheet and pin it to a wall.
+ *
+ * No tools, no calculators, no chrome beyond the links. A person arriving
+ * here is looking for one line, and everything else on the page is in her way.
+ */
+import Shell from '../layouts/Shell.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import { QUESTIONS, BRANCH_LABELS, type SiteQuestion } from '../lib/questions';
+
+const ORDER: SiteQuestion['branch'][] = ['rights', 'money', 'path', 'self'];
+const grouped = ORDER.map((branch) => ({
+  branch,
+  label: BRANCH_LABELS[branch],
+  items: QUESTIONS.filter((q) => q.branch === branch),
+}));
+
+const description =
+  'Every question Strong Fire answers, in plain language — status and dental, tax on reserve, Jordan’s Principle, school funding, treaty payments, debt, credit and more.';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: QUESTIONS.map((q) => ({
+    '@type': 'Question',
+    name: q.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: `Answered at strongfire.ca${q.href}`,
+      url: `https://strongfire.ca${q.href}`,
+    },
+  })),
+};
+---
+
+<Shell title="What can I ask?" description={description} branch="home" {structuredData}>
+  <PageHeader
+    title="What can I ask?"
+    subtitle="Every question this site answers, in the words people ask them in. Free, private, and nothing to sign up for."
+    backHref="/"
+    backLabel="Home"
+  />
+
+  <div class="px-5 pb-16">
+    {
+      grouped.map((group) => (
+        <section class="mb-10">
+          <h2 class="apparatus-label border-b border-rule pb-2.5 mb-1">{group.label}</h2>
+          <ul class="list-none p-0 m-0 divide-y divide-rule">
+            {group.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="group flex items-baseline gap-3 py-3.5 no-underline hover:text-ink"
+                >
+                  <span class="text-[15px] leading-snug text-ink">{item.q}</span>
+                  <svg
+                    class="w-3 h-3 flex-shrink-0 self-center ml-auto text-faint transition-transform group-hover:translate-x-0.5"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="square"
+                  ><path d="M9 6l6 6-6 6" /></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    <p class="text-sm text-quiet leading-relaxed max-w-prose">
+      Not here? The <a href="/search" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">search</a>
+      covers every page, and the <a href="/glossary" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">glossary</a>
+      explains the words that turn up on forms.
+    </p>
+  </div>
+</Shell>

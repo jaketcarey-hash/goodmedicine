@@ -288,7 +288,7 @@ export function suggestNextSteps(picture: MoneyPicture): NextStep[] {
   ) {
     steps.push({
       id: 'check-section-87',
-      title: 'Ten questions settle most Section 87 cases',
+      title: 'Five questions settle most exemption cases',
       why: 'There is income in your picture and no saved Section 87 check — whether it is exempt turns on where the work happens.',
       tool: { label: 'Section 87 Checker', href: '/rights/section-87-checker' },
       article: { label: 'The Section 87 exemption', href: '/rights/section-87' },

@@ -817,6 +817,87 @@ empty case only in one, which is exactly where it broke.
 
 ---
 
+## 2026-08-20 — Into search, by renaming the pages after the questions
+
+Flipping `INDEXABLE` was always one line. Doing it first would have wasted
+the one crawl that sets the snippets for months, because the answer pages
+were named in the government's language: "Non-Insured Health Benefits",
+"Section 87 Tax Exemption", "Education Funding". Those titles compete head
+on with canada.ca for the exact program names canada.ca owns, and nothing on
+the site targeted the words a person actually types.
+
+**The layout problem and the search problem were the same problem**, and
+the code already said so. `Article.astro`'s own doc comment reads: *"The
+community surface: one question, answered … every page opens with one
+sentence that answers the question the page is named after."* The layout was
+built for question-named pages. The titles had drifted to program names, and
+the twelve questions written in her voice were sitting on branch index pages
+that the design brief says she never visits.
+
+So: seventeen answer pages renamed after the question they answer, with the
+program name moved into the subtitle — she may have arrived holding a form
+that says NIHB, so the term still has to appear on the page. `/rights/nihb`
+now titles itself "Can I get help with dental if I have status?", which is
+the exact test question in CLAUDE.md.
+
+**The answer became the snippet.** `Article.astro` already took an `answer`
+prop — the one sentence the page exists to say — and threw it away for
+search, passing `subtitle` as the description. It now passes
+`answer ?? subtitle`. The NIHB result no longer reads as a topic label; it
+reads "Yes. If you're a registered Status Indian or recognized Inuit, NIHB
+covers most dental, vision, prescription and medical-travel costs." If she
+gets what she needed without clicking, that is the site working.
+
+An `FAQPage` entry ships with it, but **only where the page has both a
+question-shaped title and an answer**. Structured data that restates a
+heading teaches a crawler nothing, and claiming an answer the page does not
+give is the one way this could make the site less trustworthy rather than
+more.
+
+### What was deliberately not renamed
+
+Roughly forty files reference the old titles as link labels — "see
+*Investing 101*" in prose, step names in `learning-paths.ts`, the topic-card
+grids on the branch indexes. Those stay. A long question makes a clumsy
+inline link, and the branch pages already offer both doors: `CommonQuestions`
+at the top for someone arriving with a worry, the topic grid below for
+someone browsing. A page can be named for its question and still be referred
+to by its topic in a sentence.
+
+`/path` keeps stage names too. Those pages answer "where am I in life", not a
+question, and `/moments` already holds the acute situations.
+
+### /questions
+
+`src/lib/questions.ts` gathers all 27 into one file, and `/questions` renders
+them grouped. It is the site's index in the reader's language rather than the
+programs', it carries the full FAQ data, and it is the sheet a band office or
+health centre can print and pin to a wall. Every destination was checked
+against the built output before shipping — the rule `CommonQuestions.astro`
+states is that a question leading somewhere vague is worse than no question.
+
+### One flag, one file
+
+`indexable` now lives in `src/data/site.json`, read by both `Shell.astro`
+(the `noindex` meta) and `scripts/build-seo.js` (robots.txt and the
+sitemap). They previously held the same fact twice, with a comment asking
+whoever flipped one to remember the other. A comment is not a guarantee.
+
+*Two errors found on the way:* `money-picture.ts` promised "Ten questions
+settle most Section 87 cases" while the checker has `TOTAL_STEPS = 5`, and
+the investing page was retitled "How do I start investing with a small
+amount?" before a validate-indigenous pass caught it against rule 19 — the
+title should not draw attention to the size of what she has. The page still
+teaches that $50 works; that is her learning what is possible, not the site
+reassuring her.
+
+*Still true:* the site is now crawlable with the Section 87 content awaiting
+a tax professional and the disclaimer awaiting legal review. That was a known
+trade, made deliberately. Turning `indexable` off again stops future crawls;
+it does not un-index what has already been taken.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

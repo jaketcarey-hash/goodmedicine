@@ -31,7 +31,9 @@ const ORIGIN = 'https://strongfire.ca';
  *
  * Flip to true, rebuild, deploy, then submit the sitemap.
  */
-const INDEXABLE = false;
+const INDEXABLE = JSON.parse(
+  readFileSync(new URL('../src/data/site.json', import.meta.url), 'utf8'),
+).indexable;
 
 /** Kept out of search results: shells, settings, legal, error pages. */
 const NOINDEX = new Set(['/404', '/settings']);
