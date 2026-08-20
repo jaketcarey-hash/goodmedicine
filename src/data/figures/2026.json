@@ -274,5 +274,16 @@
     "source": "https://www.wolterskluwer.com/en-ca/expert-insights/changes-to-capital-gains-inclusion-rate-deferred-to-2026",
     "sourceLabel": "Wolters Kluwer",
     "verifiedOn": "2026-08-04"
+  },
+  "credit_utilization_guideline": {
+    "value": 30,
+    "unit": "percent",
+    "label": "Credit utilization guideline",
+    "note": "FCAC's wording is a tip, not a rule: \"Try to use less than 30% of your total credit limit.\" Scoring formulas themselves are not published and differ by bureau and lender, so this is a guideline to aim at rather than a threshold that flips a score.",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-08-31",
+    "source": "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/improve-credit-score.html",
+    "sourceLabel": "FCAC — improving your credit score",
+    "verifiedOn": "2026-08-20"
   }
 }

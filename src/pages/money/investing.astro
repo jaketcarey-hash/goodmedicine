@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import CompoundingExplorer from '../../components/CompoundingExplorer.svelte';
 import { value, percent } from '../../lib/figures';
 
 // One assumed rate for every projection on this page, read from the registry —
@@ -406,9 +407,25 @@ const approx = (n: number) => '$' + (Math.round(n / 100) * 100).toLocaleString('
   <h3>Compounding in action</h3>
 
   <p>
-    The numbers tell the story better than any argument. Here's what happens when you
-    treat distributions as investment capital — money that is yours by right, put to
-    work for the long term.
+    The numbers tell the story better than any argument, but the shape tells it
+    better than the numbers. Move the two sliders to your own amount and your own
+    horizon — the hatched part is the money you never put in.
+  </p>
+
+  <div class="my-8 not-prose">
+    <CompoundingExplorer
+      client:idle
+      rate={r}
+      rateLabel={ratePct}
+      sourceLabel="FP Canada / Institute of Financial Planning Projection Assumption Guidelines"
+    />
+  </div>
+
+  <p>
+    It is the debt chart pointing the other way. On money you owe, the same
+    mechanism takes the hatched part off you every month; on money you own, it
+    hands it back. Here's what that looks like when distributions are treated as
+    investment capital — money that is yours by right, put to work for the long term.
   </p>
 
   <ExpandableSection client:idle title="Scenario 1: Investing a $2,000 annual distribution">

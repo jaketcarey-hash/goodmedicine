@@ -15,7 +15,7 @@
    */
   import { getMoneyPicture, suggestNextSteps, type MoneyPicture, type NextStep } from '../lib/money-picture';
   import { getMoneyPlan, saveMoneyPlan, generateIntentionId, type Intention } from '../lib/money-plan-store';
-  import { getGoals, type SavingsGoal } from '../lib/savings-store';
+  import { getGoals, createGoal, type SavingsGoal } from '../lib/savings-store';
   import { slide } from 'svelte/transition';
 
   let vision = $state('');
@@ -41,6 +41,32 @@
     goals = getGoals();
     loaded = true;
   });
+
+  /* ---- The one step that can act ----
+   *
+   * Of the suggested steps, only the emergency cushion has a write that is
+   * honest without asking anything further: creating an empty goal. Every
+   * other step needs a decision the person has not made yet, and this page
+   * does not make decisions on their behalf.
+   *
+   * The target is one month of their own recorded expenses, not a round
+   * number from somewhere else — the same rule the rest of the picture
+   * follows, that a suggestion names the datum it rests on. */
+  let cushionCreated = $state<{ name: string; target: number } | null>(null);
+
+  let cushionTarget = $derived(
+    picture?.expenses ? Math.round(picture.expenses.monthly) : null,
+  );
+  let cushionExists = $derived(
+    goals.some((g) => g.category === 'emergency') || cushionCreated !== null,
+  );
+
+  function createCushion() {
+    if (!cushionTarget || cushionTarget <= 0) return;
+    const goal = createGoal('Emergency fund', cushionTarget, 'emergency');
+    goals = getGoals();
+    cushionCreated = { name: goal.name, target: goal.targetAmount };
+  }
 
   // Auto-save, the BudgetTool way — but never write an empty first plan.
   $effect(() => {
@@ -349,6 +375,34 @@
               <a href={step.article.href} class="text-quiet underline decoration-rule underline-offset-2 hover:decoration-ink">{step.article.label}</a>
             {/if}
           </p>
+
+          {#if step.id === 'emergency-cushion' && cushionTarget}
+            {#if cushionCreated}
+              <p class="text-sm text-ink m-0 mt-2.5">
+                Created “{cushionCreated.name}” with a target of
+                ${cushionCreated.target.toLocaleString('en-CA')}, at zero so far.
+              </p>
+              <p class="apparatus m-0 mt-1 text-[11px] leading-snug text-faint">
+                Record deposits as they actually happen — the tracker plots real
+                dated deposits.
+              </p>
+            {:else if cushionExists}
+              <p class="text-sm text-quiet m-0 mt-2.5">
+                You already have an emergency goal. Nothing new was created.
+              </p>
+            {:else}
+              <button
+                onclick={createCushion}
+                class="mt-2.5 cursor-pointer rounded-sm border border-ink px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-ground"
+              >
+                Start one at ${cushionTarget.toLocaleString('en-CA')}
+              </button>
+              <p class="apparatus m-0 mt-1.5 text-[11px] leading-snug text-faint">
+                One month of your {picture?.expenses ? monthName(picture.expenses.month) : ''}
+                expenses. Creates the goal only — no money is recorded as moved.
+              </p>
+            {/if}
+          {/if}
         </li>
       {/each}
     </ol>

@@ -3,6 +3,7 @@ import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
 import { value } from '../../lib/figures';
+import UtilizationGauge from '../../components/UtilizationGauge.svelte';
 ---
 
 <Article
@@ -91,11 +92,19 @@ import { value } from '../../lib/figures';
 
   <ol>
     <li><strong>Payment history (roughly 35%)</strong> — do you pay on time? This is the biggest factor by far. Even one missed payment can drop your score significantly</li>
-    <li><strong>Credit utilization (roughly 30%)</strong> — how much of your available credit are you using? Using less than 30% of your limit is the commonly cited guideline. If your credit card limit is $1,000, try to keep the balance under $300</li>
+    <li><strong>Credit utilization</strong> — how much of your available credit are you using? FCAC suggests using less than {value('credit_utilization_guideline')}% of your total limit. If your credit card limit is $1,000, that means keeping the balance under ${1000 * value('credit_utilization_guideline') / 100}</li>
     <li><strong>Credit history length</strong> — how long have your accounts been open? Longer is better. Don't close your oldest credit card</li>
     <li><strong>Credit mix</strong> — having different types of credit (credit card, line of credit, car loan) helps slightly</li>
     <li><strong>New credit inquiries</strong> — applying for lots of credit in a short time lowers your score temporarily</li>
   </ol>
+
+  <div class="my-8 not-prose">
+    <UtilizationGauge
+      client:idle
+      guideline={value('credit_utilization_guideline')}
+      guidelineSource="FCAC"
+    />
+  </div>
 
   <ExpandableSection client:idle title="The utilization trick that works fast">
     <div class="space-y-3 text-sm">
@@ -185,7 +194,7 @@ import { value } from '../../lib/figures';
   <ol>
     <li><strong>Get your credit report</strong> — request free copies from Equifax and TransUnion. Look for errors. Dispute anything that's wrong</li>
     <li><strong>Stop the bleeding</strong> — get current on all payments. Set up minimum auto-payments on everything so nothing else goes late</li>
-    <li><strong>Pay down balances</strong> — focus on getting credit card utilization below 30%. If card debt is part of the picture, the <a href="/money/debt-planner">Debt Planner</a> shows what each extra payment buys you</li>
+    <li><strong>Pay down balances</strong> — focus on getting credit card utilization below {value('credit_utilization_guideline')}%. If card debt is part of the picture, the <a href="/money/debt-planner">Debt Planner</a> shows what each extra payment buys you</li>
     <li><strong>Don't close old accounts</strong> — even if you're not using a card, keeping it open helps your average account age</li>
     <li><strong>Be patient</strong> — late or unpaid accounts stay on your report for up to {value('credit_negative_retention_years')} years, then fall off. Every month of on-time payments improves your trajectory</li>
   </ol>

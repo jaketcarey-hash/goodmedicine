@@ -676,6 +676,70 @@ peak) or the top label sat on the curve, and the payoff-date labels overflowed
 the right edge by 25px at 375 because they were centred on a point at 100%.
 They now right-align past 85%. Both were invisible at desktop width.
 
+### M9 — explain layers wave 2, and the action layer (20 August)
+
+**The credit article was breaking the site's own rule.** "30%" was typed into
+two places in `credit.astro`, which is exactly what the figure registry exists
+to prevent. It is now `credit_utilization_guideline`, fetched live from FCAC's
+own page the day it was registered — their wording is a tip ("try to use less
+than 30% of your total credit limit"), and the note records that, because
+scoring formulas are not published and a guideline is not a threshold that
+flips a score. `UtilizationGauge` reads the registry like every other number.
+
+The gauge deliberately shows only utilization. The article already says, and
+M2 already established, that the weightings are not knowable; a composite
+credit-score estimate would be the one thing on this page that is invented.
+Nothing is stored either — a card balance is not worth persisting for a tool
+that computes a ratio and has no second visit to remember.
+
+**The compounding explorer is the debt chart pointing the other way**, and the
+article now says so. Same solid-and-hatched split, same primitive: what you
+put in, and what the rate added. Interest and growth are one mechanism with a
+sign — on a balance you owe it takes the hatched part every month, on a
+balance you own it hands the hatched part back. The rate comes from
+`assumed_balanced_return`, so the explorer and the article's prose
+projections cannot drift apart.
+
+### The action layer, and the write that would have been a lie
+
+The plan called for one tap that "sets the extra debt payment." Building it
+surfaced that this would be wrong: a distribution is a **lump**, and
+`extraMonthly` is recurring. Storing a one-off as a monthly amount shortens
+the projection by years that are never going to happen — to the person who
+just received exactly such a lump. So `calculatePayoff()` grew an optional
+one-time payment (applied before the first month's interest, to the strategy's
+target unless a debt is named, spilling to the next debt if it clears one),
+and the planner **computes and shows** the effect instead of writing it.
+Eight tests cover it, including that a lump is not equivalent to the monthly
+extra, and that a no-lump call is byte-identical to the old behaviour.
+
+The rule that came out of this and governs everything the action layer does:
+**never record money that has not moved.** This planner is usually opened
+before the cheque clears. Creating a savings goal is safe — it is a container
+waiting for a deposit. Recording the deposit itself would be false, and it
+would corrupt the pace projection M8 just built, which reads real dated
+deposits and would draw a bend that never happened. So the savings action
+creates the goal at zero, says so, and says why.
+
+Every action states what changed and where to find it, and none of them
+duplicate: an existing goal is reported, never re-created. `/money/plan`'s
+cushion step gained the same one tap, with the target derived from one month
+of the person's own recorded expenses rather than a round number from
+somewhere else — the same rule the rest of the picture follows, that a
+suggestion names the datum it rests on.
+
+*Found by testing:* `bind:value` on `<input type="number">` yields a number,
+not a string, so the gauge's `balance.trim()` threw on every keystroke and the
+component silently rendered its empty state forever. The build was green
+throughout — only the browser console showed it. Islands elsewhere on the site
+survive this because they only ever `parseFloat`; anything calling a string
+method on a bound number input will not.
+
+*Also settled:* both new islands are `client:idle`, matching the convention
+already on those two pages, rather than `client:visible`. The reader arrives
+mid-article on a slow connection, and hydrating a teaching tool at the moment
+she scrolls to it is the wrong moment.
+
 ---
 
 ## Still open

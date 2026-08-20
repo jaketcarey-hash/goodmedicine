@@ -60,8 +60,18 @@ export function createDebt(name: string, balance: number, interestRate: number, 
 /**
  * Simulate month-by-month payoff.
  * Returns an array of monthly states. Caps at 600 months (50 years) as a safety valve.
+ *
+ * `oneTime` is a single lump applied before the first month's interest — a
+ * distribution, a tax refund, a settlement. It is deliberately separate from
+ * `extraMonthly`: treating a one-off payment as a recurring one would shorten
+ * the projection by years that are never going to happen, and this tool is
+ * most often opened by someone who has just received exactly such a lump.
+ * With no debt id it goes to whichever debt the strategy would target first.
  */
-export function calculatePayoff(plan: DebtPlan): PayoffMonth[] {
+export function calculatePayoff(
+  plan: DebtPlan,
+  oneTime?: { amount: number; debtId?: string },
+): PayoffMonth[] {
   if (plan.debts.length === 0) return [];
 
   const balances: Record<string, number> = {};
@@ -76,11 +86,34 @@ export function calculatePayoff(plan: DebtPlan): PayoffMonth[] {
     if (d.balance > 0) activeIds.add(d.id);
   }
 
-  const timeline: PayoffMonth[] = [];
-  let month = 0;
-
   // Track rolled-over minimums from paid-off debts
   let rolledMinimums = 0;
+
+  // The lump lands before anything else, so it never accrues a month of
+  // interest the person did not actually pay.
+  if (oneTime && oneTime.amount > 0) {
+    let remainingLump = oneTime.amount;
+    const explicit = oneTime.debtId && activeIds.has(oneTime.debtId) ? oneTime.debtId : null;
+    while (remainingLump > 0.01 && activeIds.size > 0) {
+      const targetId = explicit && activeIds.has(explicit)
+        ? explicit
+        : getTargetDebt(plan.strategy, activeIds, balances, rates);
+      if (!targetId) break;
+      const payment = Math.min(remainingLump, balances[targetId]);
+      balances[targetId] -= payment;
+      remainingLump -= payment;
+      if (balances[targetId] <= 0.01) {
+        rolledMinimums += minimums[targetId];
+        balances[targetId] = 0;
+        activeIds.delete(targetId);
+      }
+      // An explicit target that is now clear must not trap the remainder.
+      if (explicit && !activeIds.has(explicit) && remainingLump > 0.01) continue;
+    }
+  }
+
+  const timeline: PayoffMonth[] = [];
+  let month = 0;
 
   while (activeIds.size > 0 && month < 600) {
     month++;

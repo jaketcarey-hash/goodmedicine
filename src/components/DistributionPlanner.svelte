@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fly, fade, slide } from 'svelte/transition';
   import { STORAGE_KEYS } from '../lib/storage-keys';
+  import SegmentAction from './SegmentAction.svelte';
   import { value, percent } from '../lib/figures';
 
   // ---- State ----
@@ -457,6 +458,12 @@
                   <p class="text-xl font-bold text-ink">${fmt(segment.amount)}</p>
                 </div>
                 <p class="text-sm text-text-secondary">{segment.description}</p>
+
+                <SegmentAction
+                  segmentId={segment.id}
+                  label={segment.label}
+                  amount={segment.amount}
+                />
 
                 <button
                   onclick={() => toggleHowTo(segment.id)}
