@@ -4,12 +4,22 @@
  */
 import Record from '../../../layouts/Record.astro';
 import BcDirectory from '../../../components/BcDirectory.svelte';
+import BcMap from '../../../components/BcMap.svelte';
 import { getBcNations, DIRECTORY_META, groupByPeople } from '../../../lib/bc-nations';
 
 const nations = getBcNations();
 const peoples = groupByPeople();
 const tracked = nations.filter((n) => n.records.length || n.mentions.length).length;
 const withoutCouncil = nations.filter((n) => !n.tribalCouncil).length;
+
+const forMap = nations.map((n) => ({
+  name: n.name,
+  slug: n.slug,
+  people: n.people,
+  tribalCouncil: n.tribalCouncil,
+  lat: n.lat,
+  lon: n.lon,
+}));
 
 const forBrowser = nations.map((n) => ({
   name: n.name,
@@ -91,6 +101,11 @@ const forBrowser = nations.map((n) => ({
       is deliberate. A Nation and its communities are related, not interchangeable, and
       quietly merging them would put one community's name against another's affairs.
     </p>
+  </section>
+
+  <section>
+    <h2>Where the communities are</h2>
+    <BcMap client:idle nations={forMap} />
   </section>
 
   <section>

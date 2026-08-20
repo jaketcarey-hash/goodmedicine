@@ -1016,6 +1016,66 @@ and badly served everywhere else.
 
 ---
 
+## 2026-08-20 — A map of the province, and what a dot is allowed to mean
+
+The BC directory has held `lat`/`lon` for all 201 Nations since it was
+compiled, unused. `/nations/bc` now opens with a map.
+
+**A dot on a map is a claim, and this one is deliberately narrow.** Each mark
+is the community location the federal band registry lists — a band office
+address, essentially. It is not the extent of a territory. Territories are far
+larger than a point, they overlap one another, and most of British Columbia is
+unceded. A map that quietly implied otherwise would be making a claim this
+site has no standing to make, to readers with earned reasons to be wary of
+exactly that kind of claim. The caption says so in plain words and is load
+bearing; it is not a disclaimer to be trimmed for tidiness.
+
+**Density is stated rather than hidden.** Fifteen Nations sit close enough to
+Cheam to share one mark at phone width. Rather than pretend the dot is one
+Nation, a tap names the others hiding behind it. Dots are drawn at 55% opacity
+so a cluster reads darker than a lone Nation — the Fraser Valley and the
+central coast look crowded because they are. The directory below stays the
+precise index; the map is for orientation.
+
+**Tap, not hover**, and the answer is HTML under the map rather than a tooltip
+over it: 375px is a first-class width, a phone has no hover state, and a card
+can be read, selected and reached by a screen reader in a way a floating
+tooltip cannot. Each mark carries an invisible 14-unit hit target, because a
+finger is wider than a five-pixel dot.
+
+### The outline
+
+`scripts/one-off/extract-bc-outline.js` turns a public-domain Natural Earth
+boundary into a single 11.5 KB SVG path, committed to
+`src/data/bc/outline.json` and never fetched again. The site makes no external
+requests at runtime and its builds do not depend on any host being up — the
+same discipline as the figure registry: fetch once, record the source, keep
+the bytes.
+
+*Found by checking the aspect ratio against reality:* the first version scaled
+longitude by the cosine of each point's own latitude, which shears the
+province. The Alberta border north of 54°N is a straight meridian at -114°,
+and a per-point cosine maps it to a different x at every latitude — bending a
+straight line into a diagonal and stretching BC to nearly twice its true
+width (aspect 1.92 against a true 1.26). Scaling by the cosine of one standard
+parallel, which is what equirectangular means, gives 1.25. The lesson is that
+a projection error looks like a plausible map until something in it is
+measured.
+
+*Also corrected:* the province was first filled with `ground` on a white card
+— two near-whites, so BC rendered as a ghost. `canvas` on white gives it a
+body.
+
+*And again:* `client:visible` does not hydrate in the screenshot pane, so the
+map's dots looked broken when they were merely asleep — the third time this
+session that trap has cost time, and the progress notes had already warned
+about it twice. Settled on `client:idle` on its merits, not for testability:
+someone on this page will scroll past the map to reach the directory, so
+`visible` only delays hydration to the moment of use and hands them
+unresponsive dots.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
