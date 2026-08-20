@@ -11,6 +11,7 @@
     getPayoffDate,
   } from '../lib/debt-store';
   import { fly, fade, slide } from 'svelte/transition';
+  import DebtPayoffCurve from './DebtPayoffCurve.svelte';
 
   // ---- State ----
   let plan = $state<DebtPlan>({ debts: [], extraMonthly: 0, strategy: 'avalanche' });
@@ -40,6 +41,12 @@
 
   // ---- Derived calculations ----
   let timeline = $derived(calculatePayoff(plan));
+  /** Reaching the 600-month safety cap while still owing is not a payoff.
+   *  Without this the banner promised a debt-free date to exactly the person
+   *  whose minimums do not cover the interest. */
+  let reachesZero = $derived(
+    timeline.length > 0 && timeline[timeline.length - 1].totalBalance <= 0.01,
+  );
   let totalInterest = $derived(calculateTotalInterest(timeline));
   let payoffDate = $derived(getPayoffDate(timeline));
   let totalMonths = $derived(timeline.length);
@@ -148,7 +155,7 @@
 
 <div class="space-y-5">
   <!-- Summary banner -->
-  {#if plan.debts.length > 0 && timeline.length > 0}
+  {#if plan.debts.length > 0 && timeline.length > 0 && reachesZero}
     <div class="rounded-sm bg-white border border-rule p-5 text-center">
       <p class="text-xs text-text-muted mb-1">Debt-free by</p>
       {#if payoffDate}
@@ -159,6 +166,16 @@
         <span>Total owed: ${fmt(totalOwed)}</span>
         <span>Interest: ${fmt(totalInterest)}</span>
       </div>
+    </div>
+  {:else if plan.debts.length > 0 && timeline.length > 0}
+    <div class="rounded-sm bg-white border border-rule p-5">
+      <p class="text-xs text-text-muted mb-1 text-center">Total owed</p>
+      <p class="text-2xl font-bold text-ink text-center">${fmt(totalOwed)}</p>
+      <p class="text-sm text-quiet mt-3 leading-relaxed max-w-prose mx-auto text-center">
+        On these payments the balance never reaches zero — each month the interest
+        adds more than the minimums take off. Raising a minimum, or adding an extra
+        payment below, is what changes that.
+      </p>
     </div>
   {:else if plan.debts.length > 0}
     <div class="rounded-sm bg-white border border-rule p-5 text-center">
@@ -235,6 +252,20 @@
         </div>
       {/if}
     </div>
+  {/if}
+
+  <!-- The curves. Placed under the strategy toggle so the redraw is the answer
+       to the tap, and above the extra-payment field so the cost is seen first. -->
+  {#if plan.debts.length > 0 && timeline.length > 0}
+    <section class="pt-1">
+      <DebtPayoffCurve
+        {timeline}
+        {altTimeline}
+        strategy={plan.strategy}
+        {altStrategy}
+        {totalOwed}
+      />
+    </section>
   {/if}
 
   <!-- Extra monthly payment -->

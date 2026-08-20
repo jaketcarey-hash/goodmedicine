@@ -604,6 +604,78 @@ after editing a Svelte island in dev is the service worker plus HMR, exactly as
 the top of this file warns. Unregister it and hard-reload before debugging
 anything.
 
+### M8 — explain layers, wave 1: the charts that are the lesson (20 August)
+
+Three tools gained a visualization that teaches its concept with the person's
+own numbers. All three were built on data that already existed and was being
+thrown away.
+
+**`src/lib/chart.ts` is the new plotting primitive**, and it is deliberately
+narrow. Three decisions hold across everything built on it:
+
+- *Marks in SVG, words in HTML.* The `<svg>` carries only paths, at a fixed
+  720×220 viewBox scaled with `w-full h-auto`; every label is an absolutely
+  positioned HTML element driven by the same normalised coordinates. Text
+  inside an SVG shrinks with the viewport and this site is read at 375px on a
+  low-end Android. This is the same split the forecast strip used.
+- *Identity from texture and dash, never a second hue.* Two series are solid
+  against dashed, or solid against hatched. That is forced by the palette —
+  colour is reserved for status — and it is also what survives a black-and-
+  white print and what a colour-blind reader gets for free. `/dataviz` would
+  reach for a categorical ramp here; this site does not have one and is not
+  getting one.
+- *Normalised coordinates computed once*, so the same numbers drive the SVG
+  path and the CSS percentage of a label. `normalise()` takes its maximum as
+  an argument rather than deriving it, because two series sharing a chart must
+  share a scale — deriving per series would rescale each curve to its own
+  height and make the gap between them a drawing artefact.
+
+**Bars did not lose.** The width- and height-driven divs stay wherever the
+data is buckets — StageDistribution, WellnessHistory, the forecast week strip.
+SVG entered because a debt balance falling month by month is a continuum, and
+that is the only thing bars could not carry. Reaching for SVG on the forecast
+strip would have been the first crack in a vocabulary that holds across 520
+pages.
+
+**The debt planner, two figures, two lessons.** `calculatePayoff()` has always
+returned a full `PayoffMonth[]` and the component rendered its last row. Now:
+*what you still owe* (both strategies from one balance down to zero — the
+horizontal gap between where they land is the months saved) and *everything
+you pay, split* (cumulative principal against cumulative interest, the
+interest hatched). Principal is drawn in `rule` and recedes; the hatched
+interest carries the weight, because the hatch is the point of the chart.
+
+*Found by plotting:* the planner claimed a payoff date it had no right to.
+`getPayoffDate()` derives from `timeline.length`, and `calculatePayoff()` caps
+at 600 months — so a debt whose minimums do not cover its interest produced
+"Debt-free by January 2076". That is a false promise made to precisely the
+person carrying a payday loan. A `reachesZero` guard now gates the banner, and
+both the banner and the curve say plainly that the balance never gets there
+and what changes it. The cost figure is hidden in that case: there is no
+total interest for a plan that does not end.
+
+**The tax estimator's old "visual" was two disconnected tracks** — one always
+full, one partial — that never showed where the missing part went, and painted
+take-home in `verified` green. Green means verified on this site; it does not
+mean good, and colour does not appear without its text label. `TaxSplit`
+replaces it with one bar of where each dollar goes, solid against hatched, and
+a second bar showing the same income with none of it exempt. The difference
+between the two bars is the exemption, drawn instead of stated — seeing the
+hatched part shrink is not the same as reading a number.
+
+**The savings tracker projects her own rate, not a deadline.** `SavingsGoal`
+has no target date and is not getting one: a deadline she never set is a
+deadline to fail, and progress on this site only goes up. So the dashed line
+is her observed pace carried forward — "at your pace, March 2027" — from
+deposits that were always dated and never plotted. Two deposits are the floor;
+one deposit is a balance, not a pace, and a line through it would be
+invention. Past ten years no date is shown at all.
+
+*Found by measuring, not looking:* every chart needed headroom (6–8% above the
+peak) or the top label sat on the curve, and the payoff-date labels overflowed
+the right edge by 25px at 375 because they were centred on a point at 100%.
+They now right-align past 85%. Both were invisible at desktop width.
+
 ---
 
 ## Still open

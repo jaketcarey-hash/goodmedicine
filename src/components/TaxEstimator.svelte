@@ -6,6 +6,7 @@
   } from '../lib/tax-estimator';
   import { STORAGE_KEYS } from '../lib/storage-keys';
   import { fade, slide } from 'svelte/transition';
+  import TaxSplit from './TaxSplit.svelte';
 
   // ---- Input mode ----
   let inputMode = $state<'annual' | 'hourly'>('annual');
@@ -306,23 +307,14 @@
         <div class="rounded-sm bg-surface-card border border-rule p-5 shadow-sm">
           <p class="text-xs font-semibold text-faint tracking-widest uppercase mb-4">Your estimate</p>
 
-          <!-- Visual bar: gross to take-home -->
-          <div class="space-y-2 mb-5">
-            <div class="flex items-center gap-2">
-              <span class="text-xs text-text-muted w-20">Gross</span>
-              <div class="flex-1 h-4 bg-rule overflow-hidden">
-                <div class="h-full bg-ink" style="width: 100%"></div>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs text-text-muted w-20">Take-home</span>
-              <div class="flex-1 h-4 bg-rule overflow-hidden">
-                <div
-                  class="h-full bg-verified transition-all duration-500"
-                  style="width: {income() > 0 ? (estimate.annualTakeHome / income()) * 100 : 0}%"
-                ></div>
-              </div>
-            </div>
+          <!-- Where the pay actually goes, and what the exemption is worth. -->
+          <div class="mb-6">
+            <TaxSplit
+              {estimate}
+              income={income()}
+              {province}
+              exemptPercentage={effectiveExempt()}
+            />
           </div>
 
           <!-- Breakdown -->

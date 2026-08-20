@@ -8,6 +8,7 @@
     getTotalSaved,
   } from '../lib/savings-store';
   import { fly, fade, slide } from 'svelte/transition';
+  import SavingsPace from './SavingsPace.svelte';
 
   // ---- State ----
   let goals = $state<SavingsGoal[]>([]);
@@ -330,8 +331,11 @@
         {/if}
       </div>
 
-      <!-- Deposit history (collapsible) -->
+      <!-- Deposit history (collapsible), led by the pace it implies -->
       {#if expandedGoalId === goal.id && goal.deposits.length > 0}
+        <div class="border-t border-rule px-4 py-4" in:slide={{ duration: 200 }}>
+          <SavingsPace {goal} />
+        </div>
         <div class="border-t border-rule px-4 py-3" in:slide={{ duration: 200 }}>
           <p class="text-xs font-semibold text-text-muted mb-2">Deposit history</p>
           <div class="space-y-1.5">
