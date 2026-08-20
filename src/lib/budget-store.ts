@@ -261,3 +261,62 @@ export function averageRecordedSpending(today = new Date()): {
   }
   return { byCategory, months: complete };
 }
+
+/* ------------------------------------------------------------------ *
+ * Getting it back out
+ * ------------------------------------------------------------------ */
+
+/**
+ * Every month, planned and recorded, as spreadsheet rows.
+ *
+ * One row per item, one file for everything — not a sheet per month, which
+ * is tidy for a program and useless to a person trying to see their year.
+ * The `Section` column is what lets her filter, and the monthly-equivalent
+ * column is there because a spreadsheet cannot know that "$450 every two
+ * weeks" is not $450 a month, and she should not have to do that conversion
+ * by hand to add up her own budget.
+ *
+ * Recorded rows carry a real date and no frequency; planned rows carry a
+ * frequency and no date. The shape says which is which without a legend.
+ */
+export function budgetRows(): (string | number | null)[][] {
+  const header = [
+    'Month', 'Section', 'Label', 'Category', 'Amount',
+    'Frequency', 'Per month', 'Date', 'Anchor date',
+  ];
+  const rows: (string | number | null)[][] = [header];
+
+  const months = getAllBudgetMonths().sort(); // oldest first — a year reads down
+  for (const month of months) {
+    const budget = getBudget(month);
+    if (!budget) continue;
+
+    for (const item of budget.income) {
+      rows.push([
+        month, 'Planned income', item.label, item.category, item.amount,
+        item.frequency,
+        item.frequency === 'irregular' ? null : round2(toMonthly(item.amount, item.frequency)),
+        null, item.anchorDate ?? null,
+      ]);
+    }
+    for (const item of budget.expenses) {
+      const freq = item.frequency ?? 'monthly';
+      rows.push([
+        month, 'Planned expense', item.label, item.category, item.amount,
+        freq, round2(toMonthly(item.amount, freq)), null, item.anchorDate ?? null,
+      ]);
+    }
+    for (const a of getActuals(month)) {
+      rows.push([
+        month,
+        a.kind === 'income' ? 'Recorded income' : 'Recorded expense',
+        a.label, a.category, a.amount, null, null, a.date, null,
+      ]);
+    }
+  }
+  return rows;
+}
+
+function round2(n: number): number {
+  return Math.round(n * 100) / 100;
+}

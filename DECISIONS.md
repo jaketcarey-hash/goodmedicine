@@ -950,6 +950,72 @@ probably why it has never been built. Spot-checked the highest-stakes source
 
 ---
 
+## 2026-08-20 — Her data, back out
+
+The site promised that everything stays on her device and that the data is
+hers. The only way out was `strongfire-backup-<date>.json` — a file for moving
+between phones, not one a person can read, and not one she can hand to a band
+administrator or a tax preparer. She could put a year of income, spending and
+recorded actuals in and get nothing usable back. The promise was partly
+untrue.
+
+`src/lib/csv.ts` and a "Take it with you" section on the budget tool close it:
+every month, planned and recorded, one row per item.
+
+**CSV rather than .xlsx, deliberately.** It opens in Excel, Sheets, Numbers
+and whatever a band office actually runs; it needs no library on this side;
+and it does not lock her own budget to one vendor's software. The reader most
+likely to need this file is the one least likely to have Excel.
+
+**All months, not the month on screen.** Someone exporting a budget is almost
+always showing a year to somebody, and a single-month export would send her
+back twelve times.
+
+### Three details that decide whether the file opens correctly
+
+Each is invisible until someone else opens it, which is exactly when it
+matters:
+
+- **Formula injection.** Every label in the file was typed by the person, and
+  a spreadsheet treats a leading `=`, `+`, `-`, `@`, tab or carriage return as
+  a formula. `=cmd|' /C calc'!A0` in an expense label is a live cell in Excel.
+  Values are prefixed with an apostrophe *and* quoted — the first test run
+  only prefixed, and importers disagree about whether a bare leading
+  apostrophe marks text. The one that disagrees is running on someone else's
+  machine. **Numbers are never defused**, or a negative amount stops being
+  numeric and the column will not sum, which is the whole point of the file.
+- **Quoting.** "Rent, hydro" and `The "big" bill` are things people type.
+- **The byte-order mark.** Without `EF BB BF`, Excel on Windows reads the file
+  as the local codepage and mangles every accented character — which here
+  means Nation names and anything with an apostrophe. Confirmed in the actual
+  bytes; `Blob.text()` strips a BOM on decode, so checking the string says
+  nothing.
+
+Fourteen tests cover the escaping, including the injection payloads.
+
+*Irregular income exports with no monthly figure*, matching the forecast's
+rule. A spreadsheet cannot know that "$450 every two weeks" is not $450 a
+month, so the planned rows carry a computed monthly equivalent — and where no
+honest conversion exists, the cell is empty rather than guessed.
+
+### And on paper
+
+The budget tool now prints. Filled, it is the record she hands over; blank, it
+is a worksheet someone can complete at a kitchen table with no phone and no
+signal. Same stylesheet for both, because the only difference is whether she
+has typed anything yet. That is ROADMAP's "printable one-page summaries" and
+half of "community facilitator mode", arrived at from the other direction.
+
+*Still absent, and deliberately so:* retirement adequacy, insurance needs and
+estate tools. A commercial planner has those because its user is fifty-five
+with assets. The reader here is twenty-six in Lytton asking whether status
+covers dental, and building a retirement projection would be building for a
+reader this site does not have. Estate on reserve is the one of the three
+worth revisiting — it is high-stakes, legally distinct from provincial law,
+and badly served everywhere else.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

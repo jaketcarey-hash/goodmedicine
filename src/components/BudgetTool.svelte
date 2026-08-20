@@ -13,7 +13,9 @@
     getPreviousMonth,
     copyBudgetToMonth,
     getAllBudgetMonths,
+    budgetRows,
   } from '../lib/budget-store';
+  import { downloadCsv, stamp } from '../lib/csv';
   import { fly, fade, slide } from 'svelte/transition';
 
   // ---- Month navigation ----
@@ -169,6 +171,21 @@
     budget.actuals = (budget.actuals ?? []).filter((a) => a.id !== id);
   }
 
+  /* Her data, back out, in something she can open.
+   *
+   * Every month in one file rather than the month on screen: someone
+   * exporting a budget is almost always doing it to show a year to somebody
+   * — a band administrator, a tax preparer, a partner — and a single month
+   * would send her back here twelve times. */
+  let exported = $state(false);
+  function exportCsv() {
+    downloadCsv(`strong-fire-budget-${stamp()}.csv`, budgetRows());
+    exported = true;
+    setTimeout(() => (exported = false), 4000);
+  }
+
+  let monthsOnRecord = $derived(getAllBudgetMonths().length);
+
   function actualDayLabel(iso: string): string {
     const [y, m, d] = iso.split('-').map(Number);
     return new Date(y, m - 1, d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
@@ -322,7 +339,7 @@
   }
 </script>
 
-<div class="space-y-5">
+<div class="space-y-5 budget-tool">
   <!-- Month navigator -->
   <div class="flex items-center justify-between">
     <button
@@ -903,8 +920,42 @@
     </button>
   {/if}
 
+  <!-- Take it with you -->
+  {#if monthsOnRecord > 0}
+    <section class="border-t border-rule pt-5">
+      <h3 class="text-xs font-semibold text-faint tracking-widest uppercase mb-2">Take it with you</h3>
+      <p class="text-xs text-text-muted leading-relaxed mb-3 max-w-prose">
+        Your budget as a spreadsheet — every month, planned and recorded. It opens
+        in Excel, Google Sheets, Numbers or anything else, so you can keep it,
+        print it, or hand it to whoever needs to see it.
+      </p>
+      <div class="flex flex-wrap items-center gap-3">
+        <button
+          onclick={() => window.print()}
+          class="py-2.5 px-4 rounded-sm border border-rule text-sm font-medium text-text-secondary
+            hover:border-quiet hover:text-ink transition-colors cursor-pointer"
+        >
+          Print this budget
+        </button>
+        <button
+          onclick={exportCsv}
+          class="py-2.5 px-4 rounded-sm border border-ink text-sm font-medium text-ink
+            hover:bg-ink hover:text-ground transition-colors cursor-pointer"
+        >
+          Download {monthsOnRecord === 1 ? 'this month' : `all ${monthsOnRecord} months`}
+        </button>
+        {#if exported}
+          <p class="apparatus text-xs text-verified" transition:fade={{ duration: 150 }}>
+            Saved to your downloads.
+          </p>
+        {/if}
+      </div>
+    </section>
+  {/if}
+
   <!-- Privacy note -->
   <p class="text-xs text-text-muted text-center pt-2 pb-4">
-    All your budget data stays on this device. Nothing is sent anywhere.
+    All your budget data stays on this device. Nothing is sent anywhere — the
+    download above is written by your own browser.
   </p>
 </div>

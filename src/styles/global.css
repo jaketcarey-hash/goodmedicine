@@ -360,6 +360,32 @@ body {
     overflow: visible !important;
   }
 
+  /* The budget on paper.
+     A blank one is a worksheet someone can fill in at a kitchen table with no
+     phone and no signal, which is a real way this reaches people; a filled one
+     is the record she hands to a band office. Same stylesheet serves both,
+     because the difference is only whether she has typed anything yet. */
+  .budget-tool input,
+  .budget-tool select {
+    border: none !important;
+    border-bottom: 1px solid #999 !important;
+    border-radius: 0 !important;
+    padding: 0 0 2px !important;
+    background: transparent !important;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .budget-tool section {
+    break-inside: auto;
+  }
+
+  /* A row of the budget should not split across a page. */
+  .budget-tool section > div > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
   @page {
     margin: 18mm 16mm;
   }
