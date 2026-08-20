@@ -1,0 +1,28 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import CashFlowForecast from '../../components/CashFlowForecast.svelte';
+---
+
+<Shell
+  title="The Next Eight Weeks"
+  branch="money"
+  description="Money in and out on the days it actually moves — your pay on the Friday it lands, benefits on the dates the government publishes — and the week it gets tight, before you get there."
+>
+  <PageHeader
+    title="The Next Eight Weeks"
+    subtitle="Money in and out on the days it actually moves — and the week it gets tight, before you get there."
+    branch="money"
+    backHref="/money"
+    backLabel="Money"
+  />
+
+  <section class="px-5 pb-10">
+    <CashFlowForecast client:load />
+
+    <p class="mt-10 text-sm text-quiet">
+      The thinking behind this tool:
+      <a href="/money/budgeting" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">Budgeting That Works</a>
+    </p>
+  </section>
+</Shell>

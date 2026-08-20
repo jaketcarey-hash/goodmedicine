@@ -21,4 +21,5 @@ export const STORAGE_KEYS = {
   MONEY_PLAN: 'gm_money_plan',
   LAST_VISITED: 'gm_last_visited',
   MOMENTS_PROGRESS: 'gm_moments_progress',
+  FORECAST_BALANCE: 'gm_forecast_balance',
 } as const;

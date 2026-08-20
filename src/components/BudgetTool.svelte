@@ -3,6 +3,7 @@
     type BudgetEntry,
     type IncomeItem,
     type ExpenseItem,
+    type ActualItem,
     getCurrentBudget,
     getBudget,
     saveBudget,
@@ -105,6 +106,73 @@
     debt: 'Debt Payments',
     other: 'Other',
   };
+
+  // ---- What actually happened ----
+  // The plan above is what she expects. This is what landed. They are kept
+  // apart on purpose: editing the plan to match reality loses the reality,
+  // and it is the gap between the two that teaches — and that the eight-week
+  // forecast reads to correct itself.
+  let showActualForm = $state(false);
+  let newActualDate = $state('');
+  let newActualLabel = $state('');
+  let newActualAmount = $state('');
+  let newActualKind = $state<ActualItem['kind']>('expense');
+  let newActualCategory = $state<string>('food');
+
+  let actuals = $derived(
+    [...(budget.actuals ?? [])].sort((a, b) => a.date.localeCompare(b.date)),
+  );
+  let recordedOut = $derived(
+    actuals.filter((a) => a.kind === 'expense').reduce((s, a) => s + a.amount, 0),
+  );
+  let recordedIn = $derived(
+    actuals.filter((a) => a.kind === 'income').reduce((s, a) => s + a.amount, 0),
+  );
+  let monthIsComplete = $derived(currentMonth < formatMonth(new Date()));
+
+  /** Default a new record to today when the shown month is the current one,
+   *  otherwise to that month's first day — never to a date outside it. */
+  function defaultActualDate(): string {
+    const today = new Date();
+    if (currentMonth === formatMonth(today)) {
+      return `${currentMonth}-${String(today.getDate()).padStart(2, '0')}`;
+    }
+    return `${currentMonth}-01`;
+  }
+
+  function openActualForm() {
+    newActualDate = defaultActualDate();
+    newActualLabel = '';
+    newActualAmount = '';
+    newActualKind = 'expense';
+    newActualCategory = 'food';
+    showActualForm = true;
+  }
+
+  function addActual() {
+    const amount = parseFloat(newActualAmount);
+    if (!newActualLabel.trim() || !Number.isFinite(amount) || amount <= 0) return;
+    if (!newActualDate.startsWith(currentMonth)) return;
+    const record: ActualItem = {
+      id: generateId(),
+      date: newActualDate,
+      label: newActualLabel.trim(),
+      amount,
+      kind: newActualKind,
+      category: newActualCategory as ActualItem['category'],
+    };
+    budget.actuals = [...(budget.actuals ?? []), record];
+    showActualForm = false;
+  }
+
+  function removeActual(id: string) {
+    budget.actuals = (budget.actuals ?? []).filter((a) => a.id !== id);
+  }
+
+  function actualDayLabel(iso: string): string {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+  }
 
   const frequencyLabels: Record<IncomeItem['frequency'], string> = {
     monthly: 'Monthly',
@@ -665,6 +733,161 @@
       >
         + Add expense
       </button>
+    {/if}
+  </section>
+
+  <!-- What actually happened -->
+  <section>
+    <div class="flex items-center justify-between mb-1">
+      <h3 class="text-xs font-semibold text-faint tracking-widest uppercase">What actually happened</h3>
+      {#if actuals.length > 0}
+        <p class="text-sm font-medium text-ink">${fmt(recordedOut)} out</p>
+      {/if}
+    </div>
+    <p class="text-xs text-text-muted leading-relaxed mb-3 max-w-prose">
+      Above is the plan. This is the record — what actually landed, on the day it
+      landed. Keeping them apart is the point: the gap between them is the useful
+      part, and the eight-week forecast reads it to correct itself.
+    </p>
+
+    {#if actuals.length > 0}
+      <div class="space-y-2 mb-3">
+        {#each actuals as item (item.id)}
+          <div class="flex items-center gap-3 rounded-sm bg-surface-card border border-rule px-4 py-3">
+            <p class="apparatus text-xs text-faint w-12 flex-shrink-0 tabular-nums">
+              {actualDayLabel(item.date)}
+            </p>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium truncate">{item.label}</p>
+              <p class="text-xs text-text-muted">
+                {item.kind === 'income' ? 'Came in' : 'Went out'}
+                · {expenseCategories[item.category] ?? incomeCategories[item.category] ?? item.category}
+              </p>
+            </div>
+            <p class="text-sm tabular-nums flex-shrink-0 {item.kind === 'income' ? 'text-ink' : 'text-ink'}">
+              {item.kind === 'income' ? '+' : '−'}${fmt(item.amount)}
+            </p>
+            <button
+              onclick={() => removeActual(item.id)}
+              aria-label="Remove {item.label}"
+              class="text-text-muted hover:text-ink transition-colors cursor-pointer flex-shrink-0"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        {/each}
+      </div>
+
+      <!-- Plan against record. Stated, never scored. -->
+      <div class="rounded-sm bg-surface-warm border border-rule px-4 py-3 mb-3">
+        <p class="text-sm text-text-secondary leading-relaxed">
+          You planned <span class="tabular-nums">${fmt(monthlyExpenses)}</span> of spending
+          this month. So far you have recorded <span class="tabular-nums">${fmt(recordedOut)}</span>.
+          {#if recordedIn > 0}
+            <span class="tabular-nums">${fmt(recordedIn)}</span> came in.
+          {/if}
+        </p>
+        <p class="apparatus text-[11px] text-faint mt-1.5 leading-snug">
+          {#if monthIsComplete}
+            {displayMonth(currentMonth)} is complete, so the forecast can use it.
+          {:else}
+            {displayMonth(currentMonth)} is still running — the forecast waits for a
+            complete month before letting a record correct the plan.
+          {/if}
+        </p>
+      </div>
+    {/if}
+
+    {#if showActualForm}
+      <div class="rounded-sm bg-surface-card border border-rule p-4 space-y-3" transition:slide={{ duration: 200 }}>
+        <div class="flex gap-2">
+          <button
+            onclick={() => { newActualKind = 'expense'; newActualCategory = 'food'; }}
+            class="flex-1 py-2 rounded-sm text-sm font-medium border transition-colors cursor-pointer
+              {newActualKind === 'expense' ? 'border-ink text-ink' : 'border-rule text-text-muted hover:border-quiet'}"
+          >Went out</button>
+          <button
+            onclick={() => { newActualKind = 'income'; newActualCategory = 'employment'; }}
+            class="flex-1 py-2 rounded-sm text-sm font-medium border transition-colors cursor-pointer
+              {newActualKind === 'income' ? 'border-ink text-ink' : 'border-rule text-text-muted hover:border-quiet'}"
+          >Came in</button>
+        </div>
+
+        <label class="block">
+          <span class="apparatus-label block mb-1">What was it</span>
+          <input
+            bind:value={newActualLabel}
+            placeholder={newActualKind === 'income' ? 'Pay' : 'Groceries'}
+            class="w-full px-3 py-2.5 rounded-sm border border-rule bg-ground focus:border-ink focus:outline-none text-sm"
+          />
+        </label>
+
+        <div class="flex gap-2">
+          <label class="flex-1">
+            <span class="apparatus-label block mb-1">How much</span>
+            <input
+              bind:value={newActualAmount}
+              type="number" inputmode="decimal" placeholder="0"
+              class="w-full px-3 py-2.5 rounded-sm border border-rule bg-ground focus:border-ink focus:outline-none text-sm tabular-nums"
+            />
+          </label>
+          <label class="flex-1">
+            <span class="apparatus-label block mb-1">What day</span>
+            <input
+              bind:value={newActualDate}
+              type="date"
+              min="{currentMonth}-01"
+              class="w-full px-3 py-2.5 rounded-sm border border-rule bg-ground focus:border-ink focus:outline-none text-sm"
+            />
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="apparatus-label block mb-1">Kind</span>
+          <select
+            bind:value={newActualCategory}
+            class="w-full px-3 py-2.5 rounded-sm border border-rule bg-ground focus:border-ink focus:outline-none text-sm"
+          >
+            {#if newActualKind === 'expense'}
+              {#each Object.entries(expenseCategories) as [value, label]}
+                <option {value}>{label}</option>
+              {/each}
+            {:else}
+              {#each Object.entries(incomeCategories) as [value, label]}
+                <option {value}>{label}</option>
+              {/each}
+            {/if}
+          </select>
+        </label>
+
+        <div class="flex gap-2 pt-1">
+          <button
+            onclick={addActual}
+            class="flex-1 py-2.5 rounded-sm bg-ink text-ground text-sm font-medium hover:bg-black transition-colors cursor-pointer"
+          >Record it</button>
+          <button
+            onclick={() => showActualForm = false}
+            class="px-4 py-2.5 rounded-sm border border-rule text-sm font-medium text-text-muted hover:border-quiet hover:text-ink transition-colors cursor-pointer"
+          >Cancel</button>
+        </div>
+      </div>
+    {:else}
+      <button
+        onclick={openActualForm}
+        class="w-full py-2.5 rounded-sm border border-dashed border-rule text-sm
+          font-medium text-text-muted hover:border-quiet hover:text-ink
+          transition-colors cursor-pointer"
+      >
+        + Record what actually happened
+      </button>
+    {/if}
+
+    {#if actuals.length > 0}
+      <a href="/money/forecast" class="mt-3 inline-block text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">
+        See the next eight weeks
+      </a>
     {/if}
   </section>
 

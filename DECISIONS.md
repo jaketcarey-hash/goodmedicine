@@ -504,6 +504,110 @@ wearing a schedule. Old stored items parse unchanged; without an anchor an
 item stays a monthly average and the forecast will say so. Eleven date tests
 cover phase, clamping, year-end and the fall DST boundary.
 
+### M7 — the cash-flow forecast, and the record that corrects it (20 August)
+
+The flagship. `src/lib/forecast.ts` walks the next eight weeks day by day and
+names the week the balance goes below zero. Sixteen engine tests cover the
+walk, the balance, both empty cases and every correction rule.
+
+**Four rules hold it honest, and each one costs the forecast something.** They
+are written at the head of the file because every one of them is a place a
+future session will be tempted to "improve" the tool by relaxing it:
+
+1. *No invented dates.* An item with no `anchorDate` stays a monthly average
+   and goes to `unplaced`, which the surface must show. Irregular income
+   yields nothing. A forecast that guessed would be confident and wrong in
+   exactly the weeks she is planning around.
+2. *Her amounts, the government's dates.* Payment dates are published;
+   amounts are not knowable from anything on the device. So a benefit enters
+   the forecast only when she has entered what she receives — and then it
+   lands on the real CRA date instead of a guessed day-of-month. A series the
+   household profile suggests but she has not entered goes to `unentered` and
+   is never estimated. `matchBenefitSeries()` uses narrow word-boundary
+   aliases on purpose: a wrong match moves money to the wrong week, which is
+   worse than leaving the item on its own anchor.
+3. *The record corrects the plan.* See below.
+4. *A running balance needs a starting number.* With no balance the weeks
+   still show what moves, the caption changes to "What moves each week", every
+   `closingBalance` is null and no week is called tight. "Tight" is a claim
+   about a balance; inventing the balance to make the claim would be the worst
+   thing this file could do.
+
+**The plan and the record are separate, and stay separate.** `BudgetEntry`
+gained optional `actuals: ActualItem[]` — what actually landed, on the day it
+landed — and BudgetTool gained the surface to record them. Editing the plan to
+match reality loses the reality, and it is the gap between the two that
+teaches. `copyBudgetToMonth` deliberately does **not** carry actuals forward: a
+copied record would be a fabricated month.
+
+Two guards keep the correction from lying. Only *complete* months count —
+a month recorded to the 12th averages out to a category at half its real size,
+and a forecast built on that would tell her she has room she does not have. And
+a gap under 10% is left alone, because the correction note would cost more
+attention than the accuracy buys. Every corrected event says so in its
+provenance, and the corrections are listed under "What this forecast cannot
+see" with both figures shown.
+
+*Writes stayed in the component.* The store briefly grew `addActual`/
+`removeActual` before they were removed: actuals hang off `BudgetEntry`, so
+BudgetTool's existing auto-save persists them exactly as it does income and
+expenses. One component, one writable store — `budget-store.ts` only reads
+them. Same reasoning that keeps `money-picture.ts` read-only.
+
+### The chart vocabulary, extended rather than broken
+
+The strip is the first surface on the site to plot a running quantity, and it
+extends `StageDistribution`'s documented call instead of replacing it:
+
+- **Bars, not SVG.** Height-driven divs are the house primitive
+  (StageDistribution's widths, WellnessHistory's heights). A week is a bucket,
+  not a point on a continuum — the balance is only known at week's end, and a
+  smooth curve would claim otherwise. SVG is still the right tool for M8's
+  payoff curves; it was not needed here, and reaching for it would have been
+  the first crack in a vocabulary that currently holds across 520 pages.
+- **The zero line is the signature.** Drawn once in `ink` across the full
+  strip — the site's own structural hairline, promoted to carry meaning. Bars
+  hang below it. Most cash-flow UIs draw a curve and let the reader find the
+  low point; this draws the threshold and shows the week that crosses it.
+- **One neutral, one status.** Magnitude is `quiet`; only a week closing below
+  zero takes `unsettled`, and it takes the word "short" with it in the strip
+  legend, the week row and the value label. The `/dataviz` validator's
+  categorical checks FAIL on `ink` — correctly, and irrelevantly: this is not
+  a categorical palette, it is one neutral magnitude series plus one reserved
+  status colour, which is what the retired earth ramps left behind. The checks
+  that do apply pass (CVD ΔE 27.8, normal-vision 30.9, both ≥ 3:1 on ground,
+  amber 5.67:1 as text).
+- **Selective labels.** Only the first tight week and the last week print a
+  number; never one on every bar. A negative bar deep enough to hold its label
+  carries it inside in `ground`; a shallow one puts it underneath. Both were
+  found by measuring — pass one dropped the label straight onto the week-label
+  row.
+- **A minimum bar height of 2px.** Found the same way: at −$9 against a ~$2,000
+  span the Oct 5 bar rounded to nothing, so a tight week could go invisible.
+  Any non-zero movement now draws at least 2px; a true zero still draws
+  nothing.
+- **Tap, not hover.** Weeks expand through native `<details>` — keyboard
+  navigable, works with no JavaScript, and right for a reader on a phone who
+  cannot hover anything. `/dataviz` asks for a hover layer by default; the
+  primary reader here overrides that default, and the `title` attribute still
+  serves the desktop case.
+
+Verified at the 375px grid (40px columns, two-line labels, no clipping, no
+overflow) and across seeded empty / steady / shortfall / no-balance scenarios.
+A validate-indigenous pass moved two band-distribution notes off "not"
+framings; the em-dash rule in that validator is scoped to practice materials
+and does not govern this site's voice, which has used them throughout since
+the rebuild.
+
+*Watch out:* the "form is open and closed at the same time" bug that appears
+after editing a Svelte island in dev is the service worker plus HMR, exactly as
+the top of this file warns. Unregister it and hard-reload before debugging
+anything.
+
+---
+
+## Still open
+
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
   builds toward the former.
 - Whether the site should derive the BC directory itself rather than reading a file

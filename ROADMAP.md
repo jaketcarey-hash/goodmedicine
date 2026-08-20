@@ -1,6 +1,12 @@
 # Strong Fire — Roadmap
 
-## Current State (April 2026)
+## Current State (August 2026)
+520 pages, 16 interactive tools, live at strongfire.ca. The money side is mid-way
+through the DIY-planning-software arc: the eight-week cash-flow forecast and the
+budget record layer shipped 20 August (M7); explain layers, the action layer and
+the plan document (M8–M10) are next. See DECISIONS.md.
+
+## Earlier state (April 2026)
 48 pages, 15 interactive tools, live at strongfire.ca. Self-hosted fonts, data export/import, monthly automated content review scheduled. (The first-launch orientation flow was removed August 2026 — it was never wired to a page, and intent capture belongs on /money/plan after the site has shown value.)
 
 ## Community Feedback
@@ -51,7 +57,7 @@ Financial education as text-message-style conversations. Follow a character navi
 ## Technical Improvements
 - [ ] PIN-based cloud sync for cross-device data persistence (Supabase free tier)
 - [ ] Inline term explainers (tap any bolded term for definition without leaving page)
-- [ ] Printable one-page summaries from every tool
+- [ ] Printable one-page summaries from every tool (M10 builds this for /money/plan)
 - [ ] Community facilitator mode (printable workshop guides)
 - [ ] 2-minute content blocks with "go deeper" expansion
 - [ ] Visual progress map (topics explored light up)
