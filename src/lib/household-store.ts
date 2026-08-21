@@ -39,6 +39,14 @@ export interface Household {
    * Capped at 10 because that is how far back CRA will reach.
    */
   yearsUnfiled: number;
+  /**
+   * Her Nation, by directory slug. Optional and stays optional — plenty of
+   * people are members of a Nation outside BC, are not registered, or simply
+   * do not want to say, and none of that should cost them a working tool.
+   * Nothing in the arithmetic depends on it; it only turns the directory
+   * from a national reference into her own file.
+   */
+  nationSlug?: string | null;
   updatedAt: string;
 }
 

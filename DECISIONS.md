@@ -1153,6 +1153,66 @@ something to ship and review later.
 
 ---
 
+## 2026-08-21 — The documents, and her Nation
+
+Two pieces close the arc that `/money/unclaimed` opened.
+
+### /money/asking — the request nobody taught her to make
+
+The site can now tell someone they may be owed money. Between knowing and
+receiving sits a written request, and that gap is where most people stop —
+not from lack of will, but because a blank page addressed to a federal
+department is genuinely intimidating and the words feel like they have to be
+right. `src/lib/letters.ts` holds three drafts; the page renders them to copy
+or print.
+
+Three rules govern them:
+
+- **A draft, never a submission.** Nothing here sends anything and nothing
+  here could. A site that wrote to a department on her behalf would be acting
+  for her, and everything else here is built so that she acts and the site
+  explains.
+- **A blank stays a blank.** Missing facts render as marked gaps, never as
+  plausible guesses. A letter that invents a date can be contradicted by her
+  own records, in writing, to the body deciding her claim.
+- **State facts and make a request.** These letters do not argue law.
+  Asserting an entitlement in a document she has not had checked turns a
+  reasonable request into a claim she has to defend.
+
+*The back-filing document is deliberately not a mock T1-ADJ.* CRA's
+adjustment mechanism is its own form and My Account, and producing something
+that looks official but is not would be worse than producing nothing. What
+actually unblocks someone is walking into a free clinic already knowing which
+years, which slips and what to ask — so it is a page to hand across the
+table. It fills itself from the household: "I have not filed for 3 tax
+years", "Children in my care: 2", and a Section 87 paragraph that appears
+only when the saved check came out likely exempt.
+
+The Jordan's Principle draft is offered only where there is a child, on the
+same rule as everything else here: no fact, no feature.
+
+### Her Nation
+
+The site holds a page for every First Nation in BC and the personal side
+could not see any of it. `Household.nationSlug` and `YourNation.svelte` name
+her Nation once and turn the largest built asset here from a national
+reference into her own file — People, Tribal Council, the band office as the
+place to ask about post-secondary funding, and a link into the record.
+
+**Optional, and it stays optional.** Plenty of people are members of a Nation
+outside BC, are not registered, or simply do not want to say, and none of
+that should cost them a working tool. Nothing in the entitlement arithmetic
+reads the field — it is a bridge, not a gate.
+
+*On deadlines:* the arc's fourth piece was to be a deadline surface. Building
+the rest showed it was already where it belonged — the ten-year window is on
+`/money/unclaimed` beside the figure it threatens, and the benefit payment
+dates are in the forecast on the weeks they land. A separate calendar of
+deadlines would have moved both away from the number that makes them matter.
+Recorded here so the idea is not re-derived as an omission.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

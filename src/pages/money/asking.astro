@@ -1,0 +1,43 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PageHeader from '../../components/PageHeader.svelte';
+import Letters from '../../components/Letters.svelte';
+
+const description =
+  'Drafts you can copy or print — what to bring to a tax clinic, how to ask NIHB to reimburse a health cost you paid, and how to make a Jordan’s Principle request for a child.';
+---
+
+<Shell
+  title="How do I ask for what I'm owed?"
+  branch="money"
+  description={description}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [{
+      '@type': 'Question',
+      name: "How do I ask for what I'm owed?",
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most of it is a written request. A free tax clinic will file back years for you; NIHB reimburses health costs you have already paid once a claim is made; and a Jordan’s Principle request can be made by phone or letter for anything a First Nations child needs. Drafts for all three are here to copy or print.',
+      },
+    }],
+  }}
+>
+  <PageHeader
+    title="How do I ask for what I'm owed?"
+    subtitle="Between knowing you are owed something and receiving it sits a request. These are drafts — read them, change them, send them yourself."
+    branch="money"
+    backHref="/money"
+    backLabel="Money"
+  />
+
+  <section class="px-5 pb-10">
+    <Letters client:load />
+
+    <p class="mt-8 text-sm text-quiet leading-relaxed max-w-prose">
+      Not sure what you are owed?
+      <a href="/money/unclaimed" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">Four questions work it out</a>.
+    </p>
+  </section>
+</Shell>

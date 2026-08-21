@@ -2,6 +2,12 @@
 import Shell from '../../layouts/Shell.astro';
 import PageHeader from '../../components/PageHeader.svelte';
 import Unclaimed from '../../components/Unclaimed.svelte';
+import YourNation from '../../components/YourNation.svelte';
+import { getBcNations } from '../../lib/bc-nations';
+
+const nations = getBcNations().map((n) => ({
+  name: n.name, slug: n.slug, people: n.people, tribalCouncil: n.tribalCouncil,
+}));
 
 const description =
   'Benefits are paid from a filed return, and CRA reaches back ten years. Four questions about your household work out what filing the missing years could be worth.';
@@ -34,5 +40,9 @@ const description =
 
   <section class="px-5 pb-10">
     <Unclaimed client:load />
+
+    <div class="mt-10">
+      <YourNation client:idle {nations} />
+    </div>
   </section>
 </Shell>

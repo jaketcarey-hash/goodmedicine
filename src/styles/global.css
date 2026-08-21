@@ -386,6 +386,14 @@ body {
     page-break-inside: avoid;
   }
 
+  /* A letter prints as a letter: the on-screen frame is scaffolding. */
+  .letter-body {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 11pt;
+  }
+
   @page {
     margin: 18mm 16mm;
   }
