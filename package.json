@@ -12,7 +12,8 @@
     "check:provenance": "node scripts/check-provenance.js",
     "check:benefit-dates": "node scripts/check-benefit-dates.js",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node tests/run.mjs"
   },
   "dependencies": {
     "@astrojs/svelte": "^8.0.4",
