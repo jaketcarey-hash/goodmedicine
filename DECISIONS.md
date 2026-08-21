@@ -1076,6 +1076,83 @@ unresponsive dots.
 
 ---
 
+## 2026-08-21 — The entitlement engine, and the household under it
+
+`/money/taxes` has carried this sentence since it was written: *a single
+parent with two young children who doesn't file could be leaving
+$12,000–15,000 per year on the table between the CCB and GST credit alone,
+and you can file up to 10 years back.* The most consequential sentence on the
+site, sitting mid-article, about a hypothetical stranger, with no arithmetic
+and no next step. `/money/unclaimed` does the arithmetic for the person
+reading it, and a seeded household of two children under six with three
+unfiled years produces **up to $52,383**.
+
+### The household had to come first
+
+`hasChildren` already existed in two places — a boolean on the calendar
+profile and a string in the Benefits Finder's saved answers — which can
+already disagree with each other, and neither knows how many children or how
+old. An entitlement built on a flag is an illustration; one built on a
+household is hers. `household-store.ts` is now the model that matters.
+
+*Birth years, not birthdates.* The child benefit bands at six and ends at
+eighteen, so a year does all the arithmetic, and a year is markedly less of a
+child's information to hold on a device. Storing the least that answers the
+question is the rule.
+
+*Seeded, not assumed.* `draftFromWhatIsKnown()` pre-fills from the calendar
+profile and the Benefits Finder, because being asked a third time for
+something answered twice is how people conclude a site is not paying
+attention. Nothing is saved from the draft — a silently pre-filled household
+is a household nobody checked. Where the flags say there are children but
+cannot say how many, the form says so and asks.
+
+*Years unfiled is asked and never inferred.* It multiplies everything
+retroactive; guessing it would be guessing the headline.
+
+### Five rules, because this is the most dangerous file here
+
+1. **Everything quantified is a maximum at low income.** Both benefits taper.
+   The engine says "up to", the surface repeats it beside the headline rather
+   than below the fold, and no wording may become "you are owed".
+2. **Nothing is quantified without the household fact under it.** No children
+   entered, no child benefit — and `basis` names the facts and the rates on
+   every line so a figure can always be taken apart.
+3. **What cannot be known is named, never estimated.** Tax withheld on exempt
+   income needs the T4s; unclaimed medical reimbursements and an unmade
+   Jordan's Principle request are unknowable from a phone. They ship as
+   `named` lines with an action and no number, and named lines never enter
+   the total. A plausible guess would be indistinguishable from the computed
+   figure beside it and would poison it.
+4. **Historical rates were lower.** Retroactive totals apply this year's
+   figures to earlier years because the device has no historical table. That
+   overstates, so it is disclosed as a caveat in the same breath as the
+   total, not as small print.
+5. **The window closes one year at a time.** Every January a year falls out
+   of reach. It is the only thing on the page with a deadline, and it is the
+   reason this is a tool rather than another article.
+
+Sixteen engine tests, including that a child aging across the six-year band
+mid-window is banded per year rather than from today's age, that a child not
+yet born in an earlier year contributes nothing to it, that a grey-zone
+exemption verdict raises no claim at all, and that the output reproduces the
+range the article has been claiming in prose.
+
+*Caught in review of the rendered page:* `basis` was printing registry key
+names — `ccb_under_6, ccb_6_to_17` — straight to the reader. The apparatus
+voice shows provenance in words ("from your August budget"), never variable
+names. Rewritten, and the rule written into the file so it does not come
+back.
+
+*The register came with it, not after.* `src/data/claims/unclaimed-benefits.json`
+was extracted the day the page was built, and `docs/review/unclaimed-benefits.md`
+is ready to send — seven claims, five needing a practitioner, with the
+ten-year reach-back and the Section 87 adjustment both flagged as priority.
+Telling someone they may be owed tens of thousands of dollars is not
+something to ship and review later.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

@@ -1,0 +1,54 @@
+{
+  "_comment": "Claims register for /money/unclaimed — the entitlement engine. This is the second use of the register pattern and by far the more consequential: the page tells someone they may be owed tens of thousands of dollars. Extracted the day it was built, before it went in front of anyone, so the review can happen alongside rather than after. Generate the reviewer's document with scripts/build-review-pack.js.",
+  "page": "/money/unclaimed",
+  "pageTitle": "Am I owed money I haven't claimed?",
+  "extractedOn": "2026-08-21",
+  "reviewedBy": null,
+  "reviewedOn": null,
+  "claims": [
+    {
+      "id": "unclaimed-filing-unlocks",
+      "claim": "The Canada Child Benefit and the Canada Groceries and Essentials Benefit are both paid from a filed return, and neither is paid at all without one — regardless of whether any tax was owed.",
+      "status": "sourced",
+      "authority": "CRA — Canada child benefit overview",
+      "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview.html"
+    },
+    {
+      "id": "unclaimed-ten-years",
+      "claim": "CRA will accept returns for up to ten previous years and will calculate and issue the resulting back payments once they are filed.",
+      "status": "needs-practitioner",
+      "note": "PRIORITY. This is the multiplier on the entire headline figure. If the reach-back is shorter than ten years for benefit purposes — as opposed to for filing purposes — every total on the page is overstated."
+    },
+    {
+      "id": "unclaimed-maximums",
+      "claim": "The amounts shown are maximums at low income, and both benefits taper as income rises, so the actual entitlement is likely lower.",
+      "status": "needs-practitioner",
+      "note": "The page leads with 'up to' and states this beside the headline. Confirm the framing is strong enough, and whether the taper is steep enough that a maximum is misleading at ordinary working incomes."
+    },
+    {
+      "id": "unclaimed-ccb-bands",
+      "claim": "The child benefit is paid at one rate for a child under 6 and a lower rate for a child aged 6 to 17, applied according to the child's age in each tax year.",
+      "status": "sourced",
+      "authority": "CRA — how we calculate your CCB",
+      "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html"
+    },
+    {
+      "id": "unclaimed-historical-rates",
+      "claim": "Retroactive totals apply this year's rates to earlier years, which overstates them because earlier years paid less.",
+      "status": "needs-practitioner",
+      "note": "Disclosed on the page as a caveat. Ask whether disclosure is sufficient or whether the total should be discounted instead — a reviewer may have a view on how much this overstates over a ten-year window."
+    },
+    {
+      "id": "unclaimed-no-penalty",
+      "claim": "Late-filing penalties apply only where tax is owed, so filing late costs nothing where income was exempt or below the basic personal amount.",
+      "status": "needs-practitioner",
+      "note": "Stated on /money/taxes and load-bearing for this page: it is the reason someone with nothing owing should file. Confirm there is no exception that would surprise a reader."
+    },
+    {
+      "id": "unclaimed-s87-adjustment",
+      "claim": "Where an employer withheld tax on employment income that was exempt, a T1 adjustment can be requested for past years.",
+      "status": "needs-practitioner",
+      "note": "HIGHEST PRIORITY alongside the ten-year claim. The page deliberately attaches no figure and routes to a tax professional. Confirm the routing is right and the reach-back for adjustments is stated correctly."
+    }
+  ]
+}

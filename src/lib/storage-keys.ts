@@ -22,4 +22,5 @@ export const STORAGE_KEYS = {
   LAST_VISITED: 'gm_last_visited',
   MOMENTS_PROGRESS: 'gm_moments_progress',
   FORECAST_BALANCE: 'gm_forecast_balance',
+  HOUSEHOLD: 'gm_household',
 } as const;

@@ -32,6 +32,7 @@ export const QUESTIONS: SiteQuestion[] = [
   { q: 'What am I actually entitled to?', href: '/what-applies', branch: 'rights' },
 
   // Money — the everyday mechanics
+  { q: "Am I owed money I haven't claimed?", href: '/money/unclaimed', branch: 'money' },
   { q: 'Do I have to file taxes if my income is exempt?', href: '/money/taxes', branch: 'money' },
   { q: 'Where does my money actually go?', href: '/money/budgeting', branch: 'money' },
   { q: 'Will my money last until payday?', href: '/money/forecast', branch: 'money' },
