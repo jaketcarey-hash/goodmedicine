@@ -1245,6 +1245,56 @@ Recorded here so the idea is not re-derived as an omission.
 
 ---
 
+## 2026-08-21 — Estates on reserve
+
+CLAUDE.md names two test questions. One of them — *"What happens to my house on
+reserve when someone dies?"* — resolved only to `/moments/someone-passed`, a
+gentle page about grief that says the estate goes through ISC and stops there.
+The site's own north-star question had no answer page.
+
+`/rights/estates` is that page. Three things it says that people do not know:
+
+**The system is not the one they have heard of.** Where the person was
+registered under the Act, or could have been, and usually lived on reserve, the
+estate is administered by ISC under ss. 42–50 — not provincial probate, not a
+provincial court. ISC appoints the executor, **approves the will so it can take
+effect**, transfers the land, and determines the heirs where there is no will.
+
+**The house can only go to someone entitled to live there.** Section 50 is
+blunt: *"A person who is not entitled to reside on a reserve does not by devise
+or descent acquire a right to possession or occupation of land in that
+reserve."* The interest is sold to the highest bidder among those who are
+entitled to reside, and the would-be heir receives the money. So a child who is
+not a member does not inherit the home — they inherit what it sold for. That is
+the single most consequential fact on the page, and it catches families who did
+everything they believed was right, including families who paid for a will that
+says something the Act will not permit.
+
+**Fewer than 9% have a will.** ISC's own figure, registered as
+`on_reserve_wills_rate` and quoted as a ceiling because ISC says "less than".
+The page uses it to make the opposite of the usual point: having no will is the
+ordinary case, not the careless one — and it is the one piece of this a person
+controls.
+
+*Deliberately not attempted:* the intestacy order itself. Setting out who takes
+what under the Act, on a page that cannot know who is a member or what the land
+papers say, would invite a family to act on it. The page says ISC determines
+the heirs and stops. Whether declining is right rather than unhelpful is a
+question in the register.
+
+*The register came with it*, as it now does — `estates-on-reserve.json`, seven
+claims, and the first one needing a **lawyer** rather than a tax professional.
+Section 50 is flagged as the priority: it is the claim a family could act on
+and lose a house over. Five of the seven are quoted verbatim from ISC or the
+statute and verified the day the page was written.
+
+*Reachable from four places*, checked before shipping — the question index, the
+site directory the home page renders, the rights topic grid, and outward from
+the grief page. That check exists because three tools shipped this week were
+built correctly and connected to nothing.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

@@ -60,6 +60,7 @@ export const DIRECTORY: DirectorySection[] = [
       { label: "Jordan's Principle", href: '/rights/jordans-principle' },
       { label: 'Treaty payments', href: '/rights/treaty-payments' },
       { label: 'Education funding', href: '/rights/education-funding' },
+      { label: 'Estates on reserve', href: '/rights/estates', note: 'What happens to the house, and why a will matters more here' },
       { label: 'Band finances', href: '/rights/band-finances' },
       { label: 'Carry Cards', href: '/rights/carry-cards', note: 'What to say at the counter' },
     ],

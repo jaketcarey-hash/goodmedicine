@@ -285,5 +285,16 @@
     "source": "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/improve-credit-score.html",
     "sourceLabel": "FCAC — improving your credit score",
     "verifiedOn": "2026-08-20"
+  },
+  "on_reserve_wills_rate": {
+    "value": 9,
+    "unit": "percent",
+    "label": "First Nations people on reserve who have a will when they die",
+    "note": "ISC states 'less than 9%'. The figure is theirs and is quoted as a ceiling, not a point estimate — the page says 'fewer than'. It matters because without a will the Indian Act decides the heirs, and reserve land can only pass to someone entitled to reside there.",
+    "effectiveFrom": "2026-01-01",
+    "reviewBy": "2027-08-31",
+    "source": "https://www.sac-isc.gc.ca/eng/1475591157216/1581869169920",
+    "sourceLabel": "Indigenous Services Canada — Do you have a will?",
+    "verifiedOn": "2026-08-21"
   }
 }

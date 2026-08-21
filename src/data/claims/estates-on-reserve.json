@@ -1,0 +1,67 @@
+{
+  "_comment": "Claims register for /rights/estates. Third use of the pattern, and the first on content that needs a lawyer rather than a tax professional — estates on reserve are governed by the Indian Act and administered by ISC, and a family acting on a wrong reading of this loses a house. Extracted the day the page was built. Generate the reviewer's document with scripts/build-review-pack.js.",
+  "page": "/rights/estates",
+  "pageTitle": "What happens to my house on reserve when someone dies?",
+  "extractedOn": "2026-08-21",
+  "reviewedBy": null,
+  "reviewedOn": null,
+  "claims": [
+    {
+      "id": "est-jurisdiction",
+      "claim": "Where a person was registered under the Indian Act, or could have been, and usually lived on a reserve, their estate is administered by Indigenous Services Canada under sections 42 to 50 of the Act rather than through provincial probate.",
+      "status": "sourced",
+      "authority": "ISC — Estate services for First Nations",
+      "source": "https://www.sac-isc.gc.ca/eng/1100100032357/1581866877231",
+      "sourceVerifiedOn": "2026-08-21",
+      "sourceQuote": "ISC or CIRNAC is required under sections 42 to 50(1) of the Indian Act to manage the estates of people who were, or could have been, registered under the act (Indian Status) and usually lived on a reserve."
+    },
+    {
+      "id": "est-ordinarily-resident",
+      "claim": "'Ordinarily resident on a reserve' means the person usually lives on reserve and does not maintain a primary residence off reserve; temporary absence for education or for care unavailable on reserve does not break it.",
+      "status": "sourced",
+      "authority": "ISC — Estate services for First Nations",
+      "source": "https://www.sac-isc.gc.ca/eng/1100100032357/1581866877231",
+      "sourceVerifiedOn": "2026-08-21",
+      "note": "The page calls this the hinge and flags it as unsettled, because it decides which system applies. Confirm that framing is right and that the test is genuinely fact-dependent."
+    },
+    {
+      "id": "est-isc-role",
+      "claim": "ISC appoints executors and administrators, approves wills so they can take effect, transfers reserve land to heirs, determines heirs where there is no will, and acts as administrator only if nobody else is willing or able.",
+      "status": "sourced",
+      "authority": "ISC — Estate services for First Nations",
+      "source": "https://www.sac-isc.gc.ca/eng/1100100032357/1581866877231",
+      "sourceVerifiedOn": "2026-08-21"
+    },
+    {
+      "id": "est-s50-land",
+      "claim": "A person not entitled to reside on a reserve acquires no right to possession or occupation of reserve land by will or by inheritance; the interest is offered for sale to the highest bidder among those entitled to reside there, and the proceeds go to the person who would have inherited.",
+      "status": "sourced",
+      "authority": "Indian Act, RSC 1985, c I-5, s. 50",
+      "source": "https://laws-lois.justice.gc.ca/eng/acts/i-5/section-50.html",
+      "sourceVerifiedOn": "2026-08-21",
+      "sourceQuote": "A person who is not entitled to reside on a reserve does not by devise or descent acquire a right to possession or occupation of land in that reserve.",
+      "note": "HIGHEST PRIORITY. This is the claim a family could act on and lose a home over. The page states it plainly and then restates it in the concrete: a non-member child receives the sale proceeds, not the house. Confirm the plain-language restatement is accurate, and whether 'entitled to reside' and 'member of the First Nation' are close enough to use interchangeably as ISC's own wills page does."
+    },
+    {
+      "id": "est-will-approval",
+      "claim": "A will covering an estate under the Act must be approved by the Minister before it takes effect, and a will drafted under provincial rules may not do what its maker intended for reserve land.",
+      "status": "needs-practitioner",
+      "note": "The page advises telling a lawyer up front that the estate includes reserve land. Confirm the advice is right and sufficient."
+    },
+    {
+      "id": "est-intestacy",
+      "claim": "Where there is no will, ISC determines the heirs under the Indian Act, and the restriction on who may take reserve land still applies.",
+      "status": "needs-practitioner",
+      "note": "The page does not attempt to set out the intestacy order itself, deliberately. Confirm that declining to is right rather than unhelpful."
+    },
+    {
+      "id": "est-wills-rate",
+      "claim": "Fewer than 9% of First Nations people living on reserve have a will when they die.",
+      "status": "sourced",
+      "authority": "ISC — Do you have a will?",
+      "source": "https://www.sac-isc.gc.ca/eng/1475591157216/1581869169920",
+      "sourceVerifiedOn": "2026-08-21",
+      "note": "Quoted as a ceiling — ISC says 'less than 9%' — and the page says 'fewer than' rather than treating it as a point estimate."
+    }
+  ]
+}

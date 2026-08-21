@@ -47,6 +47,7 @@ export const QUESTIONS: SiteQuestion[] = [
   // Path — the moment you are in
   { q: 'I just got my first job.', href: '/path/first-job', branch: 'path' },
   { q: "I'm leaving home for school.", href: '/path/leaving-home', branch: 'path' },
+  { q: 'What happens to my house on reserve when someone dies?', href: '/rights/estates', branch: 'rights' },
   { q: 'Someone died. What happens to their house on reserve?', href: '/moments/someone-passed', branch: 'path' },
   { q: "I'm short this month.", href: '/moments/short-this-month', branch: 'path' },
   { q: 'Money just arrived. What should I do first?', href: '/moments/money-arrived', branch: 'path' },

@@ -1,0 +1,181 @@
+---
+import Article from '../../layouts/Article.astro';
+import ExpandableSection from '../../components/ExpandableSection.svelte';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import { value } from '../../lib/figures';
+---
+
+<Article
+  title="What happens to my house on reserve when someone dies?"
+  subtitle="Estates on reserve run under the Indian Act, not provincial probate — and the house can only pass to someone entitled to live there."
+  branch="rights"
+  backHref="/rights"
+  backLabel="Rights"
+  readTime="7 min"
+  lastUpdated="August 2026"
+  answer="It is handled by Indigenous Services Canada rather than a provincial court, and the house can only pass to someone entitled to reside on the reserve. Anyone else inherits what it sells for, not the home."
+  checked="August 2026"
+  sourceLabel="Indian Act ss. 42–50 / Indigenous Services Canada"
+  sourceUrl="https://www.sac-isc.gc.ca/eng/1100100032357/1581866877231"
+  unsettled="Whether someone counts as ordinarily resident on a reserve turns on the facts, and it decides which system applies"
+>
+  <div class="callout callout-important">
+    <strong>This page is the mechanics, not the grieving.</strong>
+    If someone has just died, nothing here needs doing today.
+    <a href="/moments/someone-passed">There is a gentler place to start</a>,
+    and it will still be here afterwards.
+  </div>
+
+  <p>
+    Most of what people know about wills and estates comes from how it works off
+    reserve: a provincial court, probate, an executor, a lawyer. On reserve,
+    almost none of that is the system you are in.
+  </p>
+
+  <h2>A different system entirely</h2>
+
+  <p>
+    Where a person was registered under the Indian Act — or could have been —
+    and <strong>usually lived on a reserve</strong>, their estate is
+    administered by Indigenous Services Canada under sections 42 to 50 of the
+    Act. Not provincial probate. Not a provincial court.
+  </p>
+
+  <p>
+    ISC describes estate administration as a private family matter and expects
+    families to run it themselves. What the department does is specific:
+  </p>
+
+  <ul>
+    <li>appoints the executor or administrator</li>
+    <li><strong>approves the will, which is what makes it take effect</strong></li>
+    <li>transfers reserve land from the estate to the heirs</li>
+    <li>determines the heirs where there is no will</li>
+    <li>steps in as administrator only if nobody is willing or able</li>
+  </ul>
+
+  <div class="callout callout-info">
+    <strong>"Usually lived on a reserve" is the hinge.</strong>
+    ISC's test is that the person ordinarily lived on reserve and did not keep a
+    main home somewhere else. Time away for school, or to get care not available
+    on reserve, does not break it. Which system applies turns on this, so it is
+    worth being clear about before anything else.
+  </div>
+
+  <h2>The part that surprises families</h2>
+
+  <p>
+    A house on reserve does not pass like a house anywhere else. The Indian Act
+    is direct about it:
+  </p>
+
+  <blockquote>
+    <p>
+      A person who is not entitled to reside on a reserve does not by devise or
+      descent acquire a right to possession or occupation of land in that
+      reserve.
+    </p>
+  </blockquote>
+
+  <p>
+    In plain terms: <strong>you can only leave the land you hold on reserve to
+    someone who is a member of your First Nation.</strong> If you leave it to a
+    child who is not a member, they do not get the house. The interest is
+    offered for sale to the highest bidder among people who are entitled to
+    live on the reserve, and your child receives the money it sold for.
+  </p>
+
+  <p>
+    Nobody is being singled out when this happens. It is the Act working as
+    written, and it catches families who did everything they thought was right
+    — including families who paid a lawyer for a will that says something the
+    Act will not let it do.
+  </p>
+
+  <ExpandableSection client:idle title="Why a will from a general practice may not hold">
+    <div class="space-y-3 text-sm">
+      <p>
+        A will made under provincial rules is written for a provincial system. On
+        reserve, the will has to satisfy the Indian Act and be approved by the
+        Minister before it takes effect, and it cannot leave reserve land to
+        someone with no right to live there.
+      </p>
+      <p>
+        This is not a reason to avoid a lawyer. It is a reason to say, at the
+        start, that the estate includes reserve land and falls under the Indian
+        Act — and to ask whether they have done one before. A lawyer who has not
+        will usually say so.
+      </p>
+    </div>
+  </ExpandableSection>
+
+  <h2>Without a will, the Act decides</h2>
+
+  <p>
+    Fewer than {value('on_reserve_wills_rate')}% of First Nations people living
+    on reserve have a will when they die. It is the ordinary case, not the
+    careless one.
+  </p>
+
+  <p>
+    Where there is no will, ISC determines the heirs under the Indian Act. The
+    family does not choose, the deceased's wishes carry no weight on their own,
+    and the same restriction on land still applies. Everything that would have
+    been a decision becomes a default.
+  </p>
+
+  <div class="callout callout-tip">
+    <strong>A will is the one piece of this you control.</strong>
+    It decides who gets the home and the possessions, who raises the children,
+    who administers the estate, and what happens for end-of-life ceremonies. It
+    does not have to be complicated or expensive, and it can be changed as often
+    as you like.
+  </div>
+
+  <h2>What to do, in order</h2>
+
+  <ol>
+    <li>
+      <strong>Establish where they usually lived.</strong> On reserve puts the
+      estate with ISC; off reserve puts it in the provincial system. Everything
+      else follows from this.
+    </li>
+    <li>
+      <strong>Find out whether there is a will</strong>, and whether ISC
+      approved it. An unapproved will has not taken effect.
+    </li>
+    <li>
+      <strong>Gather the papers.</strong> Status card, SIN, the will, bank
+      statements, and any land or housing papers from the reserve — a
+      Certificate of Possession most of all.
+    </li>
+    <li>
+      <strong>Contact ISC estate services</strong> to have an executor or
+      administrator appointed. A band office has usually done this before and
+      can point you at the right person.
+    </li>
+    <li>
+      <strong>Ask about the household's benefits separately.</strong> CPP
+      survivor benefits, the Allowance, and child benefits shift when someone
+      dies, and most are backdated to the date of death — so the timing of that
+      call is not what decides the amount.
+    </li>
+  </ol>
+
+  <div class="callout callout-warning">
+    <strong>What this page is not.</strong>
+    This is general information about how the system works, not advice about a
+    particular estate, and it has not been reviewed by a lawyer. Estates turn on
+    their own facts — who was resident where, who is a member, what the land
+    papers say. ISC estate services will talk it through, and many band offices
+    have someone who has done this before.
+  </div>
+
+  <RelatedLinks
+    links={[
+      { title: 'Someone passed', href: '/moments/someone-passed', description: 'A gentler place to start, and what can wait' },
+      { title: 'Band finances and trusts', href: '/rights/band-finances', description: 'What a Nation holds, and what members are entitled to see' },
+      { title: 'Am I owed money I haven’t claimed?', href: '/money/unclaimed', description: 'Benefits are paid from a filed return, including for past years' },
+    ]}
+  />
+</Article>

@@ -120,6 +120,9 @@ export const MOMENTS: Moment[] = [
       "Closing accounts quickly isn’t necessary — estate administration usually needs them open until it’s processed.",
     ],
     closingNote: "Come back when you need to. The page doesn’t move.",
+    relatedArticles: [
+      { label: 'What happens to my house on reserve when someone dies?', href: '/rights/estates' },
+    ],
   },
 
   {
