@@ -9,6 +9,12 @@
  * Hand-ordered rather than generated. The generated version would be
  * alphabetical, and alphabetical puts "Ask AI" above "Benefits Finder", which
  * is not how anyone thinks about it.
+ *
+ * Hand-ordered also means hand-maintained, and that is the failure mode: three
+ * tools shipped between 20 and 21 August were wired into their branch index
+ * and into /questions and were missing from here, which is the list the home
+ * page renders. A tool nobody can find from the front door is a tool that does
+ * not exist. Anything new goes in here at the same time it ships.
  */
 export interface DirectoryLink {
   label: string;
@@ -28,7 +34,10 @@ export const DIRECTORY: DirectorySection[] = [
     blurb: 'Tools that take what you know and give you a number or an answer.',
     links: [
       { label: 'What applies to me', href: '/what-applies', note: 'Narrow the question, and who to ask' },
+      { label: "Am I owed money I haven't claimed?", href: '/money/unclaimed', note: 'What filing the missing years could be worth' },
+      { label: "How do I ask for what I'm owed?", href: '/money/asking', note: 'Drafts for a tax clinic, NIHB, Jordan\'s Principle' },
       { label: 'Your Money Plan', href: '/money/plan', note: 'Where you stand, and what usually helps' },
+      { label: 'The Next Eight Weeks', href: '/money/forecast', note: 'Will the money last until payday?' },
       { label: 'Section 87 Checker', href: '/rights/section-87-checker', note: 'Is your income exempt?' },
       { label: 'Benefits Finder', href: '/self/benefits', note: 'What you may be entitled to' },
       { label: 'Tax Estimator', href: '/tools/tax-estimator', note: 'What you will owe or get back' },
@@ -105,6 +114,7 @@ export const DIRECTORY: DirectorySection[] = [
   {
     heading: 'Look something up',
     links: [
+      { label: 'Questions people ask', href: '/questions', note: 'Every question this site answers, in one list' },
       { label: 'Search everything', href: '/search' },
       { label: 'Glossary', href: '/glossary', note: '89 terms in plain language' },
       { label: 'Learning paths', href: '/learn' },
