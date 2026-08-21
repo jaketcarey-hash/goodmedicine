@@ -1066,6 +1066,38 @@ measured.
 — two near-whites, so BC rendered as a ghost. `canvas` on white gives it a
 body.
 
+### The refinement pass (21 August)
+
+The first version worked and did not look considered. Four things, in order of
+how much each one mattered:
+
+- **The frame came off.** It sat in a bordered white box, and nothing else
+  here boxes a figure — the stage bars, the forecast strip and the payoff
+  curves all sit open on the page. The province's own outline is a better
+  edge than a rectangle drawn around it.
+- **The marks stopped being stipple.** Two hundred flat dots at 55% opacity
+  read as a smudge in the southwest. Each now carries a ground-coloured ring
+  — the same surface gap that separates stacked fills elsewhere here — so a
+  cluster reads as many marks touching, which is what it is. The selected one
+  takes a ring rather than just growing, because in a group of sixteen, size
+  alone does not say which was chosen.
+- **The reserved slot went.** A `min-h` box under the map held a prompt and
+  otherwise held nothing. The card now replaces the prompt in place.
+- **It aligned to the page.** Capped at 34rem, and left-aligned rather than
+  centred: this page runs to a wide measure, and the centred map sat three
+  hundred pixels from its own heading, leaving the heading pointing at
+  nothing.
+
+*Two things only measurement caught.* Capping the width made the marks render
+under two pixels — radii are in viewBox units and 1000 units arrive at about
+34rem, so they have to be chosen against the rendered width rather than the
+coordinate space. And the tap target was 12px at phone width, half what a
+thumb needs; it is 20px now. The cost is that a tap in a cluster lands on
+whichever mark is on top rather than the nearest, which is the right trade
+because the card names the Nations sharing the mark — a near miss still tells
+her what she wanted. Precision lives in the directory below, not in a map of
+two hundred points.
+
 *And again:* `client:visible` does not hydrate in the screenshot pane, so the
 map's dots looked broken when they were merely asleep — the third time this
 session that trap has cost time, and the progress notes had already warned

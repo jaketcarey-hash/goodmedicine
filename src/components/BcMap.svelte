@@ -63,7 +63,9 @@
       ? points.filter(
           (p) =>
             p.slug !== selected!.slug &&
-            Math.hypot(p.x - selected!.x, p.y - selected!.y) < 12,
+            // Wide enough to cover what the enlarged tap target can catch, so
+            // a near miss lists the Nation she was actually aiming at.
+            Math.hypot(p.x - selected!.x, p.y - selected!.y) < 18,
         )
       : [],
   );
@@ -74,34 +76,63 @@
 </script>
 
 <figure class="not-prose m-0">
-  <div class="border border-rule bg-white">
+  <!-- No frame. Nothing else on this site boxes a figure — the stage bars, the
+       forecast strip and the payoff curves all sit open on the page, and the
+       province's own outline is a better edge than a rectangle around it.
+       Capped rather than full-width: at full measure the map sprawled, and one
+       you can take in at a glance reads as more considered than a large one.
+       Left-aligned rather than centred — this page runs to a wide measure, and
+       a centred map sat three hundred pixels away from its own heading, which
+       left the heading pointing at nothing. -->
+  <div class="max-w-[34rem]">
     <svg
       viewBox={outline.viewBox}
-      class="block h-auto w-full"
+      class="block h-auto w-full overflow-visible"
       role="img"
       aria-label="Map of British Columbia showing the community location of each First Nation"
     >
-      <!-- canvas on a white card: the land has to be visibly land, and ground
-           (#FAFAF8) against white is a ghost. -->
-      <path d={outline.path} class="fill-canvas stroke-rule" stroke-width="2" stroke-linejoin="round" />
+      <path
+        d={outline.path}
+        class="fill-canvas stroke-rule"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
 
       {#each points as p (p.slug)}
+        {@const isSelected = selected?.slug === p.slug}
         <g
           role="button"
           tabindex="0"
           aria-label={p.name}
           onclick={() => pick(p)}
           onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p); } }}
-          class="cursor-pointer focus:outline-none"
+          class="cursor-pointer focus-visible:outline-none"
         >
-          <!-- A finger is wider than a dot. This is the target; it is invisible. -->
-          <circle cx={p.x} cy={p.y} r="14" fill="transparent" />
+          <!-- A finger is wider than a mark, and much wider than this one.
+               At 375px the map renders 335px across, so a radius of 18 gives a
+               12px target — half what a thumb needs. 30 gives 20px, and the
+               cost is that in a cluster the tap lands on whichever mark is on
+               top rather than the nearest. That is the right trade here: the
+               card names the Nations sharing the mark, so a near miss still
+               tells her what she wanted, and precision lives in the directory
+               below rather than in a map of two hundred points. -->
+          <circle cx={p.x} cy={p.y} r="30" fill="transparent" />
+
+          {#if isSelected}
+            <!-- A ring rather than a bigger dot: in a cluster of sixteen, size
+                 alone does not say which one was chosen. -->
+            <circle cx={p.x} cy={p.y} r="17" fill="none" class="stroke-ink" stroke-width="2" />
+          {/if}
+          <!-- The ground-coloured ring is what stops two hundred marks
+               collapsing into a smudge — the same surface gap that separates
+               stacked fills elsewhere here. Clusters read as many marks
+               touching, which is what they are. -->
           <circle
             cx={p.x}
             cy={p.y}
-            r={selected?.slug === p.slug ? 9 : 5}
-            class={selected?.slug === p.slug ? 'fill-ink' : 'fill-quiet'}
-            opacity={selected?.slug === p.slug ? 1 : 0.55}
+            r={isSelected ? 9 : 7.5}
+            class="{isSelected ? 'fill-ink' : 'fill-quiet'} stroke-ground"
+            stroke-width="2.5"
           >
             <title>{p.name}</title>
           </circle>
@@ -110,48 +141,48 @@
     </svg>
   </div>
 
-  <!-- The answer, as HTML under the map rather than a tooltip over it. -->
-  <div class="mt-3 min-h-[5.5rem]">
+  <!-- The answer replaces the prompt in place rather than sitting in a slot
+       reserved for it — an empty box under a map is a box the reader has to
+       account for. -->
+  <div class="mt-5 max-w-[34rem]">
     {#if selected}
-      <div class="rounded-sm border border-rule bg-white p-4">
+      <div class="border-t border-ink pt-3">
         <p class="text-lg font-semibold leading-snug">{selected.name}</p>
-        <dl class="mt-2 m-0 grid grid-cols-[7rem_1fr] gap-x-4 gap-y-1">
+        <dl class="mt-1.5 m-0 grid grid-cols-[6.5rem_1fr] gap-x-4 gap-y-1">
           {#if selected.people}
             <dt class="apparatus-label">People</dt>
             <dd class="m-0 text-sm text-ink">{selected.people}</dd>
           {/if}
           {#if selected.tribalCouncil}
-            <dt class="apparatus-label">Tribal Council</dt>
+            <dt class="apparatus-label">Council</dt>
             <dd class="m-0 text-sm text-ink">{selected.tribalCouncil}</dd>
           {/if}
         </dl>
         {#if neighbours.length > 0}
           <p class="apparatus mt-2.5 text-[11px] leading-snug text-faint">
             {neighbours.length}
-            {neighbours.length === 1 ? 'other Nation is' : 'other Nations are'}
-            close enough to share this mark on the map:
-            {neighbours.slice(0, 4).map((n) => n.name).join(', ')}{neighbours.length > 4
-              ? ` and ${neighbours.length - 4} more`
+            {neighbours.length === 1 ? 'other Nation sits' : 'other Nations sit'}
+            close enough to share this mark:
+            {neighbours.slice(0, 3).map((n) => n.name).join(', ')}{neighbours.length > 3
+              ? ` and ${neighbours.length - 3} more`
               : ''}.
           </p>
         {/if}
         <a
           href={`/nations/bc/${selected.slug}`}
-          class="mt-3 inline-block text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
-        >What the record holds about {selected.name}</a>
+          class="mt-2.5 inline-block text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+        >What the record holds</a>
       </div>
     {:else}
-      <p class="text-sm leading-relaxed text-quiet max-w-prose">
-        Tap a mark to see which Nation it is.
+      <p class="apparatus text-[11px] leading-snug text-faint">
+        Tap a mark for the Nation it belongs to.
       </p>
     {/if}
   </div>
 
-  <figcaption class="apparatus mt-4 text-[11px] leading-snug text-faint max-w-prose">
-    Each mark is the community location listed in the federal band registry.
-    Territories are much larger than a point, they overlap one another, and most
-    of British Columbia is unceded — this map locates communities, and says
-    nothing about the extent of any Nation's territory.
-    Outline from Natural Earth, public domain.
+  <figcaption class="apparatus mt-6 max-w-[34rem] text-[11px] leading-snug text-faint">
+    Each mark is a community location from the federal band registry.
+    Territories are far larger, they overlap, and most of BC is unceded — this
+    locates communities, not territory. Outline: Natural Earth, public domain.
   </figcaption>
 </figure>
