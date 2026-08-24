@@ -1,0 +1,53 @@
+{
+  "_comment": "Claims register for the education funding page. A student decides whether to apply, and when, on the strength of this.",
+  "page": "/rights/education-funding",
+  "pageTitle": "How do I pay for school?",
+  "extractedOn": "2026-08-24",
+  "reviewedBy": null,
+  "reviewedOn": null,
+  "claims": [
+    {
+      "id": "psssp-exists",
+      "claim": "The Post-Secondary Student Support Program (PSSSP) funds First Nations post-secondary students.",
+      "status": "sourced",
+      "authority": "ISC — Post-secondary education",
+      "source": "https://www.sac-isc.gc.ca/eng/1100100033682/1531933580211",
+      "sourceVerifiedOn": "2026-08-24",
+      "sourceQuote": "Post-Secondary Student Support Program (PSSSP)"
+    },
+    {
+      "id": "psssp-costs",
+      "claim": "Eligible costs can include tuition, books, travel support and living allowances.",
+      "status": "sourced",
+      "authority": "ISC — Post-secondary education",
+      "source": "https://www.sac-isc.gc.ca/eng/1100100033682/1531933580211",
+      "sourceVerifiedOn": "2026-08-24",
+      "sourceQuote": "Eligible costs covered by the program can include: tuition, books, travel support, living allowances"
+    },
+    {
+      "id": "psssp-through-nation",
+      "claim": "Students apply through their First Nation or a First Nations-designated organisation, which sets its own selection criteria, application process and deadlines.",
+      "status": "sourced",
+      "authority": "ISC — Post-secondary education",
+      "source": "https://www.sac-isc.gc.ca/eng/1100100033682/1531933580211",
+      "sourceVerifiedOn": "2026-08-24",
+      "sourceQuote": "First Nations or First Nations-designated organizations are responsible for determining the selection criteria for PSSSP funding"
+    },
+    {
+      "id": "psssp-limited",
+      "claim": "Funding is limited, not every student is funded, and partial funding may be given.",
+      "status": "sourced",
+      "authority": "ISC — Post-secondary education",
+      "source": "https://www.sac-isc.gc.ca/eng/1100100033682/1531933580211",
+      "sourceVerifiedOn": "2026-08-24",
+      "sourceQuote": "Funding is limited and not all students may be funded. Partial funding may be provided.",
+      "note": "The page must not imply an entitlement. Confirm the framing is honest without being discouraging — a student who assumes a refusal is final may not reapply."
+    },
+    {
+      "id": "psssp-waitlist",
+      "claim": "Where a Nation's list is full there are other routes — bursaries, scholarships, and reapplying in a later intake.",
+      "status": "needs-practitioner",
+      "note": "The page's practical advice for the most common outcome. Confirm it reflects what actually happens."
+    }
+  ]
+}

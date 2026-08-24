@@ -1,0 +1,69 @@
+{
+  "_comment": "Claims register for the NIHB page. Health coverage someone acts on at a counter — the reimbursement deadline in particular is load-bearing, because /money/asking tells people the older receipts are the urgent ones.",
+  "page": "/rights/nihb",
+  "pageTitle": "Can I get help with dental if I have status?",
+  "extractedOn": "2026-08-24",
+  "reviewedBy": null,
+  "reviewedOn": null,
+  "claims": [
+    {
+      "id": "nihb-covers",
+      "claim": "NIHB covers drugs, dental and vision care, medical supplies and equipment, mental health counselling and medical transportation, for registered First Nations and recognised Inuit.",
+      "status": "sourced",
+      "authority": "ISC — Non-Insured Health Benefits",
+      "source": "https://www.sac-isc.gc.ca/eng/1572537161086/1572537234517",
+      "sourceVerifiedOn": "2026-08-24",
+      "sourceQuote": "drugs, dental and vision care, medical supplies and equipment, mental health counselling and medical transportation"
+    },
+    {
+      "id": "nihb-one-year",
+      "claim": "A claim for reimbursement of a cost already paid must be received within one year of the date of service.",
+      "status": "sourced",
+      "authority": "ISC — NIHB client reimbursement",
+      "source": "https://www.sac-isc.gc.ca/eng/1579811474530/1579811499194",
+      "sourceVerifiedOn": "2026-08-24",
+      "sourceQuote": "Client reimbursement requests, including all required documentation, must be received within one year from the date of service.",
+      "note": "PRIORITY. Load-bearing beyond this page: /money/asking tells people to dig out old receipts because 'the older ones matter most'. If the limit is shorter in practice, or runs from a different date, that advice sends people after money they cannot get."
+    },
+    {
+      "id": "nihb-other-insurance-first",
+      "claim": "Where a cost is covered by another plan, such as employer benefits, that plan is billed before NIHB.",
+      "status": "sourced",
+      "authority": "ISC — NIHB client reimbursement",
+      "source": "https://www.sac-isc.gc.ca/eng/1579811474530/1579811499194",
+      "sourceVerifiedOn": "2026-08-24",
+      "sourceQuote": "If benefits are covered by another health benefit program or plan, such as an employer-sponsored benefit plan, claims should be submitted to the other plan first."
+    },
+    {
+      "id": "nihb-payer-of-last-resort",
+      "claim": "The page describes NIHB as 'the payer of last resort'.",
+      "status": "needs-practitioner",
+      "note": "The substance is sourced above, but the phrase is this site's, not ISC's — ISC says other plans are billed first and does not use the term on that page. Confirm the label is accurate and not broader than the rule."
+    },
+    {
+      "id": "nihb-status-card",
+      "claim": "For most services the Status card is presented and the provider bills NIHB directly, with no up-front payment or claim form.",
+      "status": "needs-practitioner",
+      "note": "True in ordinary practice but stated flatly. Confirm how often it fails, since a reader who is refused at a counter needs to know that is not the end of it."
+    },
+    {
+      "id": "nihb-predetermination",
+      "claim": "Expensive dental work — crowns, root canals, orthodontics — needs the provider to submit a predetermination before proceeding.",
+      "status": "needs-practitioner"
+    },
+    {
+      "id": "nihb-appeal",
+      "claim": "A denial can be appealed, and many are overturned on review.",
+      "status": "needs-practitioner",
+      "authority": "ISC — Appealing NIHB decisions",
+      "source": "https://www.sac-isc.gc.ca/eng/1579792696583/1579792732972",
+      "note": "The right of appeal is real and sourced. 'Many are overturned on review' is the site's own characterisation and carries no figure — confirm it is fair, or it should be softened."
+    },
+    {
+      "id": "nihb-mental-health",
+      "claim": "Mental health counselling is approved per request according to clinical need rather than as a fixed yearly allowance, and varies by region.",
+      "status": "needs-practitioner",
+      "note": "Corrected earlier from a fixed-hours claim. Confirm the current framing."
+    }
+  ]
+}

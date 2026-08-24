@@ -1295,6 +1295,55 @@ built correctly and connected to nothing.
 
 ---
 
+## 2026-08-24 — Registers for the remaining rights pages
+
+NIHB, Jordan's Principle and education funding now have claims registers, which
+takes the pattern to six pages and every source verified live the day it was
+written. `docs/review/` holds six packs: **49 claims, 26 of them needing a
+practitioner.**
+
+That is now one ask to one reviewer, and the split is worth knowing before
+sending — the tax professional takes Section 87 and unclaimed benefits, a
+lawyer takes estates, and NIHB, Jordan's Principle and education funding want
+someone who works the programmes rather than either.
+
+### What the research changed
+
+**An Inuit parent was being sent to the wrong door.** ISC routes Inuit
+children through the **Inuit Child First Initiative**, not Jordan's Principle.
+Neither the rights page nor the Jordan's Principle draft on `/money/asking`
+said so, and both now do — by name, because a request that arrives under the
+wrong programme joins the wrong queue. This is the kind of thing the registers
+exist to surface: it was found by reading ISC's own eligibility line closely
+enough to write a claim about it.
+
+**"Payer of last resort" is this site's phrase, not ISC's.** The substance is
+sourced — ISC says a cost covered by another plan goes to that plan first —
+but the label is ours, so it ships as a `needs-practitioner` claim rather than
+a sourced one. The distinction is small and it is exactly the kind of small
+that a register is for.
+
+**The one-year NIHB reimbursement limit is confirmed verbatim**, and flagged as
+priority for a reason beyond its own page: `/money/asking` tells people to dig
+out old receipts because the older ones matter most. If that limit ran from a
+different date, the site would be sending people after money they cannot get.
+
+### What could not be confirmed
+
+Jordan River Anderson's dates — born 1999, more than two years in hospital,
+died 2005 aged five — and the 2007 House of Commons motion are not on ISC's
+page. They are widely reported and they are the emotional core of that page, so
+they ship as `needs-practitioner` with a note that a wrong detail should be
+corrected rather than cut. The same goes for "the government of first contact
+pays", which is the answer strip on that page and could not be confirmed in
+those words.
+
+*Also verified and quotable:* PSSSP by name, its eligible costs, that Nations
+set their own criteria and deadlines, and that "funding is limited and not all
+students may be funded" — which is the site's unsettled line, in ISC's words.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

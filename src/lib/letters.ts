@@ -162,7 +162,7 @@ export function jordansPrincipleRequest(): Letter {
     id: 'jordans-principle',
     title: "Making a Jordan's Principle request for a child",
     purpose:
-      "Jordan's Principle covers products, services and supports a First Nations child needs — health, education, social. The government of first contact pays and settles jurisdiction afterwards, so a request does not wait on anyone agreeing whose bill it is. Requests can cover things already paid for.",
+      "Jordan's Principle covers products, services and supports a First Nations child needs — health, education, social. The government of first contact pays and settles jurisdiction afterwards, so a request does not wait on anyone agreeing whose bill it is. Requests can cover things already paid for. For an Inuit child the equivalent route is the Inuit Child First Initiative — ask for it by name.",
     sendTo:
       "The Jordan's Principle Call Centre (1-855-572-4453, open at all hours) or a regional focal point. A band office or health director can make the request with you.",
     before:
