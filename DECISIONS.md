@@ -1344,6 +1344,39 @@ students may be funded" — which is the site's unsettled line, in ISC's words.
 
 ---
 
+## 2026-08-25 — The map and the directory now answer each other
+
+They shipped as two good things on one page that did not know the other
+existed. Searching the directory left the map still; tapping a mark left the
+list where it was. `src/lib/bc-selection.ts` connects them.
+
+**Searching a People shows you where they are.** Type Nlaka'pamux and fifteen
+marks in the Fraser Canyon hold while the other hundred and eighty-six recede.
+That is a geographic fact the site held all along in two halves and could not
+show. The map says what it is doing in words — *Showing 15 of 201 — the rest
+are faded, not gone* — because a Nation should not appear to stop existing
+because of somebody's search term. Dimming rather than hiding is the whole
+point of that line.
+
+**Tapping a mark brings its row into view** and rings it, and only scrolls when
+the row is actually off screen. A list that jumps under someone who can already
+see what they picked is worse than one that stays still.
+
+*An event bus rather than a shared store.* These are separate Astro islands
+with independent hydration roots, so a shared module would hand each one its
+own copy and the bug would be silent. `window` events carry two facts and only
+two — the filter, and the selection — and late subscribers get the current
+value on subscribe, which matters because the directory is `client:load` and
+the map is `client:idle`: the directory can and does publish a filter before
+the map exists to hear it.
+
+*Caught mid-build:* the directory was listening for a selection and doing
+nothing with it — the map published, the directory received, and the wire ended
+there. Exactly the pattern the 21 August audit named. Finished rather than
+left.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

@@ -24,6 +24,7 @@
    * the precise index; this is for orientation.
    */
   import outline from '../data/bc/outline.json';
+  import { onFilter, publishSelection, type BcFilter } from '../lib/bc-selection';
 
   interface Row {
     name: string;
@@ -57,6 +58,19 @@
 
   let selected = $state<(typeof points)[number] | null>(null);
 
+  /* What the directory below is filtering to. Searching "Nlaka'pamux" down
+   * there should light up where they are up here — that is the whole reason
+   * these two sit on one page. */
+  let filter = $state<BcFilter>({ slugs: null, describe: '' });
+  $effect(() => onFilter((f) => { filter = f; }));
+
+  let filterSet = $derived(filter.slugs ? new Set(filter.slugs) : null);
+  /** Null when nothing is filtered — every mark is then simply itself. */
+  function inFilter(slug: string): boolean {
+    return filterSet === null || filterSet.has(slug);
+  }
+  let matchCount = $derived(filter.slugs ? filter.slugs.length : 0);
+
   /** How many other Nations sit close enough to share this mark. */
   let neighbours = $derived(
     selected
@@ -72,6 +86,7 @@
 
   function pick(p: (typeof points)[number]) {
     selected = selected?.slug === p.slug ? null : p;
+    publishSelection(selected?.slug ?? null);
   }
 </script>
 
@@ -100,6 +115,7 @@
 
       {#each points as p (p.slug)}
         {@const isSelected = selected?.slug === p.slug}
+        {@const dimmed = !inFilter(p.slug)}
         <g
           role="button"
           tabindex="0"
@@ -133,6 +149,7 @@
             r={isSelected ? 9 : 7.5}
             class="{isSelected ? 'fill-ink' : 'fill-quiet'} stroke-ground"
             stroke-width="2.5"
+            opacity={dimmed ? 0.16 : 1}
           >
             <title>{p.name}</title>
           </circle>
@@ -140,6 +157,13 @@
       {/each}
     </svg>
   </div>
+
+  {#if filter.slugs}
+    <p class="apparatus mt-3 max-w-[34rem] text-[11px] leading-snug text-faint">
+      Showing {matchCount} of {points.length}{filter.describe ? ` — ${filter.describe}` : ''}.
+      The rest are faded, not gone.
+    </p>
+  {/if}
 
   <!-- The answer replaces the prompt in place rather than sitting in a slot
        reserved for it — an empty box under a map is a box the reader has to
