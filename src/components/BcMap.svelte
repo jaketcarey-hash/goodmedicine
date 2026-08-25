@@ -24,7 +24,8 @@
    * the precise index; this is for orientation.
    */
   import outline from '../data/bc/outline.json';
-  import { onFilter, publishSelection, type BcFilter } from '../lib/bc-selection';
+  import rivers from '../data/bc/rivers.json';
+  import { onFilter, publishFilter, publishSelection, type BcFilter } from '../lib/bc-selection';
 
   interface Row {
     name: string;
@@ -33,6 +34,8 @@
     tribalCouncil: string | null;
     lat: number | null;
     lon: number | null;
+    /** Records and mentions this site has tracked. Zero is the common case. */
+    tracked: number;
   }
   interface Props { nations: Row[] }
   let { nations }: Props = $props();
@@ -57,6 +60,28 @@
   );
 
   let selected = $state<(typeof points)[number] | null>(null);
+  /** Desktop only. A phone has no hover, and the card is the answer there. */
+  let hovered = $state<string | null>(null);
+
+  let trackedCount = $derived(points.filter((p) => p.tracked > 0).length);
+
+  /* Browsing by People, for the reader who cannot type the word.
+   * Search needs you to already know the term; a list does not. */
+  let peoples = $derived(
+    [...new Set(points.map((p) => p.people).filter(Boolean) as string[])]
+      .map((name) => ({ name, count: points.filter((p) => p.people === name).length }))
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name)),
+  );
+  let byPeople = $state<string | null>(null);
+
+  function choosePeople(name: string) {
+    byPeople = byPeople === name ? null : name;
+    publishFilter(
+      byPeople
+        ? { slugs: points.filter((p) => p.people === byPeople).map((p) => p.slug), describe: byPeople }
+        : { slugs: null, describe: '' },
+    );
+  }
 
   /* What the directory below is filtering to. Searching "Nlaka'pamux" down
    * there should light up where they are up here — that is the whole reason
@@ -106,56 +131,92 @@
       role="img"
       aria-label="Map of British Columbia showing the community location of each First Nation"
     >
+      <!-- The land recedes so the data can speak. A filled province at nearly
+           the same value as the marks meant nothing read; a hairline outline
+           and no fill makes the marks the only solid thing on the page. -->
       <path
         d={outline.path}
-        class="fill-canvas stroke-rule"
+        fill="none"
+        class="stroke-rule"
         stroke-width="1.5"
         stroke-linejoin="round"
+      />
+
+      <!-- The rivers are not ornament. Nations sit on water, so without them
+           the clusters are smudges the reader has to take on trust — with them
+           the Fraser Canyon is visibly a canyon and the distribution explains
+           itself.
+
+           Drawn from `faint` at low opacity rather than from `rule`: rule on
+           ground is about 1.15:1, which is invisible, and a line nobody can see
+           explains nothing. Still lighter than the province edge, so the
+           hierarchy holds — coastline, then rivers, then marks. -->
+      <path
+        d={rivers.path}
+        fill="none"
+        class="stroke-faint"
+        stroke-width="1"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        opacity="0.4"
       />
 
       {#each points as p (p.slug)}
         {@const isSelected = selected?.slug === p.slug}
         {@const dimmed = !inFilter(p.slug)}
+        {@const known = p.tracked > 0}
         <g
           role="button"
           tabindex="0"
-          aria-label={p.name}
+          aria-label="{p.name}{known ? '' : ' — nothing tracked yet'}"
           onclick={() => pick(p)}
           onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p); } }}
+          onmouseenter={() => (hovered = p.slug)}
+          onmouseleave={() => (hovered = null)}
           class="cursor-pointer focus-visible:outline-none"
         >
-          <!-- A finger is wider than a mark, and much wider than this one.
-               At 375px the map renders 335px across, so a radius of 18 gives a
-               12px target — half what a thumb needs. 30 gives 20px, and the
-               cost is that in a cluster the tap lands on whichever mark is on
-               top rather than the nearest. That is the right trade here: the
-               card names the Nations sharing the mark, so a near miss still
-               tells her what she wanted, and precision lives in the directory
-               below rather than in a map of two hundred points. -->
           <circle cx={p.x} cy={p.y} r="30" fill="transparent" />
 
           {#if isSelected}
-            <!-- A ring rather than a bigger dot: in a cluster of sixteen, size
-                 alone does not say which one was chosen. -->
             <circle cx={p.x} cy={p.y} r="17" fill="none" class="stroke-ink" stroke-width="2" />
           {/if}
-          <!-- The ground-coloured ring is what stops two hundred marks
-               collapsing into a smudge — the same surface gap that separates
-               stacked fills elsewhere here. Clusters read as many marks
-               touching, which is what they are. -->
+
+          <!-- Form, not colour, carries the distinction — colour never appears
+               here without its text label, and the legend below says it in
+               words. Solid means the record holds something; hollow means it
+               does not, which is the honest majority. -->
           <circle
             cx={p.x}
             cy={p.y}
             r={isSelected ? 9 : 7.5}
-            class="{isSelected ? 'fill-ink' : 'fill-quiet'} stroke-ground"
-            stroke-width="2.5"
-            opacity={dimmed ? 0.16 : 1}
+            class="{isSelected || known ? (isSelected ? 'fill-ink' : 'fill-quiet') : 'fill-ground'} {known ? 'stroke-ground' : 'stroke-quiet'}"
+            stroke-width={known ? 2.5 : 1.75}
+            opacity={dimmed ? 0.16 : hovered && hovered !== p.slug ? 0.55 : 1}
+            style="transition: opacity 200ms ease, r 150ms ease"
           >
             <title>{p.name}</title>
           </circle>
         </g>
       {/each}
     </svg>
+  </div>
+
+  <!-- What the marks mean, in words. The split is the site's own coverage
+       stated plainly rather than 201 identical dots implying it knows all of
+       them equally. -->
+  <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 max-w-[34rem] text-xs">
+    <span class="flex items-center gap-2 text-ink">
+      <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
+        <circle cx="6" cy="6" r="5" class="fill-quiet" />
+      </svg>
+      {trackedCount} with something tracked
+    </span>
+    <span class="flex items-center gap-2 text-ink">
+      <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
+        <circle cx="6" cy="6" r="4.2" class="fill-ground stroke-quiet" stroke-width="1.5" />
+      </svg>
+      {points.length - trackedCount} with nothing tracked yet
+    </span>
   </div>
 
   {#if filter.slugs}
@@ -203,6 +264,27 @@
       </p>
     {/if}
   </div>
+
+  <!-- A way in that does not require knowing the word. Search finds a term
+       you can already name; this is for someone who wants to see who is where
+       and has never typed "Nlaka'pamux" in their life. -->
+  <details class="mt-6 max-w-[34rem]">
+    <summary class="apparatus-label cursor-pointer hover:text-ink transition-colors marker:content-none [&::-webkit-details-marker]:hidden">
+      Browse by People and Nation ({peoples.length})
+    </summary>
+    <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+      {#each peoples as pl (pl.name)}
+        <button
+          onclick={() => choosePeople(pl.name)}
+          class="text-sm cursor-pointer transition-colors
+            {byPeople === pl.name ? 'text-ink underline decoration-ink underline-offset-2' : 'text-quiet hover:text-ink'}"
+        >
+          {pl.name}
+          <span class="apparatus text-[10px] text-faint">{pl.count}</span>
+        </button>
+      {/each}
+    </div>
+  </details>
 
   <figcaption class="apparatus mt-6 max-w-[34rem] text-[11px] leading-snug text-faint">
     Each mark is a community location from the federal band registry.

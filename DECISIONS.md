@@ -1377,6 +1377,47 @@ left.
 
 ---
 
+## 2026-08-25 — The map stops being a scatter plot
+
+Jake's read was that it was not a sleek experience, and the diagnosis held up:
+grey marks on a grey fill at nearly the same value, so nothing read; two
+hundred and one identical dots over a directory that knew far more than they
+showed; and no way in except typing a word you would have to already know.
+
+Four changes, in order of what each bought.
+
+**The land recedes.** No fill, a hairline outline, and the marks become the
+only solid thing on the page. This was the single biggest gain and it cost
+nothing — a filled province competing with its own data was the whole problem.
+
+**The rivers explain the map.** Seven of them, extracted once and committed at
+5 KB. They are not decoration: Nations sit on water, so without them the
+clusters are smudges the reader has to take on trust, and with them the Fraser
+Canyon is visibly a canyon. Selecting Nlaka'pamux now shows fifteen Nations
+tracing a river, which is a fact the site held and could not show. Drawn from
+`faint` at low opacity rather than `rule`, because rule on ground is about
+1.15:1 and a line nobody can see explains nothing.
+
+**The marks carry what the record knows.** Solid where this site has tracked
+something, hollow where it has not — 57 against 144, which is the same split
+the stat block states and a fairly uncomfortable picture. That is the point.
+The map was implying it knew all 201 equally; now it states its own coverage,
+which is what this site does everywhere else. Form rather than colour carries
+it, so the rule about colour never appearing without its label is untouched,
+and the legend says both halves in words.
+
+**A door for someone who cannot type the word.** Search needs the term
+already; the People browser lists all 40 with their counts. Someone who has
+never typed "Nlaka'pamux" can now find where they are, which was the actual
+barrier.
+
+*Considered and not built:* place labels (clutter at this density), zoom and
+pan (wrong on a phone, and the neighbours list already resolves clusters), and
+any entrance animation — the transitions here fire on a filter change because
+they show what changed, which is the only thing motion is doing on this site.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

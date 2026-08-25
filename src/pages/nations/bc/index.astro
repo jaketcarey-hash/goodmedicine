@@ -19,6 +19,9 @@ const forMap = nations.map((n) => ({
   tribalCouncil: n.tribalCouncil,
   lat: n.lat,
   lon: n.lon,
+  // What the record actually holds. The map states its own coverage rather
+  // than drawing 201 identical marks over a directory that knows better.
+  tracked: n.records.length + n.mentions.length,
 }));
 
 const forBrowser = nations.map((n) => ({
