@@ -1,0 +1,44 @@
+---
+/**
+ * The full directory, on its own page.
+ *
+ * It used to sit under the map, which made the map page a map bolted onto a
+ * 201-row list and meant selecting a mark scrolled the reader away from the
+ * thing they were looking at. Two pages, each doing one job: the map is for
+ * seeing where Nations are, this is for finding one by name.
+ */
+import Record from '../../../layouts/Record.astro';
+import BcDirectory from '../../../components/BcDirectory.svelte';
+import { getBcNations, DIRECTORY_META, groupByPeople } from '../../../lib/bc-nations';
+
+const nations = getBcNations();
+const peoples = groupByPeople();
+
+const forBrowser = nations.map((n) => ({
+  name: n.name,
+  slug: n.slug,
+  people: n.people,
+  tribalCouncil: n.tribalCouncil,
+  bandNumber: n.bandNumber,
+  tracked: n.records.length + n.mentions.length,
+}));
+---
+
+<Record
+  title="Every First Nation in British Columbia"
+  description={`A searchable directory of all ${nations.length} First Nations headquartered in British Columbia, from the federal band registry, with whatever this site has tracked about each.`}
+  kicker="The Nations"
+  heading="Every First Nation in British Columbia"
+  standfirst={`All ${nations.length}, searchable by name, People or Tribal Council.`}
+  dateline={`Registry retrieved ${DIRECTORY_META.retrieved}`}
+  measure="full"
+>
+  <p class="not-prose mb-8 text-sm text-quiet leading-relaxed max-w-prose">
+    Looking for where they are rather than what they are called?
+    <a href="/nations/bc" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">The map</a>
+    shows all {nations.length} community locations, and can be filtered by
+    People — {peoples.length} of them.
+  </p>
+
+  <BcDirectory client:load nations={forBrowser} />
+</Record>

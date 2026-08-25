@@ -11,21 +11,26 @@
    * that kind of claim. The caption says so in plain words; that sentence is
    * not decoration and should not be trimmed.
    *
-   * **Tap, not hover.** 375px is a first-class width here and a phone has no
-   * hover state. Tapping a dot selects it; the card below the map is the
-   * answer, and it is real HTML rather than a floating tooltip so it can be
-   * read, selected and reached by a screen reader.
+   * **The answer sits beside the map, not under it.** Selecting a mark used to
+   * drop a card below and scroll the page down to that Nation's row in a
+   * 201-item directory — which took the reader away from the thing they were
+   * looking at, to answer a question they had asked *of the map*. The
+   * directory now has its own page and the answer appears in a panel next to
+   * the map, so choosing a mark never moves the map out from under you. On a
+   * phone there is no beside, so it stacks directly underneath.
+   *
+   * It is real HTML rather than a floating tooltip, so it can be read,
+   * selected, and reached by a screen reader.
    *
    * **Density is stated, not hidden.** Forty Nations sit within a few hundred
    * kilometres of the lower mainland, and at phone width their dots overlap
    * into one mark. Rather than pretend otherwise, dots are drawn semi-opaque
    * so a cluster reads darker than a single Nation, and a tap reports how
-   * many others are within reach of the same spot. The directory below stays
-   * the precise index; this is for orientation.
+   * many others are within reach of the same spot. The full directory, on its
+   * own page, stays the precise index; this is for orientation.
    */
   import outline from '../data/bc/outline.json';
   import rivers from '../data/bc/rivers.json';
-  import { onFilter, publishFilter, publishSelection, type BcFilter } from '../lib/bc-selection';
 
   interface Row {
     name: string;
@@ -72,29 +77,43 @@
       .map((name) => ({ name, count: points.filter((p) => p.people === name).length }))
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name)),
   );
-  let byPeople = $state<string | null>(null);
-
   function choosePeople(name: string) {
     byPeople = byPeople === name ? null : name;
-    publishFilter(
-      byPeople
-        ? { slugs: points.filter((p) => p.people === byPeople).map((p) => p.slug), describe: byPeople }
-        : { slugs: null, describe: '' },
-    );
   }
 
-  /* What the directory below is filtering to. Searching "Nlaka'pamux" down
-   * there should light up where they are up here — that is the whole reason
-   * these two sit on one page. */
-  let filter = $state<BcFilter>({ slugs: null, describe: '' });
-  $effect(() => onFilter((f) => { filter = f; }));
+  function clearFilter() {
+    query = '';
+    byPeople = null;
+  }
 
-  let filterSet = $derived(filter.slugs ? new Set(filter.slugs) : null);
-  /** Null when nothing is filtered — every mark is then simply itself. */
+  /* The map owns its own filter now. It used to take one from the directory
+   * sitting below it on the same page; the directory has moved, so the search
+   * moved here with it rather than leaving the map with no way in. */
+  let query = $state('');
+  let byPeople = $state<string | null>(null);
+  const fold = (v: string) =>
+    v.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[\u0142\u0141]/g, 'l').replace(/[\u0294\u2019'\u02bc`]/g, '').toLowerCase();
+
+  let matches = $derived.by(() => {
+    const q = query.trim();
+    if (!q && !byPeople) return null; // null means no filter, not "none matched"
+    return points.filter((p) => {
+      if (byPeople && p.people !== byPeople) return false;
+      if (q) {
+        const hay = fold(`${p.name} ${p.people ?? ''} ${p.tribalCouncil ?? ''}`);
+        if (!hay.includes(fold(q))) return false;
+      }
+      return true;
+    });
+  });
+
+  let filterSet = $derived(matches ? new Set(matches.map((m) => m.slug)) : null);
   function inFilter(slug: string): boolean {
     return filterSet === null || filterSet.has(slug);
   }
-  let matchCount = $derived(filter.slugs ? filter.slugs.length : 0);
+  let matchCount = $derived(matches?.length ?? 0);
+  let describe = $derived(byPeople || query.trim());
 
   /** How many other Nations sit close enough to share this mark. */
   let neighbours = $derived(
@@ -111,184 +130,201 @@
 
   function pick(p: (typeof points)[number]) {
     selected = selected?.slug === p.slug ? null : p;
-    publishSelection(selected?.slug ?? null);
   }
 </script>
 
 <figure class="not-prose m-0">
-  <!-- No frame. Nothing else on this site boxes a figure — the stage bars, the
-       forecast strip and the payoff curves all sit open on the page, and the
-       province's own outline is a better edge than a rectangle around it.
-       Capped rather than full-width: at full measure the map sprawled, and one
-       you can take in at a glance reads as more considered than a large one.
-       Left-aligned rather than centred — this page runs to a wide measure, and
-       a centred map sat three hundred pixels away from its own heading, which
-       left the heading pointing at nothing. -->
-  <div class="max-w-[34rem]">
-    <svg
-      viewBox={outline.viewBox}
-      class="block h-auto w-full overflow-visible"
-      role="img"
-      aria-label="Map of British Columbia showing the community location of each First Nation"
-    >
-      <!-- The land recedes so the data can speak. A filled province at nearly
-           the same value as the marks meant nothing read; a hairline outline
-           and no fill makes the marks the only solid thing on the page. -->
-      <path
-        d={outline.path}
-        fill="none"
-        class="stroke-rule"
-        stroke-width="1.5"
-        stroke-linejoin="round"
-      />
+  <!-- Map and answer side by side on a wide screen; stacked on a phone, where
+       there is no beside. The map keeps its cap — a map you can take in at a
+       glance reads as more considered than a large one — and the panel takes
+       the rest. -->
+  <div class="grid gap-8 md:grid-cols-[minmax(0,34rem)_minmax(0,22rem)] md:items-start">
 
-      <!-- The rivers are not ornament. Nations sit on water, so without them
-           the clusters are smudges the reader has to take on trust — with them
-           the Fraser Canyon is visibly a canyon and the distribution explains
-           itself.
+    <div>
+      <svg
+        viewBox={outline.viewBox}
+        class="block h-auto w-full overflow-visible"
+        role="img"
+        aria-label="Map of British Columbia showing the community location of each First Nation"
+      >
+        <!-- The land recedes so the data can speak. A filled province at nearly
+             the same value as the marks meant nothing read. -->
+        <path
+          d={outline.path}
+          fill="none"
+          class="stroke-rule"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
 
-           Drawn from `faint` at low opacity rather than from `rule`: rule on
-           ground is about 1.15:1, which is invisible, and a line nobody can see
-           explains nothing. Still lighter than the province edge, so the
-           hierarchy holds — coastline, then rivers, then marks. -->
-      <path
-        d={rivers.path}
-        fill="none"
-        class="stroke-faint"
-        stroke-width="1"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        opacity="0.4"
-      />
+        <!-- The rivers are not ornament. Nations sit on water, so without them
+             the clusters are smudges the reader has to take on trust — with
+             them the Fraser Canyon is visibly a canyon.
 
-      {#each points as p (p.slug)}
-        {@const isSelected = selected?.slug === p.slug}
-        {@const dimmed = !inFilter(p.slug)}
-        {@const known = p.tracked > 0}
-        <g
-          role="button"
-          tabindex="0"
-          aria-label="{p.name}{known ? '' : ' — nothing tracked yet'}"
-          onclick={() => pick(p)}
-          onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p); } }}
-          onmouseenter={() => (hovered = p.slug)}
-          onmouseleave={() => (hovered = null)}
-          class="cursor-pointer focus-visible:outline-none"
-        >
-          <circle cx={p.x} cy={p.y} r="30" fill="transparent" />
+             Drawn from `faint` at low opacity rather than `rule`: rule on
+             ground is about 1.15:1, which is invisible, and a line nobody can
+             see explains nothing. -->
+        <path
+          d={rivers.path}
+          fill="none"
+          class="stroke-faint"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity="0.4"
+        />
 
-          {#if isSelected}
-            <circle cx={p.x} cy={p.y} r="17" fill="none" class="stroke-ink" stroke-width="2" />
-          {/if}
-
-          <!-- Form, not colour, carries the distinction — colour never appears
-               here without its text label, and the legend below says it in
-               words. Solid means the record holds something; hollow means it
-               does not, which is the honest majority. -->
-          <circle
-            cx={p.x}
-            cy={p.y}
-            r={isSelected ? 9 : 7.5}
-            class="{isSelected || known ? (isSelected ? 'fill-ink' : 'fill-quiet') : 'fill-ground'} {known ? 'stroke-ground' : 'stroke-quiet'}"
-            stroke-width={known ? 2.5 : 1.75}
-            opacity={dimmed ? 0.16 : hovered && hovered !== p.slug ? 0.55 : 1}
-            style="transition: opacity 200ms ease, r 150ms ease"
+        {#each points as p (p.slug)}
+          {@const isSelected = selected?.slug === p.slug}
+          {@const dimmed = !inFilter(p.slug)}
+          {@const known = p.tracked > 0}
+          <g
+            role="button"
+            tabindex="0"
+            aria-label="{p.name}{known ? '' : ' — nothing tracked yet'}"
+            onclick={() => pick(p)}
+            onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p); } }}
+            onmouseenter={() => (hovered = p.slug)}
+            onmouseleave={() => (hovered = null)}
+            class="cursor-pointer focus-visible:outline-none"
           >
-            <title>{p.name}</title>
-          </circle>
-        </g>
-      {/each}
-    </svg>
-  </div>
+            <!-- A finger is wider than a mark, and much wider than this one.
+                 At 375px the map renders 335px across, so a radius of 18 gives
+                 a 12px target — half what a thumb needs. 30 gives 20px. -->
+            <circle cx={p.x} cy={p.y} r="30" fill="transparent" />
 
-  <!-- What the marks mean, in words. The split is the site's own coverage
-       stated plainly rather than 201 identical dots implying it knows all of
-       them equally. -->
-  <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 max-w-[34rem] text-xs">
-    <span class="flex items-center gap-2 text-ink">
-      <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
-        <circle cx="6" cy="6" r="5" class="fill-quiet" />
+            {#if isSelected}
+              <!-- A ring rather than a bigger dot: in a cluster of sixteen,
+                   size alone does not say which one was chosen. -->
+              <circle cx={p.x} cy={p.y} r="17" fill="none" class="stroke-ink" stroke-width="2" />
+            {/if}
+
+            <!-- Form, not colour, carries what the record knows. Solid means
+                 something is tracked; hollow means nothing is, which is the
+                 honest majority. The legend says both in words. -->
+            <circle
+              cx={p.x}
+              cy={p.y}
+              r={isSelected ? 9 : 7.5}
+              class="{isSelected || known ? (isSelected ? 'fill-ink' : 'fill-quiet') : 'fill-ground'} {known ? 'stroke-ground' : 'stroke-quiet'}"
+              stroke-width={known ? 2.5 : 1.75}
+              opacity={dimmed ? 0.16 : hovered && hovered !== p.slug ? 0.55 : 1}
+              style="transition: opacity 200ms ease"
+            >
+              <title>{p.name}</title>
+            </circle>
+          </g>
+        {/each}
       </svg>
-      {trackedCount} with something tracked
-    </span>
-    <span class="flex items-center gap-2 text-ink">
-      <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
-        <circle cx="6" cy="6" r="4.2" class="fill-ground stroke-quiet" stroke-width="1.5" />
-      </svg>
-      {points.length - trackedCount} with nothing tracked yet
-    </span>
-  </div>
 
-  {#if filter.slugs}
-    <p class="apparatus mt-3 max-w-[34rem] text-[11px] leading-snug text-faint">
-      Showing {matchCount} of {points.length}{filter.describe ? ` — ${filter.describe}` : ''}.
-      The rest are faded, not gone.
-    </p>
-  {/if}
+      <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
+        <span class="flex items-center gap-2 text-ink">
+          <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
+            <circle cx="6" cy="6" r="5" class="fill-quiet" />
+          </svg>
+          {trackedCount} with something tracked
+        </span>
+        <span class="flex items-center gap-2 text-ink">
+          <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
+            <circle cx="6" cy="6" r="4.2" class="fill-ground stroke-quiet" stroke-width="1.5" />
+          </svg>
+          {points.length - trackedCount} with nothing tracked yet
+        </span>
+      </div>
 
-  <!-- The answer replaces the prompt in place rather than sitting in a slot
-       reserved for it — an empty box under a map is a box the reader has to
-       account for. -->
-  <div class="mt-5 max-w-[34rem]">
-    {#if selected}
-      <div class="border-t border-ink pt-3">
-        <p class="text-lg font-semibold leading-snug">{selected.name}</p>
-        <dl class="mt-1.5 m-0 grid grid-cols-[6.5rem_1fr] gap-x-4 gap-y-1">
-          {#if selected.people}
-            <dt class="apparatus-label">People</dt>
-            <dd class="m-0 text-sm text-ink">{selected.people}</dd>
-          {/if}
-          {#if selected.tribalCouncil}
-            <dt class="apparatus-label">Council</dt>
-            <dd class="m-0 text-sm text-ink">{selected.tribalCouncil}</dd>
-          {/if}
-        </dl>
-        {#if neighbours.length > 0}
-          <p class="apparatus mt-2.5 text-[11px] leading-snug text-faint">
-            {neighbours.length}
-            {neighbours.length === 1 ? 'other Nation sits' : 'other Nations sit'}
-            close enough to share this mark:
-            {neighbours.slice(0, 3).map((n) => n.name).join(', ')}{neighbours.length > 3
-              ? ` and ${neighbours.length - 3} more`
-              : ''}.
+      <figcaption class="apparatus mt-4 text-[11px] leading-snug text-faint">
+        Each mark is a community location from the federal band registry.
+        Territories are far larger, they overlap, and most of BC is unceded —
+        this locates communities, not territory. Outline and rivers: Natural
+        Earth, public domain.
+      </figcaption>
+    </div>
+
+    <!-- ── The panel: how you get in, and what you get back ── -->
+    <aside class="flex flex-col gap-5 md:sticky md:top-6">
+      <div>
+        <label for="map-search" class="apparatus-label block mb-2">Find a Nation</label>
+        <input
+          id="map-search"
+          bind:value={query}
+          placeholder="Name, People or Council…"
+          class="w-full rounded-sm border border-rule bg-white px-3 py-2.5 text-sm
+            placeholder:text-faint focus:border-ink focus:outline-none"
+        />
+        {#if matches}
+          <p class="apparatus mt-2 text-[11px] leading-snug text-faint">
+            {matchCount} of {points.length}{describe ? ` — ${describe}` : ''}. The rest
+            are faded, not gone.
+            <button onclick={clearFilter} class="ml-1 cursor-pointer underline decoration-rule underline-offset-2 hover:text-ink">clear</button>
           </p>
         {/if}
-        <a
-          href={`/nations/bc/${selected.slug}`}
-          class="mt-2.5 inline-block text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
-        >What the record holds</a>
       </div>
-    {:else}
-      <p class="apparatus text-[11px] leading-snug text-faint">
-        Tap a mark for the Nation it belongs to.
+
+      {#if selected}
+        <div class="border-t border-ink pt-3">
+          <p class="text-lg font-semibold leading-snug">{selected.name}</p>
+          <dl class="mt-1.5 m-0 grid grid-cols-[5rem_1fr] gap-x-3 gap-y-1">
+            {#if selected.people}
+              <dt class="apparatus-label">People</dt>
+              <dd class="m-0 text-sm text-ink">{selected.people}</dd>
+            {/if}
+            {#if selected.tribalCouncil}
+              <dt class="apparatus-label">Council</dt>
+              <dd class="m-0 text-sm text-ink">{selected.tribalCouncil}</dd>
+            {/if}
+            <dt class="apparatus-label">Record</dt>
+            <dd class="m-0 text-sm text-ink">
+              {selected.tracked > 0
+                ? `${selected.tracked} ${selected.tracked === 1 ? 'entry' : 'entries'} tracked`
+                : 'Nothing tracked yet'}
+            </dd>
+          </dl>
+          {#if neighbours.length > 0}
+            <p class="apparatus mt-2.5 text-[11px] leading-snug text-faint">
+              {neighbours.length}
+              {neighbours.length === 1 ? 'other Nation shares' : 'other Nations share'}
+              this mark: {neighbours.slice(0, 3).map((n) => n.name).join(', ')}{neighbours.length > 3
+                ? ` and ${neighbours.length - 3} more`
+                : ''}.
+            </p>
+          {/if}
+          <a
+            href={`/nations/bc/${selected.slug}`}
+            class="mt-2.5 inline-block text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+          >What the record holds</a>
+        </div>
+      {:else}
+        <p class="apparatus text-[11px] leading-snug text-faint">
+          Tap a mark for the Nation it belongs to.
+        </p>
+      {/if}
+
+      <!-- A way in that does not require knowing the word. Search finds a term
+           you can already name; this is for someone who wants to see who is
+           where and has never typed "Nlaka'pamux" in their life. -->
+      <details class="border-t border-rule pt-4">
+        <summary class="apparatus-label cursor-pointer hover:text-ink transition-colors marker:content-none [&::-webkit-details-marker]:hidden">
+          Browse by People and Nation ({peoples.length})
+        </summary>
+        <div class="mt-3 flex flex-wrap gap-x-3 gap-y-2">
+          {#each peoples as pl (pl.name)}
+            <button
+              onclick={() => choosePeople(pl.name)}
+              class="text-sm cursor-pointer transition-colors
+                {byPeople === pl.name ? 'text-ink underline decoration-ink underline-offset-2' : 'text-quiet hover:text-ink'}"
+            >
+              {pl.name}
+              <span class="apparatus text-[10px] text-faint">{pl.count}</span>
+            </button>
+          {/each}
+        </div>
+      </details>
+
+      <p class="apparatus text-[11px] leading-snug text-faint border-t border-rule pt-4">
+        Looking for the full list?
+        <a href="/nations/bc/directory" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">All {points.length} Nations</a>,
+        searchable and filterable.
       </p>
-    {/if}
+    </aside>
   </div>
-
-  <!-- A way in that does not require knowing the word. Search finds a term
-       you can already name; this is for someone who wants to see who is where
-       and has never typed "Nlaka'pamux" in their life. -->
-  <details class="mt-6 max-w-[34rem]">
-    <summary class="apparatus-label cursor-pointer hover:text-ink transition-colors marker:content-none [&::-webkit-details-marker]:hidden">
-      Browse by People and Nation ({peoples.length})
-    </summary>
-    <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-      {#each peoples as pl (pl.name)}
-        <button
-          onclick={() => choosePeople(pl.name)}
-          class="text-sm cursor-pointer transition-colors
-            {byPeople === pl.name ? 'text-ink underline decoration-ink underline-offset-2' : 'text-quiet hover:text-ink'}"
-        >
-          {pl.name}
-          <span class="apparatus text-[10px] text-faint">{pl.count}</span>
-        </button>
-      {/each}
-    </div>
-  </details>
-
-  <figcaption class="apparatus mt-6 max-w-[34rem] text-[11px] leading-snug text-faint">
-    Each mark is a community location from the federal band registry.
-    Territories are far larger, they overlap, and most of BC is unceded — this
-    locates communities, not territory. Outline: Natural Earth, public domain.
-  </figcaption>
 </figure>

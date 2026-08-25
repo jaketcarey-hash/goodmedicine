@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { publishFilter, onSelection } from '../lib/bc-selection';
 
   /**
    * The BC directory, searchable by name, People/Nation or Tribal Council.
@@ -22,26 +21,6 @@
   }
 
   let { nations }: Props = $props();
-
-  /* The map is the other half of this page. What the directory is filtering to
-   * goes out so the map can show where those Nations are; what the map selects
-   * comes in so the list can jump to it. See src/lib/bc-selection.ts. */
-  let fromMap = $state<string | null>(null);
-  $effect(() => onSelection((slug) => { fromMap = slug; }));
-
-  /* Tapping a mark on the map should bring its row here into view. Scrolling
-   * only when the row is actually off screen, because a list that jumps under
-   * someone who can already see what they picked is worse than one that stays
-   * still. */
-  $effect(() => {
-    if (!fromMap) return;
-    const row = document.getElementById(`bc-${fromMap}`);
-    if (!row) return;
-    const box = row.getBoundingClientRect();
-    if (box.top < 0 || box.bottom > window.innerHeight) {
-      row.scrollIntoView({ block: 'center', behavior: 'smooth' });
-    }
-  });
 
   let query = $state('');
   let people = $state('all');
@@ -75,15 +54,6 @@
 
   const active = $derived(query.trim() !== '' || people !== 'all' || trackedOnly);
 
-  $effect(() => {
-    // Null rather than all 201 slugs when nothing is filtered — the map draws
-    // its ordinary state from the absence, not from a list that happens to
-    // contain everything.
-    publishFilter({
-      slugs: active ? filtered.map((n) => n.slug) : null,
-      describe: query.trim() || (people !== 'all' ? people : trackedOnly ? 'tracked this year' : ''),
-    });
-  });
 
   function reset() {
     query = '';
@@ -155,8 +125,7 @@
           <a
             href="/nations/bc/{n.slug}"
             class="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3.5 -mx-2 px-2
-              hover:bg-ink/[0.03] transition-colors
-              {fromMap === n.slug ? 'bg-ink/[0.05] ring-1 ring-ink/20' : ''}"
+              hover:bg-ink/[0.03] transition-colors"
           >
             <span class="text-lg font-medium text-ink group-hover:underline decoration-rule underline-offset-2">
               {n.name}

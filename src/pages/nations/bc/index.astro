@@ -3,7 +3,6 @@
  * /nations/bc — every First Nation in British Columbia.
  */
 import Record from '../../../layouts/Record.astro';
-import BcDirectory from '../../../components/BcDirectory.svelte';
 import BcMap from '../../../components/BcMap.svelte';
 import { getBcNations, DIRECTORY_META, groupByPeople } from '../../../lib/bc-nations';
 
@@ -24,14 +23,7 @@ const forMap = nations.map((n) => ({
   tracked: n.records.length + n.mentions.length,
 }));
 
-const forBrowser = nations.map((n) => ({
-  name: n.name,
-  slug: n.slug,
-  people: n.people,
-  tribalCouncil: n.tribalCouncil,
-  bandNumber: n.bandNumber,
-  tracked: n.records.length + n.mentions.length,
-}));
+
 ---
 
 <Record
@@ -114,6 +106,16 @@ const forBrowser = nations.map((n) => ({
 
   <section>
     <h2>The directory</h2>
-    <BcDirectory client:load nations={forBrowser} />
+    <p>
+      Every Nation above is also in a searchable list — by name, by People, or
+      by Tribal Council, with what the record holds against each.
+    </p>
+    <p class="not-prose">
+      <a
+        href="/nations/bc/directory"
+        class="inline-block rounded-sm border border-ink px-4 py-2.5 text-sm font-medium text-ink
+          no-underline transition-colors hover:bg-ink hover:text-ground"
+      >All {nations.length} Nations, searchable</a>
+    </p>
   </section>
 </Record>

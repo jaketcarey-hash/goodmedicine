@@ -1418,6 +1418,40 @@ they show what changed, which is the only thing motion is doing on this site.
 
 ---
 
+## 2026-08-25 — Two pages, and the answer beside the map
+
+Jake, on the interaction: *why does it scroll all the way to the nation, why
+don't we have that big list on a different page and when you click on the
+nation it produces the info to the side of the map?* Both halves were right and
+the first one was a genuine mistake.
+
+**Selecting a mark used to scroll the page.** The card appeared below the map
+and the matching row in a 201-item directory was scrolled into view — so
+answering a question the reader had asked *of the map* took the map out from
+under them. It was built as a feature and it behaved as an interruption.
+
+**The directory has its own page.** `/nations/bc/directory` holds the full
+searchable list; `/nations/bc` is the map. Each page does one job. Keeping both
+on one page had made the map page a map bolted onto a list, and the list is
+long enough that everything above it reads as a preamble.
+
+**The answer sits beside the map.** A panel to the right on a wide screen,
+stacked underneath on a phone where there is no beside. Choosing a mark now
+changes only the panel — the map never moves. The panel also carries the way
+in: its own search, the People browser, and a link to the full list.
+
+*The search moved with it.* The map used to take its filter from the directory
+below it through an event bus between two Astro islands. With the directory on
+another page that bus was dead weight, so `bc-selection.ts` is gone and the map
+owns its own filter. A day-old mechanism deleted rather than kept around — the
+same rule this repo applies to any orphaned code.
+
+*The panel gained what the card was missing.* It now states what the record
+actually holds for the selected Nation — "1 entry tracked", or "Nothing tracked
+yet" — which was the obvious next depth and cost one line.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

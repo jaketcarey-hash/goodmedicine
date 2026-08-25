@@ -107,7 +107,8 @@ export const DIRECTORY: DirectorySection[] = [
     links: [
       { label: 'The Nations', href: '/nations', note: "Today's brief" },
       { label: 'Archive', href: '/nations/archive' },
-      { label: 'First Nations of British Columbia', href: '/nations/bc', note: 'All 201, and what has been tracked' },
+      { label: 'First Nations of British Columbia', href: '/nations/bc', note: 'A map of all 201 community locations' },
+      { label: 'The full BC directory', href: '/nations/bc/directory', note: 'Searchable by name, People or Tribal Council' },
       { label: 'Event ledger', href: '/nations/ledger' },
       { label: 'Open questions', href: '/nations/open' },
     ],
