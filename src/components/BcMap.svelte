@@ -29,6 +29,7 @@
    * many others are within reach of the same spot. The full directory, on its
    * own page, stays the precise index; this is for orientation.
    */
+  import { onMount } from 'svelte';
   import outline from '../data/bc/outline.json';
   import rivers from '../data/bc/rivers.json';
 
@@ -130,7 +131,23 @@
 
   function pick(p: (typeof points)[number]) {
     selected = selected?.slug === p.slug ? null : p;
+    syncUrl();
   }
+
+  /* A selection nobody can send to anyone is half a selection. The slug goes in
+   * the query string with replaceState, so the back button still leaves the
+   * page rather than walking back through every mark someone tapped. */
+  function syncUrl() {
+    const url = new URL(window.location.href);
+    if (selected) url.searchParams.set('nation', selected.slug);
+    else url.searchParams.delete('nation');
+    history.replaceState(null, '', url);
+  }
+
+  onMount(() => {
+    const slug = new URL(window.location.href).searchParams.get('nation');
+    if (slug) selected = points.find((p) => p.slug === slug) ?? null;
+  });
 </script>
 
 <figure class="not-prose m-0">
@@ -217,18 +234,21 @@
         {/each}
       </svg>
 
+      <!-- A key, not a statistic. The counts are in the stat block above and
+           repeating them here just made the reader check whether the two
+           agreed. -->
       <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
         <span class="flex items-center gap-2 text-ink">
           <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
             <circle cx="6" cy="6" r="5" class="fill-quiet" />
           </svg>
-          {trackedCount} with something tracked
+          Something tracked
         </span>
         <span class="flex items-center gap-2 text-ink">
           <svg width="12" height="12" aria-hidden="true" class="flex-shrink-0">
             <circle cx="6" cy="6" r="4.2" class="fill-ground stroke-quiet" stroke-width="1.5" />
           </svg>
-          {points.length - trackedCount} with nothing tracked yet
+          Nothing tracked yet
         </span>
       </div>
 
@@ -302,11 +322,19 @@
       <!-- A way in that does not require knowing the word. Search finds a term
            you can already name; this is for someone who wants to see who is
            where and has never typed "Nlaka'pamux" in their life. -->
-      <details class="border-t border-rule pt-4">
+      <!-- Open by default. This is the way in for someone who cannot type the
+           word, and a shut door is not a way in — it also happens to be the
+           only thing with enough presence to fill the column before a mark is
+           chosen, which was 186px of nothing. -->
+      <details open class="border-t border-rule pt-4">
         <summary class="apparatus-label cursor-pointer hover:text-ink transition-colors marker:content-none [&::-webkit-details-marker]:hidden">
           Browse by People and Nation ({peoples.length})
         </summary>
-        <div class="mt-3 flex flex-wrap gap-x-3 gap-y-2">
+        <!-- Capped and scrollable. Opening this by default fixed a panel with
+             186px of nothing in it and immediately created the opposite
+             problem: forty wrapped names ran the column to twice the height of
+             the map it sits beside. -->
+        <div class="mt-3 flex flex-wrap gap-x-3 gap-y-2 max-h-[13rem] overflow-y-auto pr-2">
           {#each peoples as pl (pl.name)}
             <button
               onclick={() => choosePeople(pl.name)}

@@ -1513,6 +1513,41 @@ threshold, and the rule that an empty site is told nothing about forecasts.
 
 ---
 
+## 2026-08-25 — Judging the map page honestly
+
+Asked whether it was good, and the answer was: the map is, the page around it
+was not finished. Three things, all measurable rather than matters of taste.
+
+**The panel was 186px of nothing.** A search box, one grey line of
+instruction, a shut accordion and a footnote, against a 469px map. The right
+column read as empty on arrival, which is the first impression the page makes.
+
+**The door was closed.** The People browser — built specifically as the way in
+for someone who cannot type "Nlaka'pamux" — sat behind a collapsed
+`<details>`. A shut door is not a way in. Opening it fixed the empty column at
+the same time, because that list was the content the panel was missing.
+
+*And immediately created the opposite problem:* forty wrapped names ran the
+column to 1001px against a 469px map. Capped at 13rem with a scroll, which
+lands the panel 260px taller than the map — close enough to read as a pair.
+
+**The legend repeated the stat block.** "57 with something tracked / 144 with
+nothing" appeared in the statistics at the top of the page and again two
+hundred pixels below in the map key, which just invites the reader to check
+whether the two agree. A key says what a shape means; it does not restate a
+statistic. Now it reads simply *Something tracked / Nothing tracked yet*.
+
+**A selection nobody could send anywhere.** `?nation=skuppah` now carries it,
+restored on load, written with `replaceState` so the back button leaves the
+page rather than walking back through every mark someone tapped.
+
+*Still open, and deliberately:* the map has no place labels, so a reader in
+Prince George has no anchor beyond the rivers. Adding them at this density
+was tried in the head and rejected — but the absence is a real cost, not a
+non-issue, and it is the thing to revisit if the map gets more room.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
