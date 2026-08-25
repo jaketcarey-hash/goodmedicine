@@ -40,6 +40,7 @@
     tribalCouncil: string | null;
     lat: number | null;
     lon: number | null;
+    bandNumber: number;
     /** Records and mentions this site has tracked. Zero is the common case. */
     tracked: number;
   }
@@ -308,10 +309,22 @@
                 : ''}.
             </p>
           {/if}
-          <a
-            href={`/nations/bc/${selected.slug}`}
-            class="mt-2.5 inline-block text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
-          >What the record holds</a>
+          <div class="mt-2.5 flex flex-col gap-1.5">
+            <a
+              href={`/nations/bc/${selected.slug}`}
+              class="text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+            >What the record holds</a>
+            <!-- Linked rather than copied. Two hundred and one phone numbers
+                 held here would rot silently, and this site fails its build
+                 over a stale figure — a deep link to the federal registry is
+                 always current and costs nothing to keep. -->
+            <a
+              href={`https://fnp-ppn.aadnc-aandc.gc.ca/fnp/Main/Search/FNMain.aspx?BAND_NUMBER=${selected.bandNumber}&lang=eng`}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+            >Band office — address, phone and website</a>
+          </div>
         </div>
       {:else}
         <p class="apparatus text-[11px] leading-snug text-faint">
@@ -347,6 +360,18 @@
           {/each}
         </div>
       </details>
+
+      <!-- Deference, not decoration. FPCC maps the languages with the right
+           orthography and the standing to do it, and Native Land maps
+           territory. This site locates band offices and explains money; it has
+           no business approximating either of those, and someone who came here
+           wanting them should be sent somewhere good rather than left. -->
+      <p class="apparatus text-[11px] leading-snug text-faint border-t border-rule pt-4">
+        For languages, arts and heritage, the
+        <a href="https://maps.fpcc.ca/" rel="noopener noreferrer" target="_blank" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">First Peoples' Map of B.C.</a>
+        is the one to use — it is run by the First Peoples' Cultural Council. For
+        territory, <a href="https://native-land.ca/" rel="noopener noreferrer" target="_blank" class="text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">Native Land</a>.
+      </p>
 
       <p class="apparatus text-[11px] leading-snug text-faint border-t border-rule pt-4">
         Looking for the full list?

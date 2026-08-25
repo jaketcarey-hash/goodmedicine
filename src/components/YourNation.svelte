@@ -20,6 +20,7 @@
     slug: string;
     people: string | null;
     tribalCouncil: string | null;
+    bandNumber: number;
   }
   interface Props { nations: Row[] }
   let { nations }: Props = $props();
@@ -76,8 +77,20 @@
         its own criteria and deadlines — the band office is the place to ask.
       </p>
       <div class="mt-3 flex flex-wrap items-center gap-4">
+        <!-- This component has told people the band office is the place to ask
+             since it shipped, without saying where it is. Post-secondary
+             funding is applied for there, so the sentence above was sending
+             someone to a door it would not name. -->
+        <a
+          href={`https://fnp-ppn.aadnc-aandc.gc.ca/fnp/Main/Search/FNMain.aspx?BAND_NUMBER=${chosen.bandNumber}&lang=eng`}
+          rel="noopener noreferrer"
+          target="_blank"
+          class="text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink"
+        >
+          Band office contact
+        </a>
         <a href={`/nations/bc/${chosen.slug}`} class="text-sm text-ink underline decoration-rule underline-offset-2 hover:decoration-ink">
-          What the record holds about {chosen.name}
+          What the record holds
         </a>
         <button onclick={clear} class="apparatus text-xs text-faint hover:text-ink cursor-pointer underline decoration-rule underline-offset-2">
           change

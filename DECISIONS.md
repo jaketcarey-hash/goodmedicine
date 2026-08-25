@@ -1548,6 +1548,44 @@ non-issue, and it is the thing to revisit if the map gets more room.
 
 ---
 
+## 2026-08-25 — What the comparables do, and what not to copy
+
+Asked whether the map should carry language groups and links to activities,
+which is the right question and mostly answers itself once you look at what
+already exists.
+
+**FPCC's First Peoples' Map of B.C. does languages, arts and heritage
+properly** — language families with correct orthography, community
+contribution, and an Indigenous-led Crown corporation behind it. **Native Land
+does territory.** Strong Fire has the standing to do neither, its own design
+brief says to ground the design in the situation rather than the culture, and a
+language layer would flatly contradict the caption where this map declines to
+assert territory.
+
+So the map now sends people to both, by name, in the panel. That is deference
+rather than decoration: someone who arrives wanting language should be sent
+somewhere good, not left with a map that quietly does not have it.
+
+**What nobody else does for this reader is connect a Nation to her money**, and
+there was a promise outstanding on exactly that. `YourNation.svelte` has said
+since it shipped that *the band office is the place to ask* about
+post-secondary funding — and then declined to say where the band office is. The
+education-funding page sends people to their Nation; the entitlement work sends
+people to their Nation; and the site could not name the door.
+
+It can. The federal registry publishes address, phone, fax and website for
+every band, keyed by the band number this site already holds for all 201.
+**Linked rather than copied**: two hundred and one phone numbers held here
+would rot silently, and this is a repo that fails its own build over a stale
+figure. A deep link to the registry is current by construction and costs
+nothing to keep.
+
+*Not built, deliberately:* a language layer, a territory layer, or cultural
+activities. Every hour approximating FPCC is an hour not spent on the only
+thing this site does that nothing else does.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool
