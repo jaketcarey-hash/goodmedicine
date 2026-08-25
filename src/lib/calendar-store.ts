@@ -5,6 +5,7 @@
 
 import { STORAGE_KEYS } from './storage-keys';
 import { addDays } from './dates';
+import { householdOverlay, householdAnsweredFields } from './household-store';
 
 export interface CalendarProfile {
   treatyArea: string | null;
@@ -95,7 +96,28 @@ export const MONTH_NAMES = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ] as const;
 
+/**
+ * The profile, with the household's answers laid over it.
+ *
+ * Three of these fields — children, Elder, province — are also asked, properly,
+ * by the household in `household-store.ts`. They used to be held in both places
+ * and could disagree: a flag ticked here on one day against a real answer given
+ * there on another. The household wins, because it was asked as a question
+ * rather than inferred as a checkbox, and because it is the only one of the two
+ * that can say how many children and how old.
+ *
+ * The overlay happens on read, at this one function, so every existing caller
+ * gets the resolution without knowing a household exists. What is written back
+ * to this key is never overlaid — see `saveProfile`.
+ */
 export function getProfile(): CalendarProfile {
+  if (typeof window === 'undefined') return { ...DEFAULT_PROFILE };
+  return { ...storedProfile(), ...(householdOverlay() ?? {}) };
+}
+
+/** The profile exactly as she left it, with nothing laid over it. The setup
+ *  form edits this; anything showing her own answers back to her needs it. */
+export function storedProfile(): CalendarProfile {
   if (typeof window === 'undefined') return { ...DEFAULT_PROFILE };
   try {
     const raw = localStorage.getItem(PROFILE_KEY);
@@ -107,12 +129,38 @@ export function getProfile(): CalendarProfile {
   }
 }
 
+/** True when a household is answering for some of the profile's fields. The
+ *  setup form uses this to stop asking rather than ask and be overruled. */
+export function householdAnswersFor(): readonly string[] {
+  return householdAnsweredFields();
+}
+
 export function saveProfile(profile: CalendarProfile): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
 }
 
+/**
+ * Does the site know anything about this person's situation?
+ *
+ * Deliberately true when a household exists but the calendar was never opened.
+ * Someone who built a household on `/money/unclaimed` has told the site she has
+ * two children; the forecast asking "is there a profile?" and being told no
+ * would leave it blind to a CCB payment it has the dates for. The question
+ * these callers are really asking is whether `getProfile()` will return
+ * anything worth reading, and with a household it will.
+ *
+ * For "has she completed calendar setup", which is a different question with a
+ * different answer, use `hasStoredProfile()`.
+ */
 export function hasProfile(): boolean {
+  if (typeof window === 'undefined') return false;
+  return hasStoredProfile() || householdOverlay() !== null;
+}
+
+/** Has she filled in the calendar's own setup form? The setup gate's question,
+ *  and nobody else's — a household is not a calendar profile. */
+export function hasStoredProfile(): boolean {
   if (typeof window === 'undefined') return false;
   return localStorage.getItem(PROFILE_KEY) !== null;
 }

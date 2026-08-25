@@ -12,9 +12,9 @@
    */
   import { onMount } from 'svelte';
   import {
-    getHousehold, saveHousehold, makeChild, draftFromWhatIsKnown,
-    childrenLikely, MAX_RETRO_YEARS, type Household,
+    getHousehold, saveHousehold, makeChild, MAX_RETRO_YEARS, type Household,
   } from '../lib/household-store';
+  import { draftFromWhatIsKnown, childrenLikely } from '../lib/household-draft';
   import { buildEntitlements, type EntitlementPicture } from '../lib/entitlements';
   import { STORAGE_KEYS } from '../lib/storage-keys';
   import { getMoneyPicture } from '../lib/money-picture';

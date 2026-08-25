@@ -1586,6 +1586,77 @@ thing this site does that nothing else does.
 
 ---
 
+## 2026-08-25 — One household, and the two questions `hasProfile` was answering
+
+Three places held who-lives-here. The calendar profile had `hasChildren` and
+`isElder` as checkboxes; the Benefits Finder had `hasChildren` and `hasStatus`
+as saved multiple-choice strings; `household-store.ts` had a real household with
+children and birth years. `household-store.ts`'s own docblock had said since it
+was written that the first two *can already disagree with each other*. They now
+do not.
+
+**The household wins, and it wins on read.** `getProfile()` lays the household's
+answers over whatever the calendar key holds, at one function, so every existing
+caller — the forecast, the money picture, the calendar's own event filter — got
+the resolution without being changed. The household wins because it was asked as
+a question rather than inferred as a checkbox, and because it is the only one of
+the two that can say how many children and how old.
+
+**Neither key was deleted.** Orphaning data people already have is the failure
+`storage-keys.ts` exists to prevent, and a device with no household behaves
+exactly as it did before.
+
+*The dependency had to be inverted first.* `household-store.ts` imported
+`calendar-store.ts` in order to seed a draft from it, so having the calendar read
+the household would have been a cycle. A canonical source that reaches upward
+into the things that read it cannot be read by them — so the store is now a leaf
+that imports nothing but its own key, and the sideways reads (`draftFromWhatIsKnown`,
+`childrenLikely`) moved to `household-draft.ts`.
+
+**`hasProfile()` was answering two questions and getting one of them wrong.**
+Someone who built a household on `/money/unclaimed` and never opened the calendar
+read as having no profile at all, so `likelySeries()` got null and the forecast
+was blind to a Canada Child Benefit payment it had the published dates for. It
+now means *does the site know anything about this person's situation* — true with
+a household alone. The setup gate's different question, *has she filled in the
+calendar's form*, is `hasStoredProfile()`. Verified in the browser: a
+household-only device now names CCB and CGEB on `/money/plan`, and did not
+before.
+
+**A field that snaps back is worse than the disagreement.** Because the overlay
+applies on read, a checkbox she ticked for `hasChildren` would be silently
+overruled the next time anything read the profile. So the calendar form no longer
+*offers* the fields the household owns — it states them and links to where they
+can be changed. `storedProfile()` is what the form edits and `saveProfile` writes,
+so the overlay can never be laundered into her own answers. Verified: after
+editing and saving the calendar form, the stored profile still held her original
+`hasChildren: false` and `province: Ontario` while `getProfile()` returned the
+household's answers.
+
+**Unanswered is not "answered none".** A household with no province stated must
+not blank a province the calendar holds, so the overlay omits province entirely
+rather than carrying its null — and `householdAnsweredFields()` drops it, which
+lets the calendar form go on asking.
+
+*The Benefits Finder seeds and does not write back.* It pre-selects status and
+whether there are children from the household, says so in the question
+— "Filled in from your household — change it here if it is wrong, and it changes
+only this answer" — and saves nothing to the household. Filing is deliberately
+not seeded: the household counts *years unfiled*, and turning "three years
+unfiled" into an answer to "have you filed recently" is a judgement this form
+should not make on her behalf. Six multiple-choice questions should not become a
+second author on a record that has one.
+
+A sixth test suite, `household`, covers the disagreement resolving in both
+directions, the province that must not be blanked, the two meanings of
+`hasProfile`, and that saving the calendar form cannot launder the overlay.
+
+*Still open:* whether the calendar profile is eventually absorbed entirely, or
+stays as the calendar's own view of a shared household. This entry stops the
+disagreement; it does not settle that.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

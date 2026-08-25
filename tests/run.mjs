@@ -27,6 +27,8 @@ const SUITES = [
     entry: ['entitlements', 'household-store'] },
   { name: 'money-picture', test: 'money-picture.test.mjs', bundle: 'picture.mjs',
     entry: ['money-picture'] },
+  { name: 'household', test: 'household.test.mjs', bundle: 'house.mjs',
+    entry: ['calendar-store', 'household-store', 'household-draft'] },
 ];
 
 mkdirSync(tmp, { recursive: true });

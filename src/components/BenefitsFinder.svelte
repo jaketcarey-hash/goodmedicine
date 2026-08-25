@@ -4,6 +4,7 @@
   // Benefit amounts come from the shared registry so this tool and the
   // articles that quote the same programmes cannot drift apart.
   import { money, moneyExact } from '../lib/figures';
+  import { getHousehold } from '../lib/household-store';
 
   // ── State ──────────────────────────────────────────────────
   let step = $state(0);
@@ -17,6 +18,16 @@
   let saved = $state(false);
   // ISO timestamp of a restored previous run, null when starting clean.
   let restoredFrom = $state<string | null>(null);
+  /**
+   * Answers filled in from the household rather than asked again.
+   *
+   * Seeded, never assumed: these are pre-selected and she can change any of
+   * them, and changing one here changes only this run. The household stays the
+   * canonical answer — this form is not where who-lives-here is decided, and
+   * writing back from six multiple-choice questions would put a second author
+   * on a record that has one.
+   */
+  let seededFromHousehold = $state<string[]>([]);
 
   const totalSteps = 6;
 
@@ -129,6 +140,7 @@
     expanded = new Set();
     saved = false;
     restoredFrom = null;
+    seededFromHousehold = [];
   }
 
   // ── Results logic ──────────────────────────────────────────
@@ -362,7 +374,10 @@
     if (typeof window === 'undefined') return;
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.BENEFITS_RESULTS);
-      if (!stored) return;
+      if (!stored) {
+        seedFromHousehold();
+        return;
+      }
       const { timestamp, answers } = JSON.parse(stored);
       if (!answers?.hasStatus) return;
       hasStatus = answers.hasStatus;
@@ -378,6 +393,35 @@
       // unreadable save — start clean
     }
   });
+
+  /**
+   * Fill in what the household already answered, and say so.
+   *
+   * Only the two questions that map exactly. The household knows how many
+   * children and how old; "do you have children" is a strictly smaller
+   * question and answering it from a real list is safe. Filing is not here on
+   * purpose — the household counts *years unfiled*, and turning "three years
+   * unfiled" into an answer to "have you filed recently" is a judgement this
+   * form should not make on her behalf.
+   */
+  /** Question index → the household field that can answer it. Indexes match
+   *  the `questions` array and the getAnswer/setAnswer switch above. */
+  const SEEDABLE: Record<number, string> = { 0: 'hasStatus', 3: 'hasChildren' };
+
+  function seedFromHousehold() {
+    const h = getHousehold();
+    if (!h) return;
+    const seeded: string[] = [];
+    if (h.hasStatus !== null) {
+      hasStatus = h.hasStatus ? 'yes' : 'no';
+      seeded.push('hasStatus');
+    }
+    if (h.children.length > 0) {
+      hasChildren = 'yes';
+      seeded.push('hasChildren');
+    }
+    seededFromHousehold = seeded;
+  }
 
   // ── Derived ────────────────────────────────────────────────
   let showingResults = $derived(step === totalSteps);
@@ -405,7 +449,16 @@
           <div in:fly={{ y: 20, duration: 300 }}>
             <p class="text-sm text-text-muted mb-1">{q.step}</p>
             <h3 class="text-xl font-semibold mb-1">{q.title}</h3>
-            <p class="text-sm text-text-secondary mb-6">{q.subtitle}</p>
+            <p class="text-sm text-text-secondary mb-2">{q.subtitle}</p>
+
+            {#if seededFromHousehold.includes(SEEDABLE[i])}
+              <p class="apparatus text-faint mb-4 m-0">
+                Filled in from your household — change it here if it is wrong,
+                and it changes only this answer.
+              </p>
+            {:else}
+              <div class="mb-6"></div>
+            {/if}
 
             <div class="flex flex-col gap-2.5">
               {#each q.options as opt}

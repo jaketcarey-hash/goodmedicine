@@ -4,8 +4,10 @@
     type CalendarProfile,
     type CustomReminder,
     getProfile,
+    storedProfile,
     saveProfile,
-    hasProfile,
+    hasStoredProfile,
+    householdAnswersFor,
     getEventsForMonth,
     TREATY_AREAS,
     PROVINCES,
@@ -19,6 +21,18 @@
   let showSetup = $state(false);
   let profile = $state<CalendarProfile>(getProfile());
 
+  /**
+   * Fields the household in `/money/unclaimed` answers for.
+   *
+   * The form must not offer to edit these. `getProfile()` lays the household
+   * over whatever is stored here, so a checkbox she ticked would be silently
+   * overruled on the next read — a field that snaps back is worse than the
+   * disagreement this milestone removed. Where the household has spoken, the
+   * form states the answer and points at the place it can be changed.
+   */
+  let answeredElsewhere = $state<readonly string[]>([]);
+  const ownedBy = (key: string) => answeredElsewhere.includes(key);
+
   // Month navigation: 0-based month index, year
   let viewMonth = $state(new Date().getMonth());
   let viewYear = $state(new Date().getFullYear());
@@ -29,8 +43,10 @@
   let newReminderDay = $state<string>('');
   let showReminderForm = $state(false);
 
-  // Setup form working copy
-  let draft = $state<CalendarProfile>(getProfile());
+  // Setup form working copy — her own answers, unoverlaid. Editing the overlay
+  // would write the household's answers back into this key as if she had given
+  // them here.
+  let draft = $state<CalendarProfile>(storedProfile());
 
   // ── Derived ────────────────────────────────────────────────
 
@@ -42,8 +58,9 @@
   // ── Lifecycle ──────────────────────────────────────────────
 
   $effect(() => {
-    const stored = hasProfile();
+    const stored = hasStoredProfile();
     profileReady = stored;
+    answeredElsewhere = householdAnswersFor();
     if (!stored) {
       showSetup = true;
     }
@@ -66,14 +83,18 @@
   // ── Handlers ───────────────────────────────────────────────
 
   function saveSetup() {
-    profile = { ...draft };
-    saveProfile(profile);
+    saveProfile({ ...draft });
+    // Read back through the overlay: what she just saved is her half, and the
+    // household still answers for its own.
+    profile = getProfile();
     profileReady = true;
     showSetup = false;
   }
 
   function openSetup() {
-    draft = { ...profile, bandDistributionMonths: [...profile.bandDistributionMonths], customReminders: [...profile.customReminders] };
+    const mine = storedProfile();
+    draft = { ...mine, bandDistributionMonths: [...mine.bandDistributionMonths], customReminders: [...mine.customReminders] };
+    answeredElsewhere = householdAnswersFor();
     showSetup = true;
   }
 
@@ -166,41 +187,64 @@
         </label>
 
         <!-- Province -->
-        <label class="block mb-4">
-          <span class="text-sm font-medium text-text-primary">Province or territory</span>
-          <select
-            bind:value={draft.province}
-            class="mt-1.5 w-full rounded-sm border border-rule bg-surface-warm px-4 py-3 text-sm
-              focus:border-ink focus:outline-none transition-colors"
-          >
-            <option value={null}>Select...</option>
-            {#each PROVINCES as prov}
-              <option value={prov}>{prov}</option>
-            {/each}
-          </select>
-        </label>
+        {#if ownedBy('province')}
+          <div class="block mb-4">
+            <span class="text-sm font-medium text-text-primary">Province or territory</span>
+            <p class="mt-1.5 text-sm text-ink m-0">{profile.province}</p>
+            <p class="apparatus text-faint mt-1 m-0">
+              From your household ·
+              <a href="/money/unclaimed" class="underline decoration-rule underline-offset-2 hover:decoration-ink">change it there</a>
+            </p>
+          </div>
+        {:else}
+          <label class="block mb-4">
+            <span class="text-sm font-medium text-text-primary">Province or territory</span>
+            <select
+              bind:value={draft.province}
+              class="mt-1.5 w-full rounded-sm border border-rule bg-surface-warm px-4 py-3 text-sm
+                focus:border-ink focus:outline-none transition-colors"
+            >
+              <option value={null}>Select...</option>
+              {#each PROVINCES as prov}
+                <option value={prov}>{prov}</option>
+              {/each}
+            </select>
+          </label>
+        {/if}
 
         <!-- Checkboxes -->
         <fieldset class="mb-5">
           <legend class="text-sm font-medium text-text-primary mb-2">About you</legend>
           <div class="space-y-2.5">
             {#each [
-              { key: 'hasChildren', label: 'I have children under 18' },
-              { key: 'isStudent', label: 'I am a student' },
-              { key: 'isEmployed', label: 'I am employed' },
-              { key: 'isElder', label: 'I am an Elder (65+)' },
-              { key: 'incomeExempt', label: 'My income is Section 87 exempt' },
+              { key: 'hasChildren', label: 'I have children under 18', stated: 'Your household lists children' },
+              { key: 'isStudent', label: 'I am a student', stated: '' },
+              { key: 'isEmployed', label: 'I am employed', stated: '' },
+              { key: 'isElder', label: 'I am an Elder (65+)', stated: 'Your household lists an Elder' },
+              { key: 'incomeExempt', label: 'My income is Section 87 exempt', stated: '' },
             ] as item}
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  bind:checked={draft[item.key as keyof CalendarProfile] as boolean}
-                  class="w-5 h-5 rounded border-rule text-ink"
-                />
-                <span class="text-sm">{item.label}</span>
-              </label>
+              {#if ownedBy(item.key)}
+                <p class="text-sm text-quiet m-0 flex items-baseline gap-3">
+                  <span class="text-ink">{profile[item.key as keyof CalendarProfile] ? item.stated : `Your household lists no ${item.key === 'hasChildren' ? 'children' : 'Elder'}`}</span>
+                </p>
+              {:else}
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    bind:checked={draft[item.key as keyof CalendarProfile] as boolean}
+                    class="w-5 h-5 rounded border-rule text-ink"
+                  />
+                  <span class="text-sm">{item.label}</span>
+                </label>
+              {/if}
             {/each}
           </div>
+          {#if answeredElsewhere.length > 0}
+            <p class="apparatus text-faint mt-3 m-0">
+              Some of these come from your household rather than being asked twice ·
+              <a href="/money/unclaimed" class="underline decoration-rule underline-offset-2 hover:decoration-ink">change them there</a>
+            </p>
+          {/if}
         </fieldset>
 
         <!-- Band distribution months -->
