@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "title": "The Nations This Morning",
+    "date": "2026-08-25",
+    "dateLong": "Tuesday, August 25, 2026",
+    "timezone": "America/Vancouver",
+    "headline": "Monday did not close an Indigenous ownership transaction; it exposed where trade, procurement, housing and governance systems now have to do real work.",
+    "readTime": "About five minutes",
+    "status": "verified_public_sources"
+  },
+  "throughLine": "The Monday public record did not produce a verified Indigenous equity closing, loan guarantee, final project approval or completed major transaction. The useful signal was exposure: U.S. tariffs moved from macro headline to Indigenous exporter risk, Ottawa used shipbuilding procurement to frame Arctic trade-route capacity, the Federal Housing Advocate and Assembly of First Nations converted wildfire displacement into a housing, insurance and infrastructure-finance file, and B.C.'s Métis governance transition appears to have a named result while the public election page still lags.",
+  "oneThing": {
+    "headline": "Tariffs are now an Indigenous small-business liquidity file",
+    "status": "confirmed",
+    "sourceIds": [
+      1,
+      2,
+      3
+    ],
+    "paragraphs": [
+      "APTN reported on August 24 that the Canadian Council for Indigenous Business expects small Indigenous-owned businesses to be hit hard by the new U.S. tariff layer, especially members that export into the U.S. or rely on online American customers. CCIB president Tabatha Bull told APTN that survival will depend partly on support that arrives quickly enough for small and medium-sized firms.",
+      "The exposure is concrete. CCIB's tariff information page says the new Section 338 layer applies an additional 50% duty to roughly $20 billion of Canadian products, including forestry and lumber, selected wood products, honey, textiles, hockey equipment, alcohol and dairy-adjacent goods; it also warns that CUSMA origin does not itself shield a covered product from the extra duty. Energy products, potash, fish, critical minerals and goods already under Section 232 are listed as carve-outs, but CCIB tells exporters to verify exact HTS classifications rather than rely on product names.",
+      "Ottawa's August 24 finance readout says Canada plans dollar-for-dollar counter-tariffs on September 8 and that a major support package will be announced to help businesses maintain liquidity, support workers and build resilience. That makes the next few weeks less about political posture and more about whether Indigenous exporters can map codes, renegotiate landed costs, access working capital and keep customers while the trade channel reprices."
+    ],
+    "whyItMatters": "Many Indigenous businesses are small, regional and relationship-based. A sudden duty stack can turn a good export customer into a cash-flow problem before a formal loss shows up in annual numbers.",
+    "unknowns": [
+      "The public record does not yet show the Indigenous-business share of the federal support package, how CCIB support will be funded, which firms are most exposed by product code, or whether exemptions and tariff-relief processes will be usable by small exporters."
+    ],
+    "nextCatalyst": "Watch Finance Canada, CCIB, EDC, regional development agencies and customs guidance before Canada's September 8 counter-tariffs take effect."
+  },
+  "developments": [
+    {
+      "section": "Capital & Ownership",
+      "headline": "Ottawa's icebreaker award is an Arctic trade-capacity file, but not an Indigenous ownership file",
+      "status": "confirmed",
+      "sourceIds": [
+        4,
+        5,
+        6
+      ],
+      "whatHappened": "Prime Minister Mark Carney announced on August 24 that Canada will invest more than $11 billion to build six new Canadian Coast Guard program icebreakers with Chantier Davie in Lévis, Quebec. Public Services and Procurement Canada lists the contract value at $11.3 billion before taxes, says the vessels will replace heavy and medium icebreakers, support northern resupply, vessel traffic, search and rescue, environmental response and Arctic sovereignty, and says the next year is design work. Nunatsiaq News reported the same day that construction is expected to start in 2027, with the first ship expected within five years and the full fleet targeted for service by 2038.",
+      "whyItMatters": "This is public procurement tied to Arctic trade routes, northern resupply and maritime access, not an announced Inuit or First Nations equity transaction. The economic question for Inuit Nunangat and northern communities is whether the contract's Canadian-supplier language becomes visible procurement, training, service and infrastructure opportunity in the North, or remains concentrated at the southern shipyard and national-security layer.",
+      "whatRemainsUnknown": "No public source reviewed for this edition identifies an Indigenous procurement target, Inuit or First Nations partnership, northern training stream, community-benefit agreement or route-specific resupply plan attached to the award.",
+      "nextCatalyst": "Watch PSPC design milestones, Coast Guard fleet planning, Davie supplier calls, Inuit organization responses and any northern-procurement or workforce commitments as the contract moves from award to design."
+    },
+    {
+      "section": "Policy, Rights & Regulation",
+      "headline": "The wildfire report turns displacement into an infrastructure and insurance bill",
+      "status": "confirmed",
+      "sourceIds": [
+        7,
+        8
+      ],
+      "whatHappened": "The Office of the Federal Housing Advocate and the Assembly of First Nations released Maintaining the right to housing in a changing climate on August 24. The report says the 2025 wildfire season directly affected 134 First Nations, evacuated at least 88 communities and displaced more than 40,000 First Nations citizens. It links wildfire displacement to housing deficits, emergency governance gaps, fire-safety capacity and insurance systems that can leave First Nations paying high premiums for limited protection.",
+      "whyItMatters": "The report moves wildfire response out of the annual emergency-cost lane and into capital planning. Its recommendations include integrated tripartite emergency governance, a First Nations-led fire safety and stewardship institution, maximum investment to close the $349.2 billion First Nations infrastructure gap, $30 billion for climate adaptation and work toward a First Nations insurance captive.",
+      "whatRemainsUnknown": "The report is a recommendation document, not an appropriation. It does not itself allocate capital, create the fire institution, settle the insurance design or bind provinces and Canada to a tripartite governance model.",
+      "nextCatalyst": "Watch AFN, Indigenous Services Canada, Public Safety Canada, provincial emergency ministries and budget documents for whether the recommendations become funded emergency-management and infrastructure commitments."
+    },
+    {
+      "section": "Closer to Home -- British Columbia",
+      "headline": "MNBC says Anthony Wingham has been declared president-elect, while the public count page still lags",
+      "status": "reported",
+      "sourceIds": [
+        9,
+        10
+      ],
+      "whatHappened": "Métis Nation British Columbia's official LinkedIn feed said on August 24 that Anthony Wingham had been declared the elected candidate for MNBC president with 1,296 votes, and that more would follow after he is sworn in. The OneFeather public event page for the 2026 President By-Election still said, when checked for this edition, that the results had not been publicly released and that readers should contact the Nation for additional information.",
+      "whyItMatters": "This resolves part of a governance file carried from the weekend, but not all of it. MNBC administers programs, services and representation for Métis Citizens in B.C.; leadership certainty matters for housing, skills training, rights-holder engagement and the organization's own procurement and audit files.",
+      "whatRemainsUnknown": "The public OneFeather result page had not yet displayed the certified count declaration in the accessible record reviewed for this edition, and MNBC had not yet published a fuller post-swearing-in statement on its main election site.",
+      "nextCatalyst": "Watch MNBC, OneFeather and the swearing-in notice for the certified count declaration, transition timing and first governance priorities."
+    }
+  ],
+  "whatHappensNext": [
+    "Tariffs: the immediate test is whether federal liquidity support and CCIB navigation reach Indigenous exporters before Canada's September 8 counter-tariffs begin.",
+    "Icebreakers: the award is now in design; the Indigenous economic signal will be any northern procurement, training, supplier or community-benefit structure attached to the fleet.",
+    "Wildfire and housing: the report's recommendations need fiscal expression, especially emergency governance, insurance design and the capital gap.",
+    "B.C. Métis governance: MNBC's social post names a president-elect; the public record still needs the certified count and post-swearing-in priorities."
+  ],
+  "stillWatching": [
+    "MNBC certified result: carry until the OneFeather public result page or MNBC election site posts the count declaration and swearing-in details.",
+    "Lac Simon / Novador remains an active consent and court-risk file; the August 24 digest surfaced a fresh APTN item, but no new readable court decision or regulator order was located in-run.",
+    "KSM substantial-start reconsideration, Gitxaała / Declaration Act, Build Communities Strong Fund selection, Tilbury LNG, Crawford nickel, LNG Canada Phase 2 / MNT, Ksi Lisims LNG, Roberts Bank Terminal 2, Cowichan Tribes title appeal, Baffinland / Mary River and the B.C. First Nations Equity Financing Program remain unresolved from prior editions."
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "APTN News -- Small Indigenous businesses to be hit hard by U.S. tariffs",
+      "url": "https://www.aptnnews.ca/national-news/small-indigenous-businesses-to-be-hit-hard-by-u-s-tariffs-says-national-council/",
+      "date": "2026-08-24",
+      "type": "Indigenous-led reporting"
+    },
+    {
+      "id": 2,
+      "label": "Canadian Council for Indigenous Business -- Tariff Information for Indigenous Businesses",
+      "url": "https://www.ccib.ca/ccib-tariff-info/",
+      "date": "accessed 2026-08-25",
+      "type": "Indigenous business organization resource"
+    },
+    {
+      "id": 3,
+      "label": "Department of Finance Canada -- response to latest U.S. tariffs",
+      "url": "https://www.canada.ca/en/department-finance/news/2026/08/minister-of-finance-meets-with-provincial-and-territorial-counterparts-on-canadas-response-to-latest-us-tariffs.html",
+      "date": "2026-08-24",
+      "type": "Federal government readout"
+    },
+    {
+      "id": 4,
+      "label": "Prime Minister of Canada -- largest shipbuilding contract in Quebec history",
+      "url": "https://www.pm.gc.ca/en/news/news-releases/2026/08/24/prime-minister-carney-announces-largest-shipbuilding-contract-quebecs",
+      "date": "2026-08-24",
+      "type": "Federal government release"
+    },
+    {
+      "id": 5,
+      "label": "Public Services and Procurement Canada -- Program icebreakers",
+      "url": "https://www.canada.ca/en/public-services-procurement/services/acquisitions/defence-marine/national-shipbuilding-strategy/projects/large-vessels/program-icebreakers.html",
+      "date": "2026-08-24",
+      "type": "Federal procurement project page"
+    },
+    {
+      "id": 6,
+      "label": "Nunatsiaq News -- Carney announces construction of new icebreakers",
+      "url": "https://nunatsiaq.com/stories/article/carney-announces-construction-of-new-icebreakers-will-begin-next-year/",
+      "date": "2026-08-24",
+      "type": "Independent northern reporting"
+    },
+    {
+      "id": 7,
+      "label": "Canadian Human Rights Commission -- Maintaining the Right to Housing in a Changing Climate",
+      "url": "https://www.chrc-ccdp.gc.ca/resources/publications/maintaining-right-housing-changing-climate",
+      "date": "2026-08-24",
+      "type": "Federal Housing Advocate and AFN report"
+    },
+    {
+      "id": 8,
+      "label": "Office of the Federal Housing Advocate -- new report calls for improved emergency responses",
+      "url": "https://www.newswire.ca/news-releases/new-report-calls-for-improved-emergency-responses-for-first-nations-829738671.html",
+      "date": "2026-08-24",
+      "type": "Report release"
+    },
+    {
+      "id": 9,
+      "label": "Métis Nation British Columbia -- LinkedIn update on president-elect",
+      "url": "https://ch.linkedin.com/company/m%C3%A9tis-nation-british-columbia",
+      "date": "accessed 2026-08-25",
+      "type": "Official organization social update"
+    },
+    {
+      "id": 10,
+      "label": "OneFeather -- MNBC 2026 President By-Election public event page",
+      "url": "https://www.onefeather.ca/nations/mnbc/elections/2026-by-election",
+      "date": "accessed 2026-08-25",
+      "type": "Election administrator public page"
+    }
+  ]
+}
