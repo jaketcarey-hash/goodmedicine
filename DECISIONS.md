@@ -1452,6 +1452,67 @@ yet" — which was the obvious next depth and cost one line.
 
 ---
 
+## 2026-08-25 — The forecast reaches the rest of the site
+
+The eight-week walk read the budget and the calendar profile and nothing read it
+back. `gm_forecast_balance` was touched only by the component that wrote it, so
+the site could name the week the money runs out and could say so on exactly one
+page. Every other surface — the plan document, the Life Simulator, `/money/unclaimed`
+— went through `money-picture.ts`, and the picture had never heard of the forecast.
+
+`money-picture.ts` now walks it. **The forecast stays derived and is still never
+stored**, which is the only reason it can appear on a module whose entire
+contract is that it reads and never writes. `buildForecast()` was already a pure
+function taking injectable options, so nothing had to be restructured to get
+here; the one persisted datum is still the starting balance, which is a fact she
+entered about money that exists.
+
+**`firstTightWeek` alone is ambiguous, so it never travels alone.** Null means
+either "no week goes short" or "there is no balance to judge", and those are
+opposite things to tell someone. `hasBalance` sits beside it and every surface
+must read both. Telling a person they are fine when the truth is that we cannot
+tell would be the worst failure available here, and it is one null away at all
+times.
+
+Three suggestions now fire on the walk. **The tight week leads the whole list**,
+above the month that does not balance: a negative month says the shape is wrong,
+a tight week says which Monday it arrives, and a date outranks an average. Where
+the balance behind that claim is more than a week old, the step says so inside
+the same sentence that makes the claim rather than in a footnote — *"that week
+closes about $1,300 below zero — from a balance you entered 20 days ago, so it
+is worth updating first."* The claim and its qualification are one breath.
+
+The other two are the honest halves of what the walk cannot do. A benefit series
+with published dates and no amount entered is money the forecast is blind to,
+and the fix is a number only she has — so the step names the series and the next
+payment date and puts **no dollar figure on it at all**. And with no starting
+balance the weeks still show what moves, so the step asks for the number instead
+of quietly calling nothing tight.
+
+*Caught by looking at the page rather than the tests.* The first version of the
+"Weeks ahead" row on `/money/plan` said `Aug 31 · closes $1,300 short` directly
+above an embedded forecast strip that said the same thing in a sentence and drew
+it in a chart. Three statements of one fact inside 200 pixels. The row now
+carries what the compact strip has no room for — which month's budget the walk
+was built from, whether the record corrected it, and whether the balance has
+gone stale — which is also what that chapter promises: every line says where it
+comes from.
+
+*Also caught in the browser:* with two unentered series the step reported the
+next payment date of the first one listed, and the list order is the order the
+series were suggested in, which has nothing to do with which pays out next. It
+takes the soonest across all of them now.
+
+`STALE_AFTER_DAYS` moved from the forecast component into `forecast.ts`. Two
+surfaces judging a balance and disagreeing about when it stops being current is
+drift nobody notices until one of them calls a week tight that the other does
+not — the same reasoning that put `indexable` in `site.json`.
+
+A fifth test suite, `money-picture`, covers the ambiguity pair, the staleness
+threshold, and the rule that an empty site is told nothing about forecasts.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

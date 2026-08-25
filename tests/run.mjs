@@ -25,6 +25,8 @@ const SUITES = [
     entry: ['csv'] },
   { name: 'entitlements', test: 'entitlements.test.mjs', bundle: 'ent.mjs',
     entry: ['entitlements', 'household-store'] },
+  { name: 'money-picture', test: 'money-picture.test.mjs', bundle: 'picture.mjs',
+    entry: ['money-picture'] },
 ];
 
 mkdirSync(tmp, { recursive: true });

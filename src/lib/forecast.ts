@@ -55,12 +55,50 @@ import {
   type ExpenseItem,
 } from './budget-store';
 import { getProfile, hasProfile, type CalendarProfile } from './calendar-store';
+import { STORAGE_KEYS } from './storage-keys';
 import benefitDates from '../data/benefit-dates/2026.json';
 
 /** Weeks shown. Eight is two pay cycles — far enough that a tight week can
  *  still be acted on, near enough that the dates are real rather than
  *  projected. */
 export const FORECAST_WEEKS = 8;
+
+/** A balance goes stale fast. Past this it is still used, and flagged.
+ *
+ *  This lives here rather than in the component because the forecast page is
+ *  no longer the only surface that judges a balance — the money picture reads
+ *  the same stored number, and two surfaces disagreeing about when a balance
+ *  stops being current is the kind of drift nobody notices until one of them
+ *  calls a week tight that the other does not. */
+export const STALE_AFTER_DAYS = 7;
+
+/** What she said was in the account, and when she said it. */
+export interface StartBalance {
+  amount: number;
+  /** ISO date. A balance is a claim about a moment, so the moment is stored. */
+  recordedOn: string;
+}
+
+/** The saved starting balance, or null. Read-only — the forecast page owns
+ *  the write, because it owns the field she types into. */
+export function getStartBalance(): StartBalance | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.FORECAST_BALANCE);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (typeof parsed?.amount !== 'number' || !parsed?.recordedOn) return null;
+    return { amount: parsed.amount, recordedOn: parsed.recordedOn };
+  } catch {
+    return null;
+  }
+}
+
+/** Whole days since a balance was entered. Null for no balance. */
+export function balanceAgeDays(recordedOn: string | null, today: Date = new Date()): number | null {
+  if (!recordedOn) return null;
+  return Math.floor((today.getTime() - fromISO(recordedOn).getTime()) / 86_400_000);
+}
 
 /** Below this share of difference, a recorded average is not worth
  *  overriding the plan with — it is noise, and the correction note would

@@ -23,7 +23,15 @@
    *   JavaScript at all.
    */
   import { onMount } from 'svelte';
-  import { buildForecast, FORECAST_WEEKS, type Forecast, type ForecastWeek } from '../lib/forecast';
+  import {
+    buildForecast,
+    getStartBalance,
+    balanceAgeDays as ageInDays,
+    FORECAST_WEEKS,
+    STALE_AFTER_DAYS,
+    type Forecast,
+    type ForecastWeek,
+  } from '../lib/forecast';
   import { STORAGE_KEYS } from '../lib/storage-keys';
   import { fromISO, longLabel, toISO } from '../lib/dates';
 
@@ -36,16 +44,13 @@
   }
   let { compact = false }: Props = $props();
 
-  /** A balance goes stale fast. Past this, it is still used but flagged. */
-  const STALE_AFTER_DAYS = 7;
-
   let forecast = $state<Forecast | null>(null);
   let balanceInput = $state('');
   let balanceRecordedOn = $state<string | null>(null);
   let ready = $state(false);
 
   onMount(() => {
-    const saved = readBalance();
+    const saved = getStartBalance();
     if (saved) {
       balanceInput = String(saved.amount);
       balanceRecordedOn = saved.recordedOn;
@@ -53,18 +58,6 @@
     rebuild();
     ready = true;
   });
-
-  function readBalance(): { amount: number; recordedOn: string } | null {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEYS.FORECAST_BALANCE);
-      if (!raw) return null;
-      const parsed = JSON.parse(raw);
-      if (typeof parsed?.amount !== 'number' || !parsed?.recordedOn) return null;
-      return parsed;
-    } catch {
-      return null;
-    }
-  }
 
   function rebuild() {
     const amount = balanceInput.trim() === '' ? null : Number(balanceInput);
@@ -88,11 +81,7 @@
     rebuild();
   }
 
-  let balanceAgeDays = $derived(
-    balanceRecordedOn
-      ? Math.floor((Date.now() - fromISO(balanceRecordedOn).getTime()) / 86_400_000)
-      : null,
-  );
+  let balanceAgeDays = $derived(ageInDays(balanceRecordedOn));
   let balanceStale = $derived(balanceAgeDays !== null && balanceAgeDays > STALE_AFTER_DAYS);
 
   // ---- Strip geometry ----

@@ -38,8 +38,11 @@
       intentions = plan.intentions ?? [];
       hadPlan = true;
     }
-    picture = getMoneyPicture();
-    steps = suggestNextSteps(getMoneyPicture());
+    // One read, two uses. The picture now walks the eight-week forecast, so
+    // building it twice would do that work twice for the same answer.
+    const current = getMoneyPicture();
+    picture = current;
+    steps = suggestNextSteps(current);
     goals = getGoals();
     loaded = true;
   });
@@ -258,6 +261,42 @@
               {/if}
             {:else}
               <span class="text-sm text-faint">Not tracked yet</span>
+            {/if}
+          </dd>
+        </div>
+        <!-- Weeks ahead — the only row here that is computed rather than
+             recalled. Every other line reports something entered; this one
+             walks the budget and the published payment dates forward. It
+             distinguishes "no week goes short" from "no balance to judge",
+             because reading the second as the first is how a page tells
+             someone they are fine when it does not know. -->
+        <div class="py-3 grid grid-cols-[7.5rem_1fr] gap-x-4 items-baseline">
+          <dt class="apparatus-label">Weeks ahead</dt>
+          <dd class="m-0">
+            {#if picture.forecast?.firstTightWeek}
+              <span class="font-mono text-[13px] tabular-nums text-ink">
+                {picture.forecast.firstTightWeek.label}
+              </span>
+              <!-- The amount is deliberately not repeated here. The strip
+                   directly below states it and draws it, and this chapter's
+                   promise is that every line says where it comes from — so
+                   the row carries the provenance the strip has no room for. -->
+              <span class="apparatus text-faint ml-3">
+                {#if picture.forecast.basisMonth}from your {monthName(picture.forecast.basisMonth)} budget{:else}from your entries{/if}{#if picture.forecast.recordInformed}, corrected by what you recorded{/if}
+              </span>
+              {#if picture.forecast.balanceStale}
+                <span class="apparatus text-unsettled ml-3">
+                  balance is {picture.forecast.balanceAgeDays} days old
+                </span>
+              {/if}
+            {:else if picture.forecast?.hasBalance}
+              <span class="text-sm text-verified">No week closes short</span>
+              <span class="apparatus text-faint ml-3">over the next eight</span>
+            {:else if picture.forecast}
+              <span class="text-sm text-unsettled">Needs what is in the account today</span>
+              <a href="/money/forecast" class="apparatus text-ink underline decoration-rule underline-offset-2 hover:decoration-ink ml-3">add it</a>
+            {:else}
+              <span class="text-sm text-faint">Needs a budget to walk forward</span>
             {/if}
           </dd>
         </div>
