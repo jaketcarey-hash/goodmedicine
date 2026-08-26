@@ -27,7 +27,15 @@ root 12.
 
 ---
 
-## THE URGENT ONE — the forecast goes wrong on its own, in six weeks
+## ~~THE URGENT ONE~~ — FIXED 26 August 2026
+
+*Kept for the record. The gate now separates three problems, the runtime reports
+an exhausted series as `schedule-ended` instead of dropping it, and all four
+2026 schedules were verified against canada.ca. See the 26 August entry in
+`DECISIONS.md`. CGEB genuinely has only two payment dates in 2026 — that data
+was correct all along; the handling of running out was not.*
+
+## The original finding — the forecast goes wrong on its own, in six weeks
 
 **`check-benefit-dates.js` fires eight weeks too late by construction.**
 

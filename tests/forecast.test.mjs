@@ -194,5 +194,50 @@ t('actuals are not copied forward with the plan', () => {
   localStorage.clear();
 });
 
+console.log('\n— when the published schedule runs out —');
+
+const cgebBudget = {
+  id: 'b9', month: '2026-09', actuals: [],
+  income: [{ id: 'i1', label: 'CGEB', amount: 679, frequency: 'monthly', category: 'benefits', anchorDate: '2026-09-05' }],
+  expenses: [{ id: 'e1', label: 'Rent', amount: 600, frequency: 'monthly', category: 'housing', anchorDate: '2026-09-01' }],
+};
+
+t('a series with no dates left is reported, not silently dropped', () => {
+  // Past the end of every published 2026 schedule.
+  const f = F.buildForecast({
+    today: new Date(2027, 2, 1), profile: null, startBalance: 500, budget: cgebBudget,
+  });
+  const ended = f.unplaced.filter((u) => u.reason === 'schedule-ended');
+  eq(ended.length, 1, 'it lands in unplaced:');
+  eq(ended[0].label, 'CGEB');
+  ok(ended[0].monthlyAmount > 0, 'and carries what it is worth a month');
+});
+
+t('a quarterly benefit with no payment this window is not a false alarm', () => {
+  // 20 Aug 2026: CGEB's next payment is 5 October, outside the eight weeks
+  // from a mid-August start only if the window ends before it — so pick a
+  // window that genuinely contains none while dates remain in the future.
+  const f = F.buildForecast({
+    today: new Date(2026, 6, 6), profile: null, startBalance: 500, budget: cgebBudget,
+  });
+  const ended = f.unplaced.filter((u) => u.reason === 'schedule-ended');
+  eq(ended.length, 0, 'dates still exist ahead, so nothing has ended:');
+});
+
+t('the balance does not quietly lose an entered benefit', () => {
+  const during = F.buildForecast({
+    today: new Date(2026, 8, 15), profile: null, startBalance: 500, budget: cgebBudget,
+  });
+  const after = F.buildForecast({
+    today: new Date(2027, 2, 1), profile: null, startBalance: 500, budget: cgebBudget,
+  });
+  ok(during.weeks.flatMap((w) => w.events).some((e) => /CGEB/.test(e.label)),
+     'while dates exist the payment is on the strip');
+  // After the schedule ends the money is genuinely not placeable, but the
+  // forecast must now say so rather than let the balance drop in silence.
+  ok(after.unplaced.some((u) => u.reason === 'schedule-ended'),
+     'and once they run out the surface can report it');
+});
+
 console.log(`\n${pass} passed, ${fail} failed\n`);
 process.exit(fail ? 1 : 0);

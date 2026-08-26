@@ -1766,6 +1766,62 @@ does not go there.
 
 ---
 
+## 2026-08-26 — The gate was eight weeks behind the reader
+
+`check-benefit-dates.js` compared each schedule's `reviewBy` against today. The
+forecast walks today plus fifty-six days. So for the whole eight weeks before a
+schedule ran out, the build printed "all schedules current" while the forecast
+was already reading past the end of the data.
+
+**The failure was silent and it ran the wrong way.** A matched benefit series
+with no dates left in the window pushed no events and `continue`d — landing in
+neither `events` nor `unplaced`. It did not degrade; it disappeared, and no
+surface could report that it had. Run against the real engine on 10 November
+with CGEB $679 entered: zero events, nothing in `unplaced`, a closing balance
+$679 too low, and **a tight week invented on 30 November that exists only
+because the site lost her income**. M11 promotes exactly that claim to the top
+of `/money/plan`.
+
+**An exhausted series now goes into `unplaced` with reason `schedule-ended`,**
+and the forecast page says whose gap it is: *"We have run out of published
+payment dates for this one — that is our gap, not yours."*
+
+*The distinction that nearly went wrong:* no payment in these eight weeks is not
+the same as no payment left. CGEB is quarterly, so an eight-week window can
+legitimately contain none of it. Only an empty *future* means the schedule has
+ended; testing only the window would have cried wolf on a perfectly good
+schedule every quarter.
+
+**And the first version of the gate fix was wrong.** It failed the build when
+the last published payment fell inside the horizon — which is true today, and
+would have blocked every deploy until December over data nobody can supply.
+Checking canada.ca in a browser: CGEB has exactly two payment dates in 2026,
+3 July and 5 October, because it replaced the GST/HST credit in July and pays
+quarterly. That is the complete and correct schedule. The 2027 calendar is not
+published; the page carries only 2025 and 2026.
+
+So the gate now separates three different problems:
+
+1. `reviewBy` has passed → **fail**. Neglect, and fixable.
+2. The last payment is behind *today* → **fail**. Exhausted right now; readers
+   are already affected.
+3. The last payment falls inside the forecast's horizon → **warn, do not
+   block**. Often not fixable yet, and a gate people have to bypass stops being
+   a gate.
+
+Level 3 is safe to warn on *only* because the runtime now reports the gap. The
+runtime tells the reader; the gate tells us.
+
+`FORECAST_WEEKS` is read out of `forecast.ts` by regex rather than repeated in
+the script, and the script exits if it cannot find it. Two files disagreeing
+about how far ahead the forecast looks is the exact failure this gate exists to
+catch, so it must not be introducible by editing the other file.
+
+*Verified while there:* all four 2026 schedules — CCB, CPP, OAS/GIS, CGEB —
+match canada.ca date for date.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

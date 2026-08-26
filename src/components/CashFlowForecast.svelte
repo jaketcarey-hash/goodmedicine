@@ -425,7 +425,9 @@
                     <span class="apparatus block text-[11px] leading-snug text-faint">
                       {item.reason === 'irregular'
                         ? 'Irregular income — no dates to place it on, and a guessed date is worse than none'
-                        : 'No date on this item, so the weeks do not know when it lands'}
+                        : item.reason === 'schedule-ended'
+                          ? 'We have run out of published payment dates for this one — that is our gap, not yours. It is left out of the balance rather than guessed at, so the weeks below are short by this much.'
+                          : 'No date on this item, so the weeks do not know when it lands'}
                     </span>
                   </span>
                   <span class="apparatus flex-shrink-0 text-sm tabular-nums text-quiet">

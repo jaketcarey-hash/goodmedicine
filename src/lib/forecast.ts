@@ -139,8 +139,21 @@ export interface Forecast {
   startBalance: number | null;
   /** The first week whose closing balance goes below zero. */
   firstTightWeek: ForecastWeek | null;
-  /** Items the walk could not place: no anchor date, or irregular. */
-  unplaced: { label: string; monthlyAmount: number; reason: 'no-date' | 'irregular' }[];
+  /**
+   * Items the walk could not place: no anchor date, irregular, or a benefit
+   * whose published schedule has run out from under us.
+   *
+   * `schedule-ended` is the one that is our fault rather than hers. It means
+   * the site holds no further payment dates for a series she has entered — and
+   * before it existed, that item silently produced no events and appeared
+   * nowhere, so the running balance simply lost her money and called the
+   * resulting weeks tight.
+   */
+  unplaced: {
+    label: string;
+    monthlyAmount: number;
+    reason: 'no-date' | 'irregular' | 'schedule-ended';
+  }[];
   /** Benefit series the household profile suggests, with nothing entered to pay out. */
   unentered: { key: string; label: string; nextDate: string }[];
   /** Categories whose planned amounts were corrected by the record. */
@@ -302,9 +315,25 @@ export function buildForecast(options: ForecastOptions = {}): Forecast {
 
     if (series) {
       matched.add(seriesKey!);
-      const inWindow = series.dates
-        .map(fromISO)
-        .filter((d) => d >= from && d <= to);
+      const future = series.dates.map(fromISO).filter((d) => d >= from);
+      const inWindow = future.filter((d) => d <= to);
+
+      // No payment in these eight weeks is not the same as no payment left.
+      // CGEB pays quarterly, so an eight-week window can legitimately contain
+      // none of it — saying "the schedule ended" there would be a false alarm
+      // on a perfectly good schedule. Only an empty *future* means we have run
+      // out of dates, and that is ours to admit rather than hers to discover.
+      if (inWindow.length === 0) {
+        if (future.length === 0) {
+          unplaced.push({
+            label: item.label,
+            monthlyAmount: toMonthly(item.amount, item.frequency),
+            reason: 'schedule-ended',
+          });
+        }
+        continue;
+      }
+
       for (const date of inWindow) {
         events.push({
           date: toISO(date),
