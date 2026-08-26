@@ -1657,6 +1657,48 @@ disagreement; it does not settle that.
 
 ---
 
+## 2026-08-26 — Naming the door, on every page that points at it
+
+Ten pages send a reader to their band office — post-secondary funding, an NIHB
+appeal, an estate, a treaty annuity, a request to see the financial statements
+— and none of them could say where that office is. "Ask your band office" is
+only advice if the reader knows which office and how to reach it, and someone
+who moved away, or grew up away, very often does not.
+
+`BandOffice.svelte` now sits on the five pages where the reader has a concrete
+task waiting. Named their Nation, and it says *your band office is X — this is
+where the PSSSP application goes*, with a link to address, phone and website.
+Not named it, and it says what naming would get them rather than pretending the
+sentence above it was complete.
+
+**No lookup table, deliberately.** Directory slugs carry collision handling — a
+band number is appended where two Nations normalise to the same name — so
+re-deriving a band number from a slug in a second place is a mismatch waiting
+to happen. The picker holds the name and the number at the moment of choosing,
+so it stores them beside the slug and everything else reads those. One writer,
+one source.
+
+**Linked, not copied.** 201 phone numbers held here would rot quietly, and this
+repo fails its own build over a stale figure. A registry deep link is current
+by construction.
+
+### On working in a shared tree
+
+This ran into an unfinished refactor in the working tree that was not mine —
+`household-draft.ts` being split out of `household-store.ts`, with the build
+red mid-flight — and I had already edited the same file before noticing. The
+rule was in my own notes and I did not follow it: **run `git status` before
+touching a shared file here.**
+
+The refactor landed as `5037b6d` and is better than what it replaced. It fixes
+the drift this repo's own docblock had been complaining about since the
+household was written: three places held who-lives-here — the calendar profile
+as checkboxes, the Benefits Finder as saved strings, the household as a real
+household — and they could disagree. They no longer can. The two fields added
+here survived it untouched.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

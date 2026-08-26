@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import BandOffice from '../../components/BandOffice.svelte';
 ---
 
 <Article
@@ -104,6 +105,8 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
       can often help with the appeal process. Don't just accept a denial — many are
       overturned on review.
     </p>
+
+  <BandOffice client:idle context="they can often take the appeal on with you" />
   </div>
 
   <ul>

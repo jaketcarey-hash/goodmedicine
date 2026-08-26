@@ -46,13 +46,22 @@
 
   function choose(s: string) {
     const hh = getHousehold();
-    if (hh) saveHousehold({ ...hh, nationSlug: s });
+    const n = nations.find((x) => x.slug === s);
+    // The name and band number are stored here because this is the only place
+    // that holds them. Every other component then names her band office
+    // without re-deriving a slug that carries collision handling.
+    if (hh) saveHousehold({
+      ...hh,
+      nationSlug: s,
+      nationName: n?.name ?? null,
+      nationBandNumber: n?.bandNumber ?? null,
+    });
     slug = s;
     query = '';
   }
   function clear() {
     const hh = getHousehold();
-    if (hh) saveHousehold({ ...hh, nationSlug: null });
+    if (hh) saveHousehold({ ...hh, nationSlug: null, nationName: null, nationBandNumber: null });
     slug = null;
   }
 </script>

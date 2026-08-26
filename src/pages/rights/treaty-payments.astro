@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import BandOffice from '../../components/BandOffice.svelte';
 ---
 
 <Article
@@ -67,6 +68,8 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
         your band's paylist. If you've never received your annuity, contact your band office
         or ISC. You may also be owed back payments.
       </p>
+
+  <BandOffice client:idle context="the paylist is held here" />
       <p>
         Some treaties also included one-time provisions — gratuities at signing, ammunition
         and twine money, agricultural implements, livestock. Most of these obligations have

@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import BandOffice from '../../components/BandOffice.svelte';
 ---
 
 <Article
@@ -24,6 +25,8 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     matched the promise — but the principle is clear: the Crown committed to supporting
     Indigenous education as part of the treaty relationship.
   </p>
+
+  <BandOffice client:idle context="this is where the PSSSP application goes, and where the deadline is set" />
 
   <p>
     What follows is a practical guide to the funding that exists, how to access it, and

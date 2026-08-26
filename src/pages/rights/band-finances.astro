@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import BandOffice from '../../components/BandOffice.svelte';
 ---
 
 <Article
@@ -192,6 +193,8 @@ import RelatedLinks from '../../components/RelatedLinks.astro';
     publish voluntarily. Regardless, you have the right to request these documents from
     your band administration.
   </p>
+
+  <BandOffice client:idle context="the financial statements are requested here" />
 
   <div class="callout callout-important">
     <strong>If your band won't share the financials</strong>

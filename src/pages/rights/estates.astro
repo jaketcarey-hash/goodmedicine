@@ -2,6 +2,7 @@
 import Article from '../../layouts/Article.astro';
 import ExpandableSection from '../../components/ExpandableSection.svelte';
 import RelatedLinks from '../../components/RelatedLinks.astro';
+import BandOffice from '../../components/BandOffice.svelte';
 import { value } from '../../lib/figures';
 ---
 
@@ -154,6 +155,8 @@ import { value } from '../../lib/figures';
       administrator appointed. A band office has usually done this before and
       can point you at the right person.
     </li>
+
+  <BandOffice client:idle context="they will have handled an estate under the Act before" />
     <li>
       <strong>Ask about the household's benefits separately.</strong> CPP
       survivor benefits, the Allowance, and child benefits shift when someone
