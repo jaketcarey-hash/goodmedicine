@@ -1699,6 +1699,73 @@ here survived it untouched.
 
 ---
 
+## 2026-08-26 — Every tool opens knowing what the site already knows
+
+Seventeen tools, and two of them knew the others existed. `/money/plan` read the
+money picture, `/money/unclaimed` read the household, and everything else
+imported its own store and nothing more. Open the Debt Planner after building a
+budget and it greeted you with an empty form while the site held your income,
+your surplus and the debts on your net-worth sheet. That silence is the whole of
+what "a bunch of separate tools" meant.
+
+`FromWhatYouEntered.svelte` is the offer, and it holds three rules so no tool has
+to:
+
+**It never fills the field.** It renders a fact and a button; the parent does
+the write, and only after she taps. A silently pre-filled form is a claim she
+never made.
+
+**It names the source, always.** "From your August budget", never "we found" —
+set in the apparatus voice, because a claim about the record is not the record.
+
+**It renders nothing when nothing is known.** No empty state, no prompt to go
+and enter data elsewhere. Verified on a cleared device across all four tools:
+no offer appears, and each tool's own empty state is untouched.
+
+**Offer into emptiness, never into a decision.** There is deliberately no
+dismiss button — a dismissal that does not persist is theatre, and one that does
+would need a storage key for a preference. Instead each parent offers only while
+its target is *untouched*. Once she has entered a debt of her own, importing the
+sheet would duplicate or contradict it, and that is a decision she has already
+made differently. The condition stops the nagging, not a button.
+
+What each tool now opens knowing: the **Debt Planner** sees the debts on the
+net-worth sheet, and the surplus as a candidate extra payment. The **Savings
+Tracker** sees the surplus and what it means for a cushion. **Net Worth** sees
+the debt planner's balances. The **Budget Snapshot** sees the benefit series the
+forecast has dates for and no amount.
+
+**What arrives incomplete arrives visibly incomplete.** `NetWorthItem` holds a
+label and an amount and no interest rate or minimum payment, so debts brought
+into the planner cannot be complete `Debt`s. They arrive with rate and minimum
+at zero rather than guessed, because a guessed rate produces a payoff date built
+on a number nobody gave. Going the other way, the planner holds no category, so
+debts arrive on the sheet typed "other" — guessing would file a credit card
+under mortgage in her own record. Both say so in the caveat before she taps.
+
+*Caught in the browser, and it was mine.* Importing debts with no minimum
+payment made an existing banner say something false: "each month the interest
+adds more than the minimums take off", on debts carrying 0% interest. A plan can
+fail to reach zero for two different reasons, and until debts could arrive from
+the sheet only one of them was possible. Telling someone the interest is beating
+her payments when the real answer is that she has not entered a payment yet
+sends her to fix the wrong thing. The banner now separates the two.
+
+*The Tax Estimator was left alone.* It already pre-selects from the Section 87
+verdict, already refuses to do it without a timestamp to show, and already
+prints "From your Section 87 check on 3 August — change it below if that's
+wrong". It is the third place on this site that had invented this pattern
+independently, which is the argument for the component rather than against it.
+Rewriting working code for uniformity is not a reason.
+
+*What was verified:* each offer appearing, each acceptance writing what it
+promised and nothing more, each offer disappearing afterwards, and a cleared
+device showing none of them — read from the DOM at the default pane width, plus
+one look at the rendered Debt Planner. Not verified at phone width; the pane
+does not go there.
+
+---
+
 ## Still open
 
 - Whether the ledger becomes a living record or stays a 2026 snapshot. The promotion tool

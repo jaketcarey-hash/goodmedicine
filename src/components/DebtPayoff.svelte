@@ -93,6 +93,18 @@
     timeline.length > 0 && timeline[timeline.length - 1].totalBalance <= 0.01,
   );
   let totalInterest = $derived(calculateTotalInterest(timeline));
+
+  /**
+   * Debts carrying no minimum payment yet.
+   *
+   * A plan can fail to reach zero for two different reasons, and until debts
+   * could arrive from the net-worth sheet only one of them was possible. A
+   * debt with no minimum does not move at all; a debt whose interest outruns
+   * its minimum moves the wrong way. Telling someone the interest is beating
+   * her payments when the real answer is that she has not entered a payment
+   * yet sends her to fix the wrong thing.
+   */
+  let debtsWithoutMinimum = $derived(plan.debts.filter((d) => d.minimumPayment <= 0));
   let payoffDate = $derived(getPayoffDate(timeline));
   let totalMonths = $derived(timeline.length);
 
@@ -236,11 +248,25 @@
     <div class="rounded-sm bg-white border border-rule p-5">
       <p class="text-xs text-text-muted mb-1 text-center">Total owed</p>
       <p class="text-2xl font-bold text-ink text-center">${fmt(totalOwed)}</p>
-      <p class="text-sm text-quiet mt-3 leading-relaxed max-w-prose mx-auto text-center">
-        On these payments the balance never reaches zero — each month the interest
-        adds more than the minimums take off. Raising a minimum, or adding an extra
-        payment below, is what changes that.
-      </p>
+      {#if debtsWithoutMinimum.length === plan.debts.length}
+        <p class="text-sm text-quiet mt-3 leading-relaxed max-w-prose mx-auto text-center">
+          There is no payoff date yet because no minimum payment has been entered —
+          nothing here is being paid down. Add what you pay each month, and the
+          interest rate, and this becomes a date.
+        </p>
+      {:else if debtsWithoutMinimum.length > 0}
+        <p class="text-sm text-quiet mt-3 leading-relaxed max-w-prose mx-auto text-center">
+          {debtsWithoutMinimum.length} of these {plan.debts.length} debts has no minimum
+          payment entered yet, so the balance never reaches zero. Filling those in is
+          what turns this into a date.
+        </p>
+      {:else}
+        <p class="text-sm text-quiet mt-3 leading-relaxed max-w-prose mx-auto text-center">
+          On these payments the balance never reaches zero — each month the interest
+          adds more than the minimums take off. Raising a minimum, or adding an extra
+          payment below, is what changes that.
+        </p>
+      {/if}
     </div>
   {:else if plan.debts.length > 0}
     <div class="rounded-sm bg-white border border-rule p-5 text-center">
