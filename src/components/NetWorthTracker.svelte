@@ -11,6 +11,8 @@
     calcNetWorth,
   } from '../lib/networth-store';
   import { fly, fade, slide } from 'svelte/transition';
+  import FromWhatYouEntered from './FromWhatYouEntered.svelte';
+  import { getPlan } from '../lib/debt-store';
 
   // ---- Asset/Debt categories ----
   const assetCategories = [
@@ -34,6 +36,24 @@
   // ---- State ----
   let assets = $state<NetWorthItem[]>([]);
   let debts = $state<NetWorthItem[]>([]);
+
+  /** Debts already mapped in the Debt Planner. Read once — an offer, not a
+   *  live mirror. */
+  let plannedDebts = $state<{ name: string; balance: number }[]>([]);
+
+  /** Offered only into an empty debt list. Once she has entered one of her
+   *  own, importing would duplicate or contradict it. */
+  let offerPlannedDebts = $derived(debts.length === 0 && plannedDebts.length > 0);
+
+  const money0 = (n: number) => '$' + Math.round(n).toLocaleString('en-CA');
+
+  function bringPlannedDebts() {
+    // The planner holds no category, and guessing one would put a credit card
+    // under "mortgage" in her own record. They arrive as "other", which is
+    // true, and she can retype it.
+    debts = plannedDebts.map((d) => ({ label: d.name, amount: d.balance, category: 'other' }));
+    plannedDebts = [];
+  }
   let snapshots = $state<NetWorthSnapshot[]>([]);
 
   // ---- Forms ----
@@ -58,6 +78,7 @@
     assets = working.assets;
     debts = working.debts;
     snapshots = getSnapshots();
+    plannedDebts = getPlan().debts.filter((d) => d.balance > 0);
   });
 
   // ---- Auto-save working state ----
@@ -183,6 +204,16 @@
 </script>
 
 <div class="space-y-5">
+  {#if offerPlannedDebts}
+    <FromWhatYouEntered
+      fact={`Your debt plan maps ${plannedDebts.length} ${plannedDebts.length === 1 ? 'debt' : 'debts'}, ${money0(plannedDebts.reduce((t, d) => t + d.balance, 0))} in total.`}
+      source="From your debt planner"
+      action="Bring them over"
+      caveat="They arrive typed as “other” — the planner does not hold a category, and guessing one would file a credit card under mortgage in your own record."
+      onuse={bringPlannedDebts}
+    />
+  {/if}
+
   <!-- Net worth banner -->
   <div class="rounded-sm bg-white border border-rule p-5 text-center">
     <p class="text-xs text-text-muted mb-1">Net worth</p>

@@ -12,6 +12,9 @@
   } from '../lib/debt-store';
   import { fly, fade, slide } from 'svelte/transition';
   import DebtPayoffCurve from './DebtPayoffCurve.svelte';
+  import FromWhatYouEntered from './FromWhatYouEntered.svelte';
+  import { getWorkingState } from '../lib/networth-store';
+  import { getMoneyPicture, type MoneyPicture } from '../lib/money-picture';
 
   // ---- State ----
   let plan = $state<DebtPlan>({ debts: [], extraMonthly: 0, strategy: 'avalanche' });
@@ -23,10 +26,52 @@
   let newRate = $state('');
   let newMinimum = $state('');
 
+  // ---- What the site already knows ----
+  let picture = $state<MoneyPicture | null>(null);
+  /** Debts on the net-worth sheet. Read once — this is an offer, not a live
+   *  mirror, and a list that changed under her while she was reading it would
+   *  be worse than one that is simply out of date. */
+  let sheetDebts = $state<{ label: string; amount: number }[]>([]);
+
   // ---- Init ----
   $effect(() => {
     plan = getPlan();
+    picture = getMoneyPicture();
+    sheetDebts = getWorkingState().debts.filter((d) => d.amount > 0);
   });
+
+  /**
+   * Offers stand only while the plan is untouched.
+   *
+   * Once she has added a debt of her own, bringing the sheet over would either
+   * duplicate what she typed or contradict it, and either way it is a decision
+   * she has already made differently.
+   */
+  let offerSheetDebts = $derived(plan.debts.length === 0 && sheetDebts.length > 0);
+
+  /** A surplus is a candidate extra payment, never a committed one — it is a
+   *  number from a budget, not money that has moved. Offered only once there
+   *  are debts to apply it to and no extra amount already set. */
+  let offerSurplus = $derived(
+    plan.debts.length > 0 &&
+      plan.extraMonthly === 0 &&
+      picture?.surplus != null &&
+      picture.surplus > 0,
+  );
+
+  function bringSheetDebts() {
+    // Balance and name are hers. Rate and minimum are not on the sheet at all,
+    // so they arrive as zero and visibly unanswered rather than guessed — a
+    // guessed rate would produce a payoff date built on a number nobody gave.
+    plan.debts = sheetDebts.map((d) => createDebt(d.label, d.amount, 0, 0));
+    sheetDebts = [];
+  }
+
+  function useSurplus() {
+    if (picture?.surplus != null) plan.extraMonthly = Math.round(picture.surplus);
+  }
+
+  const money0 = (n: number) => '$' + Math.round(n).toLocaleString('en-CA');
 
   // ---- Auto-save ----
   let initialized = $state(false);
@@ -154,6 +199,26 @@
 </script>
 
 <div class="space-y-5">
+  {#if offerSheetDebts}
+    <FromWhatYouEntered
+      fact={`Your net-worth sheet lists ${sheetDebts.length} ${sheetDebts.length === 1 ? 'debt' : 'debts'}, ${money0(sheetDebts.reduce((t, d) => t + d.amount, 0))} in total.`}
+      source="From your net-worth sheet"
+      action="Bring them over"
+      caveat="The sheet holds balances, not interest rates or minimum payments. Those arrive blank for you to fill in — until they do, there is no payoff date to give."
+      onuse={bringSheetDebts}
+    />
+  {/if}
+
+  {#if offerSurplus && picture?.surplus != null && picture.income}
+    <FromWhatYouEntered
+      fact={`Your budget leaves about ${money0(picture.surplus)} unspent each month.`}
+      source={`From your ${new Date(picture.income.month + '-01T00:00').toLocaleDateString('en-CA', { month: 'long' })} budget`}
+      action="Try it as an extra payment"
+      caveat="A surplus on paper is not a payment that has happened — this only shows what one would buy you."
+      onuse={useSurplus}
+    />
+  {/if}
+
   <!-- Summary banner -->
   {#if plan.debts.length > 0 && timeline.length > 0 && reachesZero}
     <div class="rounded-sm bg-white border border-rule p-5 text-center">

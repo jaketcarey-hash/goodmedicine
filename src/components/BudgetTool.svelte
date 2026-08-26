@@ -17,6 +17,9 @@
   } from '../lib/budget-store';
   import { downloadCsv, stamp } from '../lib/csv';
   import { fly, fade, slide } from 'svelte/transition';
+  import FromWhatYouEntered from './FromWhatYouEntered.svelte';
+  import { getMoneyPicture } from '../lib/money-picture';
+  import { matchBenefitSeries } from '../lib/forecast';
 
   // ---- Month navigation ----
   let currentMonth = $state(formatMonth(new Date()));
@@ -226,6 +229,42 @@
     newIncomeCategory = 'employment';
     newIncomeAnchor = '';
     showIncomeForm = false;
+  }
+
+  /**
+   * Benefit series the forecast has published dates for and no amount.
+   *
+   * Read once on mount. The forecast can put a payment on the real day only
+   * once she says what she receives — the dates are the government's, the
+   * amount is only ever hers — so this is the one place on the site where
+   * entering a number changes what the eight weeks can show.
+   */
+  let unenteredSeries = $state<{ key: string; label: string }[]>([]);
+
+  $effect(() => {
+    if (typeof window === 'undefined') return;
+    unenteredSeries = getMoneyPicture().forecast?.unentered ?? [];
+  });
+
+  /** Still missing from the month actually on screen. Uses the forecast's own
+   *  matcher rather than comparing labels, so "baby bonus" and "CCB" are not
+   *  offered as two different things. */
+  let missingSeries = $derived(
+    unenteredSeries.filter(
+      (u) => !budget.income.some((i) => matchBenefitSeries(i.label) === u.key),
+    ),
+  );
+
+  function enterSeries() {
+    const first = missingSeries[0];
+    if (!first) return;
+    // Label and category only. The amount stays empty because it is the one
+    // thing here nobody but her knows, and a benefit amount guessed from a
+    // maximum would land a number she does not receive in her own budget.
+    newIncomeLabel = first.label;
+    newIncomeCategory = 'benefits';
+    newIncomeAmount = '';
+    showIncomeForm = true;
   }
 
   function pickSuggestion(s: typeof incomeCategorySuggestions[number]) {
@@ -482,6 +521,18 @@
           </div>
         {/each}
       </div>
+    {/if}
+
+    {#if !showIncomeForm && missingSeries.length > 0}
+      <FromWhatYouEntered
+        fact={missingSeries.length === 1
+          ? `Your forecast has the payment dates for ${missingSeries[0].label} but not the amount.`
+          : `Your forecast has payment dates for ${missingSeries.map((m) => m.label).join(' and ')} but not the amounts.`}
+        source="From your household and the published payment schedule"
+        action={`Add what you receive from ${missingSeries[0].label}`}
+        caveat="Only you know what actually lands. Until it is here, the forecast leaves that money out of the weeks rather than estimating it."
+        onuse={enterSeries}
+      />
     {/if}
 
     <!-- Quick-add suggestions -->

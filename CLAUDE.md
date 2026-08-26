@@ -72,6 +72,36 @@ No accounts, no tracking, all state in `localStorage`.
 - **`money-picture.ts` reads every store and writes none.** Tools own their writes;
   cross-tool reads go through the picture. No composite score, ever.
 
+## How to ship
+
+Two lanes, split by whether the thing has a right answer.
+
+**Correctness ships straight to production.** Engine work, content fixes, a
+sourced claim, a bug. The gates are the review: `check-figures`,
+`check-provenance` and `check-benefit-dates` fail the build over a stale or
+undated number, and `npm test` covers the arithmetic. Those catch real things
+and they do not need a second opinion.
+
+**Judgement goes to a preview first.** Layout, density, whether a page reads
+well, whether something looks considered — `vercel deploy` without `--prod`
+gives a URL to look at before it is live. This exists because the map took four
+production deploys to get right, each round shipped to the world, and because
+every piece of feedback in that stretch was an aesthetic call rather than a
+correctness one. Nothing here verifies taste; do not ship taste as though it
+passed a check.
+
+**Batch the design rounds.** One preview, one review, one ship — not a deploy
+per tweak.
+
+**Say what was actually verified.** The browser pane cannot scroll, cannot
+resize below about 745px, and does not hydrate `client:visible` islands. So
+"measured the DOM at a constrained width" is the honest claim, and "verified at
+375px" usually is not.
+
+**Someone else works in this repo.** Codex commits here and does not always
+push. Run `git log` and `git status` before touching a shared file — an
+in-flight refactor was clobbered on 25 August because neither was checked.
+
 ## Hard boundary
 
 Strong Fire is personal. It must never appear in RBC or practice materials, and no

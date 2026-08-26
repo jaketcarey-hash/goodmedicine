@@ -9,6 +9,8 @@
   } from '../lib/savings-store';
   import { fly, fade, slide } from 'svelte/transition';
   import SavingsPace from './SavingsPace.svelte';
+  import FromWhatYouEntered from './FromWhatYouEntered.svelte';
+  import { getMoneyPicture, type MoneyPicture } from '../lib/money-picture';
 
   // ---- State ----
   let goals = $state<SavingsGoal[]>([]);
@@ -19,9 +21,41 @@
     totalSaved = getTotalSaved();
   }
 
+  let picture = $state<MoneyPicture | null>(null);
+
   $effect(() => {
     refresh();
+    picture = getMoneyPicture();
   });
+
+  /**
+   * A cushion is the goal a surplus most often wants, and the offer stands
+   * only while there is no emergency goal at all. Creating a goal is safe —
+   * it records an intention, not money. Recording a deposit from a surplus
+   * would not be: a surplus on paper is money that has not moved.
+   */
+  let offerCushion = $derived(
+    picture?.surplus != null &&
+      picture.surplus > 0 &&
+      !goals.some((g) => g.category === 'emergency'),
+  );
+
+  const CUSHION_TARGET = 1000;
+  const money0 = (n: number) => '$' + Math.round(n).toLocaleString('en-CA');
+
+  /** Plain arithmetic on her own number, not a projection. `projectGoal`
+   *  refuses to project without two real deposits, and this must not pretend
+   *  to be that. */
+  let cushionMonths = $derived(
+    picture?.surplus && picture.surplus > 0
+      ? Math.ceil(CUSHION_TARGET / picture.surplus)
+      : null,
+  );
+
+  function startCushion() {
+    createGoal('Emergency fund', CUSHION_TARGET, 'emergency');
+    refresh();
+  }
 
   // ---- Category config ----
   // Labels only — categories no longer tint; colour on this site carries
@@ -154,6 +188,16 @@
 </script>
 
 <div class="space-y-5">
+  {#if offerCushion && picture?.surplus != null && picture.income}
+    <FromWhatYouEntered
+      fact={`Your budget leaves about ${money0(picture.surplus)} unspent each month — at that rate a ${money0(CUSHION_TARGET)} cushion is about ${cushionMonths} ${cushionMonths === 1 ? 'month' : 'months'} away.`}
+      source={`From your ${new Date(picture.income.month + '-01T00:00').toLocaleDateString('en-CA', { month: 'long' })} budget`}
+      action={`Start a ${money0(CUSHION_TARGET)} emergency fund`}
+      caveat="This starts the goal only. Deposits go in when the money actually moves — nothing here records savings that have not happened."
+      onuse={startCushion}
+    />
+  {/if}
+
   <!-- Total saved banner -->
   {#if goals.length > 0}
     <div class="rounded-sm bg-white border border-rule p-5 text-center">
