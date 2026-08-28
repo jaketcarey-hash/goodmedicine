@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "headline": "A table Canada has never set: First Nations leadership will sit across from the Prime Minister and every premier on October 26 — while BC's DRIPA fight reopens by petition and Ottawa settles $209.5 million in broken agricultural promises"
+  },
+  "oneThing": {
+    "headline": "First Nations–First Ministers' Meeting confirmed for October 26 — a first in Canadian history",
+    "status": "confirmed",
+    "paragraphs": [
+      "The Assembly of First Nations confirmed in an August 21 bulletin that a dedicated First Nations–First Ministers' Meeting will take place October 26 on unceded Algonquin Territory in Ottawa, with a ceremony the day before. AFN leadership describes it as unprecedented: the first meeting to sit First Nations leadership directly opposite the Prime Minister and all provincial and territorial premiers as a distinct political order, rather than working through bilateral or ministerial channels.",
+      "The meeting follows more than a year of advocacy by National Chief Cindy Woodhouse Nepinak, who secured a commitment from the premiers at the 2025 Council of the Federation to ask Prime Minister Mark Carney to convene it — with First Nations setting the agenda. Pressure built through 2025 and 2026 as Ottawa and the provinces pursued a fast-tracked major-projects agenda that many First Nations say sidestepped adequate consultation.",
+      "AFN is hosting a Virtual Gathering for Leadership on September 23 to brief chiefs on logistics, and is pushing for the session to be publicly broadcast. Woodhouse Nepinak has said chiefs are united that it \"can't be one and done\" — they want a standing federal-provincial accountability mechanism on the socioeconomic gap, and guardrails so the major-projects push doesn't come at the expense of rights or the Crown's legal obligations. How the agenda and format land in the coming weeks will signal whether this becomes a governance shift or a one-off gesture."
+    ],
+    "sources": [
+      {
+        "label": "Assembly of First Nations bulletin",
+        "url": "https://afn.ca/all-news/bulletins/assembly-of-first-nations-afn-bulletin-first-nations-first-ministers-meeting-fnfmm-on-october-26-2026/"
+      }
+    ]
+  },
+  "econ": [
+    {
+      "headline": "Wet'suwet'en-owned DicinFoam opens Vancouver pilot plant turning wood waste into a Styrofoam replacement",
+      "status": "confirmed",
+      "what": "DicinFoam, a majority-owned subsidiary of Yinka Dene Economic Development Limited Partnership — the business arm of Wet'suwet'en First Nation — is running a pilot plant at Main Street and Terminal Avenue in Vancouver, producing 150 to 200 kilograms daily of biodegradable packaging foam made from logging waste, sawdust, bark and recycled cardboard. The technology was developed with UBC's Faculty of Forestry, with the intellectual property co-owned by UBC and YLP; backers include Natural Resources Canada's Investments in Forestry Industry Transformation program, two BC ministries, Forestry Innovation Investment and Mitacs. Lead technician Will Dennis, a member of Huu-ay-aht First Nations, was hired in June 2025.",
+      "why": "This moves a Nation up the value chain — from resource-benefit sharing into owning patented technology and manufacturing infrastructure. YLP's leadership frames it as correcting a model where forestry industrialization 'extracted value from all forest dwellers,' and sees potential to license the IP to other Indigenous communities.",
+      "sources": [
+        {
+          "label": "Ha-Shilth-Sa (with UBC News, Aug 12, 2026)",
+          "url": "https://hashilthsa.com/news/2026-08-28/logging-waste-made-packaging-material-potential-replacement-styrofoam"
+        }
+      ]
+    },
+    {
+      "headline": "Cat Lake and Lac Seul First Nations sign lifecycle development agreement for the Springpole Gold project",
+      "status": "confirmed",
+      "what": "Cat Lake First Nation and Lac Seul First Nation signed a development agreement with First Mining Gold covering construction, operations and closure of the Springpole Gold project in northwestern Ontario, a deposit with an inferred 4.8 million ounces of gold and 28 million ounces of silver. Negotiated through an Anishinaabe-led impact assessment (ALIA) process, the agreement gives the Nations a role in environmental management and monitoring across the project's life, plus preferential training and employability measures. It follows a $4-million deal signed in June for an all-season road linking Cat Lake to Sioux Lookout.",
+      "why": "The Nations used their own Anishinaabe-led assessment rather than relying only on the provincial and federal reviews — and secured monitoring rights spanning the full project lifecycle, not just a construction-phase jobs package. That combination of self-directed process and long-horizon oversight is a template other Nations facing gold and critical-mineral proposals are likely to point to.",
+      "sources": [
+        {
+          "label": "Canadian Mining Journal",
+          "url": "https://www.canadianminingjournal.com/news/first-mining-inks-development-agreement-with-first-nations/"
+        }
+      ]
+    },
+    {
+      "headline": "Métis National Council seeks procurement and critical-minerals role in Canada's tariff response",
+      "status": "confirmed",
+      "what": "The Métis National Council issued a statement August 25 calling for a 'Team Canada' approach to U.S. tariffs that includes Métis workers, businesses and governments — specifically asking for expanded federal procurement opportunities for Métis governments, inclusion in workforce development initiatives, and investment and trade-diversification pathways tied to critical minerals and nation-building projects. President Victoria Pruden: 'The Métis Nation is not simply asking to be protected from the impacts of this trade dispute. We are ready to be part of Canada's response. A Team Canada approach must include the Métis Nation.'",
+      "why": "The ask reframes Métis economic participation as a competitiveness asset rather than a protection request, pushing Ottawa to convert emergency-style trade mobilization into durable procurement access. MNC points to its own economic footprint — roughly $21 billion in GDP in 2015 and $25.4 billion in Métis business revenue in 2020, per its 2025 Status of the Métis Economy report — as the leverage behind the request.",
+      "sources": [
+        {
+          "label": "GlobeNewswire (Métis National Council release, via Manila Times)",
+          "url": "https://www.manilatimes.net/2026/08/26/tmt-newswire/globenewswire/metis-nation-calls-for-a-team-canada-approach-to-protect-canadas-economy-amid-us-tariffs/2412080"
+        },
+        {
+          "label": "Métis National Council",
+          "url": "https://www.metisnation.ca/metis-nation-calls-for-a-team-canada-approach-to-protect-canadas-economy-amid-u-s-tariffs/"
+        }
+      ]
+    }
+  ],
+  "land": [
+    {
+      "headline": "Ottawa settles $209.5 million in agricultural benefits claims with two Saskatchewan First Nations",
+      "status": "confirmed",
+      "what": "Canada signed settlement agreements with Muskeg Lake Cree Nation ($121,077,713) and The Key First Nation ($88,440,000) on August 22, resolving specific claims that Canada failed to deliver the farming implements, seed, livestock and other agricultural support promised under Treaty 6 and Treaty 4 as bison populations collapsed in the 19th century. Crown-Indigenous Relations Minister Rebecca Alty and Secretary of State Buckley Belanger signed alongside Chief Kelly Wolfe of Muskeg Lake Cree Nation and Chief Dustin Dayan Brass of The Key First Nation at a ceremony at Muskeg Lake Cree Nation.",
+      "why": "Agricultural benefits claims form a distinct, long-running category of specific claims across Treaty 4 and 6 territory, addressing Canada's failure to fulfil the farming provisions meant to support Plains nations' transition off the buffalo economy. Chief Wolfe framed the payout as reinvestment capital for the Nation's future — consistent with how recent large settlements, like Lac Seul's flooding claim, have funded community infrastructure and economic development.",
+      "sources": [
+        {
+          "label": "paNOW",
+          "url": "https://panow.com/2026/08/25/two-saskatchewan-first-nations-settle-agricultural-benefits-claims-for-more-than-209-million/"
+        }
+      ]
+    },
+    {
+      "headline": "Gitxsan Huwilp Government withdraws 13-year-old support for Seabridge's KSM mine",
+      "status": "confirmed",
+      "what": "The Gitxsan Huwilp Government's Hereditary Chiefs voted unanimously to rescind their 2013 letter of support for Seabridge Gold's KSM project in northwest BC's Golden Triangle, notifying provincial and federal officials and the company on August 13. Co-chair Brian Williams said Seabridge had been using the Gitxsan Huwilp's support to discount concerns raised by the Tsetsaut Skii km Lax Ha Nation, and cited unresolved worries about long-term tailings impacts on shared waterways. Seabridge said it 'supports the consultation process ordered by the court.'",
+      "why": "This sits directly downstream of the June BC Supreme Court ruling in which Justice Emily Burke found the province failed to adequately consult Tsetsaut Skii km Lax Ha before granting KSM's 'substantial start' determination, quashing it and ordering further consultation. One Nation withdrawing prior consent in solidarity after a court found a neighbouring Nation inadequately consulted raises the bar for what substantially-started approvals require — on a project with more than $1.4 billion already invested.",
+      "sources": [
+        {
+          "label": "Fort St. James Caledonia Courier",
+          "url": "https://caledoniacourier.com/2026/08/25/gitxsan-huwilp-government-withdraws-support-for-ksm-mine/"
+        }
+      ]
+    },
+    {
+      "headline": "Canada argues land return is 'not an available remedy' as Saugeen Ojibway Nation's Treaty 45½ claim enters its remediation phase",
+      "status": "reported",
+      "what": "Saugeen Ojibway Nation has instructed lawyers to contest a federal motion arguing that returning Crown- or Ontario-owned land on the Saugeen (Bruce) Peninsula is not an available legal remedy, ahead of an October 2 hearing in Toronto. The motion comes in the second, remediation phase of SON's decades-long Treaty 45½ claim — after Justice Wendy Matheson ruled in 2021 that the Crown breached its 1836 promise to protect the peninsula for the Nation 'forever,' a ruling the Supreme Court of Canada declined to disturb in 2024. SON seeks return of government-held (not privately owned) peninsula land plus compensation, with a full remediation trial scheduled for late 2030 to early 2031.",
+      "why": "The motion will decide, ahead of the multi-year trial, whether land back remains on the table at all as a remedy for a proven treaty breach — a threshold question with implications well beyond Saugeen Ojibway territory, since courts have historically been far more comfortable ordering compensation than physical land return. It follows the same fault line as the Cowichan Tribes and Wolastoqey cases this year, where courts drew a hard line protecting private titles while leaving Crown land more exposed.",
+      "sources": [
+        {
+          "label": "Bayshore Broadcasting News Centre",
+          "url": "https://www.bayshorebroadcasting.ca/2026/08/17/216305/"
+        }
+      ]
+    }
+  ],
+  "governance": [
+    {
+      "headline": "Elections BC approves a petition drive to repeal DRIPA; First Nations leaders call it fearmongering",
+      "status": "confirmed",
+      "what": "Chief Electoral Officer Shipra Verma gave in-principle approval August 27 to an initiative petition filed by BC Conservative MLA Harman Bhangu (Langley-Abbotsford) seeking repeal of the Declaration on the Rights of Indigenous Peoples Act. Signature canvassing opens October 26 for 90 days; organizers must gather signatures from at least 10 per cent of registered voters in each of BC's 93 electoral districts by January 25, 2027, and even a successful petition is non-binding — it would only be referred to the legislature. Terry Teegee, regional chief of the BC Assembly of First Nations, called the effort 'racist rhetoric' and 'fearmongering... grounded in a lot of falsehoods,' noted DRIPA passed unanimously in 2019, and urged people not to sign; Bhangu said the NDP had treated the law as 'a moving target.'",
+      "why": "This follows the BC government's own April retreat from a plan to suspend parts of DRIPA after the First Nations Leadership Council called it a 'unilateral betrayal.' DRIPA remains BC's most contested piece of Indigenous rights legislation, and the petition restarts that fight through a formal electoral mechanism rather than the legislature — Indigenous Relations Minister Spencer Chandra Herbert warned repeal would 'lead to massive jobs losses, hurt our health care, environment, communities and lead to economic chaos.'",
+      "sources": [
+        {
+          "label": "Energeticcity.ca (The Canadian Press wire)",
+          "url": "https://energeticcity.ca/2026/08/27/elections-bc-allows-petition-seeking-indigenous-laws-repeal-to-proceed/"
+        },
+        {
+          "label": "paNOW (Canadian Press)",
+          "url": "https://panow.com/2026/08/27/elections-bc-allows-petition-bid-for-indigenous-laws-repeal-to-proceed/"
+        }
+      ]
+    },
+    {
+      "headline": "Anthony Wingham elected Métis Nation British Columbia president",
+      "status": "reported",
+      "what": "Métis Nation British Columbia announced over August 23-24 that Anthony Wingham of Langley — an entrepreneur and current president of the Waceya Métis Society — won the presidential by-election with 1,296 of 2,449 votes cast among four candidates. Michael Dumont finished second with 645 votes; eight ballots were compromised. The by-election was called after Walter Mineault, first elected president in 2024, was removed following an independent investigation into allegations of misconduct.",
+      "why": "The result closes out a leadership vacancy at one of the Métis National Council's governing bodies and sets the incoming president's mandate heading into MNBC's next full election cycle. Wingham said his candidacy reflected his belief that the Métis Nation 'belongs to the citizens' and that he would 'serve them with honesty, steadiness and respect.'",
+      "sources": [
+        {
+          "label": "Energeticcity.ca",
+          "url": "https://energeticcity.ca/2026/08/24/metis-nation-british-columbia-announces-wingham-as-victor-of-presidential-by-election/"
+        }
+      ]
+    }
+  ],
+  "home": [
+    {
+      "headline": "BC lifts its wildfire state of emergency; nine First Nations remain evacuated",
+      "text": "British Columbia ended its province-wide state of emergency August 27, nineteen days after declaring it, even as fire risk stays elevated and — per Indigenous Services Canada — nine First Nations remain under evacuation orders. The cancellation does not lift any evacuation orders, alerts or local states of emergency declared by First Nations or local governments. More than 300,000 hectares have burned this season and over 500 homes and structures have been damaged or destroyed. Okanagan Indian Band was among the hardest hit: the Bradley Creek wildfire, which forced an evacuation order on the roughly 1,000-member reserve on August 1, is believed to have destroyed at least 230 properties on OKIB land, including more than 30 band members' homes. Nooaitch Indian Band issued its own evacuation order as fire approached within nine kilometres of Highway 8, while Westbank First Nation opened its Sensisyusten House of Learning as a reception centre during the height of the Bald Range and Quilpituk Creek fires.",
+      "why": "First Nations communities in the Interior bore a disproportionate share of this season's losses, and the provincial emergency's end is administrative — not a signal the crisis is over for the communities still displaced. Okanagan Indian Band's chief has said the emergency 'isn't over' for members who lost homes, raising the recurring question of how quickly compensation, temporary housing and infrastructure support reach on-reserve members compared to their off-reserve neighbours.",
+      "sources": [
+        {
+          "label": "APTN News",
+          "url": "https://www.aptnnews.ca/national-news/b-c-ends-state-of-provincial-emergency-over-wildfires-risk-remains-elevated/"
+        },
+        {
+          "label": "Government of British Columbia",
+          "url": "https://news.gov.bc.ca/releases/2026EMCR0039-000995"
+        }
+      ]
+    },
+    {
+      "headline": "BC and the Tahltan Central Government advance foundation agreement talks",
+      "text": "The province and the Tahltan Central Government announced August 26 that they are moving toward a potential foundation agreement covering northwestern BC, building on their 2020 shared prosperity agreement. The agreement would formalize the government-to-government relationship, clarify mining exploration and development areas, enable joint environmental management, and help remote Tahltan communities access services comparable to the rest of the province. Engagement with local governments, tenure holders, industry and First Nations with overlapping interests runs through fall 2026, with land-use planning engagement expected to conclude by December.",
+      "why": "This is DRIPA's consent-based framework being extended from single-project sign-offs — this year's Eskay Creek and Red Chris agreements — into a broader land-use and governance arrangement covering one of BC's most mineral-rich regions. Other Interior and northern Nations negotiating with the province will be reading it as a template, at the same moment a petition to repeal the underlying law begins circulating.",
+      "sources": [
+        {
+          "label": "BC Government News",
+          "url": "https://news.gov.bc.ca/releases/2026IRR0033-000987"
+        }
+      ]
+    }
+  ],
+  "sweep": [
+    {
+      "domain": "Law & courts",
+      "items": [
+        {
+          "line": "A Manitoba court ordered Melanie Desjarlais, former finance director of the First Nations National Guardians Network, to repay more than $6.2 million after finding she misappropriated funds meant for Indigenous Guardians programs; a criminal investigation is ongoing.",
+          "label": "Cabin Radio",
+          "url": "https://cabinradio.ca/306995/news/environment/court-sides-with-guardians-network-in-6-2-million-civil-suit/"
+        },
+        {
+          "line": "The coroner's inquest jury in the 2021 RCMP shooting death of Julian Jones of Tla-o-qui-aht First Nation recommended tasers and body cameras for all Tofino RCMP officers, a dedicated Indigenous liaison, and more reliable 24-hour water-taxi contracts for paramedics reaching remote coastal communities.",
+          "label": "Ha-Shilth-Sa",
+          "url": "https://hashilthsa.com/news/2026-08-27/coroners-inquest-jury-recommends-better-water-taxi-access-paramedics-tasers-and"
+        }
+      ]
+    },
+    {
+      "domain": "Health & education",
+      "items": [
+        {
+          "line": "Yellowknife Catholic Schools, which lost $7.4 million in Jordan's Principle funding after Ottawa changed the program's eligibility criteria in 2025, is asking the NWT government to make its one-time $30-million inclusive-schooling fund permanent as staffing cuts hit classrooms territory-wide.",
+          "label": "CBC News",
+          "url": "https://www.cbc.ca/news/canada/north/schools-jordan-s-principle-funding-9.7322205"
+        }
+      ]
+    },
+    {
+      "domain": "Culture, language & arts",
+      "items": [
+        {
+          "line": "syilx Okanagan artist David Wilson partnered with an Indigenous clothing company on a fundraiser design rooted in syilx land and teachings, with proceeds going to syilx community members who lost homes in this summer's Okanagan wildfires.",
+          "label": "IndigiNews",
+          "url": "https://indiginews.com/arts/syilx-okanagan-wildfire-fundraiser-design/"
+        }
+      ]
+    },
+    {
+      "domain": "International Indigenous",
+      "items": [
+        {
+          "line": "Two Greenland-commissioned expert reports split on whether Danish health authorities' forced contraception of more than 4,000 Kalaallit Inuit women and girls — some as young as 12 — met the legal threshold for genocide; the government accepted only the inconclusive report and announced a reconciliation commission.",
+          "label": "Associated Press via ClickOrlando",
+          "url": "https://www.clickorlando.com/news/world/2026/08/28/reports-split-over-whether-forced-contraception-of-greenlandic-women-and-girls-constituted-genocide/"
+        },
+        {
+          "line": "The Navajo Nation Council voted 18-0 to designate Tóahidíidlih — the confluence of the Colorado and Little Colorado rivers near the Grand Canyon — a protected sacred site, blocking recurring gondola-resort and hydroelectric dam proposals on land significant to the Navajo, Hopi and Zuni, among others.",
+          "label": "KSJD (NPR)",
+          "url": "https://www.ksjd.org/podcast/ksjd-local-newscasts/2026-08-27/navajo-nation-council-passes-measure-to-protect-river-confluence-near-grand-canyon"
+        }
+      ]
+    }
+  ],
+  "bright": {
+    "headline": "'I watch their face. I notice everything': a 16-year-old Chesterfield Inlet artist's summer of milestones",
+    "text": "Nunatsiaq News profiled Dawny Tanuyak, a 16-year-old portrait artist from Chesterfield Inlet, Nunavut, who works in graphite, oil and gouache — with a style shaped partly by manga series like Jujutsu Kaisen and Demon Slayer. Her summer: a commission from the local Co-op to paint Sedna, the Inuit sea goddess; a role illustrating the University of Manitoba's Genice II Arctic research project on oil and diesel spill impacts; and a three-week program at Nova Scotia's Ross Creek Centre for the Arts, where her portrait collages hung in the student showcase. Her process is simple and entirely her own — she sits with a subject and watches their face, noticing everything.",
+    "sources": [
+      {
+        "label": "Nunatsiaq News",
+        "url": "https://nunatsiaq.com/stories/article/arctic-talent-finding-beauty-in-diversity/"
+      }
+    ]
+  },
+  "stillWatching": [
+    {
+      "line": "The West Coast pipeline comment deadline, extended to September 18 amid wildfire disruption, still runs toward an October 1 national-interest listing decision — with the Major Projects Office consultation process publicly contested by UBCIC and Nation-side critics, and the first-ever First Nations–First Ministers' Meeting now set for three weeks after that decision date."
+    },
+    {
+      "line": "Bill C-21, the Red River Métis self-government treaty legislation, remains short of second reading with no fall sitting date confirmed and First Nations consultation concerns unresolved."
+    },
+    {
+      "line": "Ottawa has yet to respond to the August 6 coalition letter on renewing lapsing MMIWG2S+ program funding, with roughly half of Calls for Justice-linked initiatives at risk between 2026-27 and 2030-31."
+    },
+    {
+      "line": "The KSM 'substantial start' determination remains under court-ordered reconsideration following Tsetsaut Skii km Lax Ha's submission window — now with the Gitxsan Huwilp Government's 2013 support letter formally withdrawn — while Canada's argument that land return is 'not an available remedy' in Saugeen Ojibway Nation's Treaty 45½ case goes to a Toronto hearing October 2."
+    }
+  ]
+}
